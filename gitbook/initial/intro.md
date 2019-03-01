@@ -2,9 +2,9 @@
 
 _The BOSS Afterburner_ repository is meant as an extension of the conventional BOSS analysis framework. It contains the tutorial pages you are currently looking at, but also comes with two major components that are to facilitate initial and final event selection.
 
-First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**](initial.md).
+First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**]().
 
-Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](../../final-event-selection/final.md), or the "Afterburner".
+Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](../final/final.md), or the "Afterburner".
 
 In the following pages, we will first go through the motivation for designing this layer outside of the BOSS analysis framework and then go through these two components of event selection. We will end with a note on contributing to this framework, because one of the main aims of this setup is **to facilitate collaboration on analysis code within BESIII**.
 
@@ -64,7 +64,7 @@ The typical booking procedure [used in for instance the `RhopiAlg`]() is not the
 
 #### Declaring properties
 
-[Similarly to booking the `NTuple`s](./#ntuple-booking-procedure), declaring package properties is not too convenient either. An overview:
+[Similarly to booking the `NTuple`s](intro.md#ntuple-booking-procedure), declaring package properties is not too convenient either. An overview:
 
 1. **Declaration** of memory addresses in the header file, such as `double`s for cuts and `bool`leans for switches.
 2. **Declaring the property** in the constructor using [`Algorithm::declareProperty`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#acc63d83555ffb3833df7334468551d7d). Here you assign a name to the property. It is inconvenient that you have to go back and forth between the header file and the source code to keep the declared properties in agreement with the declared memory addresses.
@@ -80,7 +80,15 @@ A problem remains the correspondence between names of the properties and `NTuple
 
 ## Temporary notes
 
+### Base-derived algorithm structure
+
+### Generic event selection packages
+
+{% hint style="warning" %}
+**@todo** Describe `FSFilter` by BESIII.
+{% endhint %}
+
 ### Outdated group structure
 
-![Initial class structure of the BOSS Afterburner](../../.gitbook/assets/boss_afterburner.png)
+![Initial class structure of the BOSS Afterburner](../.gitbook/assets/boss_afterburner.png)
 

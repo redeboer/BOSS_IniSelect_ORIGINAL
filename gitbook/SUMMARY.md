@@ -5,9 +5,8 @@
 
 ## Initial event selection
 
-* [Introduction](initial/intro/README.md)
-  * [Notes](initial/intro/initial.md)
-* [Typical cuts](initial/typical-cuts.md)
+* [Introduction](initial/intro.md)
+* [Typical cuts](initial/cuts.md)
 * [Base algorithm](initial/base.md)
 * [Derived algorithms](initial/derived/README.md)
   * [rhopi\_pipigg](initial/derived/rhopi_pipigg.md)
@@ -19,11 +18,11 @@
 
 ## Final event selection
 
-* [Introduction](final-event-selection/final.md)
-* [Loading](final-event-selection/loading.md)
-* [Cutting](final-event-selection/cutting.md)
-* [Drawing](final-event-selection/drawing.md)
-* [Fitting](final-event-selection/fitting.md)
+* [Introduction](final/final.md)
+* [Loading](final/loading.md)
+* [Cutting](final/cutting.md)
+* [Drawing](final/drawing.md)
+* [Fitting](final/fitting.md)
 
 ## Appendices
 
