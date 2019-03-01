@@ -1,6 +1,4 @@
-# Initial event selection
-
-## 
+# Notes
 
 ## Base-derived algorithm structure
 

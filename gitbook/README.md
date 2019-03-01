@@ -1,5 +1,13 @@
 # Main page
 
+{% hint style="danger" %}
+**These pages are currently being reorganised**
+
+Originally, these pages were part of the [_BOSS Gitbook_](https://besiii.gitbook.io/boss), which provides introductory tutorials on the usage of BOSS and an inventory of official packages.
+
+The pages on the _Afterburner_ that you see here have been extracted from the original Gitbook and only focus on the _Afterburner_ framework for initial and final event selection.
+{% endhint %}
+
 {% hint style="warning" %}
 Feedback on these pages is very welcome! See [About](appendices/about.md) for contact details.
 {% endhint %}
@@ -8,7 +16,7 @@ Feedback on these pages is very welcome! See [About](appendices/about.md) for co
 
 This repository has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn). The repository has three major components:
 
-1. The [tutorial pages on GitBook](https://besiii.gitbook.io/boss) that you are currently looking at. These pages are to serve as an accessible introduction and user guide to the BOSS software framework used in the BESIII collaboration.
+1. The [tutorial pages](https://besiii.gitbook.io/boss) that you are currently looking at. These pages describe the use of _The BOSS Afterburner_ in initial and final event selection.
 2. A [base-derived algorithm structure for the **initial event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS.html). This part of the repository is integrated in BOSS and is designed to facilitate collaboration on code for initial event selection in hadron research at BESIII.
 3. An [analysis framework for **final event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS__Afterburner.html). This part of the repository is designed to formalise and standardise loading, plotting, and fitting procedures that you perform on the output of the initial event selection.
 

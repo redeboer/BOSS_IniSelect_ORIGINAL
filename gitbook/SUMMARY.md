@@ -3,45 +3,27 @@
 * [Main page](README.md)
 * [Contents of the tutorial pages](contents.md)
 
-## BESIII Software System
+## Initial event selection
 
-* [Introduction to BESIII](besiii-software-system/besiii.md)
-* [Getting started with BOSS](besiii-software-system/getting-started/README.md)
-  * [Organisation of the IHEP server](besiii-software-system/getting-started/server.md)
-  * [The BOSS Analysis Framework](besiii-software-system/getting-started/intro.md)
-  * [Setup of your BOSS environment](besiii-software-system/getting-started/setup.md)
-  * [Set up a BOSS package](besiii-software-system/getting-started/setup-package.md)
-  * [Running jobs](besiii-software-system/getting-started/jobs.md)
-* [BOSS Packages](besiii-software-system/packages/README.md)
-  * [Generation](besiii-software-system/packages/generation.md)
-  * [Simulation](besiii-software-system/packages/simulation.md)
-  * [Reconstruction](besiii-software-system/packages/reconstruction.md)
-  * [Analysis](besiii-software-system/packages/analysis/README.md)
-    * [RhopiAlg](besiii-software-system/packages/analysis/rhopi.md)
-    * [PipiJpsiAlg](besiii-software-system/packages/analysis/pipijpsi.md)
-    * [TopoAna](besiii-software-system/packages/analysis/topoana/README.md)
-      * [Required fields](besiii-software-system/packages/analysis/topoana/required.md)
-      * [Optional fields](besiii-software-system/packages/analysis/topoana/optional.md)
-    * [Other packages](besiii-software-system/packages/analysis/other.md)
+* [Introduction](initial/intro/README.md)
+  * [Notes](initial/intro/initial.md)
+* [Typical cuts](initial/typical-cuts.md)
+* [Base algorithm](initial/base.md)
+* [Derived algorithms](initial/derived/README.md)
+  * [rhopi\_pipigg](initial/derived/rhopi_pipigg.md)
+  * [Jpsipipi\_pipill](initial/derived/jpsipipi_pipill.md)
+  * [D0phi\_KpiKK](initial/derived/d0phi_kpikk.md)
+  * [D0omega\_Kpipipipi](initial/derived/d0omega_kpipipipi.md)
+  * [D0phi\_KenuKK](initial/derived/d0phi_kenukk.md)
+* [Finalising your analyse](initial/finalising-your-analyse.md)
 
-## The BOSS Afterburner
+## Final event selection
 
-* [Introduction](the-boss-afterburner/intro.md)
-* [Initial event selection](the-boss-afterburner/initial/README.md)
-  * [Typical cuts](the-boss-afterburner/initial/typical-cuts.md)
-  * [Base algorithm](the-boss-afterburner/initial/base.md)
-  * [Derived algorithms](the-boss-afterburner/initial/derived/README.md)
-    * [rhopi\_pipigg](the-boss-afterburner/initial/derived/rhopi_pipigg.md)
-    * [Jpsipipi\_pipill](the-boss-afterburner/initial/derived/jpsipipi_pipill.md)
-    * [D0phi\_KpiKK](the-boss-afterburner/initial/derived/d0phi_kpikk.md)
-    * [D0omega\_Kpipipipi](the-boss-afterburner/initial/derived/d0omega_kpipipipi.md)
-    * [D0phi\_KenuKK](the-boss-afterburner/initial/derived/d0phi_kenukk.md)
-* [Final event selection](the-boss-afterburner/final/README.md)
-  * [Loading](the-boss-afterburner/final/loading.md)
-  * [Cutting](the-boss-afterburner/final/cutting.md)
-  * [Drawing](the-boss-afterburner/final/drawing.md)
-  * [Fitting](the-boss-afterburner/final/fitting.md)
-* [Finalising your analyse](the-boss-afterburner/finalising-your-analyse.md)
+* [Introduction](final-event-selection/final.md)
+* [Loading](final-event-selection/loading.md)
+* [Cutting](final-event-selection/cutting.md)
+* [Drawing](final-event-selection/drawing.md)
+* [Fitting](final-event-selection/fitting.md)
 
 ## Appendices
 

@@ -48,5 +48,3 @@ An example of a `RooFit` wrapper would be `RooRarFit` by the BaBar Collaboration
 **@todo** Describe `FSFilter` by BESIII.
 {% endhint %}
 
-
-

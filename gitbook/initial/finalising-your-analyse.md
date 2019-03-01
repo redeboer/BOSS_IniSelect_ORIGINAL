@@ -6,5 +6,3 @@
 
 ## Systematic error study
 
-
-

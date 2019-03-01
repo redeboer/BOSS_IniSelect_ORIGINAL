@@ -1,7 +1,7 @@
 # Base algorithm
 
 {% hint style="danger" %}
-**The `TrackSelector` package and derived packages are still being developed and tested.**
+**The** `TrackSelector` **package and derived packages are still being developed and tested.**
 
 Tutorial pages are therefore not yet complete. You can meanwhile have a look at the current design of the class structure [here](https://redeboer.github.io/BOSS_Afterburner/modules.html).
 {% endhint %}

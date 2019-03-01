@@ -4,7 +4,7 @@ There are several means through which you can contribute to these tutorial pages
 
 * **Email** Just [email me](../contents.md) if you see something that needs improvement or if there is something you would like to see documented.
 * **Through GitBook** Using GitBook is the most convenient method to collaborate on the tutorial pages: you can comment, discuss, work with drafts, merge them, etc.
-* **Through `git`** Contribute to both the tutorial pages and the code through `git`. For the tutorial pages, you will have to work with the MarkDown source files, but it allows for a larger number of collaborators.
+* **Through** `git` Contribute to both the tutorial pages and the code through `git`. For the tutorial pages, you will have to work with the MarkDown source files, but it allows for a larger number of collaborators.
 
 In all cases, just [contact me](about.md) and I can give you access.
 
@@ -18,7 +18,7 @@ See [here](https://guides.github.com/introduction/flow/) for a short tutorial ab
 
 Graphical editor for Windows:  
 [https://legacy.gitbook.com/editor](https://legacy.gitbook.com/editor)  
-Could be useful if you decide to contribute to the 
+Could be useful if you decide to contribute to the
 
 {% hint style="danger" %}
 GitBook Editor is outdated and seems to be not fully compatible with the newest version of the browser-based GitBook!
