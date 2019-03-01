@@ -17,7 +17,7 @@ packageName="D0phi_KpiKK"
 nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=1 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * Parameters in case of file/directory reading * #
 gExampleFromFile=0

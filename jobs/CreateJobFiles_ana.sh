@@ -70,12 +70,18 @@ set -e # exit if a command or function exits with a non-zero status
 # * ============================= * #
 
 	# * User input * #
-		echo "This will create \"ana_${packageName}_*.txt\" job files with ${nEventsPerJob} events each."
+	nJobs=$(ls ${searchTerm} | wc -l)
+	# * User input * #
+		echo "This will create \"${packageName}_*.txt\" analysis job option files with ${nEventsPerJob} events each."
 		echo "These files will be written to folder:"
 		echo "   \"${scriptFolder}/ana\""
 		echo
-		echo "DST files will be loaded from the $(ls ${searchTerm} | wc -l) files matching this search pattern:"
+		echo "DST files will be loaded from the ${nJobs} files matching this search pattern:"
 		echo "   \"${searchTerm}\""
+		if [ ${nJobs} -lt 0 ]; then
+			echo
+			echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
+		fi
 		AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
 
 	# * Create and EMPTY scripts directory * #
@@ -97,8 +103,10 @@ set -e # exit if a command or function exits with a non-zero status
 				templateName="${scriptFolder}/templates/analysis.txt"
 				CheckIfFileExists "${templateName}"
 				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
+				packageNameCAP=$(echo ${packageName} | awk '{print toupper($0)}') # to upper case
 				# Replace simple parameters in template
 				awk '{flag = 1}
+					{sub(/__PACKAGENAME_CAP__/,"'${packageNameCAP}'")}
 					{sub(/__PACKAGENAME__/,"'${packageName}'")}
 					{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
 					{sub(/__NEVENTS__/,'${nEventsPerJob}')}
