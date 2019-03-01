@@ -4,14 +4,6 @@
 * [Contents of the tutorial pages](contents.md)
 * [BOSS Gitbook](https://besiii.gitbook.io/boss)
 
-## Appendices
-
-* [Tips, Tricks, and Troubleshooting](appendices/tips.md)
-* [Further reading](appendices/references.md)
-* [Contributing](appendices/contributing.md)
-* [Glossary](appendices/glossary.md)
-* [About](appendices/about.md)
-
 ## Initial event selection
 
 * [Introduction](initial-event-selection/intro.md)
@@ -32,4 +24,12 @@
 * [Cutting](final-event-selection/cutting.md)
 * [Drawing](final-event-selection/drawing.md)
 * [Fitting](final-event-selection/fitting.md)
+
+## Appendices
+
+* [Tips, Tricks, and Troubleshooting](appendices/tips.md)
+* [Further reading](appendices/references.md)
+* [Contributing](appendices/contributing.md)
+* [Glossary](appendices/glossary.md)
+* [About](appendices/about.md)
 

@@ -19,7 +19,7 @@ Some aims of this setup:
 * Provide a platform for **collaborating** on code, while still doing one's own specific research. The user is has the freedom and flexibility to design the event selection to one's own needs \(in the derived algorithms\), but is at the same time continuously testing the functionality of the base classes.
 * Future plans:
   * **Standardized output** of plots such as default plot labels, automatised naming, watermarks for the status of your analysis, etc.
-  * **Debugging tests** that ensure the consistency and reliability of analysis output after framework updates.
+  * **Unit tests** that ensure the consistency and reliability of analysis output after framework updates. See for instance [`CppTest`](https://redeboer.gitbook.io/afterburner).
 
 ### Facilitate collaboration
 
