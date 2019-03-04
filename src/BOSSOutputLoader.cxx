@@ -269,16 +269,21 @@
 				std::cout << std::endl;
 				return;
 			}
-		/// <li> If `"_cutvalues"` contains 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
+		/// <li> If `"_cutvalues"` contains at least 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
 			/// <ol>
 			/// <li> Get values from entry 1 (`max`).
 			key->second.GetChain().GetEntry(1);
 			for(auto it : key->second.Get_D())
 				cuts[it.first].push_back(it.second);
-			/// <li> Get values from entry 2 (`count`).
-			key->second.GetChain().GetEntry(2);
-			for(auto it : key->second.Get_D())
-				cuts[it.first].push_back(it.second);
+			/// <li> Get values from entry 2 (`count`). In case of an `hadd`ed file, add up the values of entry 2, 5, 8, etc.
+			for(auto it : key->second.Get_D()) {
+				int ncounts = 0;
+				for(int i = 2; i < key->second.GetEntries(); i += 3) {
+					key->second.GetChain().GetEntry(i);
+					ncounts += it.second;
+				}
+				cuts[it.first].push_back(ncounts);
+			}
 			/// </ol>
 		/// <li> And print loaded values as a table: one row per parameters.
 			/// <ol>
