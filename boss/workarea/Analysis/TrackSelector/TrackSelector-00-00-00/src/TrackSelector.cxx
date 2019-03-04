@@ -575,7 +575,7 @@
 			/// <li> @b Skip if the track is not from the generator. This means that it is simulated in the detectors, but did not come from the event generator.
 				if(!(*it)->decayFromGenerator()) continue;
 			/// <li> Only start recording <i>after</i> we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `NTupleTopoAna::IsInitialCluster`.
-				if(doNotInclude && NTupleTopoAna::IsInitialCluster(*it)) {
+				if(doNotInclude && NTupleTopoAna::IsJPsi(*it)) {
 					doNotInclude = false;
 					continue;
 				}
@@ -710,10 +710,9 @@
 		/// -# Loop over tthe remainder of `fMcParticles` and store the daughters
 			for(; it != fMcParticles.end(); ++it) {
 				tuple.particle[tuple.index] = (*it)->particleProperty();
-				if(NTupleTopoAna::IsInitialCluster(*it))
-					tuple.mother[tuple.index] = -1;
-				else
-					tuple.mother[tuple.index] = (*it)->mother().trackIndex() - indexOffset;
+				tuple.mother[tuple.index] = (*it)->mother().trackIndex() - indexOffset;
+				if(NTupleTopoAna::IsFromJPsi(*it)) ++tuple.mother[tuple.index];
+				if(NTupleTopoAna::IsJPsi(*it)) tuple.mother[tuple.index] = 0;
 				++tuple.index;
 				// std::cout
 					// << std::setw(3) << tuple.index

@@ -65,7 +65,7 @@ StatusCode MctruthForTopoAna::execute()
   int rootIndex(-1);
   for (;iter_mc!=mcParticleCol->end();iter_mc++)
     {
-      //std::cout<<"idx="<<m_nmcps<<"\t"<<"pid="<<(*iter_mc)->particleProperty()<<"\t"<<"midx="<<((*iter_mc)->mother()).trackIndex()<<std::endl;
+      //std::cout<<"idx="<<m_nmcps<<"\t"<<"pid="<<(*iter_mc)->particleProperty()<<"\t"<<"midx="<<(*iter_mc)->mother().trackIndex()<<std::endl;
       if((*iter_mc)->primaryParticle()) continue;
       if(!(*iter_mc)->decayFromGenerator()) continue;
       if((*iter_mc)->particleProperty()==incPid)
@@ -75,8 +75,10 @@ StatusCode MctruthForTopoAna::execute()
         }
       if(!incPdcy) continue;
       m_pid[m_nmcps]=(*iter_mc)->particleProperty();
-      if(((*iter_mc)->mother()).particleProperty()==incPid) m_midx[m_nmcps]=((*iter_mc)->mother()).trackIndex()-rootIndex;
-      else m_midx[m_nmcps]=((*iter_mc)->mother()).trackIndex()-rootIndex-1;
+      if((*iter_mc)->mother().particleProperty()==incPid)
+        m_midx[m_nmcps]=(*iter_mc)->mother().trackIndex()-rootIndex;
+      else
+        m_midx[m_nmcps]=(*iter_mc)->mother().trackIndex()-rootIndex-1;
       if((*iter_mc)->particleProperty()==incPid) m_midx[m_nmcps]=0;
       m_nmcps++;
     }
