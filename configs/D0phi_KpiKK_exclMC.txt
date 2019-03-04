@@ -3,7 +3,7 @@
  */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_MC_1e6.root"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/exclMC/D0phi_KpiKK_excl_1e6.root"
 
 // * TERMINAL OUTPUT * //
 	Print branches = false
@@ -16,11 +16,12 @@
 	Plot statistics = false
 
 // * WHICH BRANCHES TO PLOT * //
-	Plot raw data      = false
-	Draw multiplicites = true
+	Plot raw data      = true
+	Draw multiplicites = false
 	Draw vertex        = false
 	Draw ToF           = false
 	Draw fit branches  = true
+	Draw mctruth       = false
 
 // * FIT SETTINGS * //
 	Perform fits = false
