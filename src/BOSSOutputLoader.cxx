@@ -277,7 +277,7 @@
 				cuts[it.first].push_back(it.second);
 			/// <li> Get values from entry 2 (`count`). In case of an `hadd`ed file, add up the values of entry 2, 5, 8, etc.
 			for(auto it : key->second.Get_D()) {
-				int ncounts = 0;
+				int ncounts{0};
 				for(int i = 2; i < key->second.GetEntries(); i += 3) {
 					key->second.GetChain().GetEntry(i);
 					ncounts += it.second;

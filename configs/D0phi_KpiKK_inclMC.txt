@@ -1,9 +1,7 @@
-/**
 /// Analysis configuration file for analysing MC output of the `D0phi_KpiKK_data` package.
- */
 
 // * FILE NAME * //
-	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC/D0phi_KpiKK_incl.root"
+	Input file or directory = "/mnt/d/IHEP/root/D0phi_KpiKK/inclMC/cut_only"
 
 // * TERMINAL OUTPUT * //
 	Print branches = false
