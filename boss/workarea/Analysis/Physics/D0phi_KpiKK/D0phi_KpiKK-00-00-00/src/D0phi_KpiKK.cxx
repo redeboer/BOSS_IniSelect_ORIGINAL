@@ -43,7 +43,7 @@
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
 			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of events where there is at least one combination where the kinematic fit worked")
+			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked (no chi2 cut)")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 		fCreateNeutralCollection = false;
@@ -263,6 +263,8 @@
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
 							/// <ol>
+							/// <li> Increment `fCutFlow_NFitOK` counter if fit worked.
+							++fCutFlow_NFitOK;
 							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
 							/// <li> Construct fit result object for this combintation.
@@ -280,7 +282,6 @@
 				}
 				/// After loop over combintations:
 				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
-				if(fitresults->HasResults()) ++fCutFlow_NFitOK;
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 			}
 
