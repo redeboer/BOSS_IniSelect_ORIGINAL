@@ -79,8 +79,8 @@ main
 **.time
 **.dat_auto
 **.dat_temp*
-boss/workarea/Analysis/TopoAna/v1.6.2/test/*
-boss/workarea/Analysis/TopoAna/v1.6.2/test/**
+boss/workarea/Analysis/TopoAna/v*/test/*
+boss/workarea/Analysis/TopoAna/v*/test/**
 jobs/topoana/**.txt
 jobs/topoana/**/**.txt
 jobs/topoana/**/*.txt

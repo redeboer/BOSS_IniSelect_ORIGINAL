@@ -21,8 +21,7 @@
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpiKK/D0phi_KpiKK-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-00/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-06/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TrackSelector/TrackSelector-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-00-00/cmt/setup.sh"
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
@@ -75,6 +74,15 @@
 	}
 	export cdworkarea # navigate to workarea (optional argument: subfolder)
 	alias cdjobs="cdafterburner jobs"
+	function cdmctruth()
+	{
+		local number="${1}"
+		if [ $# == 0 ] ; then
+			number=""
+		fi
+		cdworkarea Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-0${number}
+	}
+	export cdmctruth # navigate to BOSS Afterburner (optional argument: subfolder)
 
 # * Some BOSS functions * #
 	function AttemptToExecute()

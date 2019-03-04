@@ -87,6 +87,8 @@
 	/// This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
+			CreateMCTruthCollection();
+			WriteMCTruthForTopoAna(fNTuple_mctruth);
 		/// <ol type="A">
 		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
 			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
@@ -164,8 +166,8 @@
 
 
 		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			CreateMCtruthCollection();
-			WriteMcTruthForTopoAna(fNTuple_mctruth);
+			// CreateMCTruthCollection();
+			// WriteMCTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
@@ -341,9 +343,9 @@
 	}
 
 
-	/// Specification of `TrackSelector::CreateMCtruthSelection`.
-	/// Create selection of MC truth particles by looping over the collection of MC particles created by `TrackSelector::CreateMCtruthCollection()`.
-	void D0phi_KpiKK::CreateMCtruthSelection()
+	/// Specification of `TrackSelector::CreateMCTruthSelection`.
+	/// Create selection of MC truth particles by looping over the collection of MC particles created by `TrackSelector::CreateMCTruthCollection()`.
+	void D0phi_KpiKK::CreateMCTruthSelection()
 	{
 		/// -# @b Abort if input file is not from a Monte Carlo simulation (that is, if the run number is not negative).
 			if(fEventHeader->runNumber()>=0) return;

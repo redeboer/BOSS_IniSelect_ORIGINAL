@@ -79,7 +79,7 @@
 		/// @name NTuple methods
 			///@{
 			void AddNTupleItems_Fit(NTupleContainer &tuple);
-			void CreateMCtruthSelection();
+			void CreateMCTruthSelection();
 			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
 			///@}
 

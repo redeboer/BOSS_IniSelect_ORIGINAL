@@ -40,10 +40,10 @@
 # ------ OPTIONAL FIELDS ------ #
 # ============================= #
 
-% Maximum number of entries to be processed
-{
-  1000
-}
+# % Maximum number of entries to be processed
+# {
+#   1000
+# }
 
 % Signal particles
 {

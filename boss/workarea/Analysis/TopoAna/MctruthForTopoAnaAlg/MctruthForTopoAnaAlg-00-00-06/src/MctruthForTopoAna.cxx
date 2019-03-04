@@ -86,5 +86,4 @@ StatusCode MctruthForTopoAna::finalize()
   MsgStream log(msgSvc(),name());
   std::cout<<"ievt="<<ievt<<std::endl;
   log<<MSG::INFO<<"in finalize()"<<endreq;
-  return StatusCode::SUCCESS;
 }

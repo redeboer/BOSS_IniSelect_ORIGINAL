@@ -1,0 +1,29 @@
+
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$MCTRUTHFORTOPOANAALGROOT/share/jobOptions_MctruthForTopoAna.txt"
+
+// Input rtraw file
+EventCnvSvc.digiRootInputFile=
+{
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_1_32668_32668_file0002.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_2_33260_33260_file0003.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_2_32672_32672_file0002.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_2_33286_33286_file0003.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_4_33394_33394_file0002.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_2_32665_32665_file0003.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_4_32378_32378_file0002.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_5_32365_32365_file0002.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_3_33248_33248_file0003.dst",
+"/besfs/groups/psip/psipgroup/703-MC/4230/hadrons/rec/703_ecms4230_hadrons_3_32842_32842_file0001.dst"
+};
+
+// Output root file 
+ApplicationMgr.HistogramPersistency="ROOT";
+NTupleSvc.Output={"FILE1 DATAFILE='had.root' OPT='NEW' TYP='ROOT'"};
+
+// Set output level threshold (2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL )
+MessageSvc.OutputLevel=5;
+
+// Number of events to be processed (default is 10)
+// ApplicationMgr.EvtMax=2000;
+

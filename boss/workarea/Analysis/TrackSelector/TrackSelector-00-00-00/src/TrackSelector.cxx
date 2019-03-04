@@ -174,7 +174,7 @@
 			AddNTupleItems_Tof(fNTuple_TofOB);
 
 		/// <li> `"mctruth"`: Monte Carlo truth for TopoAna package.
-			AddNTupleItems_McTruth(fNTuple_mctruth);
+			AddNTupleItems_MCTruth(fNTuple_mctruth);
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ol>
@@ -298,7 +298,7 @@
 
 
 	/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package.
-	void TrackSelector::AddNTupleItems_McTruth(NTupleTopoAna &tuple)
+	void TrackSelector::AddNTupleItems_MCTruth(NTupleTopoAna &tuple)
 	{
 		if(!tuple.DoWrite()) return;
 		tuple.GetNTuple()->addItem("runID", tuple.runID);         /// * `"runID"`: Run number ID.
@@ -545,9 +545,9 @@
 
 
 	/// Create a preselection of <b>Monte Carlo truth</b> tracks.
-	/// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles` `vector` with a selection of `McParticle` pointers. This collection starts with the initial cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it possible to use `CreateMCtruthSelection`, so it is called at the end.
+	/// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles` `vector` with a selection of `McParticle` pointers. This collection starts with the initial cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it possible to use `CreateMCTruthSelection`, so it is called at the end.
 	/// @see `fMcParticles`
-	void TrackSelector::CreateMCtruthCollection()
+	void TrackSelector::CreateMCTruthCollection()
 	{
 		/// <ol>
 		/// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
@@ -585,8 +585,8 @@
 			/// </ul>
 			}
 
-		/// <li> <i>(For the derived class:)</i><br> Create selections of specific MC truth particles using `CreateMCtruthSelection`. Will not be performed if not specified in the derived algorithm.
-			CreateMCtruthSelection();
+		/// <li> <i>(For the derived class:)</i><br> Create selections of specific MC truth particles using `CreateMCTruthSelection`. Will not be performed if not specified in the derived algorithm.
+			CreateMCTruthSelection();
 
 		/// </ol>
 	}
@@ -686,8 +686,8 @@
 
 
 	/// Write an `NTuple` containing branches that are required for the `TopoAna` method.
-	/// @warning This method can be called only after `fMcParticles` has been filled using `CreateMCtruthCollection`.
-	void TrackSelector::WriteMcTruthForTopoAna(NTupleTopoAna &tuple)
+	/// @warning This method can be called only after `fMcParticles` has been filled using `CreateMCTruthCollection`.
+	void TrackSelector::WriteMCTruthForTopoAna(NTupleTopoAna &tuple)
 	{
 		/// -# @b Abort if input file is not MC generated (that is, if the run number is not negative).
 			if(fEventHeader->runNumber()>=0) return;
