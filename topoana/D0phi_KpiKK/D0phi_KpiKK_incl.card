@@ -116,10 +116,10 @@
 #   Y
 # }
 
-# % Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
+% Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
+{
+  Y
+}
 
 # % Suppress the topology tags in the output tex/pdf files (Two options: Y and N. Default: N)
 # {

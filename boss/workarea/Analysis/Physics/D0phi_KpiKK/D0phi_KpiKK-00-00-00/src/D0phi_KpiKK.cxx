@@ -42,7 +42,8 @@
 			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
-			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
+			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of events where there is at least one combination where the kinematic fit worked")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 		fCreateNeutralCollection = false;
@@ -183,9 +184,9 @@
 				/// <li> Only continue if the two kaons are different.
 					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-					if(!IsDecay(*fMcKaonNeg2Iter, 421, -321)) continue; // D0  --> K-
+					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
 					if(!IsDecay(*fMcPionPosIter,  421,  211)) continue; // D0  --> pi+
-					if(!IsDecay(*fMcKaonNeg1Iter, 333, -321)) continue; // phi --> K-
+					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-
 					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // phi --> K+
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_D0phi_KpiKK fitresult(
@@ -279,6 +280,7 @@
 				}
 				/// After loop over combintations:
 				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
+				if(fitresults->HasResults()) ++fCutFlow_NFitOK;
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 			}
 

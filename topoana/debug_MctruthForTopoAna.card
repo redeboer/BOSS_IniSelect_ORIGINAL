@@ -42,7 +42,7 @@
 
 % Maximum number of entries to be processed
 {
-  10000
+  1000
 }
 
 % Signal particles

@@ -3,8 +3,6 @@
 #include "McTruth/McParticle.h"
 
 #include "MctruthForTopoAnaAlg/MctruthForTopoAna.h"    
-// #include <iostream>
-// #include <iomanip>
 
 MctruthForTopoAna::MctruthForTopoAna(const std::string & name,ISvcLocator * pSvcLocator): Algorithm(name,pSvcLocator){}
 
@@ -61,7 +59,7 @@ StatusCode MctruthForTopoAna::execute()
   m_nmcps=0;
   const int incPid1=91; // 91 is the PDG code of cluster
   const int incPid2=92; // 92 is the PDG code of string
-  bool includeDecay(false);
+  bool incPdcy(false);
   int rootIndex(-1);
   for (;iter_mc!=mcParticleCol->end();iter_mc++)
     {
@@ -70,18 +68,13 @@ StatusCode MctruthForTopoAna::execute()
       if(!(*iter_mc)->decayFromGenerator()) continue;
       if((*iter_mc)->particleProperty()==incPid1||(*iter_mc)->particleProperty()==incPid2)
         {
-          includeDecay=true;
+          incPdcy=true;
           rootIndex=(*iter_mc)->trackIndex();
         }
-      if(!includeDecay||(*iter_mc)->particleProperty()==incPid1||(*iter_mc)->particleProperty()==incPid2) continue;
+      if(!incPdcy||(*iter_mc)->particleProperty()==incPid1||(*iter_mc)->particleProperty()==incPid2) continue;
       m_pid[m_nmcps]=(*iter_mc)->particleProperty();
       if(((*iter_mc)->mother()).particleProperty()==incPid1||((*iter_mc)->mother()).particleProperty()==incPid2) m_midx[m_nmcps]=-1;
       else m_midx[m_nmcps]=((*iter_mc)->mother()).trackIndex()-rootIndex-1;
-      // std::cout
-      // 	<< std::setw(3) << m_nmcps
-      // 	<< std::setw(7) << m_pid[m_nmcps]
-      // 	<< std::setw(4) << m_midx[m_nmcps]
-      // 	<< std::endl;
       m_nmcps++;
     }
   m_tuple->write();
