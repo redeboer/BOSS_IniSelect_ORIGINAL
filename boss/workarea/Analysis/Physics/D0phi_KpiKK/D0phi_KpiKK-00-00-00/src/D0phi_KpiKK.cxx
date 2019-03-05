@@ -87,8 +87,6 @@
 	/// This function is called *for each event*.
 	StatusCode D0phi_KpiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
-			CreateMCTruthCollection();
-			WriteMCTruthForTopoAna(fNTuple_mctruth);
 		/// <ol type="A">
 		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
 			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
@@ -166,8 +164,8 @@
 
 
 		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			// CreateMCTruthCollection();
-			// WriteMCTruthForTopoAna(fNTuple_mctruth);
+			CreateMCTruthCollection();
+			WriteMCTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)

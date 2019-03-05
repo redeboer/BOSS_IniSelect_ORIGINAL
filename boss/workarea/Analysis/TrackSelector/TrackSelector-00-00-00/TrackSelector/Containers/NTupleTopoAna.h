@@ -33,10 +33,10 @@
 					mcparticle->particleProperty() == 92 );
 			} ///< Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG code of a string). This function is used to characterised the initial cluster, e.g. \f$J/\psi\f$
 			static bool IsJPsi(Event::McParticle *mcparticle) {
-				return mcparticle->particleProperty() == 443;
+				return (mcparticle->particleProperty() == 443);
 			} ///< Test whether an MC truth particle is \f$J/\psi\f$ (PDG code `91`).
 			static bool IsFromJPsi(Event::McParticle *mcparticle) {
-				return mcparticle->mother().particleProperty() == 443;
+				return (mcparticle->mother().particleProperty() == 443);
 			} ///< Test whether an MC truth particle is \f$J/\psi\f$ (PDG code `91`).
 			///@}
 
