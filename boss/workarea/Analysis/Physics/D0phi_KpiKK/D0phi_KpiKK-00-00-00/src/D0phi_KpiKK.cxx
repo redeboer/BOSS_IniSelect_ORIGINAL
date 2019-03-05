@@ -164,8 +164,8 @@
 
 
 		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			CreateMCTruthCollection();
-			WriteMCTruthForTopoAna(fNTuple_mctruth);
+			// CreateMCTruthCollection();
+			// WriteMCTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
@@ -283,6 +283,12 @@
 				/// After loop over combintations:
 				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
+
+				/// If there is a fit result, @b write the MC truth topology for this event.
+				if(bestKalmanFit.HasFitResults()) {
+					CreateMCTruthCollection();
+					WriteMCTruthForTopoAna(fNTuple_mctruth);
+				}
 			}
 
 
