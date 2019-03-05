@@ -12,6 +12,7 @@
 	#include <map>
 	#include <string>
 	#include <iostream>
+	#include <typeinfo>	// for getting typename of a variable
 
 
 
@@ -118,7 +119,7 @@
 	}
 
 
-	/// Easier and expanded version of `NTuple::Tuple::addItem`.
+	/// Easier and expanded version of `NTuple::Tuple::addItem` that also adds the item to the `fItems_*` mappings.
 	/// You will need to call this method using e.g. `AddItem<double>` to specify that this is a `double`.
 	template<typename TYPE> inline
 	void NTupleContainer::AddItem(const std::string &item_name)
@@ -134,7 +135,8 @@
 		/// -# Create an `NTuple::Item` using the `operator[]` of a `std::map`.
 			(*GetItems<TYPE>())[item_name];
 		/// -# Add the `NTuple::Item<TYPE>` that you created in the previous step to the `fTuple`.
-			fTuple->addItem(item_name, GetItems<TYPE>()->at(item_name));
+std::cout << Name() << " added (" << typeid(*GetItem<TYPE>(item_name)).name() << ")" << item_name << std::endl;
+			fTuple->addItem(item_name, GetItem<TYPE>(item_name));
 	}
 
 
