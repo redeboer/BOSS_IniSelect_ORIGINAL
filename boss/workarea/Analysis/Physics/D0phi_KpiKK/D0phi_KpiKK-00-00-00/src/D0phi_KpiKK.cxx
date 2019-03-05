@@ -64,9 +64,9 @@
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			fNTuple_mult_sel.AddItem("NKaonPos"); /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
-			fNTuple_mult_sel.AddItem("NKaonNeg"); /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
-			fNTuple_mult_sel.AddItem("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
+			fNTuple_mult_sel.AddItem<int>("NKaonPos"); /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
+			fNTuple_mult_sel.AddItem<int>("NKaonNeg"); /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
+			fNTuple_mult_sel.AddItem<int>("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
 			/// </ol>
 
 		/// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
@@ -147,9 +147,9 @@
 				<< "N_{K^+} = "   << fKaonPos.size() << ", "
 				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
 			if(fNTuple_mult_sel.DoWrite()) {
-				fNTuple_mult_sel.at("NKaonNeg") = fKaonNeg.size();
-				fNTuple_mult_sel.at("NKaonPos") = fKaonPos.size();
-				fNTuple_mult_sel.at("NPionPos") = fPionPos.size();
+				fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
+				fNTuple_mult_sel.GetItem<int>("NKaonPos") = fKaonPos.size();
+				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
 				fNTuple_mult_sel.Write();
 			}
 
@@ -285,7 +285,7 @@
 				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 
 				/// If there is a fit result, @b write the MC truth topology for this event.
-				if(bestKalmanFit.HasFitResults()) {
+				if(bestKalmanFit.HasResults()) {
 					CreateMCTruthCollection();
 					WriteMCTruthForTopoAna(fNTuple_mctruth);
 				}
@@ -315,12 +315,12 @@
 	void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
-		tuple.AddItem("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-		tuple.AddItem("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
-		tuple.AddItem("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
-		tuple.AddItem("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
-		tuple.AddItem("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
-		tuple.AddItem("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+		tuple.AddItem<double>("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
+		tuple.AddItem<double>("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+		tuple.AddItem<double>("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+		tuple.AddItem<double>("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
+		tuple.AddItem<double>("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
+		tuple.AddItem<double>("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
 	}
 
 
@@ -338,12 +338,12 @@
 			}
 
 		/// -# Set the `NTuple::Item`s.
-			tuple.at("mD0")   = fit->fM_D0;
-			tuple.at("mJpsi") = fit->fM_Jpsi;
-			tuple.at("mphi")  = fit->fM_phi;
-			tuple.at("pD0")   = fit->fP_D0;
-			tuple.at("pphi")  = fit->fP_phi;
-			tuple.at("chisq") = fit->fChiSquared;
+			tuple.GetItem<double>("mD0")   = fit->fM_D0;
+			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
+			tuple.GetItem<double>("mphi")  = fit->fM_phi;
+			tuple.GetItem<double>("pD0")   = fit->fP_D0;
+			tuple.GetItem<double>("pphi")  = fit->fP_phi;
+			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 	}
 
 
