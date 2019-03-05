@@ -875,21 +875,15 @@
 	void TrackSelector::AddAndWriteCuts()
 	{
 		/// <ol>
-		/// <li> Add counter items to the `"_cutvalues"` `NTupleContainer`.
+		/// <li> For each defined `CutObject`, add an `NTuple::Array` to the `"_cutvalues"` `NTupleContainer`.
 			std::list<CutObject*>::iterator cut;
-			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
-				fNTuple_cuts.AddItem<double>((*cut)->Name());
-		/// <li> @b Write `"min"` values as the first entry.
-			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
-				fNTuple_cuts.GetItem<double>((*cut)->Name()) = (*cut)->min;
-			fNTuple_cuts.Write();
-		/// <li> @b Write `"max"` values as the second entry.
-			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
-				fNTuple_cuts.GetItem<double>((*cut)->Name()) = (*cut)->max;
-			fNTuple_cuts.Write();
-		/// <li> @b Write the `"counter"` values as the third entry.
-			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut)
-				fNTuple_cuts.GetItem<double>((*cut)->Name()) = (*cut)->counter;
+			NTuple::Item<int> &index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
+				NTuple::Array<double> &array = *fNTuple_cuts.AddIndexedItem<double>((*cut)->Name(), index);
+				index = 0; array[index] = (*cut)->min;
+				index = 1; array[index] = (*cut)->max;
+				index = 2; array[index] = (*cut)->counter;
+			}
 			fNTuple_cuts.Write();
 		/// </ol>
 	}

@@ -121,3 +121,19 @@
 			}
 		/// </ol>
 	}
+
+
+
+// * =============================== * //
+// * ------- PRIVATE METHODS ------- * //
+// * =============================== * //
+
+
+	/// Private helper function that terminates and prints a message if `fTuple` is a `nullptr`.
+	/// Has been added to avoid code duplication in `AddItem` and `AddIndexedItem`.
+	void NTupleContainer::PrintAtExceptionError(const std::string &key)
+	{
+		std::cout << "FATAL ERROR: Could not find key \"" << key << "\" in NTupleContainer \"" << Name() << "\"" << std::endl;
+		std::cout << "   -->> Check whether you called the correct type when you called GetArray<typename> or GetItem<typename>" << std::endl;
+		std::terminate();
+	}
