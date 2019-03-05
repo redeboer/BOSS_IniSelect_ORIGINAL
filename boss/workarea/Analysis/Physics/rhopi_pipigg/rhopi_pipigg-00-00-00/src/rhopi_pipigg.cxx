@@ -43,7 +43,11 @@
 		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
 			fCut_GammaPhi  ("gamma_phi"),
 			fCut_GammaTheta("gamma_theta"),
-			fCut_GammaAngle("gamma_angle")
+			fCut_GammaAngle("gamma_angle"),
+			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had at least 1 charged track"),
+			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
+			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+			fCutFlow_NPhotonOK   ("N_neutral_OK", "Number of events that had at least 2 neutral tracks")
 	{ PrintFunctionName("rhopi_pipigg", __func__); PostConstructor();
 		fCreateChargedCollection = true;
 		fCreateNeutralCollection = true;
@@ -94,6 +98,12 @@
 	StatusCode rhopi_pipigg::execute_rest()
 	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
+		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>2 charged tracks in total</b>.
+			if(fGoodChargedTracks.size() != 2) return StatusCode::SUCCESS;
+			++fCutFlow_NChargedOK;
+			if(fNetChargeMDC != 0) return StatusCode::SUCCESS;
+
+
 		/// <li> Create specific charged track selections
 			// * Clear vectors of selected particles *
 				fPionNeg.clear();

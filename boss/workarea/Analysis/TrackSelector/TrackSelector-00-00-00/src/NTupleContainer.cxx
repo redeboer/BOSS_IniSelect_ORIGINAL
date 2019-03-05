@@ -115,37 +115,9 @@
 			/// <li> Print name and description.
 				std::cout << it->second->Description() << std::endl;
 			/// <li> Print list of added items.
-				int count(0);
-				std::map<std::string, NTuple::Item<double> >::const_iterator item = it->second->GetItems()->begin();
-				for(item; item != it->second->GetItems()->end(); ++item) {
-					std::cout << "  " << count << ". " << item->first << std::endl;
-					++count;
-				}
+				it->second->PrintItems<double>();
+				it->second->PrintItems<int>();
 			/// </ol>
 			}
 		/// </ol>
-	}
-
-
-
-// * ================================== * //
-// * ------- BOOKING PROCEDURES ------- * //
-// * ================================== * //
-
-
-	/// Easier and expanded version of `NTuple::Tuple::addItem`.
-	void NTupleContainer::AddItem(const std::string &item_name)
-	{
-		/// -# @b Abort if the `"write_"` job switch property has been set to `false`.
-			if(!DoWrite()) return;
-		/// -# @b Abort if `fTuple` has not been booked.
-			if(!fTuple) {
-				std::cout << "FATAL ERROR: NTuple \"" << Name() << "\" has not been booked, so cannot add item \"" << item_name << "\"" << std::endl;
-				std::cout << "  --> Check your code" << std::endl;
-				std::terminate();
-			}
-		/// -# Create an `NTuple::Item` using the `items` mapping.
-			fItems[item_name];
-		/// -# Create an `NTuple::Item` using the `items` mapping to the `fTuple` and to the map of `items`, if allowed by the `perform` job switch.
-			fTuple->addItem(item_name, fItems.at(item_name));
 	}

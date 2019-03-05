@@ -18,9 +18,9 @@
 /// @{
 
 	/// @b WIP Analyse \f$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma \f$ events.
-	/// Based on the original `RhopiAlg` package, but now making use of the `TrackSelector` base algorithm.
-	/// @author  Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date    December 27th, 2018
+	/// Based on the original `RhopiAlg` package, but now making use of the `TrackSelector` base algorithm and its `NTuple` booking procedure.
+	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+	/// @date     December 27th, 2018
 	class rhopi_pipigg : public TrackSelector
 	{
 	public:
@@ -63,8 +63,8 @@
 			NTupleContainer fNTuple_dedx_pi; ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
 			NTupleContainer fNTuple_fit4c;   ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
 			NTupleContainer fNTuple_fit5c;   ///< `NTuple::Tuple` container for the 5-constraint fit branch containing <i>all</i> combinations.
+			NTupleContainer fNTuple_fit_mc;  ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
 			NTupleContainer fNTuple_photon;  ///< `NTuple::Tuple` container for the photon branch.
-			NTupleContainer fNTuple_fit_mc;      ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
 			///@}
 
 
@@ -73,6 +73,10 @@
 			CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
 			CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
 			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
+			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have at least one charged track.
+			CutObject fCutFlow_NFitOK;       ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
+			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
+			CutObject fCutFlow_NPhotonOK;    ///< <b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want.
 			///@}
 
 
@@ -80,7 +84,7 @@
 		/// @name NTuple methods
 			///@{
 			void AddNTupleItems_Fit(NTupleContainer &tuple);
-			void CreateMCtruthSelection();
+			void CreateMCTruthSelection();
 			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
 			///@}
 

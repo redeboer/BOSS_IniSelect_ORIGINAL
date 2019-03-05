@@ -89,7 +89,7 @@
 	{ PrintFunctionName("D0phi_KpiKK", __func__);
 		/// <ol type="A">
 		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
-			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS; /// <li> 4 charged tracks in total
+			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
 			++fCutFlow_NChargedOK;
 
 

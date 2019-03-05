@@ -221,7 +221,7 @@
 		/// @name Other stored values
 			///@{
 			HepPoint3D fVertexPoint; ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
-			Int_t fNChargesMDC; ///< Number of charges detected in the MDC.
+			Int_t fNetChargeMDC; ///< Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the `RhopiAlg` example.
 			///@}
 
 

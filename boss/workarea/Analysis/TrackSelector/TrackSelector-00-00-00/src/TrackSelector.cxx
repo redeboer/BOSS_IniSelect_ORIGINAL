@@ -130,7 +130,7 @@
 			fNTuple_mult.AddItem("Ncharge");  /// <li> `"Ncharge"`:  Number of charged tracks.
 			fNTuple_mult.AddItem("Nneutral"); /// <li> `"Nneutral"`: Number of charged tracks.
 			if(fCreateNeutralCollection) fNTuple_mult.AddItem("NgoodNeutral"); /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks (if performed).
-			if(fCreateChargedCollection) fNTuple_mult.AddItem("Nmdc");         /// <li> `"Nmdc"`:         Number of charged tracks in MDC (if performed).
+			if(fCreateChargedCollection) fNTuple_mult.AddItem("NetChargeMDC"); /// <li> `"NetChargeMDC"`: Total (net) charge detected in the MDC (if performed).
 			if(fCreateChargedCollection) fNTuple_mult.AddItem("NgoodCharged"); /// <li> `"NgoodCharged"`: Number of 'good' charged tracks (if performed).
 			/// </ol>
 
@@ -247,7 +247,7 @@
 					fNTuple_mult.at("Ntotal")   = fEvtRecEvent->totalTracks();
 					fNTuple_mult.at("Ncharge")  = fEvtRecEvent->totalCharged();
 					fNTuple_mult.at("Nneutral") = fEvtRecEvent->totalNeutral();
-					if(fCreateChargedCollection) fNTuple_mult.at("Nmdc")         = fNChargesMDC;
+					if(fCreateChargedCollection) fNTuple_mult.at("NetChargeMDC") = fNetChargeMDC;
 					if(fCreateChargedCollection) fNTuple_mult.at("NgoodCharged") = fGoodChargedTracks.size();
 					if(fCreateNeutralCollection) fNTuple_mult.at("NgoodNeutral") = fGoodNeutralTracks.size();
 					fNTuple_mult.Write();
@@ -399,7 +399,7 @@
 			if(!fEvtRecEvent->totalCharged()) 
 
 		/// <li> Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
-			fNChargesMDC = 0;
+			fNetChargeMDC = 0;
 			fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
 			for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i) {
 			/// <ol>
@@ -440,7 +440,7 @@
 
 				// * Add charged track to vector
 				fGoodChargedTracks.push_back(*fTrackIterator);
-				fNChargesMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
+				fNetChargeMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
 
 			/// <li> @b Write charged track vertex position info ("charged" branch)
 				if(fNTuple_charged.DoWrite()) {
@@ -870,7 +870,8 @@
 	}
 
 
-	/// Write all cuts (`name`, `value`, and `count` of accepted) to a branch called "_cutvalues".
+	/// Write all cuts to a branch called "_cutvalues".
+	/// There will only be one entry per output file: it contains the count.
 	void TrackSelector::AddAndWriteCuts()
 	{
 		/// <ol>
