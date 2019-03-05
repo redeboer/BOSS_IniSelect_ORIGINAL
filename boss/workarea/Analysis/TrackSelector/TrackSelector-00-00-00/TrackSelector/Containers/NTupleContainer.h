@@ -12,7 +12,7 @@
 	#include <map>
 	#include <string>
 	#include <iostream>
-	#include <typeinfo>	// for getting typename of a variable
+	// #include <typeinfo>	// for getting typename of a variable
 
 
 
@@ -135,7 +135,6 @@
 		/// -# Create an `NTuple::Item` using the `operator[]` of a `std::map`.
 			(*GetItems<TYPE>())[item_name];
 		/// -# Add the `NTuple::Item<TYPE>` that you created in the previous step to the `fTuple`.
-std::cout << Name() << " added (" << typeid(*GetItem<TYPE>(item_name)).name() << ")" << item_name << std::endl;
 			fTuple->addItem(item_name, GetItem<TYPE>(item_name));
 	}
 
