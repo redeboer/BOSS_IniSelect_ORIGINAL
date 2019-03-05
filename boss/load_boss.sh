@@ -104,7 +104,7 @@
 			local cmtFolder="$(find -name cmt | head -1)"
 			if [ "${cmtFolder}" == "" ]; then
 				echo "ERROR: no cmt folder available!"
-				return
+				return 1
 			fi
 			cd "${cmtFolder}"
 		fi
@@ -115,16 +115,16 @@
 		echo "=================================="
 		# * Connect your workarea to BOSS
 		AttemptToExecute "cmt broadcast"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Perform setup and cleanup scripts
 		AttemptToExecute "cmt config"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Build and connect executables to BOSS
 		AttemptToExecute "cmt broadcast make"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Set bash variables
 		AttemptToExecute "source setup.sh"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Move back to original path
 		cd "${currentPath}"
 	}
@@ -137,7 +137,7 @@
 			local cmtFolder="$(find -name cmt | head -1)"
 			if [ "${cmtFolder}" == "" ]; then
 				echo "ERROR: no cmt folder available!"
-				return
+				return 1
 			fi
 			cd "${cmtFolder}"
 		fi
@@ -148,14 +148,15 @@
 		echo "====================================="
 		# * Create CMT scripts
 		AttemptToExecute "cmt config"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Build executables
 		AttemptToExecute "make"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Make package available to BOSS
 		AttemptToExecute "source setup.sh"
-		if [ $? != 0 ]; then return; fi
+		if [ $? != 0 ]; then return 1; fi
 		# * Move back to original path
 		cd "${currentPath}"
+		return 0
 	}
 	export cmtconfig
