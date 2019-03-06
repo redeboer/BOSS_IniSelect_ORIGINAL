@@ -871,7 +871,8 @@
 
 
 	/// Write all cuts to a branch called "_cutvalues".
-	/// There will only be one entry per output file: it contains the count. The definition of the cut is written to the description.
+	/// There will only be one entry per output file: a `C`-style array of size 3. Entry 0 of that array is the `min` value, entry 1 is the `max` value, and entry 2 is the recorded. As opposed to earlier versions of the `TrackSelector` (where the `"_cutvalues"` `TTree` contained 3 entries), we now use a `C`-style array (written through `NTuple::addIndexedItem`), because it allows to add up the number of counts when you have split up your jobs, which makes your output contain more than ROOT file. If you load these files as a `TChain`, you can get the total count of the `CutObject` by adding up all '2nd entries' (the counts) of each branch.
+	/// @see BOSSOutputLoader::PrintCuts
 	void TrackSelector::AddAndWriteCuts()
 	{
 		/// <ol>

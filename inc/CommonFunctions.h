@@ -20,6 +20,7 @@
 	#include "TTree.h"
 	#include "TVirtualPad.h"
 	#include <string>
+	#include <unordered_map>
 
 
 
@@ -60,7 +61,12 @@
 		/// Namespace containing functions related to debugging and making macro's handle errors.
 		namespace Error
 		{
+			void PrintFatalError(const std::string &message);
 			bool IsEmptyPtr(void* ptr);
+			template<class TYPE> inline
+			TYPE& GetFromMap(std::unordered_map<std::string, TYPE> &map, const std::string &key, const std::string &mapName="");
+			template<class TYPE> inline
+			bool MapHasKey(std::unordered_map<std::string, TYPE> &map, const std::string &key);
 		}
 		/// Namespace containing functions related to file naming and file I/O.
 		namespace File
@@ -142,6 +148,37 @@
 		DrawAndSaveRecursion(opt, args...);
 		// * Save canvas * //
 		SaveCanvas(saveas, &c, logScale);
+	}
+
+
+
+// * =================================== * //
+// * ------- SUB-NAMESPACE ERROR ------- * //
+// * =================================== * //
+
+
+	/// Construction to `try` and `catch` an exception that comes from `std::map::at`.
+	template<class TYPE> inline
+	TYPE& CommonFunctions::Error::GetFromMap(std::unordered_map<std::string, TYPE> &map, const std::string &key, const std::string &mapName)
+	{
+		try {
+			return map.at(key);
+		} catch(std::exception) {
+			std::string message = Form("Could not load key \"%s\"", key.c_str());
+			if(!mapName.size()) message += Form(" from map \"%s\"", mapName.c_str());
+			message += Form("\n   --->> check file %s", __BASE_FILE__);
+			message += Form("\n   --->> check line %s:%d", __FILE__, __LINE__);
+			PrintFatalError(message);
+		}
+	}
+
+
+	/// Returns `true` if `map` has a certain `key`, and returns `false` if not`.
+	/// This function makes use of `std::map::find`.
+	template<class TYPE> inline
+	bool CommonFunctions::Error::MapHasKey(std::unordered_map<std::string, TYPE> &map, const std::string &key)
+	{
+		return !(map.find(key) == map.end());
 	}
 
 

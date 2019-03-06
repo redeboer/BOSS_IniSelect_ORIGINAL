@@ -102,6 +102,17 @@
 // * =================================== * //
 
 
+	/// Print a fatal error message (that is, one that terminates) in red.
+	/// See <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">here</a> for more color codes.
+	/// @warning Calling this function will terminate the entire programme.
+	void CommonFunctions::Error::PrintFatalError(const std::string &message)
+	{
+		std::cout << "\033[1;31mFATAL ERROR\033[0m\033[31m: "; // in red bold
+		std::cout << Form("%s\033[0m\n", message.c_str()) << std::endl;
+		std::terminate();
+	}
+
+
 	/// Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.
 	/// It is useful to use this function if you want to print output when you are incidentally using an empty pointer.
 	bool CommonFunctions::Error::IsEmptyPtr(void* ptr)

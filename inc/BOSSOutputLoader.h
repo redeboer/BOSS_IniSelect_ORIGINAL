@@ -35,11 +35,11 @@
 
 		/// @name Information functions
 			///@{
-			TH1F* Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
-			TH2F* Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
+			TH1F* Draw(const char* chainName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
+			TH2F* Draw(const char* chainName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
 			bool IsZombie();
-			void Draw(const char* treeName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
-			void DrawAndSaveAllBranches(const char* treeName, Option_t *option="", const TString &logScale="");
+			void Draw(const char* chainName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
+			void DrawAndSaveAllBranches(const char* chainName, Option_t *option="", const TString &logScale="");
 			void Print();
 			void Print(const char* nameOfTree, Option_t *option = "toponly");
 			void PrintCutFlow();
@@ -50,10 +50,13 @@
 
 		/// @name Getters
 			///@{
-			Long64_t GetEntries(const char* treeName);
+			Long64_t GetEntries(const char* chainName);
 			Long64_t GetLargestEntries() const;
-			ChainLoader& operator[](const char* name) { return fChains.at(name); }
-			TChain& FindTree(const char* treeName);
+			ChainLoader& GetChainLoader(const std::string &chainName);
+			ChainLoader& operator[](const std::string &chainName) { return GetChainLoader(chainName); }
+			TChain& GetChain(const std::string &chainName);
+			template<typename TYPE> inline
+			TYPE& GetBranch(const std::string &chainName, const std::string &branchName);
 			std::unordered_map<std::string, ChainLoader>& GetChains() { return fChains; }
 			///@}
 
@@ -74,5 +77,21 @@
 	};
 
 
+
 /// @}
+// * ========================= * //
+// * ------- TEMPLATES ------- * //
+// * ========================= * //
+
+
+	/// Get a certain branch with name `branchName` in TTree with name `chainName`.
+	/// @warning The program will `terminate` if the branch and/or tree does not exist in the file.
+	template<typename TYPE> inline
+	TYPE& BOSSOutputLoader::GetBranch(const std::string &chainName, const std::string &branchName)
+	{
+		return GetChainLoader(chainName).Get<TYPE>(branchName);
+	}
+
+
+
 #endif

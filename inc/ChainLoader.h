@@ -5,6 +5,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "ReconstructedParticle.h"
+	#include "CommonFunctions.h"
 	#include "TChain.h"
 	#include "TH1F.h"
 	#include "TH2F.h"
@@ -38,32 +39,15 @@
 			///@{
 			TChain&  GetChain() { return fChain; }
 			Long64_t GetEntries() const { return fChain.GetEntries(); }
+			Int_t GetEntry(Long64_t entry=0, Int_t getall=0) { return fChain.GetEntry(entry, getall); }
 			///@}
 
 		/// @name Getters for branches, with type
 			///@{
-			std::unordered_map<std::string, Char_t>&    Get_B() { return fMap_B; }
-			std::unordered_map<std::string, UChar_t>&   Get_b() { return fMap_b; }
-			std::unordered_map<std::string, Short_t>&   Get_S() { return fMap_S; }
-			std::unordered_map<std::string, UShort_t>&  Get_s() { return fMap_s; }
-			std::unordered_map<std::string, Int_t>&     Get_I() { return fMap_I; }
-			std::unordered_map<std::string, UInt_t>&    Get_i() { return fMap_i; }
-			std::unordered_map<std::string, Float_t>&   Get_F() { return fMap_F; }
-			std::unordered_map<std::string, Double_t>&  Get_D() { return fMap_D; }
-			std::unordered_map<std::string, Long64_t>&  Get_L() { return fMap_L; }
-			std::unordered_map<std::string, ULong64_t>& Get_l() { return fMap_l; }
-			std::unordered_map<std::string, Bool_t>&    Get_O() { return fMap_O; }
-			Char_t&    Get_B(const char* name) { return fMap_B.at(name); }
-			UChar_t&   Get_b(const char* name) { return fMap_b.at(name); }
-			Short_t&   Get_S(const char* name) { return fMap_S.at(name); }
-			UShort_t&  Get_s(const char* name) { return fMap_s.at(name); }
-			Int_t&     Get_I(const char* name) { return fMap_I.at(name); }
-			UInt_t&    Get_i(const char* name) { return fMap_i.at(name); }
-			Float_t&   Get_F(const char* name) { return fMap_F.at(name); }
-			Double_t&  Get_D(const char* name) { return fMap_D.at(name); }
-			Long64_t&  Get_L(const char* name) { return fMap_L.at(name); }
-			ULong64_t& Get_l(const char* name) { return fMap_l.at(name); }
-			Bool_t&    Get_O(const char* name) { return fMap_O.at(name); }
+			template<typename TYPE> inline
+			std::unordered_map<std::string, TYPE>& Get(); ///< Get mapping of branches for a certaine `typename` (specified through `template` specialisation).
+			template<typename TYPE> inline
+			TYPE& Get(const std::string &branchName);
 			///@}
 
 		/// @name Setters
@@ -83,7 +67,7 @@
 			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
 			///@}
 
-	// private:
+	private:
 		/// @name Data members
 			///@{
 			TChain fChain; ///< `TChain` object to which the `TFile`s are added.
@@ -106,14 +90,73 @@
 
 		/// @name Helper functions
 			///@{
-			template<typename TYPE>
+			template<typename TYPE> inline
+			TYPE& GetHelper(std::unordered_map<std::string, TYPE> &map, const std::string &name);
+			template<typename TYPE> inline
 			void SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map);
-			template<typename TYPE>
+			template<typename TYPE> inline
 			void SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map);
 			///@}
 
 	};
 
 
+
 /// @}
+// * =============================== * //
+// * ------- PRIVATE METHODS ------- * //
+// * =============================== * //
+
+
+	/// Set a memory address for one of the branches of `fChain`.
+	/// @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
+	/// @param obj The object from which you want to load the address. This is usually a `TBranch` object.
+	/// @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
+	template<typename TYPE> inline
+	void ChainLoader::SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map)
+	{
+		fChain.SetBranchAddress(obj->GetName(), &map[obj->GetName()]);
+	}
+
+
+	/// Set a memory address for one of the branches of `fChain`. Only do this if `fChain` exists.
+	/// @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
+	/// @param obj The object from which you want to load the address. This is usually a `TBranch` object.
+	/// @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
+	template<typename TYPE> inline
+	void ChainLoader::SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map)
+	{
+		if(fChain.GetNbranches()) SetAddress(obj, map);
+	}
+
+
+
+// * ========================= * //
+// * ------- TEMPLATES ------- * //
+// * ========================= * //
+
+
+	template<> inline std::unordered_map<std::string, Char_t>&    ChainLoader::Get<Char_t>   () { return fMap_B; }
+	template<> inline std::unordered_map<std::string, UChar_t>&   ChainLoader::Get<UChar_t>  () { return fMap_b; }
+	template<> inline std::unordered_map<std::string, Short_t>&   ChainLoader::Get<Short_t>  () { return fMap_S; }
+	template<> inline std::unordered_map<std::string, UShort_t>&  ChainLoader::Get<UShort_t> () { return fMap_s; }
+	template<> inline std::unordered_map<std::string, Int_t>&     ChainLoader::Get<Int_t>    () { return fMap_I; }
+	template<> inline std::unordered_map<std::string, UInt_t>&    ChainLoader::Get<UInt_t>   () { return fMap_i; }
+	template<> inline std::unordered_map<std::string, Float_t>&   ChainLoader::Get<Float_t>  () { return fMap_F; }
+	template<> inline std::unordered_map<std::string, Double_t>&  ChainLoader::Get<Double_t> () { return fMap_D; }
+	template<> inline std::unordered_map<std::string, Long64_t>&  ChainLoader::Get<Long64_t> () { return fMap_L; }
+	template<> inline std::unordered_map<std::string, ULong64_t>& ChainLoader::Get<ULong64_t>() { return fMap_l; }
+	template<> inline std::unordered_map<std::string, Bool_t>&    ChainLoader::Get<Bool_t>   () { return fMap_O; }
+
+
+	/// Get branch of this TChain with `branchName`.
+	/// You will have to know and specify the `typename` of the branch using e.g. `Get<double>` in the case of a `double`.
+	template<typename TYPE> inline
+	TYPE& ChainLoader::Get(const std::string &branchName)
+	{
+		return CommonFunctions::Error::GetFromMap(Get<TYPE>(), branchName, fChain.GetName());
+	}
+
+
+
 #endif

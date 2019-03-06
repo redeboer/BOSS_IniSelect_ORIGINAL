@@ -15,11 +15,8 @@
 // * ============================ * //
 
 
-	/**
-	 * @brief Automatically book addresses for all branches of the underlying `TChain`. The branches are accessible by name (use method `Get_<type>`, though you have to the `type` to use this).
-	 * 
-	 * @param print Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
-	 */
+	/// Automatically book addresses for all branches of the underlying `TChain`. The branches are accessible by name (use method `Get_<type>`, though you have to the `type` to use this).
+	/// @param print Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
 	void ChainLoader::BookAddresses(bool print_branches, bool print_averages)
 	{
 		if(!fChain.GetNbranches()) return;
@@ -31,6 +28,7 @@
 				std::cout << fChain.GetTitle() << std::endl;
 				std::cout << "   " << std::setw(18) << std::left  << "BRANCH NAME";
 				if(print_averages) std::cout << std::setw(12) << std::right << "MEAN" << std::endl;
+				std::cout << std::endl;
 			}
 		/// -# Loop over list of `TBranches` and determine `typename` of the branch. The data type of a branch can be determined from the last character of its title. See <a href="https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7">`TTree`</a> for the labels of each type.
 			while((obj = next())) {
@@ -65,18 +63,15 @@
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
-	/**
-	 * @brief Draw a distribution of one of the branches in the file.
-	 *
-	 * @param branchX Branch that you want to plot. You may use a formula.
-	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
-	 * @param x1 Lower limit on the \f$x\f$-axis.
-	 * @param x2 Upper limit on the \f$x\f$-axis.
-	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param option Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	 */
+	/// Draw a distribution of one of the branches in the file.
+	/// @param branchX Branch that you want to plot. You may use a formula.
+	/// @param nBinx Number of bins to use on the \f$x\f$-axis.
+	/// @param x1 Lower limit on the \f$x\f$-axis.
+	/// @param x2 Upper limit on the \f$x\f$-axis.
+	/// @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	/// @param option Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	TH1F* ChainLoader::Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const bool save, const TString &logScale, const char* cut)
 	{
 		// * Draw histogram * //
@@ -95,15 +90,12 @@
 		return hist;
 	}
 
-	/**
-	 * @brief Create a histogram object especially for invariant mass analysis.
-	 * 
-	 * @param branchName Names of the branche that you want to plot.
-	 * @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	 * @param nBins Number of bins to use on the \f$x\f$-axis.
-	 * @param option Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Create a histogram object especially for invariant mass analysis.
+	/// @param branchName Names of the branche that you want to plot.
+	/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
+	/// @param nBins Number of bins to use on the \f$x\f$-axis.
+	/// @param option Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	TH1F* ChainLoader::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *option, const TString &logScale)
 	{
 		// * Check input arguments * //
@@ -121,22 +113,19 @@
 	}
 
 
-	/**
-	 * @brief Draw a distribution of one of the branches in the file.
-	 *
-	 * @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
-	 * @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
-	 * @param nBinx Number of bins to use on the \f$x\f$-axis.
-	 * @param x1 Lower limit on the \f$x\f$-axis.
-	 * @param x2 Upper limit on the \f$x\f$-axis.
-	 * @param nBiny Number of bins to use on the \f$y\f$-axis.
-	 * @param y1 Lower limit on the \f$y\f$-axis.
-	 * @param y2 Upper limit on the \f$y\f$-axis.
-	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param option Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	 */
+	/// Draw a distribution of one of the branches in the file.
+	/// @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
+	/// @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
+	/// @param nBinx Number of bins to use on the \f$x\f$-axis.
+	/// @param x1 Lower limit on the \f$x\f$-axis.
+	/// @param x2 Upper limit on the \f$x\f$-axis.
+	/// @param nBiny Number of bins to use on the \f$y\f$-axis.
+	/// @param y1 Lower limit on the \f$y\f$-axis.
+	/// @param y2 Upper limit on the \f$y\f$-axis.
+	/// @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	/// @param option Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	TH2F* ChainLoader::Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const bool save, const TString &logScale, const char* cut)
 	{
 		// * Draw histogram * //
@@ -157,12 +146,9 @@
 	}
 
 
-	/**
-	 * @brief Compute mean value of a branch in the `TChain`.
-	 * 
-	 * @param chain `TChain` that you want to check.
-	 * @param branchName Name of the branch that you want to check.
-	 */
+	/// Compute mean value of a branch in the `TChain`.
+	/// @param chain `TChain` that you want to check.
+	/// @param branchName Name of the branch that you want to check.
 	double ChainLoader::ComputeMean(TChain* chain, const char* branchName)
 	{
 		if(!chain) return -1e6;
@@ -175,12 +161,9 @@
 	}
 
 
-	/**
-	 * @brief Draw the distributions of all branches of the underlying `TChain`.
-	 * 
-	 * @param option Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 */
+	/// Draw the distributions of all branches of the underlying `TChain`.
+	/// @param option Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void ChainLoader::DrawAndSaveAllBranches(Option_t *option, const TString& logScale)
 	{
 		if(!fChain.GetNtrees()) return;
@@ -190,13 +173,10 @@
 	}
 
 
-	/**
-	 * @brief Draw the distributions of all branches of the underlying `TChain` if its name starts with `"mult"`.
-	 * @details This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
-	 * 
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param option Draw options.
-	 */
+	/// Draw the distributions of all branches of the underlying `TChain` if its name starts with `"mult"`.
+	/// This function additionally ensures that the bin width is set to 1 and that the histograms are drawn in `"E1"` mode (see https://root.cern.ch/doc/master/classTHistPainter.html).
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	/// @param option Draw options.
 	void ChainLoader::DrawAndSaveAllMultiplicityBranches(const TString& logScale, Option_t *option)
 	{
 		if(!fChain.GetNtrees()) return;
@@ -212,15 +192,12 @@
 		}
 	}
 
-	/**
-	 * @brief Draw a distribution of one of the branches in the file.
-	 *
-	 * @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
-	 * @param save Set to `false` if you do not want to save the histogram that has been drawn.
-	 * @param option Draw options.
-	 * @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	 * @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	 */
+	/// Draw a distribution of one of the branches in the file.
+	/// @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
+	/// @param save Set to `false` if you do not want to save the histogram that has been drawn.
+	/// @param option Draw options.
+	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	void ChainLoader::Draw(const char* branchNames, const char* cut, Option_t *option, const bool save, const TString& logScale)
 	{
 		/// <ol>
@@ -233,36 +210,4 @@
 		fChain.Draw(branchNames, cut, option);
 		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
 		/// </ol>
-	}
-
-
-
-// * =============================== * //
-// * ------- PRIVATE METHODS ------- * //
-// * =============================== * //
-
-	/**
-	 * @brief Set a memory address for one of the branches of `fChain`.
-	 * 
-	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
-	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
-	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
-	 */
-	template<typename TYPE>
-	void ChainLoader::SetAddress(TObject* obj, std::unordered_map<std::string, TYPE> &map)
-	{
-		fChain.SetBranchAddress(obj->GetName(), &map[obj->GetName()]);
-	}
-
-	/**
-	 * @brief Set a memory address for one of the branches of `fChain`. Only do this if `fChain` exists.
-	 * 
-	 * @tparam TYPE The `typename` of the address. It is determined by the `map` you feed it.
-	 * @param obj The object from which you want to load the address. This is usually a `TBranch` object.
-	 * @param map The type of address you a want to assign (`double`, `int`, etc) is determined by the `map` you feed it. This map should be one of the `fMap_*` data members of this class.
-	 */
-	template<typename TYPE>
-	void ChainLoader::SetAddressSafe(TObject* obj, std::unordered_map<std::string, TYPE> &map)
-	{
-		if(fChain.GetNbranches()) SetAddress(obj, map);
 	}

@@ -13,6 +13,7 @@
 	#include <iostream>
 	#include <iomanip>
 	#include <map>
+	using namespace CommonFunctions;
 
 
 
@@ -56,7 +57,7 @@
 				}
 			/// <li> Loop over list of files in directory
 				TIter fileIter(files);
-				TObject *obj;
+				TObject *obj = nullptr;
 				while ((obj = fileIter())) {
 					auto systemFile = dynamic_cast<TSystemFile*>(obj);
 					if(!systemFile) continue;
@@ -79,12 +80,18 @@
 // * ------- GETTERS ------- * //
 // * ======================= * //
 
+
+	ChainLoader& BOSSOutputLoader::GetChainLoader(const std::string &chainName)
+	{
+		return Error::GetFromMap(fChains, chainName, fDirectoryPath.Data());
+	}
+
 	/// Get the number of events in one of the `TChain`s.
 	/// @param treeName Name of the `TChain` that you are looking for.
 	/// @return Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
 	Long64_t BOSSOutputLoader::GetEntries(const char* treeName)
 	{
-		FindTree(treeName).GetEntries();
+		GetChain(treeName).GetEntries();
 	}
 
 	/// Return the largest number of events in all of the `TChain`s in the loaded ROOT file.
@@ -100,9 +107,9 @@
 	/// Look for a tree in the files and get its `TChain`.
 	/// @param treeName Name of the `TChain` that you are looking for.
 	/// @return TChain& Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
-	TChain& BOSSOutputLoader::FindTree(const char* treeName)
+	TChain& BOSSOutputLoader::GetChain(const std::string &treeName)
 	{
-		return fChains.at(treeName).GetChain();
+		return GetChainLoader(treeName).GetChain();
 	}
 
 
@@ -122,7 +129,7 @@
 	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	TH1F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const TString &logScale, const char* cut)
 	{
-		return fChains.at(treeName).Draw(branchX, nBinx, x1, x2, option, true, logScale, cut);
+		return GetChainLoader(treeName).Draw(branchX, nBinx, x1, x2, option, true, logScale, cut);
 	}
 
 
@@ -141,7 +148,7 @@
 	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	TH2F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const TString &logScale, const char* cut)
 	{
-		return fChains.at(treeName).Draw(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, option, true, logScale, cut);
+		return GetChainLoader(treeName).Draw(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, option, true, logScale, cut);
 	}
 
 
@@ -158,7 +165,7 @@
 	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void BOSSOutputLoader::DrawAndSaveAllBranches(const char* treeName, Option_t *option, const TString &logScale)
 	{
-		fChains.at(treeName).DrawAndSaveAllBranches(option, logScale);
+		GetChainLoader(treeName).DrawAndSaveAllBranches(option, logScale);
 	}
 
 
@@ -170,7 +177,7 @@
 	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void BOSSOutputLoader::Draw(const char* treeName, const char* branchNames, const char* cut, Option_t *option, const TString &logScale)
 	{
-		fChains.at(treeName).Draw(branchNames, cut, option, true, logScale);
+		GetChainLoader(treeName).Draw(branchNames, cut, option, true, logScale);
 	}
 
 	/// Print information about all trees in the `TFile`.
@@ -215,7 +222,7 @@
 	/// @param option
 	void BOSSOutputLoader::Print(const char* nameOfTree, Option_t *option)
 	{
-		TChain *chain = &FindTree(nameOfTree);
+		TChain *chain = &GetChain(nameOfTree);
 		chain->Print(option);
 		std::cout << "------------------------------------" << std::endl;
 		std::cout << "Total number of events in TTree \"" << chain->GetName() << "\": " << std::scientific << chain->GetEntries() << std::endl;
@@ -248,58 +255,110 @@
 	void BOSSOutputLoader::PrintCuts()
 	{
 		/// <ol>
-		/// <li> Search for a `TChain` called `"_cutvalues"` and return if it doesn't exist or if it is empty.
+		/// <li> @b Abort if there is no `TChain` `"_cutvalues"` or if it is empty.
 			auto key = fChains.find("_cutvalues");
 			if(key == fChains.end()) return;
 			if(!key->second.GetEntries()) return;
-		/// <li> Use entry 0 to get the names of the cut parameters. We use a *sorted* `map` so that the keys are sorted automatically. At the same time, the maximum number of characters in all of the cut names is also determined.
-			key->second.GetChain().GetEntry(0);
+			ChainLoader *chainLoader { &(key->second) };
+			TChain *chain { &chainLoader->GetChain() };
+		/// <li> Initialise pointers and `map` of `vector`s that will be used to load the cuts. The `map` keys are the branch names (excluding branch `"index"` if it's there). We use a *sorted* `map` so that the keys are sorted automatically. At the same time, the maximum number of characters in all of the cut names is also determined.
 			std::map<std::string, std::vector<double> > cuts;
-			int length = 0;
-			for(auto it : key->second.Get_D()) {
-				cuts[it.first].push_back(it.second);
-				if(it.first.length() > length) length = it.first.length();
+			int w_name = 0;
+			TIter next(chain->GetListOfBranches());
+			TObject *obj = nullptr;
+			while(obj = next()) {
+				const std::string branchName { obj->GetName() };
+				if(!branchName.compare("index")) continue;
+				cuts[branchName].resize(3);
+				if(branchName.length() > w_name) w_name = branchName.length();
 			}
-		/// <li> If `"_cutvalues"` contains only 1 entry, @b only print a list of cut paramters and their values. Entry 0 of the `"_cutvalues"` tree is considered to be that value. (This is for backward compatibility with output of the older versions of `TrackSelector`.)
-			if(key->second.GetEntries()==1) {
-				std::cout << "CUT PARAMTERS" << std::endl;
-				for(auto it : cuts) {
-					std::cout << "  " << std::setw(length) << std::right << it.first << ": " << it.second[0] << std::endl;
-				}
-				std::cout << std::endl;
-				return;
-			}
-		/// <li> If `"_cutvalues"` contains at least 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
+		/// <li> @b CASE1. If `"_cutvalues"` contains a branch called `"index"`, assume that the `TTree` contains double arrays.
+			if(Error::MapHasKey(chainLoader->Get<int>(), "index")) for(auto branch : cuts) {
 			/// <ol>
-			/// <li> Get values from entry 1 (`max`).
-			key->second.GetChain().GetEntry(1);
-			for(auto it : key->second.Get_D())
-				cuts[it.first].push_back(it.second);
-			/// <li> Get values from entry 2 (`count`). In case of an `hadd`ed file, add up the values of entry 2, 5, 8, etc.
-			for(auto it : key->second.Get_D()) {
-				int ncounts{0};
-				for(int i = 2; i < key->second.GetEntries(); i += 3) {
-					key->second.GetChain().GetEntry(i);
-					ncounts += it.second;
+			/// <li> `SetBranchAddress` for the array of this branch. @b Abort if `SetBranchAddress` does not return `0`.
+				double array[3];
+				if(chain->SetBranchAddress(branch.first.c_str(), &array)) {
+					std::cout << "ERROR: failed to load \"" << branch.first << "\" in branch \"_cutvalues\"" << std::endl;
+					std::cout << "  -->> SetBranchAddress returned " << chain->SetBranchAddress(branch.first.c_str(), &array) << std::endl;
+					return;
 				}
-				cuts[it.first].push_back(ncounts);
-			}
+			/// <li> Entry `0`: this is information written from the `CutObject` to the first file of the `TChain` loaded here. We use it to load the `min` and `max` value (array entries 0 and 1). @see TrackSelector::AddAndWriteCuts
+				chain->GetEntry(0);
+				branch.second[0] = array[0]; // min
+				branch.second[1] = array[1]; // max
+				branch.second[2] = 0; // count
+			/// <li> Get the total count value by adding up each 3rd entry of the array.
+				for(int i=0; i<chainLoader->GetEntries(); ++i) {
+					chainLoader->GetEntry(i);
+					branch.second[2] += array[2];
+				}
 			/// </ol>
-		/// <li> And print loaded values as a table: one row per parameters.
+		/// <li> If `TChain` `"_cutvalues"` does not contain a branch called `"index"`, it is probably created by an older version of the `TrackSelector` and we need to use one of the following methods.
+			} else {
+			/// <ol>
+			/// <li> @b Abort if `"_cutvalues"` contains 2 entry. This means something went wrong while writing this `NTuple`.
+				if(chainLoader->GetEntries()==2) {
+					std::cout << "ERROR: TChain \"_cutvalues\" contains 2 entries. Not sure how to work with that..." << std::endl;
+					return;
+				}
+			/// <li> @b CASE2. If `"_cutvalues"` contains only 1 entry, @b only print a list of cut paramters and their values:
+				if(chainLoader->GetEntries()==1) {
+				/// <ul>
+				/// <li> For each branch, add up the entries
+					for(auto branch : cuts) {
+						branch.second[0] = 0;
+						for(int i=0; i<chainLoader->GetEntries(); ++i) {
+							chainLoader->GetEntry(i);
+							branch.second[0] += chainLoader->Get<double>(branch.first);
+						}
+					}
+				/// <li> Entry 0 of the `"_cutvalues"` tree is considered to be that value.
+					std::cout << "CUT PARAMTERS" << std::endl;
+					for(auto it : cuts)
+						std::cout << "  " << std::setw(w_name) << std::right << it.first << ": " << it.second[0] << std::endl;
+					std::cout << std::endl;
+					return;
+				/// </ul>
+			/// <li> @b CASE3. If `"_cutvalues"` contains at least 3 entries, consider entry 0 to be the `min` value, entry 1 to be the `max`, and entry 2 to be `count` (the number of events or tracks that passed the cut).
+				} else {
+				/// <ol>
+				/// <li> Get values from entry 0 (`min`).
+					chainLoader->GetChain().GetEntry(0);
+					for(auto it : chainLoader->Get<double>())
+						cuts[it.first].push_back(it.second);
+				/// <li> Get values from entry 1 (`max`).
+					chainLoader->GetChain().GetEntry(1);
+					for(auto it : chainLoader->Get<double>())
+						cuts[it.first].push_back(it.second);
+				/// <li> Get values from entry 2 (`count`). In case of an `hadd`ed file, add up the values of entry 2, 5, 8, etc.
+					chainLoader->GetChain().GetEntry(2);
+					for(auto it : chainLoader->Get<double>()) {
+						int ncounts{0};
+						for(int i = 2; i < chainLoader->GetEntries(); i += 3) {
+							chainLoader->GetChain().GetEntry(i);
+							ncounts += it.second;
+						}
+						cuts[it.first].push_back(ncounts);
+					}
+				/// </ol>
+				}
+			/// <ol>
+			}
+		/// <li> Print loaded values as a table: one row per parameters.
 			/// <ol>
 			/// <li> Print table header with four columns.
 			std::cout << std::endl << "  "
-				<< std::setw(length) << std::left  << "CUT NAME" << " | "
+				<< std::setw(w_name) << std::left  << "CUT NAME" << " | "
 				<< std::setw(10)     << std::right << "MIN" << " | "
 				<< std::setw(10)     << std::right << "MAX" << " | "
 				<< std::setw(10)     << std::right << "COUNT"
 				<< std::endl;
 			/// <li> Print horizontal line beneath it.
-			std::cout << "  " << std::setfill('-') << std::setw(length+39) << "" << std::endl;
+			std::cout << "  " << std::setfill('-') << std::setw(w_name+39) << "" << std::endl;
 			std::cout << std::setfill(' ');
 			for(auto it : cuts) {
 				/// <li> Column 1: <b>cut name</b>.
-				std::cout << "  " << std::setw(length) << std::left << it.first << " | ";
+				std::cout << "  " << std::setw(w_name) << std::left << it.first << " | ";
 				/// <li> Column 2: @b minimum, if available.
 				std::cout << std::setw(10) << std::right;
 				if(it.second[0] > -DBL_MAX) std::cout << it.second[0];
@@ -383,7 +442,7 @@
 					if(!(tree = dynamic_cast<TTree*>(key->ReadObj()))) continue;
 				/// <li> Create `ChainLoader` object (with underlying `TChain`) from the loaded `TTree`.
 					fChains.emplace(tree->GetName(), tree);
-					auto chain = &fChains.at(tree->GetName());
+					auto chain = &GetChainLoader(tree->GetName());
 				/// <li> Loop over file names and at them to the `ChainLoader` object.
 					for(auto filename : fFileNames) chain->Add(fDirectoryPath+"/"+filename);
 				/// <li> Book branches using `ChainLoader::BookAddresses`.
