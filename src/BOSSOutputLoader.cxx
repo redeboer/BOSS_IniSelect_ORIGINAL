@@ -10,9 +10,11 @@
 	#include "TObject.h"
 	#include "TSystemDirectory.h"
 	#include "TTree.h"
-	#include <iostream>
 	#include <iomanip>
+	#include <iostream>
 	#include <map>
+	#include <sstream>
+	#include <utility>
 	using namespace CommonFunctions;
 
 
@@ -240,7 +242,9 @@
 			width += width/3;
 			auto list = CreateOrderedMap();
 			std::cout << std::endl << "CUT FLOW FOR " << fChains.size() << " TREES" << std::endl;
-			for(auto it : list) {
+			for(auto &it : list) {
+				TString chainName { it->GetChain().GetName() };
+				if(chainName.EqualTo("_cutvalues")) continue; /// Do not print `"_cutvalues"` branch
 				std::cout
 					<< std::right << std::setw(width) << CommonFunctions::Print::CommaFormattedString(it->GetEntries()) << "  "
 					<< std::left  << "\"" << it->GetChain().GetName() << "\"" << std::endl;
@@ -261,7 +265,7 @@
 			if(!key->second.GetEntries()) return;
 			ChainLoader *chainLoader { &(key->second) };
 			TChain *chain { &chainLoader->GetChain() };
-		/// <li> Initialise pointers and `map` of `vector`s that will be used to load the cuts. The `map` keys are the branch names (excluding branch `"index"` if it's there). We use a *sorted* `map` so that the keys are sorted automatically. At the same time, the maximum number of characters in all of the cut names is also determined.
+		/// <li> Create an inventory of branches in the form of a `std::map`. The keys are the branch names, the values are `double` `vector`s of size 3 that will contain the loaded values. We use a *sorted* `map` so that the keys are sorted automatically. At the same time, the maximum number of characters in all of the cut names is also determined.
 			std::map<std::string, std::vector<double> > cuts;
 			int w_name = 0;
 			TIter next(chain->GetListOfBranches());
@@ -273,25 +277,27 @@
 				if(branchName.length() > w_name) w_name = branchName.length();
 			}
 		/// <li> @b CASE1. If `"_cutvalues"` contains a branch called `"index"`, assume that the `TTree` contains double arrays.
-			if(Error::MapHasKey(chainLoader->Get<int>(), "index")) for(auto branch : cuts) {
+			if(Error::MapHasKey(chainLoader->Get<int>(), "index")) for(auto &cut : cuts) {
 			/// <ol>
 			/// <li> `SetBranchAddress` for the array of this branch. @b Abort if `SetBranchAddress` does not return `0`.
-				double array[3];
-				if(chain->SetBranchAddress(branch.first.c_str(), &array)) {
-					std::cout << "ERROR: failed to load \"" << branch.first << "\" in branch \"_cutvalues\"" << std::endl;
-					std::cout << "  -->> SetBranchAddress returned " << chain->SetBranchAddress(branch.first.c_str(), &array) << std::endl;
+				double values[3];
+				if(chain->SetBranchAddress(cut.first.c_str(), &values)) {
+					std::cout << "ERROR: failed to load \"" << cut.first << "\" in branch \"_cutvalues\"" << std::endl;
+					std::cout << "  -->> SetBranchAddress returned " << chain->SetBranchAddress(cut.first.c_str(), &values) << std::endl;
 					return;
 				}
 			/// <li> Entry `0`: this is information written from the `CutObject` to the first file of the `TChain` loaded here. We use it to load the `min` and `max` value (array entries 0 and 1). @see TrackSelector::AddAndWriteCuts
 				chain->GetEntry(0);
-				branch.second[0] = array[0]; // min
-				branch.second[1] = array[1]; // max
-				branch.second[2] = 0; // count
+				cut.second[0] = values[0]; // min
+				cut.second[1] = values[1]; // max
+				cut.second[2] = 0; // count
 			/// <li> Get the total count value by adding up each 3rd entry of the array.
 				for(int i=0; i<chainLoader->GetEntries(); ++i) {
 					chainLoader->GetEntry(i);
-					branch.second[2] += array[2];
+					cut.second[2] += values[2];
 				}
+			/// <li> Drop address allocated for this branch.
+				chain->ResetBranchAddress(chain->GetBranch(cut.first.c_str()));
 			/// </ol>
 		/// <li> If `TChain` `"_cutvalues"` does not contain a branch called `"index"`, it is probably created by an older version of the `TrackSelector` and we need to use one of the following methods.
 			} else {
@@ -305,11 +311,11 @@
 				if(chainLoader->GetEntries()==1) {
 				/// <ul>
 				/// <li> For each branch, add up the entries
-					for(auto branch : cuts) {
-						branch.second[0] = 0;
+					for(auto &cut : cuts) {
+						cut.second[0] = 0;
 						for(int i=0; i<chainLoader->GetEntries(); ++i) {
 							chainLoader->GetEntry(i);
-							branch.second[0] += chainLoader->Get<double>(branch.first);
+							cut.second[0] += chainLoader->Get<double>(cut.first);
 						}
 					}
 				/// <li> Entry 0 of the `"_cutvalues"` tree is considered to be that value.
@@ -346,34 +352,81 @@
 			}
 		/// <li> Print loaded values as a table: one row per parameters.
 			/// <ol>
+			/// <li> Get width of columns (`w_name` has to be redone because of the table headers).
+				const std::string h_name  { "CUT NAME" };
+				const std::string h_min   { "MIN" };
+				const std::string h_max   { "MAX" };
+				const std::string h_count { "COUNT" };
+				w_name = h_name.size();
+				int w_min   { h_min  .size() };
+				int w_max   { h_max  .size() };
+				int w_count { h_count.size() };
+				for(auto &cut : cuts) {
+					// * Name *
+					if(cut.first.size() > w_name) w_name = cut.first.size();
+					// * Minimum value *
+					if(cut.second[0] > -DBL_MAX) {
+						std::ostringstream os;
+						os << cut.second[0];
+						if(os.str().size() > w_min) w_min = os.str().size();
+					}
+					// * Maximum value *
+					if(cut.second[1] < DBL_MAX) {
+						std::ostringstream os;
+						os << cut.second[1];
+						if(os.str().size() > w_max) w_max = os.str().size();
+					}
+					// * Count value *
+					std::ostringstream os;
+					os << (int)cut.second[2];
+					if(os.str().size() > w_count) w_count = os.str().size();
+				}
 			/// <li> Print table header with four columns.
 			std::cout << std::endl << "  "
-				<< std::setw(w_name) << std::left  << "CUT NAME" << " | "
-				<< std::setw(10)     << std::right << "MIN" << " | "
-				<< std::setw(10)     << std::right << "MAX" << " | "
-				<< std::setw(10)     << std::right << "COUNT"
+				<< std::setw(w_name)  << std::left << h_name << " | "
+				<< std::setw(w_min)   << std::left << h_min << " | "
+				<< std::setw(w_max)   << std::left << h_max << " | "
+				<< std::setw(w_count) << std::left << h_count
 				<< std::endl;
 			/// <li> Print horizontal line beneath it.
-			std::cout << "  " << std::setfill('-') << std::setw(w_name+39) << "" << std::endl;
+			std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
 			std::cout << std::setfill(' ');
-			for(auto it : cuts) {
+			/// <li> Create a list of cut names ordered by counter (using `std::list::sort` and a lambda).
+				std::list<std::pair<std::string, int> > cutNames;
+				for(auto &cut : cuts) cutNames.push_back(std::make_pair(cut.first, cut.second[2]));
+				cutNames.sort([](std::pair<std::string, int> const & a, std::pair<std::string, int> const & b)
+				{
+					return a.second != b.second ?
+						a.second > b.second :
+						a.first < b.first;
+				});
+			/// <li> Print the table:
+			for(auto &cutName : cutNames) {
+				/// <ol>
+				/// <li> Print a horizontal line just before counter `"N_events"`.
+				if(!cutName.first.compare("N_events")) {
+					std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+					std::cout << std::setfill(' ');
+				}
 				/// <li> Column 1: <b>cut name</b>.
-				std::cout << "  " << std::setw(w_name) << std::left << it.first << " | ";
+				std::cout << "  " << std::setw(w_name) << std::left << cutName.first << " | ";
 				/// <li> Column 2: @b minimum, if available.
-				std::cout << std::setw(10) << std::right;
-				if(it.second[0] > -DBL_MAX) std::cout << it.second[0];
+				std::cout << std::setw(w_min) << std::right;
+				if(cuts[cutName.first][0] > -DBL_MAX) std::cout << cuts[cutName.first][0];
 				else std::cout << "";
 				std::cout << " | ";
 				/// <li> Column 3: @b maximum, if available.
-				std::cout << std::setw(10) << std::right;
-				if(it.second[1] < DBL_MAX) std::cout << it.second[1];
+				std::cout << std::setw(w_max) << std::right;
+				if(cuts[cutName.first][1] < DBL_MAX) std::cout << cuts[cutName.first][1];
 				else std::cout << "";
 				std::cout << " | ";
 				/// <li> Column 4: @b counter, if available.
-				std::cout << std::setw(10) << std::right << it.second[2] << std::endl;
+				std::cout << std::setw(w_count) << std::right << cutName.second << std::endl;
 				/// </ol>
 			}
 			std::cout << std::endl;
+		/// <li> Reset branches to avoid a crash at the end of your executable.
+			chain->ResetBranchAddresses();
 		/// </ol>
 	}
 

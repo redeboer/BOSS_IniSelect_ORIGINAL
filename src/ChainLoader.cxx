@@ -36,8 +36,12 @@
 				if(print_branches) {
 					std::cout << "   " << std::setw(18) << std::left << type;
 					if(print_averages) std::cout << std::setw(12) << std::right << ComputeMean(&fChain, obj->GetName());
-					std::cout << std::endl;
 				}
+				if(type.find('[') != std::string::npos) {
+					if(print_branches) std::cout << " (not loaded)" << std::endl;
+					continue; /// If branch title contains a `[`, this means it is an array and it will not be loaded.
+				}
+				if(print_branches) std::cout << std::endl;
 				switch(type.back()) {
 					case 'B' : SetAddress(obj, fMap_B); break;
 					case 'b' : SetAddress(obj, fMap_b); break;
