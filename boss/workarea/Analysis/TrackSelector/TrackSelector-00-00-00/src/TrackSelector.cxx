@@ -830,6 +830,7 @@
 	/// Check whether a decayed MC truth particle comes from a particle with PDG code `mother`.
 	bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother) const
 	{
+		if(!particle) return false;
 		if(particle->primaryParticle()) return false;
 		if(particle->mother().particleProperty() == mother) return true;
 		return false;
@@ -839,6 +840,7 @@
 	/// Check whether a decayed MC truth particle has PDG code `pdg` and comes from a particle with PDG code `mother`.
 	bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother, const int pdg) const
 	{
+		if(!particle) return false;
 		if(!IsDecay(particle, mother)) return false;
 		if(particle->particleProperty() == pdg) return true;
 		return false;
@@ -875,18 +877,16 @@
 	/// @see BOSSOutputLoader::PrintCuts
 	void TrackSelector::AddAndWriteCuts()
 	{
-		/// <ol>
-		/// <li> For each defined `CutObject`, add an `NTuple::Array` to the `"_cutvalues"` `NTupleContainer`.
-			std::list<CutObject*>::iterator cut;
-			NTuple::Item<int> &index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
-			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
-				NTuple::Array<double> &array = *fNTuple_cuts.AddIndexedItem<double>((*cut)->Name(), index);
-				index = 0; array[index] = (*cut)->min;
-				index = 1; array[index] = (*cut)->max;
-				index = 2; array[index] = (*cut)->counter;
-			}
-			fNTuple_cuts.Write();
-		/// </ol>
+		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+		NTuple::Item<int> &index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
+		for(; cut != CutObject::gCutObjects.end(); ++cut) {
+			NTuple::Array<double> &array = *fNTuple_cuts.AddIndexedItem<double>((*cut)->Name(), index);
+			index = 0; array[index] = (*cut)->min;
+			index = 1; array[index] = (*cut)->max;
+			index = 2; array[index] = (int)((*cut)->counter);
+		}
+		++index; // to make the array size 3
+		fNTuple_cuts.Write();
 	}
 
 

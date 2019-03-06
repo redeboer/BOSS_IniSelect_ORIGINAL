@@ -6,6 +6,7 @@
 	#include <float.h>
 	#include <iostream>
 	#include <iomanip>
+	#include <sstream>
 
 
 
@@ -61,6 +62,7 @@
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
+
 	/// Print the cut name, `min` value, `max` value, and `counter` value of the cut object. If all arguments are set, the output will be print in table format.
 	/// @param wname    With of the cut name column
 	/// @param wmin     With of the `min` column.
@@ -109,26 +111,63 @@
 // * ------- STATIC MEMBERS ------- * //
 // * ============================== * //
 
+
 	/// Print a table of cut names and their min/max and counter values.
 	void CutObject::PrintAll()
 	{
 		/// -# Check if any instances of `CutObject` have been loaded.
-		if(!CutObject::gCutObjects.size()) {
-			std::cout << std::endl << "WARNING: no cuts defined" << std::endl << std::endl;
-			return;
-		}
+			if(!CutObject::gCutObjects.size()) {
+				std::cout << std::endl << "WARNING: no cuts defined" << std::endl << std::endl;
+				return;
+			}
+		/// -# Get widths of the columns.
+			const std::string h_name ("CUT NAME");
+			const std::string h_min  ("MIN");
+			const std::string h_max  ("MAX");
+			const std::string h_count("COUNT");
+			int w_name (h_name .size());
+			int w_min  (h_min  .size());
+			int w_max  (h_max  .size());
+			int w_count(h_count.size());
+			std::list<CutObject*>::iterator cut;
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
+				// * Name *
+				if((*cut)->Name().size() > w_name) w_name = (*cut)->Name().size();
+				// * Minimum value *
+				if((*cut)->min > -DBL_MAX) {
+					std::ostringstream os;
+					os << (*cut)->min;
+					if(os.str().size() > w_min) w_min = os.str().size();
+				}
+				// * Maximum value *
+				if((*cut)->max < DBL_MAX) {
+					std::ostringstream os;
+					os << (*cut)->max;
+					if(os.str().size() > w_max) w_max = os.str().size();
+				}
+				// * Count value *
+				std::ostringstream os;
+				os << (int)(*cut)->counter;
+				if(os.str().size() > w_count) w_count = os.str().size();
+			}
 		/// -# Print header of the table.
-		std::cout << std::endl << "  "
-			<< std::setw(12) << std::left  << "CUT NAME" << " | "
-			<< std::setw(10) << std::right << "MIN" << " | "
-			<< std::setw(10) << std::right << "MAX" << " | "
-			<< std::setw(10) << std::right << "COUNT"
-			<< std::endl;
-		/// -# Print one row for each cut using `CutObject::Print`.
-		std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
-		for(; cut != CutObject::gCutObjects.end(); ++cut) {
-			(*cut)->Print(12, 10, 10, 10);
-		}
+			std::cout << std::endl << "  "
+				<< std::setw(w_name)  << std::left  << h_name << " | "
+				<< std::setw(w_min)   << std::right << h_min  << " | "
+				<< std::setw(w_max)   << std::right << h_max  << " | "
+				<< std::setw(w_count) << std::right << h_count
+				<< std::endl;
+		/// -# Print horizontal line beneath it.
+			std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+			std::cout << std::setfill(' ');
+		/// -# Print one row for each cut using `CutObject::Print`. Print a horizontal line just before counter `"N_events"`.
+			for(cut = CutObject::gCutObjects.begin(); cut != CutObject::gCutObjects.end(); ++cut) {
+				if(!(*cut)->Name().compare("N_events")) {
+					std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+					std::cout << std::setfill(' ');
+				}
+				(*cut)->Print(w_name, w_min, w_max, w_count);
+			}
 		/// -# Skip one line.
-		std::cout << std::endl;
+			std::cout << std::endl;
 	}

@@ -189,10 +189,10 @@
 	NTuple::Array<TYPE>* NTupleContainer::AddIndexedItem(const std::string &item_name, NTuple::Item<int> &index)
 	{
 		/// -# Attempt to create an item in the item or array mapping using `AddToMap`.
-		NTuple::Array<TYPE>* array = AddToMap(GetArrays<TYPE>(), item_name);
+		if(!AddToMap(GetArrays<TYPE>(), item_name)) return nullptr;
 		/// -# Add the `NTuple::Array` that you created in the previous step to the `fTuple`.
-		if(array) fTuple->addIndexedItem(item_name, index, *array);
-		return array;
+		fTuple->addIndexedItem(item_name, index, GetArray<TYPE>(item_name));
+		return &GetArray<TYPE>(item_name);
 	}
 
 
