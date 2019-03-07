@@ -378,7 +378,7 @@
 					}
 					// * Count value *
 					std::ostringstream os;
-					os << (int)cut.second[2];
+					os << (unsigned long long)cut.second[2];
 					if(os.str().size() > w_count) w_count = os.str().size();
 				}
 			/// <li> Print table header with four columns.
@@ -392,9 +392,9 @@
 			std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
 			std::cout << std::setfill(' ');
 			/// <li> Create a list of cut names ordered by counter (using `std::list::sort` and a lambda).
-				std::list<std::pair<std::string, int> > cutNames;
+				std::list<std::pair<std::string, unsigned long long> > cutNames;
 				for(auto &cut : cuts) cutNames.push_back(std::make_pair(cut.first, cut.second[2]));
-				cutNames.sort([](std::pair<std::string, int> const & a, std::pair<std::string, int> const & b)
+				cutNames.sort([](std::pair<std::string, unsigned long long> const & a, std::pair<std::string, unsigned long long> const & b)
 				{
 					return a.second != b.second ?
 						a.second > b.second :
