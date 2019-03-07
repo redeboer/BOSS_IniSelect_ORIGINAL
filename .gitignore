@@ -20,31 +20,31 @@ plots/**/*.png
 plots/**/*.root
 
 # Ignore jobs
+jobs/**/sed*
 jobs/ana/**.txt
 jobs/filenames/**.txt
 jobs/rec/**.txt
 jobs/sim/**.txt
 jobs/sub/**.sh
 jobs/sub/**.sh.*.*
-jobs/**/sed*
 
 # Ignore settings
 **.code-workspace
-.vscode/**
 .bash**
+.vscode/**
 
 # Ignore CMT files
 **.cmtref
 **.fferr
 **.ffwarn
 **.history
-**.makesav
-**.makecmtsave
 **.in
+**.makecmtsave
+**.makesav
 **.shstamp
 **.stamp
-fort.*
 core.*
+fort.*
 
 # Ignore CVS files
 CVS
@@ -60,25 +60,25 @@ Tag
 **.make
 **.so
 *ACLiC_dict_rdict.pcm
-execute
 boss/workarea/InstallArea/**
+execute
 main
 
 # Ignore temporary files
-*.tmp
 *.bosserr
 *.bosslog
+*.tmp
 
 # Compontents of topoana
-**.err
-**.tex
-**.log
-**.out
-**.root
-**.pdf
-**.time
 **.dat_auto
 **.dat_temp*
+**.err
+**.log
+**.out
+**.pdf
+**.root
+**.tex
+**.time
 boss/workarea/Analysis/TopoAna/v*/test/*
 boss/workarea/Analysis/TopoAna/v*/test/**
 jobs/topoana/**.txt
@@ -90,3 +90,4 @@ jobs/topoana/*/*/*.txt
 topoana/**.txt
 topoana/**/**.txt
 topoana/*.txt
+topoana/*/*.txt
