@@ -1,10 +1,10 @@
-# Introduction
+# Motivation
 
-_The BOSS Afterburner_ repository is meant as an extension of the conventional BOSS analysis framework. It contains the tutorial pages you are currently looking at, but also comes with two major components that are to facilitate initial and final event selection.
+_The BOSS Afterburner_ repository is designed as an extension of the conventional BOSS analysis framework. It contains the tutorial pages you are currently looking at, but also comes with two major components that are to facilitate initial and final event selection.
 
-First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**]().
+First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**](initial/base.md).
 
-Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](../final-event-selection/final.md), or the "Afterburner".
+Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](final/final.md), or the "Afterburner".
 
 In the following pages, we will first go through the motivation for designing this layer outside of the BOSS analysis framework and then go through these two components of event selection. We will end with a note on contributing to this framework, because one of the main aims of this setup is **to facilitate collaboration on analysis code within BESIII**.
 
@@ -56,7 +56,7 @@ _Argument sketch_
 
 #### `NTuple` booking procedure
 
-The typical booking procedure [used in for instance the `RhopiAlg`]() is not the most convenient. It requires many steps, so it is easy to make a mistake when you modify your code. An overview of the procedure:
+The typical booking procedure [used in for instance the `RhopiAlg`](https://besiii.gitbook.io/boss/packages/analysis/rhopi) is not the most convenient. It requires many steps, so it is easy to make a mistake when you modify your code. An overview of the procedure:
 
 1. _In the header file:_ **Declaration** of the [`NTuple::Tuple`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Tuple.html) pointer \(eventual `TTree`\) and [`NTuple::Item`s](https://dayabay.bnl.gov/dox/GaudiKernel/html/classNTuple_1_1Item.html) \(eventual branches\) in the header file. This is required because you need a memory address \(branch\) to which you store values and then [write](https://dayabay.bnl.gov/dox/GaudiKernel/html/classINTuple.html#a89cd8df7b0cff68a1cbb45d9c8fe7df5) them.
 2. _In the_ `initialize` _step:_ **Book** the `NTuple::Tuple` in the output file using [`Algorithm::ntupleSvc`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#aa0e741efefa5312b20f9a213c3ab4cbb). Here, you also determine the name of the eventual `TTree`.
@@ -64,7 +64,7 @@ The typical booking procedure [used in for instance the `RhopiAlg`]() is not the
 
 #### Declaring properties
 
-[Similarly to booking the `NTuple`s](intro.md#ntuple-booking-procedure), declaring package properties is not too convenient either. An overview:
+[Similarly to booking the `NTuple`s](motivation.md#ntuple-booking-procedure), declaring package properties is not too convenient either. An overview:
 
 1. **Declaration** of memory addresses in the header file, such as `double`s for cuts and `bool`leans for switches.
 2. **Declaring the property** in the constructor using [`Algorithm::declareProperty`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#acc63d83555ffb3833df7334468551d7d). Here you assign a name to the property. It is inconvenient that you have to go back and forth between the header file and the source code to keep the declared properties in agreement with the declared memory addresses.
@@ -77,18 +77,4 @@ The `NTuple` and property procedures and relations described above suggest the d
 There is however a challenge due to the structure of the Gaudi framework: the essential functions [`Algorithm::declareProperty`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#acc63d83555ffb3833df7334468551d7d) and [`INTupleSvc::book`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classINTupleSvc.html#a501f6331df3de22c81e91f3f3f7704b6) require an instance of `Algorithm`, because they will have to be linked to the output ROOT file \(see for instance [`Algorithm::ntupleSvc`](https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html#aa0e741efefa5312b20f9a213c3ab4cbb)\). A solution would be to keep track of the all instances of the constructed encapsulation classes of `NTuple`s and properties using a `static`list of pointers. Methods defined in the `TrackSelector`then take care of the booking procedures automatically by looping over these lists for you and using the data members in these classes to perform all the steps required.
 
 A problem remains the correspondence between names of the properties and `NTuple`s: you will have to call them later through the code and the question is how? That is, whether through their names, or through their instances.
-
-## Temporary notes
-
-### Base-derived algorithm structure
-
-### Generic event selection packages
-
-{% hint style="warning" %}
-**@todo** Describe `FSFilter` by BESIII.
-{% endhint %}
-
-### Outdated group structure
-
-![Initial class structure of the BOSS Afterburner](../.gitbook/assets/boss_afterburner.png)
 
