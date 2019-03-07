@@ -35,15 +35,15 @@
 		/// * Construct base algorithm `TrackSelector`.
 			TrackSelector(name, pSvcLocator),
 		/// * Construct `NTuple::Tuple` containers used in derived classes.
-			fNTuple_dedx_K     ("dedx_K",      "dE/dx of the kaons"),
-			fNTuple_dedx_pi    ("dedx_pi",     "dE/dx of the pions"),
-			fNTuple_fit4c_all  ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
-			fNTuple_fit4c_best ("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
-			fNTuple_fit_mc     ("fit_mc",      "Fake fit information according to MC truth"),
+			fNTuple_dedx_K    ("dedx_K",      "dE/dx of the kaons"),
+			fNTuple_dedx_pi   ("dedx_pi",     "dE/dx of the pions"),
+			fNTuple_fit4c_all ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit4c_best("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
+			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
-			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
 			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
+			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
 			fCutFlow_TopoAnaOK   ("N_TopoAna_OK", "Number of entries that have been written to the branch for the topoana package")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
@@ -164,11 +164,6 @@
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
-
-
-		/// <li> @b Write Monte Carlo truth for `topoana` package <b>after the initial event selection</b>.
-			// CreateMCTruthCollection();
-			// WriteMCTruthForTopoAna(fNTuple_mctruth);
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
@@ -308,9 +303,9 @@
 
 
 
-// * =============================== * //
-// * ------- PRIVATE METHODS ------- * //
-// * =============================== * //
+// * ============================== * //
+// * ------- NTUPLE METHODS ------- * //
+// * ============================== * //
 
 
 	/// This function encapsulates the `addItem` procedure for the fit branches.
@@ -323,29 +318,6 @@
 		tuple.AddItem<double>("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
 		tuple.AddItem<double>("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
 		tuple.AddItem<double>("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
-	}
-
-
-	/// Specification of what should be written to the fit `NTuple`.
-	/// This function is called in `TrackSelector::WriteFitResults`.
-	void D0phi_KpiKK::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
-	{
-		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
-			KKFitResult_D0phi_KpiKK* fit = dynamic_cast<KKFitResult_D0phi_KpiKK*>(fitresults);
-
-		/// -# @warning Terminate if cast failed.
-			if(!fit) {
-				std::cout << "FATAL ERROR: Dynamic cast failed" << std::endl;
-				std::terminate();
-			}
-
-		/// -# Set the `NTuple::Item`s.
-			tuple.GetItem<double>("mD0")   = fit->fM_D0;
-			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
-			tuple.GetItem<double>("mphi")  = fit->fM_phi;
-			tuple.GetItem<double>("pD0")   = fit->fP_D0;
-			tuple.GetItem<double>("pphi")  = fit->fP_phi;
-			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 	}
 
 
@@ -371,4 +343,27 @@
 					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
 				}
 			}
+	}
+
+
+	/// Specification of what should be written to the fit `NTuple`.
+	/// This function is called in `TrackSelector::WriteFitResults`.
+	void D0phi_KpiKK::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
+	{
+		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
+			KKFitResult_D0phi_KpiKK* fit = dynamic_cast<KKFitResult_D0phi_KpiKK*>(fitresults);
+
+		/// -# @warning Terminate if cast failed.
+			if(!fit) {
+				std::cout << "FATAL ERROR: Dynamic cast failed" << std::endl;
+				std::terminate();
+			}
+
+		/// -# Set the `NTuple::Item`s.
+			tuple.GetItem<double>("mD0")   = fit->fM_D0;
+			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
+			tuple.GetItem<double>("mphi")  = fit->fM_phi;
+			tuple.GetItem<double>("pD0")   = fit->fP_D0;
+			tuple.GetItem<double>("pphi")  = fit->fP_phi;
+			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 	}

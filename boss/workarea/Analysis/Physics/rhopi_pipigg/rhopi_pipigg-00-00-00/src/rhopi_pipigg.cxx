@@ -41,13 +41,16 @@
 			fNTuple_fit_mc ("fit_mc",  "Fake fit information according to MC truth"),
 			fNTuple_photon ("photon",  "Kinematics of selected photons"),
 		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
-			fCut_GammaPhi  ("gamma_phi"),
-			fCut_GammaTheta("gamma_theta"),
+			fCutFlow_NChargedOK  ("N_charged_OK",   "Number of events that had at least 1 charged track"),
+			fCutFlow_NFitOK      ("N_Fit_OK",       "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
+			fCutFlow_NetChargeOK ("N_netcharge_OK", "Number of events where the total charge detected in the detectors was 0"),
+			fCutFlow_NNeutralOK  ("N_neutral_OK",   "Number of events that had at least 2 neutral tracks"),
+			fCutFlow_NPIDnumberOK("N_PID_OK",       "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+			fCutFlow_TopoAnaOK   ("N_TopoAna_OK",   "Number of entries that have been written to the branch for the topoana package"),
+		/// * Construct additional `CutObject`s that are specific for the `rhopi_pipig` package.
 			fCut_GammaAngle("gamma_angle"),
-			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had at least 1 charged track"),
-			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
-			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-			fCutFlow_NPhotonOK   ("N_neutral_OK", "Number of events that had at least 2 neutral tracks")
+			fCut_GammaPhi  ("gamma_phi"),
+			fCut_GammaTheta("gamma_theta")
 	{ PrintFunctionName("rhopi_pipigg", __func__); PostConstructor();
 		fCreateChargedCollection = true;
 		fCreateNeutralCollection = true;
@@ -68,9 +71,9 @@
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
-			fNTuple_mult_sel.AddItem("NPhotons"); /// <li> `"NPhotons"`: Number of \f$\gamma\f$'s.
-			fNTuple_mult_sel.AddItem("NPionNeg"); /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$.
-			fNTuple_mult_sel.AddItem("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
+			fNTuple_mult_sel.AddItem<int>("NPhotons"); /// <li> `"NPhotons"`: Number of \f$\gamma\f$'s.
+			fNTuple_mult_sel.AddItem<int>("NPionNeg"); /// <li> `"NPionNeg"`: Number of \f$\pi^-\f$.
+			fNTuple_mult_sel.AddItem<int>("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
 			/// </ol>
 
 		/// <li> `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
@@ -83,10 +86,10 @@
 
 		/// <li> `"photon"`: information of the selected photons
 			/// <ol>
-			fNTuple_photon.AddItem("E");     /// <li> `"E"`:     Energy of the photon.
-			fNTuple_photon.AddItem("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
-			fNTuple_photon.AddItem("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
-			fNTuple_photon.AddItem("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("E");     /// <li> `"E"`:     Energy of the photon.
+			fNTuple_photon.AddItem<double>("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
 			/// </ol>
 
 		/// </ol>
@@ -101,7 +104,11 @@
 		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>2 charged tracks in total</b>.
 			if(fGoodChargedTracks.size() != 2) return StatusCode::SUCCESS;
 			++fCutFlow_NChargedOK;
-			if(fNetChargeMDC != 0) return StatusCode::SUCCESS;
+
+
+		/// <li> <b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
+			if(fNetChargeMDC) return StatusCode::SUCCESS;
+			++fCutFlow_NetChargeOK;
 
 
 		/// <li> Create specific charged track selections
@@ -117,20 +124,22 @@
 					if(!InitializePID(
 					/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-					/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+					/// <li> use \f$dE/dx\f$ and the three ToF detectors. @remark Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
 						fPIDInstance->useDedx() |
-						fPIDInstance->useTofCorr(),
+						fPIDInstance->useTof1() |
+						fPIDInstance->useTof2() |
+						fPIDInstance->useTofE(),
 					/// <li> identify only pions
 						fPIDInstance->onlyPion(),
 					/// <li> use \f$\chi^2 > 4.0\f$
 						4.0
-					/// </ul>
 					)) continue;
+					/// </ul>
 
 				/// <li> @b Write Particle Identification information of all tracks
 					WritePIDInformation();
 
-				/// <li> Identify type of charged particle and add to related vector: (this package: only pions).
+				/// <li> Identify type of charged particle and add to related vector: this package: only pions.
 					fTrackKal = (*fTrackIterator)->mdcKalTrack();
 					if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `rhopi_pipigg.txt`).
 					RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
@@ -142,11 +151,8 @@
 
 
 		/// <li> Create selection neutral tracks (photons)
-
-			// * Print log and clear vectors of selected particles *
-			fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
-
-			// * Loop over charged tracks *
+			/// <ol>
+			/// Loop over charged tracks *
 			fPhotons.clear();
 			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 
@@ -212,20 +218,23 @@
 				<< "N_{\pi^-} = " << fPionNeg.size() << ", "
 				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
 			if(fNTuple_mult_sel.DoWrite()) {
-				fNTuple_mult_sel.at("NPhotons") = fPhotons.size();
-				fNTuple_mult_sel.at("NPionNeg") = fPionNeg.size();
-				fNTuple_mult_sel.at("NPionPos") = fPionPos.size();
+				fNTuple_mult_sel.GetItem<int>("NPhotons") = fPhotons.size();
+				fNTuple_mult_sel.GetItem<int>("NPionNeg") = fPionNeg.size();
+				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
 				fNTuple_mult_sel.Write();
 			}
 
 
-		/// <li> Apply a cut on the number of particles: <i>only events with one \f$\pi^-\f$, one \f$\pi^+\f$, and at least 2 photons</i>
-			if(fPhotons.size()  < 2) return StatusCode::SUCCESS;
-			if(fPionNeg.size() != 1) return StatusCode::SUCCESS;
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS;
+		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only continue if:
+			/// <ol>
+			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$)
+			if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion (\f$\pi^-\f$)
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion (\f$\pi^+\f$)
+			/// </ol>
+			++fCutFlow_NPIDnumberOK;
 
 
-		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
+		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
 			if(fNTuple_dedx.DoWrite()) {
 				WriteDedxInfoForVector(fPionNeg, fNTuple_dedx_pi);
 				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
@@ -245,8 +254,8 @@
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow \pi^+\pi^-\gamma\gamma\f$.
 					if(!IsDecay(*fMcPhoton1Iter, 111, 22)) continue; // D0  --> K-
 					if(!IsDecay(*fMcPhoton2Iter, 111, 22)) continue; // D0  --> pi+
-					if(!(IsDecay(*fMcPionNegIter, , -211) || IsDecay(*fMcPionNegIter, , -211))) continue; // phi --> K-
-					if(!(IsDecay(*fMcPionPosIter, ,  211) || IsDecay(*fMcPionPosIter, ,  211))) continue; // phi --> K+
+					// if(!(IsDecay(*fMcPionNegIter, , -211) || IsDecay(*fMcPionNegIter, , -211))) continue; // phi --> K-
+					// if(!(IsDecay(*fMcPionPosIter, ,  211) || IsDecay(*fMcPionPosIter, ,  211))) continue; // phi --> K+
 
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_rhopi_pipigg fitresult(
@@ -404,7 +413,8 @@
 	}
 
 
-	/// Currently does nothing. See `TrackSelector::finalize` for what else is done when finalising.
+	/// Currently does nothing.
+	/// See `TrackSelector::finalize` for what else is done when finalising.
 	StatusCode rhopi_pipigg::finalize_rest()
 	{ PrintFunctionName("rhopi_pipigg", __func__);
 		return StatusCode::SUCCESS;
@@ -412,42 +422,80 @@
 
 
 
-// * =============================== * //
-// * ------- PRIVATE METHODS ------- * //
-// * =============================== * //
-
-
-	/// Specification of what should be written to the fit `NTuple`. This function is called in `TrackSelector::WriteFitResults`.
-	void rhopi_pipigg::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
-	{
-		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
-			KKFitResult_rhopi_pipigg* fit = dynamic_cast<KKFitResult_rhopi_pipigg*>(fitresults);
-
-		/// -# Set the `NTuple::Item`s.
-			tuple.at("mpi0")       = fit->fM_pi0;
-			tuple.at("mrho0")      = fit->fM_rho0;
-			tuple.at("mrho-")      = fit->fM_rhom;
-			tuple.at("mrho+")      = fit->fM_rhop;
-			tuple.at("mJpsi_rho0") = fit->fM_JpsiRho0;
-			tuple.at("mJpsi_rho-") = fit->fM_JpsiRhom;
-			tuple.at("mJpsi_rho+") = fit->fM_JpsiRhop;
-			tuple.at("chisq")      = fit->fChiSquared;
-	}
+// * ============================== * //
+// * ------- NTUPLE METHODS ------- * //
+// * ============================== * //
 
 
 	/// This function encapsulates the `addItem` procedure for the fit branches.
 	void rhopi_pipigg::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
-		tuple.AddItem("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \to \gamma\gamma\f$ candidate.
-		tuple.AddItem("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \to \pi^-\pi^+\f$ candidate.
-		tuple.AddItem("mrho-");      /// * `"mrho-"`:      Invariant mass for \f$\rho^- \to \pi^0\pi^-\f$ candidate.
-		tuple.AddItem("mrho+");      /// * `"mrho+"`:      Invariant mass for \f$\rho^+ \to \pi^0\pi^+\f$ candidate.
-		tuple.AddItem("mJpsi_rho0"); /// * `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \to \rho^0\pi^0\f$ candidate.
-		tuple.AddItem("mJpsi_rho-"); /// * `"mJpsi_rho-"`: Invariant mass for \f$J/\psi \to \rho^-\pi^+\f$ candidate.
-		tuple.AddItem("mJpsi_rho+"); /// * `"mJpsi_rho+"`: Invariant mass for \f$J/\psi \to \rho^+\pi^-\f$ candidate.
-		tuple.AddItem("chisq");      /// * `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
+		tuple.AddItem<double>("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \to \gamma\gamma\f$ candidate.
+		tuple.AddItem<double>("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \to \pi^-\pi^+\f$ candidate.
+		tuple.AddItem<double>("mrho-");      /// * `"mrho-"`:      Invariant mass for \f$\rho^- \to \pi^0\pi^-\f$ candidate.
+		tuple.AddItem<double>("mrho+");      /// * `"mrho+"`:      Invariant mass for \f$\rho^+ \to \pi^0\pi^+\f$ candidate.
+		tuple.AddItem<double>("mJpsi_rho0"); /// * `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \to \rho^0\pi^0\f$ candidate.
+		tuple.AddItem<double>("mJpsi_rho-"); /// * `"mJpsi_rho-"`: Invariant mass for \f$J/\psi \to \rho^-\pi^+\f$ candidate.
+		tuple.AddItem<double>("mJpsi_rho+"); /// * `"mJpsi_rho+"`: Invariant mass for \f$J/\psi \to \rho^+\pi^-\f$ candidate.
+		tuple.AddItem<double>("chisq");      /// * `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
 	}
+
+
+	/// Specification of `TrackSelector::CreateMCTruthSelection`.
+	/// Create selection of MC truth particles by looping over the collection of MC particles created by `TrackSelector::CreateMCTruthCollection()`.
+	void rhopi_pipigg::CreateMCTruthSelection()
+	{
+		/// -# @b Abort if input file is not from a Monte Carlo simulation (that is, if the run number is not negative).
+			if(fEventHeader->runNumber()>=0) return;
+		/// -# @b Abort if `"write_fit_mc"`, has been set to `false`.
+			if(!fNTuple_fit_mc.DoWrite()) return;
+		/// -# Clear MC truth particle selections.
+			fMcPhotons.clear();
+			fMcPionNeg.clear();
+			fMcPionPos.clear();
+		/// -# Loop over `fMcParticles` collection of MC truth particles and fill the selections.
+			std::vector<Event::McParticle*>::iterator it;
+			for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
+				switch((*it)->particleProperty()) {
+					case   22 : fMcPhotons.push_back(*it); break;
+					case -211 : fMcPionNeg.push_back(*it); break;
+					case  211 : fMcPionPos.push_back(*it); break;
+					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
+				}
+			}
+	}
+
+
+	/// Specification of what should be written to the fit `NTuple`.
+	/// This function is called in `TrackSelector::WriteFitResults`.
+	void rhopi_pipigg::SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple)
+	{
+		/// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast is required and cannot be solved using virtual methods, because of the specific structure of each analysis.
+			KKFitResult_rhopi_pipigg* fit = dynamic_cast<KKFitResult_rhopi_pipigg*>(fitresults);
+
+		/// -# @warning Terminate if cast failed.
+			if(!fit) {
+				std::cout << "FATAL ERROR: Dynamic cast failed" << std::endl;
+				std::terminate();
+			}
+
+		/// -# Set the `NTuple::Item`s.
+			tuple.GetItem<double>("mpi0")       = fit->fM_pi0;
+			tuple.GetItem<double>("mrho0")      = fit->fM_rho0;
+			tuple.GetItem<double>("mrho-")      = fit->fM_rhom;
+			tuple.GetItem<double>("mrho+")      = fit->fM_rhop;
+			tuple.GetItem<double>("mJpsi_rho0") = fit->fM_JpsiRho0;
+			tuple.GetItem<double>("mJpsi_rho-") = fit->fM_JpsiRhom;
+			tuple.GetItem<double>("mJpsi_rho+") = fit->fM_JpsiRhop;
+			tuple.GetItem<double>("chisq")      = fit->fChiSquared;
+	}
+
+
+
+// * ============================= * //
+// * ------- COMPUTATIONAL ------- * //
+// * ============================= * //
 
 
 	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).

@@ -70,13 +70,15 @@
 
 		/// @name Counters and cut objects
 			///@{
-			CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
-			CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
-			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
 			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have at least one charged track.
 			CutObject fCutFlow_NFitOK;       ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
+			CutObject fCutFlow_NNeutralOK;   ///< <b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want.
 			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
-			CutObject fCutFlow_NPhotonOK;    ///< <b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want.
+			CutObject fCutFlow_NetChargeOK;  ///< <b>Cut flow counter</b>: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
+			CutObject fCutFlow_TopoAnaOK;    ///< <b>Cut flow counter</b>: total number of entries written to the topoana branch.
+			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
+			CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
+			CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
 			///@}
 
 
