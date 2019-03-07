@@ -14,14 +14,13 @@ source CommonFunctions.sh
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"
-nFilesPerJob=100
+nFilesPerJob=1000
 nEventsPerJob=-1
 outputLevel=4
 data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * Parameters in case of file/directory reading * #
 gExampleFromFile=0
-fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ ${data_or_MC} == 1 ]; then 
@@ -29,7 +28,8 @@ fileToRead="filenames/ExampleFile_DstFiles" # filenames/ExampleFile_DzeroPhi_mc
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ ${data_or_MC} == 2 ]; then
-		directoryToRead="/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst"
+		gExampleFromFile=1
+		fileToRead="directories/Jpsi2009+2012_dst"
 		identifier="${packageName}_incl"
 # * In case of analysing Monte Carlo output * #
 	elif [ ${data_or_MC} == 3 ]; then
