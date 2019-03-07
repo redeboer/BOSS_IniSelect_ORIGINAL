@@ -38,9 +38,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseBOSSOutput_8C.html",
-"classChainLoader.html#a6635ef6d5998d30e8fa11f0ebe26bb1a",
-"classPipiJpsi.html#a38950a262827a8a4ccfe6b586f63dece",
-"classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017"
+"classBOSSOutputLoader.html#aa606084dd00882bf3d3c6df65bf030e1",
+"classNTupleContainer.html#a56eb7e36d6668780752ee22802d52b56",
+"classRhopiAlg.html#a6f247d2dc0ce778e5986912139bd5ef5",
+"functions.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

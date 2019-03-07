@@ -348,7 +348,7 @@
 					}
 				/// </ol>
 				}
-			/// <ol>
+			/// </ol>
 			}
 		/// <li> Print loaded values as a table: one row per parameters.
 			/// <ol>
@@ -382,15 +382,15 @@
 					if(os.str().size() > w_count) w_count = os.str().size();
 				}
 			/// <li> Print table header with four columns.
-			std::cout << std::endl << "  "
-				<< std::setw(w_name)  << std::left << h_name << " | "
-				<< std::setw(w_min)   << std::left << h_min << " | "
-				<< std::setw(w_max)   << std::left << h_max << " | "
-				<< std::setw(w_count) << std::left << h_count
-				<< std::endl;
+				std::cout << std::endl << "  "
+					<< std::setw(w_name)  << std::left << h_name << " | "
+					<< std::setw(w_min)   << std::left << h_min << " | "
+					<< std::setw(w_max)   << std::left << h_max << " | "
+					<< std::setw(w_count) << std::left << h_count
+					<< std::endl;
 			/// <li> Print horizontal line beneath it.
-			std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
-			std::cout << std::setfill(' ');
+				std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+				std::cout << std::setfill(' ');
 			/// <li> Create a list of cut names ordered by counter (using `std::list::sort` and a lambda).
 				std::list<std::pair<std::string, unsigned long long> > cutNames;
 				for(auto &cut : cuts) cutNames.push_back(std::make_pair(cut.first, cut.second[2]));
@@ -404,24 +404,24 @@
 			for(auto &cutName : cutNames) {
 				/// <ol>
 				/// <li> Print a horizontal line just before counter `"N_events"`.
-				if(!cutName.first.compare("N_events")) {
-					std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
-					std::cout << std::setfill(' ');
-				}
+					if(!cutName.first.compare("N_events")) {
+						std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+						std::cout << std::setfill(' ');
+					}
 				/// <li> Column 1: <b>cut name</b>.
-				std::cout << "  " << std::setw(w_name) << std::left << cutName.first << " | ";
+					std::cout << "  " << std::setw(w_name) << std::left << cutName.first << " | ";
 				/// <li> Column 2: @b minimum, if available.
-				std::cout << std::setw(w_min) << std::right;
-				if(cuts[cutName.first][0] > -DBL_MAX) std::cout << cuts[cutName.first][0];
-				else std::cout << "";
-				std::cout << " | ";
+					std::cout << std::setw(w_min) << std::right;
+					if(cuts[cutName.first][0] > -DBL_MAX) std::cout << cuts[cutName.first][0];
+					else std::cout << "";
+					std::cout << " | ";
 				/// <li> Column 3: @b maximum, if available.
-				std::cout << std::setw(w_max) << std::right;
-				if(cuts[cutName.first][1] < DBL_MAX) std::cout << cuts[cutName.first][1];
-				else std::cout << "";
-				std::cout << " | ";
+					std::cout << std::setw(w_max) << std::right;
+					if(cuts[cutName.first][1] < DBL_MAX) std::cout << cuts[cutName.first][1];
+					else std::cout << "";
+					std::cout << " | ";
 				/// <li> Column 4: @b counter, if available.
-				std::cout << std::setw(w_count) << std::right << cutName.second << std::endl;
+					std::cout << std::setw(w_count) << std::right << cutName.second << std::endl;
 				/// </ol>
 			}
 			std::cout << std::endl;

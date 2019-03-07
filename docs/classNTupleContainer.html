@@ -80,6 +80,7 @@ $(document).ready(function(){initNavTree('classNTupleContainer.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classNTupleContainer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">NTupleContainer Class Reference<div class="ingroups"><a class="el" href="group__BOSS.html">BOSS</a> &raquo; <a class="el" href="group__BOSS__objects.html">Helper objects</a></div></div>  </div>
@@ -114,23 +115,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af4ddf1d8a971e9100130daddb99f56ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#af4ddf1d8a971e9100130daddb99f56ff">SetTuplePtr</a> (NTuplePtr &amp;data)</td></tr>
 <tr class="separator:af4ddf1d8a971e9100130daddb99f56ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
-<tr class="memitem:ae15933fd53dfead8150d7ebe9ae01c37"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#ae15933fd53dfead8150d7ebe9ae01c37">operator[]</a> (const std::string &amp;key)</td></tr>
-<tr class="separator:ae15933fd53dfead8150d7ebe9ae01c37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb29ca6b6a5aa31ddafb47c699cf49dc"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#afb29ca6b6a5aa31ddafb47c699cf49dc">at</a> (const std::string &amp;key)</td></tr>
-<tr class="separator:afb29ca6b6a5aa31ddafb47c699cf49dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5f1543df4041e4cf788ebbe524c6717"><td class="memItemLeft" align="right" valign="top">const std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#af5f1543df4041e4cf788ebbe524c6717">GetItems</a> ()</td></tr>
-<tr class="separator:af5f1543df4041e4cf788ebbe524c6717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99709e72eb3d74fb538b7075aff3824"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:ae99709e72eb3d74fb538b7075aff3824"><td class="memTemplItemLeft" align="right" valign="top">NTuple::Item&lt; TYPE &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#ae99709e72eb3d74fb538b7075aff3824">GetItem</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:ae99709e72eb3d74fb538b7075aff3824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method.  <a href="#ae99709e72eb3d74fb538b7075aff3824">More...</a><br /></td></tr>
+<tr class="separator:ae99709e72eb3d74fb538b7075aff3824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5846f774e34c9d7f9f04969e0d3db1da"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a5846f774e34c9d7f9f04969e0d3db1da"><td class="memTemplItemLeft" align="right" valign="top">NTuple::Array&lt; TYPE &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a5846f774e34c9d7f9f04969e0d3db1da">GetArray</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:a5846f774e34c9d7f9f04969e0d3db1da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method.  <a href="#a5846f774e34c9d7f9f04969e0d3db1da">More...</a><br /></td></tr>
+<tr class="separator:a5846f774e34c9d7f9f04969e0d3db1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a903f1af397ab67fdbcaa748b4676d21e"><td class="memItemLeft" align="right" valign="top">const ULong_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a903f1af397ab67fdbcaa748b4676d21e">GetEntries</a> () const</td></tr>
+<tr class="memdesc:a903f1af397ab67fdbcaa748b4676d21e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read access to <code>fEntries</code>.  <a href="#a903f1af397ab67fdbcaa748b4676d21e">More...</a><br /></td></tr>
 <tr class="separator:a903f1af397ab67fdbcaa748b4676d21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">NTuple handlers and members</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Read access to <code>fEntries</code>. </p>
-</div></td></tr>
-<tr class="memitem:a916d53be38e6b54ef59169eeba1fc71c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a916d53be38e6b54ef59169eeba1fc71c">AddItem</a> (const std::string &amp;item_name)</td></tr>
-<tr class="memdesc:a916d53be38e6b54ef59169eeba1fc71c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Easier and expanded version of <code>NTuple::Tuple::addItem</code>.  <a href="#a916d53be38e6b54ef59169eeba1fc71c">More...</a><br /></td></tr>
-<tr class="separator:a916d53be38e6b54ef59169eeba1fc71c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af03ecf69c2115a12c6685a8dc998cf4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#af03ecf69c2115a12c6685a8dc998cf4e">Write</a> ()</td></tr>
-<tr class="memdesc:af03ecf69c2115a12c6685a8dc998cf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write <code>NTuple</code> if <code>"write_"</code> <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> has been set to <code>true</code>.  <a href="#af03ecf69c2115a12c6685a8dc998cf4e">More...</a><br /></td></tr>
-<tr class="separator:af03ecf69c2115a12c6685a8dc998cf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">JobSwitch handlers</div></td></tr>
 <tr class="memitem:ab98eb1f1af29156374091e0ccefb983b"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#ab98eb1f1af29156374091e0ccefb983b">DoWrite</a> () const</td></tr>
 <tr class="separator:ab98eb1f1af29156374091e0ccefb983b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +152,23 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7cc3f6a11cfbc3e37d40f98cfb78941a inherit pub_methods_classContainer__base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the <code>C</code> string (!) of the description.  <a href="classContainer__base.html#a7cc3f6a11cfbc3e37d40f98cfb78941a">More...</a><br /></td></tr>
 <tr class="separator:a7cc3f6a11cfbc3e37d40f98cfb78941a inherit pub_methods_classContainer__base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a07b880fbe7b63382bffa210fb8f8286c"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a07b880fbe7b63382bffa210fb8f8286c"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a07b880fbe7b63382bffa210fb8f8286c">GetItems</a> ()</td></tr>
+<tr class="memdesc:a07b880fbe7b63382bffa210fb8f8286c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of <code>GetItems</code>.  <a href="#a07b880fbe7b63382bffa210fb8f8286c">More...</a><br /></td></tr>
+<tr class="separator:a07b880fbe7b63382bffa210fb8f8286c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf134c9c825377324249557ec315012a"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:abf134c9c825377324249557ec315012a"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#abf134c9c825377324249557ec315012a">GetItems</a> ()</td></tr>
+<tr class="separator:abf134c9c825377324249557ec315012a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9d3a4448a1dee68c3fc0208905fcd18"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:ae9d3a4448a1dee68c3fc0208905fcd18"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Array&lt; double &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#ae9d3a4448a1dee68c3fc0208905fcd18">GetArrays</a> ()</td></tr>
+<tr class="memdesc:ae9d3a4448a1dee68c3fc0208905fcd18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of <code>GetArrays</code>.  <a href="#ae9d3a4448a1dee68c3fc0208905fcd18">More...</a><br /></td></tr>
+<tr class="separator:ae9d3a4448a1dee68c3fc0208905fcd18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7cd411a76eada5ec76e87edb2310bc"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
+<tr class="memitem:a4e7cd411a76eada5ec76e87edb2310bc"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Array&lt; int &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a4e7cd411a76eada5ec76e87edb2310bc">GetArrays</a> ()</td></tr>
+<tr class="separator:a4e7cd411a76eada5ec76e87edb2310bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Data members</div></td></tr>
@@ -168,14 +180,39 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a56eb7e36d6668780752ee22802d52b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfa250e01abbcaa301c7a732503d4da5"><td class="memItemLeft" align="right" valign="top">ULong_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#acfa250e01abbcaa301c7a732503d4da5">fEntries</a></td></tr>
 <tr class="separator:acfa250e01abbcaa301c7a732503d4da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a272e4cc9c0b520c4b2c47270d31a8e5c"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a272e4cc9c0b520c4b2c47270d31a8e5c">fItems</a></td></tr>
-<tr class="memdesc:a272e4cc9c0b520c4b2c47270d31a8e5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inventory of added items.  <a href="#a272e4cc9c0b520c4b2c47270d31a8e5c">More...</a><br /></td></tr>
-<tr class="separator:a272e4cc9c0b520c4b2c47270d31a8e5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">NTuple maps</div></td></tr>
+<tr class="memitem:aa2eb7fe1d61112208f282189bb947cb2"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#aa2eb7fe1d61112208f282189bb947cb2">fItems_double</a></td></tr>
+<tr class="memdesc:aa2eb7fe1d61112208f282189bb947cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inventory of added <code>double</code> items.  <a href="#aa2eb7fe1d61112208f282189bb947cb2">More...</a><br /></td></tr>
+<tr class="separator:aa2eb7fe1d61112208f282189bb947cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be899347270c97d432b199caafe3425"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a4be899347270c97d432b199caafe3425">fItems_int</a></td></tr>
+<tr class="memdesc:a4be899347270c97d432b199caafe3425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inventory of added <code>int</code> items.  <a href="#a4be899347270c97d432b199caafe3425">More...</a><br /></td></tr>
+<tr class="separator:a4be899347270c97d432b199caafe3425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e1f477bdc1f80f0eeebbfba7a91cef5"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Array&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a8e1f477bdc1f80f0eeebbfba7a91cef5">fArrays_double</a></td></tr>
+<tr class="memdesc:a8e1f477bdc1f80f0eeebbfba7a91cef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inventory of added <code>double</code> arrays.  <a href="#a8e1f477bdc1f80f0eeebbfba7a91cef5">More...</a><br /></td></tr>
+<tr class="separator:a8e1f477bdc1f80f0eeebbfba7a91cef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab79a5565f1520730328f55079f93b3ea"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Array&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#ab79a5565f1520730328f55079f93b3ea">fArrays_int</a></td></tr>
+<tr class="memdesc:ab79a5565f1520730328f55079f93b3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inventory of added <code>int</code> arrays.  <a href="#ab79a5565f1520730328f55079f93b3ea">More...</a><br /></td></tr>
+<tr class="separator:ab79a5565f1520730328f55079f93b3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Private helper methods</div></td></tr>
+<tr class="memitem:a9c1d749f005c96f4236d7792c1b91e75"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a9c1d749f005c96f4236d7792c1b91e75"><td class="memTemplItemLeft" align="right" valign="top">TYPE *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75">AddToMap</a> (std::map&lt; std::string, TYPE &gt; *map, const std::string &amp;item_name)</td></tr>
+<tr class="memdesc:a9c1d749f005c96f4236d7792c1b91e75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private helper function that is used in <code>AddItem</code> and <code>AddArray</code>.  <a href="#a9c1d749f005c96f4236d7792c1b91e75">More...</a><br /></td></tr>
+<tr class="separator:a9c1d749f005c96f4236d7792c1b91e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99fa4f404c8d2a4161e5a0f5dbd8a9d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a99fa4f404c8d2a4161e5a0f5dbd8a9d6">PrintAtExceptionError</a> (const std::string &amp;key)</td></tr>
+<tr class="memdesc:a99fa4f404c8d2a4161e5a0f5dbd8a9d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Private helper function that terminates and prints a message if <code>fTuple</code> is a <code>nullptr</code>.  <a href="#a99fa4f404c8d2a4161e5a0f5dbd8a9d6">More...</a><br /></td></tr>
+<tr class="separator:a99fa4f404c8d2a4161e5a0f5dbd8a9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Instance handlers</h2></td></tr>
 <tr class="memitem:a7fb80270daa97703a4d60b16e716ed49"><td class="memItemLeft" align="right" valign="top">static std::map&lt; std::string, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a7fb80270daa97703a4d60b16e716ed49">instances</a></td></tr>
 <tr class="separator:a7fb80270daa97703a4d60b16e716ed49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fedc84f5a9e9c81df2f3fa121433ec4"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a1fedc84f5a9e9c81df2f3fa121433ec4"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a1fedc84f5a9e9c81df2f3fa121433ec4">PrintItems</a> ()</td></tr>
+<tr class="memdesc:a1fedc84f5a9e9c81df2f3fa121433ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template helper for the <code>PrintTuplesAndItems</code> method.  <a href="#a1fedc84f5a9e9c81df2f3fa121433ec4">More...</a><br /></td></tr>
+<tr class="separator:a1fedc84f5a9e9c81df2f3fa121433ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0c4aa7181f78a6f428e3e17f3837d38"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#af0c4aa7181f78a6f428e3e17f3837d38">Get</a> (const std::string &amp;tuple_name)</td></tr>
 <tr class="separator:af0c4aa7181f78a6f428e3e17f3837d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28930fa0669b3405bfa9b2cb90ab883a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a28930fa0669b3405bfa9b2cb90ab883a">PrintTuplesAndItems</a> ()</td></tr>
@@ -184,17 +221,42 @@ Instance handlers</h2></td></tr>
 <tr class="memitem:a1df8aafe983841bde6dad7166ef08db5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a1df8aafe983841bde6dad7166ef08db5">PrintFilledTuples</a> ()</td></tr>
 <tr class="memdesc:a1df8aafe983841bde6dad7166ef08db5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print table of <code>NTuple</code>s existing in <code>instances</code> with their entries.  <a href="#a1df8aafe983841bde6dad7166ef08db5">More...</a><br /></td></tr>
 <tr class="separator:a1df8aafe983841bde6dad7166ef08db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+NTuple handlers and members</h2></td></tr>
+<tr class="memitem:aa83866791ff3e746b57483ad434329c7"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:aa83866791ff3e746b57483ad434329c7"><td class="memTemplItemLeft" align="right" valign="top">NTuple::Array&lt; TYPE &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#aa83866791ff3e746b57483ad434329c7">AddIndexedItem</a> (const std::string &amp;item_name, NTuple::Item&lt; int &gt; &amp;index)</td></tr>
+<tr class="memdesc:aa83866791ff3e746b57483ad434329c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Easier and expanded version of <code>NTuple::Tuple::addIndexedItem</code> that also adds the item to the <code>fArrays_*</code> mappings.  <a href="#aa83866791ff3e746b57483ad434329c7">More...</a><br /></td></tr>
+<tr class="separator:aa83866791ff3e746b57483ad434329c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bac526b05afb8ffccca54228c0ac73f"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a8bac526b05afb8ffccca54228c0ac73f"><td class="memTemplItemLeft" align="right" valign="top">NTuple::Item&lt; TYPE &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f">AddItem</a> (const std::string &amp;item_name)</td></tr>
+<tr class="memdesc:a8bac526b05afb8ffccca54228c0ac73f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Easier and expanded version of <code>NTuple::Tuple::addItem</code> that also adds the item to the <code>fItems_*</code> mappings.  <a href="#a8bac526b05afb8ffccca54228c0ac73f">More...</a><br /></td></tr>
+<tr class="separator:a8bac526b05afb8ffccca54228c0ac73f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87da57e80b9369b5003482020cd5e7e8"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; double &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a87da57e80b9369b5003482020cd5e7e8">AddItem</a> (const std::string &amp;item_name)</td></tr>
+<tr class="separator:a87da57e80b9369b5003482020cd5e7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20761f944a68daa27fa6c15b3a245bfc"><td class="memTemplParams" colspan="2">template&lt;typename TYPE , typename RANGE &gt; </td></tr>
+<tr class="memitem:a20761f944a68daa27fa6c15b3a245bfc"><td class="memTemplItemLeft" align="right" valign="top">NTuple::Item&lt; TYPE &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a20761f944a68daa27fa6c15b3a245bfc">AddItem</a> (const std::string &amp;item_name, const RANGE low, const RANGE high)</td></tr>
+<tr class="memdesc:a20761f944a68daa27fa6c15b3a245bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shortcut for <code>AddItem&lt;double&gt;</code>, added for backward compatibilaty.  <a href="#a20761f944a68daa27fa6c15b3a245bfc">More...</a><br /></td></tr>
+<tr class="separator:a20761f944a68daa27fa6c15b3a245bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03ecf69c2115a12c6685a8dc998cf4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#af03ecf69c2115a12c6685a8dc998cf4e">Write</a> ()</td></tr>
+<tr class="memdesc:af03ecf69c2115a12c6685a8dc998cf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write <code>NTuple</code> if <code>"write_"</code> <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> has been set to <code>true</code>.  <a href="#af03ecf69c2115a12c6685a8dc998cf4e">More...</a><br /></td></tr>
+<tr class="separator:af03ecf69c2115a12c6685a8dc998cf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a249a7d5ba22e5339fd1c5dff84b4f1b9"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a249a7d5ba22e5339fd1c5dff84b4f1b9"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Item&lt; TYPE &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a249a7d5ba22e5339fd1c5dff84b4f1b9">GetItems</a> ()</td></tr>
+<tr class="separator:a249a7d5ba22e5339fd1c5dff84b4f1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778dd9d577e635479bde75d7ffcb3ba3"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
+<tr class="memitem:a778dd9d577e635479bde75d7ffcb3ba3"><td class="memTemplItemLeft" align="right" valign="top">std::map&lt; std::string, NTuple::Array&lt; TYPE &gt; &gt; *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classNTupleContainer.html#a778dd9d577e635479bde75d7ffcb3ba3">GetArrays</a> ()</td></tr>
+<tr class="separator:a778dd9d577e635479bde75d7ffcb3ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Container object that is to facilitate the booking procedure for <code>NTuple::Tuple</code>s and their <code>NTuple::Item</code>s. </p>
-<p>See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. This function also automatically declares a corresponding <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> property. </p><dl class="section remark"><dt>Remarks</dt><dd>This object can only be used within a derived class off the Gaudi <code>Algorithm</code> class because its <code>fTuple</code> requires to be booked by it (using e.g. <code><a class="el" href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92" title="Go over all instances of NTupleContainer and book them using BookNTuple. ">TrackSelector::BookNTuples</a></code>). </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><p class="startdd">Upgrade using templates. Currently only accepts <code>double</code>s! </p>
-<p class="enddd">Think about a solution for indexed items. </p>
-</dd></dl>
-<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>February 19th, 2019 </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>This object can only be used within a derived class off the Gaudi <code>Algorithm</code> class because its <code>fTuple</code> requires to be booked by it (using e.g. <code><a class="el" href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92" title="Go over all instances of NTupleContainer and book them using BookNTuple. ">TrackSelector::BookNTuples</a></code>). </dd>
+<dd>
+To allow for the addition of different types of items (such as integers), there are several mappings of the items (see for instance <code>fItems_double</code> and <code>fItems_int</code>). If you add new types, make sure to add them to this list of <code>fItems_*</code>, where <code>*</code> should be the <code>typename</code> and to add a template specialisation for <code>GetItems</code>. The rest of the templates then don't require template specialisation, as they can be defined in terms of <code>GetItems</code>. However, not that you will have to add the new mappings to functions like <code>PrintTuplesAndItems</code>, as you can not loop over templates. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Think about a solution for indexed items. </dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. This function also automatically declares a corresponding <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> property. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00030">30</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00031">31</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aad4fcf64aac5b99f3980dde865f253a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad4fcf64aac5b99f3980dde865f253a1">&#9670;&nbsp;</a></span>NTupleContainer()</h2>
@@ -263,48 +325,69 @@ Instance handlers</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a916d53be38e6b54ef59169eeba1fc71c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a916d53be38e6b54ef59169eeba1fc71c">&#9670;&nbsp;</a></span>AddItem()</h2>
+<a id="aa83866791ff3e746b57483ad434329c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa83866791ff3e746b57483ad434329c7">&#9670;&nbsp;</a></span>AddIndexedItem()</h2>
 
 <div class="memitem">
 <div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void NTupleContainer::AddItem </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>item_name</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Easier and expanded version of <code>NTuple::Tuple::addItem</code>. </p>
-<ol type="1">
-<li><b>Abort</b> if the <code>"write_"</code> job switch property has been set to <code>false</code>.</li>
-<li><b>Abort</b> if <code>fTuple</code> has not been booked.</li>
-<li>Create an <code>NTuple::Item</code> using the <code>items</code> mapping.</li>
-<li>Create an <code>NTuple::Item</code> using the <code>items</code> mapping to the <code>fTuple</code> and to the map of <code>items</code>, if allowed by the <code>perform</code> job switch. </li>
-</ol>
-
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00137">137</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
-
-</div>
-</div>
-<a id="afb29ca6b6a5aa31ddafb47c699cf49dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb29ca6b6a5aa31ddafb47c699cf49dc">&#9670;&nbsp;</a></span>at()</h2>
-
-<div class="memitem">
-<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">NTuple::Item&lt;double&gt;&amp; NTupleContainer::at </td>
+          <td class="memname">NTuple::Array&lt; TYPE &gt; * NTupleContainer::AddIndexedItem </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>key</em></td><td>)</td>
+          <td class="paramname"><em>item_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">NTuple::Item&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Easier and expanded version of <code>NTuple::Tuple::addIndexedItem</code> that also adds the item to the <code>fArrays_*</code> mappings. </p>
+<p>You will need to call this method using e.g. <code>AddIndexedItem&lt;double&gt;</code> to specify that this is an array of <code>double</code>s. </p>
+<ol type="1">
+<li>Attempt to create an item in the item or array mapping using <code>AddToMap</code>.</li>
+<li>Add the <code>NTuple::Array</code> that you created in the previous step to the <code>fTuple</code>. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00189">189</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a8bac526b05afb8ffccca54228c0ac73f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bac526b05afb8ffccca54228c0ac73f">&#9670;&nbsp;</a></span>AddItem() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt; TYPE &gt; * NTupleContainer::AddItem </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>item_name</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -315,7 +398,143 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00058">58</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p>Easier and expanded version of <code>NTuple::Tuple::addItem</code> that also adds the item to the <code>fItems_*</code> mappings. </p>
+<p>You will need to call this method using e.g. <code>AddItem&lt;double&gt;</code> to specify that this is a <code>double</code>. </p>
+<ol type="1">
+<li>Attempt to create an item in the item or array mapping using <code>AddToMap</code>.</li>
+<li>Add the <code>NTuple::Item&lt;TYPE&gt;</code> that you created in the previous step to the <code>fTuple</code>. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00202">202</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a87da57e80b9369b5003482020cd5e7e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87da57e80b9369b5003482020cd5e7e8">&#9670;&nbsp;</a></span>AddItem() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt;double&gt;* NTupleContainer::AddItem </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>item_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00074">74</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a20761f944a68daa27fa6c15b3a245bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20761f944a68daa27fa6c15b3a245bfc">&#9670;&nbsp;</a></span>AddItem() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE , typename RANGE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Item&lt; TYPE &gt; * NTupleContainer::AddItem </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>item_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RANGE&#160;</td>
+          <td class="paramname"><em>low</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RANGE&#160;</td>
+          <td class="paramname"><em>high</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Shortcut for <code>AddItem&lt;double&gt;</code>, added for backward compatibilaty. </p>
+<p>Extension of <code>AddItem</code> that also takes a range. </p>
+<ol type="1">
+<li>Attempt to create an item in the item or array mapping using <code>AddToMap</code>.</li>
+<li>Add the <code>NTuple::Item&lt;TYPE&gt;</code> that you created in the previous step to the <code>fTuple</code>. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00214">214</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a9c1d749f005c96f4236d7792c1b91e75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c1d749f005c96f4236d7792c1b91e75">&#9670;&nbsp;</a></span>AddToMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPE * NTupleContainer::AddToMap </td>
+          <td>(</td>
+          <td class="paramtype">std::map&lt; std::string, TYPE &gt; *&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>item_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Private helper function that is used in <code>AddItem</code> and <code>AddArray</code>. </p>
+<p>This function has been added to avoid code duplication. </p>
+<ol type="1">
+<li><b>Abort</b> if the <code>"write_"</code> job switch property has been set to <code>false</code>.</li>
+<li><b>Abort</b> if <code>fTuple</code> has not been booked.</li>
+<li>Create an <code>NTuple::Item</code> using the <code>operator[]</code> of a <code>std::map</code>. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00170">170</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -342,7 +561,7 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00073">73</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00083">83</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +589,127 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00043">43</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00044">44</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a5846f774e34c9d7f9f04969e0d3db1da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5846f774e34c9d7f9f04969e0d3db1da">&#9670;&nbsp;</a></span>GetArray()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTuple::Array&lt; TYPE &gt; &amp; NTupleContainer::GetArray </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method. </p>
+<p>Call e.g. using <code>GetArray&lt;double&gt;("fit4c")</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00144">144</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="ae9d3a4448a1dee68c3fc0208905fcd18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9d3a4448a1dee68c3fc0208905fcd18">&#9670;&nbsp;</a></span>GetArrays() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Array&lt;double&gt; &gt;* NTupleContainer::GetArrays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of <code>GetArrays</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00137">137</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a4e7cd411a76eada5ec76e87edb2310bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e7cd411a76eada5ec76e87edb2310bc">&#9670;&nbsp;</a></span>GetArrays() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Array&lt;int&gt; &gt;* NTupleContainer::GetArrays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00138">138</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a778dd9d577e635479bde75d7ffcb3ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a778dd9d577e635479bde75d7ffcb3ba3">&#9670;&nbsp;</a></span>GetArrays() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Array&lt;TYPE&gt; &gt;* NTupleContainer::GetArrays </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -397,48 +736,25 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00060">60</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p>Read access to <code>fEntries</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00064">64</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
-<a id="af5f1543df4041e4cf788ebbe524c6717"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5f1543df4041e4cf788ebbe524c6717">&#9670;&nbsp;</a></span>GetItems()</h2>
+<a id="ae99709e72eb3d74fb538b7075aff3824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99709e72eb3d74fb538b7075aff3824">&#9670;&nbsp;</a></span>GetItem()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt;* NTupleContainer::GetItems </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00059">59</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
-
-</div>
-</div>
-<a id="ae15933fd53dfead8150d7ebe9ae01c37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae15933fd53dfead8150d7ebe9ae01c37">&#9670;&nbsp;</a></span>operator[]()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">NTuple::Item&lt;double&gt;&amp; NTupleContainer::operator[] </td>
+          <td class="memname">NTuple::Item&lt; TYPE &gt; &amp; NTupleContainer::GetItem </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
@@ -452,7 +768,128 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00057">57</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p>Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method. </p>
+<p>Call e.g. using <code>GetItem&lt;double&gt;("fit4c")</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00157">157</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a07b880fbe7b63382bffa210fb8f8286c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b880fbe7b63382bffa210fb8f8286c">&#9670;&nbsp;</a></span>GetItems() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt;* NTupleContainer::GetItems </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Specialisation of <code>GetItems</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00132">132</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="abf134c9c825377324249557ec315012a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf134c9c825377324249557ec315012a">&#9670;&nbsp;</a></span>GetItems() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;int&gt; &gt;* NTupleContainer::GetItems </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00133">133</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a249a7d5ba22e5339fd1c5dff84b4f1b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a249a7d5ba22e5339fd1c5dff84b4f1b9">&#9670;&nbsp;</a></span>GetItems() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;TYPE&gt; &gt;* NTupleContainer::GetItems </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a99fa4f404c8d2a4161e5a0f5dbd8a9d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99fa4f404c8d2a4161e5a0f5dbd8a9d6">&#9670;&nbsp;</a></span>PrintAtExceptionError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NTupleContainer::PrintAtExceptionError </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Private helper function that terminates and prints a message if <code>fTuple</code> is a <code>nullptr</code>. </p>
+<p>Has been added to avoid code duplication in <code>AddItem</code> and <code>AddIndexedItem</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00134">134</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -489,6 +926,37 @@ Instance handlers</h2></td></tr>
 </ol>
 
 <p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00062">62</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a1fedc84f5a9e9c81df2f3fa121433ec4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fedc84f5a9e9c81df2f3fa121433ec4">&#9670;&nbsp;</a></span>PrintItems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void NTupleContainer::PrintItems </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Template helper for the <code>PrintTuplesAndItems</code> method. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00226">226</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -577,7 +1045,7 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00051">51</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00054">54</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -607,7 +1075,7 @@ Instance handlers</h2></td></tr>
 
 <p>Return <code>true</code> if <code>fTuple</code> pointer exists and if <code>fWrite</code> property has been set to <code>true</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00074">74</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00084">84</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -633,6 +1101,58 @@ Instance handlers</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8e1f477bdc1f80f0eeebbfba7a91cef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1f477bdc1f80f0eeebbfba7a91cef5">&#9670;&nbsp;</a></span>fArrays_double</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Array&lt;double&gt; &gt; NTupleContainer::fArrays_double</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inventory of added <code>double</code> arrays. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00110">110</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="ab79a5565f1520730328f55079f93b3ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab79a5565f1520730328f55079f93b3ea">&#9670;&nbsp;</a></span>fArrays_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Array&lt;int&gt; &gt; NTupleContainer::fArrays_int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inventory of added <code>int</code> arrays. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00111">111</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
 <a id="acfa250e01abbcaa301c7a732503d4da5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acfa250e01abbcaa301c7a732503d4da5">&#9670;&nbsp;</a></span>fEntries</h2>
 
@@ -653,12 +1173,12 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00083">83</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00102">102</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
-<a id="a272e4cc9c0b520c4b2c47270d31a8e5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a272e4cc9c0b520c4b2c47270d31a8e5c">&#9670;&nbsp;</a></span>fItems</h2>
+<a id="aa2eb7fe1d61112208f282189bb947cb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2eb7fe1d61112208f282189bb947cb2">&#9670;&nbsp;</a></span>fItems_double</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +1187,7 @@ Instance handlers</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; NTupleContainer::fItems</td>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;double&gt; &gt; NTupleContainer::fItems_double</td>
         </tr>
       </table>
   </td>
@@ -677,9 +1197,35 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Inventory of added items. </p>
+<p>Inventory of added <code>double</code> items. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00084">84</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00108">108</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+
+</div>
+</div>
+<a id="a4be899347270c97d432b199caafe3425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be899347270c97d432b199caafe3425">&#9670;&nbsp;</a></span>fItems_int</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, NTuple::Item&lt;int&gt; &gt; NTupleContainer::fItems_int</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Inventory of added <code>int</code> items. </p>
+
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00109">109</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -705,7 +1251,7 @@ Instance handlers</h2></td></tr>
 
 <p>Pointer to the encapsulated <code>NTuple::Tuple</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00082">82</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00101">101</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -731,7 +1277,7 @@ Instance handlers</h2></td></tr>
 
 <p>Boolean job property that determines whether or not to write data stored to this <code>NTuple</code> to a <code>TTree</code> (property name starts with <code>"write_"</code> by default). </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00081">81</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00100">100</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -755,7 +1301,7 @@ Instance handlers</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00042">42</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00043">43</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>

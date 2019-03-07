@@ -115,17 +115,17 @@
 				/// <li> Initialise PID and skip if it fails:
 					/// <ul>
 					if(!InitializePID(
-						/// <li> use <b>probability method</b>
+					/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+					/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
 						fPIDInstance->useDedx() |
 						fPIDInstance->useTofCorr(),
-						/// <li> identify only pions
+					/// <li> identify only pions
 						fPIDInstance->onlyPion(),
-						/// <li> use \f$\chi^2 > 4.0\f$
+					/// <li> use \f$\chi^2 > 4.0\f$
 						4.0
-					)) continue;
 					/// </ul>
+					)) continue;
 
 				/// <li> @b Write Particle Identification information of all tracks
 					WritePIDInformation();
@@ -318,11 +318,11 @@
 						if(kkmfit->Fit()) {
 							/// <ol>
 							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+								if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
 							/// <li> Construct fit result object for this combintation.
-							KKFitResult_rhopi_pipigg fitresult(kkmfit);
+								KKFitResult_rhopi_pipigg fitresult(kkmfit);
 							/// <li> @b Write results of the Kalman kinematic fit.
-							WriteFitResults(&fitresult, fNTuple_fit4c);
+								WriteFitResults(&fitresult, fNTuple_fit4c);
 							/// </ol>
 						}
 				}
@@ -439,13 +439,13 @@
 	void rhopi_pipigg::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
-		tuple.AddItem("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \rightarrow \gamma\gamma\f$ candidate.
-		tuple.AddItem("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \rightarrow \pi^-\pi^+\f$ candidate.
-		tuple.AddItem("mrho-");      /// * `"mrho-`":      Invariant mass for \f$\rho^- \rightarrow \pi^0\pi^-\f$ candidate.
-		tuple.AddItem("mrho+");      /// * `"mrho+`":      Invariant mass for \f$\rho^+ \rightarrow \pi^0\pi^+\f$ candidate.
-		tuple.AddItem("mJpsi_rho0"); /// * `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \rightarrow \rho^0\pi^0\f$ candidate.
-		tuple.AddItem("mJpsi_rho-"); /// * `"mJpsi_rho-`": Invariant mass for \f$J/\psi \rightarrow \rho^-\pi^+\f$ candidate.
-		tuple.AddItem("mJpsi_rho+"); /// * `"mJpsi_rho+`": Invariant mass for \f$J/\psi \rightarrow \rho^+\pi^-\f$ candidate.
+		tuple.AddItem("mpi0");       /// * `"mpi0"`:       Invariant mass for \f$\pi^0 \to \gamma\gamma\f$ candidate.
+		tuple.AddItem("mrho0");      /// * `"mrho0"`:      Invariant mass for \f$\rho^0 \to \pi^-\pi^+\f$ candidate.
+		tuple.AddItem("mrho-");      /// * `"mrho-"`:      Invariant mass for \f$\rho^- \to \pi^0\pi^-\f$ candidate.
+		tuple.AddItem("mrho+");      /// * `"mrho+"`:      Invariant mass for \f$\rho^+ \to \pi^0\pi^+\f$ candidate.
+		tuple.AddItem("mJpsi_rho0"); /// * `"mJpsi_rho0"`: Invariant mass for \f$J/\psi \to \rho^0\pi^0\f$ candidate.
+		tuple.AddItem("mJpsi_rho-"); /// * `"mJpsi_rho-"`: Invariant mass for \f$J/\psi \to \rho^-\pi^+\f$ candidate.
+		tuple.AddItem("mJpsi_rho+"); /// * `"mJpsi_rho+"`: Invariant mass for \f$J/\psi \to \rho^+\pi^-\f$ candidate.
 		tuple.AddItem("chisq");      /// * `"chisq"`:      \f$\chi^2\f$ of the Kalman kinematic fit.
 	}
 

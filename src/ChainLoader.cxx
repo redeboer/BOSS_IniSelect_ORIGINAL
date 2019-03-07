@@ -16,7 +16,8 @@
 
 
 	/// Automatically book addresses for all branches of the underlying `TChain`. The branches are accessible by name (use method `Get_<type>`, though you have to the `type` to use this).
-	/// @param print Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
+	/// @param print_branches Whether or not to print the `TChain` names and its branches+types. Use `true` for debugging purposes in particular.
+	/// @param print_averages Whether or not to @b compute and print the averages of each branch. Use `true` for debugging purposes in particular. <b>Using this setting costs time!</b>
 	void ChainLoader::BookAddresses(bool print_branches, bool print_averages)
 	{
 		if(!fChain.GetNbranches()) return;

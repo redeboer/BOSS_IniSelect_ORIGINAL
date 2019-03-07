@@ -204,6 +204,18 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:aca8b3d281938b962ccec566775de56ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#aca8b3d281938b962ccec566775de56ec">fCut_GammaAngle</a></td></tr>
 <tr class="memdesc:aca8b3d281938b962ccec566775de56ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on angle between the photon and the nearest charged track <em>in degrees</em>.  <a href="#aca8b3d281938b962ccec566775de56ec">More...</a><br /></td></tr>
 <tr class="separator:aca8b3d281938b962ccec566775de56ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2a972b3ae60a16345300f3afa7b758"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#adf2a972b3ae60a16345300f3afa7b758">fCutFlow_NChargedOK</a></td></tr>
+<tr class="memdesc:adf2a972b3ae60a16345300f3afa7b758"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events that have at least one charged track.  <a href="#adf2a972b3ae60a16345300f3afa7b758">More...</a><br /></td></tr>
+<tr class="separator:adf2a972b3ae60a16345300f3afa7b758"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7a31305690b43017505fa9b32dc5cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#aca7a31305690b43017505fa9b32dc5cd">fCutFlow_NFitOK</a></td></tr>
+<tr class="memdesc:aca7a31305690b43017505fa9b32dc5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.  <a href="#aca7a31305690b43017505fa9b32dc5cd">More...</a><br /></td></tr>
+<tr class="separator:aca7a31305690b43017505fa9b32dc5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad66954b9a90bf677c04fe1939cadd5e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#ad66954b9a90bf677c04fe1939cadd5e4">fCutFlow_NPIDnumberOK</a></td></tr>
+<tr class="memdesc:ad66954b9a90bf677c04fe1939cadd5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.  <a href="#ad66954b9a90bf677c04fe1939cadd5e4">More...</a><br /></td></tr>
+<tr class="separator:ad66954b9a90bf677c04fe1939cadd5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7680080d4f7ccd4c00cdf5c319a1ce20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a7680080d4f7ccd4c00cdf5c319a1ce20">fCutFlow_NPhotonOK</a></td></tr>
+<tr class="memdesc:a7680080d4f7ccd4c00cdf5c319a1ce20"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want.  <a href="#a7680080d4f7ccd4c00cdf5c319a1ce20">More...</a><br /></td></tr>
+<tr class="separator:a7680080d4f7ccd4c00cdf5c319a1ce20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
 <tr class="memitem:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">fEventHeader</a></td></tr>
 <tr class="memdesc:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>"Event/EventHeader"</code> data. It is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">execute()</a></code> step in each event.  <a href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">More...</a><br /></td></tr>
@@ -218,7 +230,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a918337343c0640834a5e552fae23fac1 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>EventModel::EvtRec::EvtRecTrackCol</code> which is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">execute()</a></code> in each event.  <a href="classTrackSelector.html#a918337343c0640834a5e552fae23fac1">More...</a><br /></td></tr>
 <tr class="separator:a918337343c0640834a5e552fae23fac1 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60eeedf6b57d012332e51d0a7099f017 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">fMcParticles</a></td></tr>
-<tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the <code>fNTuple_mctruth</code> member and calling its <code><a class="el" href="classNTupleContainer.html#af03ecf69c2115a12c6685a8dc998cf4e" title="Write NTuple if &quot;write_&quot; JobSwitch has been set to true. ">NTupleTopoAna::Write</a></code> method, otherwise it is useless.  <a href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
+<tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for a better explanation.  <a href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
 <tr class="separator:a60eeedf6b57d012332e51d0a7099f017 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d146b4022233ef370931942f342ef41 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">std::vector&lt; EvtRecTrack * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7d146b4022233ef370931942f342ef41">fGoodChargedTracks</a></td></tr>
 <tr class="memdesc:a7d146b4022233ef370931942f342ef41 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.  <a href="classTrackSelector.html#a7d146b4022233ef370931942f342ef41">More...</a><br /></td></tr>
@@ -294,21 +306,21 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:abea7ded62b4bce8d4d79e52f3b0d8d0c inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf6a088cef2a37147d988de4bf78c8d9 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acf6a088cef2a37147d988de4bf78c8d9">fCutTuples</a></td></tr>
 <tr class="separator:acf6a088cef2a37147d988de4bf78c8d9 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09abed39657f3aba313c1ce90c0a83b0 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a09abed39657f3aba313c1ce90c0a83b0">fCounter_Nevents</a></td></tr>
-<tr class="memdesc:a09abed39657f3aba313c1ce90c0a83b0 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of events.  <a href="classTrackSelector.html#a09abed39657f3aba313c1ce90c0a83b0">More...</a><br /></td></tr>
-<tr class="separator:a09abed39657f3aba313c1ce90c0a83b0 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97564369e6fba4018e437a69b1c5e5ff inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a97564369e6fba4018e437a69b1c5e5ff">fCounter_Ntracks</a></td></tr>
-<tr class="memdesc:a97564369e6fba4018e437a69b1c5e5ff inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of tracks.  <a href="classTrackSelector.html#a97564369e6fba4018e437a69b1c5e5ff">More...</a><br /></td></tr>
+<tr class="memdesc:a97564369e6fba4018e437a69b1c5e5ff inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cummulative total number of tracks.  <a href="classTrackSelector.html#a97564369e6fba4018e437a69b1c5e5ff">More...</a><br /></td></tr>
 <tr class="separator:a97564369e6fba4018e437a69b1c5e5ff inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77cfba71855e2615068897ca4ff9cbec inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a77cfba71855e2615068897ca4ff9cbec">fCounter_Ncharged</a></td></tr>
-<tr class="memdesc:a77cfba71855e2615068897ca4ff9cbec inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of charged tracks.  <a href="classTrackSelector.html#a77cfba71855e2615068897ca4ff9cbec">More...</a><br /></td></tr>
+<tr class="memdesc:a77cfba71855e2615068897ca4ff9cbec inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cummulative total number of charged tracks.  <a href="classTrackSelector.html#a77cfba71855e2615068897ca4ff9cbec">More...</a><br /></td></tr>
 <tr class="separator:a77cfba71855e2615068897ca4ff9cbec inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6aedde29adfa7b5abca1f64898c9babe inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6aedde29adfa7b5abca1f64898c9babe">fCounter_Nmdcvalid</a></td></tr>
-<tr class="memdesc:a6aedde29adfa7b5abca1f64898c9babe inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of charged tracks that are 'MDC valid'.  <a href="classTrackSelector.html#a6aedde29adfa7b5abca1f64898c9babe">More...</a><br /></td></tr>
+<tr class="memdesc:a6aedde29adfa7b5abca1f64898c9babe inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cummulative total number of charged tracks that are 'MDC valid'.  <a href="classTrackSelector.html#a6aedde29adfa7b5abca1f64898c9babe">More...</a><br /></td></tr>
 <tr class="separator:a6aedde29adfa7b5abca1f64898c9babe inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fddcd465b7d901f38d800a8a8fc6ddc inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9fddcd465b7d901f38d800a8a8fc6ddc">fCounter_Nneutral</a></td></tr>
-<tr class="memdesc:a9fddcd465b7d901f38d800a8a8fc6ddc inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eventual total number of neutral tracks.  <a href="classTrackSelector.html#a9fddcd465b7d901f38d800a8a8fc6ddc">More...</a><br /></td></tr>
+<tr class="memdesc:a9fddcd465b7d901f38d800a8a8fc6ddc inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cummulative total number of neutral tracks.  <a href="classTrackSelector.html#a9fddcd465b7d901f38d800a8a8fc6ddc">More...</a><br /></td></tr>
 <tr class="separator:a9fddcd465b7d901f38d800a8a8fc6ddc inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a719872be4e6f96c70b794dfa8031863e">fCutFlow_Nevents</a></td></tr>
+<tr class="memdesc:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events.  <a href="classTrackSelector.html#a719872be4e6f96c70b794dfa8031863e">More...</a><br /></td></tr>
+<tr class="separator:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">fCut_Vxy</a></td></tr>
 <tr class="memdesc:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the radius <img class="formulaInl" alt="$r$" src="form_46.png"/> of the primary vertex.  <a href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">More...</a><br /></td></tr>
 <tr class="separator:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,7 +340,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a901e31293863843b8b942720e8a594d8 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the photon energy.  <a href="classTrackSelector.html#a901e31293863843b8b942720e8a594d8">More...</a><br /></td></tr>
 <tr class="separator:a901e31293863843b8b942720e8a594d8 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">fCut_PIDChiSq</a></td></tr>
-<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_73.png"/> of the kinematic Kalman fits.  <a href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
+<tr class="memdesc:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_81.png"/> of the kinematic Kalman fits.  <a href="classTrackSelector.html#a8db8316d9e9d3e3f1742ba0f9cf753d5">More...</a><br /></td></tr>
 <tr class="separator:a8db8316d9e9d3e3f1742ba0f9cf753d5 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">fCut_PIDProb</a></td></tr>
 <tr class="memdesc:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>.  <a href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">More...</a><br /></td></tr>
@@ -336,9 +348,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="D0phi__KpiKK_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">fVertexPoint</a></td></tr>
 <tr class="memdesc:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinates of the interaction point (primary vertex). Set in each event in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code>.  <a href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">More...</a><br /></td></tr>
 <tr class="separator:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0f349fb65856494347aa98c0263db37 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab0f349fb65856494347aa98c0263db37">fNChargesMDC</a></td></tr>
-<tr class="memdesc:ab0f349fb65856494347aa98c0263db37 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of charges detected in the MDC.  <a href="classTrackSelector.html#ab0f349fb65856494347aa98c0263db37">More...</a><br /></td></tr>
-<tr class="separator:ab0f349fb65856494347aa98c0263db37 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1438702d17070d27437f08600daf102">fNetChargeMDC</a></td></tr>
+<tr class="memdesc:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example.  <a href="classTrackSelector.html#ae1438702d17070d27437f08600daf102">More...</a><br /></td></tr>
+<tr class="separator:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">fLog</a></td></tr>
 <tr class="memdesc:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">More...</a><br /></td></tr>
 <tr class="separator:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -352,6 +364,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:ad6cd42c49e6e911bd05214ada215c4c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#ad6cd42c49e6e911bd05214ada215c4c8">AddNTupleItems_Fit</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:ad6cd42c49e6e911bd05214ada215c4c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the fit branches.  <a href="#ad6cd42c49e6e911bd05214ada215c4c8">More...</a><br /></td></tr>
 <tr class="separator:ad6cd42c49e6e911bd05214ada215c4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8de916bfb48571227377c9216215ba1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a8de916bfb48571227377c9216215ba1d">CreateMCTruthSelection</a> ()</td></tr>
+<tr class="memdesc:a8de916bfb48571227377c9216215ba1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that should be defined in the derived calss and called after <code>CreateMCtruthCollection</code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.  <a href="#a8de916bfb48571227377c9216215ba1d">More...</a><br /></td></tr>
+<tr class="separator:a8de916bfb48571227377c9216215ba1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae628be2a9ab00dab2c48a1c713b46608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#ae628be2a9ab00dab2c48a1c713b46608">SetFitNTuple</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresults, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:ae628be2a9ab00dab2c48a1c713b46608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specification of what should be written to the fit <code>NTuple</code>. This function is called in <code><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d" title="This virtual method has been declared in the base algorithm to standardise the writing of a fit tuple...">TrackSelector::WriteFitResults</a></code>.  <a href="#ae628be2a9ab00dab2c48a1c713b46608">More...</a><br /></td></tr>
 <tr class="separator:ae628be2a9ab00dab2c48a1c713b46608"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -425,9 +440,9 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">WriteFitResults</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresult, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <code>virtual</code> method has been declared in the base algorithm to standardise the writing of a fit tuple.  <a href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">More...</a><br /></td></tr>
 <tr class="separator:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac65fb01ccb38c60af713518e0afb0ba6 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6">WriteMcTruthForTopoAna</a> (<a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a> &amp;tuple)</td></tr>
-<tr class="memdesc:ac65fb01ccb38c60af713518e0afb0ba6 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an <code>NTuple</code> containing branches that are required for the <code>TopoAna</code> method.  <a href="classTrackSelector.html#ac65fb01ccb38c60af713518e0afb0ba6">More...</a><br /></td></tr>
-<tr class="separator:ac65fb01ccb38c60af713518e0afb0ba6 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d7723f1bcb394e47e9e57c239015ce5 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3d7723f1bcb394e47e9e57c239015ce5">WriteMCTruthForTopoAna</a> (<a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a3d7723f1bcb394e47e9e57c239015ce5 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an <code>NTuple</code> containing branches that are required for the <code>TopoAna</code> method.  <a href="classTrackSelector.html#a3d7723f1bcb394e47e9e57c239015ce5">More...</a><br /></td></tr>
+<tr class="separator:a3d7723f1bcb394e47e9e57c239015ce5 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">PrintFunctionName</a> (const char *class_name, const char *function_name)</td></tr>
 <tr class="memdesc:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print function for debugging purposes.  <a href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">More...</a><br /></td></tr>
 <tr class="separator:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -440,25 +455,22 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a809659b39e662c530578880f42eb67b4">IsDecay</a> (Event::McParticle *particle, const int mother, const int pdg) const</td></tr>
 <tr class="memdesc:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a decayed MC truth particle has PDG code <code>pdg</code> and comes from a particle with PDG code <code>mother</code>.  <a href="classTrackSelector.html#a809659b39e662c530578880f42eb67b4">More...</a><br /></td></tr>
 <tr class="separator:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe38688df7156b1a86b62577c8ecb208 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#afe38688df7156b1a86b62577c8ecb208">AddNTupleItems_McTruth</a> (<a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a> &amp;tuple)</td></tr>
-<tr class="memdesc:afe38688df7156b1a86b62577c8ecb208 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches for the TopoAna package.  <a href="classTrackSelector.html#afe38688df7156b1a86b62577c8ecb208">More...</a><br /></td></tr>
-<tr class="separator:afe38688df7156b1a86b62577c8ecb208 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaca81f451e0425c3808713bc2ecd13a inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#adaca81f451e0425c3808713bc2ecd13a">AddNTupleItems_MCTruth</a> (<a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a> &amp;tuple)</td></tr>
+<tr class="memdesc:adaca81f451e0425c3808713bc2ecd13a inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches for the TopoAna package.  <a href="classTrackSelector.html#adaca81f451e0425c3808713bc2ecd13a">More...</a><br /></td></tr>
+<tr class="separator:adaca81f451e0425c3808713bc2ecd13a inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981">AddNTupleItems_Dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss branch (<code>"dedx"</code>).  <a href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981">More...</a><br /></td></tr>
 <tr class="separator:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">AddNTupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">More...</a><br /></td></tr>
 <tr class="separator:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3bee37dd275d6b15ca491ae1d493c05a inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a">CreateMCtruthCollection</a> ()</td></tr>
-<tr class="memdesc:a3bee37dd275d6b15ca491ae1d493c05a inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of <b>Monte Carlo truth</b> tracks.  <a href="classTrackSelector.html#a3bee37dd275d6b15ca491ae1d493c05a">More...</a><br /></td></tr>
-<tr class="separator:a3bee37dd275d6b15ca491ae1d493c05a inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebefecd899658d518daab997fb75472c inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aebefecd899658d518daab997fb75472c">CreateMCtruthSelection</a> ()=0</td></tr>
-<tr class="memdesc:aebefecd899658d518daab997fb75472c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that should be defined in the derived calss and called after <code>CreateMCtruthCollection</code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.  <a href="classTrackSelector.html#aebefecd899658d518daab997fb75472c">More...</a><br /></td></tr>
-<tr class="separator:aebefecd899658d518daab997fb75472c inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3">CreateMCTruthCollection</a> ()</td></tr>
+<tr class="memdesc:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of <b>Monte Carlo truth</b> tracks.  <a href="classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3">More...</a><br /></td></tr>
+<tr class="separator:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><b>WIP</b> Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow \rho^{0,\pm}\pi^{0,\mp} \rightarrow \pi^-\pi^+\gamma\gamma $" src="form_55.png"/> events. </p>
-<p>Based on the original <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> package, but now making use of the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<p>Based on the original <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> package, but now making use of the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm and its <code>NTuple</code> booking procedure. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 27th, 2018 </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00024">24</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
@@ -490,9 +502,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor for the <code><a class="el" href="classrhopi__pipigg.html" title="WIP Analyse  events. ">rhopi_pipigg</a></code> algorithm, derived from <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>. </p>
-<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classrhopi__pipigg.html" title="WIP Analyse  events. ">rhopi_pipigg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="rhopi__pipigg_8h.html">rhopi_pipigg/rhopi_pipigg.h</a>) and that you should assign the values in <code>share/jopOptions_rhopi_pipigg.txt</code>. </p>
+<p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classrhopi__pipigg.html" title="WIP Analyse  events. ">rhopi_pipigg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="rhopi__pipigg_8h.html">rhopi_pipigg/rhopi_pipigg.h</a>) and that you should assign the values in <code>share/rhopi_pipigg.txt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00032">32</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00034">34</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -523,17 +535,17 @@ Additional Inherited Members</h2></td></tr>
 
 <p>This function encapsulates the <code>addItem</code> procedure for the fit branches. </p>
 <ul>
-<li><code>"mpi0"</code>: Invariant mass for <img class="formulaInl" alt="$\pi^0 \rightarrow \gamma\gamma$" src="form_57.png"/> candidate.</li>
-<li><code>"mrho0"</code>: Invariant mass for <img class="formulaInl" alt="$\rho^0 \rightarrow \pi^-\pi^+$" src="form_58.png"/> candidate.</li>
-<li><code>"mrho-&lt;/tt&gt;": Invariant mass for <img class="formulaInl" alt="$\rho^- \rightarrow \pi^0\pi^-$" src="form_59.png"/> candidate.</code></li>
-<li><code><code>"mrho+&lt;/tt&gt;": Invariant mass for <img class="formulaInl" alt="$\rho^+ \rightarrow \pi^0\pi^+$" src="form_60.png"/> candidate.</code></code></li>
-<li><code><code><code>"mJpsi_rho0"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_52.png"/> candidate.</code></code></li>
-<li><code><code><code>"mJpsi_rho-&lt;/tt&gt;": Invariant mass for <img class="formulaInl" alt="$J/\psi \rightarrow \rho^-\pi^+$" src="form_53.png"/> candidate.</code></code></code></li>
-<li><code><code><code><code>"mJpsi_rho+&lt;/tt&gt;": Invariant mass for <img class="formulaInl" alt="$J/\psi \rightarrow \rho^+\pi^-$" src="form_54.png"/> candidate.</code></code></code></code></li>
-<li><code><code><code><code><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_13.png"/> of the Kalman kinematic fit. </code></code></code></code></li>
+<li><code>"mpi0"</code>: Invariant mass for <img class="formulaInl" alt="$\pi^0 \to \gamma\gamma$" src="form_64.png"/> candidate.</li>
+<li><code>"mrho0"</code>: Invariant mass for <img class="formulaInl" alt="$\rho^0 \to \pi^-\pi^+$" src="form_65.png"/> candidate.</li>
+<li><code>"mrho-"</code>: Invariant mass for <img class="formulaInl" alt="$\rho^- \to \pi^0\pi^-$" src="form_66.png"/> candidate.</li>
+<li><code>"mrho+"</code>: Invariant mass for <img class="formulaInl" alt="$\rho^+ \to \pi^0\pi^+$" src="form_67.png"/> candidate.</li>
+<li><code>"mJpsi_rho0"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^0\pi^0$" src="form_68.png"/> candidate.</li>
+<li><code>"mJpsi_rho-"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^-\pi^+$" src="form_69.png"/> candidate.</li>
+<li><code>"mJpsi_rho+"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^+\pi^-$" src="form_70.png"/> candidate.</li>
+<li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_13.png"/> of the Kalman kinematic fit. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00421">421</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00439">439</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -563,7 +575,36 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00436">436</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00454">454</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a8de916bfb48571227377c9216215ba1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8de916bfb48571227377c9216215ba1d">&#9670;&nbsp;</a></span>CreateMCTruthSelection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rhopi_pipigg::CreateMCTruthSelection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function that should be defined in the derived calss and called after <code>CreateMCtruthCollection</code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes. </p>
+
+<p>Implements <a class="el" href="classTrackSelector.html#a129b0c7acd91d7c29d0f61233c7b6416">TrackSelector</a>.</p>
 
 </div>
 </div>
@@ -593,7 +634,11 @@ Additional Inherited Members</h2></td></tr>
 <p>Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>. </p>
 <ol type="A">
 <li>
-<p class="startli">Create selection charged tracks</p>
+<p class="startli"><b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>2 charged tracks in total</b>.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Create specific charged track selections</p>
 <ol>
 <li>
 <p class="startli">Initialise PID and skip if it fails:</p>
@@ -685,7 +730,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Check topology: only consider that combination which comes from <img class="formulaInl" alt="$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+$" src="form_10.png"/>.</p>
+<p class="startli">Check topology: only consider that combination which comes from <img class="formulaInl" alt="$J/\psi \rightarrow \pi^+\pi^-\gamma\gamma$" src="form_63.png"/>.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -736,7 +781,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00093">93</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00098">98</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -767,7 +812,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00390">390</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00408">408</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -795,7 +840,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning. Define and load NTuples here. </p>
+<p>This function is called only once, when the algorithm is initialised. </p><dl class="section remark"><dt>Remarks</dt><dd>Define and load <code>NTuple</code>s here. Other <code>NTuple</code>s have already been defined in the <code>TrackSelector::initilize</code> step prior to this this method. </dd></dl>
 <ol type="A">
 <li>
 <p class="startli"><code>"mult_select"</code>: Multiplicities of selected particles</p>
@@ -849,7 +894,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00057">57</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00066">66</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -896,7 +941,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#ac29ffb6542a27402d12c001d1a2d5809">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00403">403</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00421">421</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -946,7 +991,7 @@ Additional Inherited Members</h2></td></tr>
 <li>Get angles </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00453">453</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00471">471</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -973,7 +1018,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cosine of the angle between the two photons. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00109">109</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00115">115</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1044,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on angle between the photon and the nearest charged track <em>in degrees</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00074">74</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00075">75</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1025,7 +1070,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00072">72</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00073">73</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1096,111 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Cut on <img class="formulaInl" alt="$\theta$" src="form_33.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00073">73</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00074">74</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+
+</div>
+</div>
+<a id="adf2a972b3ae60a16345300f3afa7b758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2a972b3ae60a16345300f3afa7b758">&#9670;&nbsp;</a></span>fCutFlow_NChargedOK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> rhopi_pipigg::fCutFlow_NChargedOK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><b>Cut flow counter</b>: total number of events that have at least one charged track. </p>
+
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00076">76</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+
+</div>
+</div>
+<a id="aca7a31305690b43017505fa9b32dc5cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7a31305690b43017505fa9b32dc5cd">&#9670;&nbsp;</a></span>fCutFlow_NFitOK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> rhopi_pipigg::fCutFlow_NFitOK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked. </p>
+
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00077">77</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+
+</div>
+</div>
+<a id="a7680080d4f7ccd4c00cdf5c319a1ce20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7680080d4f7ccd4c00cdf5c319a1ce20">&#9670;&nbsp;</a></span>fCutFlow_NPhotonOK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> rhopi_pipigg::fCutFlow_NPhotonOK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want. </p>
+
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00079">79</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+
+</div>
+</div>
+<a id="ad66954b9a90bf677c04fe1939cadd5e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad66954b9a90bf677c04fe1939cadd5e4">&#9670;&nbsp;</a></span>fCutFlow_NPIDnumberOK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCutObject.html">CutObject</a> rhopi_pipigg::fCutFlow_NPIDnumberOK</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want. </p>
+
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00078">78</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1077,7 +1226,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Energy of the first photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00107">107</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00113">113</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1103,7 +1252,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Energy of the second photon. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00108">108</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00114">114</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1129,7 +1278,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^0\pi^0$" src="form_52.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00099">99</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00105">105</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1155,7 +1304,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^+\pi^-$" src="form_54.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00100">100</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00106">106</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1181,7 +1330,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$J/\psi \rightarrow \rho^-\pi^+$" src="form_53.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00101">101</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00107">107</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1207,7 +1356,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\pi^0 \rightarrow \gamma\gamma$" src="form_57.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00095">95</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00101">101</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1233,7 +1382,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^0 \rightarrow \pi^-\pi^+$" src="form_58.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00096">96</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00102">102</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1259,7 +1408,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^- \rightarrow \pi^0\pi^-$" src="form_59.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00097">97</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00103">103</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1285,7 +1434,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Invariant mass of <img class="formulaInl" alt="$\rho^+ \rightarrow \pi^0\pi^+$" src="form_60.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00098">98</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00104">104</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1311,7 +1460,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of photons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00046">46</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00047">47</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1337,7 +1486,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of photons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00047">47</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00048">48</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1512,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$\gamma$" src="form_56.png"/>'s. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00043">43</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00044">44</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1389,7 +1538,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^-$" src="form_8.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00044">44</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00045">45</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1415,7 +1564,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of negative pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00048">48</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00049">49</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1441,7 +1590,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00045">45</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00046">46</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1616,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the MC collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00049">49</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00050">50</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1493,7 +1642,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>NTuple::Tuple</code> container for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> of pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00062">62</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00063">63</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1519,7 +1668,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing <em>all</em> combinations. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00063">63</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00064">64</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1545,7 +1694,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>NTuple::Tuple</code> container for the 5-constraint fit branch containing <em>all</em> combinations. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00064">64</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00065">65</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1571,7 +1720,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>NTuple::Tuple</code> container for the 4-constraint fit of MC truth. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00065">65</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00066">66</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1597,7 +1746,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>NTuple::Tuple</code> container for the photon branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00066">66</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00067">67</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1623,7 +1772,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of photons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00053">53</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00054">54</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1649,7 +1798,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of photons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00054">54</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00055">55</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1675,7 +1824,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to neutral tracks identified as <img class="formulaInl" alt="$\gamma$" src="form_56.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00050">50</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00051">51</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1701,7 +1850,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^-$" src="form_8.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00051">51</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00052">52</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1727,7 +1876,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of negative pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00055">55</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00056">56</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1753,7 +1902,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00052">52</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00053">53</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1779,7 +1928,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Iterator for looping over the collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00056">56</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00057">57</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1805,7 +1954,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00110">110</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00116">116</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1831,7 +1980,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00111">111</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00117">117</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +2006,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Current smallest <img class="formulaInl" alt="$\theta$" src="form_33.png"/> angle between the photons and the charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00112">112</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00118">118</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
 </div>
 </div>

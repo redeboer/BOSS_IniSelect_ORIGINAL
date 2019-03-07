@@ -91,13 +91,72 @@ $(document).ready(function(){initNavTree('namespaceCommonFunctions_1_1Error.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a0a17c2fc293412097398dbc72404bc35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a0a17c2fc293412097398dbc72404bc35">PrintFatalError</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:a0a17c2fc293412097398dbc72404bc35"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a fatal error message (that is, one that terminates) in red.  <a href="#a0a17c2fc293412097398dbc72404bc35">More...</a><br /></td></tr>
+<tr class="separator:a0a17c2fc293412097398dbc72404bc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#ae8f9a2074dbef8890193c38e3c7366a6">IsEmptyPtr</a> (void *ptr)</td></tr>
 <tr class="memdesc:ae8f9a2074dbef8890193c38e3c7366a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.  <a href="#ae8f9a2074dbef8890193c38e3c7366a6">More...</a><br /></td></tr>
 <tr class="separator:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b977e86af40bf4d00aa457564ce39d1"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a0b977e86af40bf4d00aa457564ce39d1"><td class="memTemplItemLeft" align="right" valign="top">TYPE &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a0b977e86af40bf4d00aa457564ce39d1">GetFromMap</a> (std::unordered_map&lt; std::string, TYPE &gt; &amp;map, const std::string &amp;key, const std::string &amp;mapName=&quot;&quot;)</td></tr>
+<tr class="memdesc:a0b977e86af40bf4d00aa457564ce39d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construction to <code>try</code> and <code>catch</code> an exception that comes from <code>std::map::at</code>.  <a href="#a0b977e86af40bf4d00aa457564ce39d1">More...</a><br /></td></tr>
+<tr class="separator:a0b977e86af40bf4d00aa457564ce39d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6459eca4f6a894f90a319182f47664f2"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a6459eca4f6a894f90a319182f47664f2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a6459eca4f6a894f90a319182f47664f2">MapHasKey</a> (std::unordered_map&lt; std::string, TYPE &gt; &amp;map, const std::string &amp;key)</td></tr>
+<tr class="memdesc:a6459eca4f6a894f90a319182f47664f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>true</code> if <code>map</code> has a certain <code>key</code>, and returns <code>false</code> if not`.  <a href="#a6459eca4f6a894f90a319182f47664f2">More...</a><br /></td></tr>
+<tr class="separator:a6459eca4f6a894f90a319182f47664f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace containing functions related to debugging and making macro's handle errors. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="a0b977e86af40bf4d00aa457564ce39d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b977e86af40bf4d00aa457564ce39d1">&#9670;&nbsp;</a></span>GetFromMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TYPE &amp; CommonFunctions::Error::GetFromMap </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, TYPE &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>mapName</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Construction to <code>try</code> and <code>catch</code> an exception that comes from <code>std::map::at</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00162">162</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
 <a id="ae8f9a2074dbef8890193c38e3c7366a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8f9a2074dbef8890193c38e3c7366a6">&#9670;&nbsp;</a></span>IsEmptyPtr()</h2>
 
@@ -117,7 +176,73 @@ Functions</h2></td></tr>
 <p>Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer. </p>
 <p>It is useful to use this function if you want to print output when you are incidentally using an empty pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00107">107</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00118">118</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a6459eca4f6a894f90a319182f47664f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6459eca4f6a894f90a319182f47664f2">&#9670;&nbsp;</a></span>MapHasKey()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CommonFunctions::Error::MapHasKey </td>
+          <td>(</td>
+          <td class="paramtype">std::unordered_map&lt; std::string, TYPE &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns <code>true</code> if <code>map</code> has a certain <code>key</code>, and returns <code>false</code> if not`. </p>
+<p>This function makes use of <code>std::map::find</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00179">179</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a0a17c2fc293412097398dbc72404bc35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a17c2fc293412097398dbc72404bc35">&#9670;&nbsp;</a></span>PrintFatalError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::Error::PrintFatalError </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a fatal error message (that is, one that terminates) in red. </p>
+<p>See <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">here</a> for more color codes. </p><dl class="section warning"><dt>Warning</dt><dd>Calling this function will terminate the entire programme. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00108">108</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>

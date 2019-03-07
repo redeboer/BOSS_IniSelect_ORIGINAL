@@ -2,11 +2,15 @@ var classD0phi__KpiKK =
 [
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a", null ],
     [ "AddNTupleItems_Fit", "classD0phi__KpiKK.html#a95d7ef9fdc6df8ce8a40847e11ad1dde", null ],
-    [ "CreateMCtruthSelection", "classD0phi__KpiKK.html#ad87a294142d626988607585bb837a943", null ],
+    [ "CreateMCTruthSelection", "classD0phi__KpiKK.html#aac0ad99f7e64533cbdfe7ecb50f5d2ab", null ],
     [ "execute_rest", "classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4", null ],
     [ "finalize_rest", "classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752", null ],
     [ "initialize_rest", "classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518", null ],
     [ "SetFitNTuple", "classD0phi__KpiKK.html#a8963d8f75eb7bdaa03a393dd164b7122", null ],
+    [ "fCutFlow_NChargedOK", "classD0phi__KpiKK.html#a40677bbb58b450b1c6649049b2f6b8eb", null ],
+    [ "fCutFlow_NFitOK", "classD0phi__KpiKK.html#a94c229e46e61d6d23a8da0a3a7028178", null ],
+    [ "fCutFlow_NPIDnumberOK", "classD0phi__KpiKK.html#a9750144c1d6d0fbd09cf8b172fc7f9ab", null ],
+    [ "fCutFlow_TopoAnaOK", "classD0phi__KpiKK.html#a00814930ad73e7691c4edd85634360f0", null ],
     [ "fKaonNeg", "classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e", null ],
     [ "fKaonNeg1Iter", "classD0phi__KpiKK.html#aebcf4c26733e5acf860f729f69aea22e", null ],
     [ "fKaonNeg2Iter", "classD0phi__KpiKK.html#a6e7b9cd8c6e71952ce5693903dea34ba", null ],
@@ -24,7 +28,6 @@ var classD0phi__KpiKK =
     [ "fNTuple_fit4c_all", "classD0phi__KpiKK.html#a857891de8f3e33fda989b679ddbf8dc2", null ],
     [ "fNTuple_fit4c_best", "classD0phi__KpiKK.html#a30ce41f2bade5dc32370f69dd91a940a", null ],
     [ "fNTuple_fit_mc", "classD0phi__KpiKK.html#a6debe9f97c92ef6e13492cad1c2b5501", null ],
-    [ "fNTuple_mctruth_cut", "classD0phi__KpiKK.html#aed1b244ab7d46a7cc3accb943138348d", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
     [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ]
 ];

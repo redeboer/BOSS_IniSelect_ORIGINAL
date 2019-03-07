@@ -61,22 +61,30 @@
 \form#60:$\rho^+ \rightarrow \pi^0\pi^+$
 \form#61:$\rho^+ \rightarrow \pi^-\pi^+$
 \form#62:$\pm$
-\form#63:$\pi^+\pi^-$
-\form#64:$\pi^0\pi^+$
-\form#65:$\pi^0\pi^-$
-\form#66:$Z$
-\form#67:$e^+e^-$
-\form#68:$p$
-\form#69:$R$
-\form#70:$\rho^{0\pm}$
-\form#71:$\pi^\pm$
-\form#72:$K^\pm$
-\form#73:$\chi_\mathrm{red}^2$
-\form#74:$ e^- $
-\form#75:$ \mu^- $
-\form#76:$ \pi^+ $
-\form#77:$ \pi^0 $
-\form#78:$ \rho^\pm $
-\form#79:$ \rho^0 $
-\form#80:$ K^\pm $
-\form#81:$ p $
+\form#63:$J/\psi \rightarrow \pi^+\pi^-\gamma\gamma$
+\form#64:$\pi^0 \to \gamma\gamma$
+\form#65:$\rho^0 \to \pi^-\pi^+$
+\form#66:$\rho^- \to \pi^0\pi^-$
+\form#67:$\rho^+ \to \pi^0\pi^+$
+\form#68:$J/\psi \to \rho^0\pi^0$
+\form#69:$J/\psi \to \rho^-\pi^+$
+\form#70:$J/\psi \to \rho^+\pi^-$
+\form#71:$\pi^+\pi^-$
+\form#72:$\pi^0\pi^+$
+\form#73:$\pi^0\pi^-$
+\form#74:$Z$
+\form#75:$e^+e^-$
+\form#76:$p$
+\form#77:$R$
+\form#78:$\rho^{0\pm}$
+\form#79:$\pi^\pm$
+\form#80:$K^\pm$
+\form#81:$\chi_\mathrm{red}^2$
+\form#82:$ e^- $
+\form#83:$ \mu^- $
+\form#84:$ \pi^+ $
+\form#85:$ \pi^0 $
+\form#86:$ \rho^\pm $
+\form#87:$ \rho^0 $
+\form#88:$ K^\pm $
+\form#89:$ p $

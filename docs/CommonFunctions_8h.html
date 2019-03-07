@@ -100,6 +100,7 @@ $(document).ready(function(){initNavTree('CommonFunctions_8h.html','');});
 <code>#include &quot;TTree.h&quot;</code><br />
 <code>#include &quot;TVirtualPad.h&quot;</code><br />
 <code>#include &lt;string&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
 </div>
 <p><a href="CommonFunctions_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -165,9 +166,20 @@ Functions</h2></td></tr>
 <tr class="memitem:a909c1fc4f2ff18ee7626a4188795d4d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2">CommonFunctions::Draw::SetLogScale</a> (TString logScale=&quot;&quot;, TVirtualPad *pad=gPad)</td></tr>
 <tr class="memdesc:a909c1fc4f2ff18ee7626a4188795d4d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to set the log scale of a <code>TPad</code> or <code>TCanvas</code>.  <a href="namespaceCommonFunctions_1_1Draw.html#a909c1fc4f2ff18ee7626a4188795d4d2">More...</a><br /></td></tr>
 <tr class="separator:a909c1fc4f2ff18ee7626a4188795d4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a17c2fc293412097398dbc72404bc35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a0a17c2fc293412097398dbc72404bc35">CommonFunctions::Error::PrintFatalError</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:a0a17c2fc293412097398dbc72404bc35"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a fatal error message (that is, one that terminates) in red.  <a href="namespaceCommonFunctions_1_1Error.html#a0a17c2fc293412097398dbc72404bc35">More...</a><br /></td></tr>
+<tr class="separator:a0a17c2fc293412097398dbc72404bc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#ae8f9a2074dbef8890193c38e3c7366a6">CommonFunctions::Error::IsEmptyPtr</a> (void *ptr)</td></tr>
 <tr class="memdesc:ae8f9a2074dbef8890193c38e3c7366a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.  <a href="namespaceCommonFunctions_1_1Error.html#ae8f9a2074dbef8890193c38e3c7366a6">More...</a><br /></td></tr>
 <tr class="separator:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b977e86af40bf4d00aa457564ce39d1"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a0b977e86af40bf4d00aa457564ce39d1"><td class="memTemplItemLeft" align="right" valign="top">TYPE &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a0b977e86af40bf4d00aa457564ce39d1">CommonFunctions::Error::GetFromMap</a> (std::unordered_map&lt; std::string, TYPE &gt; &amp;map, const std::string &amp;key, const std::string &amp;mapName=&quot;&quot;)</td></tr>
+<tr class="memdesc:a0b977e86af40bf4d00aa457564ce39d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construction to <code>try</code> and <code>catch</code> an exception that comes from <code>std::map::at</code>.  <a href="namespaceCommonFunctions_1_1Error.html#a0b977e86af40bf4d00aa457564ce39d1">More...</a><br /></td></tr>
+<tr class="separator:a0b977e86af40bf4d00aa457564ce39d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6459eca4f6a894f90a319182f47664f2"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
+<tr class="memitem:a6459eca4f6a894f90a319182f47664f2"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a6459eca4f6a894f90a319182f47664f2">CommonFunctions::Error::MapHasKey</a> (std::unordered_map&lt; std::string, TYPE &gt; &amp;map, const std::string &amp;key)</td></tr>
+<tr class="memdesc:a6459eca4f6a894f90a319182f47664f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <code>true</code> if <code>map</code> has a certain <code>key</code>, and returns <code>false</code> if not`.  <a href="namespaceCommonFunctions_1_1Error.html#a6459eca4f6a894f90a319182f47664f2">More...</a><br /></td></tr>
+<tr class="separator:a6459eca4f6a894f90a319182f47664f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5428d97ac7295f19b8894f4833c358a5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1File.html#a5428d97ac7295f19b8894f4833c358a5">CommonFunctions::File::GetOutputFilename</a> (const char *filenameWithoutExt)</td></tr>
 <tr class="memdesc:a5428d97ac7295f19b8894f4833c358a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function creates a default output file name according to the <code>FrameworkSettings</code>.  <a href="namespaceCommonFunctions_1_1File.html#a5428d97ac7295f19b8894f4833c358a5">More...</a><br /></td></tr>
 <tr class="separator:a5428d97ac7295f19b8894f4833c358a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
