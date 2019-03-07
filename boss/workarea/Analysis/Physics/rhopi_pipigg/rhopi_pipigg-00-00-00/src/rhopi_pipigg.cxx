@@ -128,7 +128,7 @@
 					if(!InitializePID(
 					/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-					/// <li> use \f$dE/dx\f$ and the three ToF detectors. @remark Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+					/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr` should be used for ToF instead of e.g. `useTof1`.
 						fPIDInstance->useDedx() |
 						fPIDInstance->useTof1() |
 						fPIDInstance->useTof2() |

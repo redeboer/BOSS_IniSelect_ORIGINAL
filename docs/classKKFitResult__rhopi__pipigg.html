@@ -160,9 +160,9 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a5561bd6ff324157e2b3392f61a8d1eed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__rhopi__pipigg.html#a5561bd6ff324157e2b3392f61a8d1eed">SetValues</a> (const HepLorentzVector &amp;pPhoton1, const HepLorentzVector &amp;pPhoton2, const HepLorentzVector &amp;pPionNeg, const HepLorentzVector &amp;pPionPos)</td></tr>
 <tr class="memdesc:a5561bd6ff324157e2b3392f61a8d1eed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function for the constructor (hence <code>private</code> method).  <a href="#a5561bd6ff324157e2b3392f61a8d1eed">More...</a><br /></td></tr>
 <tr class="separator:a5561bd6ff324157e2b3392f61a8d1eed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae45ec984283e138c6bd54451f2f4ee52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__rhopi__pipigg.html#ae45ec984283e138c6bd54451f2f4ee52">SetValues</a> (Event::McParticle *photon1, Event::McParticle *photon2, Event::McParticle *pionPos, Event::McParticle *pionPos)</td></tr>
-<tr class="memdesc:ae45ec984283e138c6bd54451f2f4ee52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Further specification of <code>KKFitResult::SetValues()</code> and a helper function for the constructor (hence <code>private</code> method). This one is used for the loop over MC truth.  <a href="#ae45ec984283e138c6bd54451f2f4ee52">More...</a><br /></td></tr>
-<tr class="separator:ae45ec984283e138c6bd54451f2f4ee52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a34051746f11ed90e82f223398b780"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__rhopi__pipigg.html#ac1a34051746f11ed90e82f223398b780">SetValues</a> (Event::McParticle *photon1, Event::McParticle *photon2, Event::McParticle *pionNeg, Event::McParticle *pionPos)</td></tr>
+<tr class="memdesc:ac1a34051746f11ed90e82f223398b780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Further specification of <code>KKFitResult::SetValues()</code> and a helper function for the constructor (hence <code>private</code> method). This one is used for the loop over MC truth.  <a href="#ac1a34051746f11ed90e82f223398b780">More...</a><br /></td></tr>
+<tr class="separator:ac1a34051746f11ed90e82f223398b780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -235,6 +235,13 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Construct a <code><a class="el" href="classKKFitResult__rhopi__pipigg.html" title="Derived class for a container that contains important fit results of the KalmanKinematicFit, including masses. ">KKFitResult_rhopi_pipigg</a></code> object based on a pointer to a <code>KalmanKinematicFit</code> object. </p>
+<p>Get Lorentz vectors of the decay products using <code>KalmanKinematicFit::pfit</code>:</p>
+<ol type="1">
+<li><img class="formulaInl" alt="$\gamma$" src="form_56.png"/> (first occurrence)</li>
+<li><img class="formulaInl" alt="$\gamma$" src="form_56.png"/> (second occurrence)</li>
+<li><img class="formulaInl" alt="$\pi^-$" src="form_8.png"/></li>
+<li><img class="formulaInl" alt="$\pi^+$" src="form_3.png"/> </li>
+</ol>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00021">21</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
 
@@ -280,7 +287,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Construct a <code><a class="el" href="classKKFitResult__rhopi__pipigg.html" title="Derived class for a container that contains important fit results of the KalmanKinematicFit, including masses. ">KKFitResult_rhopi_pipigg</a></code> object based on a pointer to a <code>KalmanKinematicFit</code> object. </p>
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00029">29</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00036">36</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
@@ -337,19 +344,19 @@ Additional Inherited Members</h2></td></tr>
 <p class="startli">Compute Lorentz vectors of the particles to be reconstructed:</p>
 <ul>
 <li>
-<p class="startli"><img class="formulaInl" alt="$\pi^0 \rightarrow \gamma\gamma$" src="form_57.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$\pi^0 \rightarrow \gamma\gamma$" src="form_59.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$\rho^+ \rightarrow \pi^-\pi^+$" src="form_61.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$\rho^+ \rightarrow \pi^-\pi^+$" src="form_60.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$\rho^- \rightarrow \pi^0\pi^-$" src="form_59.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$\rho^- \rightarrow \pi^0\pi^-$" src="form_61.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$\rho^+ \rightarrow \pi^0\pi^+$" src="form_60.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$\rho^+ \rightarrow \pi^0\pi^+$" src="form_62.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
@@ -371,14 +378,22 @@ Additional Inherited Members</h2></td></tr>
 <p class="startli">Compute invariant masses and momentum.</p>
 <p class="endli"></p>
 </li>
+<li>
+<p class="startli">Compute measure for best fit: just uses <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_63.png"/>.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set <code>fHasResults</code> to <code>true</code>.</p>
+<p class="endli"></p>
+</li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00085">85</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00074">74</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
-<a id="ae45ec984283e138c6bd54451f2f4ee52"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae45ec984283e138c6bd54451f2f4ee52">&#9670;&nbsp;</a></span>SetValues() <span class="overload">[2/2]</span></h2>
+<a id="ac1a34051746f11ed90e82f223398b780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1a34051746f11ed90e82f223398b780">&#9670;&nbsp;</a></span>SetValues() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -402,7 +417,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Event::McParticle *&#160;</td>
-          <td class="paramname"><em>pionPos</em>, </td>
+          <td class="paramname"><em>pionNeg</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -435,7 +450,7 @@ Additional Inherited Members</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00061">61</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html#l00050">50</a> of file <a class="el" href="KKFitResult__rhopi__pipigg_8cxx_source.html">KKFitResult_rhopi_pipigg.cxx</a>.</p>
 
 </div>
 </div>
