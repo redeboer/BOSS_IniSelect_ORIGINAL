@@ -83,7 +83,8 @@ boss/workarea/Analysis/TopoAna/v*/test/*
 boss/workarea/Analysis/TopoAna/v*/test/**
 jobs/topoana/**.txt
 jobs/topoana/**/**.txt
-jobs/topoana/**/*.txt
+jobs/topoana/**/**/**.txt
+jobs/topoana/*.txt
 jobs/topoana/*/*.txt
 jobs/topoana/*/*/*.txt
 topoana/**.txt
