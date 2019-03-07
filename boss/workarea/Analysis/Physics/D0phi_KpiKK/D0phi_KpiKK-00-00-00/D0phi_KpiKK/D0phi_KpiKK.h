@@ -72,6 +72,7 @@
 			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want.
 			CutObject fCutFlow_NFitOK;       ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
 			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
+			CutObject fCutFlow_TopoAnaOK;    ///< <b>Cut flow counter</b>: total number of entries written to the topoana branch.
 			///@}
 
 

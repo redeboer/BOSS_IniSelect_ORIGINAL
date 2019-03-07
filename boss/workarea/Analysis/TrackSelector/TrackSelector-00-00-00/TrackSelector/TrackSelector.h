@@ -124,7 +124,7 @@
 			void AddNTupleItems_MCTruth(NTupleTopoAna &tuple);
 			void AddNTupleItems_Dedx(NTupleContainer &tuple);
 			void AddNTupleItems_Tof (NTupleContainer &tuple);
-			void CreateMCTruthCollection();
+			bool CreateMCTruthCollection();
 			virtual void CreateMCTruthSelection() = 0; ///< Function that should be defined in the derived calss and called after `CreateMCtruthCollection`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
 			///@}
 
@@ -136,7 +136,7 @@
 			void WritePIDInformation();
 			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple);
 			void WriteFitResults(KKFitResult *fitresult, NTupleContainer &tuple);
-			void WriteMCTruthForTopoAna(NTupleTopoAna &tuple);
+			bool WriteMCTruthForTopoAna(NTupleTopoAna &tuple);
 			virtual void SetFitNTuple(KKFitResult *fitresult, NTupleContainer &tuple) = 0; ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in the derived specification of this `virtual` function. @param tuple The `NTuple` to which you eventually want to write the results.
 			///@}
 

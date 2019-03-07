@@ -547,14 +547,17 @@
 	/// Create a preselection of <b>Monte Carlo truth</b> tracks.
 	/// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles` `vector` with a selection of `McParticle` pointers. This collection starts with the initial cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it possible to use `CreateMCTruthSelection`, so it is called at the end.
 	/// @see `fMcParticles`
-	void TrackSelector::CreateMCTruthCollection()
+	/// @see `WriteMCTruthForTopoAna`
+	/// @see `CreateMCTruthSelection`
+	/// @return Returns `true` if a collection of `Event::McParticle`s was successfully created.
+	bool TrackSelector::CreateMCTruthCollection()
 	{
 		/// <ol>
 		/// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
-			if(fEventHeader->runNumber()>=0) return;
+			if(fEventHeader->runNumber()>=0) return false;
 
 		/// <li> @b Abort if `"write_mctruth"` job switch has been set to `false`.
-			if(!fNTuple_mctruth.DoWrite()) return;
+			if(!fNTuple_mctruth.DoWrite()) return false;
 
 		/// <li> Clear `fMcParticles` vector.
 			fMcParticles.clear();
@@ -563,7 +566,7 @@
 			fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
 			if(!fMcParticleCol) {
 				fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
-				return;
+				return false;
 			}
 
 		/// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data available in `McParticle`, see <a href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to `fMcParticles` if the `McParticle` satisfies:
@@ -584,6 +587,7 @@
 
 		/// <li> <i>(For the derived class:)</i><br> Create selections of specific MC truth particles using `CreateMCTruthSelection`. Will not be performed if not specified in the derived algorithm.
 			CreateMCTruthSelection();
+			return true;
 
 		/// </ol>
 	}
@@ -684,16 +688,17 @@
 
 	/// Write an `NTuple` containing branches that are required for the `TopoAna` method.
 	/// @warning This method can be called only after `fMcParticles` has been filled using `CreateMCTruthCollection`.
-	void TrackSelector::WriteMCTruthForTopoAna(NTupleTopoAna &tuple)
+	/// @see `CreateMCTruthCollection`
+	bool TrackSelector::WriteMCTruthForTopoAna(NTupleTopoAna &tuple)
 	{
 		/// -# @b Abort if input file is not MC generated (that is, if the run number is not negative).
-			if(fEventHeader->runNumber()>=0) return;
+			if(fEventHeader->runNumber()>=0) return false;
 
 		/// -# @b Abort if `"write_"` `JobSwitch` has been set to `false`.
-			if(!tuple.DoWrite()) return;
+			if(!tuple.DoWrite()) return false;
 
 		/// -# @b Abort if `fMcParticles` has not been filled.
-			if(!fMcParticles.size()) return;
+			if(!fMcParticles.size()) return false;
 
 		/// -# @b Import run number and event number to `tuple`.
 			fLog << MSG::DEBUG << "Writing TopoAna NTuple \"" << tuple.Name() << "\" with " << fMcParticles.size() << " particles" << endmsg;
@@ -721,6 +726,7 @@
 
 		/// -# @b Write `NTuple` if `write` has been set to `true`.
 			tuple.Write();
+			return true;
 	}
 
 
