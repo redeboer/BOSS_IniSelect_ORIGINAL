@@ -71,7 +71,8 @@
 		/// @name Counters and cut objects
 			///@{
 			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have at least one charged track.
-			CutObject fCutFlow_NFitOK;       ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
+			CutObject fCutFlow_NFit4cOK;     ///< <b>Cut flow counter</b>: total number of events where the @b 4-constraint fit was successful (no chi2 cut).
+			CutObject fCutFlow_NFit5cOK;     ///< <b>Cut flow counter</b>: total number of events where the @b 5-constraint fit was successful (no chi2 cut).
 			CutObject fCutFlow_NNeutralOK;   ///< <b>Cut flow counter</b>: total number of events that have exactly the number of neutral tracks we want.
 			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
 			CutObject fCutFlow_NetChargeOK;  ///< <b>Cut flow counter</b>: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
@@ -88,36 +89,6 @@
 			void AddNTupleItems_Fit(NTupleContainer &tuple);
 			void CreateMCTruthSelection();
 			void SetFitNTuple(KKFitResult *fitresults, NTupleContainer &tuple);
-			///@}
-
-
-		/// @name Computational
-			///@{
-			HepLorentzVector ComputeGammaVector(EvtRecTrack* track);
-			void SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos);
-			///@}
-
-
-		/// @name Invariant masses
-			///@{
-			double fM_pi0;      ///< Invariant mass of \f$\pi^0 \rightarrow \gamma\gamma\f$.
-			double fM_rho0;     ///< Invariant mass of \f$\rho^0 \rightarrow \pi^-\pi^+\f$.
-			double fM_rhom;     ///< Invariant mass of \f$\rho^- \rightarrow \pi^0\pi^-\f$.
-			double fM_rhop;     ///< Invariant mass of \f$\rho^+ \rightarrow \pi^0\pi^+\f$.
-			double fM_JpsiRho0; ///< Invariant mass of \f$J/\psi \rightarrow \rho^0\pi^0\f$.
-			double fM_JpsiRhom; ///< Invariant mass of \f$J/\psi \rightarrow \rho^+\pi^-\f$.
-			double fM_JpsiRhop; ///< Invariant mass of \f$J/\psi \rightarrow \rho^-\pi^+\f$.
-			///@}
-
-
-		/// @name Other stored values
-			///@{
-			double fE_gamma1;   ///< Energy of the first photon.
-			double fE_gamma2;   ///< Energy of the second photon.
-			double fCosGamma;   ///< Cosine of the angle between the two photons.
-			double fSmallestAngle; ///< Current smallest angle between the photons and the charged tracks.
-			double fSmallestPhi;   ///< Current smallest \f$\phi\f$ angle between the photons and the charged tracks.
-			double fSmallestTheta; ///< Current smallest \f$\theta\f$ angle between the photons and the charged tracks.
 			///@}
 
 

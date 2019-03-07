@@ -69,7 +69,7 @@
 			fNTuple_cuts   ("_cutvalues", "1st entry: min value, 2nd entry: max value, 3rd entry: number passed"),
 		/// * Construct `NTuple::Tuple`s containers used in derived classes.
 			fNTuple_mult_sel("mult_select", "Multiplicities of selected particles"),
-			fNTuple_mctruth ("mctruth",     "Monte Carlo truth for TopoAna package"),
+			fNTuple_topology("topology",    "Monte Carlo truth for TopoAna package"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_Nevents  ("N_events"),
 			fCounter_Ntracks  ("N_tracks"),
@@ -130,7 +130,6 @@
 			fNTuple_mult.AddItem<int>("Ncharge");  /// <li> `"Ncharge"`:  Number of charged tracks.
 			fNTuple_mult.AddItem<int>("Nneutral"); /// <li> `"Nneutral"`: Number of charged tracks.
 			if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral"); /// <li> `"NgoodNeutral"`: Number of 'good' neutral tracks (if performed).
-			if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NetChargeMDC"); /// <li> `"NetChargeMDC"`: Total (net) charge detected in the MDC (if performed).
 			if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged"); /// <li> `"NgoodCharged"`: Number of 'good' charged tracks (if performed).
 			/// </ol>
 
@@ -173,8 +172,8 @@
 			AddNTupleItems_Tof(fNTuple_TofIB);
 			AddNTupleItems_Tof(fNTuple_TofOB);
 
-		/// <li> `"mctruth"`: Monte Carlo truth for TopoAna package.
-			AddNTupleItems_MCTruth(fNTuple_mctruth);
+		/// <li> `"topology"`: Monte Carlo truth for TopoAna package.
+			AddNTupleItems_MCTruth(fNTuple_topology);
 
 		/// <li> `"PID"`: Track PID information.
 			/// <ol>
@@ -247,7 +246,6 @@
 					fNTuple_mult.GetItem<int>("Ntotal")   = fEvtRecEvent->totalTracks();
 					fNTuple_mult.GetItem<int>("Ncharge")  = fEvtRecEvent->totalCharged();
 					fNTuple_mult.GetItem<int>("Nneutral") = fEvtRecEvent->totalNeutral();
-					if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NetChargeMDC") = fNetChargeMDC;
 					if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fGoodChargedTracks.size();
 					if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fGoodNeutralTracks.size();
 					fNTuple_mult.Write();
@@ -440,7 +438,7 @@
 
 				// * Add charged track to vector
 				fGoodChargedTracks.push_back(*fTrackIterator);
-				fNetChargeMDC += fTrackMDC->charge(); // @todo Check if this makes sense at all
+				fNetChargeMDC += fTrackMDC->charge();
 
 			/// <li> @b Write charged track vertex position info ("charged" branch)
 				if(fNTuple_charged.DoWrite()) {
@@ -488,6 +486,7 @@
 
 			/// </ol>
 			}
+
 			fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
 		/// </ol>
 	}
@@ -556,8 +555,8 @@
 		/// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
 			if(fEventHeader->runNumber()>=0) return false;
 
-		/// <li> @b Abort if `"write_mctruth"` job switch has been set to `false`.
-			if(!fNTuple_mctruth.DoWrite()) return false;
+		/// <li> @b Abort if `"write_topology"` job switch has been set to `false`.
+			if(!fNTuple_topology.DoWrite()) return false;
 
 		/// <li> Clear `fMcParticles` vector.
 			fMcParticles.clear();

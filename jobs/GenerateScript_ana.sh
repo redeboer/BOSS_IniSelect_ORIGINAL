@@ -13,23 +13,24 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK"
-nFilesPerJob=1000
+packageName="rhopi_pipigg"
+nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=1 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * Parameters in case of file/directory reading * #
 gExampleFromFile=0
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ ${data_or_MC} == 1 ]; then 
-		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e6"
+		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e5"
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ ${data_or_MC} == 2 ]; then
 		gExampleFromFile=1
 		fileToRead="directories/Jpsi2009+2012_dst"
+		nFilesPerJob=1000
 		identifier="${packageName}_incl"
 # * In case of analysing Monte Carlo output * #
 	elif [ ${data_or_MC} == 3 ]; then

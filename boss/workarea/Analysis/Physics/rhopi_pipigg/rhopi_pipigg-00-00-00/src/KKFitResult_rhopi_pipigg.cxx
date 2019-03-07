@@ -21,12 +21,20 @@
 	KKFitResult_rhopi_pipigg::KKFitResult_rhopi_pipigg(KalmanKinematicFit* kkmfit) :
 		KKFitResult(kkmfit)
 	{
-		SetValues(fFit);
+		if(!fFit) return;
+		/// Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
+		SetValues(
+			kkmfit->pfit(0), /// -# \f$\gamma\f$ (first occurrence)
+			kkmfit->pfit(1), /// -# \f$\gamma\f$ (second occurrence)
+			kkmfit->pfit(2), /// -# \f$\pi^-\f$
+			kkmfit->pfit(3)  /// -# \f$\pi^+\f$
+		);
 	}
 
 
 	/// Construct a `KKFitResult_rhopi_pipigg` object based on a pointer to a `KalmanKinematicFit` object.
-	KKFitResult_rhopi_pipigg::KKFitResult_rhopi_pipigg(Event::McParticle* photon1, Event::McParticle* photon2, Event::McParticle* pionNeg, Event::McParticle* pionPos)
+	KKFitResult_rhopi_pipigg::KKFitResult_rhopi_pipigg(Event::McParticle* photon1, Event::McParticle* photon2, Event::McParticle* pionNeg, Event::McParticle* pionPos) :
+		KKFitResult(nullptr)
 	{
 		SetValues(photon1, photon2, pionNeg, pionPos);
 	}
@@ -36,25 +44,6 @@
 // * ============================ * //
 // * ------- KKFITRESULTS ------- * //
 // * ============================ * //
-
-
-	/// Further specification of `KKFitResult::SetValues()` and a helper function for the constructor (hence `private` method).
-	void KKFitResult_rhopi_pipigg::SetValues(KalmanKinematicFit* kkmfit)
-	{
-		/// <ol>
-		/// <li> Test whether `KalmanKinematicFit` pointer exists.
-			if(!fFit) return;
-		/// <li> Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
-			SetValues(
-				/// <ol>
-				fFit->pfit(0), /// <li> \f$\pi^-\f$
-				fFit->pfit(1), /// <li> \f$\pi^+\f$
-				fFit->pfit(2), /// <li> \f$\gamma\f$ (first occurrence)
-				fFit->pfit(3)  /// <li> \f$\gamma\f$ (second occurrence)
-				/// </ol>
-			);
-		/// </ol>
-	}
 
 
 	/// Further specification of `KKFitResult::SetValues()` and a helper function for the constructor (hence `private` method). This one is used for the loop over MC truth.
@@ -72,10 +61,10 @@
 			if(!pionPos) return;
 		/// <li> Apply `SetValues` to the `initialFourMomentum` of these `Event::McParticle` pointers.
 			SetValues(
-				pionNeg->initialFourMomentum(),
-				pionPos->initialFourMomentum(),
 				photon1->initialFourMomentum(),
-				photon2->initialFourMomentum()
+				photon2->initialFourMomentum(),
+				pionNeg->initialFourMomentum(),
+				pionPos->initialFourMomentum()
 			);
 		/// </ol>
 	}
@@ -107,5 +96,9 @@
 			fM_JpsiRho0 = pJpsiRho0.m();
 			fM_JpsiRhom = pJpsiRhom.m();
 			fM_JpsiRhop = pJpsiRhop.m();
+		/// <li> Compute measure for best fit: just uses \f$\chi_\mathrm{red}^2\f$.
+			fFitMeasure = fChiSquared;
+		/// <li> Set `fHasResults` to `true`.
+			fHasResults = true;
 		/// </ol>
 	}

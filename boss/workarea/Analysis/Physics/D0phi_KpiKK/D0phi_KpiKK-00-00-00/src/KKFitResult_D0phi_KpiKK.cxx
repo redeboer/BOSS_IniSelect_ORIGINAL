@@ -16,6 +16,7 @@
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
+
 	/// Construct a `KKFitResult_D0phi_KpiKK` object based on a pointer to a `KalmanKinematicFit` object.
 	KKFitResult_D0phi_KpiKK::KKFitResult_D0phi_KpiKK(KalmanKinematicFit* kkmfit) :
 		KKFitResult(kkmfit)

@@ -42,7 +42,7 @@
 			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
-			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
+			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked"),
 			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
 			fCutFlow_TopoAnaOK   ("N_TopoAna_OK", "Number of entries that have been written to the branch for the topoana package")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
@@ -283,8 +283,8 @@
 				/// If there is a fit result, @b write the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
 				if(bestKalmanFit.HasResults()) {
 					++fCutFlow_NFitOK;
-					CreateMCTruthCollection();
-					if(WriteMCTruthForTopoAna(fNTuple_mctruth)) ++fCutFlow_TopoAnaOK;
+					if(CreateMCTruthCollection() && WriteMCTruthForTopoAna(fNTuple_topology))
+						++fCutFlow_TopoAnaOK;
 				}
 			}
 

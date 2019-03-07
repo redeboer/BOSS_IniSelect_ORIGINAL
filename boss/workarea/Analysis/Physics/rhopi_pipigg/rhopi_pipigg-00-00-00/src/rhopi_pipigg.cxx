@@ -42,7 +42,8 @@
 			fNTuple_photon ("photon",  "Kinematics of selected photons"),
 		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
 			fCutFlow_NChargedOK  ("N_charged_OK",   "Number of events that had at least 1 charged track"),
-			fCutFlow_NFitOK      ("N_Fit_OK",       "Number of combinations where where the kinematic fit worked (no chi2 cut)"),
+			fCutFlow_NFit4cOK    ("N_fit4c_OK",     "Number of events where the 4-constraint kinematic was successful (no chi2 cut)"),
+			fCutFlow_NFit5cOK    ("N_fit5c_OK",     "Number of events where the 5-constraint kinematic was successful (no chi2 cut)"),
 			fCutFlow_NetChargeOK ("N_netcharge_OK", "Number of events where the total charge detected in the detectors was 0"),
 			fCutFlow_NNeutralOK  ("N_neutral_OK",   "Number of events that had at least 2 neutral tracks"),
 			fCutFlow_NPIDnumberOK("N_PID_OK",       "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
@@ -86,10 +87,13 @@
 
 		/// <li> `"photon"`: information of the selected photons
 			/// <ol>
-			fNTuple_photon.AddItem<double>("E");     /// <li> `"E"`:     Energy of the photon.
-			fNTuple_photon.AddItem<double>("phi");   /// <li> `"phi"`:   Smallest angle between the photon and the nearest charged pion.
-			fNTuple_photon.AddItem<double>("theta"); /// <li> `"theta"`: Smallest angle between the photon and the nearest charged pion.
-			fNTuple_photon.AddItem<double>("angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("E");  /// <li> `"E"`:  Energy of the photon.
+			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("smallest_phi");   /// <li> `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("smallest_theta"); /// <li> `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("smallest_angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
 			/// </ol>
 
 		/// </ol>
@@ -157,42 +161,80 @@
 			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 
 				/// <ol>
-				/// <li> Get EM calorimeter info
+				/// <li> Get EM calorimeter info.
 					fTrackEMC = (*fTrackIterator)->emcShower();
 					Hep3Vector emcpos = fTrackEMC->position();
 
-				/// <li> Find angle differences with nearest charged pion
-					fSmallestTheta = 1000.; // start value for difference in theta
-					fSmallestPhi   = 1000.; // start value for difference in phi
-					fSmallestAngle = 1000.; // start value for difference in angle (?)
-					SetSmallestAngles(fPionNegIter, fPionNeg, emcpos); // check all differences with the pions
-					SetSmallestAngles(fPionPosIter, fPionPos, emcpos); // check all differences with the pions
+				/// <li> Find angle differences with nearest charged pion.
+					double smallestTheta = DBL_MAX; // start value for difference in theta
+					double smallestPhi   = DBL_MAX; // start value for difference in phi
+					double smallestAngle = DBL_MAX; // start value for difference in angle (?)
+					for(fPionNegIter = fGoodChargedTracks.begin(); fPionNegIter != fGoodChargedTracks.end(); ++fPionNegIter) {
+						/// * Get the extension object from MDC to EMC.
+						if(!(*fPionNegIter)->isExtTrackValid()) continue;
+						fTrackExt = (*fPionNegIter)->extTrack();
+						if(fTrackExt->emcVolumeNumber() == -1) continue;
+						Hep3Vector extpos(fTrackExt->emcPosition());
 
-				/// <li> Apply angle cut
-					fSmallestTheta = fSmallestTheta * 180 / (CLHEP::pi);
-					fSmallestPhi   = fSmallestPhi   * 180 / (CLHEP::pi);
-					fSmallestAngle = fSmallestAngle * 180 / (CLHEP::pi);
+						/// * Get angles in @b radians.
+						// double cosTheta = extpos.cosTheta(emcpos);
+						double angle  = extpos.angle(emcpos);
+						double dTheta = extpos.theta() - emcpos.theta();
+						double dPhi   = extpos.deltaPhi(emcpos);
+						dTheta = fmod(dTheta + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
+						dPhi   = fmod(dPhi   + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
+						if(angle < smallestAngle){
+							smallestAngle = angle;
+							smallestTheta = dTheta;
+							smallestPhi   = dPhi;
+						}
+					}
 
-				/// <li> @b Write photon info (`"photon"` branch)
+				/// <li> Convert angles from radians to degrees.
+					smallestTheta *= (180. / (CLHEP::pi));
+					smallestPhi   *= (180. / (CLHEP::pi));
+					smallestAngle *= (180. / (CLHEP::pi));
+
+				/// <li> @b Write photon info (`"photon"` branch).
 					if(fNTuple_photon.DoWrite()) {
-						fNTuple_photon.at("E")     = fTrackEMC->energy();
-						fNTuple_photon.at("phi")   = fSmallestTheta;
-						fNTuple_photon.at("theta") = fSmallestPhi;
-						fNTuple_photon.at("angle") = fSmallestAngle;
+						double eraw  = fTrackEMC->energy();
+						double phi   = fTrackEMC->phi();
+						double theta = fTrackEMC->theta();
+						HepLorentzVector four_mom(
+							eraw * sin(theta) * cos(phi),
+							eraw * sin(theta) * sin(phi),
+							eraw * cos(theta),
+							eraw);
+						fNTuple_photon.GetItem<double>("E")  = four_mom.e();
+						fNTuple_photon.GetItem<double>("px") = four_mom.px();
+						fNTuple_photon.GetItem<double>("py") = four_mom.py();
+						fNTuple_photon.GetItem<double>("pz") = four_mom.pz();
+						fNTuple_photon.GetItem<double>("smallest_phi")   = smallestTheta;
+						fNTuple_photon.GetItem<double>("smallest_theta") = smallestPhi;
+						fNTuple_photon.GetItem<double>("smallest_angle") = smallestAngle;
 						fNTuple_photon.Write();
 					}
 
 				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
 					if(
-						fCut_GammaTheta.FailsMax(fabs(fSmallestTheta)) &&
-						fCut_GammaPhi  .FailsMax(fabs(fSmallestPhi))) continue;
-					if(fCut_GammaAngle.FailsMax(fabs(fSmallestAngle))) continue;
+						fCut_GammaTheta.FailsMax(fabs(smallestTheta)) &&
+						fCut_GammaPhi  .FailsMax(fabs(smallestPhi))) continue;
+					if(fCut_GammaAngle.FailsMax(fabs(smallestAngle))) continue;
 
 				/// <li> Add photon track to vector for gammas
 					fPhotons.push_back(*fTrackIterator);
 
 				/// </ol>
 			}
+
+
+		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only continue if:
+			/// <ol>
+			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$)
+			if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion (\f$\pi^-\f$)
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion (\f$\pi^+\f$)
+			/// </ol>
+			++fCutFlow_NPIDnumberOK;
 
 
 		/// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
@@ -223,15 +265,6 @@
 				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
 				fNTuple_mult_sel.Write();
 			}
-
-
-		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only continue if:
-			/// <ol>
-			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$)
-			if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion (\f$\pi^-\f$)
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion (\f$\pi^+\f$)
-			/// </ol>
-			++fCutFlow_NPIDnumberOK;
 
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
@@ -332,6 +365,10 @@
 								KKFitResult_rhopi_pipigg fitresult(kkmfit);
 							/// <li> @b Write results of the Kalman kinematic fit.
 								WriteFitResults(&fitresult, fNTuple_fit4c);
+								++fCutFlow_NFit4cOK;
+							/// <li> @b Write MC truth collection for the `topoana` package.
+								if(CreateMCTruthCollection() && WriteMCTruthForTopoAna(fNTuple_topology))
+									++fCutFlow_TopoAnaOK;
 							/// </ol>
 						}
 				}
@@ -402,6 +439,7 @@
 							KKFitResult_rhopi_pipigg fitresult(kkmfit);
 							/// <li> @b Write results of the Kalman kinematic fit.
 							WriteFitResults(&fitresult, fNTuple_fit5c);
+							++fCutFlow_NFit5cOK;
 							/// </ol>
 						}
 				}
@@ -489,53 +527,4 @@
 			tuple.GetItem<double>("mJpsi_rho-") = fit->fM_JpsiRhom;
 			tuple.GetItem<double>("mJpsi_rho+") = fit->fM_JpsiRhop;
 			tuple.GetItem<double>("chisq")      = fit->fChiSquared;
-	}
-
-
-
-// * ============================= * //
-// * ------- COMPUTATIONAL ------- * //
-// * ============================= * //
-
-
-	/// Encapsulation of the procedure to write results of the Kalman kinematic fit (no matter how many constrains).
-	HepLorentzVector rhopi_pipigg::ComputeGammaVector(EvtRecTrack* track)
-	{
-		fTrackEMC = track->emcShower();
-		double eraw  = fTrackEMC->energy();
-		double phi   = fTrackEMC->phi();
-		double theta = fTrackEMC->theta();
-		HepLorentzVector four_mom(
-			eraw * sin(theta) * cos(phi),
-			eraw * sin(theta) * sin(phi),
-			eraw * cos(theta),
-			eraw);
-		// four_mom = four_mom.boost(-0.011, 0, 0); /// If necessary: Perform a boost to the CMS
-		return four_mom;
-	}
-
-
-	/// Helper function that encapsulates the proces of finding the angle between some photon and the pions.
-	void rhopi_pipigg::SetSmallestAngles(std::vector<EvtRecTrack*>::iterator &iter, std::vector<EvtRecTrack*> &vec, Hep3Vector &emcpos)
-	{
-		for(iter = vec.begin(); iter != vec.end(); ++iter) {
-			/// * Get the extension object from MDC to EMC
-			if(!(*iter)->isExtTrackValid()) continue;
-			fTrackExt = (*iter)->extTrack();
-			if(fTrackExt->emcVolumeNumber() == -1) continue;
-			Hep3Vector extpos(fTrackExt->emcPosition());
-
-			/// * Get angles
-			// double cosTheta = extpos.cosTheta(emcpos);
-			double angle  = extpos.angle(emcpos);
-			double dTheta = extpos.theta() - emcpos.theta();
-			double dPhi   = extpos.deltaPhi(emcpos);
-			dTheta = fmod(dTheta + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
-			dPhi   = fmod(dPhi   + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
-			if(angle < fSmallestAngle){
-				fSmallestAngle = angle;
-				fSmallestTheta = dTheta;
-				fSmallestPhi   = dPhi;
-			}
-		}
 	}

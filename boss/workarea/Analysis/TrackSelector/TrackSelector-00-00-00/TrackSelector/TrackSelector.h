@@ -186,7 +186,7 @@
 			NTupleContainer fNTuple_mult_sel; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
 			NTupleContainer fNTuple_neutral;  ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
 			NTupleContainer fNTuple_vertex;   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
-			NTupleTopoAna   fNTuple_mctruth;  ///< `NTuple::Tuple` container for Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
+			NTupleTopoAna   fNTuple_topology; ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
 			///@}
 
 

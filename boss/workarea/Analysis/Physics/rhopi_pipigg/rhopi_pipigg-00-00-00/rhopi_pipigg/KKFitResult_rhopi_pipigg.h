@@ -48,7 +48,7 @@
 		/// @name Setters
 			///@{
 			void SetValues(const HepLorentzVector &pPhoton1, const HepLorentzVector &pPhoton2, const HepLorentzVector &pPionNeg, const HepLorentzVector &pPionPos);
-			void SetValues(Event::McParticle *photon1, Event::McParticle *photon2, Event::McParticle *pionPos, Event::McParticle *pionPos);
+			void SetValues(Event::McParticle *photon1, Event::McParticle *photon2, Event::McParticle *pionNeg, Event::McParticle *pionPos);
 			///@}
 
 

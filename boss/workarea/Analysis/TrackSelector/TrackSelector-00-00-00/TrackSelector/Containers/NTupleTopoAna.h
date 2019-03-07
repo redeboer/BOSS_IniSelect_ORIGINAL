@@ -19,6 +19,7 @@
 /// @{
 
 	/// Extension of `NTupleContainer` that represents the `NTuple` containing MC truth necessary for the `topoana` package.
+	/// @todo Reformulate in terms of the new version `NTupleContainer` that does allow for adding indexed items.
 	/// @author Remco de Boer 雷穆克
 	/// @date February 18th, 2019
 	class NTupleTopoAna : public NTupleContainer
