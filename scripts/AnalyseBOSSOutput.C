@@ -91,10 +91,10 @@
 						file.Draw("fit4c_best", "mD0",   400,  .7,    2.,      "E1", config.fLogY.value.data());
 						file.Draw("fit4c_best", "mJpsi", 400, 3.0967, 3.09685, "E1", config.fLogY.value.data());
 						file.Draw("fit4c_best", "mphi",  400,  .97,   1.7,     "E1", config.fLogY.value.data());
-						file.Draw("fit_mc",     "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", config.fLogZ.value.data());
-						file.Draw("fit_mc",     "mD0",   400,  .7,    2.,      "E1", config.fLogY.value.data());
-						file.Draw("fit_mc",     "mJpsi", 400, 3.0967, 3.09685, "E1", config.fLogY.value.data());
-						file.Draw("fit_mc",     "mphi",  400,  .97,   1.7,     "E1", config.fLogY.value.data());
+						// file.Draw("fit_mc",     "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", config.fLogZ.value.data());
+						// file.Draw("fit_mc",     "mD0",   400,  .7,    2.,      "E1", config.fLogY.value.data());
+						// file.Draw("fit_mc",     "mJpsi", 400, 3.0967, 3.09685, "E1", config.fLogY.value.data());
+						// file.Draw("fit_mc",     "mphi",  400,  .97,   1.7,     "E1", config.fLogY.value.data());
 						/// -# Draw invariant mass distributions with cuts applied on the other candidate
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", config.fLogY.value.data());
 						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", config.fLogY.value.data());
