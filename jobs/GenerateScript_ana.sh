@@ -13,11 +13,11 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="rhopi_pipigg"
+packageName="D0phi_KpiKK"
 nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=1 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * Parameters in case of file/directory reading * #
 gExampleFromFile=0
@@ -29,13 +29,15 @@ gExampleFromFile=0
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ ${data_or_MC} == 2 ]; then
 		gExampleFromFile=1
-		fileToRead="directories/Jpsi2009+2012_dst"
-		nFilesPerJob=1000
+		fileToRead="directories/incl/Jpsi2009+2012_mc_dst"
+		nFilesPerJob=300
 		identifier="${packageName}_incl"
 # * In case of analysing Monte Carlo output * #
 	elif [ ${data_or_MC} == 3 ]; then
-		directoryToRead="/besfs3/offline/data/703-1/jpsi/round02/dst/"
-		identifier="besfs3_offline_data_703-1_jpsi_round02_dst"
+		gExampleFromFile=1
+		fileToRead="directories/data/Jpsi2009+2012_dst"
+		nFilesPerJob=1000
+		identifier="${packageName}_data"
 # * If not defined properly * #
 	else
 		echo "Option \"data_or_MC = ${data_or_MC}\" cannot be handled"

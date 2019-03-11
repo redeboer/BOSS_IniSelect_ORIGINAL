@@ -3,8 +3,8 @@
 // * Define which packages to load *
 ApplicationMgr.DLLs   += {"D0phi_KpiKK"};
 ApplicationMgr.TopAlg += {"D0phi_KpiKK"};
-ApplicationMgr.DLLs   += {"MctruthForTopoAna"};
-ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
+// ApplicationMgr.DLLs   += {"MctruthForTopoAna"};
+// ApplicationMgr.TopAlg += {"MctruthForTopoAna"};
 
 // * Whether or not to fill a tree/NTuple (TrackSelector) *
 D0phi_KpiKK.write_charged  = 0;
