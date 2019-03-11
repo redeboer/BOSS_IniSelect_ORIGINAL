@@ -20,8 +20,7 @@
 /// @{
 
 	/// This simple object encapsulates a `bool`ean job option.
-	/// Options like these are usually used as switches in your algorithm that can be set to `true` or `false` in the job options. The constructor only needs a name for this switch. It is convention to start this name with e.g.:
-	/// * `"write_"` if this determines whether or not to write a certain `TTree`/`NTuple`.
+	/// Use a `JobSwitch` instead of a simple `bool`ean if you want to be able to set the switch during runtime through the joboptions file. Implementation in the code: The constructor only needs a name for this switch. It is convention to start this name with e.g. `"write_"` if this determines whether or not to write a certain `TTree`/`NTuple`.
 	/// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date   January 3rd, 2019
 	class JobSwitch : public Container_base
