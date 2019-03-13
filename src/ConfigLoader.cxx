@@ -55,8 +55,8 @@
 		/// -# If not, remove everything after first space.
 		else if(line.find(' ') != std::string::npos) line.resize(line.find_first_of(' '));
 		/// -# Remove trailing spaces and tabs.
-		RemoveTrailing(line);
-		RemoveTrailing(line, '\t');
+		CommonFunctions::String::RemoveTrailing(line);
+		CommonFunctions::String::RemoveTrailing(line, '\t');
 		/// @return Parameter name as deduced from input `line`
 		return line;
 	}
@@ -103,7 +103,7 @@
 // * ============================ * //
 
 	/// Load a configuration for analysis from a <i>BOSS Afterburner</i> configuration file.
-	size_t ArgPair_base::LoadConfiguration(const std::string &filename)
+	size_t ConfigLoader::LoadConfiguration(const std::string &filename)
 	{
 		/// -# Create file stream (`std::ifstream`) of config `txt` file.
 		std::ifstream file(filename);
@@ -135,11 +135,11 @@
 				std::string parname  { GetParameterName (line) };
 				std::string parvalue { GetParameterValue(line) };
 			/// <li> Load value if it compares to one of the parameters.
-				ArgPair_base::SetParameters(parname, parvalue);
+				ConfigParBase::SetParameters(parname, parvalue);
 			/// </ul>
 		}
 		/// -# Print loaded values in table form.
-		ArgPair_base::PrintAll();
+		ConfigParBase::PrintAll();
 		/// @return Number of valid loaded arguments
-		return ArgPair_base::instances.size();
+		return ConfigParBase::instances.size();
 	}

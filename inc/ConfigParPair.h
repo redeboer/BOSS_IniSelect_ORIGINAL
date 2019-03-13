@@ -1,5 +1,5 @@
-#ifndef BOSS_Afterburner_ArgPair_H
-#define BOSS_Afterburner_ArgPair_H
+#ifndef BOSS_Afterburner_ConfigParPair_H
+#define BOSS_Afterburner_ConfigParPair_H
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -23,9 +23,9 @@
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     January 7th, 2019
 	template<typename TYPE>
-	class ArgPair : public ArgPair_base {
+	class ConfigParPair : public ConfigParBase {
 	public:
-		ArgPair(const std::string &identifier, const TYPE default_value=0) : value(default_value), ArgPair_base(identifier) {}
+		ConfigParPair(const std::string &identifier, const TYPE default_value=0) : value(default_value),  {}
 		void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false);
 		void operator=(const TYPE &val) { value = val; }
 		bool operator==(const std::string &data) const { return !name.compare(data); }
@@ -35,7 +35,7 @@
 	private:
 		void PrintValue();
 		void SetValue(const std::string &input);
-		TYPE fValue;
+		std::list<TYPE> fValues;
 	};
 
 
@@ -45,23 +45,20 @@
 // * ------- SPECIALISATIONS ------- * //
 // * =============================== * //
 // ! This list needs to be expended if you start using more typenames
-	template class ArgPair<std::string>;
-	template class ArgPair<bool>;
+	template class ConfigParPair<std::string>;
+	template class ConfigParPair<bool>;
 
 
-// * ============================ * //
-// * ------- CONSTRUCTORS ------- * //
-// * ============================ * //
 
-
-	template<typename TYPE> inline
-	ArgPair<TYPE>::ArgPair(const std::string &input, const TYPE val)
+// * =========================== * //
+// * ------- INFORMATION ------- * //
+// * =========================== * //
 
 
 	/// Print a `name` and `value` this parameter object.
 	/// @param width Use this parameter if you want to print the `name` of the parameter in a certain column width. This can be useful when printing a table using `PrintAll`.
 	template<typename TYPE> inline
-	void ArgPair<TYPE>::Print(int width)
+	void ConfigParPair<TYPE>::Print(int width)
 	{
 		PrintName(width);
 		PrintValue();
@@ -72,23 +69,23 @@
 	/// General template method that prints the value of this paramter object.
 	/// This method has been defined to allow for specialisations.
 	template<typename TYPE> inline
-	void ArgPair<TYPE>::PrintValue()
+	void ConfigParPair<TYPE>::PrintValue()
 	{
 		std::cout << value;
 	}
 
 
-	/// Specialisation `ArgPair::Print` in the case of a `string`.
+	/// Specialisation `ConfigParPair::Print` in the case of a `string`.
 	/// This method prints quotation marks around the parameter value.
-	template<> void ArgPair<std::string>::PrintValue()
+	template<> void ConfigParPair<std::string>::PrintValue()
 	{
 		std::cout << "\"" << value << "\"";
 	}
 
 
-	/// Specialisation `ArgPair::Print` in the case of a `bool`ean.
+	/// Specialisation `ConfigParPair::Print` in the case of a `bool`ean.
 	/// This method prints `false` if the value is `0` and `true` if otherwise.
-	template<> void ArgPair<bool>::PrintValue()
+	template<> void ConfigParPair<bool>::PrintValue()
 	{
 		if(value) std::cout << "true";
 		else      std::cout << "false";
@@ -102,14 +99,14 @@
 
 
 	template<typename TYPE> inline
-	void ArgPair<TYPE>::SetValue(const std::string &input) {
+	void ConfigParPair<TYPE>::SetValue(const std::string &input) {
 		std::istringstream ss(input);
 		ss >> value;
 	}
 
 
 	template<typename TYPE> inline
-	void ArgPair<TYPE>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	void ConfigParPair<TYPE>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		SetValue(parvalue);
@@ -117,7 +114,7 @@
 	}
 
 
-	template<> void ArgPair<std::string>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	template<> void ConfigParPair<std::string>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		value = parvalue;
@@ -125,7 +122,7 @@
 	}
 
 
-	template<> void ArgPair<bool>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	template<> void ConfigParPair<bool>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		if(!parvalue.compare("false") || parvalue.front()=='0') value = false;
