@@ -76,7 +76,7 @@
 	/// @name Read handlers
 		///@{
 		void AddValue(const std::string &value) { fReadValues.push_back(value); }
-		static size_t LoadConfiguration(const char* filename);
+		static size_t LoadConfiguration(const std::string &filename);
 		///@}
 
 
@@ -86,8 +86,8 @@
 	protected:
 	/// @name Parameter values
 		///@{
-		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you load with the `ConfigLoader`, its corresponding values will be loaded to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fParameterMapping`.
-		std::list<std::string> fReadValues; ///< Loaded string.
+		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fParameterMapping`.
+		std::list<std::string> fReadValues; ///< Loaded values in string format. You can specify in derived classes how to use these values.
 		///@}
 
 
