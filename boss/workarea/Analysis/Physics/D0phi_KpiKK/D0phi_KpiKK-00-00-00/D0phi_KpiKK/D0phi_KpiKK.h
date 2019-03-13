@@ -64,6 +64,11 @@
 			NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
 			NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 4-constraint fit branch containing only the <i>best</i> combination.
 			NTupleContainer fNTuple_fit_mc;     ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
+			NTupleTopoAna fNTuple_topology_mD0;       ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth with a loose cut on \f$m_{D^0}\f$.
+			NTupleTopoAna fNTuple_topology_mD0_3sig;  ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth with a \f$3\sigma\f$ cut on \f$m_{D^0}\f$.
+			NTupleTopoAna fNTuple_topology_mphi;      ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth with a loose cut on \f$m_\phi\f$.
+			NTupleTopoAna fNTuple_topology_mphi_3sig; ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth with a \f$3\sigma\f$ cut on \f$m_\phi\f$.
+			NTupleTopoAna fNTuple_topology_mphi_mD0_3sig; ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth with a \f$3\sigma\f$ cut on **both \f$m_{D^0}\f$ and \f$m_\phi\f$**.
 			///@}
 
 
@@ -72,7 +77,10 @@
 			CutObject fCutFlow_NChargedOK;   ///< <b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want.
 			CutObject fCutFlow_NFitOK;       ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
 			CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
-			CutObject fCutFlow_TopoAnaOK;    ///< <b>Cut flow counter</b>: total number of entries written to the topoana branch.
+			CutObject fCut_mD0;              ///< Loose cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
+			CutObject fCut_mD0_3sig;         ///< \f$3\sigma\f$ cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
+			CutObject fCut_mphi;             ///< Loose cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
+			CutObject fCut_mphi_3sig;        ///< \f$3\sigma\f$ cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
 			///@}
 
 

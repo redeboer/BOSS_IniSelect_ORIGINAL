@@ -40,11 +40,20 @@
 			fNTuple_fit4c_all ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
 			fNTuple_fit4c_best("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
+			fNTuple_topology_mD0          ("topology_mD0",           "Decay topology according to Monte Carlo truth after loose cut on mD0"),
+			fNTuple_topology_mD0_3sig     ("topology_mD0_3sig",      "Decay topology according to Monte Carlo truth after 3 sigma cut on mD0"),
+			fNTuple_topology_mphi         ("topology_mphi",          "Decay topology according to Monte Carlo truth after loose cut on mphi"),
+			fNTuple_topology_mphi_3sig    ("topology_mphi_3sig",     "Decay topology according to Monte Carlo truth after 3 sigma cut on mphi"),
+			fNTuple_topology_mphi_mD0_3sig("topology_mD0_mphi_3sig", "Decay topology according to Monte Carlo truth after 3 sigma cut on both mD0 and mphi"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK  ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
 			fCutFlow_NFitOK      ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked"),
 			fCutFlow_NPIDnumberOK("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-			fCutFlow_TopoAnaOK   ("N_TopoAna_OK", "Number of entries that have been written to the branch for the topoana package")
+		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
+			fCut_mphi     ("mphi"),
+			fCut_mD0      ("mD0"),
+			fCut_mphi_3sig("mphi_3sig"),
+			fCut_mD0_3sig ("mD0_3sig")
 	{ PrintFunctionName("D0phi_KpiKK", __func__); PostConstructor();
 		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
 		fCreateNeutralCollection = false;
@@ -78,6 +87,13 @@
 			AddNTupleItems_Fit(fNTuple_fit4c_all);
 			AddNTupleItems_Fit(fNTuple_fit4c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
+
+		/// <li> `"topology"`: Monte Carlo truth for TopoAna package.
+			AddNTupleItems_MCTruth(fNTuple_topology_mD0);
+			AddNTupleItems_MCTruth(fNTuple_topology_mD0_3sig);
+			AddNTupleItems_MCTruth(fNTuple_topology_mphi);
+			AddNTupleItems_MCTruth(fNTuple_topology_mphi_3sig);
+			AddNTupleItems_MCTruth(fNTuple_topology_mphi_mD0_3sig);
 
 		/// </ol>
 		return StatusCode::SUCCESS;
@@ -282,9 +298,25 @@
 
 				/// If there is a fit result, @b write the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
 				if(bestKalmanFit.HasResults()) {
-					++fCutFlow_NFitOK;
-					if(CreateMCTruthCollection() && WriteMCTruthForTopoAna(fNTuple_topology))
-						++fCutFlow_TopoAnaOK;
+					/// Write one MC truth topology if fit is successful
+						++fCutFlow_NFitOK;
+						CreateMCTruthCollection();
+						WriteMCTruthForTopoAna(fNTuple_topology);
+
+					/// Check invariant mass cuts.
+						bool mD0_3sig_ok  = !fCut_mD0_3sig .FailsCut(bestKalmanFit.fM_D0);
+						bool mD0_ok       = !fCut_mD0      .FailsCut(bestKalmanFit.fM_D0);
+						bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
+						bool mphi_ok      = !fCut_mphi     .FailsCut(bestKalmanFit.fM_phi);
+
+					/// Write MC truth topologies for cuts that are passed
+						if(mD0_ok)       WriteMCTruthForTopoAna(fNTuple_topology_mD0);
+						if(mD0_3sig_ok)  WriteMCTruthForTopoAna(fNTuple_topology_mD0_3sig);
+						if(mphi_ok)      WriteMCTruthForTopoAna(fNTuple_topology_mphi);
+						if(mphi_3sig_ok) WriteMCTruthForTopoAna(fNTuple_topology_mphi_3sig);
+						if(mphi_3sig_ok && mD0_3sig_ok)
+							WriteMCTruthForTopoAna(fNTuple_topology_mphi_mD0_3sig);
+
 				}
 			}
 

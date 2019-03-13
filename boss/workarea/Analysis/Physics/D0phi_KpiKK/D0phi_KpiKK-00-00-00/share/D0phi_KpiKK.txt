@@ -19,6 +19,11 @@ D0phi_KpiKK.write_PID      = 0;
 D0phi_KpiKK.write_topology = 1;
 
 // * Whether or not to fill a tree/NTuple (D0phi_KpiKK) *
+D0phi_KpiKK.write_topology_mphi          = 1;
+D0phi_KpiKK.write_topology_mD0           = 1;
+D0phi_KpiKK.write_topology_mphi_3sig     = 1;
+D0phi_KpiKK.write_topology_mD0_3sig      = 1;
+D0phi_KpiKK.write_topology_mD0_mphi_3sig = 1;
 D0phi_KpiKK.write_dedx_K      = 0;
 D0phi_KpiKK.write_dedx_pi     = 0;
 D0phi_KpiKK.write_fit4c_all   = 1;
@@ -35,3 +40,13 @@ D0phi_KpiKK.cut_costheta_max  = .93;
 D0phi_KpiKK.cut_PhotonEnergy_min = 0.04;
 D0phi_KpiKK.cut_PIDChiSq_max     = 200.;
 D0phi_KpiKK.cut_PIDProb_min      = 0.001;
+
+// * Invariant mass cuts *
+D0phi_KpiKK.cut_mphi_min = 1.0;
+D0phi_KpiKK.cut_mphi_max = 1.1;
+D0phi_KpiKK.cut_mD0_min  = 1.7;
+D0phi_KpiKK.cut_mD0_max  = 2.0;
+D0phi_KpiKK.cut_mD0_3sig_min  = 1.859;
+D0phi_KpiKK.cut_mD0_3sig_max  = 1.885;
+D0phi_KpiKK.cut_mphi_3sig_min = 0.996;
+D0phi_KpiKK.cut_mphi_3sig_max = 1.046;
