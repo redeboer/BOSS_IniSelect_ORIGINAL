@@ -1,6 +1,7 @@
 #ifndef BOSS_Afterburner_ArgPair_base_H
 #define BOSS_Afterburner_ArgPair_base_H
 
+
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
@@ -8,8 +9,6 @@
 	#include <iostream>
 	#include <list>
 	#include <unordered_map>
-	#include <sstream>
-	#include <fstream>
 	#include <string>
 
 
@@ -58,53 +57,24 @@
 	/// @date     January 7th, 2019
 	class ArgPair_base {
 	public:
-	/// @name Constructor and destructor
-		///@{
 		ArgPair_base(const std::string &identifier);
 		~ArgPair_base();
-		///@}
 
-
-	/// @name Class mapping
-		///@{
 		static void PrintAll();
 		static ArgPair_base* GetParameter(const std::string &identifier);
 		static const size_t GetNParameters() { return fParameterMapping.size(); }
-		///@}
 
+		const std::string &GetIdentifier() { return fIdentifier; }
 
-	/// @name Read handlers
-		///@{
 		void AddValue(const std::string &value) { fReadValues.push_back(value); }
-		static size_t LoadConfiguration(const std::string &filename);
-		///@}
 
 
-		// static void SetParameters(const std::string &parname, const std::string &parvalue, bool output=false);
-		// virtual void Print(int width=0) = 0;
-		// virtual void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false) = 0;
 	protected:
-	/// @name Parameter values
-		///@{
 		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fParameterMapping`.
 		std::list<std::string> fReadValues; ///< Loaded values in string format. You can specify in derived classes how to use these values.
-		///@}
-
-
-	/// @name Read handlers
-		///@{
-		bool ImportValue(std::string line);
-		bool ImportFirstValue(std::string line);
-		bool ImportNextValue(std::string line);
-		void ImportSingleValue(std::string line);
 		static ArgPair_base* ObtainParameter(std::string line);
-		///@}
 
-
-	/// @name Class mapping
-		///@{
 		static std::unordered_map<std::string, ArgPair_base*> fParameterMapping;
-		///@}
 	};
 
 
