@@ -1,0 +1,9 @@
+gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"
+gTreeName  = "fit4c_best"
+
+gBinsMin_phi   = .95
+gBinsMax_phi   = 1.2
+gBinsWidth_phi = .01
+gBinsMin_D0    = 1.6
+gBinsMax_D0    = 2.0
+gBinsWidth_D0  = .005
