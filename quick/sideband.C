@@ -11,6 +11,7 @@
 	#include "TSystemDirectory.h"
 	#include <fstream>
 	#include <iomanip>
+	#include <list>
 	#include <iostream>
 	#include <sstream>
 	#include <map>
@@ -23,8 +24,22 @@
 // * ============================ * //
 
 
+	class ParameterBase {
+	public:
+		ParameterBase(const char* name);
+		~ParameterBase();
+		// static size_t GetNParameters();
+		// static void PrintParameters();
+	protected:
+		const string fName;
+	private:
+		list<string> fValuesStr;
+		static map<string, ParameterBase*> fInstances;
+	};
+
+
 	template<class TYPE>
-	class Parameter {
+	class Parameter : public ParameterBase {
 	public:
 		Parameter(const char *name);
 		Parameter(const char *name, const TYPE val);
@@ -34,7 +49,6 @@
 		// operator const char*() const;
 		bool Set(const std::string &name, const std::string &value);
 	private:
-		const string fName;
 		TYPE fValue;
 		void SetValue(const string &value);
 	};
@@ -46,7 +60,7 @@
 	void TrimString(string &line);
 	void LoadSettings(const char* filename);
 	template<class TYPE>
-	TYPE Draw(const char *varexp, const char *selection, Option_t *option="", const char *binning=nullptr, const char *xTitle=nullptr, const char *yTitle=nullptr);
+	TYPE Draw(const char *varexp, const char *selection, Option_t *option="", const char *binning=nullptr, const char *xTitle=nullptr, const char *yTitle=nullptr, const char *outputFilename=nullptr);
 
 
 
@@ -56,9 +70,12 @@
 
 
 	// * File names * //
-		Parameter<TString> gDirName  {"gDirName",   "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"};
-		Parameter<TString> gTreeName {"gTreeName",  "fit4c_best"};
+		Parameter<TString> gDirName  {"gDirName",  "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"};
+		Parameter<TString> gTreeName {"gTreeName", "fit4c_best"};
 		TString gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/";
+
+	// * Switch settings (booleans) * //
+		Parameter<bool> gSetLogY {"gSetLogY"};
 
 
 	// * Particle decay labels * //
@@ -139,8 +156,8 @@
 
 		// * Plot branches
 			TCanvas c;
-			Draw<TH1F*>("mD0", "mD0", "e1", gBins_D0, Form("%s (%s)", gTex_D0dec, gMassUnit), Form("counts per %g %s", (double)gBinsWidth_D0, gMassUnit));
-			c.SaveAs((gOutputDir+"mD0.pdf").Data());
+			Draw<TH1F*>("mD0",  "", "e1", gBins_D0 , Form("%s (%s)", gTex_D0dec , gMassUnit), Form("counts per %g %s", (double)gBinsWidth_D0 , gMassUnit), "mD0.pdf");
+			Draw<TH1F*>("mphi", "", "e1", gBins_phi, Form("%s (%s)", gTex_phidec, gMassUnit), Form("counts per %g %s", (double)gBinsWidth_phi, gMassUnit), "mphi.pdf");
 	}
 
 
@@ -198,6 +215,8 @@
 				if(gBinsMin_D0   .Set(name, val)) continue;
 				if(gBinsMax_D0   .Set(name, val)) continue;
 				if(gBinsWidth_D0 .Set(name, val)) continue;
+				// Set binnings
+				if(gSetLogY.Set(name, val)) continue;
 				// Default
 				cout << "WARNING: Parameter \"" << name << "\" not defined" << endl;
 			}
@@ -209,7 +228,7 @@
 	}
 
 	template<class TYPE>
-	TYPE Draw(const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle)
+	TYPE Draw(const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle, const char *outputFilename)
 	{
 		// * Add binning to varexp
 			TString varExp;
@@ -222,20 +241,45 @@
 			if(!dynamic_cast<TYPE>(hist)){
 				return nullptr;
 			}
-		// * Modify histogram
+		// * Modify histogram and canvas layout
+			if(gSetLogY) gPad->SetLogy();
 			hist->GetXaxis()->SetTitle(xTitle);
 			hist->GetYaxis()->SetTitle(yTitle);
 			gPad->Update();
+		// * Write output if required
+			if(outputFilename) gPad->SaveAs((gOutputDir+outputFilename));
 		return dynamic_cast<TYPE>(hist);
 	}
 
 
-	template<class TYPE>
-	Parameter<TYPE>::Parameter(const char *name) : fName(name) {}
+	ParameterBase::ParameterBase(const char *name) : fName(name)
+	{
+		if(!(fInstances.find(fName) == fInstances.end())) {
+			cout << "FATAL ERROR: Parameter \"" << fName << "\" has already been defined" << endl;
+			terminate();
+		}
+		fInstances.emplace(make_pair(fName, this));
+	}
+
+
+	ParameterBase::~ParameterBase()
+	{
+		fInstances.erase(fName);
+	}
+
+
+	// size_t ParameterBase::GetNParameters()
+	// {
+	// 	return fInstances.size();
+	// }
 
 
 	template<class TYPE>
-	Parameter<TYPE>::Parameter(const char *name, const TYPE val) : fName(name), fValue(val) {}
+	Parameter<TYPE>::Parameter(const char *name) : ParameterBase(name) {}
+
+
+	template<class TYPE>
+	Parameter<TYPE>::Parameter(const char *name, const TYPE val) : ParameterBase(name), fValue(val) {}
 
 
 	template<class TYPE>
@@ -271,4 +315,12 @@
 	template<> void Parameter<TString>::SetValue(const string &value)
 	{
 		fValue = value;
+	}
+
+
+	template<> void Parameter<bool>::SetValue(const string &value)
+	{
+		if(!value.compare("false") || !value.compare("0"))
+			fValue = false;
+		else fValue = true;
 	}

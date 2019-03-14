@@ -1,14 +1,14 @@
 // * Filenames * //
-	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"
+	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/data/fit_cut_2009+2012"
 	gTreeName  = "fit4c_best"
 
 // * Binnings * //
 	gBinsMin_phi   = .98
 	gBinsMax_phi   = 1.1
-	gBinsWidth_phi = .001
+	gBinsWidth_phi = .01
 	gBinsMin_D0    = 1.76
 	gBinsMax_D0    = 1.91
-	gBinsWidth_D0  = .001
+	gBinsWidth_D0  = .01
 
 // * Plot settings * //
-	gSetLogY = 1
+	gSetLogY = 0
