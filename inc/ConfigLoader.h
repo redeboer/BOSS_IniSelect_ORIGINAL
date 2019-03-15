@@ -6,7 +6,6 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "ConfigParPair.h"
 	#include "ConfigParBase.h"
 	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
@@ -28,11 +27,11 @@
 		///
 		/// The configuration (`.config`) files of the *BOSS Afterburner* final selection framework can be used to load settings for your analysis during runtime from a configuration text file. This allows you to quickly modify plots without having to recompile your analysis script: you just change some of the parameters in your config file. The types of parameters (their identifiers and value types) are defined in the `ConfigLoader` class.
 		///
-		/// The `ConfigParPair` classes (base `ConfigParBase` and derived classes such as `ConfigParPair`) represent these certain types of parameters. The `ConfigParBase` class defines the most abstract form of a configuration parameter. It just has an @b identifier (or parameter name) and a @b value or set of values. Both are strings, as they are the raw data read from the data file. A line in your configuration file can for instance look like this:
+		/// The `ConfigParameter` classes (base `ConfigParBase` and derived classes such as `ConfigParameter`) represent these certain types of parameters. The `ConfigParBase` class defines the most abstract form of a configuration parameter. It just has an @b identifier (or parameter name) and a @b value or set of values. Both are strings, as they are the raw data read from the data file. A line in your configuration file can for instance look like this:
 		/// ```
 		/// 	Plot raw data = true
 		/// ```
-		/// Here, the line `"Plot raw data"` is the parameter @b identifier, while `"true"` is the @b value. The line will only be read if there is an `ConfigParBase` object (or derived object with the name `"Plot raw data"`.) The value is in `string` format, but in this case you will want the value to be a boolean. For this you should define the parameter in the `ConfigLoader` in terms of the `ConfigParPair` class.
+		/// Here, the line `"Plot raw data"` is the parameter @b identifier, while `"true"` is the @b value. The line will only be read if there is an `ConfigParBase` object (or derived object with the name `"Plot raw data"`.) The value is in `string` format, but in this case you will want the value to be a boolean. For this you should define the parameter in the `ConfigLoader` in terms of the `ConfigParameter` class.
 		///
 		/// Another possibility would be to have the lines:
 		/// ```
@@ -67,36 +66,50 @@
 	private:
 		const std::string fConfigPath;
 
-		ConfigParPair<std::string> fInputFilename;
+		ConfigParBase fInputFilename;
 
-		ConfigParPair<bool> fPrintBranches; ///< Whether or not to print all branch names.
-		ConfigParPair<bool> fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
-		ConfigParPair<bool> fFitplots;      ///< Whether or not to produce invariant mass fits.
-		ConfigParPair<bool> fPlotstats;     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
+		ConfigParBase fPrintBranches; ///< Whether or not to print all branch names.
+		ConfigParBase fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
+		ConfigParBase fFitplots;      ///< Whether or not to produce invariant mass fits.
+		ConfigParBase fPlotstats;     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
-		ConfigParPair<bool> fDraw_mctruth; ///< Whether or not to draw the MC truth parameters.
-		ConfigParPair<bool> fDraw_mult;    ///< Whether or not to draw the multiplicity branches.
-		ConfigParPair<bool> fDraw_tof;     ///< Whether or not to draw the `"tof*"` branches.
-		ConfigParPair<bool> fDraw_vertex;  ///< Whether or not to draw the `"vertex"` branch.
-		ConfigParPair<bool> fPureplot;     ///< Whether or not to plot histograms of branches <i>without fit</i>.
-		ConfigParPair<bool> fSetranges;    ///< Whether or not to precisely set histogram ranges.
-		ConfigParPair<std::string> fLogY;  ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
-		ConfigParPair<std::string> fLogZ;  ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+		ConfigParBase fDraw_mctruth; ///< Whether or not to draw the MC truth parameters.
+		ConfigParBase fDraw_mult;    ///< Whether or not to draw the multiplicity branches.
+		ConfigParBase fDraw_tof;     ///< Whether or not to draw the `"tof*"` branches.
+		ConfigParBase fDraw_vertex;  ///< Whether or not to draw the `"vertex"` branch.
+		ConfigParBase fPureplot;     ///< Whether or not to plot histograms of branches <i>without fit</i>.
+		ConfigParBase fSetranges;    ///< Whether or not to precisely set histogram ranges.
+		ConfigParBase fLogY;  ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+		ConfigParBase fLogZ;  ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
 
-		ConfigParPair<bool> fDraw_fit;  ///< Whether or not to draw the `"fit"` branches.
-		ConfigParPair<bool> fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
-		ConfigParPair<bool> fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-		ConfigParPair<bool> fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
+		ConfigParBase fDraw_fit;  ///< Whether or not to draw the `"fit"` branches.
+		ConfigParBase fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+		ConfigParBase fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+		ConfigParBase fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
+
+		// ConfigParameter<bool> fPrintBranches; ///< Whether or not to print all branch names.
+		// ConfigParameter<bool> fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
+		// ConfigParameter<bool> fFitplots;      ///< Whether or not to produce invariant mass fits.
+		// ConfigParameter<bool> fPlotstats;     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
+
+		// ConfigParameter<bool> fDraw_mctruth; ///< Whether or not to draw the MC truth parameters.
+		// ConfigParameter<bool> fDraw_mult;    ///< Whether or not to draw the multiplicity branches.
+		// ConfigParameter<bool> fDraw_tof;     ///< Whether or not to draw the `"tof*"` branches.
+		// ConfigParameter<bool> fDraw_vertex;  ///< Whether or not to draw the `"vertex"` branch.
+		// ConfigParameter<bool> fPureplot;     ///< Whether or not to plot histograms of branches <i>without fit</i>.
+		// ConfigParameter<bool> fSetranges;    ///< Whether or not to precisely set histogram ranges.
+		// ConfigParameter<std::string> fLogY;  ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+		// ConfigParameter<std::string> fLogZ;  ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+
+		// ConfigParameter<bool> fDraw_fit;  ///< Whether or not to draw the `"fit"` branches.
+		// ConfigParameter<bool> fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+		// ConfigParameter<bool> fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+		// ConfigParameter<bool> fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
 
 		size_t LoadConfiguration(const std::string &path);
 
-		std::string GetParameterIdentifier(std::string line);
-		std::string GetParameterValue(std::string line);
-
-		bool ImportValue(std::string line);
-		bool ImportFirstValue(std::string line);
-		bool ImportNextValue(std::string line);
-		void ImportSingleValue(std::string line);
+		ConfigParBase* GetParameter(std::string line);
+		void ImportValues(ConfigParBase *par, std::string line);
 
 		void DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt="E1", const char* setLog="");
 

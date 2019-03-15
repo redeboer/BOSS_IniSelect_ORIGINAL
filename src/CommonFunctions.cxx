@@ -596,3 +596,41 @@
 		if(zAxis) hist->GetZaxis()->SetTitle(zAxis);
 		if(update && gPad) gPad->Update();
 	}
+
+
+
+// * ==================================== * //
+// * ------- SUB-NAMESPACE STRING ------- * //
+// * ==================================== * //
+
+
+	/// Remove all leading and trailing whitespaces from a string.
+	std::string CommonFunctions::String::Trim(std::string &input)
+	{
+		while(input.front()==' ' || input.front()=='\t') input.erase(0, 1);
+		while(input.back() ==' ' || input.back() =='\t') input.pop_back();
+		return input;
+	}
+
+
+	/// Remove all leading and trailing characters of type `c` from a string.
+	std::string CommonFunctions::String::Trim(std::string &input, char c)
+	{
+		while(input.front()==c) input.erase(0, 1);
+		while(input.back() ==c) input.pop_back();
+		return input;
+	}
+
+
+	/// Check if a string starts with a comment identifier (such as `//` in the case of `C++`).
+	bool CommonFunctions::String::IsComment(std::string input)
+	{
+		Trim(input);
+		input = input.substr(0,2);
+		if(!input.compare("//")) return true; // C++ line comment
+		if(!input.compare("/*")) return true; // C++ begin block comment
+		if(input.front() == '*') return true; // C++ continue/end block comment
+		if(input.front() == '#') return true; // bash comment
+		if(input.front() == '%') return true; // LaTeX comment
+		return false;
+	}

@@ -102,7 +102,13 @@
 			template<typename TYPE>
 			std::string CommaFormattedString(TYPE number);
 		}
-
+		/// Namespace containing functions for `string` manipulation.
+		namespace String
+		{
+			std::string Trim(std::string &input);
+			std::string Trim(std::string &input, char c);
+			bool IsComment(std::string line);
+		}
 	}
 
 

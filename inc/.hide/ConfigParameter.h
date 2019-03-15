@@ -1,5 +1,6 @@
-#ifndef BOSS_Afterburner_ConfigParPair_H
-#define BOSS_Afterburner_ConfigParPair_H
+#ifndef BOSS_Afterburner_ConfigParameter_H
+#define BOSS_Afterburner_ConfigParameter_H
+
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -22,10 +23,11 @@
 	/// Class that can contain parameters and values of a loaded configuration file.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     January 7th, 2019
-	template<typename TYPE>
-	class ConfigParPair : public ConfigParBase {
+	template<class TYPE>
+	class ConfigParameter : public ConfigParBase {
 	public:
-		ConfigParPair(const std::string &identifier, const TYPE default_value=0) : value(default_value),  {}
+		ConfigParameter(const std::string &identifier);
+		ConfigParameter(const std::string &identifier, const TYPE &default_value);
 		void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false);
 		void operator=(const TYPE &val) { value = val; }
 		bool operator==(const std::string &data) const { return !name.compare(data); }
@@ -45,8 +47,8 @@
 // * ------- SPECIALISATIONS ------- * //
 // * =============================== * //
 // ! This list needs to be expended if you start using more typenames
-	template class ConfigParPair<std::string>;
-	template class ConfigParPair<bool>;
+	template class ConfigParameter<std::string>;
+	template class ConfigParameter<bool>;
 
 
 
@@ -58,7 +60,7 @@
 	/// Print a `name` and `value` this parameter object.
 	/// @param width Use this parameter if you want to print the `name` of the parameter in a certain column width. This can be useful when printing a table using `PrintAll`.
 	template<typename TYPE> inline
-	void ConfigParPair<TYPE>::Print(int width)
+	void ConfigParameter<TYPE>::Print(int width)
 	{
 		PrintName(width);
 		PrintValue();
@@ -69,23 +71,23 @@
 	/// General template method that prints the value of this paramter object.
 	/// This method has been defined to allow for specialisations.
 	template<typename TYPE> inline
-	void ConfigParPair<TYPE>::PrintValue()
+	void ConfigParameter<TYPE>::PrintValue()
 	{
 		std::cout << value;
 	}
 
 
-	/// Specialisation `ConfigParPair::Print` in the case of a `string`.
+	/// Specialisation `ConfigParameter::Print` in the case of a `string`.
 	/// This method prints quotation marks around the parameter value.
-	template<> void ConfigParPair<std::string>::PrintValue()
+	template<> void ConfigParameter<std::string>::PrintValue()
 	{
 		std::cout << "\"" << value << "\"";
 	}
 
 
-	/// Specialisation `ConfigParPair::Print` in the case of a `bool`ean.
+	/// Specialisation `ConfigParameter::Print` in the case of a `bool`ean.
 	/// This method prints `false` if the value is `0` and `true` if otherwise.
-	template<> void ConfigParPair<bool>::PrintValue()
+	template<> void ConfigParameter<bool>::PrintValue()
 	{
 		if(value) std::cout << "true";
 		else      std::cout << "false";
@@ -99,14 +101,14 @@
 
 
 	template<typename TYPE> inline
-	void ConfigParPair<TYPE>::SetValue(const std::string &input) {
+	void ConfigParameter<TYPE>::SetValue(const std::string &input) {
 		std::istringstream ss(input);
 		ss >> value;
 	}
 
 
 	template<typename TYPE> inline
-	void ConfigParPair<TYPE>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	void ConfigParameter<TYPE>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		SetValue(parvalue);
@@ -114,7 +116,7 @@
 	}
 
 
-	template<> void ConfigParPair<std::string>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	template<> void ConfigParameter<std::string>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		value = parvalue;
@@ -122,7 +124,7 @@
 	}
 
 
-	template<> void ConfigParPair<bool>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
+	template<> void ConfigParameter<bool>::SetParameter(const std::string &parname, const std::string &parvalue, bool output)
 	{
 		if(name.compare(parname)) return;
 		if(!parvalue.compare("false") || parvalue.front()=='0') value = false;

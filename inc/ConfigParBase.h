@@ -21,11 +21,11 @@
 	/// This is the base class for classes that can be used to load a final analysis configuration during runtime.
 		/// The configuration (`.config`) files of the *BOSS Afterburner* final selection framework can be used to load settings for your analysis during runtime from a configuration text file. This allows you to quickly modify plots without having to recompile your analysis script: you just change some of the parameters in your config file. The types of parameters (their identifiers and value types) are defined in the `ConfigLoader` class.
 		///
-		/// The `ConfigParPair` classes (base `ConfigParBase` and derived classes such as `ConfigParPair`) represent these certain types of parameters. The `ConfigParBase` class defines the most abstract form of a configuration parameter. It just has an @b identifier (or parameter name) and a @b value or set of values. Both are strings, as they are the raw data read from the data file. A line in your configuration file can for instance look like this:
+		/// The `ConfigParameter` classes (base `ConfigParBase` and derived classes such as `ConfigParameter`) represent these certain types of parameters. The `ConfigParBase` class defines the most abstract form of a configuration parameter. It just has an @b identifier (or parameter name) and a @b value or set of values. Both are strings, as they are the raw data read from the data file. A line in your configuration file can for instance look like this:
 		/// ```
 		/// 	Plot raw data = true
 		/// ```
-		/// Here, the line `"Plot raw data"` is the parameter @b identifier, while `"true"` is the @b value. The line will only be read if there is an `ConfigParBase` object (or derived object with the name `"Plot raw data"`.) The value is in `string` format, but in this case you will want the value to be a boolean. For this you should define the parameter in the `ConfigLoader` in terms of the `ConfigParPair` class.
+		/// Here, the line `"Plot raw data"` is the parameter @b identifier, while `"true"` is the @b value. The line will only be read if there is an `ConfigParBase` object (or derived object with the name `"Plot raw data"`.) The value is in `string` format, but in this case you will want the value to be a boolean. For this you should define the parameter in the `ConfigLoader` in terms of the `ConfigParameter` class.
 		///
 		/// Another possibility would be to have the lines:
 		/// ```
@@ -59,11 +59,12 @@
 
 		static void PrintAll();
 		static ConfigParBase* GetParameter(const std::string &identifier);
-		static const size_t GetNParameters() { return fParameterMapping.size(); }
+		static const size_t GetNParameters() { return fInstances.size(); }
 
 		const std::string &GetIdentifier() { return fIdentifier; }
 
 		void AddValue(const std::string &value) { fReadValues.push_back(value); }
+		const std::list<std::string>* GetListOfValues() { return &fReadValues; }
 
 
 	protected:
@@ -71,8 +72,8 @@
 
 
 	private:
-		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fParameterMapping`.
-		static std::unordered_map<std::string, ConfigParBase*> fParameterMapping;
+		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fInstances`.
+		static std::unordered_map<std::string, ConfigParBase*> fInstances;
 	};
 
 
