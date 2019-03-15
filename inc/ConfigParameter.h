@@ -36,8 +36,7 @@
 		void Print(int width=0);
 		explicit TYPE operator() { return value; }
 	private:
-		void PrintValue();
-		void SetValue(const std::string &input);
+		void ConvertValues(const std::string &input);
 		TYPE fValue;
 	};
 
