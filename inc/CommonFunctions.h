@@ -62,6 +62,7 @@
 		namespace Error
 		{
 			void PrintFatalError(const std::string &message);
+			void PrintWarning(const std::string &message);
 			bool IsEmptyPtr(void* ptr);
 			template<class TYPE> inline
 			TYPE& GetFromMap(std::unordered_map<std::string, TYPE> &map, const std::string &key, const std::string &mapName="");

@@ -358,9 +358,9 @@
 				const std::string h_max   { "MAX" };
 				const std::string h_count { "COUNT" };
 				w_name = h_name.size();
-				int w_min   { h_min  .size() };
-				int w_max   { h_max  .size() };
-				int w_count { h_count.size() };
+				int w_min   = h_min  .size();
+				int w_max   = h_max  .size();
+				int w_count = h_count.size();
 				for(auto &cut : cuts) {
 					// * Name *
 					if(cut.first.size() > w_name) w_name = cut.first.size();

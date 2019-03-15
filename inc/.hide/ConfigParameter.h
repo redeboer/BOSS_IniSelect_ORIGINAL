@@ -20,9 +20,10 @@
 /// @{
 
 
-	/// Class that can contain parameters and values of a loaded configuration file.
+	/// This `template` class is used to specify how to handle the values loaded to the `ConfigParBase` base class.
+		/// You should define in this derived class how to go from the loaded string values to data. This has to defined for each `TYPE`. In principle, the `TYPE` is just a `typename`, that is, for instance a `double` or `int`. But you can also overload the `ConvertValues` function and specify in that overload how to go from the strings in `fReadValues` to the data of your object.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     January 7th, 2019
+	/// @date     March 15th, 2019
 	template<class TYPE>
 	class ConfigParameter : public ConfigParBase {
 	public:

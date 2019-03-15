@@ -4,6 +4,7 @@
 	#include "ConfigParBase.h"
 	#include "CommonFunctions.h"
 	#include "TString.h"
+	#include <iomanip>
 	using namespace CommonFunctions;
 
 
@@ -18,9 +19,9 @@
 	ConfigParBase::ConfigParBase(const std::string &identifier) :
 		fIdentifier(identifier)
 	{
-		if(fInstances.find(fIdentifier) == fInstances.end())
-			Error::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier));
-		fInstances[fIdentifier];
+		if(!(fInstances.find(fIdentifier) == fInstances.end()))
+			Error::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier.c_str()));
+		fInstances.emplace(make_pair(fIdentifier, this));
 	}
 
 
@@ -45,7 +46,10 @@
 	ConfigParBase* ConfigParBase::GetParameter(const std::string &identifier)
 	{
 		auto key = fInstances.find(identifier);
-		if(key == fInstances.end()) return nullptr;
+		if(key == fInstances.end() || !key->second) {
+			Error::PrintWarning(Form("Parameter \"%s\" has not been defined", identifier.c_str()));
+			return nullptr;
+		}
 		return key->second;
 	}
 
@@ -58,11 +62,26 @@
 
 	void ConfigParBase::PrintAll()
 	{
-		std::cout << std::endl << "Loaded " << fInstances.size() << " paramters" << std::endl;
+		std::cout << std::endl << "Loaded " << fInstances.size() << " parameters" << std::endl;
+		size_t width{0};
+		for(auto &it : fInstances) if(it.first.size() > width) width = it.first.size();
+		width += 2;
 		for(auto &it : fInstances) {
-			std::cout << std::endl << "  " << it.first << std::endl;
-			for(auto &val : *it.second->GetListOfValues()) {
-				std::cout << std::endl << "    " << val << std::endl;
+			auto inst = it.second->GetListOfValues();
+			if(!inst->size()) continue;
+			std::cout << std::setw(width) << it.first << " = ";
+			if(inst->size() == 1)
+				std::cout << inst->front();
+			else {
+				std::cout << "{ ";
+				auto val = inst->begin();
+				while(val != inst->end()) {
+					std::cout << *val;
+					++val;
+					if(val != inst->end()) std::cout << ", ";
+				}
+				std::cout << " }";
 			}
+			std::cout << std::endl;
 		}
 	}

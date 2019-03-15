@@ -34,7 +34,8 @@ fDraw_fit     ("Draw fit branches"),
 fFitplots     ("Perform fits"),
 fDo_gauss     ("Do Gaussian"),
 fDo_conv_s    ("Do single convolution"),
-fDo_conv_d    ("Do double convolution")
+fDo_conv_d    ("Do double convolution"),
+fTestVectorArg("Test vector")
 		// /// * Construct `ArgPair` objects of type `string`
 		// 	fInputFilename("Input file or directory", "NOFILE"),
 		// 	fLogY         ("Use y log scale",       "y"),
@@ -91,7 +92,7 @@ fDo_conv_d    ("Do double convolution")
 
 
 	/// Attempt to get a corresponding parameter @b identifier from a line.
-	ConfigParBase* ConfigLoader::GetParameter(std::string input)
+	ConfigParBase* ConfigLoader::ExtractParameter(std::string input)
 	{
 		/// -# If `input` contains an equal sign, remove everything after it. (You are also allowed to place the equal sign on the next input.)
 		if(input.find('=') != std::string::npos) input.resize(input.find_first_of('='));
@@ -107,23 +108,46 @@ fDo_conv_d    ("Do double convolution")
 	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
 	void ConfigLoader::ImportValues(ConfigParBase *par, std::string input)
 	{
+		if(!par) return;
 		String::Trim(input);
-		std::string remainder(input);
+		if(input.front() == '{') input.erase(0, 1);
+		if(input.back () == '}') input.pop_back();
+		String::Trim(input);
+		if(!input.size()) return;
 		do {
-			std::string value(remainder);
-			if(remainder.front() == '\"') {
+			std::string value(input);
+			if(input.front() == '\"') {
+				input.erase(0, 1);
+				value.erase(0, 1);
+				if(input.find_first_of('\"') == input.size()) input.clear();
+				else input = input.substr(input.find_first_of('\"')+1);
 				value.resize(value.find_first_of('\"'));
-				remainder = remainder.substr(remainder.find_first_not_of('\"')+1);
+				String::Trim(input, ',');
+				String::Trim(input);
 				String::Trim(value, '\"');
-				String::Trim(remainder, ',');
-			} else{
-				value.resize(value.find_first_of(','));
-				remainder = remainder.substr(remainder.find_first_not_of(',')+1);
+			} else {
+				if(input.find(',') != std::string::npos) {
+					value.resize(value.find_first_of(','));
+					input = input.substr(input.find_first_of(',')+1);
+				} else {
+					input.clear();
+				}
 			}
-			String::Trim(value);
-			String::Trim(remainder);
-			par->AddValue(value);
-		} while(remainder.size());
+			AddValue(par, value);
+			String::Trim(input);
+		} while(input.size());
+	}
+
+
+	/// Format 
+	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
+	void ConfigLoader::AddValue(ConfigParBase *par, std::string &val)
+	{
+		if(!par) return;
+		String::Trim(val);
+		String::Trim(val, '\"');
+		if(!val.size()) return;
+		par->AddValue(val);
 	}
 
 
@@ -134,7 +158,7 @@ fDo_conv_d    ("Do double convolution")
 		std::ifstream file(filename);
 		if(!file.is_open()) {
 			std::cout << "WARNING: Could not load configuration file \"" << filename << "\"" << std::endl;
-			return -1;
+			return 0;
 		}
 		/// -# Print configuration title.
 		std::cout << std::endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << std::endl;
@@ -144,43 +168,72 @@ fDo_conv_d    ("Do double convolution")
 			/// <ul>
 			/// <li> Remove weird characters like EOF.
 				if(line.back()<' ') line.pop_back();
-			/// <li> Skip line if it does <i>not</i> contain spaces or an equal sign.
-				if(line.find('=') == std::string::npos && line.find(' ') == std::string::npos) continue;
 			/// <li> Remove leading spaces and tabs.
 				String::Trim(line);
-			/// <li> Skip line if it is a comment.
+				String::Trim(line, ';');
+			/// <li> Skip line if it is a comment or if it is empty.
+				if(!line.size()) continue;
 				if(String::IsComment(line)) continue;
-				ConfigParBase* par = nullptr;
-			/// <li> Now, there are four scenarios:
-				/// <ol>
-				/// <li> If `line` at this stage does not contain an equal sign, it means that this line only contains a parameter identifier and that its values are defined on the next line.
-					if(line.find('=') == std::string::npos) par = ConfigParBase::GetParameter(line);
-				/// <li> If the end of `line` is an equal sign or an opening bracket (`{`), it also means that this line only contains a parameter identifier and that its values are defined on the next line.
-					else if(line.back() == '=' || line.back() == '{') {
-						line.pop_back();
-						String::Trim(line);
-						par = GetParameter(line);
-					}
-				/// <li> Otherwise, if in addition there is no opening bracket (`{`), this means this parameter only has one value. We can add it and continue to the next line to process the next parameter.
-					if(line.find('{') == std::string::npos) {
-						par = GetParameter(line);
-						line = line.substr(line.find_first_of('=')+1);
-						String::Trim(line);
-						par->AddValue(line);
+			/// <li> Now, attempt to extract the paramater identifier.
+				ConfigParBase *par = nullptr;
+				std::string parname{line};
+				std::string parval {line};
+			/// <li> If the `line` does **not** contain brackets opening (`{`) or closing (``}) bracket, ends in an equal sign **and** does contain an equal sign, **there is only one value for this parameter**. This is a simple case and we can move to the next line.
+					if(
+						line.find('=') != std::string::npos &&
+						line.find('{') == std::string::npos &&
+						line.find('}') == std::string::npos &&
+						line.back() != '='
+					) {
+						// * Attempt to get parameter
+						parname.resize(parname.find_first_of('='));
+						String::Trim(parname);
+						par = ConfigParBase::GetParameter(parname);
+						if(!par) continue;
+						// * Add the value to the parameter
+						parval = parval.substr(parval.find_first_of('=')+1);
+						AddValue(par, parval);
 						continue;
 					}
-				/// <li> In the remaining scenario, this line contains the first value for this parameter and we should continue reading.
-					else {
-						par = GetParameter(line);
-						line = line.substr(line.find_first_of('{')+1);
-						String::Trim(line);
-						ImportValues(par, line);
+			/// <li> If this is not the case, the parameter contains **multiple values**:
+				/// <ol>
+				/// <li> If the line contains `=`, `{`, and `}`, all parameter values are defined on this line and we can round up without reading the next line.
+					if(
+						(line.find('=') != std::string::npos) &&
+						(line.find('{') != std::string::npos) &&
+						(line.find('}') != std::string::npos)) {
+						// * Attempt to get parameter
+						parname.resize(parname.find_first_of('='));
+						String::Trim(parname);
+						par = ConfigParBase::GetParameter(parname);
+						if(!par) continue;
+						// * Add the value to the parameter
+						parval = parval.substr(parval.find_first_of('{')+1);
+						ImportValues(par, parval);
+						continue;
+					}
+				/// <li> If the line does not contain an equal sign (`=`), it means the line only contains the parameter name and that we should continue reading the next lines.
+					if(line.find('=') == std::string::npos) {
+						par = ConfigParBase::GetParameter(parname);
+						if(!par) continue;
+				/// <li> Else, get the parameter, read the first values on the line and continue to the next.
+					} else {
+						parname.resize(parname.find_first_of('='));
+						String::Trim(parname);
+						par = ConfigParBase::GetParameter(parname);
+						if(!par) continue;
+						parval = parval.substr(parval.find_first_of('=')+1);
+						ImportValues(par, parval);
 					}
 				/// </ol>
 			/// <li> Import the remaining values by continuing over the next lines until the first closing bracket (`}`) is encountered.
 				while(getline(file, line)) {
 					/// <ol>
-					/// <li> `Trim` line.
+					/// <li> Remove weird characters like EOF.
+						if(line.back()<' ') line.pop_back();
+					/// <li> `Trim` line and remove opening equal sign (`=`).
+						String::Trim(line); if(line.front() == '=') line.erase(0, 1);
+						String::Trim(line); if(line.front() == '{') line.erase(0, 1);
 						String::Trim(line);
 					/// <li> If this line does not contain a closing bracket, simply import all arguments on this line and go to the next.
 						if(line.find('}') == std::string::npos) ImportValues(par, line);

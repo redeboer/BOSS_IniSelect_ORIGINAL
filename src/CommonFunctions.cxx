@@ -113,6 +113,16 @@
 	}
 
 
+	/// Print a warning message in yellow.
+	/// See <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">here</a> for more color codes.
+	void CommonFunctions::Error::PrintWarning(const std::string &message)
+	{
+		std::cout << "\033[1;33mWARNING\033[0m\033[33m: "; // in yellow
+		std::cout << Form("%s\033[0m\n", message.c_str()) << std::endl;
+	}
+
+
+
 	/// Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.
 	/// It is useful to use this function if you want to print output when you are incidentally using an empty pointer.
 	bool CommonFunctions::Error::IsEmptyPtr(void* ptr)

@@ -86,6 +86,7 @@
 		ConfigParBase fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
 		ConfigParBase fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 		ConfigParBase fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
+		ConfigParBase fTestVectorArg;
 
 		// ConfigParameter<bool> fPrintBranches; ///< Whether or not to print all branch names.
 		// ConfigParameter<bool> fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
@@ -108,8 +109,9 @@
 
 		size_t LoadConfiguration(const std::string &path);
 
-		ConfigParBase* GetParameter(std::string line);
+		ConfigParBase* ExtractParameter(std::string line);
 		void ImportValues(ConfigParBase *par, std::string line);
+		void AddValue(ConfigParBase *par, std::string &line);
 
 		void DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt="E1", const char* setLog="");
 

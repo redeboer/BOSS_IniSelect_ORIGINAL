@@ -31,7 +31,7 @@
 
 
 	/// Main function used when compiling and executing in `ROOT`.
-	void AnalyseBOSSOutput(const char* configuration_file="configs/D0phi_KpiKK_quick.txt")
+	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
 
 		// * OPEN INPUT FILE * //
