@@ -80,6 +80,9 @@ $(document).ready(function(){initNavTree('classConfigLoader.html','');});
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classConfigLoader-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ConfigLoader Class Reference<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a> &raquo; <a class="el" href="group__BOSS__Afterburner__objects.html">Objects</a></div></div>  </div>
@@ -93,110 +96,96 @@ $(document).ready(function(){initNavTree('classConfigLoader.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
-<tr class="memitem:a70bd800418fdb287a7a1877f5a34989f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a70bd800418fdb287a7a1877f5a34989f">ConfigLoader</a> (const char *path)</td></tr>
-<tr class="memdesc:a70bd800418fdb287a7a1877f5a34989f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a70bd800418fdb287a7a1877f5a34989f">More...</a><br /></td></tr>
-<tr class="separator:a70bd800418fdb287a7a1877f5a34989f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Getters for configurations</div></td></tr>
-<tr class="memitem:ad49e371e26de064dab63f1eb4d918781"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ad49e371e26de064dab63f1eb4d918781">InputFilename</a> ()</td></tr>
-<tr class="memdesc:ad49e371e26de064dab63f1eb4d918781"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Interface is defined here!</b>  <a href="#ad49e371e26de064dab63f1eb4d918781">More...</a><br /></td></tr>
-<tr class="separator:ad49e371e26de064dab63f1eb4d918781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa561f11f47cb152275123f367b90bde"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#afa561f11f47cb152275123f367b90bde">BranchesToPlot</a> ()</td></tr>
-<tr class="separator:afa561f11f47cb152275123f367b90bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Setters</div></td></tr>
-<tr class="memitem:aeddb7fc760ca2fbfc0a235761c472490"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aeddb7fc760ca2fbfc0a235761c472490">LoadConfiguration</a> (const char *filename)</td></tr>
-<tr class="memdesc:aeddb7fc760ca2fbfc0a235761c472490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a configuration for analysis from a <em>BOSS Afterburner</em> configuration file.  <a href="#aeddb7fc760ca2fbfc0a235761c472490">More...</a><br /></td></tr>
-<tr class="separator:aeddb7fc760ca2fbfc0a235761c472490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Helpers for configuration loading</div></td></tr>
-<tr class="memitem:a1c2cc2b815576d39de7778e2a169c05d"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a1c2cc2b815576d39de7778e2a169c05d">GetParameterName</a> (std::string line)</td></tr>
-<tr class="memdesc:a1c2cc2b815576d39de7778e2a169c05d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to get a parameter <b>name</b> from a line.  <a href="#a1c2cc2b815576d39de7778e2a169c05d">More...</a><br /></td></tr>
-<tr class="separator:a1c2cc2b815576d39de7778e2a169c05d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae344ac9992b0410bad77d9b0ffac2105"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ae344ac9992b0410bad77d9b0ffac2105">GetParameterValue</a> (std::string line)</td></tr>
-<tr class="memdesc:ae344ac9992b0410bad77d9b0ffac2105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to get a parameter <b>value</b> from a line.  <a href="#ae344ac9992b0410bad77d9b0ffac2105">More...</a><br /></td></tr>
-<tr class="separator:ae344ac9992b0410bad77d9b0ffac2105"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">String modulation</div></td></tr>
-<tr class="memitem:a547e7300a3f5100cf5d8484392a9a4d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a547e7300a3f5100cf5d8484392a9a4d3">RemoveLeading</a> (std::string &amp;line, const char c=' ')</td></tr>
-<tr class="memdesc:a547e7300a3f5100cf5d8484392a9a4d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all leading characters if they are 'c'.  <a href="#a547e7300a3f5100cf5d8484392a9a4d3">More...</a><br /></td></tr>
-<tr class="separator:a547e7300a3f5100cf5d8484392a9a4d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a621262f4fd263be406c5fc35bd93eb39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a621262f4fd263be406c5fc35bd93eb39">RemoveTrailing</a> (std::string &amp;line, const char c=' ')</td></tr>
-<tr class="memdesc:a621262f4fd263be406c5fc35bd93eb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all trailing characters if they are 'c'.  <a href="#a621262f4fd263be406c5fc35bd93eb39">More...</a><br /></td></tr>
-<tr class="separator:a621262f4fd263be406c5fc35bd93eb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b55bf87c0d21dbec82d7cf5076f47c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a3b55bf87c0d21dbec82d7cf5076f47c4">Trim</a> (std::string &amp;line, const char c=' ')</td></tr>
-<tr class="memdesc:a3b55bf87c0d21dbec82d7cf5076f47c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all leading and trailing characters if they are 'c'.  <a href="#a3b55bf87c0d21dbec82d7cf5076f47c4">More...</a><br /></td></tr>
-<tr class="separator:a3b55bf87c0d21dbec82d7cf5076f47c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">@b TEMPORARY</div></td></tr>
+<tr class="memitem:a55c807487a419c3b74d22e369d6a427e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a55c807487a419c3b74d22e369d6a427e">ConfigLoader</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a55c807487a419c3b74d22e369d6a427e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#a55c807487a419c3b74d22e369d6a427e">More...</a><br /></td></tr>
+<tr class="separator:a55c807487a419c3b74d22e369d6a427e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a24aba3c2e19427dabefe553e29463744"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a24aba3c2e19427dabefe553e29463744">LoadConfiguration</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a24aba3c2e19427dabefe553e29463744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load a configuration for analysis from a <em>BOSS Afterburner</em> configuration file.  <a href="#a24aba3c2e19427dabefe553e29463744">More...</a><br /></td></tr>
+<tr class="separator:a24aba3c2e19427dabefe553e29463744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60154313726e46e84115463078cae6e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a60154313726e46e84115463078cae6e6">GetParameter</a> (std::string line)</td></tr>
+<tr class="memdesc:a60154313726e46e84115463078cae6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to get a corresponding parameter <b>identifier</b> from a line.  <a href="#a60154313726e46e84115463078cae6e6">More...</a><br /></td></tr>
+<tr class="separator:a60154313726e46e84115463078cae6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a0ab2b46d0fc05f60d5fed4e086e928c1">ImportValues</a> (<a class="el" href="classConfigParBase.html">ConfigParBase</a> *par, std::string line)</td></tr>
+<tr class="memdesc:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import parameter values from a line.  <a href="#a0ab2b46d0fc05f60d5fed4e086e928c1">More...</a><br /></td></tr>
+<tr class="separator:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebb19e6d7a739343867ea3fb11d731e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aebb19e6d7a739343867ea3fb11d731e5">DrawDifference</a> (TH1 *histToDraw, TH1 *histToSubtract, Option_t *opt=&quot;E1&quot;, const char *setLog=&quot;&quot;)</td></tr>
 <tr class="memdesc:aebb19e6d7a739343867ea3fb11d731e5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored.  <a href="#aebb19e6d7a739343867ea3fb11d731e5">More...</a><br /></td></tr>
 <tr class="separator:aebb19e6d7a739343867ea3fb11d731e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader">IO parameters</div></td></tr>
-<tr class="memitem:a1dc996502f4f372d13a7c5ecc968a5b6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a1dc996502f4f372d13a7c5ecc968a5b6">fConfigPath</a></td></tr>
-<tr class="separator:a1dc996502f4f372d13a7c5ecc968a5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa0793e24ad327d370b546bc91be0d40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#afa0793e24ad327d370b546bc91be0d40">fInputFilename</a></td></tr>
-<tr class="separator:afa0793e24ad327d370b546bc91be0d40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Do-or-don't switches</div></td></tr>
-<tr class="memitem:a0a9d3b01a62096db9576169aca1caa31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a0a9d3b01a62096db9576169aca1caa31">fPrintBranches</a></td></tr>
-<tr class="memdesc:a0a9d3b01a62096db9576169aca1caa31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to print all branch names.  <a href="#a0a9d3b01a62096db9576169aca1caa31">More...</a><br /></td></tr>
-<tr class="separator:a0a9d3b01a62096db9576169aca1caa31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37788e8934ebdaad598171635667d827"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a37788e8934ebdaad598171635667d827">fPrintAverages</a></td></tr>
-<tr class="memdesc:a37788e8934ebdaad598171635667d827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!  <a href="#a37788e8934ebdaad598171635667d827">More...</a><br /></td></tr>
-<tr class="separator:a37788e8934ebdaad598171635667d827"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3342e9dcd1259190ec187d3a078d6e34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a3342e9dcd1259190ec187d3a078d6e34">fFitplots</a></td></tr>
-<tr class="memdesc:a3342e9dcd1259190ec187d3a078d6e34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce invariant mass fits.  <a href="#a3342e9dcd1259190ec187d3a078d6e34">More...</a><br /></td></tr>
-<tr class="separator:a3342e9dcd1259190ec187d3a078d6e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b440a910eccfc5bbe02b08ab1a06487"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a2b440a910eccfc5bbe02b08ab1a06487">fPlotstats</a></td></tr>
-<tr class="memdesc:a2b440a910eccfc5bbe02b08ab1a06487"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="#a2b440a910eccfc5bbe02b08ab1a06487">More...</a><br /></td></tr>
-<tr class="separator:a2b440a910eccfc5bbe02b08ab1a06487"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Draw options</div></td></tr>
-<tr class="memitem:a80c82f52fb27f81e8295458cc0e22d17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a80c82f52fb27f81e8295458cc0e22d17">fDraw_mctruth</a></td></tr>
-<tr class="memdesc:a80c82f52fb27f81e8295458cc0e22d17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the MC truth parameters.  <a href="#a80c82f52fb27f81e8295458cc0e22d17">More...</a><br /></td></tr>
-<tr class="separator:a80c82f52fb27f81e8295458cc0e22d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5d2bd002c9d02d7f083a92de872c201"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ac5d2bd002c9d02d7f083a92de872c201">fDraw_mult</a></td></tr>
-<tr class="memdesc:ac5d2bd002c9d02d7f083a92de872c201"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the multiplicity branches.  <a href="#ac5d2bd002c9d02d7f083a92de872c201">More...</a><br /></td></tr>
-<tr class="separator:ac5d2bd002c9d02d7f083a92de872c201"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf3424b51904cbbad28136432ec09f57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#adf3424b51904cbbad28136432ec09f57">fDraw_tof</a></td></tr>
-<tr class="memdesc:adf3424b51904cbbad28136432ec09f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"tof*"</code> branches.  <a href="#adf3424b51904cbbad28136432ec09f57">More...</a><br /></td></tr>
-<tr class="separator:adf3424b51904cbbad28136432ec09f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c1d2838bf480f24dca6689021972ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a66c1d2838bf480f24dca6689021972ff">fDraw_vertex</a></td></tr>
-<tr class="memdesc:a66c1d2838bf480f24dca6689021972ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"vertex"</code> branch.  <a href="#a66c1d2838bf480f24dca6689021972ff">More...</a><br /></td></tr>
-<tr class="separator:a66c1d2838bf480f24dca6689021972ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afed2c96f5b4de23695990f37e3d310a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#afed2c96f5b4de23695990f37e3d310a5">fPureplot</a></td></tr>
-<tr class="memdesc:afed2c96f5b4de23695990f37e3d310a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to plot histograms of branches <em>without fit</em>.  <a href="#afed2c96f5b4de23695990f37e3d310a5">More...</a><br /></td></tr>
-<tr class="separator:afed2c96f5b4de23695990f37e3d310a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20a552bb482f6ef0d7c03f512de29817"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a20a552bb482f6ef0d7c03f512de29817">fSetranges</a></td></tr>
-<tr class="memdesc:a20a552bb482f6ef0d7c03f512de29817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to precisely set histogram ranges.  <a href="#a20a552bb482f6ef0d7c03f512de29817">More...</a><br /></td></tr>
-<tr class="separator:a20a552bb482f6ef0d7c03f512de29817"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2a72366f4c2482b501f5df197b7fdf3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ab2a72366f4c2482b501f5df197b7fdf3">fLogY</a></td></tr>
-<tr class="memdesc:ab2a72366f4c2482b501f5df197b7fdf3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$y$" src="form_30.png"/> axis of the <code>TH1F</code> in log scale.  <a href="#ab2a72366f4c2482b501f5df197b7fdf3">More...</a><br /></td></tr>
-<tr class="separator:ab2a72366f4c2482b501f5df197b7fdf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb0ef478a8da59bd0c8e1e56851ebb40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#adb0ef478a8da59bd0c8e1e56851ebb40">fLogZ</a></td></tr>
-<tr class="memdesc:adb0ef478a8da59bd0c8e1e56851ebb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$z$" src="form_31.png"/> axis of the <code>TH2F</code> in log scale.  <a href="#adb0ef478a8da59bd0c8e1e56851ebb40">More...</a><br /></td></tr>
-<tr class="separator:adb0ef478a8da59bd0c8e1e56851ebb40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Fit options</div></td></tr>
-<tr class="memitem:ab4bfc4656c46195d983af095958dc7a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ab4bfc4656c46195d983af095958dc7a4">fDraw_fit</a></td></tr>
-<tr class="memdesc:ab4bfc4656c46195d983af095958dc7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"fit"</code> branches.  <a href="#ab4bfc4656c46195d983af095958dc7a4">More...</a><br /></td></tr>
-<tr class="separator:ab4bfc4656c46195d983af095958dc7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2a41609fa6823ead84b3d8ec7a1fc0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#ae2a41609fa6823ead84b3d8ec7a1fc0e">fDo_conv_d</a></td></tr>
-<tr class="memdesc:ae2a41609fa6823ead84b3d8ec7a1fc0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian.  <a href="#ae2a41609fa6823ead84b3d8ec7a1fc0e">More...</a><br /></td></tr>
-<tr class="separator:ae2a41609fa6823ead84b3d8ec7a1fc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe7fe2affe68e38cb4666d84991f0827"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#afe7fe2affe68e38cb4666d84991f0827">fDo_conv_s</a></td></tr>
-<tr class="memdesc:afe7fe2affe68e38cb4666d84991f0827"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian.  <a href="#afe7fe2affe68e38cb4666d84991f0827">More...</a><br /></td></tr>
-<tr class="separator:afe7fe2affe68e38cb4666d84991f0827"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8341ec20d2234ca36bc8c66cb7809cbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classArgPair.html">ArgPair</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a8341ec20d2234ca36bc8c66cb7809cbc">fDo_gauss</a></td></tr>
-<tr class="memdesc:a8341ec20d2234ca36bc8c66cb7809cbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a double Gaussian fit.  <a href="#a8341ec20d2234ca36bc8c66cb7809cbc">More...</a><br /></td></tr>
-<tr class="separator:a8341ec20d2234ca36bc8c66cb7809cbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a2c57f6b311c0daa808fb66bbf243b456"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a2c57f6b311c0daa808fb66bbf243b456">fConfigPath</a></td></tr>
+<tr class="separator:a2c57f6b311c0daa808fb66bbf243b456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5554391a86d312c27745c46d2dea4dae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a5554391a86d312c27745c46d2dea4dae">fInputFilename</a></td></tr>
+<tr class="separator:a5554391a86d312c27745c46d2dea4dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c3dfe9a5ca8692b69fdb575909bbb02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a5c3dfe9a5ca8692b69fdb575909bbb02">fPrintBranches</a></td></tr>
+<tr class="memdesc:a5c3dfe9a5ca8692b69fdb575909bbb02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to print all branch names.  <a href="#a5c3dfe9a5ca8692b69fdb575909bbb02">More...</a><br /></td></tr>
+<tr class="separator:a5c3dfe9a5ca8692b69fdb575909bbb02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5851ed02d4a15170574048ad07b19970"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a5851ed02d4a15170574048ad07b19970">fPrintAverages</a></td></tr>
+<tr class="memdesc:a5851ed02d4a15170574048ad07b19970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!  <a href="#a5851ed02d4a15170574048ad07b19970">More...</a><br /></td></tr>
+<tr class="separator:a5851ed02d4a15170574048ad07b19970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a91424b420946ce71c7a0f9989a2d00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a1a91424b420946ce71c7a0f9989a2d00">fFitplots</a></td></tr>
+<tr class="memdesc:a1a91424b420946ce71c7a0f9989a2d00"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce invariant mass fits.  <a href="#a1a91424b420946ce71c7a0f9989a2d00">More...</a><br /></td></tr>
+<tr class="separator:a1a91424b420946ce71c7a0f9989a2d00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea6b22e397cdd3a9b6eccd7ff312274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aaea6b22e397cdd3a9b6eccd7ff312274">fPlotstats</a></td></tr>
+<tr class="memdesc:aaea6b22e397cdd3a9b6eccd7ff312274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="#aaea6b22e397cdd3a9b6eccd7ff312274">More...</a><br /></td></tr>
+<tr class="separator:aaea6b22e397cdd3a9b6eccd7ff312274"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a051afc995c17ff8a6fe80defe738e9c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a051afc995c17ff8a6fe80defe738e9c6">fDraw_mctruth</a></td></tr>
+<tr class="memdesc:a051afc995c17ff8a6fe80defe738e9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the MC truth parameters.  <a href="#a051afc995c17ff8a6fe80defe738e9c6">More...</a><br /></td></tr>
+<tr class="separator:a051afc995c17ff8a6fe80defe738e9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce878df9967a3158072b6710becacdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a0ce878df9967a3158072b6710becacdc">fDraw_mult</a></td></tr>
+<tr class="memdesc:a0ce878df9967a3158072b6710becacdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the multiplicity branches.  <a href="#a0ce878df9967a3158072b6710becacdc">More...</a><br /></td></tr>
+<tr class="separator:a0ce878df9967a3158072b6710becacdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2248ede56928a90c0bdda6e58efc94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aef2248ede56928a90c0bdda6e58efc94">fDraw_tof</a></td></tr>
+<tr class="memdesc:aef2248ede56928a90c0bdda6e58efc94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"tof*"</code> branches.  <a href="#aef2248ede56928a90c0bdda6e58efc94">More...</a><br /></td></tr>
+<tr class="separator:aef2248ede56928a90c0bdda6e58efc94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447619f57c17f32f1f37079bdf642049"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a447619f57c17f32f1f37079bdf642049">fDraw_vertex</a></td></tr>
+<tr class="memdesc:a447619f57c17f32f1f37079bdf642049"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"vertex"</code> branch.  <a href="#a447619f57c17f32f1f37079bdf642049">More...</a><br /></td></tr>
+<tr class="separator:a447619f57c17f32f1f37079bdf642049"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac6f01c43631b6a250adf664321d1cb7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aac6f01c43631b6a250adf664321d1cb7">fPureplot</a></td></tr>
+<tr class="memdesc:aac6f01c43631b6a250adf664321d1cb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to plot histograms of branches <em>without fit</em>.  <a href="#aac6f01c43631b6a250adf664321d1cb7">More...</a><br /></td></tr>
+<tr class="separator:aac6f01c43631b6a250adf664321d1cb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ea8c53c53be8c1846824aa89ecc1f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a03ea8c53c53be8c1846824aa89ecc1f2">fSetranges</a></td></tr>
+<tr class="memdesc:a03ea8c53c53be8c1846824aa89ecc1f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to precisely set histogram ranges.  <a href="#a03ea8c53c53be8c1846824aa89ecc1f2">More...</a><br /></td></tr>
+<tr class="separator:a03ea8c53c53be8c1846824aa89ecc1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42533efe7bce4fcc8773b49e9643cf10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a42533efe7bce4fcc8773b49e9643cf10">fLogY</a></td></tr>
+<tr class="memdesc:a42533efe7bce4fcc8773b49e9643cf10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$y$" src="form_35.png"/> axis of the <code>TH1F</code> in log scale.  <a href="#a42533efe7bce4fcc8773b49e9643cf10">More...</a><br /></td></tr>
+<tr class="separator:a42533efe7bce4fcc8773b49e9643cf10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22efbda42675d76b5123278ade7d12ec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a22efbda42675d76b5123278ade7d12ec">fLogZ</a></td></tr>
+<tr class="memdesc:a22efbda42675d76b5123278ade7d12ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to draw the <img class="formulaInl" alt="$z$" src="form_36.png"/> axis of the <code>TH2F</code> in log scale.  <a href="#a22efbda42675d76b5123278ade7d12ec">More...</a><br /></td></tr>
+<tr class="separator:a22efbda42675d76b5123278ade7d12ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43648cf2a22f36e7be55661a0e207669"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a43648cf2a22f36e7be55661a0e207669">fDraw_fit</a></td></tr>
+<tr class="memdesc:a43648cf2a22f36e7be55661a0e207669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the <code>"fit"</code> branches.  <a href="#a43648cf2a22f36e7be55661a0e207669">More...</a><br /></td></tr>
+<tr class="separator:a43648cf2a22f36e7be55661a0e207669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0ebea070ba604c0c6a17b79322958b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#aa0ebea070ba604c0c6a17b79322958b1">fDo_conv_d</a></td></tr>
+<tr class="memdesc:aa0ebea070ba604c0c6a17b79322958b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian.  <a href="#aa0ebea070ba604c0c6a17b79322958b1">More...</a><br /></td></tr>
+<tr class="separator:aa0ebea070ba604c0c6a17b79322958b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69126edbb96fd9bbf77b5eaa0202d36c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a69126edbb96fd9bbf77b5eaa0202d36c">fDo_conv_s</a></td></tr>
+<tr class="memdesc:a69126edbb96fd9bbf77b5eaa0202d36c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian.  <a href="#a69126edbb96fd9bbf77b5eaa0202d36c">More...</a><br /></td></tr>
+<tr class="separator:a69126edbb96fd9bbf77b5eaa0202d36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2b78ee7a9696ac1e9c2f346379a6be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParBase.html">ConfigParBase</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a3c2b78ee7a9696ac1e9c2f346379a6be">fDo_gauss</a></td></tr>
+<tr class="memdesc:a3c2b78ee7a9696ac1e9c2f346379a6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to produce perform a double Gaussian fit.  <a href="#a3c2b78ee7a9696ac1e9c2f346379a6be">More...</a><br /></td></tr>
+<tr class="separator:a3c2b78ee7a9696ac1e9c2f346379a6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Container object for a <em>BOSS Afterburner</em> analysis configuration file. </p>
-<p>Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<p>Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.</p>
+<p>The configuration (<code>.config</code>) files of the <em>BOSS Afterburner</em> final selection framework can be used to load settings for your analysis during runtime from a configuration text file. This allows you to quickly modify plots without having to recompile your analysis script: you just change some of the parameters in your config file. The types of parameters (their identifiers and value types) are defined in the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code> class.</p>
+<p>The <code>ConfigParameter</code> classes (base <code><a class="el" href="classConfigParBase.html" title="This is the base class for classes that can be used to load a final analysis configuration during run...">ConfigParBase</a></code> and derived classes such as <code>ConfigParameter</code>) represent these certain types of parameters. The <code><a class="el" href="classConfigParBase.html" title="This is the base class for classes that can be used to load a final analysis configuration during run...">ConfigParBase</a></code> class defines the most abstract form of a configuration parameter. It just has an <b>identifier</b> (or parameter name) and a <b>value</b> or set of values. Both are strings, as they are the raw data read from the data file. A line in your configuration file can for instance look like this: </p><div class="fragment"><div class="line">Plot raw data = <span class="keyword">true</span></div></div><!-- fragment --><p> Here, the line <code>"Plot raw data"</code> is the parameter <b>identifier</b>, while <code>"true"</code> is the <b>value</b>. The line will only be read if there is an <code><a class="el" href="classConfigParBase.html" title="This is the base class for classes that can be used to load a final analysis configuration during run...">ConfigParBase</a></code> object (or derived object with the name <code>"Plot raw data"</code>.) The value is in <code>string</code> format, but in this case you will want the value to be a boolean. For this you should define the parameter in the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code> in terms of the <code>ConfigParameter</code> class.</p>
+<p>Another possibility would be to have the lines: </p><div class="fragment"><div class="line">Draw branches = {</div><div class="line">    <span class="keywordflow">do</span> something; <span class="keyword">this</span> is OK;</div><div class="line">    mctruth, E, 150, 0.,</div><div class="line">    3.5, <span class="stringliteral">&quot;E1&quot;</span></div><div class="line">    plo, 1, ;</div><div class="line">    ; empty:zero}</div></div><!-- fragment --><p> Note this is a lazily formatted vector. What <code><a class="el" href="classConfigParBase.html" title="This is the base class for classes that can be used to load a final analysis configuration during run...">ConfigParBase</a></code> does in this case is, it will read these lines as an arreay In this case, what will be read to the <code>list</code> of read values (<code>fReadValues</code>) for the parameter with name <code>"Draw branches"</code> is: </p><div class="fragment"><div class="line"><span class="keywordflow">do</span> something</div><div class="line"><span class="keyword">this</span> is OK</div><div class="line">mctruth, E, 150, 0.,3.5, <span class="stringliteral">&quot;E1&quot;</span></div><div class="line">plo, 1,</div><div class="line">empty:zero</div></div><!-- fragment --><p> The contents of this example are not that useful, but you get the idea:</p><ol type="1">
+<li>a parameter will contain more than one value if its identifier is followed by an opening curly brace (<code>{</code>)</li>
+<li>its values are separated by a semicolumn (<code>;</code>). What you want to do with these read values is up to use to define in a derived class. <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>January 24th, 2018 </dd></dl>
+</li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00029">29</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00061">61</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a70bd800418fdb287a7a1877f5a34989f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70bd800418fdb287a7a1877f5a34989f">&#9670;&nbsp;</a></span>ConfigLoader()</h2>
+<a id="a55c807487a419c3b74d22e369d6a427e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55c807487a419c3b74d22e369d6a427e">&#9670;&nbsp;</a></span>ConfigLoader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -204,7 +193,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">ConfigLoader::ConfigLoader </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>path</em></td><td>)</td>
           <td></td>
         </tr>
@@ -212,35 +201,21 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor that opens a <code>TFile</code> and unordered_maps its contents. </p>
-<dl class="section remark"><dt>Remarks</dt><dd><b>You have to set the <em>names</em> and <em>default values</em> of the <code><a class="el" href="classArgPair.html" title="Class that can contain parameters and values of a loaded configuration file. ">ArgPair</a></code>s here!</b> </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd><b>You have to set the <em>names</em> and <em>default values</em> of the <code>ArgPair</code>s here!</b> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00115">115</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00018">18</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afa561f11f47cb152275123f367b90bde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa561f11f47cb152275123f367b90bde">&#9670;&nbsp;</a></span>BranchesToPlot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::list&lt;<a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a>&gt;&amp; ConfigLoader::BranchesToPlot </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aebb19e6d7a739343867ea3fb11d731e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aebb19e6d7a739343867ea3fb11d731e5">&#9670;&nbsp;</a></span>DrawDifference()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ConfigLoader::DrawDifference </td>
@@ -272,73 +247,21 @@ Public Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00219">219</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00069">69</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a1c2cc2b815576d39de7778e2a169c05d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2cc2b815576d39de7778e2a169c05d">&#9670;&nbsp;</a></span>GetParameterName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string ConfigLoader::GetParameterName </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Attempt to get a parameter <b>name</b> from a line. </p>
-<ol type="1">
-<li>If <code>line</code> contains an equal sign, remove everything after it.</li>
-<li>If not, remove everything after first space.</li>
-<li>Remove trailing spaces and tabs.</li>
-</ol>
-<dl class="section return"><dt>Returns</dt><dd>Parameter name as deduced from input <code>line</code> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00188">188</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ae344ac9992b0410bad77d9b0ffac2105"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae344ac9992b0410bad77d9b0ffac2105">&#9670;&nbsp;</a></span>GetParameterValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string ConfigLoader::GetParameterValue </td>
-          <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>line</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Attempt to get a parameter <b>value</b> from a line. </p>
-<ol type="1">
-<li>If <code>line</code> contains equal sign, get everything before it.</li>
-<li>If not, remove everything before first space.</li>
-<li>Remove leading spaces and tabs.</li>
-<li>Remove quotation marks.</li>
-</ol>
-<dl class="section return"><dt>Returns</dt><dd>Parameter value as infered from line </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00202">202</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ad49e371e26de064dab63f1eb4d918781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad49e371e26de064dab63f1eb4d918781">&#9670;&nbsp;</a></span>InputFilename()</h2>
+<a id="a60154313726e46e84115463078cae6e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60154313726e46e84115463078cae6e6">&#9670;&nbsp;</a></span>GetParameter()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -347,39 +270,94 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* ConfigLoader::InputFilename </td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> * ConfigLoader::GetParameter </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p><b>Interface is defined here!</b> </p>
+<p>Attempt to get a corresponding parameter <b>identifier</b> from a line. </p>
+<ol type="1">
+<li>If <code>input</code> contains an equal sign, remove everything after it. (You are also allowed to place the equal sign on the next input.)</li>
+<li>Remove leading and trailing spaces and tabs and double quotation marks (<code>"</code>).</li>
+</ol>
+<dl class="section return"><dt>Returns</dt><dd>Parameter name as deduced from input <code>line</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00094">94</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
 
 </div>
 </div>
-<a id="aeddb7fc760ca2fbfc0a235761c472490"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeddb7fc760ca2fbfc0a235761c472490">&#9670;&nbsp;</a></span>LoadConfiguration()</h2>
+<a id="a0ab2b46d0fc05f60d5fed4e086e928c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab2b46d0fc05f60d5fed4e086e928c1">&#9670;&nbsp;</a></span>ImportValues()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int ConfigLoader::LoadConfiguration </td>
+          <td class="memname">void ConfigLoader::ImportValues </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td>
+          <td class="paramname"><em>par</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Import parameter values from a line. </p>
+<p>The <code>input</code> line has to be formatted, that is, it may not contain the initial opening or final closing bracket. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00108">108</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a24aba3c2e19427dabefe553e29463744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24aba3c2e19427dabefe553e29463744">&#9670;&nbsp;</a></span>LoadConfiguration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t ConfigLoader::LoadConfiguration </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Load a configuration for analysis from a <em>BOSS Afterburner</em> configuration file. </p>
@@ -406,11 +384,43 @@ Public Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Get paramter name and value.</p>
+<p class="startli">Now, there are four scenarios:</p>
+<ol>
+<li>
+<p class="startli">If <code>line</code> at this stage does not contain an equal sign, it means that this line only contains a parameter identifier and that its values are defined on the next line.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Load value if it compares to one of the parameters.</p>
+<p class="startli">If the end of <code>line</code> is an equal sign or an opening bracket (<code>{</code>), it also means that this line only contains a parameter identifier and that its values are defined on the next line.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Otherwise, if in addition there is no opening bracket (<code>{</code>), this means this parameter only has one value. We can add it and continue to the next line to process the next parameter.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">In the remaining scenario, this line contains the first value for this parameter and we should continue reading.</p>
+<p class="endli"></p>
+</li>
+</ol>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Import the remaining values by continuing over the next lines until the first closing bracket (<code>}</code>) is encountered.</p>
+<ol>
+<li>
+<p class="startli"><code>Trim</code> line.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">If this line does not contain a closing bracket, simply import all arguments on this line and go to the next.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">If not, we should import the last arguments and then <code>break</code> the <code>while</code> loop</p>
+<p class="endli"></p>
+</li>
+</ol>
 <p class="endli"></p>
 </li>
 </ul>
@@ -419,450 +429,478 @@ Public Attributes</h2></td></tr>
 </ol>
 <dl class="section return"><dt>Returns</dt><dd>Number of valid loaded arguments </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00146">146</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a547e7300a3f5100cf5d8484392a9a4d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a547e7300a3f5100cf5d8484392a9a4d3">&#9670;&nbsp;</a></span>RemoveLeading()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigLoader::RemoveLeading </td>
-          <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>c</em> = <code>'&#160;'</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove all leading characters if they are 'c'. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>String from which you want to remove the characters. </td></tr>
-    <tr><td class="paramname">c</td><td>Character that you want to trim. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00245">245</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a621262f4fd263be406c5fc35bd93eb39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a621262f4fd263be406c5fc35bd93eb39">&#9670;&nbsp;</a></span>RemoveTrailing()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigLoader::RemoveTrailing </td>
-          <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>c</em> = <code>'&#160;'</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove all trailing characters if they are 'c'. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>String from which you want to remove the characters. </td></tr>
-    <tr><td class="paramname">c</td><td>Character that you want to trim. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00253">253</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a3b55bf87c0d21dbec82d7cf5076f47c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b55bf87c0d21dbec82d7cf5076f47c4">&#9670;&nbsp;</a></span>Trim()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ConfigLoader::Trim </td>
-          <td>(</td>
-          <td class="paramtype">std::string &amp;&#160;</td>
-          <td class="paramname"><em>line</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char&#160;</td>
-          <td class="paramname"><em>c</em> = <code>'&#160;'</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Remove all leading and trailing characters if they are 'c'. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">line</td><td>String from which you want to remove the characters. </td></tr>
-    <tr><td class="paramname">c</td><td>Character that you want to trim. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00261">261</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00131">131</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a1dc996502f4f372d13a7c5ecc968a5b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1dc996502f4f372d13a7c5ecc968a5b6">&#9670;&nbsp;</a></span>fConfigPath</h2>
+<a id="a2c57f6b311c0daa808fb66bbf243b456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c57f6b311c0daa808fb66bbf243b456">&#9670;&nbsp;</a></span>fConfigPath</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string ConfigLoader::fConfigPath</td>
+          <td class="memname">const std::string ConfigLoader::fConfigPath</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00052">52</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ae2a41609fa6823ead84b3d8ec7a1fc0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2a41609fa6823ead84b3d8ec7a1fc0e">&#9670;&nbsp;</a></span>fDo_conv_d</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDo_conv_d</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00079">79</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="afe7fe2affe68e38cb4666d84991f0827"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe7fe2affe68e38cb4666d84991f0827">&#9670;&nbsp;</a></span>fDo_conv_s</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDo_conv_s</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00080">80</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a8341ec20d2234ca36bc8c66cb7809cbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8341ec20d2234ca36bc8c66cb7809cbc">&#9670;&nbsp;</a></span>fDo_gauss</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDo_gauss</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to produce perform a double Gaussian fit. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00081">81</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ab4bfc4656c46195d983af095958dc7a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab4bfc4656c46195d983af095958dc7a4">&#9670;&nbsp;</a></span>fDraw_fit</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDraw_fit</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to draw the <code>"fit"</code> branches. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00078">78</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a80c82f52fb27f81e8295458cc0e22d17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80c82f52fb27f81e8295458cc0e22d17">&#9670;&nbsp;</a></span>fDraw_mctruth</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDraw_mctruth</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to draw the MC truth parameters. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00066">66</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ac5d2bd002c9d02d7f083a92de872c201"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5d2bd002c9d02d7f083a92de872c201">&#9670;&nbsp;</a></span>fDraw_mult</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDraw_mult</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to draw the multiplicity branches. </p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00067">67</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="adf3424b51904cbbad28136432ec09f57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf3424b51904cbbad28136432ec09f57">&#9670;&nbsp;</a></span>fDraw_tof</h2>
+<a id="aa0ebea070ba604c0c6a17b79322958b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0ebea070ba604c0c6a17b79322958b1">&#9670;&nbsp;</a></span>fDo_conv_d</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDraw_tof</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDo_conv_d</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>double</em> Gaussian. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00086">86</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a69126edbb96fd9bbf77b5eaa0202d36c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69126edbb96fd9bbf77b5eaa0202d36c">&#9670;&nbsp;</a></span>fDo_conv_s</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDo_conv_s</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce perform a Breit-Wigner convoluted with a <em>single</em> Gaussian. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00087">87</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a3c2b78ee7a9696ac1e9c2f346379a6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2b78ee7a9696ac1e9c2f346379a6be">&#9670;&nbsp;</a></span>fDo_gauss</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDo_gauss</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to produce perform a double Gaussian fit. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00088">88</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a43648cf2a22f36e7be55661a0e207669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43648cf2a22f36e7be55661a0e207669">&#9670;&nbsp;</a></span>fDraw_fit</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDraw_fit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the <code>"fit"</code> branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00085">85</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a051afc995c17ff8a6fe80defe738e9c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a051afc995c17ff8a6fe80defe738e9c6">&#9670;&nbsp;</a></span>fDraw_mctruth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDraw_mctruth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the MC truth parameters. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00076">76</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a0ce878df9967a3158072b6710becacdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ce878df9967a3158072b6710becacdc">&#9670;&nbsp;</a></span>fDraw_mult</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDraw_mult</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to draw the multiplicity branches. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00077">77</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="aef2248ede56928a90c0bdda6e58efc94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2248ede56928a90c0bdda6e58efc94">&#9670;&nbsp;</a></span>fDraw_tof</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDraw_tof</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to draw the <code>"tof*"</code> branches. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00068">68</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00078">78</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="a66c1d2838bf480f24dca6689021972ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66c1d2838bf480f24dca6689021972ff">&#9670;&nbsp;</a></span>fDraw_vertex</h2>
+<a id="a447619f57c17f32f1f37079bdf642049"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447619f57c17f32f1f37079bdf642049">&#9670;&nbsp;</a></span>fDraw_vertex</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fDraw_vertex</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fDraw_vertex</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to draw the <code>"vertex"</code> branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00069">69</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00079">79</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="a3342e9dcd1259190ec187d3a078d6e34"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3342e9dcd1259190ec187d3a078d6e34">&#9670;&nbsp;</a></span>fFitplots</h2>
+<a id="a1a91424b420946ce71c7a0f9989a2d00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a91424b420946ce71c7a0f9989a2d00">&#9670;&nbsp;</a></span>fFitplots</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fFitplots</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fFitplots</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to produce invariant mass fits. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00060">60</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="afa0793e24ad327d370b546bc91be0d40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa0793e24ad327d370b546bc91be0d40">&#9670;&nbsp;</a></span>fInputFilename</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;std::string&gt; ConfigLoader::fInputFilename</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00053">53</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="ab2a72366f4c2482b501f5df197b7fdf3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab2a72366f4c2482b501f5df197b7fdf3">&#9670;&nbsp;</a></span>fLogY</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;std::string&gt; ConfigLoader::fLogY</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether to draw the <img class="formulaInl" alt="$y$" src="form_30.png"/> axis of the <code>TH1F</code> in log scale. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00072">72</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="adb0ef478a8da59bd0c8e1e56851ebb40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb0ef478a8da59bd0c8e1e56851ebb40">&#9670;&nbsp;</a></span>fLogZ</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;std::string&gt; ConfigLoader::fLogZ</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether to draw the <img class="formulaInl" alt="$z$" src="form_31.png"/> axis of the <code>TH2F</code> in log scale. </p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00073">73</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="a2b440a910eccfc5bbe02b08ab1a06487"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b440a910eccfc5bbe02b08ab1a06487">&#9670;&nbsp;</a></span>fPlotstats</h2>
+<a id="a5554391a86d312c27745c46d2dea4dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5554391a86d312c27745c46d2dea4dae">&#9670;&nbsp;</a></span>fInputFilename</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fPlotstats</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fInputFilename</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00069">69</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a42533efe7bce4fcc8773b49e9643cf10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42533efe7bce4fcc8773b49e9643cf10">&#9670;&nbsp;</a></span>fLogY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fLogY</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to draw the <img class="formulaInl" alt="$y$" src="form_35.png"/> axis of the <code>TH1F</code> in log scale. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00082">82</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a22efbda42675d76b5123278ade7d12ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22efbda42675d76b5123278ade7d12ec">&#9670;&nbsp;</a></span>fLogZ</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fLogZ</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether to draw the <img class="formulaInl" alt="$z$" src="form_36.png"/> axis of the <code>TH2F</code> in log scale. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00083">83</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="aaea6b22e397cdd3a9b6eccd7ff312274"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaea6b22e397cdd3a9b6eccd7ff312274">&#9670;&nbsp;</a></span>fPlotstats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fPlotstats</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to draw the legend in the upper right corner with histogram statistics. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00061">61</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00074">74</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="a37788e8934ebdaad598171635667d827"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37788e8934ebdaad598171635667d827">&#9670;&nbsp;</a></span>fPrintAverages</h2>
+<a id="a5851ed02d4a15170574048ad07b19970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5851ed02d4a15170574048ad07b19970">&#9670;&nbsp;</a></span>fPrintAverages</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fPrintAverages</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fPrintAverages</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set! </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00059">59</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00072">72</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="a0a9d3b01a62096db9576169aca1caa31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a9d3b01a62096db9576169aca1caa31">&#9670;&nbsp;</a></span>fPrintBranches</h2>
+<a id="a5c3dfe9a5ca8692b69fdb575909bbb02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c3dfe9a5ca8692b69fdb575909bbb02">&#9670;&nbsp;</a></span>fPrintBranches</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fPrintBranches</td>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fPrintBranches</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Whether or not to print all branch names. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00058">58</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="afed2c96f5b4de23695990f37e3d310a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afed2c96f5b4de23695990f37e3d310a5">&#9670;&nbsp;</a></span>fPureplot</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fPureplot</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to plot histograms of branches <em>without fit</em>. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00070">70</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
-
-</div>
-</div>
-<a id="a20a552bb482f6ef0d7c03f512de29817"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20a552bb482f6ef0d7c03f512de29817">&#9670;&nbsp;</a></span>fSetranges</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classArgPair.html">ArgPair</a>&lt;bool&gt; ConfigLoader::fSetranges</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Whether or not to precisely set histogram ranges. </p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00071">71</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="aac6f01c43631b6a250adf664321d1cb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac6f01c43631b6a250adf664321d1cb7">&#9670;&nbsp;</a></span>fPureplot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fPureplot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to plot histograms of branches <em>without fit</em>. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00080">80</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<a id="a03ea8c53c53be8c1846824aa89ecc1f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03ea8c53c53be8c1846824aa89ecc1f2">&#9670;&nbsp;</a></span>fSetranges</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> ConfigLoader::fSetranges</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Whether or not to precisely set histogram ranges. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00081">81</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a></li>
+<li><a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

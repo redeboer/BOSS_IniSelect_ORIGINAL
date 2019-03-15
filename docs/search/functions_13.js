@@ -1,5 +1,5 @@
 var searchData=
 [
   ['trackselector',['TrackSelector',['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector']]],
-  ['trim',['Trim',['../classConfigLoader.html#a3b55bf87c0d21dbec82d7cf5076f47c4',1,'ConfigLoader']]]
+  ['trim',['Trim',['../namespaceCommonFunctions_1_1String.html#aa34fb186f00b82e59580c62feb9b68bd',1,'CommonFunctions::String::Trim(std::string &amp;input)'],['../namespaceCommonFunctions_1_1String.html#ade1f41b16ec8d0eb2aab4f2fb1ec8b9f',1,'CommonFunctions::String::Trim(std::string &amp;input, char c)']]]
 ];

@@ -1,7 +1,6 @@
 var files =
 [
     [ "AnalyseBOSSOutput.C", "AnalyseBOSSOutput_8C.html", "AnalyseBOSSOutput_8C" ],
-    [ "ArgPair.h", "ArgPair_8h.html", null ],
     [ "BOSSOutputLoader.cxx", "BOSSOutputLoader_8cxx.html", null ],
     [ "BOSSOutputLoader.h", "BOSSOutputLoader_8h.html", null ],
     [ "BranchPlotOptions.cxx", "BranchPlotOptions_8cxx.html", null ],
@@ -10,7 +9,10 @@ var files =
     [ "ChainLoader.h", "ChainLoader_8h.html", null ],
     [ "CommonFunctions.cxx", "CommonFunctions_8cxx.html", null ],
     [ "CommonFunctions.h", "CommonFunctions_8h.html", "CommonFunctions_8h" ],
+    [ "ConfigLoader.cxx", "ConfigLoader_8cxx.html", null ],
     [ "ConfigLoader.h", "ConfigLoader_8h.html", null ],
+    [ "ConfigParBase.cxx", "ConfigParBase_8cxx.html", null ],
+    [ "ConfigParBase.h", "ConfigParBase_8h.html", null ],
     [ "Container_base.cxx", "Container__base_8cxx.html", null ],
     [ "Container_base.h", "Container__base_8h.html", null ],
     [ "Container_indexed.cxx", "Container__indexed_8cxx.html", null ],

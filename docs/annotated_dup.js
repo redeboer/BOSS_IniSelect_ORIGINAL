@@ -2,12 +2,11 @@ var annotated_dup =
 [
     [ "CommonFunctions", "namespaceCommonFunctions.html", null ],
     [ "Settings", "namespaceSettings.html", null ],
-    [ "ArgPair", "classArgPair.html", "classArgPair" ],
-    [ "ArgPair_base", "classArgPair__base.html", "classArgPair__base" ],
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html", "classBOSSOutputLoader" ],
     [ "BranchPlotOptions", "classBranchPlotOptions.html", "classBranchPlotOptions" ],
     [ "ChainLoader", "classChainLoader.html", "classChainLoader" ],
     [ "ConfigLoader", "classConfigLoader.html", "classConfigLoader" ],
+    [ "ConfigParBase", "classConfigParBase.html", "classConfigParBase" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],
     [ "Container_indexed", "classContainer__indexed.html", "classContainer__indexed" ],
     [ "CutObject", "classCutObject.html", "classCutObject" ],

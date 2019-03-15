@@ -7,5 +7,6 @@ var searchData=
   ['fit',['Fit',['../namespaceCommonFunctions_1_1Fit.html',1,'CommonFunctions']]],
   ['hist',['Hist',['../namespaceCommonFunctions_1_1Hist.html',1,'CommonFunctions']]],
   ['loop',['Loop',['../namespaceCommonFunctions_1_1Loop.html',1,'CommonFunctions']]],
-  ['print',['Print',['../namespaceCommonFunctions_1_1Print.html',1,'CommonFunctions']]]
+  ['print',['Print',['../namespaceCommonFunctions_1_1Print.html',1,'CommonFunctions']]],
+  ['string',['String',['../namespaceCommonFunctions_1_1String.html',1,'CommonFunctions']]]
 ];

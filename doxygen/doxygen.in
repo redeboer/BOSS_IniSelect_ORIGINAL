@@ -320,6 +320,7 @@ EXCLUDE_PATTERNS += *_load.cxx
 EXCLUDE_PATTERNS += *.bashrc
 EXCLUDE_PATTERNS += entries.cxx
 EXCLUDE_PATTERNS += load.cxx
+EXCLUDE_PATTERNS += */quick/*
 
 # The EXAMPLE_PATH tag can be used to specify one or more files or
 # directories that contain example code fragments that are included (see

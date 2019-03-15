@@ -2,8 +2,6 @@ var searchData=
 [
   ['readcard',['readCard',['../classtopoana.html#af519572dd12c25ca6f46a92360bbdb02',1,'topoana::readCard(string topoAnaCardName)'],['../classtopoana.html#af519572dd12c25ca6f46a92360bbdb02',1,'topoana::readCard(string topoAnaCardName)']]],
   ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
-  ['removeleading',['RemoveLeading',['../classConfigLoader.html#a547e7300a3f5100cf5d8484392a9a4d3',1,'ConfigLoader']]],
-  ['removetrailing',['RemoveTrailing',['../classConfigLoader.html#a621262f4fd263be406c5fc35bd93eb39',1,'ConfigLoader']]],
   ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
   ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
   ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],

@@ -15,15 +15,11 @@ var hierarchy =
         [ "rhopi_pipigg", "classrhopi__pipigg.html", null ]
       ] ]
     ] ],
-    [ "ArgPair_base", "classArgPair__base.html", [
-      [ "ArgPair< TYPE >", "classArgPair.html", null ],
-      [ "ArgPair< bool >", "classArgPair.html", null ],
-      [ "ArgPair< std::string >", "classArgPair.html", null ]
-    ] ],
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html", null ],
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", null ],
+    [ "ConfigParBase", "classConfigParBase.html", null ],
     [ "Container_base", "classContainer__base.html", [
       [ "Container_indexed", "classContainer__indexed.html", null ],
       [ "CutObject", "classCutObject.html", null ],

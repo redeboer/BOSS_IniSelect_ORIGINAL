@@ -18,6 +18,7 @@ var CommonFunctions_8h =
     [ "FitDoubleGaussian", "CommonFunctions_8h.html#a3c21e48c1bf5db89bc65c5ba1b8f9be9", null ],
     [ "GetFromMap", "CommonFunctions_8h.html#a0b977e86af40bf4d00aa457564ce39d1", null ],
     [ "GetOutputFilename", "CommonFunctions_8h.html#a5428d97ac7295f19b8894f4833c358a5", null ],
+    [ "IsComment", "CommonFunctions_8h.html#a7e9a48ce09dbe4d38657050de9eefa89", null ],
     [ "IsEmptyPtr", "CommonFunctions_8h.html#ae8f9a2074dbef8890193c38e3c7366a6", null ],
     [ "LoopTree", "CommonFunctions_8h.html#aceaee3e4acedcbc73f348434d11f7497", null ],
     [ "MapHasKey", "CommonFunctions_8h.html#a6459eca4f6a894f90a319182f47664f2", null ],
@@ -25,5 +26,7 @@ var CommonFunctions_8h =
     [ "SaveCanvas", "CommonFunctions_8h.html#a36f64ebbbd69516c8d22dec07fc3037e", null ],
     [ "SetAxisTitles", "CommonFunctions_8h.html#a1fc2ea57d25a75da6bcdd3b83c063b6f", null ],
     [ "SetLogScale", "CommonFunctions_8h.html#a909c1fc4f2ff18ee7626a4188795d4d2", null ],
-    [ "SetOutputFilename", "CommonFunctions_8h.html#a59d365fb3792eaa3bab6d275a1a2d9ba", null ]
+    [ "SetOutputFilename", "CommonFunctions_8h.html#a59d365fb3792eaa3bab6d275a1a2d9ba", null ],
+    [ "Trim", "CommonFunctions_8h.html#aa34fb186f00b82e59580c62feb9b68bd", null ],
+    [ "Trim", "CommonFunctions_8h.html#ade1f41b16ec8d0eb2aab4f2fb1ec8b9f", null ]
 ];

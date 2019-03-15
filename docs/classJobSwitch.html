@@ -157,13 +157,10 @@ Static Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This simple object encapsulates a <code>bool</code>ean job option. </p>
-<p>Options like these are usually used as switches in your algorithm that can be set to <code>true</code> or <code>false</code> in the job options. The constructor only needs a name for this switch. It is convention to start this name with e.g.:</p><ul>
-<li><code>"write_"</code> if this determines whether or not to write a certain <code>TTree</code>/<code>NTuple</code>. <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<p>Use a <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> instead of a simple <code>bool</code>ean if you want to be able to set the switch during runtime through the joboptions file. Implementation in the code: The constructor only needs a name for this switch. It is convention to start this name with e.g. <code>"write_"</code> if this determines whether or not to write a certain <code>TTree</code>/<code>NTuple</code>. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>January 3rd, 2019 </dd></dl>
-</li>
-</ul>
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00027">27</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00026">26</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0bbde5e5513f986bea85917fae9509bd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bbde5e5513f986bea85917fae9509bd">&#9670;&nbsp;</a></span>JobSwitch()</h2>
@@ -244,7 +241,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00034">34</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00033">33</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 
 </div>
 </div>
@@ -310,7 +307,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Read access to <code>fValue</code> data member. </p>
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00036">36</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00035">35</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +336,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Convertor for <code>bool</code>ean arithmatic. </p>
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00035">35</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00034">34</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +355,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Write access to <code>fValue</code> data member. </p>
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00038">38</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00037">37</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 
 </div>
 </div>
@@ -382,7 +379,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00032">32</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="JobSwitch_8h_source.html#l00031">31</a> of file <a class="el" href="JobSwitch_8h_source.html">JobSwitch.h</a>.</p>
 
 </div>
 </div>

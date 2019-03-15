@@ -140,7 +140,7 @@
 					)) continue;
 					/// </ul>
 
-				/// <li> @b Write Particle Identification information of all tracks
+				/// <li> **Write** Particle Identification information of all tracks
 					WritePIDInformation();
 
 				/// <li> Identify type of charged particle and add to related vector: this package: only pions.

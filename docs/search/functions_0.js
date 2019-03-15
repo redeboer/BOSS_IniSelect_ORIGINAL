@@ -9,7 +9,6 @@ var searchData=
   ['addntupleitems_5fmctruth',['AddNTupleItems_MCTruth',['../classTrackSelector.html#adaca81f451e0425c3808713bc2ecd13a',1,'TrackSelector']]],
   ['addntupleitems_5ftof',['AddNTupleItems_Tof',['../classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4',1,'TrackSelector']]],
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
-  ['analysebossoutput',['AnalyseBOSSOutput',['../group__BOSS__Afterburner__scripts.html#ga086e25251157ff77e7388eea63cee17c',1,'AnalyseBOSSOutput.C']]],
-  ['argpair',['ArgPair',['../classArgPair.html#aee385134804503a8dfe362554f1f1ad2',1,'ArgPair']]],
-  ['argpair_5fbase',['ArgPair_base',['../classArgPair__base.html#aa078191ff7872ab8bf4efe61e69dd5db',1,'ArgPair_base']]]
+  ['addvalue',['AddValue',['../classConfigParBase.html#a8c9b28ca5a56027b3d633def013d5710',1,'ConfigParBase']]],
+  ['analysebossoutput',['AnalyseBOSSOutput',['../group__BOSS__Afterburner__scripts.html#ga086e25251157ff77e7388eea63cee17c',1,'AnalyseBOSSOutput.C']]]
 ];
