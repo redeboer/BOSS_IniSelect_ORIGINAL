@@ -38,7 +38,7 @@
 	private:
 		void PrintValue();
 		void SetValue(const std::string &input);
-		std::list<TYPE> fValues;
+		TYPE fValue;
 	};
 
 
