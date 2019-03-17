@@ -2,9 +2,9 @@
 
 _The BOSS Afterburner_ repository is designed as an extension of the conventional BOSS analysis framework. It contains the tutorial pages you are currently looking at, but also comes with two major components that are to facilitate initial and final event selection.
 
-First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**](initial/base.md).
+First of all, there is the _base-derived algorithm structure_. This framework is an advanced version of the `Rhopi` algorithm: a framework for [**initial event selection**](initial-event-selection/base.md).
 
-Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](final/final.md), or the "Afterburner".
+Like `RhopiAlg`, output of this initial event selection is a ROOT file containing a set of `TTree`s. Usually, you then design your own scripts from scratch to load, apply additional cuts, plot, and then fit the data in there. This is where the second part of this repository comes in: the framework for [**final event selection**](final-event-selection/final.md), or the "Afterburner".
 
 In the following pages, we will first go through the motivation for designing this layer outside of the BOSS analysis framework and then go through these two components of event selection. We will end with a note on contributing to this framework, because one of the main aims of this setup is **to facilitate collaboration on analysis code within BESIII**.
 
@@ -20,6 +20,13 @@ Some aims of this setup:
 * Future plans:
   * **Standardized output** of plots such as default plot labels, automatised naming, watermarks for the status of your analysis, etc.
   * **Unit tests** that ensure the consistency and reliability of analysis output after framework updates. See for instance [`CppTest`](https://redeboer.gitbook.io/afterburner).
+
+{% hint style="info" %}
+The complexity of research in high energy physics requires reproducable research. Recent developments in the IT industry allow us to collaborate more easily and record the workflow as to make analyses reproducable and transparant. More sources on these trends can be found here:
+
+* _Open is not enough_ [Nature Physics, volume 15, pp. 113–119](https://www.nature.com/articles/s41567-018-0342-2) \(2019\)
+* [REANA](http://www.reanahub.io/#news) \(Reusable Analysis\) and [its documentation](https://reana.readthedocs.io/en/latest/introduction.html)
+{% endhint %}
 
 ### Facilitate collaboration
 
