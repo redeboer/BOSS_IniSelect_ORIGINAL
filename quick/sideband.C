@@ -105,10 +105,16 @@
 
 
 	TChain gChain(gTreeName.Data());
-	double gM_D0 {1.872};
-	double gM_phi{1.021};
-	double gSigma_D0 {0.00426};
-	double gSigma_phi{0.00837};
+	// * determined statistically
+		// double gM_D0 {1.872};
+		// double gM_phi{1.021};
+		// double gSigma_D0 {0.00426};
+		// double gSigma_phi{0.00837};
+	// * determined from fit
+		double gM_D0 {1.8719134};
+		double gM_phi{1.0192461};
+		double gSigma_D0 {0.00779};
+		double gSigma_phi{0.00989};
 
 
 
@@ -169,7 +175,7 @@
 					Form("counts per %g %s", (double)gBinsWidth_D0_full, gMassUnit),
 					0, "mD0_full.pdf", false, gM_D0, gSigma_D0);
 				Draw<TH1F*>(
-					"mD0", "mphi>0.996 && mphi<1.046", "e1", gBins_D0_3sig,
+					"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1", gBins_D0_3sig,
 					Form("%s (%s)", gTex_D0dec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
 					kRed, "mD0_3sig.pdf", false, gM_D0, gSigma_D0);
@@ -179,7 +185,7 @@
 					Form("%s (%s)", gTex_D0dec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit));
 				Draw<TH1F*>(
-					"mD0", "mphi>0.996 && mphi<1.046", "e1 same", gBins_D0_3sig,
+					"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1 same", gBins_D0_3sig,
 					Form("%s (%s)", gTex_D0dec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
 					kRed, "mD0.pdf", true, gM_D0, gSigma_D0);
@@ -191,7 +197,7 @@
 					Form("counts per %g %s", (double)gBinsWidth_phi_full, gMassUnit),
 					0, "mphi_full.pdf", false, gM_phi, gSigma_phi);
 				Draw<TH1F*>(
-					"mphi", "mD0>1.859 && mD0<1.885", "e1", gBins_phi_3sig,
+					"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1", gBins_phi_3sig,
 					Form("%s (%s)", gTex_phidec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
 					kRed, "mphi_3sig.pdf", false, gM_phi, gSigma_phi);
@@ -206,7 +212,7 @@
 					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
 					kGreen+2);
 				Draw<TH1F*>(
-					"mphi", "mD0>1.859 && mD0<1.885", "e1 same", gBins_phi_3sig,
+					"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1 same", gBins_phi_3sig,
 					Form("%s (%s)", gTex_phidec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
 					kRed, "mphi.pdf", true, gM_phi, gSigma_phi);

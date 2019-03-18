@@ -1,7 +1,7 @@
 // * Filenames * //
 	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"
 	gTreeName  = "fit4c_best"
-	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/excl/"
+	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/excl_log/"
 
 // * Binnings * //
 	gBinsMin_phi_full   = .98
