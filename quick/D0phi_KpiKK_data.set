@@ -1,14 +1,26 @@
 // * Filenames * //
 	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/data/fit_cut_2009+2012"
 	gTreeName  = "fit4c_best"
+	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/data/"
 
-// * Binnings * //
-	gBinsMin_phi   = .98
-	gBinsMax_phi   = 1.1
-	gBinsWidth_phi = .01
-	gBinsMin_D0    = 1.76
-	gBinsMax_D0    = 1.91
-	gBinsWidth_D0  = .01
+// * Binnings phi * //
+	gBinsMin_phi_full   = .98
+	gBinsMax_phi_full   = 1.1
+	gBinsWidth_phi_full = .002
+
+	gBinsMin_phi_3sig   = .98
+	gBinsMax_phi_3sig   = 1.1
+	gBinsWidth_phi_3sig = .004
+
+// * Binnings D0 * //
+	gBinsMin_D0_full    = 1.76
+	gBinsMax_D0_full    = 1.91
+	gBinsWidth_D0_full  = .005
+
+	gBinsMin_D0_3sig    = 1.76
+	gBinsMax_D0_3sig    = 1.91
+	gBinsWidth_D0_3sig  = .01
 
 // * Plot settings * //
 	gSetLogY = 0
+	gPlotStats = 0

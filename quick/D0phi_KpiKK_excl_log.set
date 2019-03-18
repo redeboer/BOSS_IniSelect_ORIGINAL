@@ -22,5 +22,5 @@
 	gBinsWidth_D0_3sig = .001
 
 // * Plot settings * //
-	gSetLogY = 0
+	gSetLogY = 1
 	gPlotStats = 0
