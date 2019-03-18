@@ -19,6 +19,7 @@
 
 
 	/// This is the base class for objects that hold parameters from a config file.
+		/// This base class is necessary to allow one to loop over all different types (manifestations of `template`s) for `ConfigParameter`.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     March 15th, 2019
 	class ConfigParBase {
@@ -34,6 +35,7 @@
 
 		void AddValue(std::string value) { fReadValues.push_back(value); }
 		const std::list<std::string>* GetListOfValues() { return &fReadValues; }
+		virtual void SetValues() = 0; ///< Conversion function that should be specified in the derived `ConfigParameter` template class.
 
 
 	protected:

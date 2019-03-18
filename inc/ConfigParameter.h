@@ -5,6 +5,11 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
+
+	#include "CommonFunctions.h"
+	#include "ConfigParBase.h"
+	#include "TString.h"
 	#include <iomanip>
 	#include <iostream>
 	#include <list>
@@ -21,7 +26,7 @@
 
 
 	/// This `template` class is used to specify how to handle the values loaded to the `ConfigParBase` base class.
-		/// You should define in this derived class how to go from the loaded string values to data. This has to defined for each `TYPE`. In principle, the `TYPE` is just a `typename`, that is, for instance a `double` or `int`. But you can also overload the `ConvertValues` function and specify in that overload how to go from the strings in `fReadValues` to the data of your object.
+		/// You should define in this derived class how to go from the loaded string values to data. This has to defined for each `TYPE`. In principle, the `TYPE` is just a `typename`, that is, for instance a `double` or `int`. But you can also overload the `ConvertToValue` function and specify in that overload how to go from the strings in `fReadValues` to the data of your object.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     March 15th, 2019
 	template<class TYPE>
@@ -29,14 +34,14 @@
 	public:
 		ConfigParameter(const std::string &identifier);
 		ConfigParameter(const std::string &identifier, const TYPE &default_value);
-		void SetParameter(const std::string &parname, const std::string &parvalue, bool output=false);
 		void operator=(const TYPE &val) { value = val; }
 		bool operator==(const std::string &data) const { return !name.compare(data); }
 		bool operator!=(const std::string &data) const { return  name.compare(data); }
-		void Print(int width=0);
 		explicit TYPE operator() { return value; }
+		virtual void SetValues();
 	private:
-		void ConvertValues(const std::string &input);
+		void ConvertToValue();
+		void ConvertFromValue();
 		TYPE fValue;
 	};
 
@@ -47,50 +52,32 @@
 // * ------- SPECIALISATIONS ------- * //
 // * =============================== * //
 // ! This list needs to be expended if you start using more typenames
+
+
 	template class ConfigParameter<std::string>;
 	template class ConfigParameter<bool>;
 
 
 
-// * =========================== * //
-// * ------- INFORMATION ------- * //
-// * =========================== * //
+// * ============================ * //
+// * ------- CONSTRUCTORS ------- * //
+// * ============================ * //
 
 
-	/// Print a `name` and `value` this parameter object.
-	/// @param width Use this parameter if you want to print the `name` of the parameter in a certain column width. This can be useful when printing a table using `PrintAll`.
-	template<typename TYPE> inline
-	void ConfigParameter<TYPE>::Print(int width)
+	template<class TYPE> inline
+	ConfigParameter<TYPE>::ConfigParameter(const std::string &identifier) :
+		ConfigParBase(identifier)
 	{
-		PrintName(width);
-		PrintValue();
-		std::cout << std::endl;
+		ConvertToValue();
 	}
 
 
-	/// General template method that prints the value of this paramter object.
-	/// This method has been defined to allow for specialisations.
-	template<typename TYPE> inline
-	void ConfigParameter<TYPE>::PrintValue()
+	template<class TYPE> inline
+	ConfigParameter<TYPE>::ConfigParameter(const std::string &identifier, const TYPE &default_value) :
+		ConfigParBase(identifier),
+		fValue(default_value)
 	{
-		std::cout << value;
-	}
-
-
-	/// Specialisation `ConfigParameter::Print` in the case of a `string`.
-	/// This method prints quotation marks around the parameter value.
-	template<> void ConfigParameter<std::string>::PrintValue()
-	{
-		std::cout << "\"" << value << "\"";
-	}
-
-
-	/// Specialisation `ConfigParameter::Print` in the case of a `bool`ean.
-	/// This method prints `false` if the value is `0` and `true` if otherwise.
-	template<> void ConfigParameter<bool>::PrintValue()
-	{
-		if(value) std::cout << "true";
-		else      std::cout << "false";
+		ConvertFromValue();
 	}
 
 
@@ -100,10 +87,30 @@
 // * ======================= * //
 
 
+	/// Convert the string values in `fReadValues` to the `fValue` data member.
+	/// Default `ConvertFromValue` template function: works only for `type`s like `double`s, because this function relies on `std::stringstream`.
 	template<typename TYPE> inline
-	void ConfigParameter<TYPE>::SetValue(const std::string &input) {
-		std::istringstream ss(input);
-		ss >> value;
+	void ConfigParameter<TYPE>::ConvertFromValue()
+	{
+		if(!fReadValues.size()) {
+			CommonFunctions::Error::PrintWarning(Form("No values to convert for parameter \"%s\"", fIdentifier.c_str()));
+			return;
+		}
+		std::istringstream ss(fReadValues.front());
+		ss >> fValue;
+	}
+
+
+	/// Default `ConvertToValue` template function: works only for `type`s like `double`s, because this function relies on .
+	template<typename TYPE> inline
+	void ConfigParameter<TYPE>::ConvertFromValue()
+	{
+		if(!fReadValues.size()) {
+			CommonFunctions::Error::PrintWarning(Form("No values to convert for parameter \"%s\"", fIdentifier.c_str()));
+			return;
+		}
+		std::istringstream ss(fReadValues.front());
+		ss >> fValue;
 	}
 
 
