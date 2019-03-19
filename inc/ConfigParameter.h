@@ -38,7 +38,7 @@
 		bool operator==(const std::string &data) const { return !name.compare(data); }
 		bool operator!=(const std::string &data) const { return  name.compare(data); }
 		explicit TYPE operator() { return value; }
-		virtual void SetValues();
+		void SetValues();
 	private:
 		void ConvertToValue();
 		void ConvertFromValue();

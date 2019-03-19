@@ -6,7 +6,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "ConfigParBase.h"
+	#include "ConfigParameter.h"
 	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
 	#include <fstream>
@@ -66,27 +66,27 @@
 	private:
 		const std::string fConfigPath;
 
-		ConfigParBase fInputFilename;
+		ConfigParameter<std::string> fInputFilename{"fInputFilename"};
 
-		ConfigParBase fPrintBranches; ///< Whether or not to print all branch names.
-		ConfigParBase fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
-		ConfigParBase fFitplots;      ///< Whether or not to produce invariant mass fits.
-		ConfigParBase fPlotstats;     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
+		ConfigParameter<bool> fPrintBranches{"fPrintBranches"}; ///< Whether or not to print all branch names.
+		ConfigParameter<bool> fPrintAverages{"fPrintAverages"}; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
+		ConfigParameter<bool> fFitplots     {"fFitplots"};      ///< Whether or not to produce invariant mass fits.
+		ConfigParameter<bool> fPlotstats    {"fPlotstats"};     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
 
-		ConfigParBase fDraw_mctruth; ///< Whether or not to draw the MC truth parameters.
-		ConfigParBase fDraw_mult;    ///< Whether or not to draw the multiplicity branches.
-		ConfigParBase fDraw_tof;     ///< Whether or not to draw the `"tof*"` branches.
-		ConfigParBase fDraw_vertex;  ///< Whether or not to draw the `"vertex"` branch.
-		ConfigParBase fPureplot;     ///< Whether or not to plot histograms of branches <i>without fit</i>.
-		ConfigParBase fSetranges;    ///< Whether or not to precisely set histogram ranges.
-		ConfigParBase fLogY;  ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
-		ConfigParBase fLogZ;  ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+		ConfigParameter<bool> fDraw_mctruth{"fDraw_mctruth"}; ///< Whether or not to draw the MC truth parameters.
+		ConfigParameter<bool> fDraw_mult   {"fDraw_mult"};    ///< Whether or not to draw the multiplicity branches.
+		ConfigParameter<bool> fDraw_tof    {"fDraw_tof"};     ///< Whether or not to draw the `"tof*"` branches.
+		ConfigParameter<bool> fDraw_vertex {"fDraw_vertex"};  ///< Whether or not to draw the `"vertex"` branch.
+		ConfigParameter<bool> fPureplot    {"fPureplot"};     ///< Whether or not to plot histograms of branches <i>without fit</i>.
+		ConfigParameter<bool> fSetranges   {"fSetranges"};    ///< Whether or not to precisely set histogram ranges.
+		ConfigParameter<std::string> fLogY {"fLogY"}; ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+		ConfigParameter<std::string> fLogZ {"fLogZ"}; ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
 
-		ConfigParBase fDraw_fit;  ///< Whether or not to draw the `"fit"` branches.
-		ConfigParBase fDo_conv_d; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
-		ConfigParBase fDo_conv_s; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-		ConfigParBase fDo_gauss;  ///< Whether or not to produce perform a double Gaussian fit.
-		ConfigParBase fTestVectorArg;
+		ConfigParameter<bool> fDraw_fit {"fDraw_fit"};  ///< Whether or not to draw the `"fit"` branches.
+		ConfigParameter<bool> fDo_conv_d{"fDo_conv_d"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+		ConfigParameter<bool> fDo_conv_s{"fDo_conv_s"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+		ConfigParameter<bool> fDo_gauss {"fDo_gauss"};  ///< Whether or not to produce perform a double Gaussian fit.
+		ConfigParameter<std::string> fTestVectorArg{"fTestVectorArg"};
 
 		// ConfigParameter<bool> fPrintBranches; ///< Whether or not to print all branch names.
 		// ConfigParameter<bool> fPrintAverages; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
