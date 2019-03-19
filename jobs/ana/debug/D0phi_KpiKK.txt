@@ -17,7 +17,7 @@ MessageSvc.useColors   = true;
 
 // * ------- Number of events ------- * //
 /// Number of events to be processed (-1 stands for all events)
-ApplicationMgr.EvtMax = 10000;
+ApplicationMgr.EvtMax = 100;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";

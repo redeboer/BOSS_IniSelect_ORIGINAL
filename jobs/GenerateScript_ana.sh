@@ -17,7 +17,7 @@ packageName="D0phi_KpiKK"
 nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=3 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * Parameters in case of file/directory reading * #
 gExampleFromFile=0
@@ -36,7 +36,7 @@ gExampleFromFile=0
 	elif [ ${data_or_MC} == 3 ]; then
 		gExampleFromFile=1
 		fileToRead="directories/data/Jpsi2009+2012_dst"
-		nFilesPerJob=1000
+		nFilesPerJob=300
 		identifier="${packageName}_data"
 # * If not defined properly * #
 	else

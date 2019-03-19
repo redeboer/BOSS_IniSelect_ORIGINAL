@@ -9,7 +9,7 @@
 
 % Tree name
 {
-  mctruth
+  topology
 }
 
 % Branch name of the number of particles
@@ -130,3 +130,8 @@
 # {
 #   Y
 # }
+
+% Cut to select entries
+{
+  mD0 < 1.8
+}
