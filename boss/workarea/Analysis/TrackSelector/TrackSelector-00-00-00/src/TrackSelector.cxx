@@ -298,14 +298,15 @@
 
 
 	/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package.
+	/// Have a look at <a href="https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection">this page</a> as for why these fields are required.
 	void TrackSelector::AddNTupleItems_MCTruth(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
 		tuple.AddItem<int>("runID"); /// * `"runID"`: Run number ID.
 		tuple.AddItem<int>("evtID"); /// * `"evtID"`: Rvent number ID.
 		NTuple::Item<int> &index = *tuple.AddItem<int>("index", 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
-		tuple.AddIndexedItem<double>("particle", index); /// * `"particle"`: PDG code for the particle in this array.
-		tuple.AddIndexedItem<double>("mother",   index); /// * `"mother"`: Track index of the mother particle.
+		tuple.AddIndexedItem<int>("particle", index); /// * `"particle"`: PDG code for the particle in this array.
+		tuple.AddIndexedItem<int>("mother",   index); /// * `"mother"`: Track index of the mother particle.
 	}
 
 

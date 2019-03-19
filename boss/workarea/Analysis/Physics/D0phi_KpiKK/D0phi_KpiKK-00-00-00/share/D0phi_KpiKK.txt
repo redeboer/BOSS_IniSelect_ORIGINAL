@@ -19,11 +19,6 @@ D0phi_KpiKK.write_PID      = 0;
 D0phi_KpiKK.write_topology = 1;
 
 // * Whether or not to fill a tree/NTuple (D0phi_KpiKK) *
-D0phi_KpiKK.write_topology_mphi          = 1;
-D0phi_KpiKK.write_topology_mD0           = 1;
-D0phi_KpiKK.write_topology_mphi_3sig     = 1;
-D0phi_KpiKK.write_topology_mD0_3sig      = 1;
-D0phi_KpiKK.write_topology_mD0_mphi_3sig = 1;
 D0phi_KpiKK.write_dedx_K      = 0;
 D0phi_KpiKK.write_dedx_pi     = 0;
 D0phi_KpiKK.write_fit4c_all   = 1;
