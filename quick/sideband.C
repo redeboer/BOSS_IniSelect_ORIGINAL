@@ -105,16 +105,16 @@
 
 
 	TChain gChain(gTreeName.Data());
-	// * determined statistically
-		// double gM_D0 {1.872};
-		// double gM_phi{1.021};
-		// double gSigma_D0 {0.00426};
-		// double gSigma_phi{0.00837};
+	// * determined statistically from distribution
+		double gM_D0 {1.872};
+		double gM_phi{1.021};
+		double gSigma_D0 {0.00426};
+		double gSigma_phi{0.00837};
 	// * determined from fit
-		double gM_D0 {1.8719134};
-		double gM_phi{1.0192461};
-		double gSigma_D0 {0.00779};
-		double gSigma_phi{0.00989};
+		// double gM_D0 {1.8719134};
+		// double gM_phi{1.0192461};
+		// double gSigma_D0 {0.00779};
+		// double gSigma_phi{0.00989};
 
 
 
@@ -184,6 +184,11 @@
 					"mD0", "", "e1", gBins_D0_3sig,
 					Form("%s (%s)", gTex_D0dec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit));
+				Draw<TH1F*>( // SIDEBAND
+					"mD0", "mphi>1.1 && mphi<1.5", "e1 same", gBins_D0_3sig,
+					Form("%s (%s)", gTex_D0dec, gMassUnit),
+					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+					kOrange-2);
 				Draw<TH1F*>(
 					"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1 same", gBins_D0_3sig,
 					Form("%s (%s)", gTex_D0dec, gMassUnit),
@@ -211,11 +216,28 @@
 					Form("%s (%s)", gTex_phidec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
 					kGreen+2);
+				Draw<TH1F*>( // SIDEBAND
+					"mphi", "mD0>1.2 && mD0<1.8", "e1 same", gBins_phi_3sig,
+					Form("%s (%s)", gTex_phidec, gMassUnit),
+					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+					kOrange-2);
 				Draw<TH1F*>(
 					"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1 same", gBins_phi_3sig,
 					Form("%s (%s)", gTex_phidec, gMassUnit),
 					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
 					kRed, "mphi.pdf", true, gM_phi, gSigma_phi);
+
+				Draw<TH1F*>(
+					"mD0", "mphi>1.1 && mphi<1.5", "e1", gBins_D0_3sig,
+					Form("%s (%s)", gTex_D0dec, gMassUnit),
+					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+					0, "mD0_sideband.pdf");
+
+				Draw<TH1F*>(
+					"mphi", "mD0>1.2 && mD0<1.8", "e1", gBins_phi_3sig,
+					Form("%s (%s)", gTex_phidec, gMassUnit),
+					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+					0, "mphi_sideband.pdf");
 
 			cout << endl;
 			exit(1);
@@ -329,21 +351,21 @@
 			gPad->Update();
 			double x1, y1, x2, y2;
 			gPad->GetRangeAxis(x1, y1, x2, y2);
-			if(!gSetLogY) hist->GetYaxis()->SetRangeUser(y1, y2);
+			if(!gSetLogY) hist->GetYaxis()->SetRangeUser(0., y2);
 			else y2 = DBL_MAX;
 			if(buildlegend) gPad->BuildLegend();
 		// * Draw mass lines
 			if(mass<DBL_MAX) {
 				auto line = new TLine(mass, 0, mass, y2);
 				line->SetLineStyle(9);
-				line->SetLineColor(kGray);
+				line->SetLineColor(kGray+2);
 				line->Draw();
 			}
 			if(mass<DBL_MAX) {
 				auto line1 = new TLine(mass+3*sigma, 0, mass+3*sigma, y2);
 				auto line2 = new TLine(mass-3*sigma, 0, mass-3*sigma, y2);
-				line1->SetLineColor(kGray);
-				line2->SetLineColor(kGray);
+				line1->SetLineColor(kGray+2);
+				line2->SetLineColor(kGray+2);
 				line1->SetLineStyle(3);
 				line2->SetLineStyle(3);
 				line1->Draw();

@@ -1,7 +1,7 @@
 // * Filenames * //
-	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/data/fit_cut_2009+2012"
+	gDirName   = "/mnt/d/IHEP/root/D0phi_KpiKK/incl/fit_cut_2009+2012"
 	gTreeName  = "fit4c_best"
-	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/data/"
+	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/incl/"
 
 // * Binnings phi * //
 	gBinsMin_phi_full   = .98
@@ -23,4 +23,4 @@
 
 // * Plot settings * //
 	gSetLogY = 0
-	gPlotStats = 1
+	gPlotStats = 0
