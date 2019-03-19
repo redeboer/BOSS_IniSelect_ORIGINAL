@@ -46,7 +46,6 @@
 	#include "TrackSelector/Containers/CutObject.h"
 	#include "TrackSelector/Containers/JobSwitch.h"
 	#include "TrackSelector/Containers/NTupleContainer.h"
-	#include "TrackSelector/Containers/NTupleTopoAna.h"
 	#include "TrackSelector/KKFitResult.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
@@ -121,7 +120,7 @@
 
 		/// @name NTuple handlers
 			///@{
-			void AddNTupleItems_MCTruth(NTupleTopoAna &tuple);
+			void AddNTupleItems_MCTruth(NTupleContainer &tuple);
 			void AddNTupleItems_Dedx(NTupleContainer &tuple);
 			void AddNTupleItems_Tof (NTupleContainer &tuple);
 			bool CreateMCTruthCollection();
@@ -136,7 +135,7 @@
 			void WritePIDInformation();
 			void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk, NTupleContainer &tuple);
 			void WriteFitResults(KKFitResult *fitresult, NTupleContainer &tuple);
-			bool WriteMCTruthForTopoAna(NTupleTopoAna &tuple);
+			bool WriteMCTruthForTopoAna(NTupleContainer &tuple);
 			virtual void SetFitNTuple(KKFitResult *fitresult, NTupleContainer &tuple) = 0; ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in the derived specification of this `virtual` function. @param tuple The `NTuple` to which you eventually want to write the results.
 			///@}
 
@@ -186,7 +185,7 @@
 			NTupleContainer fNTuple_mult_sel; ///< `NTuple::Tuple` container for the `"mult_select"` branch.
 			NTupleContainer fNTuple_neutral;  ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
 			NTupleContainer fNTuple_vertex;   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
-			NTupleTopoAna   fNTuple_topology; ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
+			NTupleContainer fNTuple_topology; ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
 			///@}
 
 

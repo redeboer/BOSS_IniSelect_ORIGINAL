@@ -2,6 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+
 	#include "CLHEP/Vector/LorentzVector.h"
 	#include "CLHEP/Vector/ThreeVector.h"
 	#include "CLHEP/Vector/TwoVector.h"
@@ -11,6 +12,7 @@
 	#include "GaudiKernel/Bootstrap.h"
 	#include "TMath.h"
 	#include "TString.h"
+	#include "TrackSelector/Containers/NTupleTopoAna.h"
 	#include "TrackSelector/TrackSelector.h"
 	#include "VertexFit/Helix.h"
 	#include "VertexFit/IVertexDbSvc.h"
@@ -296,14 +298,14 @@
 
 
 	/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package.
-	void TrackSelector::AddNTupleItems_MCTruth(NTupleTopoAna &tuple)
+	void TrackSelector::AddNTupleItems_MCTruth(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
-		tuple.GetNTuple()->addItem("runID", tuple.runID);         /// * `"runID"`: Run number ID.
-		tuple.GetNTuple()->addItem("evtID", tuple.evtID);         /// * `"evtID"`: Rvent number ID.
-		tuple.GetNTuple()->addItem("index", tuple.index, 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
-		tuple.GetNTuple()->addIndexedItem("particle", tuple.index, tuple.particle); /// * `"particle"`: PDG code for the particle in this array.
-		tuple.GetNTuple()->addIndexedItem("mother",   tuple.index, tuple.mother);   /// * `"mother"`: Track index of the mother particle.
+		tuple.AddItem<int>("runID"); /// * `"runID"`: Run number ID.
+		tuple.AddItem<int>("evtID"); /// * `"evtID"`: Rvent number ID.
+		NTuple::Item<int> &index = *tuple.AddItem<int>("index", 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
+		tuple.AddIndexedItem<double>("particle", index); /// * `"particle"`: PDG code for the particle in this array.
+		tuple.AddIndexedItem<double>("mother",   index); /// * `"mother"`: Track index of the mother particle.
 	}
 
 
@@ -635,14 +637,14 @@
 			// tuple.GetItem<double>("dedx_pi")    = fTrackDedx->getDedxExpect(2);
 			tuple.GetItem<int>("Ngoodhits")  = fTrackDedx->numGoodHits();
 			tuple.GetItem<int>("Ntotalhits") = fTrackDedx->numTotalHits();
-			tuple.GetItem<double>("chie")       = fTrackDedx->chiE();
-			tuple.GetItem<double>("chik")       = fTrackDedx->chiK();
-			tuple.GetItem<double>("chimu")      = fTrackDedx->chiMu();
-			tuple.GetItem<double>("chip")       = fTrackDedx->chiP();
-			tuple.GetItem<double>("chipi")      = fTrackDedx->chiPi();
-			tuple.GetItem<double>("normPH")     = fTrackDedx->normPH();
-			tuple.GetItem<double>("p")          = fTrackMDC->p();
-			tuple.GetItem<double>("probPH")     = fTrackDedx->probPH();
+			tuple.GetItem<double>("chie")    = fTrackDedx->chiE();
+			tuple.GetItem<double>("chik")    = fTrackDedx->chiK();
+			tuple.GetItem<double>("chimu")   = fTrackDedx->chiMu();
+			tuple.GetItem<double>("chip")    = fTrackDedx->chiP();
+			tuple.GetItem<double>("chipi")   = fTrackDedx->chiPi();
+			tuple.GetItem<double>("normPH")  = fTrackDedx->normPH();
+			tuple.GetItem<double>("p")       = fTrackMDC->p();
+			tuple.GetItem<double>("probPH")  = fTrackDedx->probPH();
 		
 		/// -# @b Write \f$dE/dx\f$ info.
 			tuple.Write();
@@ -688,7 +690,7 @@
 	/// Write an `NTuple` containing branches that are required for the `TopoAna` method.
 	/// @warning This method can be called only after `fMcParticles` has been filled using `CreateMCTruthCollection`.
 	/// @see `CreateMCTruthCollection`
-	bool TrackSelector::WriteMCTruthForTopoAna(NTupleTopoAna &tuple)
+	bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer &tuple)
 	{
 		/// -# @b Abort if input file is not MC generated (that is, if the run number is not negative).
 			if(fEventHeader->runNumber()>=0) return false;
@@ -701,20 +703,23 @@
 
 		/// -# @b Import run number and event number to `tuple`.
 			fLog << MSG::DEBUG << "Writing TopoAna NTuple \"" << tuple.Name() << "\" with " << fMcParticles.size() << " particles" << endmsg;
-			tuple.runID = fEventHeader->runNumber();
-			tuple.evtID = fEventHeader->eventNumber();
+			tuple.GetItem<int>("runID") = fEventHeader->runNumber();
+			tuple.GetItem<int>("evtID") = fEventHeader->eventNumber();
 
 		/// -# The `trackIndex` of the first particle is to be the offset for the array index, because this entry should have array index `0`. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for more information on using `indexOffset`.
 			std::vector<Event::McParticle*>::iterator it = fMcParticles.begin();
 			int indexOffset ((*it)->trackIndex());
 
 		/// -# Loop over tthe remainder of `fMcParticles` and store the daughters
+			NTuple::Item<int> &index = tuple.GetItem<int>("index");
+			NTuple::Array<int> &particle = tuple.GetArray<int>("particle");
+			NTuple::Array<int> &mother   = tuple.GetArray<int>("mother");
 			for(; it != fMcParticles.end(); ++it) {
-				tuple.particle[tuple.index] = (*it)->particleProperty();
-				tuple.mother[tuple.index] = (*it)->mother().trackIndex() - indexOffset;
-				if(!NTupleTopoAna::IsFromJPsi(*it)) --tuple.mother[tuple.index];
-				if(NTupleTopoAna::IsJPsi(*it)) tuple.mother[tuple.index] = 0;
-				++tuple.index;
+				particle[index] = (*it)->particleProperty();
+				mother[index] = (*it)->mother().trackIndex() - indexOffset;
+				if(!NTupleTopoAna::IsFromJPsi(*it)) --mother[index];
+				if( NTupleTopoAna::IsJPsi(*it))       mother[index] = 0;
+				++index;
 				// std::cout
 					// << std::setw(3) << tuple.index
 					// << std::setw(7) << tuple.particle[tuple.index]
