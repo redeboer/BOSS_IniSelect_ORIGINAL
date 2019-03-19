@@ -38,7 +38,7 @@ var searchData=
   ['getnparameters',['GetNParameters',['../classConfigParBase.html#a7aadb4202890ef11270fb6b8198894c6',1,'ConfigParBase']]],
   ['getntuple',['GetNTuple',['../classNTupleTopoAna.html#a90124b26abec40f8837fe86782087b3e',1,'NTupleTopoAna']]],
   ['getoutputfilename',['GetOutputFilename',['../namespaceCommonFunctions_1_1File.html#a5428d97ac7295f19b8894f4833c358a5',1,'CommonFunctions::File']]],
-  ['getparameter',['GetParameter',['../classConfigLoader.html#a60154313726e46e84115463078cae6e6',1,'ConfigLoader::GetParameter()'],['../classConfigParBase.html#a6058b8a1e415a8a5b8da22659f608fbc',1,'ConfigParBase::GetParameter()']]],
+  ['getparameter',['GetParameter',['../classConfigParBase.html#a6058b8a1e415a8a5b8da22659f608fbc',1,'ConfigParBase']]],
   ['getparticlepdg',['GetParticlePDG',['../classParticle.html#aa9f7152d465aadc5f9414edc45a47386',1,'Particle']]],
   ['getpdgcode',['GetPDGCode',['../classParticle.html#a4b8ac08a6780525067a126f69e42def7',1,'Particle']]],
   ['getplotrange',['GetPlotRange',['../classReconstructedParticle.html#aec7bbf487e76d3fc2c5cdb1b61fbd6bf',1,'ReconstructedParticle::GetPlotRange() const'],['../classReconstructedParticle.html#a6731ad7c08ab43cfc7dde67fb7ee47c3',1,'ReconstructedParticle::GetPlotRange(double &amp;from, double &amp;to) const']]],

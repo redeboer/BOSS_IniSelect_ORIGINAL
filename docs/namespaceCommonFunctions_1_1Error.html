@@ -94,6 +94,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a0a17c2fc293412097398dbc72404bc35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#a0a17c2fc293412097398dbc72404bc35">PrintFatalError</a> (const std::string &amp;message)</td></tr>
 <tr class="memdesc:a0a17c2fc293412097398dbc72404bc35"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a fatal error message (that is, one that terminates) in red.  <a href="#a0a17c2fc293412097398dbc72404bc35">More...</a><br /></td></tr>
 <tr class="separator:a0a17c2fc293412097398dbc72404bc35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63e8de3c88b478296a2169beb462857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#ae63e8de3c88b478296a2169beb462857">PrintWarning</a> (const std::string &amp;message)</td></tr>
+<tr class="memdesc:ae63e8de3c88b478296a2169beb462857"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a warning message in yellow.  <a href="#ae63e8de3c88b478296a2169beb462857">More...</a><br /></td></tr>
+<tr class="separator:ae63e8de3c88b478296a2169beb462857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Error.html#ae8f9a2074dbef8890193c38e3c7366a6">IsEmptyPtr</a> (void *ptr)</td></tr>
 <tr class="memdesc:ae8f9a2074dbef8890193c38e3c7366a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer.  <a href="#ae8f9a2074dbef8890193c38e3c7366a6">More...</a><br /></td></tr>
 <tr class="separator:ae8f9a2074dbef8890193c38e3c7366a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,7 +156,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Construction to <code>try</code> and <code>catch</code> an exception that comes from <code>std::map::at</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00168">168</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00169">169</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -176,7 +179,7 @@ template&lt;class TYPE &gt; </div>
 <p>Auxiliary function that you can used in other functions to check if a pointer that you fed it is a nullpointer. </p>
 <p>It is useful to use this function if you want to print output when you are incidentally using an empty pointer. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00118">118</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00128">128</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -219,7 +222,7 @@ template&lt;class TYPE &gt; </div>
 <p>Returns <code>true</code> if <code>map</code> has a certain <code>key</code>, and returns <code>false</code> if not`. </p>
 <p>This function makes use of <code>std::map::find</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00185">185</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00186">186</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -243,6 +246,29 @@ template&lt;class TYPE &gt; </div>
 <p>See <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">here</a> for more color codes. </p><dl class="section warning"><dt>Warning</dt><dd>Calling this function will terminate the entire programme. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00108">108</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ae63e8de3c88b478296a2169beb462857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63e8de3c88b478296a2169beb462857">&#9670;&nbsp;</a></span>PrintWarning()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::Error::PrintWarning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><a class="el" href="namespaceCommonFunctions_1_1Print.html" title="Namespace containing functions related to terminal output. ">Print</a> a warning message in yellow. </p>
+<p>See <a href="https://en.wikipedia.org/wiki/ANSI_escape_code">here</a> for more color codes. </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00118">118</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>

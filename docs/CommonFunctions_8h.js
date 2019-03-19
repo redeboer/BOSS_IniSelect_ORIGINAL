@@ -23,6 +23,7 @@ var CommonFunctions_8h =
     [ "LoopTree", "CommonFunctions_8h.html#aceaee3e4acedcbc73f348434d11f7497", null ],
     [ "MapHasKey", "CommonFunctions_8h.html#a6459eca4f6a894f90a319182f47664f2", null ],
     [ "PrintFatalError", "CommonFunctions_8h.html#a0a17c2fc293412097398dbc72404bc35", null ],
+    [ "PrintWarning", "CommonFunctions_8h.html#ae63e8de3c88b478296a2169beb462857", null ],
     [ "SaveCanvas", "CommonFunctions_8h.html#a36f64ebbbd69516c8d22dec07fc3037e", null ],
     [ "SetAxisTitles", "CommonFunctions_8h.html#a1fc2ea57d25a75da6bcdd3b83c063b6f", null ],
     [ "SetLogScale", "CommonFunctions_8h.html#a909c1fc4f2ff18ee7626a4188795d4d2", null ],

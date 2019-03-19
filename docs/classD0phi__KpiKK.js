@@ -11,6 +11,8 @@ var classD0phi__KpiKK =
     [ "fCut_mD0_3sig", "classD0phi__KpiKK.html#a30f758cc2481aef440f5e2197c64398b", null ],
     [ "fCut_mphi", "classD0phi__KpiKK.html#a48cb3cdeb15c926092598e2144bcfbd3", null ],
     [ "fCut_mphi_3sig", "classD0phi__KpiKK.html#a398db1b0bdd450bfc4d99b55679d628d", null ],
+    [ "fCutFlow_mD0_mphi", "classD0phi__KpiKK.html#ae79d0262df9d362b4c2c3556f5a3e8a1", null ],
+    [ "fCutFlow_mD0_mphi_3sig", "classD0phi__KpiKK.html#a5c073814e756890863e51fbe5805be70", null ],
     [ "fCutFlow_NChargedOK", "classD0phi__KpiKK.html#a40677bbb58b450b1c6649049b2f6b8eb", null ],
     [ "fCutFlow_NFitOK", "classD0phi__KpiKK.html#a94c229e46e61d6d23a8da0a3a7028178", null ],
     [ "fCutFlow_NPIDnumberOK", "classD0phi__KpiKK.html#a9750144c1d6d0fbd09cf8b172fc7f9ab", null ],
@@ -31,11 +33,6 @@ var classD0phi__KpiKK =
     [ "fNTuple_fit4c_all", "classD0phi__KpiKK.html#a857891de8f3e33fda989b679ddbf8dc2", null ],
     [ "fNTuple_fit4c_best", "classD0phi__KpiKK.html#a30ce41f2bade5dc32370f69dd91a940a", null ],
     [ "fNTuple_fit_mc", "classD0phi__KpiKK.html#a6debe9f97c92ef6e13492cad1c2b5501", null ],
-    [ "fNTuple_topology_mD0", "classD0phi__KpiKK.html#abe216bb412f3600415d402ba850d952c", null ],
-    [ "fNTuple_topology_mD0_3sig", "classD0phi__KpiKK.html#abf61111eefb1f913bf75659e41353eac", null ],
-    [ "fNTuple_topology_mphi", "classD0phi__KpiKK.html#ac55d4b1211dd35686b4bef7d09b73afd", null ],
-    [ "fNTuple_topology_mphi_3sig", "classD0phi__KpiKK.html#a0ab54b5246c217ff0430da43380f26cb", null ],
-    [ "fNTuple_topology_mphi_mD0_3sig", "classD0phi__KpiKK.html#aa8ce07aab5bf54e10440d9546761e5f2", null ],
     [ "fPionPos", "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758", null ],
     [ "fPionPosIter", "classD0phi__KpiKK.html#a78d6aaabd91bde8018fcb1a3bdbaaa95", null ]
 ];

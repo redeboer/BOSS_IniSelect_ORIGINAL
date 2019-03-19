@@ -19,7 +19,11 @@ var hierarchy =
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", null ],
-    [ "ConfigParBase", "classConfigParBase.html", null ],
+    [ "ConfigParBase", "classConfigParBase.html", [
+      [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< bool >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< std::string >", "classConfigParameter.html", null ]
+    ] ],
     [ "Container_base", "classContainer__base.html", [
       [ "Container_indexed", "classContainer__indexed.html", null ],
       [ "CutObject", "classCutObject.html", null ],
