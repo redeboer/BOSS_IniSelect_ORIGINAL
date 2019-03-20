@@ -48,15 +48,15 @@ data_or_MC=3 # 1: exclusive MC, 2: inclusive MC, 3: data
 	fi
 
 # * Create job from template and submit * #
-# if [ "${fileToRead}" != "" ]; then
-# 	# * This will create your job files based on a file listing dst files and directories
-# 	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
-# 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
-# else
-# 	# * This will create your job files based on a directory containing dst files
-# 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
-# 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
-# fi
+if [ "${fileToRead}" != "" ]; then
+	# * This will create your job files based on a file listing dst files and directories
+	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
+	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+else
+	# * This will create your job files based on a directory containing dst files
+	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
+	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+fi
 
 # * SUBMIT * #
 bash SubmitAll.sh "${outputSubdir}_ana" "${packageName}_ana"
