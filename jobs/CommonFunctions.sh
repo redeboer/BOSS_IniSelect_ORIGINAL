@@ -15,13 +15,13 @@
 # * ================================== * #
 
 	# * Check if already being sourced * #
-		if [ "${CommonFunctionsScriptIsSourced}" == true ]; then
-			return
-		fi
+		# if [ "${gCommonFunctionsScriptIsSourced}" == true ]; then
+		# 	return
+		# fi
 
 	# * Set identifier parameters for this script * #
 		# * Parameter that blocks script from resourcing
-		CommonFunctionsScriptIsSourced=true
+		gCommonFunctionsScriptIsSourced=true
 		# * Get absolute path to script
 		if [[ "${BASH_SOURCE[0]}" == /* ]]; then # if absolute already
 			PathToCommonFunctionsScript="${BASH_SOURCE[0]}"
@@ -41,6 +41,7 @@
 	gSuccessColorCode="\e[92m"
 	gInputColorCode="\e[93m"
 	gColorCodeEnd="\e[0m"
+	gDataOutputDir="/scratchfs/bes/${USER}/data"
 
 
 
@@ -53,7 +54,7 @@
 	{
 		mkdir -p "$(dirname "${1}")"
 	}
-	export CreateBaseDir
+	export -f CreateBaseDir
 
 	function CdToBaseDir()
 	# Creates a base directory for a file to which you want to write.
@@ -61,25 +62,25 @@
 		gStoredDirectory="$(pwd)"
 		cd "$(dirname "${1}")"
 	}
-	export CdToBaseDir
+	export -f CdToBaseDir
 
 	function CreateOrEmptyDirectory()
 	# Create a directory if necessary. If it already exists, remove the already existing files (with a certain pattern).
 	{
 		# * Import function arguments
-		local path=${1}
-		local subdir=${2}
-		local analysis_type=${3}
-		# * Main function: mkdir if necessary
-		if [ ! -d "${path}/${2}" ]; then
-			mkdir -p "${path}/${2}"
+		local directory="${1}"
+		# * Main function: empty or mkdir
+		if [ -d "${directory}" ]; then
+			numFiles=$(find ${directory} -type f | wc -l)
+			if [ $numFiles != 0 ]; then
+				AskForInput "Remove ${numFiles} files in \"${directory}\"?"
+			fi
+			rm -rf "${directory}"/*
 		else
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh"       # remove sumbit scripts
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".sh."*"."* # remove log files
-			rm -rf "${path}/${2}/${2}_${analysis_type}_"*".txt"      # remove jobOptions
+			mkdir -p "${directory}"
 		fi
 	}
-	export CreateOrEmptyDirectory
+	export -f CreateOrEmptyDirectory
 
 
 
@@ -88,12 +89,12 @@
 # * ======================================= * #
 
 	function ResourceCommonFunctions()
-	# The parameter `CommonFunctionsScriptIsSourced` is set to `true` if this script is sourced. Use this function if you really want to bypass this safety measure and source again.
+	# The parameter `gCommonFunctionsScriptIsSourced` is set to `true` if this script is sourced. Use this function if you really want to bypass this safety measure and source again.
 	{
-		CommonFunctionsScriptIsSourced=false
+		gCommonFunctionsScriptIsSourced=false
 		source "${PathToCommonFunctionsScript}"
 	}
-	export ResourceCommonFunctions
+	export -f ResourceCommonFunctions
 
 
 
@@ -104,24 +105,25 @@
 	function PrintErrorMessage()
 	# Print a terminal message in the color used for an error message.
 	{
-		echo -e "${gErrorColorCode}${1}${gColorCodeEnd}"
+		echo -e "${gErrorColorCode}ERROR: ${1}${gColorCodeEnd}"
 	}
-	export PrintErrorMessage
+	export -f PrintErrorMessage
 
 	function PrintSuccessMessage()
 	# Print a terminal message in the color used for a success message.
 	{
 		echo -e "${gSuccessColorCode}${1}${gColorCodeEnd}"
 	}
-	export PrintSuccessMessage
+	export -f PrintSuccessMessage
 
 	function AskForInput()
 	# Print a terminal message in the color used for a success message.
 	{
 		echo -e "${gInputColorCode}${1}${gColorCodeEnd}"
+		echo -e "${gInputColorCode}Press ENTER to continue or break with Ctrl+C or Ctrl+Z...${gColorCodeEnd}"
 		read -p ""
 	}
-	export AskForInput
+	export -f AskForInput
 
 
 
@@ -129,34 +131,45 @@
 # * ------- CHECK FUNCTIONS ------- * #
 # * =============================== * #
 
+	function AffirmMkdir()
+	# Check if the path to a folder exists. Exit the script if it doesn't.
+	{
+		local folderToMake="${1}"
+		if [ ! -d "${folderToMake}" ]; then
+			AskForInput "Create folder the following folder?\n\"${folderToMake}\""
+			mkdir -p "${folderToMake}"
+		fi
+	}
+	export -f AffirmMkdir
+
 	function CheckIfFolderExists()
 	# Check if a folder exists. Exit the script if it doesn't.
 	{
 		local folderToCheck="${1}"
-		if [ ! -d ${folderToCheck} ]; then
-			PrintErrorMessage "ERROR: Folder \"${folderToCheck}\" does not exist"
+		if [ ! -d "${folderToCheck}" ]; then
+			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist"
 			exit
 		fi
 	}
-	export CheckIfFolderExists
+	export -f CheckIfFolderExists
 
 	function CheckIfBaseDirExists()
 	# Check if the path to a folder exists. Exit the script if it doesn't.
 	{
 		CheckIfFolderExists "$(dirname "${1}")"
 	}
-	export CheckIfBaseDirExists
+	export -f CheckIfBaseDirExists
 
 	function CheckIfFileExists()
 	# Check if a file exists. Exit the script if it doesn't.
 	{
 		local fileToCheck="${1}"
 		if [ ! -s "${fileToCheck}" ]; then
-			PrintErrorMessage "ERROR: File \"${fileToCheck}\" does not exist"
+			PrintErrorMessage "File \"${fileToCheck}\" does not exist"
 			exit
 		fi
 	}
-	export CheckIfFileExists
+	export -f CheckIfFileExists
 
 
 
@@ -172,7 +185,7 @@
 		# * Main function: delete all empty lines of the file
 		sed -i '/^\s*$/d' ${fileName} # delete all empty lines of the file
 	}
-	export DeleteAllEmptyLines
+	export -f DeleteAllEmptyLines
 
 	function FormatTextFileToCppVectorArguments()
 	# Feed this function a text file, and it will prepend a `\t"` and append a `",` to each line. The comma is ommited for the last line.
@@ -188,7 +201,7 @@
 			sed -i "$ s/.$//"          ${fileName} # remove last comma
 		fi
 	}
-	export FormatTextFileToCppVectorArguments
+	export -f FormatTextFileToCppVectorArguments
 
 	function ChangeLineEndingsFromWindowsToUnix()
 	# Windows sometimes stores files with a different type of line endings. To make the file compatible again with Unix/Linux, use this function.
@@ -198,7 +211,7 @@
 		# * Main function: remove Windows style newline characters
 		sed -i 's/\r$//' "${fileName}"
 	}
-	export ChangeLineEndingsFromWindowsToUnix
+	export -f ChangeLineEndingsFromWindowsToUnix
 
 	function SplitTextFile()
 	# Feed this function a path to a text file ($1) and it will split up this file into separate files each with a maximum number of lines ($2 -- default value is 10).
@@ -231,7 +244,7 @@
 		# ! REMOVE ORIGINAL FILE ! #
 			rm "${fileToSplit}"
 	}
-	export SplitTextFile
+	export -f SplitTextFile
 
 
 
@@ -269,7 +282,7 @@
 				SplitTextFile "${outputFile}" ${maxNLines}
 			fi
 	}
-	export CreateFilenameInventoryFromDirectory
+	export -f CreateFilenameInventoryFromDirectory
 
 	function CreateFilenameInventoryFromFile()
 	# Feed this function a path ($1) to a file containing directories and/or file names and it will list all files within those directories including their absolute paths.  This list will be written to text files ($2) with a maximum number of paths per file ($3 -- default is 0, namely no max). If you wish, you can only list files of a certain extension ($4).
@@ -305,7 +318,7 @@
 						echo "Added file \"$(basename ${line}\")"
 						echo "${line}" >> "${outputFile}"
 					# * Otherwise, presume line is a directory and add its contents
-					elif [ -d ${line} ]; then # check if directory exists
+					elif [ -d "${line}" ]; then # check if directory exists
 						CreateFilenameInventoryFromDirectory "${line}" "temp.txt" 0 "${extension}"
 						cat "temp.txt" >> "${outputFile}"
 						echo "Added directory \"$(basename ${line}\") ($(cat temp.txt | wc -l) files)"
@@ -322,12 +335,13 @@
 			PrintSuccessMessage "--> output written to \"$(basename "${outputFile}")\"\n"
 		# * Split the output file if required
 			if [ $maxNLines -gt 0 ]; then
+				echo "Splitting text file \"$(basename ${outputFile})\" to max $maxNLines lines each..."
 				SplitTextFile "${outputFile}" ${maxNLines}
 			fi
 		# * Go back to starting directory * #
 			cd "${startPath}"
 	}
-	export CreateFilenameInventoryFromFile
+	export -f CreateFilenameInventoryFromFile
 
 
 

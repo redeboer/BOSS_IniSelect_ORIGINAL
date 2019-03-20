@@ -32,7 +32,7 @@ set -e # exit if a command or function exits with a non-zero status
 # ! ------- Script arguments ------- ! #
 # ! ================================ ! #
 	# * (1) Package name
-	packageName="d0phi_KpiKK" # default argument
+	packageName="D0phi_KpiKK" # default argument
 	if [ $# -ge 1 ]; then packageName="${1}"; fi
 	# * (2) Input files that will be used to create the list of dst files
 	searchTerm="filenames/besfs3_offline_data_703-1_jpsi_round02_dst_selection_*.txt" # default argument
@@ -43,6 +43,9 @@ set -e # exit if a command or function exits with a non-zero status
 	# * (4) Terminal message output level
 	outputLevel=4 # default argument: 4 (MSG::WARNING)
 	if [ $# -ge 4 ]; then outputLevel=${4}; fi
+	# * (5) Output subdirectory
+	outputSubdir="${packageName}" # default argument
+	if [ $# -ge 5 ]; then outputSubdir="${5}"; fi
 
 
 # * ================================= * #
@@ -50,17 +53,18 @@ set -e # exit if a command or function exits with a non-zero status
 # * ================================= * #
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs" # contains templates and will write scripts to its subfolders
-	outputFolder="/scratchfs/bes/${USER}/data" # rtraw, dst, root, and log files will be written to this folder
+	templateFile_ana="${scriptFolder}/templates/analysis.txt"
 
 
 # * =============================================== * #
 # * ------- Check arguments and parameters -------  * #
 # * =============================================== * #
 	CheckIfFolderExists "${scriptFolder}"
-	CheckIfFolderExists "${outputFolder}"
+	CheckIfFolderExists "${gDataOutputDir}"
+	CheckIfFileExists "${templateFile_ana}"
 	ls ${searchTerm} > /dev/null
 	if [ $? != 0 ]; then
-		PrintErrorMessage "\nERROR: Search string\n  \"${searchTerm}\"\nhas no matches"
+		PrintErrorMessage "Search string\n  \"${searchTerm}\"\nhas no matches"
 		exit
 	fi
 
@@ -69,12 +73,19 @@ set -e # exit if a command or function exits with a non-zero status
 # * ------- Main function ------- * #
 # * ============================= * #
 
+	# * Output directories
+		outputDir_ana="${scriptFolder}/ana/${outputSubdir}"
+		outputDir_rec="${scriptFolder}/rec/${outputSubdir}"
+		outputDir_sub="${scriptFolder}/sub/${outputSubdir}_ana"
+		outputDir_root="${gDataOutputDir}/root/${outputSubdir}"
+		outputDir_log="${gDataOutputDir}/log/${outputSubdir}"
+
 	# * User input * #
-	nJobs=$(ls ${searchTerm} | wc -l)
-	# * User input * #
+		nJobs=$(ls ${searchTerm} | wc -l)
 		echo "This will create \"${packageName}_*.txt\" analysis job option files with ${nEventsPerJob} events each."
 		echo "These files will be written to folder:"
-		echo "   \"${scriptFolder}/ana\""
+		echo "   \"${outputDir_ana}\""
+		echo "   \"${outputDir_sub}\""
 		echo
 		echo "DST files will be loaded from the ${nJobs} files matching this search pattern:"
 		echo "   \"${searchTerm}\""
@@ -82,14 +93,15 @@ set -e # exit if a command or function exits with a non-zero status
 			echo
 			echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
 		fi
-		AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
+		echo
+		AskForInput "Write ${nJobs} \"${packageName}\" analysis job files?"
 
 	# * Create and EMPTY scripts directory * #
-		CreateOrEmptyDirectory "${scriptFolder}" "ana"  "${packageName}"
-		CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}_data"
+		CreateOrEmptyDirectory "${outputDir_ana}"
+		CreateOrEmptyDirectory "${outputDir_sub}"
 	# * Create and EMPTY output directory * #
-		CreateOrEmptyDirectory "${outputFolder}" "log"  "${packageName}"
-		CreateOrEmptyDirectory "${outputFolder}" "root" "${packageName}"
+		CreateOrEmptyDirectory "${outputDir_log}"
+		CreateOrEmptyDirectory "${outputDir_root}"
 
 	# * Loop over input files * #
 		jobNo=0 # set counter
@@ -100,9 +112,7 @@ set -e # exit if a command or function exits with a non-zero status
 				FormatTextFileToCppVectorArguments "${file}"
 
 			# * Generate the analysis files (ana)
-				templateName="${scriptFolder}/templates/analysis.txt"
-				CheckIfFileExists "${templateName}"
-				outputFile="${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt"
+				outputFile="${outputDir_ana}/ana_${packageName}_${jobNo}.txt"
 				packageNameCAP=$(echo ${packageName} | awk '{print toupper($0)}') # to upper case
 				# Replace simple parameters in template
 				awk '{flag = 1}
@@ -110,10 +120,9 @@ set -e # exit if a command or function exits with a non-zero status
 					{sub(/__PACKAGENAME__/,"'${packageName}'")}
 					{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
 					{sub(/__NEVENTS__/,'${nEventsPerJob}')}
-					{sub(/__OUTPUTPATH__/,"'${outputFolder}'")}
-					{sub(/__OUTPUTFILE__/,"root/'${packageName}'_'${jobNo}'.root")}
+					{sub(/__OUTPUTFILE__/,"'${outputDir_root}'/'${packageName}'_'${jobNo}'.root")}
 					{if(flag == 1) {print $0} else {next} }' \
-				"${templateName}" > "${outputFile}"
+				"${templateFile_ana}" > "${outputFile}"
 				# Fill in vector of input DST files
 				sed -i "/__INPUTFILES__/{
 					s/__INPUTFILES__//g
@@ -123,9 +132,9 @@ set -e # exit if a command or function exits with a non-zero status
 				chmod +x "${outputFile}"
 
 			# * Generate the submit files (sub)
-				outputFile="${scriptFolder}/sub/sub_${packageName}_data_${jobNo}.sh"
+				outputFile="${outputDir_sub}/sub_${packageName}_ana_${jobNo}.sh"
 				echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
-				echo "{ boss.exe \"${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
+				echo "{ boss.exe \"${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt\"; } &> \"${gDataOutputDir}/log/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"
 

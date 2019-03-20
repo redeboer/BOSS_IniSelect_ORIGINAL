@@ -21,12 +21,22 @@ plots/**/*.root
 
 # Ignore jobs
 jobs/**/sed*
+jobs/filenames/*
 jobs/ana/**.txt
-jobs/filenames/**.txt
 jobs/rec/**.txt
 jobs/sim/**.txt
 jobs/sub/**.sh
 jobs/sub/**.sh.*.*
+jobs/ana/**/**.txt
+jobs/rec/**/**.txt
+jobs/sim/**/**.txt
+jobs/sub/**/**.sh
+jobs/sub/**/**.sh.*.*
+jobs/ana/**/**/**.txt
+jobs/rec/**/**/**.txt
+jobs/sim/**/**/**.txt
+jobs/sub/**/**/**.sh
+jobs/sub/**/**/**.sh.*.*
 
 # Ignore settings
 **.code-workspace

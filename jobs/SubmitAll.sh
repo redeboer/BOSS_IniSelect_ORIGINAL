@@ -26,9 +26,10 @@
 # ! ------- Script parameters ------- ! #
 # ! ================================= ! #
 
-	analysisType="${1}" # will be used in file naming
+	outputDir="${1}"
+	identifier="${2}"
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
-	scriptFolder="${afterburnerPath}/jobs"
+	scriptFolder="${afterburnerPath}/jobs/sub"
 
 
 
@@ -40,7 +41,7 @@
 	{
 		folderToCheck="${1}"
 		if [ ! -d ${folderToCheck} ]; then
-			PrintErrorMessage "FATAL ERROR: folder \"${folderToCheck}\" does not exist. Check this script..."
+			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist. Check this script..."
 			exit
 		fi
 	}
@@ -52,9 +53,9 @@
 # * ================================ * #
 
 	CheckFolder ${scriptFolder}
-	nJobs=$(ls ${scriptFolder}/sub/* | grep -E sub_${analysisType}_[0-9]+.sh$ | wc -l)
+	nJobs=$(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${identifier}_[0-9]+.sh$ | wc -l)
 	if [ ${nJobs} == 0 ]; then
-		PrintErrorMessage "ERROR: No jobs of type \"${analysisType}\" available"
+		PrintErrorMessage "No jobs of type \"${identifier}\" available in \"${scriptFolder}/${outputDir}\""
 		exit
 	fi
 
@@ -63,8 +64,9 @@
 # * ------- Run over all job files ------- * #
 # * ====================================== * #
 
-	AskForInput "Press ENTER to submit ${nJobs} \"${analysisType}\" jobs..."
-	for job in $(ls ${scriptFolder}/sub/* | grep -E sub_${analysisType}_[0-9]+.sh$); do
+	AskForInput "Submit ${nJobs} jobs for \"${identifier}\"?"
+	for job in $(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${identifier}_[0-9]+.sh$); do
+		echo "hep_sub -g physics \"${job}\""
 		hep_sub -g physics "${job}"
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"
@@ -78,7 +80,7 @@
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
 
-	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${analysisType}\" jobs"
+	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${identifier}\" jobs"
 	echo
 	echo "These are your jobs:"
 	hep_q -u $USER

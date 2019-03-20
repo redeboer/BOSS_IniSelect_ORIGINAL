@@ -17,7 +17,8 @@ packageName="D0phi_KpiKK"
 nJobs=20
 nEventsPerJob=5000
 outputLevel=4
+outputSubdir="${packageName}"
 
 # * Create job from template and submit * #
-bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel}
-bash SubmitAll.sh "${packageName}_mc"
+bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+bash SubmitAll.sh "${outputSubdir}_mc" "${packageName}_mc"

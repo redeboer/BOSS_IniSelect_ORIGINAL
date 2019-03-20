@@ -19,24 +19,19 @@ nEventsPerJob=-1
 outputLevel=4
 data_or_MC=3 # 1: exclusive MC, 2: inclusive MC, 3: data
 
-# * Parameters in case of file/directory reading * #
-gExampleFromFile=0
-
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ ${data_or_MC} == 1 ]; then 
 		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e5"
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ ${data_or_MC} == 2 ]; then
-		gExampleFromFile=1
 		fileToRead="directories/incl/Jpsi2009+2012_mc_dst"
 		nFilesPerJob=300
 		identifier="${packageName}_incl"
-# * In case of analysing Monte Carlo output * #
+# * In case of analysing real BESIII data * #
 	elif [ ${data_or_MC} == 3 ]; then
-		gExampleFromFile=1
-		fileToRead="directories/data/Jpsi2009+2012_dst"
-		nFilesPerJob=300
+		fileToRead="directories/data/Jpsi2018_dst"
+		nFilesPerJob=800
 		identifier="${packageName}_data"
 # * If not defined properly * #
 	else
@@ -44,16 +39,24 @@ gExampleFromFile=0
 		exit 1
 	fi
 
+# * Set output subdirectory * #
+	if [ "${directoryToRead}" != "" ]; then
+		outputSubdir="${packageName}/$(basename ${directoryToRead})"
+	fi
+	if [ "${fileToRead}" != "" ]; then
+		outputSubdir="${packageName}/$(basename ${fileToRead})"
+	fi
+
 # * Create job from template and submit * #
-if [ ${gExampleFromFile} == 1 ]; then
-	# * This will create your job files based on a file listing dst files and directories
-	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel}
-else
-	# * This will create your job files based on a directory containing dst files
-	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_???.txt" ${nEventsPerJob} ${outputLevel}
-fi
+# if [ "${fileToRead}" != "" ]; then
+# 	# * This will create your job files based on a file listing dst files and directories
+# 	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
+# 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+# else
+# 	# * This will create your job files based on a directory containing dst files
+# 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
+# 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+# fi
 
 # * SUBMIT * #
-bash SubmitAll.sh "${packageName}_data"
+bash SubmitAll.sh "${outputSubdir}_ana" "${packageName}_ana"

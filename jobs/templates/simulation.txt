@@ -13,7 +13,7 @@ KKMC.GenerateJPsi=true;
 
 // * ------- Job options for EvtGen ------- * //
 #include "$BESEVTGENROOT/share/BesEvtGen.txt"
-EvtDecay.userDecayTableName = "__SCRIPTPATH__/__DECAYCARD__";
+EvtDecay.userDecayTableName = "__DECAYCARD__";
 
 // * ------- Job options for random number ------- * //
 /// Use a (unique!) number as seed to set the random number generator for the Monte Carlo simulation (`BesRndmGenSvc.RndmSeed`). (Hint: use system time as seed number.)
@@ -36,7 +36,7 @@ RealizationSvc.RunIdList = {-27255,0,-28236}; /// For the `RealizationSvc.RunIdL
 
 // * ------- ROOT output data file (rtraw) ------- * //
 #include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
-RootCnvSvc.digiRootOutputFile = "__OUTPUTPATH__/__OUTPUTFILE__";
+RootCnvSvc.digiRootOutputFile = "__OUTPUTFILE__";
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 /// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL

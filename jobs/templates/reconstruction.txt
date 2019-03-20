@@ -46,10 +46,10 @@ MessageSvc.OutputLevel = __OUTPUTLEVEL__;
 MessageSvc.useColors   = true;
 
 // * ------- ROOT input data file (rtraw) ------- * //
-EventCnvSvc.digiRootInputFile = {"__OUTPUTPATH__/__INPUTFILE__"};
+EventCnvSvc.digiRootInputFile = {"__INPUTFILE__"};
 
 // * ------- ROOT output data file (dst) ------- * //
-EventCnvSvc.digiRootOutputFile ="__OUTPUTPATH__/__OUTPUTFILE__";
+EventCnvSvc.digiRootOutputFile ="__OUTPUTFILE__";
 
 // * ------- Number of events ------- * //
 /// Number of events to be processed (-1 stands for all events)

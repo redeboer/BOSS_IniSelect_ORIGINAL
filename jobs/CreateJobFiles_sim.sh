@@ -42,6 +42,9 @@ set -e # exit if a command or function exits with a non-zero status
 	# * (4) Terminal message output level
 	outputLevel=4 # default argument: 4 (MSG::WARNING)
 	if [ $# -ge 4 ]; then outputLevel=${4}; fi
+	# * (5) Output subdirectory
+	outputSubdir="${packageName}" # default argument
+	if [ $# -ge 5 ]; then outputSubdir="${5}"; fi
 
 
 # * ================================= * #
@@ -49,33 +52,51 @@ set -e # exit if a command or function exits with a non-zero status
 # * ================================= * #
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs" # contains templates and will write scripts to its subfolders
-	outputFolder="/scratchfs/bes/${USER}/data" # rtraw, dst, root, and log files will be written to this folder
+	decayCardDir="${scriptFolder}/dec"
+	templateFile_sim="${scriptFolder}/templates/simulation.txt"
+	templateFile_rec="${scriptFolder}/templates/reconstruction.txt"
 
 
 # * =============================================== * #
 # * ------- Check arguments and parameters -------  * #
 # * =============================================== * #
 	CheckIfFolderExists "${scriptFolder}"
-	CheckIfFolderExists "${outputFolder}"
+	CheckIfFolderExists "${gDataOutputDir}"
+	CheckIfFolderExists "${decayCardDir}"
+	CheckIfFileExists "${templateFile_sim}"
+	CheckIfFileExists "${templateFile_rec}"
 
 
 # * ============================= * #
 # * ------- Main function ------- * #
 # * ============================= * #
 
-	# * User input
-	echo "This will create ${nJobs} \"${packageName}\" simulation and reconstruction job option files with ${nEventsPerJob} events each in job."
-	echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
-	AskForInput "\nTo write job files, press ENTER, else Ctrl+C ..."
+	# * Output directories
+		outputDir_sim="${scriptFolder}/sim/${outputSubdir}"
+		outputDir_rec="${scriptFolder}/rec/${outputSubdir}"
+		outputDir_sub="${scriptFolder}/sub/${outputSubdir}_mc"
+		outputDir_raw="${gDataOutputDir}/raw/${outputSubdir}"
+		outputDir_dst="${gDataOutputDir}/dst/${outputSubdir}"
+		outputDir_log="${gDataOutputDir}/log/${outputSubdir}"
 
-	# * Create and EMPTY scripts directory
-	CreateOrEmptyDirectory "${scriptFolder}" "sim"  "${packageName}"
-	CreateOrEmptyDirectory "${scriptFolder}" "rec"  "${packageName}"
-	CreateOrEmptyDirectory "${scriptFolder}" "sub"  "${packageName}_mc"
-	# * Create and EMPTY output directory
-	CreateOrEmptyDirectory "${outputFolder}" "raw"  "${packageName}"
-	CreateOrEmptyDirectory "${outputFolder}" "dst"  "${packageName}"
-	CreateOrEmptyDirectory "${outputFolder}" "log"  "${packageName}"
+	# * User input
+		echo "This will create ${nJobs} \"${packageName}\" simulation and reconstruction job option files with ${nEventsPerJob} events each in job."
+		echo "These files will be written to folder:"
+		echo "   \"${outputDir_sim}\""
+		echo "   \"${outputDir_rec}\""
+		echo "   \"${outputDir_sub}\""
+		echo
+		echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
+		echo
+		AskForInput "Write ${nJobs} \"${packageName}\" simulation and reconstruction job files?"
+
+	# * Create and EMPTY output directories
+		CreateOrEmptyDirectory "${outputDir_sim}"
+		CreateOrEmptyDirectory "${outputDir_rec}"
+		CreateOrEmptyDirectory "${outputDir_sub}"
+		CreateOrEmptyDirectory "${outputDir_raw}"
+		CreateOrEmptyDirectory "${outputDir_dst}"
+		CreateOrEmptyDirectory "${outputDir_log}"
 
 	# * Loop over jobs
 	for jobNo in $(seq 0 $((${nJobs} - 1))); do
@@ -84,43 +105,36 @@ set -e # exit if a command or function exits with a non-zero status
 
 		# * Generate the simulation files (sim)
 		randomSeed=$(($(date +%s%N) % 1000000000)) # random seed based on system time
-		templateName="${scriptFolder}/templates/simulation.txt"
-		outputFile="${scriptFolder}/sim/sim_${packageName}_${jobNo}.txt"
-		CheckIfFileExists "${templateName}"
+		outputFile="${outputDir_sim}/sim_${packageName}_${jobNo}.txt"
 		awk '{flag = 1}
-			{sub(/__SCRIPTPATH__/,"'${scriptFolder}'")}
 			{sub(/__RANDSEED__/,'${randomSeed}')}
-			{sub(/__DECAYCARD__/,"dec/'${packageName}'.dec")}
-			{sub(/__OUTPUTPATH__/,"'${outputFolder}'")}
-			{sub(/__OUTPUTFILE__/,"raw/'${packageName}'_'${jobNo}'.rtraw")}
 			{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
+			{sub(/__DECAYCARD__/,"'${decayCardDir}'/'${packageName}'.dec")}
+			{sub(/__OUTPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
 			{sub(/__NEVENTS__/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
-		${templateName} > "${outputFile}"
+		${templateFile_sim} > "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 		chmod +x "${outputFile}"
 
 		# * Generate the reconstruction files (rec)
-		templateName="${scriptFolder}/templates/reconstruction.txt"
-		outputFile="${scriptFolder}/rec/rec_${packageName}_${jobNo}.txt"
-		CheckIfFileExists "${templateName}"
+		outputFile="${outputDir_rec}/rec_${packageName}_${jobNo}.txt"
 		awk '{flag = 1}
 			{sub(/__RANDSEED__/,'${randomSeed}')}
 			{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
-			{sub(/__OUTPUTPATH__/,"'${outputFolder}'")}
-			{sub(/__INPUTFILE__/,"raw/'${packageName}'_'${jobNo}'.rtraw")}
-			{sub(/__OUTPUTFILE__/,"dst/'${packageName}'_'${jobNo}'.dst")}
+			{sub(/__INPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
+			{sub(/__OUTPUTFILE__/,"'${outputDir_dst}'/'${packageName}'_'${jobNo}'.dst")}
 			{sub(/__NEVENTS__/,'${nEventsPerJob}')}
 			{if(flag == 1) {print $0} else {next} }' \
-		"${templateName}" > "${outputFile}"
+		"${templateFile_rec}" > "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 		chmod +x "${outputFile}"
 
 		# * Generate the submit files (sub)
-		outputFile="${scriptFolder}/sub/sub_${packageName}_mc_${jobNo}.sh"
+		outputFile="${outputDir_sub}/sub_${packageName}_mc_${jobNo}.sh"
 		echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
-		echo "{ boss.exe \"${scriptFolder}/sim/sim_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/sim_${packageName}_${jobNo}.log\"" >> "${outputFile}"
-		echo "{ boss.exe \"${scriptFolder}/rec/rec_${packageName}_${jobNo}.txt\"; } &> \"${outputFolder}/log/rec_${packageName}_${jobNo}.log\"" >> "${outputFile}"
+		echo "{ boss.exe \"${outputDir_sim}/sim_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/sim__${packageName}_${jobNo}.log\"" >> "${outputFile}"
+		echo "{ boss.exe \"${outputDir_rec}/rec_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/rec_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 		chmod +x "${outputFile}"
 
@@ -131,7 +145,6 @@ set -e # exit if a command or function exits with a non-zero status
 # * ===================================== * #
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
-	PrintSuccessMessage \
-		"Succesfully created ${nJobs} \"${packageName}\" job files with ${nEventsPerJob} events each\n"
+	PrintSuccessMessage "Succesfully created ${nJobs} \"${packageName}\" job files with ${nEventsPerJob} events each\n"
 
 set +e # exit if a command or function exits with a non-zero status
