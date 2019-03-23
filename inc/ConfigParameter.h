@@ -8,6 +8,7 @@
 
 
 	#include "AxisBinning.h"
+	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParBase.h"
 	#include "TString.h"
@@ -60,6 +61,7 @@
 	template class ConfigParameter<bool>;
 	template class ConfigParameter<std::string>;
 	template class ConfigParameter<AxisBinning>;
+	template class ConfigParameter<std::list<BranchPlotOptions> >;
 
 
 
@@ -94,6 +96,22 @@
 		std::stringstream ss;
 		ss << fValue;
 		AddValue(ss.str());
+		return true;
+	}
+
+
+	/// Default `ConvertValueToStrings` template function: works only for `type`s like `double`s, because this function relies on `std::stringstream`.
+	template<> inline
+	bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertValueToStrings_impl()
+	{
+		for(auto &it : fValue) {
+			std::stringstream ss;
+			ss << "{\"";
+			ss << it.VarExp() << "\", \"";
+			ss << it.CutSelection() << "\", \"";
+			ss << it.DrawOption() << "\"}";
+			AddValue(ss.str());
+		}
 		return true;
 	}
 
@@ -160,6 +178,16 @@
 			!fReadStrings.front()[0] == '0') fValue = false;
 		else fValue = true;
 		return true;
+	}
+
+
+	/// `ConvertStringsToValue` handler for `bool`eans.
+	template<> inline
+	bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertStringsToValue_impl()
+	{
+		for(auto& it : fReadStrings) {
+std::cout << it << std::endl;
+		}
 	}
 
 

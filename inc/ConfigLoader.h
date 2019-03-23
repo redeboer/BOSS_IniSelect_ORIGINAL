@@ -9,6 +9,7 @@
 	#include "AxisBinning.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParameter.h"
+	#include "BranchPlotOptions.h"
 	#include <fstream>
 	#include <list>
 	#include <string>
@@ -63,27 +64,29 @@
 	public:
 		ConfigLoader(const std::string &path);
 
-		ConfigParameter<std::string> fInputFilename{"fInputFilename"};
+		ConfigParameter<std::string> fInputFilename{"Input file or directory", "NOFILE"};
 
-		ConfigParameter<bool> fPrintBranches{"fPrintBranches"}; ///< Whether or not to print all branch names.
-		ConfigParameter<bool> fPrintAverages{"fPrintAverages"}; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
-		ConfigParameter<bool> fFitplots     {"fFitplots"};      ///< Whether or not to produce invariant mass fits.
-		ConfigParameter<bool> fPlotstats    {"fPlotstats"};     ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
+		ConfigParameter<bool> fDo_conv_d{"Do double convolution", false}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
+		ConfigParameter<bool> fDo_conv_s{"Do single convolution", false}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
+		ConfigParameter<bool> fDo_gauss {"Do Gaussian",           true};  ///< Whether or not to produce perform a double Gaussian fit.
 
-		ConfigParameter<bool> fDraw_mctruth{"fDraw_mctruth"}; ///< Whether or not to draw the MC truth parameters.
-		ConfigParameter<bool> fDraw_mult   {"fDraw_mult"};    ///< Whether or not to draw the multiplicity branches.
-		ConfigParameter<bool> fDraw_tof    {"fDraw_tof"};     ///< Whether or not to draw the `"tof*"` branches.
-		ConfigParameter<bool> fDraw_vertex {"fDraw_vertex"};  ///< Whether or not to draw the `"vertex"` branch.
-		ConfigParameter<bool> fPureplot    {"fPureplot"};     ///< Whether or not to plot histograms of branches <i>without fit</i>.
-		ConfigParameter<bool> fSetranges   {"fSetranges"};    ///< Whether or not to precisely set histogram ranges.
-		ConfigParameter<bool> fLogY        {"fLogY"};         ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
-		ConfigParameter<bool> fLogZ        {"fLogZ"};         ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+		ConfigParameter<bool> fDraw_fit    {"Draw fit branches",  true};  ///< Whether or not to draw the `"fit"` branches.
+		ConfigParameter<bool> fDraw_mctruth{"Draw mctruth",       false}; ///< Whether or not to draw the MC truth parameters.
+		ConfigParameter<bool> fDraw_mult   {"Draw multiplicites", false}; ///< Whether or not to draw the multiplicity branches.
+		ConfigParameter<bool> fDraw_tof    {"Draw ToF",           false}; ///< Whether or not to draw the `"tof*"` branches.
+		ConfigParameter<bool> fDraw_vertex {"Draw vertex",        false}; ///< Whether or not to draw the `"vertex"` branch.
 
-		ConfigParameter<bool> fDraw_fit {"fDraw_fit"};  ///< Whether or not to draw the `"fit"` branches.
-		ConfigParameter<bool> fDo_conv_d{"fDo_conv_d"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
-		ConfigParameter<bool> fDo_conv_s{"fDo_conv_s"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
-		ConfigParameter<bool> fDo_gauss {"fDo_gauss"};  ///< Whether or not to produce perform a double Gaussian fit.
-		ConfigParameter<AxisBinning> fTestVectorArg{"fTestVectorArg"};
+		ConfigParameter<bool> fFitplots     {"Perform fits",    false}; ///< Whether or not to produce invariant mass fits.
+		ConfigParameter<bool> fLogY         {"Use y log scale", false}; ///< Whether to draw the \f$y\f$ axis of the `TH1F` in log scale.
+		ConfigParameter<bool> fLogZ         {"Use z log scale", false}; ///< Whether to draw the \f$z\f$ axis of the `TH2F` in log scale.
+		ConfigParameter<bool> fPlotstats    {"Plot statistics", false}; ///< Whether or not to draw the legend in the upper right corner with histogram statistics.
+		ConfigParameter<bool> fPrintAverages{"Print averages",  false}; ///< Whether or not to print the averages for all branches. This could be useful when testing whether the branches have been filled correctly. Note that this could increase run time significantly in case of a large data set!
+		ConfigParameter<bool> fPrintBranches{"Print branches",  false}; ///< Whether or not to print all branch names.
+		ConfigParameter<bool> fPureplot     {"Plot raw data",   true};  ///< Whether or not to plot histograms of branches <i>without fit</i>.
+		ConfigParameter<bool> fSetranges    {"Set plot ranges", true};  ///< Whether or not to precisely set histogram ranges.
+
+		ConfigParameter<AxisBinning> fTestVectorArg{"Test vector"};
+		ConfigParameter<std::list<BranchPlotOptions> > fListOfbranches {"Print these branches"};
 
 	private:
 		const std::string fConfigPath;

@@ -5,6 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "CommonFunctions.h"
+	#include "AxisBinning.h"
+	#include <vector>
 	#include <string>
 
 
@@ -16,34 +18,23 @@
 /// @{
 
 
-	/// Container object for a <i>BOSS Afterburner</i> analysis config file.
-	/// Give this object a path to the configuration text file for the analysis you want to perform, and all settings will be automatically loaded from this file. The syntax for this file is of course determined by this object.
+	/// 
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     January 24th, 2018
+	/// @date     March 23rd, 2018
 	class BranchPlotOptions
 	{
 	public:
-		/// @name Constructors
-			///@{
-			BranchPlotOptions(const char* branchName, const int nBins=100, const double from=-DBL_MAX, const double to=DBL_MAX, const char* option="", const char* cut="");
-			BranchPlotOptions(const char* branchName, const double binWidth, const double from=-DBL_MAX, const double to=DBL_MAX, const char* option="", const char* cut="");
-			///@}
+		BranchPlotOptions(const char* varexp, const char* selection="", const Option_t *option="") :
+			fVarExp(varexp), fCutSelection(selection), fDrawOption(option) {}
+
+		const char* VarExp() const { return fVarExp.c_str(); }
+		const char* CutSelection() const { return fCutSelection.c_str(); }
+		const char* DrawOption() const { return fDrawOption.c_str(); }
 
 	private:
-		/// @name Strings
-			///@{
-			std::string fBranchName;
-			std::string fCuts;
-			std::string fDrawOption;
-			///@}
-
-		/// @name Binnings
-			///@{
-			int fNumberOfBins;
-			double fBinWidth;
-			double fPlotFrom;
-			double fPlotTo;
-			///@}
+		std::string fVarExp;
+		std::string fCutSelection;
+		std::string fDrawOption;
 
 	};
 

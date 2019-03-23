@@ -15,31 +15,9 @@
 
 	/// Constructor that opens a `TFile` and unordered_maps its contents.
 	/// @remark **You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!**
-	ConfigLoader::ConfigLoader(const std::string &path) :
-		/// * Construct normal data members
-			fConfigPath(path),
-		/// * Construct `ArgPair` objects of type `string`
-			fInputFilename("Input file or directory", "NOFILE"),
-			fLogY         ("Use y log scale",       false),
-			fLogZ         ("Use z log scale",       false),
-		/// * Construct `ArgPair` objects that serve as a switch (`bool`)
-			fPrintBranches("Print branches",        false),
-			fPrintAverages("Print averages",        false),
-			fSetranges    ("Set plot ranges",       true),
-			fPlotstats    ("Plot statistics",       false),
-			fPureplot     ("Plot raw data",         true),
-			fDraw_mctruth ("Draw mctruth",          false),
-			fDraw_mult    ("Draw multiplicites",    false),
-			fDraw_vertex  ("Draw vertex",           false),
-			fDraw_tof     ("Draw ToF",              false),
-			fDraw_fit     ("Draw fit branches",     true),
-			fFitplots     ("Perform fits",          false),
-			fDo_gauss     ("Do Gaussian",           true),
-			fDo_conv_s    ("Do single convolution", false),
-			fDo_conv_d    ("Do double convolution", false),
-fTestVectorArg("Test vector")
+	ConfigLoader::ConfigLoader(const std::string &path) : fConfigPath(path)
 	{
-		LoadConfiguration(path);
+		LoadConfiguration(fConfigPath);
 	}
 
 
