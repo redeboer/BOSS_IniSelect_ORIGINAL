@@ -63,9 +63,6 @@
 	public:
 		ConfigLoader(const std::string &path);
 
-	private:
-		const std::string fConfigPath;
-
 		ConfigParameter<std::string> fInputFilename{"fInputFilename"};
 
 		ConfigParameter<bool> fPrintBranches{"fPrintBranches"}; ///< Whether or not to print all branch names.
@@ -87,6 +84,9 @@
 		ConfigParameter<bool> fDo_conv_s{"fDo_conv_s"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 		ConfigParameter<bool> fDo_gauss {"fDo_gauss"};  ///< Whether or not to produce perform a double Gaussian fit.
 		ConfigParameter<AxisBinning> fTestVectorArg{"fTestVectorArg"};
+
+	private:
+		const std::string fConfigPath;
 
 		size_t LoadConfiguration(const std::string &path);
 

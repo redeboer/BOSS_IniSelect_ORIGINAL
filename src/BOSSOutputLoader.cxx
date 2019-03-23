@@ -25,8 +25,8 @@
 
 
 	/// Constructor that opens a `TFile` and unordered_maps its contents.
-	BOSSOutputLoader::BOSSOutputLoader(const char* path, bool print_branches, bool print_averages) :
-		fDirectoryPath(path)
+	BOSSOutputLoader::BOSSOutputLoader(const std::string &path, bool print_branches, bool print_averages) :
+		fDirectoryPath(path.c_str())
 	{
 		/// -# Make an inventory of ROOT files in input directory and add filenames to the `fFileNames` list.
 		/// -# If `path` ends in `".root"`, treat as <i>single ROOT file</i> and attempt to load it.
@@ -50,7 +50,7 @@
 			/// <li> Remove trailing slash `/` from `fDirectoryPath`
 				if(fDirectoryPath.EndsWith("/")) fDirectoryPath.Chop();
 			/// <li> Open file directory using `TSystemDirectory`.
-				TSystemDirectory dir(path, path);
+				TSystemDirectory dir(fDirectoryPath.Data(), fDirectoryPath.Data());
 			/// <li> Abort if directory is empty.
 				TList *files = dir.GetListOfFiles();
 				if(!files) {

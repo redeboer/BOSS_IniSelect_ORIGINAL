@@ -38,7 +38,7 @@
 		void operator=(const TYPE &val) { fValue = val; ConvertValueToStrings(); }
 		bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }
 		bool operator!=(const std::string &data) const { return  GetIdentifier().compare(data); }
-		explicit operator TYPE() { return fValue; }
+		operator TYPE() { return fValue; }
 		void PrintValue() const;
 	private:
 		bool ConvertStringsToValue_impl_str();

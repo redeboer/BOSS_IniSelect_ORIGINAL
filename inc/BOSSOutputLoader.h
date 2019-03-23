@@ -30,7 +30,7 @@
 		/// @name Constructors
 			///@{
 			BOSSOutputLoader() {}
-			BOSSOutputLoader(const char* directoryPath, bool print_branches = true, bool print_averages = false);
+			BOSSOutputLoader(const std::string &directoryPath, bool print_branches = true, bool print_averages = false);
 			///@}
 
 		/// @name Information functions
