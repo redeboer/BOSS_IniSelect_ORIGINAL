@@ -36,22 +36,24 @@
 		const std::string &GetIdentifier() const { return fIdentifier; }
 
 		void AddValue(std::string value);
-		void ClearValues() { fReadStrings.clear(); fValueIsSet = false; }
 		void ResetIfHasValue() { if(fValueIsSet) ClearValues(); }
 		const size_t GetNReadValues() const { return fReadStrings.size(); }
 		const std::list<std::string>* GetListOfValues() { return &fReadStrings; }
-		virtual bool ConvertStringsToValue() = 0;
-		virtual bool ConvertValueToStrings() = 0;
+		bool ConvertStringsToValue();
+		bool ConvertValueToStrings();
 		virtual void PrintValue() const = 0;
 		bool ValueIsSet() const { return fValueIsSet; }
 
 
 	protected:
+		virtual bool ConvertStringsToValue_impl() = 0;
+		virtual bool ConvertValueToStrings_impl() = 0;
 		std::list<std::string> fReadStrings; ///< Loaded values in string format. You can specify in derived classes how to use these values.
 		bool fValueIsSet; /// Switch that is used to prevent from double adding values to the `fReadStrings` `list`.
 
 
 	private:
+		void ClearValues() { fReadStrings.clear(); fValueIsSet = false; }
 		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadStrings`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fInstances`.
 		static std::unordered_map<std::string, ConfigParBase*> fInstances;
 	};

@@ -6,9 +6,9 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "ConfigParameter.h"
-	#include "BranchPlotOptions.h"
+	#include "AxisBinning.h"
 	#include "CommonFunctions.h"
+	#include "ConfigParameter.h"
 	#include <fstream>
 	#include <list>
 	#include <string>
@@ -86,7 +86,7 @@
 		ConfigParameter<bool> fDo_conv_d{"fDo_conv_d"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
 		ConfigParameter<bool> fDo_conv_s{"fDo_conv_s"}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 		ConfigParameter<bool> fDo_gauss {"fDo_gauss"};  ///< Whether or not to produce perform a double Gaussian fit.
-		ConfigParameter<double> fTestVectorArg{"fTestVectorArg"};
+		ConfigParameter<AxisBinning> fTestVectorArg{"fTestVectorArg"};
 
 		size_t LoadConfiguration(const std::string &path);
 

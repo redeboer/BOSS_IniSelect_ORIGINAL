@@ -7,6 +7,7 @@
 // * ========================= * //
 
 
+	#include "AxisBinning.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParBase.h"
 	#include "TString.h"
@@ -34,15 +35,15 @@
 	public:
 		ConfigParameter(const std::string &identifier);
 		ConfigParameter(const std::string &identifier, const TYPE &default_value);
-		void operator=(const TYPE &val) { fValue = val; }
+		void operator=(const TYPE &val) { fValue = val; ConvertValueToStrings(); }
 		bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }
 		bool operator!=(const std::string &data) const { return  GetIdentifier().compare(data); }
 		explicit operator TYPE() { return fValue; }
 		void PrintValue() const;
-		virtual bool ConvertStringsToValue();
-		virtual bool ConvertValueToStrings();
-		bool ConvertStringsToValue_impl();
 	private:
+		bool ConvertStringsToValue_impl_str();
+		virtual bool ConvertStringsToValue_impl();
+		virtual bool ConvertValueToStrings_impl();
 		bool HasSingleString() const;
 		TYPE fValue; /// The object that contains the data read from the `fReadStrings` `list`.
 	};
@@ -56,8 +57,9 @@
 // ! This list needs to be expended if you are implementing new template specialisations
 
 
-	template class ConfigParameter<std::string>;
 	template class ConfigParameter<bool>;
+	template class ConfigParameter<std::string>;
+	template class ConfigParameter<AxisBinning>;
 
 
 
@@ -75,8 +77,7 @@
 	ConfigParameter<TYPE>::ConfigParameter(const std::string &identifier, const TYPE &default_value) :
 		ConfigParBase(identifier), fValue(default_value)
 	{
-		if(!ConvertValueToStrings()) return;
-		fValueIsSet = true;
+		if(ConvertValueToStrings()) fValueIsSet = true;
 	}
 
 
@@ -86,12 +87,10 @@
 // * ===================================== * //
 
 
-	/// Convert the string values in `fReadStrings` to the `fValue` data member.
 	/// Default `ConvertValueToStrings` template function: works only for `type`s like `double`s, because this function relies on `std::stringstream`.
 	template<typename TYPE> inline
-	bool ConfigParameter<TYPE>::ConvertValueToStrings()
+	bool ConfigParameter<TYPE>::ConvertValueToStrings_impl()
 	{
-		ClearValues();
 		std::stringstream ss;
 		ss << fValue;
 		AddValue(ss.str());
@@ -99,13 +98,27 @@
 	}
 
 
-	/// `ConvertValueToStrings` template specialisation for `bool`.
+	/// `ConvertValueToStrings` implementation handler for `bool`.
 	template<> inline
-	bool ConfigParameter<bool>::ConvertValueToStrings()
+	bool ConfigParameter<bool>::ConvertValueToStrings_impl()
 	{
-		ClearValues();
 		if(fValue) AddValue("true");
 		else       AddValue("false");
+		return true;
+	}
+
+
+	/// `ConvertValueToStrings` implementation handler for `AxisBinning`.
+	template<> inline
+	bool ConfigParameter<AxisBinning>::ConvertValueToStrings_impl()
+	{
+		std::stringstream ss;
+		if(!fValue.IsOK()) {
+			std::cout << "WARNING: " << fValue.GetNBins() << ", " << fValue.GetFrom() << ", " << fValue.GetTo() << std::endl;
+			return false;
+		}
+		ss << fValue.GetNBins() << ", " << fValue.GetFrom() << ", " << fValue.GetTo();
+		AddValue(ss.str());
 		return true;
 	}
 
@@ -116,28 +129,23 @@
 // * ===================================== * //
 
 
-	/// Convert the string values read to `fReadStrings` to the `fValue` member.
-	template<typename TYPE> inline
-	bool ConfigParameter<TYPE>::ConvertStringsToValue()
-	{
-		if(!fReadStrings.size()) {
-			CommonFunctions::Error::PrintWarning(Form("No values to convert for parameter \"%s\"", GetIdentifier().c_str()));
-			return false;
-		}
-		if(!ConvertStringsToValue_impl()) return false;
-		fValueIsSet = true;
-		return true;
-	}
-
-
-	/// Default `ConvertStringsToValue` handler (only works for internal C++ types).
-	/// @remark The implementation might differ per template and would have to be defined here in template specialisations of `ConverStringsToValue_impl`
+	/// Default implementation handler for `ConvertStringsToValue` (only works for internal C++ types).
 	template<typename TYPE> inline
 	bool ConfigParameter<TYPE>::ConvertStringsToValue_impl()
 	{
 		if(!HasSingleString()) return false;
 		std::istringstream ss(fReadStrings.front());
 		ss >> fValue;
+		return true;
+	}
+
+
+	/// `ConvertStringsToValue` handler for an object that can be contructed from a `std::string`.
+	template<class TYPE> inline
+	bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
+	{
+		if(!HasSingleString()) return false;
+		fValue = fReadStrings.front();
 		return true;
 	}
 
@@ -159,9 +167,15 @@
 	template<> inline
 	bool ConfigParameter<std::string>::ConvertStringsToValue_impl()
 	{
-		if(!HasSingleString()) return false;
-		fValue = fReadStrings.front();
-		return true;
+		return ConvertStringsToValue_impl_str();
+	}
+
+
+	/// `ConvertStringsToValue` handler for `AxisBinning`s (has a `string` constructor).
+	template<> inline
+	bool ConfigParameter<AxisBinning>::ConvertStringsToValue_impl()
+	{
+		return ConvertStringsToValue_impl_str();
 	}
 
 
@@ -197,6 +211,14 @@
 	{
 		if(fValue) std::cout << "true";
 		else       std::cout << "false";
+	}
+
+
+	/// In case of a `AxisBinning` `fValue`, encapsulate its value in double quotations marks (`"`).
+	template<> inline
+	void ConfigParameter<AxisBinning>::PrintValue() const
+	{
+		std::cout << fValue.GetNBins() << " bins, range " << fValue.GetFrom() << " to " << fValue.GetTo();
 	}
 
 

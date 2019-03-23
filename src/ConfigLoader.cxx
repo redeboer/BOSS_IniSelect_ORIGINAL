@@ -232,7 +232,10 @@ fTestVectorArg("Test vector")
 		}
 		/// <li> Set all parameter values from the read strings
 			auto mapping = ConfigParBase::GetMapOfParameters();
-			for(auto &it : *mapping) it.second->ConvertStringsToValue();
+			for(auto &it : *mapping) {
+				it.second->ConvertStringsToValue();
+				it.second->ConvertValueToStrings();
+			}
 		/// <li> Print loaded values in table form.
 		ConfigParBase::PrintAll();
 		/// @return Number of valid loaded arguments

@@ -38,14 +38,40 @@
 
 
 // * ====================== * //
-// * ------- GETTERS ------ * //
+// * ------- SETTERS ------ * //
 // * ====================== * //
 
 
-		void ConfigParBase::AddValue(std::string value)
-		{
-			fReadStrings.push_back(value);
+	void ConfigParBase::AddValue(std::string value)
+	{
+		fReadStrings.push_back(value);
+	}
+
+
+	/// Convert the string values read to `fReadStrings` to the `fValue` member.
+	/// How this is done should be specified in the `ConvertStringsToValue_impl` method for each derived class.
+	bool ConfigParBase::ConvertStringsToValue()
+	{
+		if(!fReadStrings.size()) {
+			CommonFunctions::Error::PrintWarning(Form("No values to convert for parameter \"%s\"", GetIdentifier().c_str()));
+			return false;
 		}
+		if(!ConvertStringsToValue_impl()) return false;
+		fValueIsSet = true;
+		return true;
+	}
+
+
+	/// Convert the `fValue` data member to the `list` of `fReadStrings.
+	/// How this is done should be specified in the `ConvertValueToStrings_impl` method for each derived class.
+	bool ConfigParBase::ConvertValueToStrings()
+	{
+		auto list = fReadStrings;
+		ClearValues();
+		if(ConvertValueToStrings_impl()) return true;
+		fReadStrings = list;
+		return false;
+	}
 
 
 
