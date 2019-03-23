@@ -27,7 +27,7 @@
 # ! ================================= ! #
 
 	outputDir="${1}"
-	identifier="${2}"
+	jobIdentifier="${2}"
 	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs/sub"
 
@@ -53,9 +53,9 @@
 # * ================================ * #
 
 	CheckFolder ${scriptFolder}
-	nJobs=$(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${identifier}_[0-9]+.sh$ | wc -l)
+	nJobs=$(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${jobIdentifier}_[0-9]+.sh$ | wc -l)
 	if [ ${nJobs} == 0 ]; then
-		PrintErrorMessage "No jobs of type \"${identifier}\" available in \"${scriptFolder}/${outputDir}\""
+		PrintErrorMessage "No jobs of type \"${jobIdentifier}\" available in \"${scriptFolder}/${outputDir}\""
 		exit
 	fi
 
@@ -64,9 +64,8 @@
 # * ------- Run over all job files ------- * #
 # * ====================================== * #
 
-	AskForInput "Submit ${nJobs} jobs for \"${identifier}\"?"
-	for job in $(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${identifier}_[0-9]+.sh$); do
-		echo "hep_sub -g physics \"${job}\""
+	AskForInput "Submit ${nJobs} jobs for \"${jobIdentifier}\"?"
+	for job in $(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${jobIdentifier}_[0-9]+.sh$); do
 		hep_sub -g physics "${job}"
 		if [ $? != 0 ]; then
 			PrintErrorMessage "Aborted submitting jobs"
@@ -80,7 +79,7 @@
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
 
-	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${identifier}\" jobs"
+	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${jobIdentifier}\" jobs"
 	echo
 	echo "These are your jobs:"
 	hep_q -u $USER

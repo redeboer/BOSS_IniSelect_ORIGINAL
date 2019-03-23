@@ -104,39 +104,39 @@ set -e # exit if a command or function exits with a non-zero status
 		echo -en "\e[0K\rCreating files for job $(($jobNo+1))/${nJobs}..." # overwrite previous line
 
 		# * Generate the simulation files (sim)
-		randomSeed=$(($(date +%s%N) % 1000000000)) # random seed based on system time
-		outputFile="${outputDir_sim}/sim_${packageName}_${jobNo}.txt"
-		awk '{flag = 1}
-			{sub(/__RANDSEED__/,'${randomSeed}')}
-			{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
-			{sub(/__DECAYCARD__/,"'${decayCardDir}'/'${packageName}'.dec")}
-			{sub(/__OUTPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
-			{sub(/__NEVENTS__/,'${nEventsPerJob}')}
-			{if(flag == 1) {print $0} else {next} }' \
-		${templateFile_sim} > "${outputFile}"
-		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
-		chmod +x "${outputFile}"
+			randomSeed=$(($(date +%s%N) % 1000000000)) # random seed based on system time
+			outputFile="${outputDir_sim}/sim_${packageName}_${jobNo}.txt"
+			awk '{flag = 1}
+				{sub(/__RANDSEED__/,'${randomSeed}')}
+				{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
+				{sub(/__DECAYCARD__/,"'${decayCardDir}'/'${packageName}'.dec")}
+				{sub(/__OUTPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
+				{sub(/__NEVENTS__/,'${nEventsPerJob}')}
+				{if(flag == 1) {print $0} else {next} }' \
+			${templateFile_sim} > "${outputFile}"
+			ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+			chmod +x "${outputFile}"
 
 		# * Generate the reconstruction files (rec)
-		outputFile="${outputDir_rec}/rec_${packageName}_${jobNo}.txt"
-		awk '{flag = 1}
-			{sub(/__RANDSEED__/,'${randomSeed}')}
-			{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
-			{sub(/__INPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
-			{sub(/__OUTPUTFILE__/,"'${outputDir_dst}'/'${packageName}'_'${jobNo}'.dst")}
-			{sub(/__NEVENTS__/,'${nEventsPerJob}')}
-			{if(flag == 1) {print $0} else {next} }' \
-		"${templateFile_rec}" > "${outputFile}"
-		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
-		chmod +x "${outputFile}"
+			outputFile="${outputDir_rec}/rec_${packageName}_${jobNo}.txt"
+			awk '{flag = 1}
+				{sub(/__RANDSEED__/,'${randomSeed}')}
+				{sub(/__OUTPUTLEVEL__/,'${outputLevel}')}
+				{sub(/__INPUTFILE__/,"'${outputDir_raw}'/'${packageName}'_'${jobNo}'.rtraw")}
+				{sub(/__OUTPUTFILE__/,"'${outputDir_dst}'/'${packageName}'_'${jobNo}'.dst")}
+				{sub(/__NEVENTS__/,'${nEventsPerJob}')}
+				{if(flag == 1) {print $0} else {next} }' \
+			"${templateFile_rec}" > "${outputFile}"
+			ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+			chmod +x "${outputFile}"
 
 		# * Generate the submit files (sub)
-		outputFile="${outputDir_sub}/sub_${packageName}_mc_${jobNo}.sh"
-		echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
-		echo "{ boss.exe \"${outputDir_sim}/sim_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/sim__${packageName}_${jobNo}.log\"" >> "${outputFile}"
-		echo "{ boss.exe \"${outputDir_rec}/rec_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/rec_${packageName}_${jobNo}.log\"" >> "${outputFile}"
-		ChangeLineEndingsFromWindowsToUnix "${outputFile}"
-		chmod +x "${outputFile}"
+			outputFile="${outputDir_sub}/sub_${packageName}_mc_${jobNo}.sh"
+			echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
+			echo "{ boss.exe \"${outputDir_sim}/sim_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/sim_${packageName}_${jobNo}.log\"" >> "${outputFile}"
+			echo "{ boss.exe \"${outputDir_rec}/rec_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/rec_${packageName}_${jobNo}.log\"" >> "${outputFile}"
+			ChangeLineEndingsFromWindowsToUnix "${outputFile}"
+			chmod +x "${outputFile}"
 
 	done
 	echo

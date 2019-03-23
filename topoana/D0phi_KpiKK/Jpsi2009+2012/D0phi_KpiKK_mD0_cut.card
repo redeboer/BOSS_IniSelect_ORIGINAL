@@ -4,12 +4,12 @@
 
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/incl/D0phi_KpiKK_incl_fit_cut_2009+2012.root
+  /scratchfs/bes/deboer/data/root/D0phi_KpiKK/Jpsi2009+2012.root
 }
 
 % Tree name
 {
-  topology_mphi_3sig
+  topology
 }
 
 % Branch name of the number of particles
@@ -29,7 +29,7 @@
 
 % Main name of output files 
 {  
-  D0phi_KpiKK_incl_mphi_3sig
+  D0phi_KpiKK_mD0_cut
 }
 
 
@@ -125,3 +125,8 @@
 # {
 #   Y
 # }
+
+% Cut to select entries
+{
+  mD0 > 1.84855 && mD0 < 1.89527
+}

@@ -134,7 +134,7 @@ set -e # exit if a command or function exits with a non-zero status
 			# * Generate the submit files (sub)
 				outputFile="${outputDir_sub}/sub_${packageName}_ana_${jobNo}.sh"
 				echo "#!/bin/bash" > "${outputFile}" # empty file and write first line
-				echo "{ boss.exe \"${scriptFolder}/ana/ana_${packageName}_${jobNo}.txt\"; } &> \"${gDataOutputDir}/log/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
+				echo "{ boss.exe \"${outputDir_ana}/ana_${packageName}_${jobNo}.txt\"; } &> \"${outputDir_log}/ana_${packageName}_${jobNo}.log\"" >> "${outputFile}"
 				ChangeLineEndingsFromWindowsToUnix "${outputFile}"
 				chmod +x "${outputFile}"
 
