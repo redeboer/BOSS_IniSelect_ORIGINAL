@@ -29,21 +29,30 @@
 
 		static void PrintAll();
 		static ConfigParBase* GetParameter(const std::string &identifier);
+		static ConfigParBase* GetCleanParameter(const std::string &identifier);
 		static const size_t GetNParameters() { return fInstances.size(); }
+		static const std::unordered_map<std::string, ConfigParBase*>* GetMapOfParameters() { return &fInstances; }
 
-		const std::string &GetIdentifier() { return fIdentifier; }
+		const std::string &GetIdentifier() const { return fIdentifier; }
 
-		void AddValue(std::string value) { fReadValues.push_back(value); }
-		const std::list<std::string>* GetListOfValues() { return &fReadValues; }
-		virtual void SetValues() = 0; ///< Conversion function that should be specified in the derived `ConfigParameter` template class.
+		void AddValue(std::string value);
+		void ClearValues() { fReadStrings.clear(); fValueIsSet = false; }
+		void ResetIfHasValue() { if(fValueIsSet) ClearValues(); }
+		const size_t GetNReadValues() const { return fReadStrings.size(); }
+		const std::list<std::string>* GetListOfValues() { return &fReadStrings; }
+		virtual bool ConvertStringsToValue() = 0;
+		virtual bool ConvertValueToStrings() = 0;
+		virtual void PrintValue() const = 0;
+		bool ValueIsSet() const { return fValueIsSet; }
 
 
 	protected:
-		std::list<std::string> fReadValues; ///< Loaded values in string format. You can specify in derived classes how to use these values.
+		std::list<std::string> fReadStrings; ///< Loaded values in string format. You can specify in derived classes how to use these values.
+		bool fValueIsSet; /// Switch that is used to prevent from double adding values to the `fReadStrings` `list`.
 
 
 	private:
-		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadValues`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fInstances`.
+		const std::string fIdentifier; ///< Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the `ConfigLoader`, its corresponding values will be added to `fReadStrings`. @warning The executable will `terminate` if the identifier already exists in the mapping of parameters `fInstances`.
 		static std::unordered_map<std::string, ConfigParBase*> fInstances;
 	};
 

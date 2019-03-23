@@ -118,7 +118,7 @@
 	void CommonFunctions::Error::PrintWarning(const std::string &message)
 	{
 		std::cout << "\033[1;33mWARNING\033[0m\033[33m: "; // in yellow
-		std::cout << Form("%s\033[0m\n", message.c_str()) << std::endl;
+		std::cout << Form("%s\033[0m", message.c_str()) << std::endl;
 	}
 
 

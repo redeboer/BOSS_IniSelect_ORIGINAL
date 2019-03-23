@@ -30,9 +30,12 @@
 			///@}
 
 	private:
-		std::string fBranchName;
-		std::string fCuts;
-		std::string fDrawOption;
+		/// @name Strings
+			///@{
+			std::string fBranchName;
+			std::string fCuts;
+			std::string fDrawOption;
+			///@}
 
 		/// @name Binnings
 			///@{

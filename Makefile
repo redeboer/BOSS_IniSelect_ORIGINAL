@@ -51,6 +51,12 @@ ${EXEDIR}/%.exe : scripts/%.C
 	@echo "Compiling script \"$(notdir $<)\""
 	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
 
+# * REMOVE LIBRARY ONLY * #
+# * This rule can be called using "make clean"
+cleanlib:
+	@rm -f lib${LIBNAME}.a
+	@echo "Deleted libary \"lib${LIBNAME}.a\""
+
 # * REMOVE ALL BINARIES * #
 # * This rule can be called using "make clean"
 clean:

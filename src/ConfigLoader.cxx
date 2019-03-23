@@ -18,43 +18,26 @@
 	ConfigLoader::ConfigLoader(const std::string &path) :
 		/// * Construct normal data members
 			fConfigPath(path),
-fInputFilename("Input file or directory"),
-fLogY         ("Use y log scale"),
-fLogZ         ("Use z log scale"),
-fPrintBranches("Print branches"),
-fPrintAverages("Print averages"),
-fSetranges    ("Set plot ranges"),
-fPlotstats    ("Plot statistics"),
-fPureplot     ("Plot raw data"),
-fDraw_mctruth ("Draw mctruth"),
-fDraw_mult    ("Draw multiplicites"),
-fDraw_vertex  ("Draw vertex"),
-fDraw_tof     ("Draw ToF"),
-fDraw_fit     ("Draw fit branches"),
-fFitplots     ("Perform fits"),
-fDo_gauss     ("Do Gaussian"),
-fDo_conv_s    ("Do single convolution"),
-fDo_conv_d    ("Do double convolution"),
+		/// * Construct `ArgPair` objects of type `string`
+			fInputFilename("Input file or directory", "NOFILE"),
+			fLogY         ("Use y log scale",       false),
+			fLogZ         ("Use z log scale",       false),
+		/// * Construct `ArgPair` objects that serve as a switch (`bool`)
+			fPrintBranches("Print branches",        false),
+			fPrintAverages("Print averages",        false),
+			fSetranges    ("Set plot ranges",       true),
+			fPlotstats    ("Plot statistics",       false),
+			fPureplot     ("Plot raw data",         true),
+			fDraw_mctruth ("Draw mctruth",          false),
+			fDraw_mult    ("Draw multiplicites",    false),
+			fDraw_vertex  ("Draw vertex",           false),
+			fDraw_tof     ("Draw ToF",              false),
+			fDraw_fit     ("Draw fit branches",     true),
+			fFitplots     ("Perform fits",          false),
+			fDo_gauss     ("Do Gaussian",           true),
+			fDo_conv_s    ("Do single convolution", false),
+			fDo_conv_d    ("Do double convolution", false),
 fTestVectorArg("Test vector")
-		// /// * Construct `ArgPair` objects of type `string`
-		// 	fInputFilename("Input file or directory", "NOFILE"),
-		// 	fLogY         ("Use y log scale",       "y"),
-		// 	fLogZ         ("Use z log scale",       "z"),
-		// /// * Construct `ArgPair` objects that serve as a switch (`bool`)
-		// 	fPrintBranches("Print branches",        false),
-		// 	fPrintAverages("Print averages",        false),
-		// 	fSetranges    ("Set plot ranges",       true),
-		// 	fPlotstats    ("Plot statistics",       false),
-		// 	fPureplot     ("Plot raw data",         true),
-		// 	fDraw_mctruth ("Draw mctruth",          false),
-		// 	fDraw_mult    ("Draw multiplicites",    false),
-		// 	fDraw_vertex  ("Draw vertex",           false),
-		// 	fDraw_tof     ("Draw ToF",              false),
-		// 	fDraw_fit     ("Draw fit branches",     true),
-		// 	fFitplots     ("Perform fits",          false),
-		// 	fDo_gauss     ("Do Gaussian",           true),
-		// 	fDo_conv_s    ("Do single convolution", false),
-		// 	fDo_conv_d    ("Do double convolution", false)
 	{
 		LoadConfiguration(path);
 	}
@@ -188,7 +171,7 @@ fTestVectorArg("Test vector")
 						// * Attempt to get parameter
 						parname.resize(parname.find_first_of('='));
 						String::Trim(parname);
-						par = ConfigParBase::GetParameter(parname);
+						par = ConfigParBase::GetCleanParameter(parname);
 						if(!par) continue;
 						// * Add the value to the parameter
 						parval = parval.substr(parval.find_first_of('=')+1);
@@ -205,7 +188,7 @@ fTestVectorArg("Test vector")
 						// * Attempt to get parameter
 						parname.resize(parname.find_first_of('='));
 						String::Trim(parname);
-						par = ConfigParBase::GetParameter(parname);
+						par = ConfigParBase::GetCleanParameter(parname);
 						if(!par) continue;
 						// * Add the value to the parameter
 						parval = parval.substr(parval.find_first_of('{')+1);
@@ -214,13 +197,13 @@ fTestVectorArg("Test vector")
 					}
 				/// <li> If the line does not contain an equal sign (`=`), it means the line only contains the parameter name and that we should continue reading the next lines.
 					if(line.find('=') == std::string::npos) {
-						par = ConfigParBase::GetParameter(parname);
+						par = ConfigParBase::GetCleanParameter(parname);
 						if(!par) continue;
 				/// <li> Else, get the parameter, read the first values on the line and continue to the next.
 					} else {
 						parname.resize(parname.find_first_of('='));
 						String::Trim(parname);
-						par = ConfigParBase::GetParameter(parname);
+						par = ConfigParBase::GetCleanParameter(parname);
 						if(!par) continue;
 						parval = parval.substr(parval.find_first_of('=')+1);
 						ImportValues(par, parval);
@@ -247,7 +230,10 @@ fTestVectorArg("Test vector")
 				}
 			/// </ul>
 		}
-		/// -# Print loaded values in table form.
+		/// <li> Set all parameter values from the read strings
+			auto mapping = ConfigParBase::GetMapOfParameters();
+			for(auto &it : *mapping) it.second->ConvertStringsToValue();
+		/// <li> Print loaded values in table form.
 		ConfigParBase::PrintAll();
 		/// @return Number of valid loaded arguments
 		return ConfigParBase::GetNParameters();

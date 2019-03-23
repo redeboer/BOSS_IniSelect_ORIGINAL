@@ -17,7 +17,8 @@
 	/// Constructor for the `ArgPair` classes that is called when defining the different parameter names in the constructor of `ChainLoader`.
 	/// A new entry is made in the `fInstances` with key `identifier`. @b Aborts if `fInstances` already contains a key with string `identifier`.
 	ConfigParBase::ConfigParBase(const std::string &identifier) :
-		fIdentifier(identifier)
+		fIdentifier(identifier),
+		fValueIsSet(false)
 	{
 		if(!(fInstances.find(fIdentifier) == fInstances.end()))
 			Error::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier.c_str()));
@@ -41,6 +42,18 @@
 // * ====================== * //
 
 
+		void ConfigParBase::AddValue(std::string value)
+		{
+			fReadStrings.push_back(value);
+		}
+
+
+
+// * ====================== * //
+// * ------- GETTERS ------ * //
+// * ====================== * //
+
+
 	/// Get access to one of the declared `ConfigParBase` objects.
 	/// @return Returns a `nullptr` if there is no key with name `identifier`.
 	ConfigParBase* ConfigParBase::GetParameter(const std::string &identifier)
@@ -51,6 +64,16 @@
 			return nullptr;
 		}
 		return key->second;
+	}
+
+
+	/// Get access to one of the declared `ConfigParBase` objects, but also clean.
+	/// This method is used in `LoadConfiguration` to ensure that default values are overwritten if available.
+	ConfigParBase* ConfigParBase::GetCleanParameter(const std::string &identifier)
+	{
+		auto par = GetParameter(identifier);
+		if(par) par->ResetIfHasValue();
+		return par;
 	}
 
 
@@ -67,21 +90,10 @@
 		for(auto &it : fInstances) if(it.first.size() > width) width = it.first.size();
 		width += 2;
 		for(auto &it : fInstances) {
-			auto inst = it.second->GetListOfValues();
-			if(!inst->size()) continue;
+			auto inst = it.second->GetNReadValues();
+			if(!it.second->GetNReadValues()) continue;
 			std::cout << std::setw(width) << it.first << " = ";
-			if(inst->size() == 1)
-				std::cout << inst->front();
-			else {
-				std::cout << "{ ";
-				auto val = inst->begin();
-				while(val != inst->end()) {
-					std::cout << *val;
-					++val;
-					if(val != inst->end()) std::cout << ", ";
-				}
-				std::cout << " }";
-			}
+			it.second->PrintValue();
 			std::cout << std::endl;
 		}
 	}
