@@ -14,6 +14,7 @@ var searchData=
   ['gm_5fpi0',['gM_pi0',['../namespaceTSGlobals.html#a371dcec7e794e8a868c1eaed4fe7ded1',1,'TSGlobals']]],
   ['gm_5frho',['gM_rho',['../namespaceTSGlobals.html#aec8a67002d4b9735788d316dda8decfc',1,'TSGlobals']]],
   ['gmasses',['gMasses',['../TrackSelector_8cxx.html#a94635a4a9049c12a1635e76e633dbfe6',1,'TrackSelector.cxx']]],
+  ['gmaxnbins',['gMaxNBins',['../classAxisBinning.html#ab02d3ce5c25e4cce1249ba51c6127684',1,'AxisBinning']]],
   ['gnmasses',['gNMasses',['../TrackSelector_8cxx.html#add1e3e93af63c85166fd1d56dcbbd123',1,'TrackSelector.cxx']]],
   ['gpdg',['gPDG',['../group__BOSS__Afterburner__settings.html#gac9e84faed4bc1858d832bc0242dbfb9e',1,'Particle.h']]],
   ['gplotoutputdir',['gPlotOutputDir',['../namespaceSettings_1_1File.html#a362a79dc7589cbb88544209eadc814a4',1,'Settings::File']]],

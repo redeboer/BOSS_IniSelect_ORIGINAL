@@ -401,30 +401,31 @@
 						a.first < b.first;
 				});
 			/// <li> Print the table:
-			for(auto &cutName : cutNames) {
-				/// <ol>
-				/// <li> Print a horizontal line just before counter `"N_events"`.
-					if(!cutName.first.compare("N_events")) {
-						std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
-						std::cout << std::setfill(' ');
-					}
-				/// <li> Column 1: <b>cut name</b>.
-					std::cout << "  " << std::setw(w_name) << std::left << cutName.first << " | ";
-				/// <li> Column 2: @b minimum, if available.
-					std::cout << std::setw(w_min) << std::right;
-					if(cuts[cutName.first][0] > -DBL_MAX) std::cout << cuts[cutName.first][0];
-					else std::cout << "";
-					std::cout << " | ";
-				/// <li> Column 3: @b maximum, if available.
-					std::cout << std::setw(w_max) << std::right;
-					if(cuts[cutName.first][1] < DBL_MAX) std::cout << cuts[cutName.first][1];
-					else std::cout << "";
-					std::cout << " | ";
-				/// <li> Column 4: @b counter, if available.
-					std::cout << std::setw(w_count) << std::right << cutName.second << std::endl;
-				/// </ol>
-			}
-			std::cout << std::endl;
+				for(auto &cutName : cutNames) {
+					/// <ol>
+					/// <li> Print a horizontal line just before counter `"N_events"`.
+						if(!cutName.first.compare("N_events")) {
+							std::cout << "  " << std::setfill('-') << std::setw(w_name+w_min+w_max+w_count+9) << "" << std::endl;
+							std::cout << std::setfill(' ');
+						}
+					/// <li> Column 1: **cut name**.
+						std::cout << "  " << std::setw(w_name) << std::left << cutName.first << " | ";
+					/// <li> Column 2: @b minimum, if available.
+						std::cout << std::setw(w_min) << std::right;
+						if(cuts[cutName.first][0] > -DBL_MAX) std::cout << cuts[cutName.first][0];
+						else std::cout << "";
+						std::cout << " | ";
+					/// <li> Column 3: @b maximum, if available.
+						std::cout << std::setw(w_max) << std::right;
+						if(cuts[cutName.first][1] < DBL_MAX) std::cout << cuts[cutName.first][1];
+						else std::cout << "";
+						std::cout << " | ";
+					/// <li> Column 4: @b counter, if available.
+						std::cout << std::setw(w_count) << std::right << cutName.second << std::endl;
+					/// </ol>
+				}
+				std::cout << std::endl;
+			/// </ol>
 		/// <li> Reset branches to avoid a crash at the end of your executable.
 			chain->ResetBranchAddresses();
 		/// </ol>

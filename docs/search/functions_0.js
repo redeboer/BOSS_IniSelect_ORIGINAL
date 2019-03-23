@@ -10,5 +10,6 @@ var searchData=
   ['addntupleitems_5ftof',['AddNTupleItems_Tof',['../classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4',1,'TrackSelector']]],
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
   ['addvalue',['AddValue',['../classConfigLoader.html#a4428364e6efd677bc559dfd2efd87c9c',1,'ConfigLoader::AddValue()'],['../classConfigParBase.html#a36f74ccd50d6b4fbe2c74bcb12a38079',1,'ConfigParBase::AddValue()']]],
-  ['analysebossoutput',['AnalyseBOSSOutput',['../group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a',1,'AnalyseBOSSOutput.C']]]
+  ['analysebossoutput',['AnalyseBOSSOutput',['../group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a',1,'AnalyseBOSSOutput.C']]],
+  ['axisbinning',['AxisBinning',['../classAxisBinning.html#ad576ebbb9c5b736bd9a5887647e7ff45',1,'AxisBinning::AxisBinning()'],['../classAxisBinning.html#a87ccf608b915d930e7c814a396d13ff8',1,'AxisBinning::AxisBinning(const int &amp;nbins, const double &amp;from, const double &amp;to)'],['../classAxisBinning.html#a906de4295b553f4261b439faee1a2b07',1,'AxisBinning::AxisBinning(const double &amp;width, const double &amp;from, const double &amp;to)'],['../classAxisBinning.html#ac565a40531ba0901641fa151d25a0470',1,'AxisBinning::AxisBinning(const std::string &amp;binning)']]]
 ];

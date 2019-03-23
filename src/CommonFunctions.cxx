@@ -68,7 +68,7 @@
 
 
 	/// Helper function that allows you to save a `TPad` or `TCanvas`.
-	/// @param pad Pointer to the `TPad` that you want to save. <b>Can also be a `TCanvas`.</b>
+	/// @param pad Pointer to the `TPad` that you want to save. **Can also be a `TCanvas`.**
 	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
 	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	void CommonFunctions::Draw::SaveCanvas(const char *saveas, TVirtualPad *pad, TString logScale)
@@ -81,7 +81,7 @@
 
 	/// Helper function that allows you to set the log scale of a `TPad` or `TCanvas`.
 	/// @param logScale Which axes do you want to set? Just mention e.g. `"xy"` if you want to have the x and y axes in logaritmic scale. This opt is not capital sensitive.
-	/// @param pad Pointer to the `TPad` of which you want to set the log scale. <b>Can also be a `TCanvas`.</b>
+	/// @param pad Pointer to the `TPad` of which you want to set the log scale. **Can also be a `TCanvas`.**
 	void CommonFunctions::Draw::SetLogScale(TString logScale, TVirtualPad *pad)
 	{
 		// * Check arguments * //
@@ -142,7 +142,7 @@
 
 
 	/// This function creates a default output file name according to the `FrameworkSettings`. The file name consists of the plots output director, with the extension as subfolder and then the filename you want.
-	/// @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and <b>`gExtension` will be appended</b>.
+	/// @param filenameWithoutExt Output file name to which `gPlotOutputDir` in `FrameworkSettings.h` will be prepended and **`gExtension` will be appended**.
 	/// @return Full path of the resulting output file name.
 	const char* CommonFunctions::File::GetOutputFilename(const char* filenameWithoutExt)
 	{

@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "CommonFunctions", "namespaceCommonFunctions.html", null ],
     [ "Settings", "namespaceSettings.html", null ],
+    [ "AxisBinning", "classAxisBinning.html", "classAxisBinning" ],
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html", "classBOSSOutputLoader" ],
     [ "BranchPlotOptions", "classBranchPlotOptions.html", "classBranchPlotOptions" ],
     [ "ChainLoader", "classChainLoader.html", "classChainLoader" ],

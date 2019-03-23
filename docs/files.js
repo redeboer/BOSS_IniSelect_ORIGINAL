@@ -1,6 +1,8 @@
 var files =
 [
     [ "AnalyseBOSSOutput.C", "AnalyseBOSSOutput_8C.html", "AnalyseBOSSOutput_8C" ],
+    [ "AxisBinning.cxx", "AxisBinning_8cxx.html", null ],
+    [ "AxisBinning.h", "AxisBinning_8h.html", null ],
     [ "BOSSOutputLoader.cxx", "BOSSOutputLoader_8cxx.html", null ],
     [ "BOSSOutputLoader.h", "BOSSOutputLoader_8h.html", null ],
     [ "BranchPlotOptions.cxx", "BranchPlotOptions_8cxx.html", null ],

@@ -17,12 +17,12 @@ var classConfigLoader =
     [ "fDraw_vertex", "classConfigLoader.html#a6531412d256f688d766d7a30108f6da2", null ],
     [ "fFitplots", "classConfigLoader.html#ac0eba0fd235b73b40f12d0f704c9bcc3", null ],
     [ "fInputFilename", "classConfigLoader.html#aeb835a53c7005da67433ed30f5e2530d", null ],
-    [ "fLogY", "classConfigLoader.html#abe1d52918bd32b41fb20be0b6593bbc1", null ],
-    [ "fLogZ", "classConfigLoader.html#a4acbfe6cf6764dbf9130329e5bc83e90", null ],
+    [ "fLogY", "classConfigLoader.html#aee1fc5ee2a10c9ee335afd3e672e4d1d", null ],
+    [ "fLogZ", "classConfigLoader.html#a2267b129a0c31646dac0cff93173ec77", null ],
     [ "fPlotstats", "classConfigLoader.html#a446bcbcdf7a96527f0ad1faef865d21e", null ],
     [ "fPrintAverages", "classConfigLoader.html#a831460ea2144ad06e837971aeaf834d7", null ],
     [ "fPrintBranches", "classConfigLoader.html#a30873a248e5f833be5684d85c43b2354", null ],
     [ "fPureplot", "classConfigLoader.html#aade0f1f8e0d5e53f0410dfb6110a83b3", null ],
     [ "fSetranges", "classConfigLoader.html#aa56fca0098748ad023f075a0384b290e", null ],
-    [ "fTestVectorArg", "classConfigLoader.html#a1ae263b16d70a3a1a922af30f7961520", null ]
+    [ "fTestVectorArg", "classConfigLoader.html#ae3fba4e59f467194723806b2193937b5", null ]
 ];

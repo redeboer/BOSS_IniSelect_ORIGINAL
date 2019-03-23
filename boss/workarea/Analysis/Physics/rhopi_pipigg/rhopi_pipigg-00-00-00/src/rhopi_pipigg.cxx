@@ -105,7 +105,7 @@
 	StatusCode rhopi_pipigg::execute_rest()
 	{ PrintFunctionName("rhopi_pipigg", __func__);
 		/// <ol type="A">
-		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>2 charged tracks in total</b>.
+		/// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **2 charged tracks in total**.
 			if(fGoodChargedTracks.size() != 2) return StatusCode::SUCCESS;
 			++fCutFlow_NChargedOK;
 
@@ -155,8 +155,6 @@
 
 
 		/// <li> Create selection neutral tracks (photons)
-			/// <ol>
-			/// Loop over charged tracks *
 			fPhotons.clear();
 			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 

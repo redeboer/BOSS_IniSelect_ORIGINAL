@@ -3,6 +3,7 @@ var searchData=
   ['name',['Name',['../classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f',1,'Container_base']]],
   ['namemax',['NameMax',['../classCutObject.html#a2707aa81e7a21f7f60f45addfbd21f45',1,'CutObject']]],
   ['namemin',['NameMin',['../classCutObject.html#a31a0377f6645fc24409f7aa8c2e60b74',1,'CutObject']]],
+  ['nbins',['NBins',['../classAxisBinning.html#a1ab1e1986de0f0b708fe557c55dd2244',1,'AxisBinning']]],
   ['ncut0',['Ncut0',['../RhopiAlg_8cxx.html#a83e267c1596c352aefaeb2c2551d637c',1,'RhopiAlg.cxx']]],
   ['ncut1',['Ncut1',['../RhopiAlg_8cxx.html#a4506054600e8230d869ac3c51e807f3a',1,'RhopiAlg.cxx']]],
   ['ncut2',['Ncut2',['../RhopiAlg_8cxx.html#a11b83c587312d370e5ce54dade6d117c',1,'RhopiAlg.cxx']]],

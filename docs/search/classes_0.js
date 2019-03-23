@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html',1,'']]],
-  ['branchplotoptions',['BranchPlotOptions',['../classBranchPlotOptions.html',1,'']]]
+  ['axisbinning',['AxisBinning',['../classAxisBinning.html',1,'']]]
 ];

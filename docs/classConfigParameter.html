@@ -115,11 +115,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab989be536c07418af3e6871e96eab0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95bcbae8bcfe2aa08ae6fd185fcac079"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a95bcbae8bcfe2aa08ae6fd185fcac079">operator!=</a> (const std::string &amp;data) const</td></tr>
 <tr class="separator:a95bcbae8bcfe2aa08ae6fd185fcac079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba9e8a849a86b594c104f22c94198771"><td class="memItemLeft" align="right" valign="top">TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#aba9e8a849a86b594c104f22c94198771">operator</a> ()</td></tr>
-<tr class="separator:aba9e8a849a86b594c104f22c94198771"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa982f0bd7142cc2ddb7ea53ec813924c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#aa982f0bd7142cc2ddb7ea53ec813924c">SetValues</a> ()</td></tr>
-<tr class="memdesc:aa982f0bd7142cc2ddb7ea53ec813924c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion function that should be specified in the derived <code><a class="el" href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas...">ConfigParameter</a></code> template class.  <a href="#aa982f0bd7142cc2ddb7ea53ec813924c">More...</a><br /></td></tr>
-<tr class="separator:aa982f0bd7142cc2ddb7ea53ec813924c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6d35ebf4dfa7e89eb917cc6df7d2cf4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#ab6d35ebf4dfa7e89eb917cc6df7d2cf4">operator TYPE</a> ()</td></tr>
+<tr class="separator:ab6d35ebf4dfa7e89eb917cc6df7d2cf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8179248392938df966c9c1bfaae68ea5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">PrintValue</a> () const</td></tr>
+<tr class="memdesc:a8179248392938df966c9c1bfaae68ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">By default <code>fReadStrings</code> are printed in a vector style as a value.  <a href="#a8179248392938df966c9c1bfaae68ea5">More...</a><br /></td></tr>
+<tr class="separator:a8179248392938df966c9c1bfaae68ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classConfigParBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classConfigParBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classConfigParBase.html">ConfigParBase</a></td></tr>
 <tr class="memitem:a0aead22e492c43aae5615a070a7a1fd3 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a0aead22e492c43aae5615a070a7a1fd3">ConfigParBase</a> (const std::string &amp;identifier)</td></tr>
 <tr class="memdesc:a0aead22e492c43aae5615a070a7a1fd3 inherit pub_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code>ArgPair</code> classes that is called when defining the different parameter names in the constructor of <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code>.  <a href="classConfigParBase.html#a0aead22e492c43aae5615a070a7a1fd3">More...</a><br /></td></tr>
@@ -127,20 +127,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31d7ea191047d05c7caf261373641cd8 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a31d7ea191047d05c7caf261373641cd8">~ConfigParBase</a> ()</td></tr>
 <tr class="memdesc:a31d7ea191047d05c7caf261373641cd8 inherit pub_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor removes key <code>fIdentifier</code> with its value (a pointer to <code>this</code> object) from the <code>fInstancess</code>.  <a href="classConfigParBase.html#a31d7ea191047d05c7caf261373641cd8">More...</a><br /></td></tr>
 <tr class="separator:a31d7ea191047d05c7caf261373641cd8 inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae21f526a2e1166399d9fa41db2a0a39a inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ae21f526a2e1166399d9fa41db2a0a39a">GetIdentifier</a> ()</td></tr>
-<tr class="separator:ae21f526a2e1166399d9fa41db2a0a39a inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeddea1f9abc193b49c2ed12cdb9a14c5 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#aeddea1f9abc193b49c2ed12cdb9a14c5">GetIdentifier</a> () const</td></tr>
+<tr class="separator:aeddea1f9abc193b49c2ed12cdb9a14c5 inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36f74ccd50d6b4fbe2c74bcb12a38079 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a36f74ccd50d6b4fbe2c74bcb12a38079">AddValue</a> (std::string value)</td></tr>
 <tr class="separator:a36f74ccd50d6b4fbe2c74bcb12a38079 inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39575cd86baadb0d664802e0894add9a inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a39575cd86baadb0d664802e0894add9a">ResetIfHasValue</a> ()</td></tr>
+<tr class="separator:a39575cd86baadb0d664802e0894add9a inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d82dc6d531ee0012f64a769b9ee8b2c inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a3d82dc6d531ee0012f64a769b9ee8b2c">GetNReadValues</a> () const</td></tr>
+<tr class="separator:a3d82dc6d531ee0012f64a769b9ee8b2c inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae12e5a41b442ccca65ef25e6d0104280 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ae12e5a41b442ccca65ef25e6d0104280">GetListOfValues</a> ()</td></tr>
 <tr class="separator:ae12e5a41b442ccca65ef25e6d0104280 inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af6be9b97c745e4070e54025512d8ba inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a2af6be9b97c745e4070e54025512d8ba">ConvertStringsToValue</a> ()</td></tr>
+<tr class="memdesc:a2af6be9b97c745e4070e54025512d8ba inherit pub_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the string values read to <code>fReadStrings</code> to the <code>fValue</code> member.  <a href="classConfigParBase.html#a2af6be9b97c745e4070e54025512d8ba">More...</a><br /></td></tr>
+<tr class="separator:a2af6be9b97c745e4070e54025512d8ba inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed999bf2ebac010d9668595d2202caa5 inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#aed999bf2ebac010d9668595d2202caa5">ConvertValueToStrings</a> ()</td></tr>
+<tr class="memdesc:aed999bf2ebac010d9668595d2202caa5 inherit pub_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the <code>fValue</code> data member to the <code>list</code> of `fReadStrings.  <a href="classConfigParBase.html#aed999bf2ebac010d9668595d2202caa5">More...</a><br /></td></tr>
+<tr class="separator:aed999bf2ebac010d9668595d2202caa5 inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd318652ae055cdcf8747b1471be4c0d inherit pub_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abd318652ae055cdcf8747b1471be4c0d">ValueIsSet</a> () const</td></tr>
+<tr class="separator:abd318652ae055cdcf8747b1471be4c0d inherit pub_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a3c367fc3668bd4a525b143ca6798b87b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a3c367fc3668bd4a525b143ca6798b87b">ConvertToValue</a> ()</td></tr>
-<tr class="separator:a3c367fc3668bd4a525b143ca6798b87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2167312be709955e20a09bc014d9df1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a2167312be709955e20a09bc014d9df1e">ConvertFromValue</a> ()</td></tr>
-<tr class="memdesc:a2167312be709955e20a09bc014d9df1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the string values in <code>fReadValues</code> to the <code>fValue</code> data member.  <a href="#a2167312be709955e20a09bc014d9df1e">More...</a><br /></td></tr>
-<tr class="separator:a2167312be709955e20a09bc014d9df1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f6a3743873083848aaacb3ce254db6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a4f6a3743873083848aaacb3ce254db6c">ConvertStringsToValue_impl_str</a> ()</td></tr>
+<tr class="memdesc:a4f6a3743873083848aaacb3ce254db6c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>.  <a href="#a4f6a3743873083848aaacb3ce254db6c">More...</a><br /></td></tr>
+<tr class="separator:a4f6a3743873083848aaacb3ce254db6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad13a2282bf8a630f64245180bba802bc"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConvertStringsToValue_impl</a> ()</td></tr>
+<tr class="memdesc:ad13a2282bf8a630f64245180bba802bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default implementation handler for <code>ConvertStringsToValue</code> (only works for internal C++ types).  <a href="#ad13a2282bf8a630f64245180bba802bc">More...</a><br /></td></tr>
+<tr class="separator:ad13a2282bf8a630f64245180bba802bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a641c7cb8ce98346052992526295df46f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConvertValueToStrings_impl</a> ()</td></tr>
+<tr class="memdesc:a641c7cb8ce98346052992526295df46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default <code>ConvertValueToStrings</code> template function: works only for <code>type</code>s like <code>double</code>s, because this function relies on <code>std::stringstream</code>.  <a href="#a641c7cb8ce98346052992526295df46f">More...</a><br /></td></tr>
+<tr class="separator:a641c7cb8ce98346052992526295df46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a701394241592313dc6e348b92bf127b3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a701394241592313dc6e348b92bf127b3">HasSingleString</a> () const</td></tr>
+<tr class="memdesc:a701394241592313dc6e348b92bf127b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if <code>fReadStrings</code> contains more than one value and print warning if so.  <a href="#a701394241592313dc6e348b92bf127b3">More...</a><br /></td></tr>
+<tr class="separator:a701394241592313dc6e348b92bf127b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -155,22 +174,29 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a6058b8a1e415a8a5b8da22659f608fbc inherit pub_static_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6058b8a1e415a8a5b8da22659f608fbc">GetParameter</a> (const std::string &amp;identifier)</td></tr>
 <tr class="memdesc:a6058b8a1e415a8a5b8da22659f608fbc inherit pub_static_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects.  <a href="classConfigParBase.html#a6058b8a1e415a8a5b8da22659f608fbc">More...</a><br /></td></tr>
 <tr class="separator:a6058b8a1e415a8a5b8da22659f608fbc inherit pub_static_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6897992795aef9150b25c5f906a7c987 inherit pub_static_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6897992795aef9150b25c5f906a7c987">GetCleanParameter</a> (const std::string &amp;identifier)</td></tr>
+<tr class="memdesc:a6897992795aef9150b25c5f906a7c987 inherit pub_static_methods_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects, but also clean.  <a href="classConfigParBase.html#a6897992795aef9150b25c5f906a7c987">More...</a><br /></td></tr>
+<tr class="separator:a6897992795aef9150b25c5f906a7c987 inherit pub_static_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aadb4202890ef11270fb6b8198894c6 inherit pub_static_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a7aadb4202890ef11270fb6b8198894c6">GetNParameters</a> ()</td></tr>
 <tr class="separator:a7aadb4202890ef11270fb6b8198894c6 inherit pub_static_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa6712f33e54d86a38df87ceae0f211 inherit pub_static_methods_classConfigParBase"><td class="memItemLeft" align="right" valign="top">static const std::unordered_map&lt; std::string, <a class="el" href="classConfigParBase.html">ConfigParBase</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abfa6712f33e54d86a38df87ceae0f211">GetMapOfParameters</a> ()</td></tr>
+<tr class="separator:abfa6712f33e54d86a38df87ceae0f211 inherit pub_static_methods_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classConfigParBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classConfigParBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classConfigParBase.html">ConfigParBase</a></td></tr>
-<tr class="memitem:a7ddd3f7411faa656bbcbe5cb3d21e36f inherit pro_attribs_classConfigParBase"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a7ddd3f7411faa656bbcbe5cb3d21e36f">fReadValues</a></td></tr>
-<tr class="memdesc:a7ddd3f7411faa656bbcbe5cb3d21e36f inherit pro_attribs_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loaded values in string format. You can specify in derived classes how to use these values.  <a href="classConfigParBase.html#a7ddd3f7411faa656bbcbe5cb3d21e36f">More...</a><br /></td></tr>
-<tr class="separator:a7ddd3f7411faa656bbcbe5cb3d21e36f inherit pro_attribs_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580b9d64e7d9283c374b3b84ef83a31b inherit pro_attribs_classConfigParBase"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a580b9d64e7d9283c374b3b84ef83a31b">fReadStrings</a></td></tr>
+<tr class="memdesc:a580b9d64e7d9283c374b3b84ef83a31b inherit pro_attribs_classConfigParBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loaded values in string format. You can specify in derived classes how to use these values.  <a href="classConfigParBase.html#a580b9d64e7d9283c374b3b84ef83a31b">More...</a><br /></td></tr>
+<tr class="separator:a580b9d64e7d9283c374b3b84ef83a31b inherit pro_attribs_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6602e18e53f4d316c2cf5d538d650c34 inherit pro_attribs_classConfigParBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6602e18e53f4d316c2cf5d538d650c34">fValueIsSet</a></td></tr>
+<tr class="separator:a6602e18e53f4d316c2cf5d538d650c34 inherit pro_attribs_classConfigParBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class TYPE&gt;<br />
 class ConfigParameter&lt; TYPE &gt;</h3>
 
 <p>This <code>template</code> class is used to specify how to handle the values loaded to the <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> base class. </p>
-<p>You should define in this derived class how to go from the loaded string values to data. This has to defined for each <code>TYPE</code>. In principle, the <code>TYPE</code> is just a <code>typename</code>, that is, for instance a <code>double</code> or <code>int</code>. But you can also overload the <code>ConvertToValue</code> function and specify in that overload how to go from the strings in <code>fReadValues</code> to the data of your object. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<p>You should define in this derived class how to go from the loaded string values to data. This has to defined for each <code>TYPE</code>. In principle, the <code>TYPE</code> is just a <code>typename</code>, that is, for instance a <code>double</code> or <code>int</code>. But you can also overload the <code>ConvertStringsToValue</code> function and specify in that overload how to go from the strings in <code>fReadStrings</code> to the data of your object. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>March 15th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00033">33</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00034">34</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad2a568e082f15aaae37aa5da57bb6374"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2a568e082f15aaae37aa5da57bb6374">&#9670;&nbsp;</a></span>ConfigParameter() <span class="overload">[1/2]</span></h2>
@@ -198,7 +224,7 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00068">68</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00072">72</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -238,13 +264,13 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00076">76</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00077">77</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2167312be709955e20a09bc014d9df1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2167312be709955e20a09bc014d9df1e">&#9670;&nbsp;</a></span>ConvertFromValue()</h2>
+<a id="ad13a2282bf8a630f64245180bba802bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad13a2282bf8a630f64245180bba802bc">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,7 +281,40 @@ template&lt;typename TYPE &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertFromValue </td>
+          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertStringsToValue_impl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default implementation handler for <code>ConvertStringsToValue</code> (only works for internal C++ types). </p>
+
+<p>Implements <a class="el" href="classConfigParBase.html#abd18011a6723e4abf3009c72b6286a1b">ConfigParBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00134">134</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+
+</div>
+</div>
+<a id="a4f6a3743873083848aaacb3ce254db6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6a3743873083848aaacb3ce254db6c">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl_str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertStringsToValue_impl_str </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -268,27 +327,25 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Convert the string values in <code>fReadValues</code> to the <code>fValue</code> data member. </p>
-<p>Default <code>ConvertToValue</code> template function: works only for <code>type</code>s like <code>double</code>s, because this function relies on .</p>
-<p>Default <code>ConvertFromValue</code> template function: works only for <code>type</code>s like <code>double</code>s, because this function relies on <code>std::stringstream</code>. </p>
+<p><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00093">93</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00145">145</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
-<a id="a3c367fc3668bd4a525b143ca6798b87b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c367fc3668bd4a525b143ca6798b87b">&#9670;&nbsp;</a></span>ConvertToValue()</h2>
+<a id="a641c7cb8ce98346052992526295df46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a641c7cb8ce98346052992526295df46f">&#9670;&nbsp;</a></span>ConvertValueToStrings_impl()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class TYPE&gt; </div>
+template&lt;typename TYPE &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertToValue </td>
+          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertValueToStrings_impl </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -296,15 +353,53 @@ template&lt;class TYPE&gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
+<p>Default <code>ConvertValueToStrings</code> template function: works only for <code>type</code>s like <code>double</code>s, because this function relies on <code>std::stringstream</code>. </p>
+
+<p>Implements <a class="el" href="classConfigParBase.html#a3e0ee79ab70beede52c51b17e9482fc0">ConfigParBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00092">92</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+
 </div>
 </div>
-<a id="aba9e8a849a86b594c104f22c94198771"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba9e8a849a86b594c104f22c94198771">&#9670;&nbsp;</a></span>operator()</h2>
+<a id="a701394241592313dc6e348b92bf127b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a701394241592313dc6e348b92bf127b3">&#9670;&nbsp;</a></span>HasSingleString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::HasSingleString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if <code>fReadStrings</code> contains more than one value and print warning if so. </p>
+<p>This should not be the case in case <code>fValue</code> is of type <code>double</code>, <code>bool</code>, etc. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00242">242</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+
+</div>
+</div>
+<a id="ab6d35ebf4dfa7e89eb917cc6df7d2cf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6d35ebf4dfa7e89eb917cc6df7d2cf4">&#9670;&nbsp;</a></span>operator TYPE()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,7 +410,7 @@ template&lt;class TYPE&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TYPE <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::operator </td>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::operator TYPE </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -328,7 +423,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +453,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00039">39</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +469,7 @@ template&lt;class TYPE&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::<a class="el" href="classConfigParameter.html#aba9e8a849a86b594c104f22c94198771">operator</a>= </td>
+          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::operator= </td>
           <td>(</td>
           <td class="paramtype">const TYPE &amp;&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
@@ -388,7 +483,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00037">37</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00038">38</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -404,7 +499,7 @@ template&lt;class TYPE&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::<a class="el" href="classConfigParameter.html#aba9e8a849a86b594c104f22c94198771">operator</a>== </td>
+          <td class="memname">bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::operator== </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -418,38 +513,40 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00038">38</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00039">39</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
-<a id="aa982f0bd7142cc2ddb7ea53ec813924c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa982f0bd7142cc2ddb7ea53ec813924c">&#9670;&nbsp;</a></span>SetValues()</h2>
+<a id="a8179248392938df966c9c1bfaae68ea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8179248392938df966c9c1bfaae68ea5">&#9670;&nbsp;</a></span>PrintValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class TYPE&gt; </div>
+template&lt;class TYPE &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::SetValues </td>
+          <td class="memname">void <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::PrintValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Conversion function that should be specified in the derived <code><a class="el" href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas...">ConfigParameter</a></code> template class. </p>
+<p>By default <code>fReadStrings</code> are printed in a vector style as a value. </p>
 
-<p>Implements <a class="el" href="classConfigParBase.html#a8336f774ccaaebe5dac2fb35643ed6e5">ConfigParBase</a>.</p>
+<p>Implements <a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">ConfigParBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00190">190</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -476,7 +573,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00045">45</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00048">48</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>

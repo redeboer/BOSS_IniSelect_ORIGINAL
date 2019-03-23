@@ -15,12 +15,14 @@ var hierarchy =
         [ "rhopi_pipigg", "classrhopi__pipigg.html", null ]
       ] ]
     ] ],
+    [ "AxisBinning", "classAxisBinning.html", null ],
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html", null ],
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", null ],
     [ "ConfigParBase", "classConfigParBase.html", [
       [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< AxisBinning >", "classConfigParameter.html", null ],
       [ "ConfigParameter< bool >", "classConfigParameter.html", null ],
       [ "ConfigParameter< std::string >", "classConfigParameter.html", null ]
     ] ],

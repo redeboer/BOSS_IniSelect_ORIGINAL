@@ -6,7 +6,7 @@
 // * ========================================= * //
 
 	/// @defgroup BOSS_Afterburner BOSS Afterburner
-	/// <b>Classes, namespaces, and functions for the <i>BOSS Afterburner</i></b>. The core of these classes is the `BOSSOutputLoader` class. This class allows you to automatically load a set of ROOT files that have been procuded during the event selection in BOSS. Supporting functions, parameters and other classes are to be found in for instance the `CommonFunctions.h` header file.
+	/// **Classes, namespaces, and functions for the <i>BOSS Afterburner</i>**. The core of these classes is the `BOSSOutputLoader` class. This class allows you to automatically load a set of ROOT files that have been procuded during the event selection in BOSS. Supporting functions, parameters and other classes are to be found in for instance the `CommonFunctions.h` header file.
 
 	/// @defgroup BOSS_Afterburner_objects Objects
 	/// @ingroup BOSS_Afterburner

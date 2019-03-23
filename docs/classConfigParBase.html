@@ -82,7 +82,9 @@ $(document).ready(function(){initNavTree('classConfigParBase.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classConfigParBase-members.html">List of all members</a>  </div>
@@ -101,9 +103,10 @@ Inheritance diagram for ConfigParBase:</div>
  <div class="center">
   <img src="classConfigParBase.png" usemap="#ConfigParBase_map" alt=""/>
   <map id="ConfigParBase_map" name="ConfigParBase_map">
-<area href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas..." alt="ConfigParameter&lt; TYPE &gt;" shape="rect" coords="0,56,184,80"/>
-<area href="classConfigParameter.html" alt="ConfigParameter&lt; bool &gt;" shape="rect" coords="194,56,378,80"/>
-<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::string &gt;" shape="rect" coords="388,56,572,80"/>
+<area href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas..." alt="ConfigParameter&lt; TYPE &gt;" shape="rect" coords="0,56,197,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; AxisBinning &gt;" shape="rect" coords="207,56,404,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; bool &gt;" shape="rect" coords="414,56,611,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::string &gt;" shape="rect" coords="621,56,818,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -115,15 +118,26 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a31d7ea191047d05c7caf261373641cd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a31d7ea191047d05c7caf261373641cd8">~ConfigParBase</a> ()</td></tr>
 <tr class="memdesc:a31d7ea191047d05c7caf261373641cd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The destructor removes key <code>fIdentifier</code> with its value (a pointer to <code>this</code> object) from the <code>fInstancess</code>.  <a href="#a31d7ea191047d05c7caf261373641cd8">More...</a><br /></td></tr>
 <tr class="separator:a31d7ea191047d05c7caf261373641cd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae21f526a2e1166399d9fa41db2a0a39a"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ae21f526a2e1166399d9fa41db2a0a39a">GetIdentifier</a> ()</td></tr>
-<tr class="separator:ae21f526a2e1166399d9fa41db2a0a39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeddea1f9abc193b49c2ed12cdb9a14c5"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#aeddea1f9abc193b49c2ed12cdb9a14c5">GetIdentifier</a> () const</td></tr>
+<tr class="separator:aeddea1f9abc193b49c2ed12cdb9a14c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36f74ccd50d6b4fbe2c74bcb12a38079"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a36f74ccd50d6b4fbe2c74bcb12a38079">AddValue</a> (std::string value)</td></tr>
 <tr class="separator:a36f74ccd50d6b4fbe2c74bcb12a38079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39575cd86baadb0d664802e0894add9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a39575cd86baadb0d664802e0894add9a">ResetIfHasValue</a> ()</td></tr>
+<tr class="separator:a39575cd86baadb0d664802e0894add9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d82dc6d531ee0012f64a769b9ee8b2c"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a3d82dc6d531ee0012f64a769b9ee8b2c">GetNReadValues</a> () const</td></tr>
+<tr class="separator:a3d82dc6d531ee0012f64a769b9ee8b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae12e5a41b442ccca65ef25e6d0104280"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ae12e5a41b442ccca65ef25e6d0104280">GetListOfValues</a> ()</td></tr>
 <tr class="separator:ae12e5a41b442ccca65ef25e6d0104280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8336f774ccaaebe5dac2fb35643ed6e5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a8336f774ccaaebe5dac2fb35643ed6e5">SetValues</a> ()=0</td></tr>
-<tr class="memdesc:a8336f774ccaaebe5dac2fb35643ed6e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion function that should be specified in the derived <code><a class="el" href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas...">ConfigParameter</a></code> template class.  <a href="#a8336f774ccaaebe5dac2fb35643ed6e5">More...</a><br /></td></tr>
-<tr class="separator:a8336f774ccaaebe5dac2fb35643ed6e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2af6be9b97c745e4070e54025512d8ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a2af6be9b97c745e4070e54025512d8ba">ConvertStringsToValue</a> ()</td></tr>
+<tr class="memdesc:a2af6be9b97c745e4070e54025512d8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the string values read to <code>fReadStrings</code> to the <code>fValue</code> member.  <a href="#a2af6be9b97c745e4070e54025512d8ba">More...</a><br /></td></tr>
+<tr class="separator:a2af6be9b97c745e4070e54025512d8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed999bf2ebac010d9668595d2202caa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#aed999bf2ebac010d9668595d2202caa5">ConvertValueToStrings</a> ()</td></tr>
+<tr class="memdesc:aed999bf2ebac010d9668595d2202caa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the <code>fValue</code> data member to the <code>list</code> of `fReadStrings.  <a href="#aed999bf2ebac010d9668595d2202caa5">More...</a><br /></td></tr>
+<tr class="separator:aed999bf2ebac010d9668595d2202caa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdc393da8f2f6de1ab6a15b68531c8b9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">PrintValue</a> () const =0</td></tr>
+<tr class="separator:abdc393da8f2f6de1ab6a15b68531c8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd318652ae055cdcf8747b1471be4c0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abd318652ae055cdcf8747b1471be4c0d">ValueIsSet</a> () const</td></tr>
+<tr class="separator:abd318652ae055cdcf8747b1471be4c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -132,19 +146,39 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a6058b8a1e415a8a5b8da22659f608fbc"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6058b8a1e415a8a5b8da22659f608fbc">GetParameter</a> (const std::string &amp;identifier)</td></tr>
 <tr class="memdesc:a6058b8a1e415a8a5b8da22659f608fbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects.  <a href="#a6058b8a1e415a8a5b8da22659f608fbc">More...</a><br /></td></tr>
 <tr class="separator:a6058b8a1e415a8a5b8da22659f608fbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6897992795aef9150b25c5f906a7c987"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6897992795aef9150b25c5f906a7c987">GetCleanParameter</a> (const std::string &amp;identifier)</td></tr>
+<tr class="memdesc:a6897992795aef9150b25c5f906a7c987"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects, but also clean.  <a href="#a6897992795aef9150b25c5f906a7c987">More...</a><br /></td></tr>
+<tr class="separator:a6897992795aef9150b25c5f906a7c987"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aadb4202890ef11270fb6b8198894c6"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a7aadb4202890ef11270fb6b8198894c6">GetNParameters</a> ()</td></tr>
 <tr class="separator:a7aadb4202890ef11270fb6b8198894c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa6712f33e54d86a38df87ceae0f211"><td class="memItemLeft" align="right" valign="top">static const std::unordered_map&lt; std::string, <a class="el" href="classConfigParBase.html">ConfigParBase</a> * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abfa6712f33e54d86a38df87ceae0f211">GetMapOfParameters</a> ()</td></tr>
+<tr class="separator:abfa6712f33e54d86a38df87ceae0f211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:abd18011a6723e4abf3009c72b6286a1b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abd18011a6723e4abf3009c72b6286a1b">ConvertStringsToValue_impl</a> ()=0</td></tr>
+<tr class="separator:abd18011a6723e4abf3009c72b6286a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0ee79ab70beede52c51b17e9482fc0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a3e0ee79ab70beede52c51b17e9482fc0">ConvertValueToStrings_impl</a> ()=0</td></tr>
+<tr class="separator:a3e0ee79ab70beede52c51b17e9482fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a7ddd3f7411faa656bbcbe5cb3d21e36f"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a7ddd3f7411faa656bbcbe5cb3d21e36f">fReadValues</a></td></tr>
-<tr class="memdesc:a7ddd3f7411faa656bbcbe5cb3d21e36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loaded values in string format. You can specify in derived classes how to use these values.  <a href="#a7ddd3f7411faa656bbcbe5cb3d21e36f">More...</a><br /></td></tr>
-<tr class="separator:a7ddd3f7411faa656bbcbe5cb3d21e36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a580b9d64e7d9283c374b3b84ef83a31b"><td class="memItemLeft" align="right" valign="top">std::list&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a580b9d64e7d9283c374b3b84ef83a31b">fReadStrings</a></td></tr>
+<tr class="memdesc:a580b9d64e7d9283c374b3b84ef83a31b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loaded values in string format. You can specify in derived classes how to use these values.  <a href="#a580b9d64e7d9283c374b3b84ef83a31b">More...</a><br /></td></tr>
+<tr class="separator:a580b9d64e7d9283c374b3b84ef83a31b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6602e18e53f4d316c2cf5d538d650c34"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a6602e18e53f4d316c2cf5d538d650c34">fValueIsSet</a></td></tr>
+<tr class="separator:a6602e18e53f4d316c2cf5d538d650c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ad74b8eea55b17aa60a9ece10fa0ba4fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ad74b8eea55b17aa60a9ece10fa0ba4fc">ClearValues</a> ()</td></tr>
+<tr class="memdesc:ad74b8eea55b17aa60a9ece10fa0ba4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Switch that is used to prevent from double adding values to the <code>fReadStrings</code> <code>list</code>.  <a href="#ad74b8eea55b17aa60a9ece10fa0ba4fc">More...</a><br /></td></tr>
+<tr class="separator:ad74b8eea55b17aa60a9ece10fa0ba4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a0677a3f978d64f639ce0b918d7b6c5fb"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a0677a3f978d64f639ce0b918d7b6c5fb">fIdentifier</a></td></tr>
-<tr class="memdesc:a0677a3f978d64f639ce0b918d7b6c5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code>, its corresponding values will be added to <code>fReadValues</code>.  <a href="#a0677a3f978d64f639ce0b918d7b6c5fb">More...</a><br /></td></tr>
+<tr class="memdesc:a0677a3f978d64f639ce0b918d7b6c5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code>, its corresponding values will be added to <code>fReadStrings</code>.  <a href="#a0677a3f978d64f639ce0b918d7b6c5fb">More...</a><br /></td></tr>
 <tr class="separator:a0677a3f978d64f639ce0b918d7b6c5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
@@ -199,7 +233,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>The destructor removes key <code>fIdentifier</code> with its value (a pointer to <code>this</code> object) from the <code>fInstancess</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00029">29</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00030">30</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
 
 </div>
 </div>
@@ -209,9 +243,6 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void ConfigParBase::AddValue </td>
@@ -221,19 +252,172 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00045">45</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ad74b8eea55b17aa60a9ece10fa0ba4fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad74b8eea55b17aa60a9ece10fa0ba4fc">&#9670;&nbsp;</a></span>ClearValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConfigParBase::ClearValues </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00036">36</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p>Switch that is used to prevent from double adding values to the <code>fReadStrings</code> <code>list</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00056">56</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
-<a id="ae21f526a2e1166399d9fa41db2a0a39a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae21f526a2e1166399d9fa41db2a0a39a">&#9670;&nbsp;</a></span>GetIdentifier()</h2>
+<a id="a2af6be9b97c745e4070e54025512d8ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2af6be9b97c745e4070e54025512d8ba">&#9670;&nbsp;</a></span>ConvertStringsToValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConfigParBase::ConvertStringsToValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert the string values read to <code>fReadStrings</code> to the <code>fValue</code> member. </p>
+<p>How this is done should be specified in the <code>ConvertStringsToValue_impl</code> method for each derived class. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00053">53</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+
+</div>
+</div>
+<a id="abd18011a6723e4abf3009c72b6286a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd18011a6723e4abf3009c72b6286a1b">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ConfigParBase::ConvertStringsToValue_impl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; AxisBinning &gt;</a>.</p>
+
+</div>
+</div>
+<a id="aed999bf2ebac010d9668595d2202caa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed999bf2ebac010d9668595d2202caa5">&#9670;&nbsp;</a></span>ConvertValueToStrings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConfigParBase::ConvertValueToStrings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Convert the <code>fValue</code> data member to the <code>list</code> of `fReadStrings. </p>
+<p>How this is done should be specified in the <code>ConvertValueToStrings_impl</code> method for each derived class. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00067">67</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a3e0ee79ab70beede52c51b17e9482fc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0ee79ab70beede52c51b17e9482fc0">&#9670;&nbsp;</a></span>ConvertValueToStrings_impl()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool ConfigParBase::ConvertValueToStrings_impl </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; AxisBinning &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a6897992795aef9150b25c5f906a7c987"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6897992795aef9150b25c5f906a7c987">&#9670;&nbsp;</a></span>GetCleanParameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParBase.html">ConfigParBase</a> * ConfigParBase::GetCleanParameter </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>identifier</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects, but also clean. </p>
+<p>This method is used in <code>LoadConfiguration</code> to ensure that default values are overwritten if available. </p>
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00098">98</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+
+</div>
+</div>
+<a id="aeddea1f9abc193b49c2ed12cdb9a14c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeddea1f9abc193b49c2ed12cdb9a14c5">&#9670;&nbsp;</a></span>GetIdentifier()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,7 +429,7 @@ Static Private Attributes</h2></td></tr>
           <td class="memname">const std::string&amp; ConfigParBase::GetIdentifier </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -255,7 +439,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00034">34</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00036">36</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -282,7 +466,34 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00037">37</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+
+</div>
+</div>
+<a id="abfa6712f33e54d86a38df87ceae0f211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa6712f33e54d86a38df87ceae0f211">&#9670;&nbsp;</a></span>GetMapOfParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const std::unordered_map&lt;std::string, <a class="el" href="classConfigParBase.html">ConfigParBase</a>*&gt;* ConfigParBase::GetMapOfParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00034">34</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -309,7 +520,34 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00032">32</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00033">33</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+
+</div>
+</div>
+<a id="a3d82dc6d531ee0012f64a769b9ee8b2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d82dc6d531ee0012f64a769b9ee8b2c">&#9670;&nbsp;</a></span>GetNReadValues()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const size_t ConfigParBase::GetNReadValues </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -340,7 +578,7 @@ Static Private Attributes</h2></td></tr>
 <p>Get access to one of the declared <code><a class="el" href="classConfigParBase.html" title="This is the base class for objects that hold parameters from a config file. ">ConfigParBase</a></code> objects. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns a <code>nullptr</code> if there is no key with name <code>identifier</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00046">46</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00085">85</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
 
 </div>
 </div>
@@ -367,12 +605,12 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00063">63</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8cxx_source.html#l00112">112</a> of file <a class="el" href="ConfigParBase_8cxx_source.html">ConfigParBase.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a8336f774ccaaebe5dac2fb35643ed6e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8336f774ccaaebe5dac2fb35643ed6e5">&#9670;&nbsp;</a></span>SetValues()</h2>
+<a id="abdc393da8f2f6de1ab6a15b68531c8b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdc393da8f2f6de1ab6a15b68531c8b9">&#9670;&nbsp;</a></span>PrintValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -381,10 +619,10 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void ConfigParBase::SetValues </td>
+          <td class="memname">virtual void ConfigParBase::PrintValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -394,9 +632,61 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Conversion function that should be specified in the derived <code><a class="el" href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas...">ConfigParameter</a></code> template class. </p>
+<p>Implemented in <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; AxisBinning &gt;</a>.</p>
 
-<p>Implemented in <a class="el" href="classConfigParameter.html#aa982f0bd7142cc2ddb7ea53ec813924c">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#aa982f0bd7142cc2ddb7ea53ec813924c">ConfigParameter&lt; std::string &gt;</a>, and <a class="el" href="classConfigParameter.html#aa982f0bd7142cc2ddb7ea53ec813924c">ConfigParameter&lt; bool &gt;</a>.</p>
+</div>
+</div>
+<a id="a39575cd86baadb0d664802e0894add9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39575cd86baadb0d664802e0894add9a">&#9670;&nbsp;</a></span>ResetIfHasValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConfigParBase::ResetIfHasValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00039">39</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+
+</div>
+</div>
+<a id="abd318652ae055cdcf8747b1471be4c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd318652ae055cdcf8747b1471be4c0d">&#9670;&nbsp;</a></span>ValueIsSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConfigParBase::ValueIsSet </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00045">45</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -421,10 +711,10 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code>, its corresponding values will be added to <code>fReadValues</code>. </p>
+<p>Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the <code><a class="el" href="classConfigLoader.html" title="Container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code>, its corresponding values will be added to <code>fReadStrings</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The executable will <code>terminate</code> if the identifier already exists in the mapping of parameters <code>fInstances</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00057">57</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -448,12 +738,12 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00047">47</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00058">58</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
-<a id="a7ddd3f7411faa656bbcbe5cb3d21e36f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ddd3f7411faa656bbcbe5cb3d21e36f">&#9670;&nbsp;</a></span>fReadValues</h2>
+<a id="a580b9d64e7d9283c374b3b84ef83a31b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a580b9d64e7d9283c374b3b84ef83a31b">&#9670;&nbsp;</a></span>fReadStrings</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,7 +752,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::list&lt;std::string&gt; ConfigParBase::fReadValues</td>
+          <td class="memname">std::list&lt;std::string&gt; ConfigParBase::fReadStrings</td>
         </tr>
       </table>
   </td>
@@ -474,7 +764,31 @@ Static Private Attributes</h2></td></tr>
 
 <p>Loaded values in string format. You can specify in derived classes how to use these values. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00042">42</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00051">51</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+
+</div>
+</div>
+<a id="a6602e18e53f4d316c2cf5d538d650c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6602e18e53f4d316c2cf5d538d650c34">&#9670;&nbsp;</a></span>fValueIsSet</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ConfigParBase::fValueIsSet</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00052">52</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>

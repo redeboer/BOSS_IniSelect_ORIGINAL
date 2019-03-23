@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['binwidth',['BinWidth',['../classAxisBinning.html#a94fd4584e3c2866abebe576e1909b8ec',1,'AxisBinning']]],
   ['bookaddresses',['BookAddresses',['../classChainLoader.html#ad93ba90c4a626e758b98a29f4729bf70',1,'ChainLoader']]],
   ['bookntuple',['BookNTuple',['../classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7',1,'TrackSelector']]],
   ['bookntuples',['BookNTuples',['../classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92',1,'TrackSelector']]],

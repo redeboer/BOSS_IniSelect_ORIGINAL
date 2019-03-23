@@ -10,5 +10,6 @@ var searchData=
   ['fitbwgaussianconvolution',['FitBWGaussianConvolution',['../namespaceCommonFunctions_1_1Fit.html#a61603b01eb3aef3310f0917bd0e1c89e',1,'CommonFunctions::Fit']]],
   ['fitdoublegaussian',['FitDoubleGaussian',['../namespaceCommonFunctions_1_1Fit.html#a3c21e48c1bf5db89bc65c5ba1b8f9be9',1,'CommonFunctions::Fit']]],
   ['fitfrom',['FitFrom',['../classReconstructedParticle.html#a97f5c3b741c26bc59c56994597e47686',1,'ReconstructedParticle']]],
-  ['fituntil',['FitUntil',['../classReconstructedParticle.html#a6c714f6005091427158ab2e794e26aeb',1,'ReconstructedParticle']]]
+  ['fituntil',['FitUntil',['../classReconstructedParticle.html#a6c714f6005091427158ab2e794e26aeb',1,'ReconstructedParticle']]],
+  ['from',['From',['../classAxisBinning.html#a4d95159f16cf6d0afaacbd50f50126e9',1,'AxisBinning']]]
 ];
