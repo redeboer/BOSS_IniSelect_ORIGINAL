@@ -114,10 +114,10 @@
 	{
 		std::stringstream ss;
 		if(!fValue.IsOK()) {
-			std::cout << "WARNING: " << fValue.GetNBins() << ", " << fValue.GetFrom() << ", " << fValue.GetTo() << std::endl;
+			std::cout << "WARNING: " << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To() << std::endl;
 			return false;
 		}
-		ss << fValue.GetNBins() << ", " << fValue.GetFrom() << ", " << fValue.GetTo();
+		ss << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To();
 		AddValue(ss.str());
 		return true;
 	}
@@ -218,7 +218,7 @@
 	template<> inline
 	void ConfigParameter<AxisBinning>::PrintValue() const
 	{
-		std::cout << fValue.GetNBins() << " bins, range " << fValue.GetFrom() << " to " << fValue.GetTo();
+		std::cout << fValue.NBins() << " bins, range " << fValue.From() << " to " << fValue.To();
 	}
 
 

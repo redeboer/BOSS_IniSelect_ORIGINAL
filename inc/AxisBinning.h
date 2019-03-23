@@ -37,10 +37,10 @@
 		void SetFrom(const double &from);
 		void SetTo(const double &to);
 		const bool IsOK() const { return fIsOK; }
-		const int& GetNBins() const { if(fIsOK) return fNBins; else return 0; }
-		const double& GetFrom() const { if(fIsOK) return fRange.first; else return 0.; }
-		const double& GetTo() const { if(fIsOK) return fRange.second; else return 0.; }
-		const double& GetBinWidth() const { if(fIsOK) return fBinWidth; else return 0.; }
+		const int& NBins() const { if(fIsOK) return fNBins; else return 0; }
+		const double& From() const { if(fIsOK) return fRange.first; else return 0.; }
+		const double& To() const { if(fIsOK) return fRange.second; else return 0.; }
+		const double& BinWidth() const { if(fIsOK) return fBinWidth; else return 0.; }
 		const double ComputeRange() const { return ComputeRange(fRange.first, fRange.second); }
 
 	private:
