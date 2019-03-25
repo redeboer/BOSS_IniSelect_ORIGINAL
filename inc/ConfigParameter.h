@@ -36,6 +36,8 @@
 	public:
 		ConfigParameter(const std::string &identifier);
 		ConfigParameter(const std::string &identifier, const TYPE &default_value);
+		TYPE& Get() { return fValue; }
+		TYPE& operator*() { return fValue; }
 		void operator=(const TYPE &val) { fValue = val; ConvertValueToStrings(); }
 		bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }
 		bool operator!=(const std::string &data) const { return  GetIdentifier().compare(data); }
@@ -186,8 +188,9 @@
 	bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertStringsToValue_impl()
 	{
 		for(auto& it : fReadStrings) {
-std::cout << it << std::endl;
+			fValue.push_back({it});
 		}
+		return true;
 	}
 
 
@@ -213,7 +216,7 @@ std::cout << it << std::endl;
 // * ========================== * //
 
 
-	/// By default `fReadStrings` are printed in a vector style as a value.
+	/// By default, `fReadStrings` are printed in a vector style as an indication of the value value.
 	template<class TYPE> inline
 	void ConfigParameter<TYPE>::PrintValue() const
 	{
@@ -221,12 +224,12 @@ std::cout << it << std::endl;
 		if(fReadStrings.size() == 1)
 			std::cout << fReadStrings.front();
 		else {
-			std::cout << "{ ";
+			std::cout << "{" << std::endl;
 			auto val = fReadStrings.begin();
 			while(val != fReadStrings.end()) {
 				std::cout << *val;
 				++val;
-				if(val != fReadStrings.end()) std::cout << ", ";
+				if(val != fReadStrings.end()) std::cout << "," << std::endl;
 			}
 			std::cout << " }";
 		}
@@ -255,6 +258,15 @@ std::cout << it << std::endl;
 	void ConfigParameter<std::string>::PrintValue() const
 	{
 		std::cout << "\"" << fValue << "\"";
+	}
+
+
+	/// In case of a `AxisBinning` `fValue`, encapsulate its value in double quotations marks (`"`).
+	template<> inline
+	void ConfigParameter<std::list<BranchPlotOptions> >::PrintValue() const
+	{
+		std::cout << std::endl << std::endl;
+		for(auto& it : fValue) it.Print();
 	}
 
 

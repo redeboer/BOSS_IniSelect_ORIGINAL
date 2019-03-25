@@ -615,6 +615,7 @@
 
 
 	/// Remove all leading and trailing whitespaces from a string.
+		/// @todo This function already exists as such in `TString`. Migrate from `std::string` to `TString`.
 	std::string CommonFunctions::String::Trim(std::string &input)
 	{
 		while(input.front()==' ' || input.front()=='\t') input.erase(0, 1);

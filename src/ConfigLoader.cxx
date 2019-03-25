@@ -14,7 +14,7 @@
 
 
 	/// Constructor that opens a `TFile` and unordered_maps its contents.
-	/// @remark **You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!**
+		/// @remark **You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!**
 	ConfigLoader::ConfigLoader(const std::string &path) : fConfigPath(path)
 	{
 		LoadConfiguration(fConfigPath);
@@ -28,6 +28,7 @@
 
 
 	/// *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
+		/// @todo DrawDifference has to be moved to CommonFunctions namespace.
 	void ConfigLoader::DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt, const char* setLog)
 	{
 		if(!gPad) return;
@@ -65,8 +66,8 @@
 	}
 
 
-	/// Import parameter values from a line.
-	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
+	/// Import parameter an arbitrary number of argument values from a line.
+		/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
 	void ConfigLoader::ImportValues(ConfigParBase *par, std::string input)
 	{
 		if(!par) return;
@@ -100,8 +101,7 @@
 	}
 
 
-	/// Format 
-	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
+	/// Format a string by removing all leading and trailing whitespace characters and double quotation marks (`"`).
 	void ConfigLoader::AddValue(ConfigParBase *par, std::string &val)
 	{
 		if(!par) return;
@@ -193,6 +193,10 @@
 						/// <ol>
 						/// <li> Remove weird characters like EOF.
 							if(line.back()<' ') line.pop_back();
+						/// <li> Skip line if it is a comment or if it is empty.
+							String::Trim(line);
+							if(!line.size()) continue;
+							if(String::IsComment(line)) continue;
 						/// <li> `Trim` line and remove opening equal sign (`=`).
 							String::Trim(line); if(line.front() == '=') line.erase(0, 1);
 							String::Trim(line); if(line.front() == '{') line.erase(0, 1);

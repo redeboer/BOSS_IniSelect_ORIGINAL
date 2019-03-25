@@ -5,6 +5,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "ChainLoader.h"
+	#include "BranchPlotOptions.h"
 	#include "TChain.h"
 	#include "TString.h"
 	#include <list>
@@ -33,12 +34,15 @@
 			BOSSOutputLoader(const std::string &directoryPath, bool print_branches = true, bool print_averages = false);
 			///@}
 
+
 		/// @name Information functions
 			///@{
+			const bool HasChain(const std::string &chainName) const;
 			TH1F* Draw(const char* chainName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
 			TH2F* Draw(const char* chainName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
 			bool IsZombie();
 			void Draw(const char* chainName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
+			void Draw(const BranchPlotOptions &options);
 			void DrawAndSaveAllBranches(const char* chainName, Option_t *option="", const TString &logScale="");
 			void Print();
 			void Print(const char* nameOfTree, Option_t *option = "toponly");
@@ -47,6 +51,7 @@
 			void PrintTrees(Option_t *option="");
 			void QuickDrawAndSaveAll(Option_t *option="");
 			///@}
+
 
 		/// @name Getters
 			///@{
@@ -60,6 +65,7 @@
 			std::unordered_map<std::string, ChainLoader>& GetChains() { return fChains; }
 			///@}
 
+
 	protected:
 		/// @name Data members
 			///@{
@@ -67,6 +73,7 @@
 			std::list<TString> fFileNames; ///< List of filenames that were loaded from the directory.
 			std::unordered_map<std::string, ChainLoader> fChains; ///< Map of `TChain`s of the loaded ROOT files (contained withing `ChainLoader`).
 			///@}
+
 
 		/// @name Helper methods
 			///@{

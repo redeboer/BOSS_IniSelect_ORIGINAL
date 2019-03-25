@@ -85,7 +85,6 @@
 		ConfigParameter<bool> fPureplot     {"Plot raw data",   true};  ///< Whether or not to plot histograms of branches <i>without fit</i>.
 		ConfigParameter<bool> fSetranges    {"Set plot ranges", true};  ///< Whether or not to precisely set histogram ranges.
 
-		ConfigParameter<AxisBinning> fTestVectorArg{"Test vector"};
 		ConfigParameter<std::list<BranchPlotOptions> > fListOfbranches {"Print these branches"};
 
 	private:

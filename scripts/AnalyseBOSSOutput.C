@@ -42,16 +42,16 @@
 			file.PrintCutFlow();
 			
 		// * PLOT BRANCHES WITHOUT FITS * //
-		TString logY; if(config.fLogY) logY += "y";
-		TString logZ; if(config.fLogZ) logZ += "z";
+			TString logY; if(config.fLogY) logY += "y";
+			TString logZ; if(config.fLogZ) logZ += "z";
+			for(auto &options : *config.fListOfbranches) file.Draw(options);
 			if(config.fPureplot) {
 				if(config.fDraw_mult) {
 					for(auto tree = file.GetChains().begin(); tree != file.GetChains().end(); ++tree) {
 						TString name(tree->second.GetChain().GetName());
 						if(name.BeginsWith("mult")) tree->second.DrawAndSaveAllMultiplicityBranches(logY, "");
 					}
-				}
-				if(config.fDraw_mctruth) {
+				} if(config.fDraw_mctruth) {
 					if(config.fSetranges) {
 						file.Draw("mctruth", "E", 150, 0., 3.5,  "E1", logY);
 						file.Draw("mctruth", "p", 150, 0., 1.25, "E1", logY);
@@ -59,8 +59,7 @@
 						file.Draw("mctruth", "E", "E1", logY);
 						file.Draw("mctruth", "p", "E1", logY);
 					}
-				}
-				if(config.fDraw_vertex) {
+				} if(config.fDraw_vertex) {
 					if(config.fSetranges) {
 						file.Draw("vertex", "vy0:vx0", "colz", logZ);
 						file.Draw("vertex", "vz0:vx0", "colz", logZ);
@@ -70,8 +69,7 @@
 						file.Draw("vertex", "vx0", "vz0", 60, -.4,    .5,    60,  .08,   .122, "colz", logZ);
 						file.Draw("vertex", "vy0", "vz0", 60, -.4,    .5,    40, -.154, -.146, "colz", logZ);
 					}
-				}
-				if(config.fDraw_tof) {
+				} if(config.fDraw_tof) {
 					if(config.fSetranges) {
 						file.Draw("ToFIB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", logZ);
 						file.Draw("ToFOB", "p", "tof", 120, 2., 15., 80, 0., 1.5, "colz", logZ);
@@ -79,62 +77,61 @@
 						file.Draw("ToFIB", "tof:p", "colz", logZ);
 						file.Draw("ToFOB", "tof:p", "colz", logZ);
 					}
-				}
-				if(config.fDraw_fit) {
+				} if(config.fDraw_fit) {
 					if(config.fSetranges) {
 						/// -# Draw main invariant mass distributions
-						file.Draw("fit4c_all",  "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
-						file.Draw("fit4c_all",  "mD0",   400,  .7,    2.,      "E1", logY);
-						file.Draw("fit4c_all",  "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
-						file.Draw("fit4c_all",  "mphi",  400,  .97,   1.7,     "E1", logY);
-						file.Draw("fit4c_best", "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
-						file.Draw("fit4c_best", "mD0",   400,  .7,    2.,      "E1", logY);
-						file.Draw("fit4c_best", "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
-						file.Draw("fit4c_best", "mphi",  400,  .97,   1.7,     "E1", logY);
-						// file.Draw("fit_mc",     "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
-						// file.Draw("fit_mc",     "mD0",   400,  .7,    2.,      "E1", logY);
-						// file.Draw("fit_mc",     "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
-						// file.Draw("fit_mc",     "mphi",  400,  .97,   1.7,     "E1", logY);
+							file.Draw("fit4c_all",  "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
+							file.Draw("fit4c_all",  "mD0",   400,  .7,    2.,      "E1", logY);
+							file.Draw("fit4c_all",  "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
+							file.Draw("fit4c_all",  "mphi",  400,  .97,   1.7,     "E1", logY);
+							file.Draw("fit4c_best", "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
+							file.Draw("fit4c_best", "mD0",   400,  .7,    2.,      "E1", logY);
+							file.Draw("fit4c_best", "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
+							file.Draw("fit4c_best", "mphi",  400,  .97,   1.7,     "E1", logY);
+							// file.Draw("fit_mc",     "mphi", "mD0", 240, .7, 2., 160, .9, 2.1, "colz", logZ);
+							// file.Draw("fit_mc",     "mD0",   400,  .7,    2.,      "E1", logY);
+							// file.Draw("fit_mc",     "mJpsi", 400, 3.0967, 3.09685, "E1", logY);
+							// file.Draw("fit_mc",     "mphi",  400,  .97,   1.7,     "E1", logY);
 						/// -# Draw invariant mass distributions with cuts applied on the other candidate
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", logY);
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", logY);
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", logZ);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", logY);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", logY);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", logZ);
 						/// -# Draw 3-momentum distributions
-						file.Draw("fit4c_all",  "pD0",  400, .4, 1.15, "E1", logY);
-						file.Draw("fit4c_all",  "pphi", 400, .4, 1.15, "E1", logY);
-						file.Draw("fit4c_best", "pD0",  400, .4, 1.15, "E1", logY);
-						file.Draw("fit4c_best", "pphi", 400, .4, 1.15, "E1", logY);
+							file.Draw("fit4c_all",  "pD0",  400, .4, 1.15, "E1", logY);
+							file.Draw("fit4c_all",  "pphi", 400, .4, 1.15, "E1", logY);
+							file.Draw("fit4c_best", "pD0",  400, .4, 1.15, "E1", logY);
+							file.Draw("fit4c_best", "pphi", 400, .4, 1.15, "E1", logY);
 						/// -# Draw invariant mass versus 3-momentum
-						file.Draw("fit4c_all",  "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", logZ);
-						file.Draw("fit4c_all",  "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", logZ);
-						file.Draw("fit4c_best", "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", logZ);
-						file.Draw("fit4c_best", "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", logZ);
-						file.Draw("fit4c_all",  "mD0:pD0",   "colz", logZ);
-						file.Draw("fit4c_all",  "mphi:pphi", "colz", logZ);
-						file.Draw("fit4c_best", "mD0:pD0",   "colz", logZ);
-						file.Draw("fit4c_best", "mphi:pphi", "colz", logZ);
+							file.Draw("fit4c_all",  "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", logZ);
+							file.Draw("fit4c_all",  "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", logZ);
+							file.Draw("fit4c_best", "mD0",  "pD0",  240, .4, 1.15, 160, .97, 1.7, "colz", logZ);
+							file.Draw("fit4c_best", "mphi", "pphi", 240, .4, 1.15, 160,  .7,  2., "colz", logZ);
+							file.Draw("fit4c_all",  "mD0:pD0",   "colz", logZ);
+							file.Draw("fit4c_all",  "mphi:pphi", "colz", logZ);
+							file.Draw("fit4c_best", "mD0:pD0",   "colz", logZ);
+							file.Draw("fit4c_best", "mphi:pphi", "colz", logZ);
 					} else {
 						/// -# Draw main invariant mass distributions
-						file.Draw("fit4c_all",  "mD0",   "E1", logY);
-						file.Draw("fit4c_all",  "mJpsi", "E1", logY);
-						file.Draw("fit4c_all",  "mphi",  "E1", logY);
-						file.Draw("fit4c_best", "mD0",   "E1", logY);
-						file.Draw("fit4c_best", "mJpsi", "E1", logY);
-						file.Draw("fit4c_best", "mphi",  "E1", logY);
+							file.Draw("fit4c_all",  "mD0",   "E1", logY);
+							file.Draw("fit4c_all",  "mJpsi", "E1", logY);
+							file.Draw("fit4c_all",  "mphi",  "E1", logY);
+							file.Draw("fit4c_best", "mD0",   "E1", logY);
+							file.Draw("fit4c_best", "mJpsi", "E1", logY);
+							file.Draw("fit4c_best", "mphi",  "E1", logY);
 						/// -# Draw invariant mass distributions with cuts applied on the other candidate
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", logY);
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", logY);
-						DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", logZ);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mphi", "mD0>1.5",  "E1", logY);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mD0",  "mphi<1.1", "E1", logY);
+							DrawAndSave(&file["fit4c_all"].GetChain(), "mD0:mphi",  "mD0>1.5&&mphi<1.1", "colz", logZ);
 						/// -# Draw 3-momentum distributions
-						file.Draw("fit4c_all",  "pD0",  "E1", logY);
-						file.Draw("fit4c_all",  "pphi", "E1", logY);
-						file.Draw("fit4c_best", "pD0",  "E1", logY);
-						file.Draw("fit4c_best", "pphi", "E1", logY);
+							file.Draw("fit4c_all",  "pD0",  "E1", logY);
+							file.Draw("fit4c_all",  "pphi", "E1", logY);
+							file.Draw("fit4c_best", "pD0",  "E1", logY);
+							file.Draw("fit4c_best", "pphi", "E1", logY);
 						/// -# Draw invariant mass versus 3-momentum
-						file.Draw("fit4c_all",  "mD0:pD0",   "colz", logZ);
-						file.Draw("fit4c_all",  "mphi:pphi", "colz", logZ);
-						file.Draw("fit4c_best", "mD0:pD0",   "colz", logZ);
-						file.Draw("fit4c_best", "mphi:pphi", "colz", logZ);
+							file.Draw("fit4c_all",  "mD0:pD0",   "colz", logZ);
+							file.Draw("fit4c_all",  "mphi:pphi", "colz", logZ);
+							file.Draw("fit4c_best", "mD0:pD0",   "colz", logZ);
+							file.Draw("fit4c_best", "mphi:pphi", "colz", logZ);
 					}
 				}
 			}

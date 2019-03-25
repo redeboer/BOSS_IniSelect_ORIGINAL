@@ -88,13 +88,15 @@
 		return Error::GetFromMap(fChains, chainName, fDirectoryPath.Data());
 	}
 
+
 	/// Get the number of events in one of the `TChain`s.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @return Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @return Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
 	Long64_t BOSSOutputLoader::GetEntries(const char* treeName)
 	{
 		GetChain(treeName).GetEntries();
 	}
+
 
 	/// Return the largest number of events in all of the `TChain`s in the loaded ROOT file.
 	Long64_t BOSSOutputLoader::GetLargestEntries() const
@@ -106,9 +108,10 @@
 		return largest;
 	}
 
+
 	/// Look for a tree in the files and get its `TChain`.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @return TChain& Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @return TChain& Tree object that contains the trees. Returns a `nullptr` if this `TChain` does not exist.
 	TChain& BOSSOutputLoader::GetChain(const std::string &treeName)
 	{
 		return GetChainLoader(treeName).GetChain();
@@ -120,37 +123,12 @@
 // * ------- INFORMATION ------- * //
 // * =========================== * //
 
-	/// Draw the distributions of all branches available in the ROOT file.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @param branchX Branch that you want to plot. You may use a formula.
-	/// @param nBinx Number of bins to use on the \f$x\f$-axis.
-	/// @param x1 Lower limit on the \f$x\f$-axis.
-	/// @param x2 Upper limit on the \f$x\f$-axis..
-	/// @param option Draw options.
-	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	TH1F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const TString &logScale, const char* cut)
-	{
-		return GetChainLoader(treeName).Draw(branchX, nBinx, x1, x2, option, true, logScale, cut);
-	}
 
-
-	/// Draw the distributions of all branches available in the ROOT file.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
-	/// @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
-	/// @param nBinx Number of bins to use on the \f$x\f$-axis.
-	/// @param x1 Lower limit on the \f$x\f$-axis.
-	/// @param x2 Upper limit on the \f$x\f$-axis.
-	/// @param nBiny Number of bins to use on the \f$y\f$-axis.
-	/// @param y1 Lower limit on the \f$y\f$-axis.
-	/// @param y2 Upper limit on the \f$y\f$-axis.
-	/// @param option Draw options.
-	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	TH2F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const TString &logScale, const char* cut)
+	/// Check if file has chain with name `chainName`.
+	const bool BOSSOutputLoader::HasChain(const std::string &chainName) const
 	{
-		return GetChainLoader(treeName).Draw(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, option, true, logScale, cut);
+		if(fChains.find(chainName) == fChains.end()) return false;
+		return true;
 	}
 
 
@@ -160,27 +138,6 @@
 		return !fChains.size();
 	}
 
-
-	/// Draw the distributions of all branches available in the ROOT file.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @param option Draw options.
-	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void BOSSOutputLoader::DrawAndSaveAllBranches(const char* treeName, Option_t *option, const TString &logScale)
-	{
-		GetChainLoader(treeName).DrawAndSaveAllBranches(option, logScale);
-	}
-
-
-	/// Draw the distributions of all branches available in the ROOT file.
-	/// @param treeName Name of the `TChain` that you are looking for.
-	/// @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
-	/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	/// @param option Draw options.
-	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void BOSSOutputLoader::Draw(const char* treeName, const char* branchNames, const char* cut, Option_t *option, const TString &logScale)
-	{
-		GetChainLoader(treeName).Draw(branchNames, cut, option, true, logScale);
-	}
 
 	/// Print information about all trees in the `TFile`.
 	void BOSSOutputLoader::Print()
@@ -220,8 +177,8 @@
 
 	/// Print information about a certain tree.
 	/// This function loops over the `std::unordered_map` of file names and over the `std::unordered_map` of trees and prints its name and number of events. For each tree, information about its branches is also printed.
-	/// @param nameOfTree
-	/// @param option
+		/// @param nameOfTree
+		/// @param option
 	void BOSSOutputLoader::Print(const char* nameOfTree, Option_t *option)
 	{
 		TChain *chain = &GetChain(nameOfTree);
@@ -432,12 +389,88 @@
 	}
 
 
+
+// * ==================== * //
+// * ------- DRAW ------- * //
+// * ==================== * //
+
+
 	/// Draw the distributions of all branches available in the ROOT file.
-	/// @param option Draw options.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @param branchX Branch that you want to plot. You may use a formula.
+		/// @param nBinx Number of bins to use on the \f$x\f$-axis.
+		/// @param x1 Lower limit on the \f$x\f$-axis.
+		/// @param x2 Upper limit on the \f$x\f$-axis..
+		/// @param option Draw options.
+		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
+	TH1F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option, const TString &logScale, const char* cut)
+	{
+		return GetChainLoader(treeName).Draw(branchX, nBinx, x1, x2, option, true, logScale, cut);
+	}
+
+
+	/// Draw the distributions of all branches available in the ROOT file.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @param branchX Branch that you want to plot on the \f$x\f$-axis. You may use a formula.
+		/// @param branchY Branch that you want to plot on the \f$y\f$-axis. You may use a formula.
+		/// @param nBinx Number of bins to use on the \f$x\f$-axis.
+		/// @param x1 Lower limit on the \f$x\f$-axis.
+		/// @param x2 Upper limit on the \f$x\f$-axis.
+		/// @param nBiny Number of bins to use on the \f$y\f$-axis.
+		/// @param y1 Lower limit on the \f$y\f$-axis.
+		/// @param y2 Upper limit on the \f$y\f$-axis.
+		/// @param option Draw options.
+		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
+	TH2F* BOSSOutputLoader::Draw(const char* treeName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option, const TString &logScale, const char* cut)
+	{
+		return GetChainLoader(treeName).Draw(branchX, branchY, nBinx, x1, x2, nBiny, y1, y2, option, true, logScale, cut);
+	}
+
+
+	/// Draw the distributions of all branches available in the ROOT file.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
+		/// @param option Draw options.
+		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	void BOSSOutputLoader::Draw(const char* treeName, const char* branchNames, const char* cut, Option_t *option, const TString &logScale)
+	{
+		GetChainLoader(treeName).Draw(branchNames, cut, option, true, logScale);
+	}
+
+
+	/// Draw the distributions of all branches available in the ROOT file.
+	void BOSSOutputLoader::Draw(const BranchPlotOptions &options)
+	{
+		if(!options.IsOK()) return;
+		if(!HasChain(options.TreeName())) {
+			Error::PrintWarning(Form("Cannot draw non-existing branch \"%s\" in file \"%s\"", options.TreeName(), fDirectoryPath.Data()));
+			return;
+		}
+		GetChainLoader(options.TreeName()).Draw(options);
+	}
+
+
+	/// Draw the distributions of all branches available in the ROOT file.
+		/// @param treeName Name of the `TChain` that you are looking for.
+		/// @param option Draw options.
+		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+	void BOSSOutputLoader::DrawAndSaveAllBranches(const char* treeName, Option_t *option, const TString &logScale)
+	{
+		GetChainLoader(treeName).DrawAndSaveAllBranches(option, logScale);
+	}
+
+
+	/// Draw the distributions of all branches available in the ROOT file.
+		/// @param option Draw options.
 	void BOSSOutputLoader::QuickDrawAndSaveAll(Option_t *option)
 	{
 		for(auto it = fChains.begin(); it != fChains.end(); ++it) it->second.DrawAndSaveAllBranches(option);
 	}
+
+
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
@@ -465,7 +498,6 @@
 		});
 		return outputList;
 	}
-
 
 
 	/// Create a list of `TChain`s based on the files in the directory you are loading.
