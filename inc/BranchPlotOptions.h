@@ -64,7 +64,6 @@
 			void SetCutSelection(const TString &selection);
 			void SetDrawOptions(TString input);
 			void SetTreeName(const TString &treename);
-			void SetOutputFileName();
 			void SetOutputFileName(const TString &filename);
 			///@}
 

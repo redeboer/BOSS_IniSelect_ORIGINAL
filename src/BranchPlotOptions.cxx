@@ -58,7 +58,6 @@
 				if(!AddBranch(tok)) return false;
 				++count;
 			}
-			SetOutputFileName();
 		/// -# Get cut selection options.
 			if(ImportWarning(input, "does not contain a cut selection", !Tokenize(input, tok, start))) return false;
 			SetCutSelection(tok);
@@ -133,24 +132,9 @@
 		if(treename.Contains(">")) {
 			fTreeName.Remove(treename.First('>'));
 			fOutputFileName.Remove(0, treename.First('>')+1);
-			fTreeName      .Strip(TString::kLeading, ' ');
-			fOutputFileName.Strip(TString::kLeading, ' ');
+			String::Trim(fTreeName);
+			String::Trim(fOutputFileName);
 		}
-	}
-
-
-	/// Set name of the output file name from the contents of this object.
-	void BranchPlotOptions::SetOutputFileName()
-	{
-		if(!IsOK()) return;
-		fOutputFileName = fTreeName;
-		fOutputFileName += "_";
-		for(auto &branch : fListOfBranches) {
-			fOutputFileName += branch.AxisName().c_str();
-			if(branch.IsOK()) fOutputFileName += Form("-%d-%g-%g", branch.NBins(), branch.From(), branch.To());
-			fOutputFileName += "_";
-		}
-		fOutputFileName.Chop();
 	}
 
 
@@ -229,7 +213,13 @@
 			}
 			varexp.Chop();
 		/// -# Append output histogram name for ROOT. This name has to be unique to avoid overwriting histograms in memory, hence the terribly long and messy name. The name is also used in the output file name.
-			varexp += Form(">>hist_%s", fOutputFileName.Data());
+			varexp += ">>hist_";
+			for(auto &branch : fListOfBranches) {
+				varexp += branch.AxisName().c_str();
+				if(branch.IsOK()) varexp += Form("-%d-%g-%g", branch.NBins(), branch.From(), branch.To());
+				varexp += "_";
+			}
+			varexp.Chop();
 		/// -# Append binning **if all branches have bin definitions** (all have `AxisBinning::IsOK` is `true`).
 			if(setbinning) {
 				varexp += "(";

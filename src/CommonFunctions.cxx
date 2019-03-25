@@ -12,6 +12,7 @@
 	#include "RooLinkedList.h"
 	#include "RooPlot.h"
 	#include "RooPolynomial.h"
+	#include "TRegexp.h"
 	#include "TSystem.h"
 	#include <utility> // for shared pointers
 
@@ -616,7 +617,7 @@
 
 	/// Remove all leading and trailing whitespaces from a string.
 		/// @todo This function already exists as such in `TString`. Migrate from `std::string` to `TString`.
-	std::string CommonFunctions::String::Trim(std::string &input)
+	std::string &CommonFunctions::String::Trim(std::string &input)
 	{
 		while(input.front()==' ' || input.front()=='\t') input.erase(0, 1);
 		while(input.back() ==' ' || input.back() =='\t') input.pop_back();
@@ -625,10 +626,29 @@
 
 
 	/// Remove all leading and trailing characters of type `c` from a string.
-	std::string CommonFunctions::String::Trim(std::string &input, char c)
+	std::string &CommonFunctions::String::Trim(std::string &input, char c)
 	{
 		while(input.front()==c) input.erase(0, 1);
 		while(input.back() ==c) input.pop_back();
+		return input;
+	}
+
+
+	/// Remove all leading and trailing whitespaces from a string.
+		/// @todo This function already exists as such in `TString`. Migrate from `std::string` to `TString`.
+	TString &CommonFunctions::String::Trim(TString &input)
+	{
+		while(input.BeginsWith(" ") || input.BeginsWith("\t")) input.Remove(0, 1);
+		while(input.EndsWith  (" ") || input.EndsWith  ("\t")) input.Resize(input.Length()-1);
+		return input;
+	}
+
+
+	/// Remove all leading and trailing characters of type `c` from a string.
+	TString &CommonFunctions::String::Trim(TString &input, char c)
+	{
+		while(input.BeginsWith(c)) input.Remove(0, 1);
+		while(input.EndsWith(Form("%c", c))) input.Resize(input.Length()-1);
 		return input;
 	}
 
