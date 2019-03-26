@@ -1,28 +1,10 @@
 var classConfigLoader =
 [
-    [ "ConfigLoader", "classConfigLoader.html#a55c807487a419c3b74d22e369d6a427e", null ],
+    [ "ConfigLoader", "classConfigLoader.html#a0e50f22085ed0d763e937accf0107b8b", null ],
     [ "AddValue", "classConfigLoader.html#a4428364e6efd677bc559dfd2efd87c9c", null ],
-    [ "DrawDifference", "classConfigLoader.html#aebb19e6d7a739343867ea3fb11d731e5", null ],
     [ "ExtractParameter", "classConfigLoader.html#a7997f768e1785f6a899384d8e6ebafb9", null ],
     [ "ImportValues", "classConfigLoader.html#a0ab2b46d0fc05f60d5fed4e086e928c1", null ],
     [ "LoadConfiguration", "classConfigLoader.html#a24aba3c2e19427dabefe553e29463744", null ],
     [ "fConfigPath", "classConfigLoader.html#a2c57f6b311c0daa808fb66bbf243b456", null ],
-    [ "fDo_conv_d", "classConfigLoader.html#aeb533c066cabfeaaff3d8dcb764e2d2b", null ],
-    [ "fDo_conv_s", "classConfigLoader.html#aa2434a7bccee07831134f81d3ba5d382", null ],
-    [ "fDo_gauss", "classConfigLoader.html#a3f6102a653068c52571eb269be11646d", null ],
-    [ "fDraw_fit", "classConfigLoader.html#a1b6f5d92b86470590d4c8e27dca5edd8", null ],
-    [ "fDraw_mctruth", "classConfigLoader.html#aec0918994c86eccf3fd37d7c8fd73e81", null ],
-    [ "fDraw_mult", "classConfigLoader.html#af5be37940538d9419c6f06b0631c740d", null ],
-    [ "fDraw_tof", "classConfigLoader.html#a424a449bf527c9716b4f81a7cd8379be", null ],
-    [ "fDraw_vertex", "classConfigLoader.html#a6531412d256f688d766d7a30108f6da2", null ],
-    [ "fFitplots", "classConfigLoader.html#ac0eba0fd235b73b40f12d0f704c9bcc3", null ],
-    [ "fInputFilename", "classConfigLoader.html#aeb835a53c7005da67433ed30f5e2530d", null ],
-    [ "fLogY", "classConfigLoader.html#aee1fc5ee2a10c9ee335afd3e672e4d1d", null ],
-    [ "fLogZ", "classConfigLoader.html#a2267b129a0c31646dac0cff93173ec77", null ],
-    [ "fPlotstats", "classConfigLoader.html#a446bcbcdf7a96527f0ad1faef865d21e", null ],
-    [ "fPrintAverages", "classConfigLoader.html#a831460ea2144ad06e837971aeaf834d7", null ],
-    [ "fPrintBranches", "classConfigLoader.html#a30873a248e5f833be5684d85c43b2354", null ],
-    [ "fPureplot", "classConfigLoader.html#aade0f1f8e0d5e53f0410dfb6110a83b3", null ],
-    [ "fSetranges", "classConfigLoader.html#aa56fca0098748ad023f075a0384b290e", null ],
-    [ "fTestVectorArg", "classConfigLoader.html#ae3fba4e59f467194723806b2193937b5", null ]
+    [ "fPrint", "classConfigLoader.html#a3262a392500fc22c533455b595138296", null ]
 ];

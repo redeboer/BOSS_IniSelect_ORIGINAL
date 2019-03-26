@@ -7,6 +7,7 @@ var annotated_dup =
     [ "BranchPlotOptions", "classBranchPlotOptions.html", "classBranchPlotOptions" ],
     [ "ChainLoader", "classChainLoader.html", "classChainLoader" ],
     [ "ConfigLoader", "classConfigLoader.html", "classConfigLoader" ],
+    [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", "classConfigLoader__Plot" ],
     [ "ConfigParameter", "classConfigParameter.html", "classConfigParameter" ],
     [ "ConfigParBase", "classConfigParBase.html", "classConfigParBase" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],

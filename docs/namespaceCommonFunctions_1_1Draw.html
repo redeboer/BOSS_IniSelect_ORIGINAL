@@ -118,6 +118,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a9a881626305f2b94ed69a40409727174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a9a881626305f2b94ed69a40409727174">DrawAndSave</a> (TTree *tree, const char *varexp, const char *selection, Option_t *opt, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:a9a881626305f2b94ed69a40409727174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that allows you to create and save a quick sketch of a <code>TTree</code> branch.  <a href="#a9a881626305f2b94ed69a40409727174">More...</a><br /></td></tr>
 <tr class="separator:a9a881626305f2b94ed69a40409727174"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6565d4e021ee758ea63f8f9a0800247c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6565d4e021ee758ea63f8f9a0800247c">DrawDifference</a> (TH1 *histToDraw, TH1 *histToSubtract, Option_t *opt=&quot;E1&quot;, const char *setLog=&quot;&quot;)</td></tr>
+<tr class="memdesc:a6565d4e021ee758ea63f8f9a0800247c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored.  <a href="#a6565d4e021ee758ea63f8f9a0800247c">More...</a><br /></td></tr>
+<tr class="separator:a6565d4e021ee758ea63f8f9a0800247c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36f64ebbbd69516c8d22dec07fc3037e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a36f64ebbbd69516c8d22dec07fc3037e">SaveCanvas</a> (const char *saveas, TVirtualPad *pad=gPad, TString logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:a36f64ebbbd69516c8d22dec07fc3037e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to save a <code>TPad</code> or <code>TCanvas</code>.  <a href="#a36f64ebbbd69516c8d22dec07fc3037e">More...</a><br /></td></tr>
 <tr class="separator:a36f64ebbbd69516c8d22dec07fc3037e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -196,7 +199,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00149">149</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00154">154</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +252,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00030">30</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00032">32</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -295,7 +298,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00041">41</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00043">43</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -341,7 +344,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00051">51</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00053">53</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -401,7 +404,7 @@ template&lt;class ... ARGS&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00063">63</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00065">65</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -507,7 +510,7 @@ template&lt;class TYPE , class... ARGS&gt; </div>
 <li><a href="https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword">https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl-export-keyword</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00130">130</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00135">135</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
 
 </div>
 </div>
@@ -538,6 +541,51 @@ template&lt;&gt; </div>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="CommonFunctions_8h_source.html#l00049">49</a> of file <a class="el" href="CommonFunctions_8h_source.html">CommonFunctions.h</a>.</p>
+
+</div>
+</div>
+<a id="a6565d4e021ee758ea63f8f9a0800247c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6565d4e021ee758ea63f8f9a0800247c">&#9670;&nbsp;</a></span>DrawDifference()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CommonFunctions::Draw::DrawDifference </td>
+          <td>(</td>
+          <td class="paramtype">TH1 *&#160;</td>
+          <td class="paramname"><em>histToDraw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TH1 *&#160;</td>
+          <td class="paramname"><em>histToSubtract</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Option_t *&#160;</td>
+          <td class="paramname"><em>opt</em> = <code>&quot;E1&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>setLog</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><em>TEMPORARY</em> function that serves as a fix for the bug that causes the wrong best pair to be stored. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000020">Todo:</a></b></dt><dd>Consider removing <code><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6565d4e021ee758ea63f8f9a0800247c" title="TEMPORARY function that serves as a fix for the bug that causes the wrong best pair to be stored...">CommonFunctions::Draw::DrawDifference</a></code>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00086">86</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -583,7 +631,7 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00074">74</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00076">76</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -622,7 +670,7 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00085">85</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00107">107</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>

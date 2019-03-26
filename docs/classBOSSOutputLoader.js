@@ -1,11 +1,12 @@
 var classBOSSOutputLoader =
 [
     [ "BOSSOutputLoader", "classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233", null ],
-    [ "BOSSOutputLoader", "classBOSSOutputLoader.html#aabbc22a805f63c7d3b4b2cd31b08b2c7", null ],
+    [ "BOSSOutputLoader", "classBOSSOutputLoader.html#ac9b9c2532cb01d30bd8942de9fca6f78", null ],
     [ "CreateOrderedMap", "classBOSSOutputLoader.html#ab6d81022b14f0de41438dcf699a5e01c", null ],
     [ "Draw", "classBOSSOutputLoader.html#a47206d882287c355c265687c93b34861", null ],
     [ "Draw", "classBOSSOutputLoader.html#a21a8dfa6f931309f2a299be7eaa70896", null ],
     [ "Draw", "classBOSSOutputLoader.html#a432e4c90e20ad80f09d19aedabe628a8", null ],
+    [ "Draw", "classBOSSOutputLoader.html#aaf4c56065e60620e4a7be327514c9133", null ],
     [ "DrawAndSaveAllBranches", "classBOSSOutputLoader.html#afc863db0f96ba89c94892e772fa18b6a", null ],
     [ "GetBranch", "classBOSSOutputLoader.html#aa36aa4288371751fa49e6ff0829822e7", null ],
     [ "GetChain", "classBOSSOutputLoader.html#a9d69532766ad2d4d394c80de47c68fe6", null ],
@@ -13,6 +14,7 @@ var classBOSSOutputLoader =
     [ "GetChains", "classBOSSOutputLoader.html#a22c84833e080e2adc4521e441d8409b4", null ],
     [ "GetEntries", "classBOSSOutputLoader.html#a325eb4a68ebe6ecc7a0f8b34c7276208", null ],
     [ "GetLargestEntries", "classBOSSOutputLoader.html#a733e14f4d592d0d67595e71e4990105b", null ],
+    [ "HasChain", "classBOSSOutputLoader.html#a72fe36425b77dd4dbfd87c93d2d1965e", null ],
     [ "IsZombie", "classBOSSOutputLoader.html#a08a515d238722e1b7c78afd569a297da", null ],
     [ "LoadChains", "classBOSSOutputLoader.html#a6e2e3f05b3ddb07c5f202f0c5cf97925", null ],
     [ "operator[]", "classBOSSOutputLoader.html#a7dabf46d21a855f9a714179c0dbb8dcb", null ],

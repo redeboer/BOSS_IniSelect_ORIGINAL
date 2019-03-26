@@ -7,10 +7,10 @@ var searchData=
   ['bookntuples',['BookNTuples',['../classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92',1,'TrackSelector']]],
   ['boss',['BOSS',['../group__BOSS.html',1,'']]],
   ['boss_20afterburner',['BOSS Afterburner',['../group__BOSS__Afterburner.html',1,'']]],
-  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html',1,'BOSSOutputLoader'],['../classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233',1,'BOSSOutputLoader::BOSSOutputLoader()'],['../classBOSSOutputLoader.html#aabbc22a805f63c7d3b4b2cd31b08b2c7',1,'BOSSOutputLoader::BOSSOutputLoader(const char *directoryPath, bool print_branches=true, bool print_averages=false)']]],
+  ['bossoutputloader',['BOSSOutputLoader',['../classBOSSOutputLoader.html',1,'BOSSOutputLoader'],['../classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233',1,'BOSSOutputLoader::BOSSOutputLoader()'],['../classBOSSOutputLoader.html#ac9b9c2532cb01d30bd8942de9fca6f78',1,'BOSSOutputLoader::BOSSOutputLoader(const std::string &amp;directoryPath, bool print_branches=true, bool print_averages=false)']]],
   ['bossoutputloader_2ecxx',['BOSSOutputLoader.cxx',['../BOSSOutputLoader_8cxx.html',1,'']]],
   ['bossoutputloader_2eh',['BOSSOutputLoader.h',['../BOSSOutputLoader_8h.html',1,'']]],
-  ['branchplotoptions',['BranchPlotOptions',['../classBranchPlotOptions.html',1,'BranchPlotOptions'],['../classBranchPlotOptions.html#a158d14625f388a1251c25d8343fdd857',1,'BranchPlotOptions::BranchPlotOptions(const char *branchName, const int nBins=100, const double from=-DBL_MAX, const double to=DBL_MAX, const char *option=&quot;&quot;, const char *cut=&quot;&quot;)'],['../classBranchPlotOptions.html#a2f3f70473f7d164ea8fa4a97b2b4ccfe',1,'BranchPlotOptions::BranchPlotOptions(const char *branchName, const double binWidth, const double from=-DBL_MAX, const double to=DBL_MAX, const char *option=&quot;&quot;, const char *cut=&quot;&quot;)']]],
+  ['branchplotoptions',['BranchPlotOptions',['../classBranchPlotOptions.html',1,'BranchPlotOptions'],['../classBranchPlotOptions.html#a4bef705e1ffb7a9712f7a6255cd41a09',1,'BranchPlotOptions::BranchPlotOptions(const std::string &amp;input)'],['../classBranchPlotOptions.html#afa0adf4837538dea7a76c214ffa6f3ba',1,'BranchPlotOptions::BranchPlotOptions(const TString &amp;input)']]],
   ['branchplotoptions_2ecxx',['BranchPlotOptions.cxx',['../BranchPlotOptions_8cxx.html',1,'']]],
   ['branchplotoptions_2eh',['BranchPlotOptions.h',['../BranchPlotOptions_8h.html',1,'']]]
 ];

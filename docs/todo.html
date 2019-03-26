@@ -84,6 +84,8 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
+<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="classBranchPlotOptions.html#ad136980a173c7fb5b82ff8f8de4a58fa">BranchPlotOptions::VarExp</a>  () const</dt>
+<dd>Should be moved to <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code> so that one has access to the corresponding <code>TTree</code>.  </dd>
 <dt><a class="anchor" id="_todo000017"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6b0e72f8ca1433e3a776b30c55834bb6">CommonFunctions::Draw::DrawAndSave</a>  (const char *saveas, Option_t *opt, const char *logScale, ARGS... args)</dt>
 <dd><p class="startdd">Impossible to compile in <code>make</code> framework? </p>
 <p>Should ideally be <code>TObject</code>s. </p>
@@ -91,6 +93,12 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </dd>
 <dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#ae2f83fb2d8bfb27ebab8274c541309df">CommonFunctions::Draw::DrawAndSaveRecursion</a>  (Option_t *opt, TYPE first, ARGS... args)</dt>
 <dd>Should ideally be <code>TObject</code>s.  </dd>
+<dt><a class="anchor" id="_todo000020"></a>Member <a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6565d4e021ee758ea63f8f9a0800247c">CommonFunctions::Draw::DrawDifference</a>  (TH1 *histToDraw, TH1 *histToSubtract, Option_t *opt="E1", const char *setLog="")</dt>
+<dd>Consider removing <code><a class="el" href="namespaceCommonFunctions_1_1Draw.html#a6565d4e021ee758ea63f8f9a0800247c" title="TEMPORARY function that serves as a fix for the bug that causes the wrong best pair to be stored...">CommonFunctions::Draw::DrawDifference</a></code>.  </dd>
+<dt><a class="anchor" id="_todo000021"></a>Member <a class="el" href="namespaceCommonFunctions_1_1String.html#a98ef5383f497bb17f400eeb8e0e880a1">CommonFunctions::String::Trim</a>  (std::string &amp;input)</dt>
+<dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>.  </dd>
+<dt><a class="anchor" id="_todo000022"></a>Member <a class="el" href="namespaceCommonFunctions_1_1String.html#abedd5bf3395bb35e6e9ee74323a86ca2">CommonFunctions::String::Trim</a>  (TString &amp;input)</dt>
+<dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>.  </dd>
 <dt><a class="anchor" id="_todo000006"></a>Class <a class="el" href="classContainer__base.html">Container_base</a>  </dt>
 <dd>Encapsulate in <code>namespace</code> structure.  </dd>
 <dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="classContainer__indexed.html">Container_indexed</a>  </dt>
@@ -109,7 +117,7 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace.  </dd>
 <dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classNTupleTopoAna.html#a90124b26abec40f8837fe86782087b3e">NTupleTopoAna::GetNTuple</a>  ()</dt>
 <dd>Develop template <code><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f" title="Easier and expanded version of NTuple::Tuple::addItem that also adds the item to the fItems_* mapping...">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>.  </dd>
-<dt><a class="anchor" id="_todo000019"></a>Member <a class="el" href="classParticle.html#ae97e941db471dbe130c5aa7277d8c224">Particle::DetermineNameLaTeX</a>  ()</dt>
+<dt><a class="anchor" id="_todo000023"></a>Member <a class="el" href="classParticle.html#ae97e941db471dbe130c5aa7277d8c224">Particle::DetermineNameLaTeX</a>  ()</dt>
 <dd>Expand the switch statement here if you miss any particles. See e.g. <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,">http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,</a> or use the <code>TDatabasePDG</code> in <code>ROOT</code>.  </dd>
 <dt><a class="anchor" id="_todo000018"></a>Namespace <a class="el" href="namespacestd__fix.html">std_fix</a>  </dt>
 <dd>This version of the header contains the definitions as well (as <code>inline</code>) to avoid multiple definitions. But it should be possible to use the old version (<code>.old</code> and <code>.cpp</code>), which use <code>extern</code> and <code>inline</code>, without running into multiple definition problems.  </dd>

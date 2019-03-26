@@ -13,6 +13,7 @@ var files =
     [ "CommonFunctions.h", "CommonFunctions_8h.html", "CommonFunctions_8h" ],
     [ "ConfigLoader.cxx", "ConfigLoader_8cxx.html", null ],
     [ "ConfigLoader.h", "ConfigLoader_8h.html", null ],
+    [ "ConfigLoader_Plot.h", "ConfigLoader__Plot_8h.html", null ],
     [ "ConfigParameter.h", "ConfigParameter_8h.html", null ],
     [ "ConfigParBase.cxx", "ConfigParBase_8cxx.html", null ],
     [ "ConfigParBase.h", "ConfigParBase_8h.html", null ],

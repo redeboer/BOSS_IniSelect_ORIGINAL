@@ -153,11 +153,6 @@
 
 
 	/// Draw a distribution of one of the branches in the file.
-		/// @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
-		/// @param save Set to `false` if you do not want to save the histogram that has been drawn.
-		/// @param option Draw options.
-		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 	void ChainLoader::Draw(const BranchPlotOptions &options)
 	{
 		/// -# **Abort** if `TChain` contains entries.
