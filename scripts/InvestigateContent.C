@@ -1,12 +1,5 @@
 /// @addtogroup BOSS_Afterburner_scripts
 /// @{
-	
-/// Simple script that allows to quickly investigate the `TTree`s and branches of a ROOT file that has been produced with BOSS.
-/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// @date     March 26th, 2019
-
-
-
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
@@ -15,6 +8,7 @@
 	#include "CommonFunctions.h"
 	#include "ConfigLoader_PrintContent.h"
 	#include <iostream>
+
 	using namespace CommonFunctions;
 
 
@@ -24,7 +18,9 @@
 // * ============================= * //
 
 
-	/// Main function that is used when compiling and executing in `ROOT`.
+	/// Simple script that allows to quickly investigate the `TTree`s and branches of a ROOT file that has been produced with BOSS.
+		/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+		/// @date     March 26th, 2019
 	void InvestigateContent(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.

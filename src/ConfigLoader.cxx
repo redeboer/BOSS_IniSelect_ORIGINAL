@@ -86,6 +86,7 @@
 		/// <li> Loop over lines.
 			std::string line;
 			while(getline(file, line)) {
+std::cout << line << std::endl;
 				/// <ul>
 				/// <li> Remove weird characters like EOF.
 					if(line.back()<' ') line.pop_back();
@@ -149,6 +150,7 @@
 					/// </ol>
 				/// <li> Import the remaining values by continuing over the next lines until the first closing bracket (`}`) is encountered.
 					while(getline(file, line)) {
+std::cout << "sub :" << line << std::endl;
 						/// <ol>
 						/// <li> Remove weird characters like EOF.
 							if(line.back()<' ') line.pop_back();

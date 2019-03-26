@@ -6,7 +6,6 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
 	#include "ConfigLoader.h"
 	#include "ConfigParameter.h"

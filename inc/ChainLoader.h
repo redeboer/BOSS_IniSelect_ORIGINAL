@@ -4,6 +4,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "ReconstructedParticle.h"
 	#include "CommonFunctions.h"
 	#include "BranchPlotOptions.h"
@@ -59,12 +60,13 @@
 
 		/// @name Information functions
 			///@{
+			TH1F* GetInvariantMassHistogram(const BranchPlotOptions &branch, const ReconstructedParticle& particle);
 			TH1F* GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins=100, Option_t *option="", const TString &logScale="");
 			TH2F* Draw(const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
 			double ComputeMean(TChain* tree, const char* branchName);
 			TH1F* Draw(const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const bool save=true, const TString &logScale="", const char* cut="");
 			void Draw(const char* branchNames, const char* cut="", Option_t *option="", const bool save=true, const TString &logScale="");
-			void Draw(const BranchPlotOptions &options);
+			TH1* Draw(const BranchPlotOptions &options);
 			void DrawAndSaveAllBranches(Option_t *option="", const TString &logScale="");
 			void DrawAndSaveAllMultiplicityBranches(const TString &logScale="", Option_t *option="E1");
 			///@}

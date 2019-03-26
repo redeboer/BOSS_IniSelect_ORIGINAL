@@ -39,15 +39,15 @@
 		void ResetIfHasValue() { if(fValueIsSet) ClearValues(); }
 		const size_t GetNReadValues() const { return fReadStrings.size(); }
 		const std::list<std::string>* GetListOfValues() { return &fReadStrings; }
-		bool ConvertStringsToValue();
-		bool ConvertValueToStrings();
+		const bool ConvertStringsToValue();
+		const bool ConvertValueToStrings();
 		virtual void PrintValue() const = 0;
-		bool ValueIsSet() const { return fValueIsSet; }
+		const bool ValueIsSet() const { return fValueIsSet; }
 
 
 	protected:
-		virtual bool ConvertStringsToValue_impl() = 0;
-		virtual bool ConvertValueToStrings_impl() = 0;
+		virtual const bool ConvertStringsToValue_impl() = 0;
+		virtual const bool ConvertValueToStrings_impl() = 0;
 		std::list<std::string> fReadStrings; ///< Loaded values in string format. You can specify in derived classes how to use these values.
 		bool fValueIsSet; /// Switch that is used to prevent from double adding values to the `fReadStrings` `list`.
 

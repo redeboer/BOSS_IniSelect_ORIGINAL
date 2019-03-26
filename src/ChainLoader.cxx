@@ -153,17 +153,18 @@
 
 
 	/// Draw a distribution of one of the branches in the file.
-	void ChainLoader::Draw(const BranchPlotOptions &options)
+	TH1* ChainLoader::Draw(const BranchPlotOptions &options)
 	{
 		/// -# **Abort** if `TChain` contains entries.
 			if(!fChain.GetEntries()) {
 				TerminalIO::PrintWarning(Form("Chain \"%s\" has no entries", fChain.GetName()));
-				return;
+				return nullptr;
 			}
 		/// -# Draw histogram and save
 			fChain.Draw(options.VarExp(), options.CutSelection(), options.DrawOption());
-			if(options.IsWrite())
-				CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), options.OutputFileName()), gPad, options.LogXYZ());
+			auto hist = dynamic_cast<TH1*>(gDirectory->Get(options.BuildHistName()));
+			if(options.IsWrite()) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), options.OutputFileName()), gPad, options.LogXYZ());
+			return hist;
 	}
 
 
@@ -211,15 +212,41 @@
 		/// @param nBins Number of bins to use on the \f$x\f$-axis.
 		/// @param option Draw options.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	TH1F* ChainLoader::GetInvariantMassHistogram(const char* branchName, const ReconstructedParticle& particle, const int nBins, Option_t *option, const TString &logScale)
+	TH1F* ChainLoader::GetInvariantMassHistogram(const char* varexp, const ReconstructedParticle& particle, const int nBins, Option_t *option, const TString &logScale)
 	{
 		// * Check input arguments * //
-		if(*branchName != 'm') {
-			std::cout << "ERROR: branch name \"" << branchName <<  "\" does not start with 'm'" << std::endl;
+		if(*varexp != 'm') {
+			std::cout << "ERROR: varexp \"" << varexp <<  "\" does not start with 'm'" << std::endl;
 			return nullptr;
 		}
 		// * Get histogram and modify
-		TH1F* hist = Draw(branchName, nBins, particle.PlotFrom(), particle.PlotUntil(), option, false, logScale);
+		auto hist = Draw(varexp, nBins, particle.PlotFrom(), particle.PlotUntil(), option, false, logScale);
+		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
+		CommonFunctions::Hist::SetAxisTitles(hist,
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
+		return hist;
+	}
+
+
+	/// Create a histogram object based on a `BranchPlotOptions` and `ReconstructedParticle` object.
+	TH1F* ChainLoader::GetInvariantMassHistogram(const BranchPlotOptions &branch, const ReconstructedParticle& particle)
+	{
+		if(!branch.IsOK()) return nullptr;
+		if(branch.GetNBranches() != 1) {
+			TerminalIO::PrintWarning(Form("Cannot get an invariant mass plot for BranchPlotOptions object\n  \"%s\"\nbecause it has %u branches", branch.VarExp(), branch.GetNBranches()));
+			return nullptr;
+		}
+		// * Check input arguments * //
+		if(*branch.VarExp() != 'm') {
+			std::cout << "ERROR: varexp \"" << branch.VarExp() <<  "\" does not start with 'm'" << std::endl;
+			return nullptr;
+		}
+		// * Get histogram and modify
+		auto hist = dynamic_cast<TH1F*>(Draw(branch));
+		gPad->SetLogx(branch.LogX());
+		gPad->SetLogy(branch.LogY());
+		gPad->SetLogz(branch.LogZ());
 		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
 		CommonFunctions::Hist::SetAxisTitles(hist,
 			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),

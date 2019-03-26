@@ -68,6 +68,11 @@
 			///@}
 
 
+		/// @name Getters
+			///@{
+			const size_t GetNBranches() const { return fListOfBranches.size(); }
+			///@}
+
 		/// @name TTree::Draw argument builders
 			///@{
 			const char* OutputFileName() const { return fOutputFileName.Data(); }
@@ -78,6 +83,9 @@
 			const bool LogX() const { return fSetLog[0]; }
 			const bool LogY() const { return fSetLog[1]; }
 			const bool LogZ() const { return fSetLog[2]; }
+			const bool HasLogScale() const;
+			const TString BuildOriginalString() const;
+			const TString BuildHistName() const;
 			const TString LogXYZ() const;
 			///@}
 

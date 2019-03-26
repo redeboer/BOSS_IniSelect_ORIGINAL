@@ -50,7 +50,7 @@
 
 	/// Convert the string values read to `fReadStrings` to the `fValue` member.
 	/// How this is done should be specified in the `ConvertStringsToValue_impl` method for each derived class.
-	bool ConfigParBase::ConvertStringsToValue()
+	const bool ConfigParBase::ConvertStringsToValue()
 	{
 		if(!fReadStrings.size()) {
 			CommonFunctions::TerminalIO::PrintWarning(Form("No values to convert for parameter \"%s\"", GetIdentifier().c_str()));
@@ -64,7 +64,7 @@
 
 	/// Convert the `fValue` data member to the `list` of `fReadStrings.
 	/// How this is done should be specified in the `ConvertValueToStrings_impl` method for each derived class.
-	bool ConfigParBase::ConvertValueToStrings()
+	const bool ConfigParBase::ConvertValueToStrings()
 	{
 		auto list = fReadStrings;
 		ClearValues();

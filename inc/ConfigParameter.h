@@ -11,6 +11,7 @@
 	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParBase.h"
+	#include "ReconstructedParticle.h"
 	#include "TString.h"
 	#include <iomanip>
 	#include <iostream>
@@ -40,15 +41,15 @@
     TYPE* operator->() { return &fValue; }
 		TYPE& operator*() { return fValue; }
 		void operator=(const TYPE &val) { fValue = val; ConvertValueToStrings(); }
-		bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }
-		bool operator!=(const std::string &data) const { return  GetIdentifier().compare(data); }
+		const bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }
+		const bool operator!=(const std::string &data) const { return  GetIdentifier().compare(data); }
 		operator TYPE() { return fValue; }
 		void PrintValue() const;
 	private:
-		bool ConvertStringsToValue_impl_str();
-		virtual bool ConvertStringsToValue_impl();
-		virtual bool ConvertValueToStrings_impl();
-		bool HasSingleString() const;
+		const bool ConvertStringsToValue_impl_str();
+		virtual const bool ConvertStringsToValue_impl();
+		virtual const bool ConvertValueToStrings_impl();
+		const bool HasSingleString() const;
 		TYPE fValue; /// The object that contains the data read from the `fReadStrings` `list`.
 	};
 
@@ -58,13 +59,14 @@
 // * =============================== * //
 // * ------- SPECIALISATIONS ------- * //
 // * =============================== * //
-// ! This list needs to be expended if you are implementing new template specialisations
+// ! This list needs to be expended if you are implementing new template specialisations. Please keep sorted in alphabetical order.
 
 
-	template class ConfigParameter<bool>;
-	template class ConfigParameter<std::string>;
 	template class ConfigParameter<AxisBinning>;
+	template class ConfigParameter<bool>;
 	template class ConfigParameter<std::list<BranchPlotOptions> >;
+	template class ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >;
+	template class ConfigParameter<std::string>;
 
 
 
@@ -94,7 +96,7 @@
 
 	/// Default `ConvertValueToStrings` template function: works only for `type`s like `double`s, because this function relies on `std::stringstream`.
 	template<typename TYPE> inline
-	bool ConfigParameter<TYPE>::ConvertValueToStrings_impl()
+	const bool ConfigParameter<TYPE>::ConvertValueToStrings_impl()
 	{
 		std::stringstream ss;
 		ss << fValue;
@@ -103,9 +105,35 @@
 	}
 
 
-	/// Default `ConvertValueToStrings` template function: works only for `type`s like `double`s, because this function relies on `std::stringstream`.
+	/// `ConvertValueToStrings` implementation handler for `AxisBinning`.
 	template<> inline
-	bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertValueToStrings_impl()
+	const bool ConfigParameter<AxisBinning>::ConvertValueToStrings_impl()
+	{
+		std::stringstream ss;
+		if(!fValue.IsOK()) {
+			std::cout << "WARNING: " << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To() << std::endl;
+			return false;
+		}
+		ss << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To();
+		AddValue(ss.str());
+		return true;
+	}
+
+
+	/// `ConvertValueToStrings` implementation handler for `bool`.
+	template<> inline
+	const bool ConfigParameter<bool>::ConvertValueToStrings_impl()
+	{
+		if(fValue) AddValue("true");
+		else       AddValue("false");
+		return true;
+	}
+
+
+	/// `ConvertValueToStrings` implementation handler for a list of `BranchPlotOptions`.
+		/// This parameter can for instance be used to [`TTree::Draw`](https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7) a selection of branches (or of a combination of branches).
+	template<> inline
+	const bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertValueToStrings_impl()
 	{
 		for(auto &it : fValue) {
 			std::stringstream ss;
@@ -119,27 +147,15 @@
 	}
 
 
-	/// `ConvertValueToStrings` implementation handler for `bool`.
+	/// `ConvertValueToStrings` implementation handler for list of pairs of a `ReconstructedParticle` object (which characterise a signal that is to be fit) with a corresponding `BranchPlotOptions` object (which characterise the histogram that is to be fit).
 	template<> inline
-	bool ConfigParameter<bool>::ConvertValueToStrings_impl()
+	const bool ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >::ConvertValueToStrings_impl()
 	{
-		if(fValue) AddValue("true");
-		else       AddValue("false");
-		return true;
-	}
-
-
-	/// `ConvertValueToStrings` implementation handler for `AxisBinning`.
-	template<> inline
-	bool ConfigParameter<AxisBinning>::ConvertValueToStrings_impl()
-	{
-		std::stringstream ss;
-		if(!fValue.IsOK()) {
-			std::cout << "WARNING: " << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To() << std::endl;
-			return false;
+		for(auto &it : fValue) {
+			AddValue(Form("%d", it.first.GetPDGCode()));
+			AddValue(it.first.GetDaughterLabel());
+			AddValue(it.second.BuildOriginalString().Data());
 		}
-		ss << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To();
-		AddValue(ss.str());
 		return true;
 	}
 
@@ -152,7 +168,7 @@
 
 	/// Default implementation handler for `ConvertStringsToValue` (only works for internal C++ types).
 	template<typename TYPE> inline
-	bool ConfigParameter<TYPE>::ConvertStringsToValue_impl()
+	const bool ConfigParameter<TYPE>::ConvertStringsToValue_impl()
 	{
 		if(!HasSingleString()) return false;
 		std::istringstream ss(fReadStrings.front());
@@ -163,7 +179,7 @@
 
 	/// `ConvertStringsToValue` handler for an object that can be contructed from a `std::string`.
 	template<class TYPE> inline
-	bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
+	const bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
 	{
 		if(!HasSingleString()) return false;
 		fValue = fReadStrings.front();
@@ -171,9 +187,17 @@
 	}
 
 
+	/// `ConvertStringsToValue` handler for `AxisBinning`s (has a `string` constructor).
+	template<> inline
+	const bool ConfigParameter<AxisBinning>::ConvertStringsToValue_impl()
+	{
+		return ConvertStringsToValue_impl_str();
+	}
+
+
 	/// `ConvertStringsToValue` handler for `bool`eans.
 	template<> inline
-	bool ConfigParameter<bool>::ConvertStringsToValue_impl()
+	const bool ConfigParameter<bool>::ConvertStringsToValue_impl()
 	{
 		if(!HasSingleString()) return false;
 		if(
@@ -186,7 +210,7 @@
 
 	/// `ConvertStringsToValue` handler for `bool`eans.
 	template<> inline
-	bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertStringsToValue_impl()
+	const bool ConfigParameter<std::list<BranchPlotOptions> >::ConvertStringsToValue_impl()
 	{
 		for(auto& it : fReadStrings) {
 			fValue.push_back({it});
@@ -195,17 +219,40 @@
 	}
 
 
-	/// `ConvertStringsToValue` handler for `string`s.
+	/// `ConvertStringsToValue` implementation handler for list of pairs of a `ReconstructedParticle` object (which characterise a signal that is to be fit) with a corresponding `BranchPlotOptions` object (which characterise the histogram that is to be fit).
 	template<> inline
-	bool ConfigParameter<std::string>::ConvertStringsToValue_impl()
+	const bool ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >::ConvertStringsToValue_impl()
 	{
-		return ConvertStringsToValue_impl_str();
+std::cout << "Till ConvertStringsToValue_impl" << std::endl;
+		/// <ol>
+		/// <li> **Abort** if the number of read strings for this parameter is not a multiple of 3. Each batch of 3 read values is used to construct a pair of a `ReconstructedParticle` with a `BranchPlotOptions`.
+			if(fReadStrings.size()%3 != 0) {
+				CommonFunctions::TerminalIO::PrintWarning(Form(
+					"Converting parameter \"%s\" failed because it needs exactly 3 read values", GetIdentifier().c_str()));
+				return false;
+			}
+			for(auto it = fReadStrings.begin(); it != fReadStrings.end(); ++it) {
+		/// <li> Read value 1: the PDG code or name of the decaying particle.
+			TString pdgName{it->c_str()};
+			auto pdgCode{pdgName.Atoi()};
+		/// <li> Read value 2: the daughters of the decaying particle.
+			++it;
+			TString daughters{it->c_str()};
+		/// <li> Read value 3: the input string for constructing the `BranchPlotOptions` object.
+			++it;
+			std::string options{it->c_str()};
+		/// <li> Insert a pair (using constructor brackets) into the `fValue` list.
+			if(pdgCode) fValue.push_back(std::make_pair(ReconstructedParticle{pdgCode,        daughters.Data()}, BranchPlotOptions{options}));
+			else        fValue.push_back(std::make_pair(ReconstructedParticle{pdgName.Data(), daughters.Data()}, BranchPlotOptions{options}));
+			}
+		/// </ol>
+		return true;
 	}
 
 
-	/// `ConvertStringsToValue` handler for `AxisBinning`s (has a `string` constructor).
+	/// `ConvertStringsToValue` handler for `string`s.
 	template<> inline
-	bool ConfigParameter<AxisBinning>::ConvertStringsToValue_impl()
+	const bool ConfigParameter<std::string>::ConvertStringsToValue_impl()
 	{
 		return ConvertStringsToValue_impl_str();
 	}
@@ -237,15 +284,6 @@
 	}
 
 
-	/// In case of a `bool` `fValue`, either `true` or `false` should be printed.
-	template<> inline
-	void ConfigParameter<bool>::PrintValue() const
-	{
-		if(fValue) std::cout << "true";
-		else       std::cout << "false";
-	}
-
-
 	/// In case of a `AxisBinning` `fValue`, encapsulate its value in double quotations marks (`"`).
 	template<> inline
 	void ConfigParameter<AxisBinning>::PrintValue() const
@@ -254,11 +292,12 @@
 	}
 
 
-	/// In case of a `string` `fValue`, encapsulate its value in double quotations marks (`"`).
+	/// In case of a `bool` `fValue`, either `true` or `false` should be printed.
 	template<> inline
-	void ConfigParameter<std::string>::PrintValue() const
+	void ConfigParameter<bool>::PrintValue() const
 	{
-		std::cout << "\"" << fValue << "\"";
+		if(fValue) std::cout << "true";
+		else       std::cout << "false";
 	}
 
 
@@ -271,6 +310,14 @@
 	}
 
 
+	/// In case of a `string` `fValue`, encapsulate its value in double quotations marks (`"`).
+	template<> inline
+	void ConfigParameter<std::string>::PrintValue() const
+	{
+		std::cout << "\"" << fValue << "\"";
+	}
+
+
 
 // * ================================ * //
 // * ------- HELPER FUNCTIONS ------- * //
@@ -280,7 +327,7 @@
 	/// Check if `fReadStrings` contains more than one value and print warning if so.
 	/// This should not be the case in case `fValue` is of type `double`, `bool`, etc.
 	template<typename TYPE> inline
-	bool ConfigParameter<TYPE>::HasSingleString() const
+	const bool ConfigParameter<TYPE>::HasSingleString() const
 	{
 		if(fReadStrings.size() > 1) {
 			CommonFunctions::TerminalIO::PrintWarning(Form("Parameter \"%s\" is single value, but has multiple read values\n  --> Maybe define another template specialisation of ConvertStringsToValue?", GetIdentifier().c_str()));

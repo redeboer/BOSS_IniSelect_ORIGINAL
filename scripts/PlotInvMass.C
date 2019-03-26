@@ -1,15 +1,9 @@
 /// @addtogroup BOSS_Afterburner_scripts
 /// @{
-	
-/// Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
-/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// @date     November 5th, 2018
-
-
-
 // * ======================================== * //
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
+
 	#include "ConfigLoader_Plot.h"
 	#include "BOSSOutputLoader.h"
 	#include "CommonFunctions.h"
@@ -31,7 +25,9 @@
 // * ============================= * //
 
 
-	/// Main function used when compiling and executing in `ROOT`.
+	/// Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.
+		/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+		/// @date     November 5th, 2018
 	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
