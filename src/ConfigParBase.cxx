@@ -42,6 +42,12 @@
 // * ====================== * //
 
 
+	void ConfigParBase::AddValue(const TString &value)
+	{
+		AddValue((std::string)(value.Data()));
+	}
+
+
 	void ConfigParBase::AddValue(std::string value)
 	{
 		fReadStrings.push_back(value);
@@ -93,6 +99,14 @@
 	}
 
 
+	/// Get access to one of the declared `ConfigParBase` objects.
+	/// @return Returns a `nullptr` if there is no key with name `identifier`.
+	ConfigParBase* ConfigParBase::GetParameter(const TString &identifier)
+	{
+		return GetParameter((std::string)(identifier.Data()));
+	}
+
+
 	/// Get access to one of the declared `ConfigParBase` objects, but also clean.
 	/// This method is used in `LoadConfiguration` to ensure that default values are overwritten if available.
 	ConfigParBase* ConfigParBase::GetCleanParameter(const std::string &identifier)
@@ -100,6 +114,14 @@
 		auto par = GetParameter(identifier);
 		if(par) par->ResetIfHasValue();
 		return par;
+	}
+
+
+	/// Get access to one of the declared `ConfigParBase` objects, but also clean.
+	/// This method is used in `LoadConfiguration` to ensure that default values are overwritten if available.
+	ConfigParBase* ConfigParBase::GetCleanParameter(const TString &identifier)
+	{
+		return GetCleanParameter((std::string)(identifier.Data()));
 	}
 
 

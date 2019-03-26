@@ -4,7 +4,7 @@
 	#include "ConfigLoader.h"
 	#include "CommonFunctions.h"
 	#include "FrameworkSettings.h"
-	#include <fstream>
+	#include <stdio.h>
 	using namespace CommonFunctions;
 
 
@@ -28,10 +28,18 @@
 
 
 	/// Import parameter an arbitrary number of argument values from a line.
+	void ConfigLoader::ImportValues(ConfigParBase *par, const TString &input)
+	{
+		ImportValues(par, (std::string)(input.Data()));
+	}
+
+
+	/// Import parameter an arbitrary number of argument values from a line.
 		/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
 	void ConfigLoader::ImportValues(ConfigParBase *par, std::string input)
 	{
 		if(!par) return;
+std::cout << "Importing values for \"" << input << "\"" << std::endl;
 		String::Trim(input);
 		if(input.front() == '{') input.erase(0, 1);
 		if(input.back () == '}') input.pop_back();
@@ -63,6 +71,17 @@
 
 
 	/// Format a string by removing all leading and trailing whitespace characters and double quotation marks (`"`).
+	void ConfigLoader::AddValue(ConfigParBase *par, TString &val)
+	{
+		if(!par) return;
+		String::Trim(val);
+		String::Trim(val, '\"');
+		if(!val.Length()) return;
+		par->AddValue(val);
+	}
+
+
+	/// Format a string by removing all leading and trailing whitespace characters and double quotation marks (`"`).
 	void ConfigLoader::AddValue(ConfigParBase *par, std::string &val)
 	{
 		if(!par) return;
@@ -74,99 +93,94 @@
 
 
 	/// Load a configuration for analysis from a <i>BOSS Afterburner</i> configuration file.
+		/// @todo Rewrite entire read file procedure in terms of `TString`.
 	size_t ConfigLoader::LoadConfiguration(const std::string &filename)
 	{
 		/// <ol>
 		/// <li> Create file stream (`std::ifstream`) of config `txt` file.
-			std::ifstream file(filename);
-			if(!file.is_open()) {
+			FILE *file = std::fopen(filename.c_str(), "r");
+			if(!file) {
 				TerminalIO::PrintWarning(Form("Could not load configuration file \"%s\"", filename.c_str()));
 				return 0;
 			}
 		/// <li> Loop over lines.
-			std::string line;
-			while(getline(file, line)) {
+			TString line;
+			while(line.Gets(file, true)) {
 std::cout << line << std::endl;
 				/// <ul>
-				/// <li> Remove weird characters like EOF.
-					if(line.back()<' ') line.pop_back();
+				// /// <li> Remove weird characters like EOF.
+				// 	if(line.back()<' ') line.pop_back();
 				/// <li> Remove leading spaces and tabs.
 					String::Trim(line);
 					String::Trim(line, ';');
 				/// <li> Skip line if it is a comment or if it is empty.
-					if(!line.size()) continue;
+					if(!line.Length()) continue;
 					if(String::IsComment(line)) continue;
 				/// <li> Now, attempt to extract the paramater identifier.
 					ConfigParBase *par = nullptr;
-					std::string parname{line};
-					std::string parval {line};
+					TString parname{line};
+					TString parval {line};
 				/// <li> If the `line` does **not** contain brackets opening (`{`) or closing (``}) bracket, ends in an equal sign **and** does contain an equal sign, **there is only one value for this parameter**. This is a simple case and we can move to the next line.
-						if(
-							line.find('=') != std::string::npos &&
-							line.find('{') == std::string::npos &&
-							line.find('}') == std::string::npos &&
-							line.back() != '='
-						) {
+						if(line.Contains('=') && !line.Contains('{') && !line.Contains('}') && !line.EndsWith("=")) {
 							// * Attempt to get parameter
-							parname.resize(parname.find_first_of('='));
+							parname.Resize(parname.First('='));
 							String::Trim(parname);
 							par = ConfigParBase::GetCleanParameter(parname);
 							if(!par) continue;
 							// * Add the value to the parameter
-							parval = parval.substr(parval.find_first_of('=')+1);
-							AddValue(par, parval);
+							parval = parval(parval.First('=')+1, -1);
+							std::string parval_str{parval.Data()};
+							AddValue(par, parval_str);
 							continue;
 						}
 				/// <li> If this is not the case, the parameter contains **multiple values**:
 					/// <ol>
 					/// <li> If the line contains `=`, `{`, and `}`, all parameter values are defined on this line and we can round up without reading the next line.
-						if(
-							(line.find('=') != std::string::npos) &&
-							(line.find('{') != std::string::npos) &&
-							(line.find('}') != std::string::npos)) {
+						if(line.Contains('=') && line.Contains('{') && line.Contains('}')) {
 							// * Attempt to get parameter
-							parname.resize(parname.find_first_of('='));
+							parname.Resize(parname.First('='));
 							String::Trim(parname);
 							par = ConfigParBase::GetCleanParameter(parname);
 							if(!par) continue;
 							// * Add the value to the parameter
-							parval = parval.substr(parval.find_first_of('{')+1);
-							ImportValues(par, parval);
+							parval = parval(parval.First('{')+1, -1);
+							std::string parval_str{parval.Data()};
+							ImportValues(par, parval_str);
 							continue;
 						}
 					/// <li> If the line does not contain an equal sign (`=`), it means the line only contains the parameter name and that we should continue reading the next lines.
-						if(line.find('=') == std::string::npos) {
+						if(!line.Contains('=')) {
 							par = ConfigParBase::GetCleanParameter(parname);
 							if(!par) continue;
 					/// <li> Else, get the parameter, read the first values on the line and continue to the next.
 						} else {
-							parname.resize(parname.find_first_of('='));
+							parname.Resize(parname.First('='));
 							String::Trim(parname);
 							par = ConfigParBase::GetCleanParameter(parname);
 							if(!par) continue;
-							parval = parval.substr(parval.find_first_of('=')+1);
+							parval = parval(parval.First('=')+1, -1);
 							ImportValues(par, parval);
 						}
 					/// </ol>
 				/// <li> Import the remaining values by continuing over the next lines until the first closing bracket (`}`) is encountered.
-					while(getline(file, line)) {
+					while(line.Gets(file, true)) {
 std::cout << "sub :" << line << std::endl;
 						/// <ol>
-						/// <li> Remove weird characters like EOF.
-							if(line.back()<' ') line.pop_back();
+						// /// <li> Remove weird characters like EOF.
+						// 	if(line.back()<' ') line.pop_back();
 						/// <li> Skip line if it is a comment or if it is empty.
 							String::Trim(line);
-							if(!line.size()) continue;
+							if(!line.Length()) continue;
 							if(String::IsComment(line)) continue;
 						/// <li> `Trim` line and remove opening equal sign (`=`).
-							String::Trim(line); if(line.front() == '=') line.erase(0, 1);
-							String::Trim(line); if(line.front() == '{') line.erase(0, 1);
+							String::Trim(line); if(line.BeginsWith("=")) line.Remove(0);
+							String::Trim(line); if(line.BeginsWith("{")) line.Remove(0);
 							String::Trim(line);
 						/// <li> If this line does not contain a closing bracket, simply import all arguments on this line and go to the next.
-							if(line.find('}') == std::string::npos) ImportValues(par, line);
+							if(!line.Contains('}')) ImportValues(par, line);
 						/// <li> If not, we should import the last arguments and then `break` the `while` loop
 							else {
-								line.resize(line.find_last_of('}'));
+								line.Resize(line.Last('}'));
 								ImportValues(par, line);
 								break;
 							}

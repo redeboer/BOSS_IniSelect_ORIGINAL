@@ -636,7 +636,7 @@
 
 
 	/// Check if a string starts with a comment identifier (such as `//` in the case of `C++`).
-	bool CommonFunctions::String::IsComment(std::string input)
+	const bool CommonFunctions::String::IsComment(std::string input)
 	{
 		Trim(input);
 		input = input.substr(0,2);
@@ -646,6 +646,13 @@
 		if(input.front() == '#') return true; // bash comment
 		if(input.front() == '%') return true; // LaTeX comment
 		return false;
+	}
+
+
+	/// Check if a string starts with a comment identifier (such as `//` in the case of `C++`).
+	const bool CommonFunctions::String::IsComment(const TString &input)
+	{
+		return IsComment((std::string)(input.Data()));
 	}
 
 

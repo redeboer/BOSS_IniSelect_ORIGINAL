@@ -65,7 +65,9 @@
 		size_t LoadConfiguration(const std::string &path);
 		ConfigParBase* ExtractParameter(std::string line);
 		void ImportValues(ConfigParBase *par, std::string line);
+		void ImportValues(ConfigParBase *par, const TString &line);
 		void AddValue(ConfigParBase *par, std::string &line);
+		void AddValue(ConfigParBase *par, TString &line);
 
 	private:
 		const std::string fConfigPath;

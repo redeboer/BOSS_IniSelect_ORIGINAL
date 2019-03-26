@@ -100,7 +100,8 @@
 			std::string &Trim(std::string &input, char c);
 			TString &Trim(TString &input);
 			TString &Trim(TString &input, char c);
-			bool IsComment(std::string line);
+			const bool IsComment(std::string line);
+			const bool IsComment(const TString &line);
 		}
 		/// Namespace containing functions related to debugging and making macro's handle errors.
 		namespace TerminalIO

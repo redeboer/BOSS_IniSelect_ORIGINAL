@@ -124,8 +124,8 @@
 	template<> inline
 	const bool ConfigParameter<bool>::ConvertValueToStrings_impl()
 	{
-		if(fValue) AddValue("true");
-		else       AddValue("false");
+		if(fValue) AddValue((std::string)"true");
+		else       AddValue((std::string)"false");
 		return true;
 	}
 
@@ -152,9 +152,9 @@
 	const bool ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >::ConvertValueToStrings_impl()
 	{
 		for(auto &it : fValue) {
-			AddValue(Form("%d", it.first.GetPDGCode()));
-			AddValue(it.first.GetDaughterLabel());
-			AddValue(it.second.BuildOriginalString().Data());
+			AddValue((std::string)Form("%d", it.first.GetPDGCode()));
+			AddValue((std::string)it.first.GetDaughterLabel());
+			AddValue((std::string)it.second.BuildOriginalString().Data());
 		}
 		return true;
 	}
