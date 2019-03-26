@@ -156,7 +156,7 @@
 	template<typename TYPE> inline
 	TYPE& ChainLoader::Get(const std::string &branchName)
 	{
-		return CommonFunctions::Error::GetFromMap(Get<TYPE>(), branchName, fChain.GetName());
+		return CommonFunctions::TerminalIO::GetFromMap(Get<TYPE>(), branchName, fChain.GetName());
 	}
 
 

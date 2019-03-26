@@ -282,7 +282,7 @@
 	bool ConfigParameter<TYPE>::HasSingleString() const
 	{
 		if(fReadStrings.size() > 1) {
-			CommonFunctions::Error::PrintWarning(Form("Parameter \"%s\" is single value, but has multiple read values\n  --> Maybe define another template specialisation of ConvertStringsToValue?", GetIdentifier().c_str()));
+			CommonFunctions::TerminalIO::PrintWarning(Form("Parameter \"%s\" is single value, but has multiple read values\n  --> Maybe define another template specialisation of ConvertStringsToValue?", GetIdentifier().c_str()));
 			return false;
 		}
 		return true;

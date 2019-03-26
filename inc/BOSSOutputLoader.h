@@ -22,7 +22,9 @@
 
 
 	/// General container for BOSS analysis output
-	/// This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All `TTree`s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the `TTree` contents.
+		/// This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All `TTree`s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the `TTree` contents.
+		///
+		/// **Motivation:** To investigate the contents of the ROOT file, you first need to know which `TTree`s and branches it contains. If you simply construct the `BOSSOutputLoader` by giving it a file name, all `TTree`s will be loaded automatically as well as addresses for each of their branches. Five the constructer `true` as its second argument, and the names of these `TTree`s, their branches, and the types of these branches (behind the slash `/` after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b>
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     October 24th, 2018
 	class BOSSOutputLoader

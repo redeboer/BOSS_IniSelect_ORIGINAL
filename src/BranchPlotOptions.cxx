@@ -244,7 +244,7 @@
 	const bool BranchPlotOptions::ImportWarning(const TString &input, const TString &message, const bool notOK) const
 	{
 		if(!notOK) return false;
-		Error::PrintWarning(Form("BranchPlotOptions input line:\n  \"%s\"\n%s", input.Data(), message.Data()));
+		TerminalIO::PrintWarning(Form("BranchPlotOptions input line:\n  \"%s\"\n%s", input.Data(), message.Data()));
 		return true;
 	}
 

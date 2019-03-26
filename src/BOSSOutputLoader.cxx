@@ -85,7 +85,7 @@
 
 	ChainLoader& BOSSOutputLoader::GetChainLoader(const std::string &chainName)
 	{
-		return Error::GetFromMap(fChains, chainName, fDirectoryPath.Data());
+		return TerminalIO::GetFromMap(fChains, chainName, fDirectoryPath.Data());
 	}
 
 
@@ -234,7 +234,7 @@
 				if(branchName.length() > w_name) w_name = branchName.length();
 			}
 		/// <li> @b CASE1. If `"_cutvalues"` contains a branch called `"index"`, assume that the `TTree` contains double arrays.
-			if(Error::MapHasKey(chainLoader->Get<int>(), "index")) for(auto &cut : cuts) {
+			if(TerminalIO::MapHasKey(chainLoader->Get<int>(), "index")) for(auto &cut : cuts) {
 			/// <ol>
 			/// <li> `SetBranchAddress` for the array of this branch. @b Abort if `SetBranchAddress` does not return `0`.
 				double values[3];
@@ -446,7 +446,7 @@
 	{
 		if(!options.IsOK()) return;
 		if(!HasChain(options.TreeName())) {
-			Error::PrintWarning(Form("Cannot draw non-existing branch \"%s\" in file \"%s\"", options.TreeName(), fDirectoryPath.Data()));
+			TerminalIO::PrintWarning(Form("Cannot draw non-existing branch \"%s\" in file \"%s\"", options.TreeName(), fDirectoryPath.Data()));
 			return;
 		}
 		GetChainLoader(options.TreeName()).Draw(options);

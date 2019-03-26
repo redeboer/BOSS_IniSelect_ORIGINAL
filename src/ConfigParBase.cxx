@@ -21,7 +21,7 @@
 		fValueIsSet(false)
 	{
 		if(!(fInstances.find(fIdentifier) == fInstances.end()))
-			Error::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier.c_str()));
+			TerminalIO::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier.c_str()));
 		fInstances.emplace(make_pair(fIdentifier, this));
 	}
 
@@ -53,7 +53,7 @@
 	bool ConfigParBase::ConvertStringsToValue()
 	{
 		if(!fReadStrings.size()) {
-			CommonFunctions::Error::PrintWarning(Form("No values to convert for parameter \"%s\"", GetIdentifier().c_str()));
+			CommonFunctions::TerminalIO::PrintWarning(Form("No values to convert for parameter \"%s\"", GetIdentifier().c_str()));
 			return false;
 		}
 		if(!ConvertStringsToValue_impl()) return false;
@@ -86,7 +86,7 @@
 	{
 		auto key = fInstances.find(identifier);
 		if(key == fInstances.end() || !key->second) {
-			Error::PrintWarning(Form("Parameter \"%s\" has not been defined", identifier.c_str()));
+			TerminalIO::PrintWarning(Form("Parameter \"%s\" has not been defined", identifier.c_str()));
 			return nullptr;
 		}
 		return key->second;

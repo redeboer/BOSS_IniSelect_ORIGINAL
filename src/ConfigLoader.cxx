@@ -4,47 +4,8 @@
 	#include "ConfigLoader.h"
 	#include "CommonFunctions.h"
 	#include "FrameworkSettings.h"
+	#include <fstream>
 	using namespace CommonFunctions;
-
-
-
-// * =========================== * //
-// * ------- CONSTRUCTORS ------ * //
-// * =========================== * //
-
-
-	/// Constructor that opens a `TFile` and unordered_maps its contents.
-		/// @remark **You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!**
-	ConfigLoader::ConfigLoader(const std::string &path) : fConfigPath(path)
-	{
-		LoadConfiguration(fConfigPath);
-	}
-
-
-
-// * ====================== * //
-// * ------- SETTERS ------ * //
-// * ====================== * //
-
-
-	/// *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
-		/// @todo DrawDifference has to be moved to CommonFunctions namespace.
-	void ConfigLoader::DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt, const char* setLog)
-	{
-		if(!gPad) return;
-		gPad->Clear();
-		histToDraw->Scale(-1.);
-		histToDraw->Add(histToSubtract);
-		histToSubtract->SetLineColor(kWhite);
-		// histToSubtract->SetMarkerColor(kWhite);
-		TString option(opt);
-		if(dynamic_cast<TH1F*>(histToDraw)) {
-			histToSubtract->Draw(option.Data());
-			option += "";
-		}
-		histToDraw->Draw(option.Data());
-		CommonFunctions::Draw::SaveCanvas(Form("%s", histToDraw->GetName()), gPad, setLog);
-	}
 
 
 
@@ -119,11 +80,9 @@
 		/// <li> Create file stream (`std::ifstream`) of config `txt` file.
 			std::ifstream file(filename);
 			if(!file.is_open()) {
-				std::cout << "WARNING: Could not load configuration file \"" << filename << "\"" << std::endl;
+				TerminalIO::PrintWarning(Form("Could not load configuration file \"%s\"", filename.c_str()));
 				return 0;
 			}
-		/// <li> Print configuration title.
-			std::cout << std::endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << std::endl;
 		/// <li> Loop over lines.
 			std::string line;
 			while(getline(file, line)) {
@@ -219,8 +178,14 @@
 				it.second->ConvertStringsToValue();
 				it.second->ConvertValueToStrings();
 			}
-		/// <li> Print loaded values in table form.
-			ConfigParBase::PrintAll();
+		/// <li> Print success message with the configuration title and all parameters if required by `fPrint`.
+			TerminalIO::PrintSuccess(Form(
+				"Successfully loaded %d parameters from config file:\n  \"%s\"\n",
+				ConfigParBase::GetNParameters(), filename.c_str()));
+			if(fPrint) {
+				std::cout << std::endl;
+				ConfigParBase::PrintAll();
+			}
 		/// </ol>
 		/// @return Number of valid loaded arguments
 			return ConfigParBase::GetNParameters();

@@ -162,7 +162,7 @@
 	{
 		/// -# **Abort** if `TChain` contains entries.
 			if(!fChain.GetEntries()) {
-				Error::PrintWarning(Form("Chain \"%s\" has no entries", fChain.GetName()));
+				TerminalIO::PrintWarning(Form("Chain \"%s\" has no entries", fChain.GetName()));
 				return;
 			}
 		/// -# Draw histogram and save

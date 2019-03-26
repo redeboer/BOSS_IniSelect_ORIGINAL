@@ -46,7 +46,7 @@
 			}
 		/// -# **Abort** if there the number of commas is not three (you need a name, a bin width / number of bins and a from-to range)
 			if(ncommas!=3 && ncommas!=0) {
-				Error::PrintWarning(Form("AxisBinning construction from string \"%s\" has to contain 3 commas", input.c_str()));
+				TerminalIO::PrintWarning(Form("AxisBinning construction from string \"%s\" has to contain 3 commas", input.c_str()));
 				return;
 			}
 		/// -# Get name from block before first comma.
@@ -71,11 +71,11 @@
 	void AxisBinning::Set(const int &nbins, const double &width, const double &from, const double &to)
 	{
 		if(!CheckBinWidth(width, from, to)) {
-			Error::PrintWarning(Form("Problem with bin width %g: %d bins (from %g to %g)", width, nbins, from, to));
+			TerminalIO::PrintWarning(Form("Problem with bin width %g: %d bins (from %g to %g)", width, nbins, from, to));
 			return;
 		}
 		if(!CheckNBins(nbins)) {
-			Error::PrintWarning(Form("Problem with %d bins: bin width %g (from %g to %g)", nbins, width, from, to));
+			TerminalIO::PrintWarning(Form("Problem with %d bins: bin width %g (from %g to %g)", nbins, width, from, to));
 			return;
 		}
 		fBinWidth = width;
@@ -107,7 +107,7 @@
 			int ncommas{0};
 			for(auto& c : binning) if(c==',') ++ncommas;
 			if(ncommas!=2) {
-				Error::PrintWarning(Form("Binning string \"%s\" has to contain 2 commas", binning.c_str()));
+				TerminalIO::PrintWarning(Form("Binning string \"%s\" has to contain 2 commas", binning.c_str()));
 				return;
 			}
 		/// -# Set local variables to load from the string.
@@ -129,7 +129,7 @@
 					case 1 : from = tok.Atof(); break;
 					case 2 : to   = tok.Atof(); break;
 					default :
-						Error::PrintFatalError("AxisBinning::Set(const std::string&)");
+						TerminalIO::PrintFatalError("AxisBinning::Set(const std::string&)");
 						std::terminate();
 				}
 				++sw;
