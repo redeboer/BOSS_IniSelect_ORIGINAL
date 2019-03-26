@@ -8,4 +8,4 @@ To get an idea of the structure of this repository, you can best have a look in 
 For the tutorial pages on BOSS and the *BOSS Afterburner*, go to the [GitBook page of this repository](https://besiii.gitbook.io/boss). For the repository itself, go to [GitHub](https://github.com/redeboer/BOSS_Afterburner).
 
 <br>
-<img src="https://github.com/redeboer/BOSS_Afterburner/blob/master/fig/BOSS_Repository.png?raw=true" alt="Three components of the BOSS Afterburner repository" width="600" max-width="100%">
+<img src="https://github.com/redeboer/BOSS_Afterburner/blob/master/fig/BOSS_Afterburner_Access.png?raw=true" alt="Three components of the BOSS Afterburner repository" width="600" max-width="100%">
