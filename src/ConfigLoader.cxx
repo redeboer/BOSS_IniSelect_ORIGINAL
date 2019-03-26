@@ -183,8 +183,8 @@
 				"Successfully loaded %d parameters from config file:\n  \"%s\"\n",
 				ConfigParBase::GetNParameters(), filename.c_str()));
 			if(fPrint) {
-				std::cout << std::endl;
 				ConfigParBase::PrintAll();
+				std::cout << std::endl;
 			}
 		/// </ol>
 		/// @return Number of valid loaded arguments

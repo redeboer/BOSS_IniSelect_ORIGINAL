@@ -20,7 +20,8 @@ var hierarchy =
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", [
-      [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", null ]
+      [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", null ],
+      [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html", null ]
     ] ],
     [ "ConfigParBase", "classConfigParBase.html", [
       [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],

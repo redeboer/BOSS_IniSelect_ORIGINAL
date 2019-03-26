@@ -37,6 +37,7 @@
 		ConfigParameter(const std::string &identifier);
 		ConfigParameter(const std::string &identifier, const TYPE &default_value);
 		TYPE& Get() { return fValue; }
+    TYPE* operator->() { return &fValue; }
 		TYPE& operator*() { return fValue; }
 		void operator=(const TYPE &val) { fValue = val; ConvertValueToStrings(); }
 		bool operator==(const std::string &data) const { return !GetIdentifier().compare(data); }

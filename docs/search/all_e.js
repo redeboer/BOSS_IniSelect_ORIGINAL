@@ -7,6 +7,7 @@ var searchData=
   ['operator_2a',['operator*',['../classConfigParameter.html#a66c51929f449c97d772e4abe89469a0c',1,'ConfigParameter']]],
   ['operator_2b_2b',['operator++',['../classCutObject.html#afd8a71305dfc11c83e35579619fdf668',1,'CutObject']]],
   ['operator_2b_3d',['operator+=',['../classCutObject.html#a56ea49c06134a77b2deeaf4233742814',1,'CutObject']]],
+  ['operator_2d_3e',['operator-&gt;',['../classConfigParameter.html#afde2600806b31b960baab45596486736',1,'ConfigParameter']]],
   ['operator_3c',['operator&lt;',['../classCutObject.html#ab0bfa285dfdc6af25794d40c92498f4b',1,'CutObject']]],
   ['operator_3d',['operator=',['../classConfigParameter.html#a08d027cd0275f733e3ff439505ce0fcf',1,'ConfigParameter']]],
   ['operator_3d_3d',['operator==',['../classCutObject.html#a8b77c6026c87ff9307130871126433dd',1,'CutObject::operator==()'],['../classConfigParameter.html#ab989be536c07418af3e6871e96eab0d3',1,'ConfigParameter::operator==()']]],

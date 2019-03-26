@@ -17,6 +17,7 @@
 	#include <fstream>
 	#include <iostream>
 
+	using namespace CommonFunctions;
 	using namespace CommonFunctions::Draw;
 	using namespace CommonFunctions::Fit;
 	using namespace RooFit;
@@ -33,15 +34,23 @@
 	/// Main function used when compiling and executing in `ROOT`.
 	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
-
-		// * OPEN INPUT FILE * //
+		/// -# Attempt to load `configuration_file`.
 			ConfigLoader_Plot config(configuration_file, false);
-			BOSSOutputLoader file(config.fInputFilename, config.fPrintBranches);
-			if(file.IsZombie()) return;
-			if(!config.fPlotstats) gStyle->SetOptStat(0);
+
+		/// -# Attempt to load input ROOT file as a `BOSSOutputLoader` object).
+			BOSSOutputLoader file(config.fInputFilename, config.fPrintBranches, config.fPrintAverages);
+			if(file.IsZombie()) {
+				TerminalIO::PrintFatalError(Form("Failed to load ROOT file\n  \"%s\"", config.fInputFilename->c_str()));
+				return;
+			}
+
+		/// -# Print cut flow.
 			file.PrintCutFlow();
+
+		/// -# Set global plotting style based on loaded configuration settings.
+			if(!config.fPlotstats) gStyle->SetOptStat(0);
 			
-		// * PLOT BRANCHES WITHOUT FITS * //
+		/// -# Plot branches without fits
 			TString logY; if(config.fLogY) logY += "y";
 			TString logZ; if(config.fLogZ) logZ += "z";
 			for(auto &options : *config.fListOfbranches) file.Draw(options);
@@ -136,7 +145,7 @@
 				}
 			}
 
-		// * PERFORM FITS * //
+		/// -# Perform and plot fits
 			if(config.fFitplots) {
 			// * Particles to reconstruct
 				ReconstructedParticle D0  (421, "K^{-}#pi^{+}");

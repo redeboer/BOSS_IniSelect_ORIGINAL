@@ -8,6 +8,7 @@ var annotated_dup =
     [ "ChainLoader", "classChainLoader.html", "classChainLoader" ],
     [ "ConfigLoader", "classConfigLoader.html", "classConfigLoader" ],
     [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", "classConfigLoader__Plot" ],
+    [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html", "classConfigLoader__PrintContent" ],
     [ "ConfigParameter", "classConfigParameter.html", "classConfigParameter" ],
     [ "ConfigParBase", "classConfigParBase.html", "classConfigParBase" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],
