@@ -223,7 +223,6 @@
 	template<> inline
 	const bool ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >::ConvertStringsToValue_impl()
 	{
-std::cout << "Till ConvertStringsToValue_impl" << std::endl;
 		/// <ol>
 		/// <li> **Abort** if the number of read strings for this parameter is not a multiple of 3. Each batch of 3 read values is used to construct a pair of a `ReconstructedParticle` with a `BranchPlotOptions`.
 			if(fReadStrings.size()%3 != 0) {

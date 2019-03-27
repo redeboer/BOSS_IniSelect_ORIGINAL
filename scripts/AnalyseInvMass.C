@@ -33,9 +33,7 @@
 	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
-std::cout << "OK1" << std::endl;
 			ConfigLoader_InvMass config(configuration_file, false);
-std::cout << "OK2" << std::endl;
 
 		/// -# Attempt to load three directories of ROOT files as a `BOSSOutputLoader` objects: a set of exlusive MC files, a set of inclusive MC files, and a set of data files (the BESIII measurements).
 			BOSSOutputLoader excl(config.Filename_excl, false, false);
@@ -67,11 +65,14 @@ std::cout << "OK2" << std::endl;
 			if(!config.Do_PlotStatsLegend) gStyle->SetOptStat(0);
 			
 		/// -# Plot branches without fits
-			for(auto &options : *config.ListOfbranches_excl) excl.Draw(options);
-			for(auto &options : *config.ListOfbranches_incl) incl.Draw(options);
-			for(auto &options : *config.ListOfbranches_data) data.Draw(options);
+			if(config.Do_PureHists) {
+				for(auto &options : *config.ListOfbranches_excl) excl.Draw(options);
+				for(auto &options : *config.ListOfbranches_incl) incl.Draw(options);
+				for(auto &options : *config.ListOfbranches_data) data.Draw(options);
+			}
 
 		/// -# Perform fit over exclusive Monte Carlo data sets.
+			if(!config.Do_Fit) return;
 			// * Particles to reconstruct
 				std::vector<ReconstructedParticle*> particles;
 				for(auto &fit : *config.ExclFits) particles.push_back(&fit.first);

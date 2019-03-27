@@ -42,6 +42,8 @@
 		/// @name Do switches
 			///@{
 			ConfigParameter<bool> Do_PrintCutFlow{"Print cut flow", true}; ///< Whether or not to print an indication of the cut flow for the three files.
+			ConfigParameter<bool> Do_PureHists{"Draw and save histograms without fits", true};
+			ConfigParameter<bool> Do_Fit{"Draw and save fits", true};
 			///@}
 
 

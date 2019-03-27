@@ -29,16 +29,13 @@
 		~ConfigParBase();
 
 		static void PrintAll();
-		static ConfigParBase* GetParameter(const TString &identifier);
 		static ConfigParBase* GetParameter(const std::string &identifier);
-		static ConfigParBase* GetCleanParameter(const TString &identifier);
 		static ConfigParBase* GetCleanParameter(const std::string &identifier);
 		static const size_t GetNParameters() { return fInstances.size(); }
 		static const std::unordered_map<std::string, ConfigParBase*>* GetMapOfParameters() { return &fInstances; }
 
 		const std::string &GetIdentifier() const { return fIdentifier; }
 
-		void AddValue(const TString &value);
 		void AddValue(std::string value);
 		void ResetIfHasValue() { if(fValueIsSet) ClearValues(); }
 		const size_t GetNReadValues() const { return fReadStrings.size(); }
