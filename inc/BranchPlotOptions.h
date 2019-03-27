@@ -84,9 +84,9 @@
 			const bool LogY() const { return fSetLog[1]; }
 			const bool LogZ() const { return fSetLog[2]; }
 			const bool HasLogScale() const;
-			const TString BuildOriginalString() const;
-			const TString BuildHistName() const;
-			const TString LogXYZ() const;
+			const std::string BuildOriginalString() const;
+			const std::string BuildHistName() const;
+			const std::string LogXYZ() const;
 			///@}
 
 	private:

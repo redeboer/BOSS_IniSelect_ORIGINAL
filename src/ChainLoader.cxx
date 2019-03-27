@@ -162,7 +162,7 @@
 			}
 		/// -# Draw histogram and save
 			fChain.Draw(options.VarExp(), options.CutSelection(), options.DrawOption());
-			auto hist = dynamic_cast<TH1*>(gDirectory->Get(options.BuildHistName()));
+			auto hist = dynamic_cast<TH1*>(gDirectory->Get(options.BuildHistName().c_str()));
 			if(options.IsWrite()) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), options.OutputFileName()), gPad, options.LogXYZ());
 			return hist;
 	}

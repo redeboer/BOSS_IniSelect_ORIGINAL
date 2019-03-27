@@ -187,9 +187,9 @@
 	}
 
 
-	const TString BranchPlotOptions::LogXYZ() const
+	const std::string BranchPlotOptions::LogXYZ() const
 	{
-		TString logxyz;
+		std::string logxyz;
 		for(int i=0; i<3; ++i) if(fSetLog[i]) logxyz += Form("%c", i+'x');
 		return logxyz;
 	}
@@ -210,15 +210,16 @@
 			if(!fTreeName.Length()) return nullptr;
 			if(!fListOfBranches.size()) return nullptr;
 		/// -# Build string of branch names.
-			TString varexp;
+			std::string varexp;
 			bool setbinning { true };
 			for(auto &branch : fListOfBranches) {
 				varexp += branch.AxisName().c_str();
 				varexp += ":";
 				setbinning &= branch.IsOK();
 			}
-			varexp.Chop();
+			varexp.pop_back();
 		/// -# Append output histogram name for ROOT. This name has to be unique to avoid overwriting histograms in memory, hence the terribly long and messy name. The name is also used in the output file name.
+			varexp += ">>";
 			varexp += BuildHistName();
 		/// -# Append binning **if all branches have bin definitions** (all have `AxisBinning::IsOK` is `true`).
 			if(setbinning) {
@@ -226,22 +227,22 @@
 				for(auto &branch : fListOfBranches) {
 					varexp += Form("%d,%g,%g,", branch.NBins(), branch.From(), branch.To());
 				}
-				varexp.Chop();
+				varexp.pop_back();
 				varexp += ")";
 			}
-		return Form("%s", varexp.Data());
+		return Form("%s", varexp.c_str());
 	}
 
 
 	/// Build the original line from which this `BranchPlotOptions` object was created.
 		/// See `Import` to get an idea of the syntax of that line.
-	const TString BranchPlotOptions::BuildOriginalString() const
+	const std::string BranchPlotOptions::BuildOriginalString() const
 	{
 		/// -# Return a `nullptr` if this `BranchPlotOptions` object does not have branches or a tree name.
 			if(!fTreeName.Length())     return nullptr;
 			if(!fListOfBranches.size()) return nullptr;
 		/// -# The line starts the name of the `TTree`.
-			TString line{fTreeName};
+			std::string line{fTreeName.Data()};
 		/// -# If the `fOutputFileName` is different than the `fTreeName`, append `" > "fOutputFileName`.
 			if(!fTreeName.EqualTo(fOutputFileName)) line += Form(" > %s", fOutputFileName.Data());
 			line += "; ";
@@ -255,27 +256,27 @@
 			line += Form("%s; ", fCutSelection.Data());
 		/// -# Add the draw options and a line for the log bits if available.
 			line += fCutSelection;
-			if(HasLogScale()) line += Form(" log%s", LogXYZ().Data());
+			if(HasLogScale()) line += Form(" log%s", LogXYZ().c_str());
 		return line;
 	}
 
 
 	/// Build the a unique name for an output histogram.
 		/// The histogram has to be unique to avoid overwriting objects in the `gDirectory` of ROOT, see [TDirectory::Get](https://root.cern.ch/doc/master/classTDirectory.html#a411338189331c0ec67b2c56822b7773a).
-	const TString BranchPlotOptions::BuildHistName() const
+	const std::string BranchPlotOptions::BuildHistName() const
 	{
 		/// -# Return a `nullptr` if this `BranchPlotOptions` object does not have branches or a tree name.
 			if(!fTreeName.Length())     return nullptr;
 			if(!fListOfBranches.size()) return nullptr;
 		/// -# The histogram name starts the name of the `TTree`.
-			TString line{Form("hist_%s_", fTreeName.Data())};
+			std::string line{Form("hist_%s_", fTreeName.Data())};
 		/// -# This is followed by the branches, which also get identifiers for the plot range.
 			for(auto &branch : fListOfBranches) {
 				line += branch.AxisName().c_str();
 				if(branch.IsOK()) line += Form("-%d-%g-%g", branch.NBins(), branch.From(), branch.To());
 				line += "_";
 			}
-			line.Chop();
+			line.pop_back();
 		return line;
 	}
 
