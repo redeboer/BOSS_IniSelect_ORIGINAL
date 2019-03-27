@@ -128,8 +128,8 @@
 	void BranchPlotOptions::SetTreeName(const TString &treename)
 	{
 		fTreeName       = treename;
-		fOutputFileName = treename;
 		if(treename.Contains(">")) {
+			fOutputFileName = treename;
 			fTreeName.Remove(treename.First('>'));
 			fOutputFileName.Remove(0, treename.First('>')+1);
 			String::Trim(fTreeName);

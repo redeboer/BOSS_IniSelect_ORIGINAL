@@ -53,16 +53,17 @@
 			}
 
 		/// -# Print three cut flows.
-
-			std::cout << std::endl << "Cut flow for EXCLUSIVE Monte Carlo data set" << std::endl;
-			excl.PrintCutFlow();
-			std::cout << std::endl << "Cut flow for INCLUSIVE Monte Carlo data set" << std::endl;
-			incl.PrintCutFlow();
-			std::cout << std::endl << "Cut flow for MEASUREMENT data set" << std::endl;
-			data.PrintCutFlow();
+			if(config.Do_PrintCutFlow) {
+				std::cout << std::endl << "Cut flow for EXCLUSIVE Monte Carlo data set" << std::endl;
+				excl.PrintCutFlow();
+				std::cout << std::endl << "Cut flow for INCLUSIVE Monte Carlo data set" << std::endl;
+				incl.PrintCutFlow();
+				std::cout << std::endl << "Cut flow for MEASUREMENT data set" << std::endl;
+				data.PrintCutFlow();
+			}
 
 		/// -# Set global plotting style based on loaded configuration settings.
-			if(!config.Do_PlotStatsLegend) gStyle->SetOptStat(0);
+			gStyle->SetOptStat(config.Do_PlotStatsLegend);
 			
 		/// -# Plot branches without fits
 			if(config.Do_PureHists) {
@@ -75,19 +76,15 @@
 			if(!config.Do_Fit) return;
 			// * Particles to reconstruct
 				std::vector<ReconstructedParticle*> particles;
-				for(auto &fit : *config.ExclFits) particles.push_back(&fit.first);
+				for(auto &it : *config.ExclFits) particles.push_back(&it.first);
 
-			// * Create invariant mass histogram
-				std::vector<TH1F*> histograms;
-				for(auto &fit : *config.ExclFits) {
-					histograms.push_back(excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first));
-				}
-
-			// * Fit double gaussian
+			// * Fit double gaussians
 				int i = 0;
 				for(auto &fit : *config.ExclFits) {
-					/// @todo Trouble with the number of polynomials... Somehow add to a fit object (extension of `BranchPlotOptions`).
-					FitDoubleGaussian(histograms[i], *particles[i], 2, fit.second.LogXYZ());
+					/// @todo Trouble with the number of polynomials... Perhaps somehow implement a fit object (extension of `BranchPlotOptions`)?
+					FitDoubleGaussian(
+						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
+						*particles[i], 2, fit.second.LogXYZ().c_str());
 					++i;
 				}
 
