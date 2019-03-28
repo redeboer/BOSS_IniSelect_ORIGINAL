@@ -91,12 +91,15 @@ $(document).ready(function(){initNavTree('group__BOSS__Afterburner__scripts.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a">AnalyseBOSSOutput</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
-<tr class="memdesc:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="#ga1b5d21bfa851628e42614ec1d7c8421a">More...</a><br /></td></tr>
-<tr class="separator:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03aac7847440c7217fdf23bacffa5245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga03aac7847440c7217fdf23bacffa5245">InvestigateContent</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
+<tr class="memdesc:ga03aac7847440c7217fdf23bacffa5245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is used when compiling and executing in <code>ROOT</code>.  <a href="#ga03aac7847440c7217fdf23bacffa5245">More...</a><br /></td></tr>
+<tr class="separator:ga03aac7847440c7217fdf23bacffa5245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:ga0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g. <code>g++</code>.  <a href="#ga0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a">AnalyseBOSSOutput</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
+<tr class="memdesc:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="#ga1b5d21bfa851628e42614ec1d7c8421a">More...</a><br /></td></tr>
+<tr class="separator:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Analysis <b>scripts</b> of the <em>BOSS Afterburner</em>. </p>
@@ -119,8 +122,52 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Main function used when compiling and executing in <code>ROOT</code>. </p>
+<ol type="1">
+<li>Attempt to load <code>configuration_file</code>.</li>
+<li>Attempt to load input ROOT file as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> object).</li>
+<li>Print cut flow.</li>
+<li>Set global plotting style based on loaded configuration settings.</li>
+<li>Plot branches without fits</li>
+<li>Draw main invariant mass distributions</li>
+<li>Draw invariant mass distributions with cuts applied on the other candidate</li>
+<li>Draw 3-momentum distributions</li>
+<li>Draw invariant mass versus 3-momentum</li>
+<li>Draw main invariant mass distributions</li>
+<li>Draw invariant mass distributions with cuts applied on the other candidate</li>
+<li>Draw 3-momentum distributions</li>
+<li>Draw invariant mass versus 3-momentum</li>
+<li>Perform and plot fits </li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00034">34</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PlotInvMass_8C_source.html#l00035">35</a> of file <a class="el" href="PlotInvMass_8C_source.html">PlotInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="ga03aac7847440c7217fdf23bacffa5245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga03aac7847440c7217fdf23bacffa5245">&#9670;&nbsp;</a></span>InvestigateContent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InvestigateContent </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>configuration_file</em> = <code>&quot;configs/debug.config&quot;</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Main function that is used when compiling and executing in <code>ROOT</code>. </p>
+<ol type="1">
+<li>Attempt to load <code>configuration_file</code>.</li>
+<li>Attempt to load input ROOT file as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> object).</li>
+<li>If loaded successfully, print the branch names (if requested by <code>fPrintBranches</code>).</li>
+<li>If loaded successfully, print the cut flow (if requested by <code>fPrintCutFlow</code>). </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00028">28</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
 
 </div>
 </div>
@@ -152,7 +199,7 @@ Functions</h2></td></tr>
 
 <p>Main function that is called when executing the executable compiled using e.g. <code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseBOSSOutput_8C_source.html#l00179">179</a> of file <a class="el" href="AnalyseBOSSOutput_8C_source.html">AnalyseBOSSOutput.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00050">50</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
 
 </div>
 </div>

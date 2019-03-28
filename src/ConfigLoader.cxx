@@ -4,46 +4,8 @@
 	#include "ConfigLoader.h"
 	#include "CommonFunctions.h"
 	#include "FrameworkSettings.h"
+	#include <fstream>
 	using namespace CommonFunctions;
-
-
-
-// * =========================== * //
-// * ------- CONSTRUCTORS ------ * //
-// * =========================== * //
-
-
-	/// Constructor that opens a `TFile` and unordered_maps its contents.
-	/// @remark **You have to set the <i>names</i> and <i>default values</i> of the `ArgPair`s here!**
-	ConfigLoader::ConfigLoader(const std::string &path) : fConfigPath(path)
-	{
-		LoadConfiguration(fConfigPath);
-	}
-
-
-
-// * ====================== * //
-// * ------- SETTERS ------ * //
-// * ====================== * //
-
-
-	/// *TEMPORARY* function that serves as a fix for the bug that causes the wrong best pair to be stored.
-	void ConfigLoader::DrawDifference(TH1 *histToDraw, TH1 *histToSubtract, Option_t* opt, const char* setLog)
-	{
-		if(!gPad) return;
-		gPad->Clear();
-		histToDraw->Scale(-1.);
-		histToDraw->Add(histToSubtract);
-		histToSubtract->SetLineColor(kWhite);
-		// histToSubtract->SetMarkerColor(kWhite);
-		TString option(opt);
-		if(dynamic_cast<TH1F*>(histToDraw)) {
-			histToSubtract->Draw(option.Data());
-			option += "";
-		}
-		histToDraw->Draw(option.Data());
-		CommonFunctions::Draw::SaveCanvas(Form("%s", histToDraw->GetName()), gPad, setLog);
-	}
 
 
 
@@ -65,8 +27,8 @@
 	}
 
 
-	/// Import parameter values from a line.
-	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
+	/// Import parameter an arbitrary number of argument values from a line.
+		/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
 	void ConfigLoader::ImportValues(ConfigParBase *par, std::string input)
 	{
 		if(!par) return;
@@ -100,8 +62,7 @@
 	}
 
 
-	/// Format 
-	/// The `input` line has to be formatted, that is, it may not contain the initial opening or final closing bracket.
+	/// Format a string by removing all leading and trailing whitespace characters and double quotation marks (`"`).
 	void ConfigLoader::AddValue(ConfigParBase *par, std::string &val)
 	{
 		if(!par) return;
@@ -119,11 +80,9 @@
 		/// <li> Create file stream (`std::ifstream`) of config `txt` file.
 			std::ifstream file(filename);
 			if(!file.is_open()) {
-				std::cout << "WARNING: Could not load configuration file \"" << filename << "\"" << std::endl;
+				TerminalIO::PrintWarning(Form("Could not load configuration file \"%s\"", filename.c_str()));
 				return 0;
 			}
-		/// <li> Print configuration title.
-			std::cout << std::endl << "LOADING CONFIGURATION FROM \"" << filename << "\"" << std::endl;
 		/// <li> Loop over lines.
 			std::string line;
 			while(getline(file, line)) {
@@ -193,18 +152,18 @@
 						/// <ol>
 						/// <li> Remove weird characters like EOF.
 							if(line.back()<' ') line.pop_back();
+						/// <li> Skip line if it is a comment or if it is empty.
+							String::Trim(line);
+							if(!line.size()) continue;
+							if(String::IsComment(line)) continue;
 						/// <li> `Trim` line and remove opening equal sign (`=`).
 							String::Trim(line); if(line.front() == '=') line.erase(0, 1);
 							String::Trim(line); if(line.front() == '{') line.erase(0, 1);
 							String::Trim(line);
-						/// <li> If this line does not contain a closing bracket, simply import all arguments on this line and go to the next.
-							if(line.find('}') == std::string::npos) ImportValues(par, line);
-						/// <li> If not, we should import the last arguments and then `break` the `while` loop
-							else {
-								line.resize(line.find_last_of('}'));
-								ImportValues(par, line);
-								break;
-							}
+						/// <li> Import the values on this line.
+							ImportValues(par, line);
+						/// <li> If the line ends in a closing bracket (`}`), we should `break` the `while` loop.
+							if(line.back() == '}') break;
 						/// </ol>
 					}
 				/// </ul>
@@ -215,8 +174,14 @@
 				it.second->ConvertStringsToValue();
 				it.second->ConvertValueToStrings();
 			}
-		/// <li> Print loaded values in table form.
-			ConfigParBase::PrintAll();
+		/// <li> Print success message with the configuration title and all parameters if required by `fPrint`.
+			TerminalIO::PrintSuccess(Form(
+				"Successfully loaded %d parameters from config file:\n  \"%s\"\n",
+				ConfigParBase::GetNParameters(), filename.c_str()));
+			if(fPrint) {
+				ConfigParBase::PrintAll();
+				std::cout << std::endl;
+			}
 		/// </ol>
 		/// @return Number of valid loaded arguments
 			return ConfigParBase::GetNParameters();

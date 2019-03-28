@@ -25,9 +25,10 @@
 	{
 	public:
 		AxisBinning() : fIsOK(false), fNBins(0), fBinWidth(0.) {}
-		AxisBinning(const int &nbins, const double &from, const double &to);
-		AxisBinning(const double &width, const double &from, const double &to);
-		AxisBinning(const std::string &binning);
+		AxisBinning(const std::string &name, const int &nbins, const double &from, const double &to);
+		AxisBinning(const std::string &name, const double &width, const double &from, const double &to);
+		AxisBinning(const std::string &input);
+		void SetName(const std::string &name) { fAxisName = name; }
 		void Set(const int &nbins, const double &from, const double &to);
 		void Set(const double &width, const double &from, const double &to);
 		void Set(const std::string &binning);
@@ -42,20 +43,23 @@
 		const double& To() const { if(fIsOK) return fRange.second; else return 0.; }
 		const double& BinWidth() const { if(fIsOK) return fBinWidth; else return 0.; }
 		const double ComputeRange() const { return ComputeRange(fRange.first, fRange.second); }
+		const std::string& AxisName() const { return fAxisName; }
+		void Print() const;
 
 	private:
+		std::string fAxisName;
 		bool fIsOK; ///< Switch that keeps track of whether arguments have been set correctly.
 		int fNBins; ///< The number of bins on the axis.
 		double fBinWidth; ///< The number of bins on the axis.CheckBinWidth
 		std::pair<double, double> fRange; ///< Plot range from-to.
 		static constexpr int gMaxNBins = 1e4;
 		void Set(const int &nbins, const double &width, const double &from, const double &to);
-		const double ComputeRange(const double &from, const double &to) const { return to - from; }
-		const bool CheckNBins(const int &nbins) const { return nbins < gMaxNBins && nbins > 0; };
-		const bool CheckBinWidth(const double &width, const double & from, const double &to) const { return width > 0 && ComputeNBins(width, from, to) < gMaxNBins; };
-		const bool CheckRange(const double &from, const double &to) const { return from < to; }
-		const double ComputeBinWidth(const int &nbins, const double &from, const double &to) const { return ComputeRange(from, to) / nbins; }
-		const int ComputeNBins(const double &width, const double &from, const double &to) const { return ComputeRange(from, to) / width; }
+		const double ComputeRange(const double &from, const double &to) const;
+		const bool CheckNBins(const int &nbins) const;
+		const bool CheckBinWidth(const double &width, const double & from, const double &to) const;
+		const bool CheckRange(const double &from, const double &to) const;
+		const double ComputeBinWidth(const int &nbins, const double &from, const double &to) const;
+		const int ComputeNBins(const double &width, const double &from, const double &to) const;
 	};
 
 

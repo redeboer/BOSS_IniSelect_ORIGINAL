@@ -86,7 +86,7 @@ $(document).ready(function(){initNavTree('classBOSSOutputLoader.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p>General container for BOSS analysis output This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file.  
+<p>General container for BOSS analysis output.  
  <a href="classBOSSOutputLoader.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>&gt;</code></p>
@@ -96,10 +96,13 @@ Public Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Constructors</div></td></tr>
 <tr class="memitem:a10870242930d8d48ded8bde0575a2233"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a10870242930d8d48ded8bde0575a2233">BOSSOutputLoader</a> ()</td></tr>
 <tr class="separator:a10870242930d8d48ded8bde0575a2233"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#aabbc22a805f63c7d3b4b2cd31b08b2c7">BOSSOutputLoader</a> (const char *directoryPath, bool print_branches=true, bool print_averages=false)</td></tr>
-<tr class="memdesc:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#aabbc22a805f63c7d3b4b2cd31b08b2c7">More...</a><br /></td></tr>
-<tr class="separator:aabbc22a805f63c7d3b4b2cd31b08b2c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9b9c2532cb01d30bd8942de9fca6f78"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#ac9b9c2532cb01d30bd8942de9fca6f78">BOSSOutputLoader</a> (const std::string &amp;directoryPath, bool print_branches=true, bool print_averages=false)</td></tr>
+<tr class="memdesc:ac9b9c2532cb01d30bd8942de9fca6f78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that opens a <code>TFile</code> and unordered_maps its contents.  <a href="#ac9b9c2532cb01d30bd8942de9fca6f78">More...</a><br /></td></tr>
+<tr class="separator:ac9b9c2532cb01d30bd8942de9fca6f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Information functions</div></td></tr>
+<tr class="memitem:a72fe36425b77dd4dbfd87c93d2d1965e"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a72fe36425b77dd4dbfd87c93d2d1965e">HasChain</a> (const std::string &amp;chainName) const</td></tr>
+<tr class="memdesc:a72fe36425b77dd4dbfd87c93d2d1965e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if file has chain with name <code>chainName</code>.  <a href="#a72fe36425b77dd4dbfd87c93d2d1965e">More...</a><br /></td></tr>
+<tr class="separator:a72fe36425b77dd4dbfd87c93d2d1965e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47206d882287c355c265687c93b34861"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a47206d882287c355c265687c93b34861">Draw</a> (const char *chainName, const char *branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option=&quot;&quot;, const TString &amp;logScale=&quot;&quot;, const char *cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a47206d882287c355c265687c93b34861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a47206d882287c355c265687c93b34861">More...</a><br /></td></tr>
 <tr class="separator:a47206d882287c355c265687c93b34861"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -112,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a432e4c90e20ad80f09d19aedabe628a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#a432e4c90e20ad80f09d19aedabe628a8">Draw</a> (const char *chainName, const char *branchNames, const char *cut=&quot;&quot;, Option_t *option=&quot;&quot;, const TString &amp;logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:a432e4c90e20ad80f09d19aedabe628a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#a432e4c90e20ad80f09d19aedabe628a8">More...</a><br /></td></tr>
 <tr class="separator:a432e4c90e20ad80f09d19aedabe628a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4c56065e60620e4a7be327514c9133"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#aaf4c56065e60620e4a7be327514c9133">Draw</a> (const <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &amp;options)</td></tr>
+<tr class="memdesc:aaf4c56065e60620e4a7be327514c9133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#aaf4c56065e60620e4a7be327514c9133">More...</a><br /></td></tr>
+<tr class="separator:aaf4c56065e60620e4a7be327514c9133"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc863db0f96ba89c94892e772fa18b6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBOSSOutputLoader.html#afc863db0f96ba89c94892e772fa18b6a">DrawAndSaveAllBranches</a> (const char *chainName, Option_t *option=&quot;&quot;, const TString &amp;logScale=&quot;&quot;)</td></tr>
 <tr class="memdesc:afc863db0f96ba89c94892e772fa18b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the distributions of all branches available in the ROOT file.  <a href="#afc863db0f96ba89c94892e772fa18b6a">More...</a><br /></td></tr>
 <tr class="separator:afc863db0f96ba89c94892e772fa18b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,11 +183,12 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a27d97a8c969aea30e646cf852667f942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>General container for BOSS analysis output This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. </p>
-<p>All <code>TTree</code>s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the <code>TTree</code> contents. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<div class="textblock"><p>General container for BOSS analysis output. </p>
+<p>This object only needs a path of a directory containin ROOT files from the initial analysis or of one such root file. All <code>TTree</code>s and the branches in these files will be loaded automatically, so you don't have to worry about names of those trees. This object also comes with several methods that faciliate e.g. plotting of the <code>TTree</code> contents.</p>
+<p><b>Motivation:</b> To investigate the contents of the ROOT file, you first need to know which <code>TTree</code>s and branches it contains. If you simply construct the <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> by giving it a file name, all <code>TTree</code>s will be loaded automatically as well as addresses for each of their branches. Five the constructer <code>true</code> as its second argument, and the names of these <code>TTree</code>s, their branches, and the types of these branches (behind the slash <code>/</code> after the name) will be printed to the terminal. <b>Do this if your macro throws an exception, because this probably means that you use the wrong names for the trees and or the branches further on in the macro.</b> </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>October 24th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00027">27</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00030">30</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a10870242930d8d48ded8bde0575a2233"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a10870242930d8d48ded8bde0575a2233">&#9670;&nbsp;</a></span>BOSSOutputLoader() <span class="overload">[1/2]</span></h2>
@@ -206,12 +213,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00032">32</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00035">35</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
-<a id="aabbc22a805f63c7d3b4b2cd31b08b2c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabbc22a805f63c7d3b4b2cd31b08b2c7">&#9670;&nbsp;</a></span>BOSSOutputLoader() <span class="overload">[2/2]</span></h2>
+<a id="ac9b9c2532cb01d30bd8942de9fca6f78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9b9c2532cb01d30bd8942de9fca6f78">&#9670;&nbsp;</a></span>BOSSOutputLoader() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +226,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">BOSSOutputLoader::BOSSOutputLoader </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>directoryPath</em>, </td>
         </tr>
         <tr>
@@ -317,12 +324,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Create a <code>list</code> that is ordered by the number of entries in the <code>TChain</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00448">448</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00481">481</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a47206d882287c355c265687c93b34861"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a47206d882287c355c265687c93b34861">&#9670;&nbsp;</a></span>Draw() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a47206d882287c355c265687c93b34861">&#9670;&nbsp;</a></span>Draw() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,12 +405,12 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00132">132</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00407">407</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a21a8dfa6f931309f2a299be7eaa70896"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21a8dfa6f931309f2a299be7eaa70896">&#9670;&nbsp;</a></span>Draw() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a21a8dfa6f931309f2a299be7eaa70896">&#9670;&nbsp;</a></span>Draw() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -507,12 +514,12 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00151">151</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00426">426</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
 <a id="a432e4c90e20ad80f09d19aedabe628a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a432e4c90e20ad80f09d19aedabe628a8">&#9670;&nbsp;</a></span>Draw() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a432e4c90e20ad80f09d19aedabe628a8">&#9670;&nbsp;</a></span>Draw() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -567,7 +574,29 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00180">180</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00438">438</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+
+</div>
+</div>
+<a id="aaf4c56065e60620e4a7be327514c9133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf4c56065e60620e4a7be327514c9133">&#9670;&nbsp;</a></span>Draw() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BOSSOutputLoader::Draw </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &amp;&#160;</td>
+          <td class="paramname"><em>options</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Draw the distributions of all branches available in the ROOT file. </p>
+
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00445">445</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -613,7 +642,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00168">168</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00460">460</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -656,7 +685,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Get a certain branch with name <code>branchName</code> in TTree with name <code>chainName</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The program will <code>terminate</code> if the branch and/or tree does not exist in the file. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00090">90</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00099">99</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +714,7 @@ template&lt;typename TYPE &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>TChain&amp; Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TChain</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00112">112</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00115">115</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -732,7 +761,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00060">60</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00067">67</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -761,7 +790,7 @@ template&lt;typename TYPE &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tree object that contains the trees. Returns a <code>nullptr</code> if this <code>TChain</code> does not exist. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00094">94</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00095">95</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -782,7 +811,29 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Return the largest number of events in all of the <code>TChain</code>s in the loaded ROOT file. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00100">100</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00102">102</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a72fe36425b77dd4dbfd87c93d2d1965e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72fe36425b77dd4dbfd87c93d2d1965e">&#9670;&nbsp;</a></span>HasChain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool BOSSOutputLoader::HasChain </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>chainName</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if file has chain with name <code>chainName</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00128">128</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -803,7 +854,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Check if file is loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00158">158</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00136">136</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -874,7 +925,7 @@ template&lt;typename TYPE &gt; </div>
 <li>Print terminal output </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00473">473</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00505">505</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -902,7 +953,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00056">56</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00063">63</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -923,7 +974,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Print information about all trees in the <code>TFile</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00186">186</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00143">143</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -962,7 +1013,7 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00225">225</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00182">182</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -990,7 +1041,7 @@ template&lt;typename TYPE &gt; </div>
 <li>If there is a <code>TChain</code> called <code>"_cutvalues"</code>, print these values and names as well using <code>PrintCuts</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00236">236</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00193">193</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -1136,7 +1187,7 @@ Entry <code>0</code>: this is information written from the <code><a class="el" h
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00259">259</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00216">216</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1233,7 @@ Entry <code>0</code>: this is information written from the <code><a class="el" h
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00437">437</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8cxx_source.html#l00468">468</a> of file <a class="el" href="BOSSOutputLoader_8cxx_source.html">BOSSOutputLoader.cxx</a>.</p>
 
 </div>
 </div>
@@ -1209,7 +1260,7 @@ Entry <code>0</code>: this is information written from the <code><a class="el" h
 
 <p>Map of <code>TChain</code>s of the loaded ROOT files (contained withing <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00068">68</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00076">76</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -1235,7 +1286,7 @@ Entry <code>0</code>: this is information written from the <code><a class="el" h
 
 <p>The path of the directory that was was used to load the ROOT files and generate the <code>TChain</code>s in this object. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00066">66</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00074">74</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>
@@ -1261,7 +1312,7 @@ Entry <code>0</code>: this is information written from the <code><a class="el" h
 
 <p>List of filenames that were loaded from the directory. </p>
 
-<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00067">67</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BOSSOutputLoader_8h_source.html#l00075">75</a> of file <a class="el" href="BOSSOutputLoader_8h_source.html">BOSSOutputLoader.h</a>.</p>
 
 </div>
 </div>

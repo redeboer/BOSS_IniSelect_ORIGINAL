@@ -1,6 +1,7 @@
 # * Author: Remco de Boer <remco.de.boer@ihep.ac.cn>
 # * Date: January 11th, 2019
 # * Based on the NIKHEFproject2018 repository
+# TODO: implent auto dependency generation, see http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/
 
 
 # * PATH DEFINITIONS * #
@@ -44,6 +45,7 @@ ${BINDIR}/%.o : src/%.cxx inc/%.h
 
 # * for linking the objects generated above.
 LINK :
+	@rm -f lib${LIBNAME}.a
 	@ar q lib${LIBNAME}.a ${OBJ_BIN}
 
 # * for the scripts (executables)
@@ -52,10 +54,10 @@ ${EXEDIR}/%.exe : scripts/%.C
 	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} -L. -l${LIBNAME} ${LFLAGS}
 
 # * REMOVE LIBRARY ONLY * #
-# * This rule can be called using "make clean"
-cleanlib:
-	@rm -f lib${LIBNAME}.a
-	@echo "Deleted libary \"lib${LIBNAME}.a\""
+# * This rule can be called using "make cleanlib"
+# cleanlib:
+# 	@rm -f lib${LIBNAME}.a
+# 	@echo "Deleted libary \"lib${LIBNAME}.a\""
 
 # * REMOVE ALL BINARIES * #
 # * This rule can be called using "make clean"
