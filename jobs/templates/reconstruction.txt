@@ -43,7 +43,7 @@ BesRndmGenSvc.RndmSeed = __RANDSEED__;
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 /// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
 MessageSvc.OutputLevel = __OUTPUTLEVEL__;
-MessageSvc.useColors   = true;
+MessageSvc.useColors   = false;
 
 // * ------- ROOT input data file (rtraw) ------- * //
 EventCnvSvc.digiRootInputFile = {"__INPUTFILE__"};

@@ -17,7 +17,7 @@ packageName="D0phi_KpiKK"
 nJobs=20
 nEventsPerJob=5000
 outputLevel=4
-outputSubdir="${packageName}"
+outputSubdir="${packageName}/excl"
 
 # * Create job from template and submit * #
 bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel} "${outputSubdir}"

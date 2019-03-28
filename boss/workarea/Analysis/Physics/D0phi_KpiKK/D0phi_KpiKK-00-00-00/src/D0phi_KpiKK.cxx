@@ -121,7 +121,7 @@
 					if(!InitializePID(
 						/// <li> use <b>probability method</b>
 						fPIDInstance->methodProbability(),
-						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
 						fPIDInstance->useDedx() |
 						fPIDInstance->useTof1() |
 						fPIDInstance->useTof2() |
@@ -177,7 +177,9 @@
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
-
+			fLog << MSG::INFO << "PID selection passed for (run, event) = ("
+				<< fEventHeader->runNumber() << ", "
+				<< fEventHeader->eventNumber() << ")" << endmsg;
 
 		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
 			WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
@@ -217,6 +219,8 @@
 				KKFitResult_D0phi_KpiKK bestKalmanFit;
 				bestKalmanFit.ResetBestCompareValue();
 				// * Loop over all combinations //
+				bool printfit{true};
+				int count = 0;
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
 				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
@@ -224,6 +228,7 @@
 				{
 					// * Only continue if we are not dealing with the same kaon
 						if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+						fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
 					// * Get Kalman tracks reconstructed by the MDC
 						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
@@ -276,6 +281,10 @@
 							/// <ol>
 							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
 							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+							if(printfit) {
+								fLog << MSG::INFO << "  SUCCESS: chisq cut passed with chisq =" << kkmfit->chisq() << endmsg;
+								printfit = false;
+							}
 							/// <li> Construct fit result object for this combintation.
 							KKFitResult_D0phi_KpiKK fitresult(kkmfit);
 							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
@@ -283,11 +292,11 @@
 							/// <li> Decide if this fit is better than the previous.
 							if(fitresult.IsBetter()) bestKalmanFit = fitresult;
 							/// </ol>
-						} else {
-							fLog << MSG::DEBUG << "Fit failed for event "
-								<< fEventHeader->runNumber() << ":"
-								<< fEventHeader->eventNumber() << endmsg;
+						} else if(printfit) {
+							fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
+							printfit = false;
 						}
+					++count;
 				}
 				/// After loop over combintations:
 				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
@@ -295,6 +304,14 @@
 
 				/// If there is a fit result, @b write the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
 				if(bestKalmanFit.HasResults()) {
+						std::cout << "  Result Kalman fit for (run, event) = "
+							<< fEventHeader->runNumber() << ", "
+							<< fEventHeader->eventNumber() << "):" << std::endl
+							<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
+							<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
+							<< "    m_phi  = " << bestKalmanFit.fM_phi      << std::endl
+							<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
+							<< "    p_phi  = " << bestKalmanFit.fP_phi      << std::endl;
 						++fCutFlow_NFitOK;
 						CreateMCTruthCollection();
 						fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;

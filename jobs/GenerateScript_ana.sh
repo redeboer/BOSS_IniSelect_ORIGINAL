@@ -17,7 +17,7 @@ packageName="D0phi_KpiKK"
 nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=3 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ ${data_or_MC} == 1 ]; then 
@@ -30,8 +30,8 @@ data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ ${data_or_MC} == 3 ]; then
-		fileToRead="directories/data/data_Jpsi2009+2012+2018"
-		nFilesPerJob=1000
+		fileToRead="directories/data/data_Jpsi2018_round11"
+		nFilesPerJob=100
 		identifier="${packageName}_data"
 # * If not defined properly * #
 	else
