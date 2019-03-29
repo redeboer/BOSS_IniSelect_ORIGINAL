@@ -42,8 +42,8 @@ var NAVTREEINDEX =
 "AnalyseInvMass_8C.html",
 "classAxisBinning.html#ab7b18756c7f37d1e878ef3e92c949e3b",
 "classD0phi__KpiKK.html#a1e4df395aea7bbf8d32bcbd4c22d9e5f",
-"classPipiJpsi.html#a557f3a19e53a600b118cbc38278fb49e",
-"classTrackSelector.html#a809659b39e662c530578880f42eb67b4"
+"classPipiJpsi.html#a4982e7075f973fe54957a867aefa8ab4",
+"classTrackSelector.html#a71be8816dc906b046937c13113a33268"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
