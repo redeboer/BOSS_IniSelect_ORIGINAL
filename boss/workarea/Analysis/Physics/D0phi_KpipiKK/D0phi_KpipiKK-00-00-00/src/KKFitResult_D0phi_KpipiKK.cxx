@@ -27,16 +27,24 @@
 			kkmfit->pfit(0), /// -# \f$K^-\f$ (first occurrence)
 			kkmfit->pfit(1), /// -# \f$K^-\f$ (second occurrence)
 			kkmfit->pfit(2), /// -# \f$K^+\f$
-			kkmfit->pfit(3)  /// -# \f$\pi^+\f$
+			kkmfit->pfit(3), /// -# \f$\pi^+\f$
+			kkmfit->pfit(4), /// -# \f$\gamma\f$ (first occurrence)
+			kkmfit->pfit(5)  /// -# \f$\gamma\f$ (second occurrence)
 		);
 	}
 
 
 	/// Construct a `KKFitResult_D0phi_KpipiKK` object based on a pointer to a `KalmanKinematicFit` object.
-	KKFitResult_D0phi_KpipiKK::KKFitResult_D0phi_KpipiKK(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos) :
+	KKFitResult_D0phi_KpipiKK::KKFitResult_D0phi_KpipiKK(
+		Event::McParticle* kaonNeg1,
+		Event::McParticle* kaonNeg2,
+		Event::McParticle* kaonPos,
+		Event::McParticle* pionPos,
+		Event::McParticle* photon1,
+		Event::McParticle* photon2) :
 		KKFitResult(nullptr)
 	{
-		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
+		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos, photon1, photon2);
 	}
 
 
@@ -48,10 +56,12 @@
 
 	/// Helper function for the constructor (hence `private` method).
 	void KKFitResult_D0phi_KpipiKK::SetValues(
-		Event::McParticle *kaonNeg1, 
-		Event::McParticle *kaonNeg2, 
-		Event::McParticle *kaonPos, 
-		Event::McParticle *pionPos)
+		Event::McParticle *kaonNeg1,
+		Event::McParticle *kaonNeg2,
+		Event::McParticle *kaonPos,
+		Event::McParticle *pionPos,
+		Event::McParticle *photon1,
+		Event::McParticle *photon2)
 	{
 		/// <ol>
 		/// <li> Test whether all `Event::McParticle` pointers exist.
@@ -64,7 +74,9 @@
 				kaonNeg1->initialFourMomentum(),
 				kaonNeg2->initialFourMomentum(),
 				kaonPos ->initialFourMomentum(),
-				pionPos ->initialFourMomentum()
+				pionPos ->initialFourMomentum(),
+				photon1 ->initialFourMomentum(),
+				photon2 ->initialFourMomentum()
 			);
 		/// </ol>
 	}
@@ -75,17 +87,21 @@
 		const HepLorentzVector &pKaonNeg1, 
 		const HepLorentzVector &pKaonNeg2, 
 		const HepLorentzVector &pKaonPos, 
-		const HepLorentzVector &pPionPos)
+		const HepLorentzVector &pPionPos,
+		const HepLorentzVector &pPhoton1, 
+		const HepLorentzVector &pPhoton2) 
 	{
 		/// <ol>
 		/// <li> Compute Lorentz vectors of the particles to be reconstructed:
 			/// <ul>
-			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\f$
+			HepLorentzVector ppi0  = pPhoton1 + pPhoton2;  /// <li> \f$pi^0 \rightarrow \gamma\gamma\f$
+			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^0\f$
 			HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// <li> \f$\phi \rightarrow K^-K^+\f$
 			HepLorentzVector pJpsi = pD0 + pphi;           /// <li> \f$J/\psi \rightarrow D^0\phi\f$
 			/// </ul>
 		/// <li> Compute invariant masses and momentum:
 			/// <ul>
+			fM_pi0  = ppi0.m();   /// <li> `fM_pi0`  = \f$M_{\gamma\gamma}\f$
 			fM_D0   = pD0.m();    /// <li> `fM_D0`   = \f$M_{K^-\pi^+}\f$
 			fM_phi  = pphi.m();   /// <li> `fM_phi`  = \f$M_{K^-K^+}\f$
 			fM_Jpsi = pJpsi.m();  /// <li> `fM_Jpsi` = \f$M_{D^0\phi}\f$

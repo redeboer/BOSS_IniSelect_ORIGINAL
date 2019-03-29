@@ -213,11 +213,11 @@
 						fNTuple_photon.Write();
 					}
 
-				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
+				/// <li> Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
 					if(
-						fCut_GammaTheta.FailsMax(fabs(smallestTheta)) &&
-						fCut_GammaPhi  .FailsMax(fabs(smallestPhi))) continue;
-					if(fCut_GammaAngle.FailsMax(fabs(smallestAngle))) continue;
+						fCut_GammaTheta.FailsCut(fabs(smallestTheta)) &&
+						fCut_GammaPhi  .FailsCut(fabs(smallestPhi))) continue;
+					if(fCut_GammaAngle.FailsCut(fabs(smallestAngle))) continue;
 
 				/// <li> Add photon track to vector for gammas
 					fPhotons.push_back(*fTrackIterator);
@@ -300,148 +300,160 @@
 			}
 
 
-		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations
+		/// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations
+			/// <ol>
 			if(fNTuple_fit4c.DoWrite()) {
-				// * Reset best fit parameters * //
-				KKFitResult_rhopi_pipigg bestKalmanFit;
-				bestKalmanFit.ResetBestCompareValue();
-				// * Loop over all combinations * //
-				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
-				for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				{
-					// * Only continue if we are not dealing with the same kaon
-						if(fPhoton1Iter == fPhoton2Iter) continue;
+				/// <li> Reset best fit parameters (see `KKFitResult_rhopi_pipigg`).
+					KKFitResult_rhopi_pipigg bestKalmanFit;
+					bestKalmanFit.ResetBestCompareValue();
+				/// <li> Loop over all combinations of \f$\gamma\f$, \f$K^-\f$, \f$K^+\f$, and \f$\pi^+\f$.
+					/// <ol>
+					bool printfit{true};
+					int count = 0;
+					for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
+					for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+					for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+					for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+					{
+						/// <li> Only continue if we are not dealing with the same kaon.
+							if(fPhoton1Iter == fPhoton2Iter) continue;
+							fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
-					// * Get Kalman tracks
-						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
-						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
+						/// <li> Get Kalman tracks.
+							RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
+							RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
 
-					// * Get W-tracks
-						WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
-						WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+						/// <li> Get W-tracks.
+							WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
+							WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
 
-					// * Initiate vertex fit * //
-						HepPoint3D vx(0., 0., 0.);
-						HepSymMatrix Evx(3, 0);
-						double bx = 1E+6;
-						double by = 1E+6;
-						double bz = 1E+6;
-						Evx[0][0] = bx*bx;
-						Evx[1][1] = by*by;
-						Evx[2][2] = bz*bz;
-						VertexParameter vxpar;
-						vxpar.setVx(vx);
-						vxpar.setEvx(Evx);
+						/// <li> Initiate vertex fit.
+							HepPoint3D vx(0., 0., 0.);
+							HepSymMatrix Evx(3, 0);
+							double bx = 1E+6;
+							double by = 1E+6;
+							double bz = 1E+6;
+							Evx[0][0] = bx*bx;
+							Evx[1][1] = by*by;
+							Evx[2][2] = bz*bz;
+							VertexParameter vxpar;
+							vxpar.setVx(vx);
+							vxpar.setEvx(Evx);
 
-					// * Test vertex fit * //
-						VertexFit* vtxfit = VertexFit::instance();
-						vtxfit->init();
-						vtxfit->AddTrack(0, wvpimTrk);
-						vtxfit->AddTrack(1, wvpipTrk);
-						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) {
-							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-							continue;
-						}
-						vtxfit->Swim(0);
+						/// <li> Test vertex fit.
+							VertexFit* vtxfit = VertexFit::instance();
+							vtxfit->init();
+							vtxfit->AddTrack(0, wvpimTrk);
+							vtxfit->AddTrack(1, wvpipTrk);
+							vtxfit->AddVertex(0, vxpar, 0, 1);
+							if(!vtxfit->Fit(0)) {
+								fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+								continue;
+							}
+							vtxfit->Swim(0);
 
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-						kkmfit->init();
-						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
-						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
-						kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
-						kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
-						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-						if(kkmfit->Fit()) {
-							/// <ol>
-							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-								if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// <li> Construct fit result object for this combintation.
-								KKFitResult_rhopi_pipigg fitresult(kkmfit);
-							/// <li> @b Write results of the Kalman kinematic fit.
-								WriteFitResults(&fitresult, fNTuple_fit4c);
-								++fCutFlow_NFit4cOK;
-							/// <li> @b Write MC truth collection for the `topoana` package.
-								if(CreateMCTruthCollection() && WriteMCTruthForTopoAna(fNTuple_topology))
-									++fCutFlow_TopoAnaOK;
-							/// </ol>
-						}
-				}
+						/// <li> Get Kalman kinematic fit for this combination and store if better than previous one.
+							KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
+							kkmfit->init();
+							kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
+							kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+							kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+							kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+							kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+							if(kkmfit->Fit()) {
+								/// <ol>
+								/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+									if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+								/// <li> Construct fit result object for this combintation.
+									KKFitResult_rhopi_pipigg fitresult(kkmfit);
+								/// <li> @b Write results of the Kalman kinematic fit.
+									WriteFitResults(&fitresult, fNTuple_fit4c);
+									++fCutFlow_NFit4cOK;
+								/// <li> @b Write MC truth collection for the `topoana` package.
+									if(CreateMCTruthCollection() && WriteMCTruthForTopoAna(fNTuple_topology))
+										++fCutFlow_TopoAnaOK;
+								/// </ol>
+							}
+						++count;
+					}
+					/// </ol>
 			}
+			/// </ol>
 
 
-		/// <li> Perform Kalman 5-constraint Kalman kinematic fit for all combinations.
+		/// <li> Perform Kalman **5-constraint** Kalman kinematic fit for all combinations.
+			/// <ol>
 			if(fNTuple_fit5c.DoWrite()) {
-				// * Reset best fit parameters * //
-				double bestFitMeasure = 1e5;
-				KalmanKinematicFit *bestKalmanFit = nullptr;
-				// * Loop over all combinations of pi-, pi+, and gamma * //
-				for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
-				for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
-				{
-					// * Only continue if we are not dealing with the same kaon
-						if(fPhoton1Iter == fPhoton2Iter) continue;
+				/// <li> Reset best fit parameters.
+					double bestFitMeasure = 1e5;
+					KalmanKinematicFit *bestKalmanFit = nullptr;
+				/// <li> Loop over all combinations of pi-, pi+, and gamma.
+					/// <ol>
+					for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
+					for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+					for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+					for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+					{
+						/// <li> Only continue if we are not dealing with the same kaon.
+							if(fPhoton1Iter == fPhoton2Iter) continue;
 
-					// * Get Kalman tracks
-						RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
-						RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
+						/// <li> Get Kalman tracks.
+							RecMdcKalTrack *pimTrk = (*fPionNegIter)->mdcKalTrack();
+							RecMdcKalTrack *pipTrk = (*fPionPosIter)->mdcKalTrack();
 
-					// * Get W-tracks
-						WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
-						WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+						/// <li> Get W-tracks.
+							WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
+							WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
 
-					// * Initiate vertex fit * //
-						HepPoint3D vx(0., 0., 0.);
-						HepSymMatrix Evx(3, 0);
-						double bx = 1E+6;
-						double by = 1E+6;
-						double bz = 1E+6;
-						Evx[0][0] = bx*bx;
-						Evx[1][1] = by*by;
-						Evx[2][2] = bz*bz;
-						VertexParameter vxpar;
-						vxpar.setVx(vx);
-						vxpar.setEvx(Evx);
+						/// <li> Initiate vertex fit.
+							HepPoint3D vx(0., 0., 0.);
+							HepSymMatrix Evx(3, 0);
+							double bx = 1E+6;
+							double by = 1E+6;
+							double bz = 1E+6;
+							Evx[0][0] = bx*bx;
+							Evx[1][1] = by*by;
+							Evx[2][2] = bz*bz;
+							VertexParameter vxpar;
+							vxpar.setVx(vx);
+							vxpar.setEvx(Evx);
 
-					// * Test vertex fit * //
-						VertexFit* vtxfit = VertexFit::instance();
-						vtxfit->init();
-						vtxfit->AddTrack(0, wvpimTrk);
-						vtxfit->AddTrack(1, wvpipTrk);
-						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) {
-							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-							continue;
-						}
-						vtxfit->Swim(0);
+						/// <li> Test vertex fit.
+							VertexFit* vtxfit = VertexFit::instance();
+							vtxfit->init();
+							vtxfit->AddTrack(0, wvpimTrk);
+							vtxfit->AddTrack(1, wvpipTrk);
+							vtxfit->AddVertex(0, vxpar, 0, 1);
+							if(!vtxfit->Fit(0)) {
+								fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+								continue;
+							}
+							vtxfit->Swim(0);
 
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-						kkmfit->init();
-						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
-						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
-						kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
-						kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
-						kkmfit->AddResonance(0, gM_pi0, 2, 3); /// @remark 5th constraint: \f$\pi^0\f$ resonance
-						kkmfit->AddFourMomentum(1, gEcmsVec); // 4 constraints: CMS energy and momentum
-						if(kkmfit->Fit()) {
-							/// <ol>
-							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							/// <li> Construct fit result object for this combintation.
-							KKFitResult_rhopi_pipigg fitresult(kkmfit);
-							/// <li> @b Write results of the Kalman kinematic fit.
-							WriteFitResults(&fitresult, fNTuple_fit5c);
-							++fCutFlow_NFit5cOK;
-							/// </ol>
-						}
-				}
+						/// <li> Get Kalman kinematic fit for this combination and store if better than previous one.
+							KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
+							kkmfit->init();
+							kkmfit->AddTrack(0, vtxfit->wtrk(0)); // pi-
+							kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi+
+							kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+							kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+							kkmfit->AddResonance(0, gM_pi0, 2, 3); /// @remark 5th constraint: \f$\pi^0\f$ resonance
+							kkmfit->AddFourMomentum(1, gEcmsVec); // 4 constraints: CMS energy and momentum
+							if(kkmfit->Fit()) {
+								/// <ol>
+								/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+								if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+								/// <li> Construct fit result object for this combintation.
+								KKFitResult_rhopi_pipigg fitresult(kkmfit);
+								/// <li> @b Write results of the Kalman kinematic fit.
+								WriteFitResults(&fitresult, fNTuple_fit5c);
+								++fCutFlow_NFit5cOK;
+								/// </ol>
+							}
+					}
+					/// </ol>
 			}
+			/// </ol>
 
 
 		/// </ol>

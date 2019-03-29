@@ -37,8 +37,8 @@
 		/// * Construct `NTuple::Tuple` containers used in derived classes.
 			fNTuple_dedx_K    ("dedx_K",      "dE/dx of the kaons"),
 			fNTuple_dedx_pi   ("dedx_pi",     "dE/dx of the pions"),
-			fNTuple_fit4c_all ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
-			fNTuple_fit4c_best("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
+			fNTuple_fit5c_all ("fit5c_all",   "5-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit5c_best("fit5c_best",  "5-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
 			fNTuple_photon    ("photon",  "Kinematics of selected photons"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
@@ -87,17 +87,17 @@
 			AddNTupleItems_Dedx(fNTuple_dedx_K);
 			AddNTupleItems_Dedx(fNTuple_dedx_pi);
 
-		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
-			AddNTupleItems_Fit(fNTuple_fit4c_all);
-			AddNTupleItems_Fit(fNTuple_fit4c_best);
+		/// <li> `"fit5c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
+			AddNTupleItems_Fit(fNTuple_fit5c_all);
+			AddNTupleItems_Fit(fNTuple_fit5c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
 		/// <li> `"photon"`: information of the selected photons
 			/// <ol>
 			fNTuple_photon.AddItem<double>("E");  /// <li> `"E"`:  Energy of the photon.
-			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
-			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
-			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 5-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 5-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 5-momentum of the photon (computed from the detected angles).
 			fNTuple_photon.AddItem<double>("smallest_phi");   /// <li> `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
 			fNTuple_photon.AddItem<double>("smallest_theta"); /// <li> `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
 			fNTuple_photon.AddItem<double>("smallest_angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
@@ -196,10 +196,11 @@
 					double smallestTheta = DBL_MAX; // start value for difference in theta
 					double smallestPhi   = DBL_MAX; // start value for difference in phi
 					double smallestAngle = DBL_MAX; // start value for difference in angle (?)
-					for(fPionNegIter = fGoodChargedTracks.begin(); fPionNegIter != fGoodChargedTracks.end(); ++fPionNegIter) {
+					// Note: `fPionPosIter` is just used as a dummy iterator and has nothing to do with pi+
+					for(fPionPosIter = fGoodChargedTracks.begin(); fPionPosIter != fGoodChargedTracks.end(); ++fPionPosIter) {
 						/// * Get the extension object from MDC to EMC.
-						if(!(*fPionNegIter)->isExtTrackValid()) continue;
-						fTrackExt = (*fPionNegIter)->extTrack();
+						if(!(*fPionPosIter)->isExtTrackValid()) continue;
+						fTrackExt = (*fPionPosIter)->extTrack();
 						if(fTrackExt->emcVolumeNumber() == -1) continue;
 						Hep3Vector extpos(fTrackExt->emcPosition());
 
@@ -242,11 +243,11 @@
 						fNTuple_photon.Write();
 					}
 
-				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
+				/// <li> Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
 					if(
-						fCut_GammaTheta.FailsMax(fabs(smallestTheta)) &&
-						fCut_GammaPhi  .FailsMax(fabs(smallestPhi))) continue;
-					if(fCut_GammaAngle.FailsMax(fabs(smallestAngle))) continue;
+						fCut_GammaTheta.FailsCut(fabs(smallestTheta)) &&
+						fCut_GammaPhi  .FailsCut(fabs(smallestPhi))) continue;
+					if(fCut_GammaAngle.FailsCut(fabs(smallestAngle))) continue;
 
 				/// <li> Add photon track to vector for gammas
 					fPhotons.push_back(*fTrackIterator);
@@ -288,6 +289,8 @@
 
 
 		/// <li> Loop over MC truth of final decay products.
+			for(fMcPhoton1Iter  = fMcPhotons.begin(); fMcPhoton1Iter  != fMcPhotons.end(); ++fMcPhoton1Iter)
+			for(fMcPhoton2Iter  = fMcPhotons.begin(); fMcPhoton2Iter  != fMcPhotons.end(); ++fMcPhoton2Iter)
 			for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
 			for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
 			for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
@@ -295,6 +298,7 @@
 			{
 				/// <ol>
 				/// <li> Only continue if the two kaons are different.
+					if(fMcPhoton1Iter  == fMcPhoton2Iter)  continue;
 					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
 					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
@@ -306,130 +310,140 @@
 						*fMcKaonNeg1Iter,
 						*fMcKaonNeg2Iter,
 						*fMcKaonPosIter,
-						*fMcPionPosIter
+						*fMcPionPosIter,
+						*fMcPhoton1Iter,
+						*fMcPhoton2Iter
 					);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
 				/// </ol>
 			}
 
 
-		/// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure.
-			if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite()) {
-				// * Reset best fit parameters * //
-				KKFitResult_D0phi_KpipiKK bestKalmanFit;
-				bestKalmanFit.ResetBestCompareValue();
-				// * Loop over all combinations //
-				bool printfit{true};
-				int count = 0;
-				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
-				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
-				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
-				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
-				{
-					// * Only continue if we are not dealing with the same kaon
-						if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
-						fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
+		/// <li> Perform Kalman **5-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure. @todo Decide whether 5-constraints is indeed suitable.
+			/// <ol>
+			if(fNTuple_fit5c_all.DoWrite() || fNTuple_fit5c_best.DoWrite()) {
+				/// <li> Reset best fit parameters (see `KKFitResult_D0phi_KpipiKK`).
+					KKFitResult_D0phi_KpipiKK bestKalmanFit;
+					bestKalmanFit.ResetBestCompareValue();
+				/// <li> Loop over all combinations of \f$\gamma\f$, \f$K^-\f$, \f$K^+\f$, and \f$\pi^+\f$.
+					/// <ol>
+					bool printfit{true};
+					int count = 0;
+					for(fPhoton1Iter  = fPhotons.begin(); fPhoton1Iter  != fPhotons.end(); ++fPhoton1Iter)
+					for(fPhoton2Iter  = fPhotons.begin(); fPhoton2Iter  != fPhotons.end(); ++fPhoton2Iter)
+					for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
+					for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
+					for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
+					for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
+					{
+						/// <li> Only continue if we are not dealing with the same kaon and/or photon.
+							if(fPhoton1Iter == fPhoton2Iter) continue;
+							if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+							fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
-					// * Get Kalman tracks reconstructed by the MDC
-						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
-						RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
-						RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
-						RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
+						/// <li> Get Kalman tracks reconstructed by the MDC.
+							RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
+							RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
+							RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
+							RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
 
-					// * Get W-tracks
-						WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-						WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-						WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
-						WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
+						/// <li> Get W-tracks.
+							WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
+							WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
+							WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
+							WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
 
-					// * Initiate vertex fit * //
-						HepPoint3D vx(0., 0., 0.);
-						HepSymMatrix Evx(3, 0);
-						double bx = 1E+6;
-						double by = 1E+6;
-						double bz = 1E+6;
-						Evx[0][0] = bx*bx;
-						Evx[1][1] = by*by;
-						Evx[2][2] = bz*bz;
-						VertexParameter vxpar;
-						vxpar.setVx(vx);
-						vxpar.setEvx(Evx);
+						/// <li> Initiate vertex fit.
+							HepPoint3D vx(0., 0., 0.);
+							HepSymMatrix Evx(3, 0);
+							double bx = 1E+6;
+							double by = 1E+6;
+							double bz = 1E+6;
+							Evx[0][0] = bx*bx;
+							Evx[1][1] = by*by;
+							Evx[2][2] = bz*bz;
+							VertexParameter vxpar;
+							vxpar.setVx(vx);
+							vxpar.setEvx(Evx);
 
-					// * Test vertex fit * //
-						VertexFit* vtxfit = VertexFit::instance();
-						vtxfit->init();
-						vtxfit->AddTrack(0, wvKmTrk1);
-						vtxfit->AddTrack(1, wvKmTrk2);
-						vtxfit->AddTrack(2, wvKpTrk);
-						vtxfit->AddTrack(3, wvpipTrk);
-						vtxfit->AddVertex(0, vxpar, 0, 1);
-						if(!vtxfit->Fit(0)) {
-							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-							continue;
-						}
-						vtxfit->Swim(0);
+						/// <li> Test vertex fit.
+							VertexFit* vtxfit = VertexFit::instance();
+							vtxfit->init();
+							vtxfit->AddTrack(0, wvKmTrk1);
+							vtxfit->AddTrack(1, wvKmTrk2);
+							vtxfit->AddTrack(2, wvKpTrk);
+							vtxfit->AddTrack(3, wvpipTrk);
+							vtxfit->AddVertex(0, vxpar, 0, 1);
+							if(!vtxfit->Fit(0)) {
+								fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+								continue;
+							}
+							vtxfit->Swim(0);
 
-					// * Get Kalman kinematic fit for this combination and store if better than previous one
-						KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
-						kkmfit->init();
-						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
-						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
-						kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
-						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
-						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-						if(kkmfit->Fit()) {
-							/// <ol>
-							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							if(printfit) {
-								fLog << MSG::INFO << "  SUCCESS: chisq cut passed with chisq =" << kkmfit->chisq() << endmsg;
+						/// <li> Get Kalman kinematic fit for this combination and store if better than previous one.
+							KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
+							kkmfit->init();
+							kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
+							kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
+							kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
+							kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
+							kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+							kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+							kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+							if(kkmfit->Fit()) {
+								/// <ol>
+								/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
+								if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
+								if(printfit) {
+									fLog << MSG::INFO << "  SUCCESS: chisq cut passed with chisq =" << kkmfit->chisq() << endmsg;
+									printfit = false;
+								}
+								/// <li> Construct fit result object for this combintation.
+								KKFitResult_D0phi_KpipiKK fitresult(kkmfit);
+								/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
+								WriteFitResults(&fitresult, fNTuple_fit5c_all);
+								/// <li> Decide if this fit is better than the previous.
+								if(fitresult.IsBetter()) bestKalmanFit = fitresult;
+								/// </ol>
+							} else if(printfit) {
+								fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
 								printfit = false;
 							}
-							/// <li> Construct fit result object for this combintation.
-							KKFitResult_D0phi_KpipiKK fitresult(kkmfit);
-							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
-							WriteFitResults(&fitresult, fNTuple_fit4c_all);
-							/// <li> Decide if this fit is better than the previous.
-							if(fitresult.IsBetter()) bestKalmanFit = fitresult;
-							/// </ol>
-						} else if(printfit) {
-							fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
-							printfit = false;
-						}
-					++count;
-				}
-				/// After loop over combintations:
-				/// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
-				WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
+						++count;
+					}
+					/// </ol>
+				/// <li> **Write** results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branches).
+					WriteFitResults(&bestKalmanFit, fNTuple_fit5c_best);
 
-				/// If there is a fit result, @b write the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
-				if(bestKalmanFit.HasResults()) {
-						std::cout << "  Result Kalman fit for (run, event) = "
-							<< fEventHeader->runNumber() << ", "
-							<< fEventHeader->eventNumber() << "):" << std::endl
-							<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
-							<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
-							<< "    m_phi  = " << bestKalmanFit.fM_phi      << std::endl
-							<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
-							<< "    p_phi  = " << bestKalmanFit.fP_phi      << std::endl;
-						++fCutFlow_NFitOK;
-						CreateMCTruthCollection();
-						fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;
-						fNTuple_topology.GetItem<double>("mD0")  = bestKalmanFit.fM_D0;
-						fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
-						fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
-						fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
-						WriteMCTruthForTopoAna(fNTuple_topology);
+				/// <li> If there is a fit result, **write** the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
+					if(bestKalmanFit.HasResults()) {
+							std::cout << "  Result Kalman fit for (run, event) = "
+								<< fEventHeader->runNumber() << ", "
+								<< fEventHeader->eventNumber() << "):" << std::endl
+								<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
+								<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
+								<< "    m_phi  = " << bestKalmanFit.fM_phi      << std::endl
+								<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
+								<< "    p_phi  = " << bestKalmanFit.fP_phi      << std::endl;
+							++fCutFlow_NFitOK;
+							CreateMCTruthCollection();
+							fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;
+							fNTuple_topology.GetItem<double>("mD0")  = bestKalmanFit.fM_D0;
+							fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
+							fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
+							fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
+							WriteMCTruthForTopoAna(fNTuple_topology);
 
-					/// Set counters for mass cut flows
-						bool mD0_3sig_ok  = !fCut_mD0_3sig .FailsCut(bestKalmanFit.fM_D0);
-						bool mD0_ok       = !fCut_mD0      .FailsCut(bestKalmanFit.fM_D0);
-						bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
-						bool mphi_ok      = !fCut_mphi     .FailsCut(bestKalmanFit.fM_phi);
-						if(mphi_ok      && mD0_ok     ) ++fCutFlow_mD0_mphi;
-						if(mphi_3sig_ok && mD0_3sig_ok) ++fCutFlow_mD0_mphi_3sig;
-				}
+						/// Set counters for mass cut flows
+							bool mD0_3sig_ok  = !fCut_mD0_3sig .FailsCut(bestKalmanFit.fM_D0);
+							bool mD0_ok       = !fCut_mD0      .FailsCut(bestKalmanFit.fM_D0);
+							bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
+							bool mphi_ok      = !fCut_mphi     .FailsCut(bestKalmanFit.fM_phi);
+							if(mphi_ok      && mD0_ok     ) ++fCutFlow_mD0_mphi;
+							if(mphi_3sig_ok && mD0_3sig_ok) ++fCutFlow_mD0_mphi_3sig;
+					}
 			}
+			/// </ol>
 
 
 		/// </ol>
@@ -503,6 +517,7 @@
 			}
 
 		/// -# Set the `NTuple::Item`s.
+			tuple.GetItem<double>("mpi0")  = fit->fM_pi0;
 			tuple.GetItem<double>("mD0")   = fit->fM_D0;
 			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
 			tuple.GetItem<double>("mphi")  = fit->fM_phi;
