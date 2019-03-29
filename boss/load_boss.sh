@@ -19,6 +19,7 @@
 # * Setup BOSS area * #
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setupCMT.sh"
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpiKK/D0phi_KpipiKK-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpiKK/D0phi_KpiKK-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
