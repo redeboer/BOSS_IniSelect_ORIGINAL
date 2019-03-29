@@ -91,15 +91,15 @@ $(document).ready(function(){initNavTree('group__BOSS__Afterburner__scripts.html
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga03aac7847440c7217fdf23bacffa5245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga03aac7847440c7217fdf23bacffa5245">InvestigateContent</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
-<tr class="memdesc:ga03aac7847440c7217fdf23bacffa5245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is used when compiling and executing in <code>ROOT</code>.  <a href="#ga03aac7847440c7217fdf23bacffa5245">More...</a><br /></td></tr>
-<tr class="separator:ga03aac7847440c7217fdf23bacffa5245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a">AnalyseBOSSOutput</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
+<tr class="memdesc:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="mdescLeft">&#160;</td><td class="mdescRight">This script allows one to go through the full procedure of analysing a peak in an invariant mass spectrum plot.  <a href="#ga1b5d21bfa851628e42614ec1d7c8421a">More...</a><br /></td></tr>
+<tr class="separator:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="memdesc:ga0ddf1224851353fc92bfbff6f499fa97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function that is called when executing the executable compiled using e.g. <code>g++</code>.  <a href="#ga0ddf1224851353fc92bfbff6f499fa97">More...</a><br /></td></tr>
 <tr class="separator:ga0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga1b5d21bfa851628e42614ec1d7c8421a">AnalyseBOSSOutput</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
-<tr class="memdesc:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main function used when compiling and executing in <code>ROOT</code>.  <a href="#ga1b5d21bfa851628e42614ec1d7c8421a">More...</a><br /></td></tr>
-<tr class="separator:ga1b5d21bfa851628e42614ec1d7c8421a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga03aac7847440c7217fdf23bacffa5245"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga03aac7847440c7217fdf23bacffa5245">InvestigateContent</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
+<tr class="memdesc:ga03aac7847440c7217fdf23bacffa5245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple script that allows to quickly investigate the <code>TTree</code>s and branches of a ROOT file that has been produced with BOSS.  <a href="#ga03aac7847440c7217fdf23bacffa5245">More...</a><br /></td></tr>
+<tr class="separator:ga03aac7847440c7217fdf23bacffa5245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Analysis <b>scripts</b> of the <em>BOSS Afterburner</em>. </p>
@@ -121,7 +121,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Main function used when compiling and executing in <code>ROOT</code>. </p>
+<p>This script allows one to go through the full procedure of analysing a peak in an invariant mass spectrum plot. </p>
+<p>Simple script that allows to quickly investigate the contents of a ROOT file that has been produced with BOSS.</p>
+<p>Currently, the script is designed based on the <img class="formulaInl" alt="$J/\psi \to D^0\phi \to K^-\pi+K^-K+$" src="form_102.png"/> analysis. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>March 26th, 2018</dd></dl>
+<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>November 5th, 2018 </dd></dl>
+<ol type="1">
+<li>Attempt to load <code>configuration_file</code>.</li>
+<li>Attempt to load three directories of ROOT files as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> objects: a set of exlusive MC files, a set of inclusive MC files, and a set of data files (the BESIII measurements).</li>
+<li>Print three cut flows.</li>
+<li>Set global plotting style based on loaded configuration settings.</li>
+<li>Plot branches without fits</li>
+<li>Perform fit over exclusive Monte Carlo data sets.</li>
+</ol>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>Trouble with the number of polynomials... Perhaps somehow implement a fit object (extension of <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code>)? </dd></dl>
 <ol type="1">
 <li>Attempt to load <code>configuration_file</code>.</li>
 <li>Attempt to load input ROOT file as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> object).</li>
@@ -139,7 +153,7 @@ Functions</h2></td></tr>
 <li>Perform and plot fits </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="PlotInvMass_8C_source.html#l00035">35</a> of file <a class="el" href="PlotInvMass_8C_source.html">PlotInvMass.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00033">33</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -159,7 +173,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Main function that is used when compiling and executing in <code>ROOT</code>. </p>
+<p>Simple script that allows to quickly investigate the <code>TTree</code>s and branches of a ROOT file that has been produced with BOSS. </p>
+<dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>March 26th, 2019 </dd></dl>
 <ol type="1">
 <li>Attempt to load <code>configuration_file</code>.</li>
 <li>Attempt to load input ROOT file as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> object).</li>
@@ -167,7 +183,7 @@ Functions</h2></td></tr>
 <li>If loaded successfully, print the cut flow (if requested by <code>fPrintCutFlow</code>). </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00028">28</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00024">24</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
 
 </div>
 </div>
@@ -199,7 +215,7 @@ Functions</h2></td></tr>
 
 <p>Main function that is called when executing the executable compiled using e.g. <code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00050">50</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00095">95</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>

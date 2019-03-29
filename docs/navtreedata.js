@@ -19,7 +19,9 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ]
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -37,11 +39,12 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AxisBinning_8cxx.html",
-"classAxisBinning.html#a5b9a71839e5441281275fc54472fc24e",
-"classD0phi__KpiKK.html#a50fa3b34681c5ce75c05c1ff1e5fc369",
-"classPipiJpsi.html#acabf10556cba72b5bf5fe06b6751ef03",
-"classm__trkInfo.html#a57e5dfffd6d768d8dadbcaedb8f4f4f7"
+"AnalyseInvMass_8C.html",
+"TrackSelector_8h.html#a7627214df596524af6630d00620e99c7",
+"classContainer__indexed.html#a23c5f8ebfe876a33392fc4fb5dedcc50",
+"classNTupleTopoAna.html#a90124b26abec40f8837fe86782087b3e",
+"classRhopiAlg.html#abe7aadfeea34b2d602eac7d84c9a3e45",
+"functions_p.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

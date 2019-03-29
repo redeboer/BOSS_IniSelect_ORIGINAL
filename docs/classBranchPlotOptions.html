@@ -125,6 +125,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4c63b8f0710b9391e84ca4c82962b8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#ad4c63b8f0710b9391e84ca4c82962b8a">SetOutputFileName</a> (const TString &amp;filename)</td></tr>
 <tr class="memdesc:ad4c63b8f0710b9391e84ca4c82962b8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set name of the output file name.  <a href="#ad4c63b8f0710b9391e84ca4c82962b8a">More...</a><br /></td></tr>
 <tr class="separator:ad4c63b8f0710b9391e84ca4c82962b8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
+<tr class="memitem:af18de1160cc7e7b168f2c48be1a58a39"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#af18de1160cc7e7b168f2c48be1a58a39">GetNBranches</a> () const</td></tr>
+<tr class="separator:af18de1160cc7e7b168f2c48be1a58a39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">TTree::Draw argument builders</div></td></tr>
 <tr class="memitem:a498ab708e3c66d9b39b93d242b741c10"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#a498ab708e3c66d9b39b93d242b741c10">OutputFileName</a> () const</td></tr>
 <tr class="separator:a498ab708e3c66d9b39b93d242b741c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,8 +146,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:acb826b5dc169d26711c77c4351537fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f6f59d96cd951490679bfe373e2f5e"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#a55f6f59d96cd951490679bfe373e2f5e">LogZ</a> () const</td></tr>
 <tr class="separator:a55f6f59d96cd951490679bfe373e2f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae99dabe3f023fc92ab3b967147e4f66e"><td class="memItemLeft" align="right" valign="top">const TString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#ae99dabe3f023fc92ab3b967147e4f66e">LogXYZ</a> () const</td></tr>
-<tr class="separator:ae99dabe3f023fc92ab3b967147e4f66e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a9857e36b48705270c04247b8da7318"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#a3a9857e36b48705270c04247b8da7318">HasLogScale</a> () const</td></tr>
+<tr class="separator:a3a9857e36b48705270c04247b8da7318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae3514dfafb9f1ab3a3d849c31509d99"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#aae3514dfafb9f1ab3a3d849c31509d99">BuildOriginalString</a> () const</td></tr>
+<tr class="memdesc:aae3514dfafb9f1ab3a3d849c31509d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the original line from which this <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> object was created.  <a href="#aae3514dfafb9f1ab3a3d849c31509d99">More...</a><br /></td></tr>
+<tr class="separator:aae3514dfafb9f1ab3a3d849c31509d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c352d54d12f40c9e61ac95fa99e897b"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#a4c352d54d12f40c9e61ac95fa99e897b">BuildHistName</a> () const</td></tr>
+<tr class="memdesc:a4c352d54d12f40c9e61ac95fa99e897b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build the a unique name for an output histogram.  <a href="#a4c352d54d12f40c9e61ac95fa99e897b">More...</a><br /></td></tr>
+<tr class="separator:a4c352d54d12f40c9e61ac95fa99e897b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4521b5c9fc0a91c1e4e9de8eecf311f0"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBranchPlotOptions.html#a4521b5c9fc0a91c1e4e9de8eecf311f0">LogXYZ</a> () const</td></tr>
+<tr class="separator:a4521b5c9fc0a91c1e4e9de8eecf311f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -245,6 +256,63 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a4c352d54d12f40c9e61ac95fa99e897b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c352d54d12f40c9e61ac95fa99e897b">&#9670;&nbsp;</a></span>BuildHistName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string BranchPlotOptions::BuildHistName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build the a unique name for an output histogram. </p>
+<p>The histogram has to be unique to avoid overwriting objects in the <code>gDirectory</code> of ROOT, see <a href="https://root.cern.ch/doc/master/classTDirectory.html#a411338189331c0ec67b2c56822b7773a">TDirectory::Get</a>. </p>
+<ol type="1">
+<li>Return a <code>nullptr</code> if this <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> object does not have branches or a tree name.</li>
+<li>The histogram name starts the name of the <code>TTree</code>.</li>
+<li>This is followed by the branches, which also get identifiers for the plot range. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00266">266</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+
+</div>
+</div>
+<a id="aae3514dfafb9f1ab3a3d849c31509d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae3514dfafb9f1ab3a3d849c31509d99">&#9670;&nbsp;</a></span>BuildOriginalString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string BranchPlotOptions::BuildOriginalString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Build the original line from which this <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> object was created. </p>
+<p>See <code>Import</code> to get an idea of the syntax of that line. </p>
+<ol type="1">
+<li>Return a <code>nullptr</code> if this <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> object does not have branches or a tree name.</li>
+<li>The line starts the name of the <code>TTree</code>.</li>
+<li>If the <code>fOutputFileName</code> is different than the <code>fTreeName</code>, append <code>" &gt; "fOutputFileName</code>.</li>
+<li>Now add the branches.</li>
+<li>Add the cut selection.</li>
+<li>Add the draw options and a line for the log bits if available. </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00239">239</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+
+</div>
+</div>
 <a id="aced5bf5f8b3bdfe2a14bb320eb80ae90"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aced5bf5f8b3bdfe2a14bb320eb80ae90">&#9670;&nbsp;</a></span>CutSelection()</h2>
 
@@ -268,7 +336,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00076">76</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00081">81</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -295,7 +363,53 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00077">77</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00082">82</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+
+</div>
+</div>
+<a id="af18de1160cc7e7b168f2c48be1a58a39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af18de1160cc7e7b168f2c48be1a58a39">&#9670;&nbsp;</a></span>GetNBranches()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const size_t BranchPlotOptions::GetNBranches </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00073">73</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+
+</div>
+</div>
+<a id="a3a9857e36b48705270c04247b8da7318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a9857e36b48705270c04247b8da7318">&#9670;&nbsp;</a></span>HasLogScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool BranchPlotOptions::HasLogScale </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00155">155</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -374,7 +488,7 @@ Private Attributes</h2></td></tr>
 <p>Helper function that prints a warning message if <code>notOK</code> is set to <code>true</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd>Returns <code>false</code> if no warning message is printed, that is, if there where no problems (<code>notOK == false</code>). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00244">244</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00292">292</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -393,7 +507,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00178">178</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00184">184</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -447,18 +561,18 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00078">78</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00083">83</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
-<a id="ae99dabe3f023fc92ab3b967147e4f66e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae99dabe3f023fc92ab3b967147e4f66e">&#9670;&nbsp;</a></span>LogXYZ()</h2>
+<a id="a4521b5c9fc0a91c1e4e9de8eecf311f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4521b5c9fc0a91c1e4e9de8eecf311f0">&#9670;&nbsp;</a></span>LogXYZ()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const TString BranchPlotOptions::LogXYZ </td>
+          <td class="memname">const std::string BranchPlotOptions::LogXYZ </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -466,7 +580,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00184">184</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00190">190</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -493,7 +607,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00079">79</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00084">84</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -520,7 +634,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00080">80</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00085">85</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +661,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00073">73</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00078">78</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -566,7 +680,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00155">155</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00163">163</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -723,7 +837,7 @@ Private Attributes</h2></td></tr>
 
 <p>Helper function that gets the next argument block up till a semicolumn (<code>;</code>), strips that argument block of whitespaces and writes it to <code>tok</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00253">253</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00301">301</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -750,7 +864,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00074">74</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00079">79</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -771,7 +885,7 @@ Private Attributes</h2></td></tr>
 
 <p>Build a <code>varexp</code> that is required by the <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45"><code>TTree::Draw</code></a> method from the contents of <code>f</code>. </p>
 <dl class="section return"><dt>Returns</dt><dd>The returned string is a <code>nullptr</code> if building a <code>varexp</code> string failed. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>Should be moved to <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code> so that one has access to the corresponding <code>TTree</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>Should be moved to <code><a class="el" href="classChainLoader.html" title="A container class for a TChain that allows easy access to its branches. ">ChainLoader</a></code> so that one has access to the corresponding <code>TTree</code>. </dd></dl>
 <ol type="1">
 <li>Return <code>nullptr</code> if <code>fTreeName</code> of <code>fListOfBranches</code> is empty.</li>
 <li>Build string of branch names.</li>
@@ -779,7 +893,7 @@ Private Attributes</h2></td></tr>
 <li>Append binning <b>if all branches have bin definitions</b> (all have <code><a class="el" href="classAxisBinning.html#a6d66ce1f5b5b1b492dd79e39ffc9a95f">AxisBinning::IsOK</a></code> is <code>true</code>). </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00201">201</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8cxx_source.html#l00207">207</a> of file <a class="el" href="BranchPlotOptions_8cxx_source.html">BranchPlotOptions.cxx</a>.</p>
 
 </div>
 </div>
@@ -804,7 +918,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00086">86</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00094">94</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -828,7 +942,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00087">87</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00095">95</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -852,7 +966,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00091">91</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00099">99</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -876,7 +990,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00090">90</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00098">98</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -900,7 +1014,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00088">88</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00096">96</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -924,7 +1038,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00089">89</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00097">97</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>
@@ -948,7 +1062,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00085">85</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="BranchPlotOptions_8h_source.html#l00093">93</a> of file <a class="el" href="BranchPlotOptions_8h_source.html">BranchPlotOptions.h</a>.</p>
 
 </div>
 </div>

@@ -99,8 +99,9 @@ Inheritance diagram for ConfigLoader:</div>
  <div class="center">
   <img src="classConfigLoader.png" usemap="#ConfigLoader_map" alt=""/>
   <map id="ConfigLoader_map" name="ConfigLoader_map">
-<area href="classConfigLoader__Plot.html" title="Derived class of ConfigLoader that contains parameters used for a simple plotting algorithm..." alt="ConfigLoader_Plot" shape="rect" coords="0,56,165,80"/>
-<area href="classConfigLoader__PrintContent.html" title="Derived class of ConfigLoader that contains parameters used for the InvestigateContent algorithm..." alt="ConfigLoader_PrintContent" shape="rect" coords="175,56,340,80"/>
+<area href="classConfigLoader__InvMass.html" title="Derived class of ConfigLoader that contains parameters used for a simple plotting algorithm..." alt="ConfigLoader_InvMass" shape="rect" coords="0,56,165,80"/>
+<area href="classConfigLoader__Plot.html" title="Derived class of ConfigLoader that contains parameters used for a simple plotting algorithm..." alt="ConfigLoader_Plot" shape="rect" coords="175,56,340,80"/>
+<area href="classConfigLoader__PrintContent.html" title="Derived class of ConfigLoader that contains parameters used for the InvestigateContent algorithm..." alt="ConfigLoader_PrintContent" shape="rect" coords="350,56,515,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -120,9 +121,13 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a0ab2b46d0fc05f60d5fed4e086e928c1">ImportValues</a> (<a class="el" href="classConfigParBase.html">ConfigParBase</a> *par, std::string line)</td></tr>
 <tr class="memdesc:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Import parameter an arbitrary number of argument values from a line.  <a href="#a0ab2b46d0fc05f60d5fed4e086e928c1">More...</a><br /></td></tr>
 <tr class="separator:a0ab2b46d0fc05f60d5fed4e086e928c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a59e651d982c5157cea7faa4b64a626"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a5a59e651d982c5157cea7faa4b64a626">ImportValues</a> (<a class="el" href="classConfigParBase.html">ConfigParBase</a> *par, const TString &amp;line)</td></tr>
+<tr class="separator:a5a59e651d982c5157cea7faa4b64a626"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4428364e6efd677bc559dfd2efd87c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a4428364e6efd677bc559dfd2efd87c9c">AddValue</a> (<a class="el" href="classConfigParBase.html">ConfigParBase</a> *par, std::string &amp;line)</td></tr>
 <tr class="memdesc:a4428364e6efd677bc559dfd2efd87c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Format a string by removing all leading and trailing whitespace characters and double quotation marks (<code>"</code>).  <a href="#a4428364e6efd677bc559dfd2efd87c9c">More...</a><br /></td></tr>
 <tr class="separator:a4428364e6efd677bc559dfd2efd87c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f89a4bd167e4555454a5fa57c72552"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a06f89a4bd167e4555454a5fa57c72552">AddValue</a> (<a class="el" href="classConfigParBase.html">ConfigParBase</a> *par, TString &amp;line)</td></tr>
+<tr class="separator:a06f89a4bd167e4555454a5fa57c72552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -186,7 +191,7 @@ Private Attributes</h2></td></tr>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a4428364e6efd677bc559dfd2efd87c9c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4428364e6efd677bc559dfd2efd87c9c">&#9670;&nbsp;</a></span>AddValue()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4428364e6efd677bc559dfd2efd87c9c">&#9670;&nbsp;</a></span>AddValue() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,6 +227,42 @@ Private Attributes</h2></td></tr>
 <p>Format a string by removing all leading and trailing whitespace characters and double quotation marks (<code>"</code>). </p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00066">66</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a06f89a4bd167e4555454a5fa57c72552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06f89a4bd167e4555454a5fa57c72552">&#9670;&nbsp;</a></span>AddValue() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConfigLoader::AddValue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td>
+          <td class="paramname"><em>par</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString &amp;&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -261,7 +302,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a0ab2b46d0fc05f60d5fed4e086e928c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ab2b46d0fc05f60d5fed4e086e928c1">&#9670;&nbsp;</a></span>ImportValues()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ab2b46d0fc05f60d5fed4e086e928c1">&#9670;&nbsp;</a></span>ImportValues() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,6 +339,42 @@ Private Attributes</h2></td></tr>
 <p>The <code>input</code> line has to be formatted, that is, it may not contain the initial opening or final closing bracket. </p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigLoader_8cxx_source.html#l00032">32</a> of file <a class="el" href="ConfigLoader_8cxx_source.html">ConfigLoader.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a5a59e651d982c5157cea7faa4b64a626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a59e651d982c5157cea7faa4b64a626">&#9670;&nbsp;</a></span>ImportValues() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ConfigLoader::ImportValues </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classConfigParBase.html">ConfigParBase</a> *&#160;</td>
+          <td class="paramname"><em>par</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TString &amp;&#160;</td>
+          <td class="paramname"><em>line</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -388,11 +465,11 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">If this line does not contain a closing bracket, simply import all arguments on this line and go to the next.</p>
+<p class="startli">Import the values on this line.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">If not, we should import the last arguments and then <code>break</code> the <code>while</code> loop</p>
+<p class="startli">If the line ends in a closing bracket (<code>}</code>), we should <code>break</code> the <code>while</code> loop.</p>
 <p class="endli"></p>
 </li>
 </ol>
@@ -437,7 +514,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00071">71</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00073">73</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>
@@ -463,7 +540,7 @@ Private Attributes</h2></td></tr>
 
 <p>Parameter that decides whether or not to call <code><a class="el" href="classConfigParBase.html#ac34475f566247ff7a79909f5f24e1f68">ConfigParBase::PrintAll</a></code> after all parmeters have been loaded. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00072">72</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigLoader_8h_source.html#l00074">74</a> of file <a class="el" href="ConfigLoader_8h_source.html">ConfigLoader.h</a>.</p>
 
 </div>
 </div>

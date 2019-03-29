@@ -12,6 +12,7 @@ var hierarchy =
       [ "RhopiAlg", "classRhopiAlg.html", null ],
       [ "TrackSelector", "classTrackSelector.html", [
         [ "D0phi_KpiKK", "classD0phi__KpiKK.html", null ],
+        [ "D0phi_KpipiKK", "classD0phi__KpipiKK.html", null ],
         [ "rhopi_pipigg", "classrhopi__pipigg.html", null ]
       ] ]
     ] ],
@@ -20,6 +21,7 @@ var hierarchy =
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", [
+      [ "ConfigLoader_InvMass", "classConfigLoader__InvMass.html", null ],
       [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", null ],
       [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html", null ]
     ] ],
@@ -27,6 +29,7 @@ var hierarchy =
       [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],
       [ "ConfigParameter< bool >", "classConfigParameter.html", null ],
       [ "ConfigParameter< std::list< BranchPlotOptions > >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< std::list< std::pair< ReconstructedParticle, BranchPlotOptions > > >", "classConfigParameter.html", null ],
       [ "ConfigParameter< std::string >", "classConfigParameter.html", null ]
     ] ],
     [ "Container_base", "classContainer__base.html", [
@@ -37,8 +40,11 @@ var hierarchy =
         [ "NTupleTopoAna", "classNTupleTopoAna.html", null ]
       ] ]
     ] ],
+    [ "FitPars", "classFitPars.html", null ],
+    [ "FitPars_DoubleGaussian", "classFitPars__DoubleGaussian.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ],
+      [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", null ]
     ] ],
     [ "m_trkInfo", "classm__trkInfo.html", null ],

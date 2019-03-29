@@ -102,12 +102,62 @@
 	StatusCode D0phi_KpipiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpipiKK", __func__);
 		/// <ol type="A">
-		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4 charged tracks in total</b>.
+		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only **4 charged tracks in total**.
 			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
 			++fCutFlow_NChargedOK;
 
 
-		/// <li> Create specific charged track selections
+		/// <li> Create selection of **charged** tracks.
+			// * Clear vectors of selected particles *
+				fKaonNeg.clear();
+				fKaonPos.clear();
+				fPionPos.clear();
+
+			// * Loop over charged tracks *
+			for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
+				/// <ol>
+				/// <li> Initialise PID and skip if it fails:
+					/// <ul>
+					if(!InitializePID(
+						/// <li> use <b>probability method</b>
+						fPIDInstance->methodProbability(),
+						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+						fPIDInstance->useDedx() |
+						fPIDInstance->useTof1() |
+						fPIDInstance->useTof2() |
+						fPIDInstance->useTofE(),
+						/// <li> identify only pions and kaons
+						fPIDInstance->onlyPion() |
+						fPIDInstance->onlyKaon(),
+						/// <li> use \f$\chi^2 > 4.0\f$
+						4.0
+					)) continue;
+					/// </ul>
+
+				/// <li> @b Write Particle Identification information of all tracks
+					WritePIDInformation();
+
+				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
+					fTrackKal = (*fTrackIterator)->mdcKalTrack();
+					if(fPIDInstance->probPion() > fPIDInstance->probKaon()) { /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
+						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
+						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpipiKK.txt`).
+						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
+						if(fTrackKal->charge()>0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+					}
+					else {
+						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
+						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
+						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+						if(fTrackKal->charge()<0) fKaonNeg.push_back(*fTrackIterator);
+						else                      fKaonPos.push_back(*fTrackIterator);
+					}
+
+				/// </ol>
+			}
+
+
+		/// <li> Create specific selection of **neutral** tracks (photons).
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
 				fKaonPos.clear();

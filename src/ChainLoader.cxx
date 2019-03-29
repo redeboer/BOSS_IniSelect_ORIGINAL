@@ -207,11 +207,6 @@
 
 
 	/// Create a histogram object especially for invariant mass analysis.
-		/// @param branchName Names of the branche that you want to plot.
-		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param nBins Number of bins to use on the \f$x\f$-axis.
-		/// @param option Draw options.
-		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 	TH1F* ChainLoader::GetInvariantMassHistogram(const char* varexp, const ReconstructedParticle& particle, const int nBins, Option_t *option, const TString &logScale)
 	{
 		// * Check input arguments * //

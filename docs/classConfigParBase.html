@@ -103,10 +103,11 @@ Inheritance diagram for ConfigParBase:</div>
  <div class="center">
   <img src="classConfigParBase.png" usemap="#ConfigParBase_map" alt=""/>
   <map id="ConfigParBase_map" name="ConfigParBase_map">
-<area href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas..." alt="ConfigParameter&lt; TYPE &gt;" shape="rect" coords="0,56,297,80"/>
-<area href="classConfigParameter.html" alt="ConfigParameter&lt; bool &gt;" shape="rect" coords="307,56,604,80"/>
-<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;" shape="rect" coords="614,56,911,80"/>
-<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::string &gt;" shape="rect" coords="921,56,1218,80"/>
+<area href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas..." alt="ConfigParameter&lt; TYPE &gt;" shape="rect" coords="0,56,498,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; bool &gt;" shape="rect" coords="508,56,1006,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;" shape="rect" coords="1016,56,1514,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;" shape="rect" coords="1524,56,2022,80"/>
+<area href="classConfigParameter.html" alt="ConfigParameter&lt; std::string &gt;" shape="rect" coords="2032,56,2530,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -128,16 +129,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a3d82dc6d531ee0012f64a769b9ee8b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae12e5a41b442ccca65ef25e6d0104280"><td class="memItemLeft" align="right" valign="top">const std::list&lt; std::string &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#ae12e5a41b442ccca65ef25e6d0104280">GetListOfValues</a> ()</td></tr>
 <tr class="separator:ae12e5a41b442ccca65ef25e6d0104280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2af6be9b97c745e4070e54025512d8ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a2af6be9b97c745e4070e54025512d8ba">ConvertStringsToValue</a> ()</td></tr>
-<tr class="memdesc:a2af6be9b97c745e4070e54025512d8ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the string values read to <code>fReadStrings</code> to the <code>fValue</code> member.  <a href="#a2af6be9b97c745e4070e54025512d8ba">More...</a><br /></td></tr>
-<tr class="separator:a2af6be9b97c745e4070e54025512d8ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed999bf2ebac010d9668595d2202caa5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#aed999bf2ebac010d9668595d2202caa5">ConvertValueToStrings</a> ()</td></tr>
-<tr class="memdesc:aed999bf2ebac010d9668595d2202caa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the <code>fValue</code> data member to the <code>list</code> of `fReadStrings.  <a href="#aed999bf2ebac010d9668595d2202caa5">More...</a><br /></td></tr>
-<tr class="separator:aed999bf2ebac010d9668595d2202caa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc935f1e8492ec91148151699ec8b646"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#afc935f1e8492ec91148151699ec8b646">ConvertStringsToValue</a> ()</td></tr>
+<tr class="memdesc:afc935f1e8492ec91148151699ec8b646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the string values read to <code>fReadStrings</code> to the <code>fValue</code> member.  <a href="#afc935f1e8492ec91148151699ec8b646">More...</a><br /></td></tr>
+<tr class="separator:afc935f1e8492ec91148151699ec8b646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a215c0be98ce745b3f475bfd1a95195a3"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a215c0be98ce745b3f475bfd1a95195a3">ConvertValueToStrings</a> ()</td></tr>
+<tr class="memdesc:a215c0be98ce745b3f475bfd1a95195a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the <code>fValue</code> data member to the <code>list</code> of `fReadStrings.  <a href="#a215c0be98ce745b3f475bfd1a95195a3">More...</a><br /></td></tr>
+<tr class="separator:a215c0be98ce745b3f475bfd1a95195a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdc393da8f2f6de1ab6a15b68531c8b9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">PrintValue</a> () const =0</td></tr>
 <tr class="separator:abdc393da8f2f6de1ab6a15b68531c8b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd318652ae055cdcf8747b1471be4c0d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abd318652ae055cdcf8747b1471be4c0d">ValueIsSet</a> () const</td></tr>
-<tr class="separator:abd318652ae055cdcf8747b1471be4c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1717a2130f8b3678a428b619d3d8f0d9"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a1717a2130f8b3678a428b619d3d8f0d9">ValueIsSet</a> () const</td></tr>
+<tr class="separator:a1717a2130f8b3678a428b619d3d8f0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -156,10 +157,10 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:abd18011a6723e4abf3009c72b6286a1b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#abd18011a6723e4abf3009c72b6286a1b">ConvertStringsToValue_impl</a> ()=0</td></tr>
-<tr class="separator:abd18011a6723e4abf3009c72b6286a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e0ee79ab70beede52c51b17e9482fc0"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a3e0ee79ab70beede52c51b17e9482fc0">ConvertValueToStrings_impl</a> ()=0</td></tr>
-<tr class="separator:a3e0ee79ab70beede52c51b17e9482fc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5356bf53640230aaa05290492822a7d3"><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a5356bf53640230aaa05290492822a7d3">ConvertStringsToValue_impl</a> ()=0</td></tr>
+<tr class="separator:a5356bf53640230aaa05290492822a7d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a018645f082cd18899ec47cb655d217d4"><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParBase.html#a018645f082cd18899ec47cb655d217d4">ConvertValueToStrings_impl</a> ()=0</td></tr>
+<tr class="separator:a018645f082cd18899ec47cb655d217d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -191,7 +192,7 @@ Static Private Attributes</h2></td></tr>
 <p>This base class is necessary to allow one to loop over all different types (manifestations of <code>template</code>s) for <code><a class="el" href="classConfigParameter.html" title="This template class is used to specify how to handle the values loaded to the ConfigParBase base clas...">ConfigParameter</a></code>. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>March 15th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00025">25</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00026">26</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a0aead22e492c43aae5615a070a7a1fd3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0aead22e492c43aae5615a070a7a1fd3">&#9670;&nbsp;</a></span>ConfigParBase()</h2>
@@ -283,18 +284,18 @@ Static Private Attributes</h2></td></tr>
 
 <p>Switch that is used to prevent from double adding values to the <code>fReadStrings</code> <code>list</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00056">56</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00057">57</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
-<a id="a2af6be9b97c745e4070e54025512d8ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2af6be9b97c745e4070e54025512d8ba">&#9670;&nbsp;</a></span>ConvertStringsToValue()</h2>
+<a id="afc935f1e8492ec91148151699ec8b646"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc935f1e8492ec91148151699ec8b646">&#9670;&nbsp;</a></span>ConvertStringsToValue()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ConfigParBase::ConvertStringsToValue </td>
+          <td class="memname">const bool ConfigParBase::ConvertStringsToValue </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -309,8 +310,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abd18011a6723e4abf3009c72b6286a1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd18011a6723e4abf3009c72b6286a1b">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl()</h2>
+<a id="a5356bf53640230aaa05290492822a7d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5356bf53640230aaa05290492822a7d3">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +320,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool ConfigParBase::ConvertStringsToValue_impl </td>
+          <td class="memname">virtual const bool ConfigParBase::ConvertStringsToValue_impl </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -332,18 +333,18 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classConfigParameter.html#a3c6d5933c8e0fba8295fdc12663d2466">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a3c6d5933c8e0fba8295fdc12663d2466">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a3c6d5933c8e0fba8295fdc12663d2466">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#a3c6d5933c8e0fba8295fdc12663d2466">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#ad13a2282bf8a630f64245180bba802bc">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
 
 </div>
 </div>
-<a id="aed999bf2ebac010d9668595d2202caa5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed999bf2ebac010d9668595d2202caa5">&#9670;&nbsp;</a></span>ConvertValueToStrings()</h2>
+<a id="a215c0be98ce745b3f475bfd1a95195a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a215c0be98ce745b3f475bfd1a95195a3">&#9670;&nbsp;</a></span>ConvertValueToStrings()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ConfigParBase::ConvertValueToStrings </td>
+          <td class="memname">const bool ConfigParBase::ConvertValueToStrings </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -358,8 +359,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e0ee79ab70beede52c51b17e9482fc0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e0ee79ab70beede52c51b17e9482fc0">&#9670;&nbsp;</a></span>ConvertValueToStrings_impl()</h2>
+<a id="a018645f082cd18899ec47cb655d217d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a018645f082cd18899ec47cb655d217d4">&#9670;&nbsp;</a></span>ConvertValueToStrings_impl()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +369,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual bool ConfigParBase::ConvertValueToStrings_impl </td>
+          <td class="memname">virtual const bool ConfigParBase::ConvertValueToStrings_impl </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -381,7 +382,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classConfigParameter.html#a4ecb2697127171e81051385ec4fe4822">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a4ecb2697127171e81051385ec4fe4822">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a4ecb2697127171e81051385ec4fe4822">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#a4ecb2697127171e81051385ec4fe4822">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#a641c7cb8ce98346052992526295df46f">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classConfigParameter.html#a3b8b5f2d8445f33201168d72238b13ca">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a3b8b5f2d8445f33201168d72238b13ca">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a3b8b5f2d8445f33201168d72238b13ca">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a3b8b5f2d8445f33201168d72238b13ca">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#a3b8b5f2d8445f33201168d72238b13ca">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#abdb72fe3b491bcf0a0151ca297209ba7">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#abdb72fe3b491bcf0a0151ca297209ba7">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#abdb72fe3b491bcf0a0151ca297209ba7">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#abdb72fe3b491bcf0a0151ca297209ba7">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#abdb72fe3b491bcf0a0151ca297209ba7">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
 
 </div>
 </div>
@@ -439,7 +440,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00036">36</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00037">37</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +467,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00042">42</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -493,7 +494,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00034">34</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00035">35</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -520,7 +521,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00033">33</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00034">34</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +548,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -632,7 +633,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
+<p>Implemented in <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; bool &gt;</a>, <a class="el" href="classConfigParameter.html#ae75492ebd47be139f9b7921dcc5159ea">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; TYPE &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::list&lt; std::pair&lt; ReconstructedParticle, BranchPlotOptions &gt; &gt; &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::string &gt;</a>, <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; bool &gt;</a>, and <a class="el" href="classConfigParameter.html#a8179248392938df966c9c1bfaae68ea5">ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;</a>.</p>
 
 </div>
 </div>
@@ -659,12 +660,12 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00039">39</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
-<a id="abd318652ae055cdcf8747b1471be4c0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd318652ae055cdcf8747b1471be4c0d">&#9670;&nbsp;</a></span>ValueIsSet()</h2>
+<a id="a1717a2130f8b3678a428b619d3d8f0d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1717a2130f8b3678a428b619d3d8f0d9">&#9670;&nbsp;</a></span>ValueIsSet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -673,7 +674,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool ConfigParBase::ValueIsSet </td>
+          <td class="memname">const bool ConfigParBase::ValueIsSet </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -686,7 +687,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00045">45</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -714,7 +715,7 @@ Static Private Attributes</h2></td></tr>
 <p>Unique identifier of the paramter. If this identifier is found in the configuration file you loaded with the <code><a class="el" href="classConfigLoader.html" title="Base container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code>, its corresponding values will be added to <code>fReadStrings</code>. </p>
 <dl class="section warning"><dt>Warning</dt><dd>The executable will <code>terminate</code> if the identifier already exists in the mapping of parameters <code>fInstances</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00057">57</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00058">58</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -738,7 +739,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00058">58</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00059">59</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -764,7 +765,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Loaded values in string format. You can specify in derived classes how to use these values. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00051">51</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00052">52</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>
@@ -788,7 +789,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00052">52</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParBase_8h_source.html#l00053">53</a> of file <a class="el" href="ConfigParBase_8h_source.html">ConfigParBase.h</a>.</p>
 
 </div>
 </div>

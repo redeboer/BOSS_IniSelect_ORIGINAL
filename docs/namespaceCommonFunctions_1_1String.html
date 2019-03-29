@@ -103,21 +103,24 @@ Functions</h2></td></tr>
 <tr class="memitem:a5acbff5c89d716b31b84c2abb3d3729f"><td class="memItemLeft" align="right" valign="top">TString &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1String.html#a5acbff5c89d716b31b84c2abb3d3729f">Trim</a> (TString &amp;input, char c)</td></tr>
 <tr class="memdesc:a5acbff5c89d716b31b84c2abb3d3729f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove all leading and trailing characters of type <code>c</code> from a string.  <a href="#a5acbff5c89d716b31b84c2abb3d3729f">More...</a><br /></td></tr>
 <tr class="separator:a5acbff5c89d716b31b84c2abb3d3729f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e9a48ce09dbe4d38657050de9eefa89"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1String.html#a7e9a48ce09dbe4d38657050de9eefa89">IsComment</a> (std::string line)</td></tr>
-<tr class="memdesc:a7e9a48ce09dbe4d38657050de9eefa89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a string starts with a comment identifier (such as <code>//</code> in the case of <code>C++</code>).  <a href="#a7e9a48ce09dbe4d38657050de9eefa89">More...</a><br /></td></tr>
-<tr class="separator:a7e9a48ce09dbe4d38657050de9eefa89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a151845116d995903fc34f56cfb39a5a5"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1String.html#a151845116d995903fc34f56cfb39a5a5">IsComment</a> (std::string line)</td></tr>
+<tr class="memdesc:a151845116d995903fc34f56cfb39a5a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a string starts with a comment identifier (such as <code>//</code> in the case of <code>C++</code>).  <a href="#a151845116d995903fc34f56cfb39a5a5">More...</a><br /></td></tr>
+<tr class="separator:a151845116d995903fc34f56cfb39a5a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3667090d22f0e63df66535f5f970a20"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceCommonFunctions_1_1String.html#ae3667090d22f0e63df66535f5f970a20">IsComment</a> (const TString &amp;line)</td></tr>
+<tr class="memdesc:ae3667090d22f0e63df66535f5f970a20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a string starts with a comment identifier (such as <code>//</code> in the case of <code>C++</code>).  <a href="#ae3667090d22f0e63df66535f5f970a20">More...</a><br /></td></tr>
+<tr class="separator:ae3667090d22f0e63df66535f5f970a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace containing functions for <code>string</code> manipulation. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a7e9a48ce09dbe4d38657050de9eefa89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e9a48ce09dbe4d38657050de9eefa89">&#9670;&nbsp;</a></span>IsComment()</h2>
+<a id="a151845116d995903fc34f56cfb39a5a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a151845116d995903fc34f56cfb39a5a5">&#9670;&nbsp;</a></span>IsComment() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool CommonFunctions::String::IsComment </td>
+          <td class="memname">const bool CommonFunctions::String::IsComment </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>line</em></td><td>)</td>
@@ -129,6 +132,28 @@ Functions</h2></td></tr>
 <p>Check if a string starts with a comment identifier (such as <code>//</code> in the case of <code>C++</code>). </p>
 
 <p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00639">639</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ae3667090d22f0e63df66535f5f970a20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3667090d22f0e63df66535f5f970a20">&#9670;&nbsp;</a></span>IsComment() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const bool CommonFunctions::String::IsComment </td>
+          <td>(</td>
+          <td class="paramtype">const TString &amp;&#160;</td>
+          <td class="paramname"><em>line</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a string starts with a comment identifier (such as <code>//</code> in the case of <code>C++</code>). </p>
+
+<p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00653">653</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
 </div>
 </div>
@@ -149,7 +174,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Remove all leading and trailing whitespaces from a string. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000021">Todo:</a></b></dt><dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000024">Todo:</a></b></dt><dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00602">602</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 
@@ -204,7 +229,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Remove all leading and trailing whitespaces from a string. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000022">Todo:</a></b></dt><dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000025">Todo:</a></b></dt><dd>This function already exists as such in <code>TString</code>. Migrate from <code>std::string</code> to <code>TString</code>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="CommonFunctions_8cxx_source.html#l00621">621</a> of file <a class="el" href="CommonFunctions_8cxx_source.html">CommonFunctions.cxx</a>.</p>
 

@@ -12,5 +12,7 @@ var searchData=
   ['bossoutputloader_2eh',['BOSSOutputLoader.h',['../BOSSOutputLoader_8h.html',1,'']]],
   ['branchplotoptions',['BranchPlotOptions',['../classBranchPlotOptions.html',1,'BranchPlotOptions'],['../classBranchPlotOptions.html#a4bef705e1ffb7a9712f7a6255cd41a09',1,'BranchPlotOptions::BranchPlotOptions(const std::string &amp;input)'],['../classBranchPlotOptions.html#afa0adf4837538dea7a76c214ffa6f3ba',1,'BranchPlotOptions::BranchPlotOptions(const TString &amp;input)']]],
   ['branchplotoptions_2ecxx',['BranchPlotOptions.cxx',['../BranchPlotOptions_8cxx.html',1,'']]],
-  ['branchplotoptions_2eh',['BranchPlotOptions.h',['../BranchPlotOptions_8h.html',1,'']]]
+  ['branchplotoptions_2eh',['BranchPlotOptions.h',['../BranchPlotOptions_8h.html',1,'']]],
+  ['buildhistname',['BuildHistName',['../classBranchPlotOptions.html#a4c352d54d12f40c9e61ac95fa99e897b',1,'BranchPlotOptions']]],
+  ['buildoriginalstring',['BuildOriginalString',['../classBranchPlotOptions.html#aae3514dfafb9f1ab3a3d849c31509d99',1,'BranchPlotOptions']]]
 ];

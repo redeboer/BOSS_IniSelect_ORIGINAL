@@ -12,6 +12,18 @@ var group__BOSS__objects =
       [ "fP_D0", "classKKFitResult__D0phi__KpiKK.html#a24e1401dcfa14adf4474424ca7fea97d", null ],
       [ "fP_phi", "classKKFitResult__D0phi__KpiKK.html#a9e7bbf143178726c625711ca91749321", null ]
     ] ],
+    [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html", [
+      [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html#a90d80ac9f70b336e5af0c904d7400423", null ],
+      [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html#a91f8578d4e20ab64a09a106b48471aae", null ],
+      [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html#aa3464daeee04a99abaae984fc695df67", null ],
+      [ "SetValues", "classKKFitResult__D0phi__KpipiKK.html#a5e09b3a62012744dede2d63031dde497", null ],
+      [ "SetValues", "classKKFitResult__D0phi__KpipiKK.html#a65e91a32a153f6520166d8d7fb92df0b", null ],
+      [ "fM_D0", "classKKFitResult__D0phi__KpipiKK.html#aaecfafc17c42803074063b51ed0a51d4", null ],
+      [ "fM_Jpsi", "classKKFitResult__D0phi__KpipiKK.html#a16c155fc0aad2f7bd376d861b57e66e6", null ],
+      [ "fM_phi", "classKKFitResult__D0phi__KpipiKK.html#aad05917c45dd3ba342bbaf6a0c024300", null ],
+      [ "fP_D0", "classKKFitResult__D0phi__KpipiKK.html#a8d1344f38f69fea9460834fb126ff4a9", null ],
+      [ "fP_phi", "classKKFitResult__D0phi__KpipiKK.html#ab37c0045ae6729f700cb205c7c39fd5d", null ]
+    ] ],
     [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", [
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#a06271022a9198f1626a207ac0119f34c", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html#ae765ea4d433a91516a469af6578e0f70", null ],
