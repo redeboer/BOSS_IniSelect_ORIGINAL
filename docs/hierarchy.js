@@ -2,12 +2,6 @@ var hierarchy =
 [
     [ "Algorithm", null, [
       [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html", null ],
       [ "PipiJpsi", "classPipiJpsi.html", null ],
       [ "RhopiAlg", "classRhopiAlg.html", null ],
       [ "TrackSelector", "classTrackSelector.html", [
@@ -50,6 +44,5 @@ var hierarchy =
     [ "m_trkInfo", "classm__trkInfo.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
-    ] ],
-    [ "topoana", "classtopoana.html", null ]
+    ] ]
 ];
