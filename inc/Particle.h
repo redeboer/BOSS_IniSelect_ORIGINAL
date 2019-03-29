@@ -4,9 +4,12 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+
 	#include "TDatabasePDG.h"
 	#include "TParticlePDG.h"
 	#include "TString.h"
+
+
 
 // * ======================= * //
 // * ------- GLOBALS ------- * //
@@ -14,7 +17,10 @@
 /// @addtogroup BOSS_Afterburner_settings
 /// @{
 
+
 	inline const TDatabasePDG gPDG; ///< A `ROOT` `TDatabasePDG` object that contains all info of particles. Has to be constructed once, which is why it is a global.
+
+
 
 /// @}
 // * ================================ * //
