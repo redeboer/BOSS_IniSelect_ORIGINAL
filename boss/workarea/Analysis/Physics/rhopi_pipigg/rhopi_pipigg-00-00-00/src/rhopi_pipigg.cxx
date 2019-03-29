@@ -110,12 +110,12 @@
 			++fCutFlow_NChargedOK;
 
 
-		/// <li> <b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
+		/// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
 			if(fNetChargeMDC) return StatusCode::SUCCESS;
 			++fCutFlow_NetChargeOK;
 
 
-		/// <li> Create specific charged track selections
+		/// <li> Create selection of **charged** tracks.
 			// * Clear vectors of selected particles *
 				fPionNeg.clear();
 				fPionPos.clear();
@@ -154,7 +154,7 @@
 			}
 
 
-		/// <li> Create selection neutral tracks (photons)
+		/// <li> Create selection **neutral** tracks (photons)
 			fPhotons.clear();
 			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 
@@ -226,9 +226,9 @@
 			}
 
 
-		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only continue if:
+		/// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only continue if:
 			/// <ol>
-			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$)
+			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$'s)
 			if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion (\f$\pi^-\f$)
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion (\f$\pi^+\f$)
 			/// </ol>
@@ -252,7 +252,7 @@
 			}
 
 
-		/// <li> @b Write the multiplicities of the selected particles.
+		/// <li> **Write** the multiplicities of the selected particles.
 			fLog << MSG::DEBUG
 				<< "N_\gamma = "  << fPhotons.size() << ", "
 				<< "N_{\pi^-} = " << fPionNeg.size() << ", "
@@ -265,7 +265,7 @@
 			}
 
 
-		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
+		/// <li> **Write** \f$dE/dx\f$ PID information (`"dedx_pi"` branch)
 			if(fNTuple_dedx.DoWrite()) {
 				WriteDedxInfoForVector(fPionNeg, fNTuple_dedx_pi);
 				WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);

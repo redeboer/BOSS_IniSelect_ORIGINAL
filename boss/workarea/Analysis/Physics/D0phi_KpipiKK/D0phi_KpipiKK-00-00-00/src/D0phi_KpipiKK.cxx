@@ -40,20 +40,26 @@
 			fNTuple_fit4c_all ("fit4c_all",   "4-constraint fit information (CMS 4-momentum)"),
 			fNTuple_fit4c_best("fit4c_best",  "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
+			fNTuple_photon    ("photon",  "Kinematics of selected photons"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK   ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
 			fCutFlow_NFitOK       ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked"),
 			fCutFlow_NPIDnumberOK ("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+			fCutFlow_NetChargeOK  ("N_netcharge_OK", "Number of events where the total charge detected in the detectors was 0"),
 			fCutFlow_mD0_mphi     ("N_mD0_mphi",      "Number of events that passed the wide cut on both invariant masses"),
 			fCutFlow_mD0_mphi_3sig("N_mD0_mphi_3sig", "Number of events that passed the 3sigma cut on both invariant masses"),
 		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
 			fCut_mphi     ("mphi"),
 			fCut_mD0      ("mD0"),
 			fCut_mphi_3sig("mphi_3sig"),
-			fCut_mD0_3sig ("mD0_3sig")
+			fCut_mD0_3sig ("mD0_3sig"),
+		/// * Construct additional `CutObject`s that are specific for the `rhopi_pipig` package.
+			fCut_GammaAngle("gamma_angle"),
+			fCut_GammaPhi  ("gamma_phi"),
+			fCut_GammaTheta("gamma_theta")
 	{ PrintFunctionName("D0phi_KpipiKK", __func__); PostConstructor();
-		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
-		fCreateNeutralCollection = false;
+		fCreateChargedCollection = true;
+		fCreateNeutralCollection = true;
 	}
 
 
@@ -71,6 +77,7 @@
 		/// <ol type="A">
 		/// <li> `"mult_select"`: Multiplicities of selected particles
 			/// <ol>
+			fNTuple_mult_sel.AddItem<int>("NPhotons"); /// <li> `"NPhotons"`: Number of \f$\gamma\f$.
 			fNTuple_mult_sel.AddItem<int>("NKaonPos"); /// <li> `"NKaonPos"`: Number of \f$K^+\f$.
 			fNTuple_mult_sel.AddItem<int>("NKaonNeg"); /// <li> `"NKaonNeg"`: Number of \f$K^-\f$.
 			fNTuple_mult_sel.AddItem<int>("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^-\f$.
@@ -85,12 +92,26 @@
 			AddNTupleItems_Fit(fNTuple_fit4c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
+		/// <li> `"photon"`: information of the selected photons
+			/// <ol>
+			fNTuple_photon.AddItem<double>("E");  /// <li> `"E"`:  Energy of the photon.
+			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("smallest_phi");   /// <li> `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("smallest_theta"); /// <li> `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
+			fNTuple_photon.AddItem<double>("smallest_angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
+			/// </ol>
+
 		/// <li> `"topology"`: Add @b extra mass branches to the MC truth branch for the `topoana` package
-			fNTuple_topology.AddItem<double>("chi2");
-			fNTuple_topology.AddItem<double>("mD0");
-			fNTuple_topology.AddItem<double>("mphi");
-			fNTuple_topology.AddItem<double>("pD0");
-			fNTuple_topology.AddItem<double>("pphi");
+			/// <ol>
+			fNTuple_topology.AddItem<double>("chi2"); /// <li> `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
+			fNTuple_topology.AddItem<double>("mpi0"); /// <li> `"mpi0"`: Invariant mass of the \f$\pi^0\f$ candidate in \f$D^0 \to K^-\pi^+\pi^0\f$.
+			fNTuple_topology.AddItem<double>("mD0");  /// <li> `"mD0"`:  Invariant mass of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
+			fNTuple_topology.AddItem<double>("mphi"); /// <li> `"mphi"`: Invariant mass of the \f$\phi\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
+			fNTuple_topology.AddItem<double>("pD0");  /// <li> `"pD0"`:  Momentum of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
+			fNTuple_topology.AddItem<double>("pphi"); /// <li> `"pphi"`: Momentum of the \f$\phi\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
+			/// </ol>
 
 		/// </ol>
 		return StatusCode::SUCCESS;
@@ -102,9 +123,14 @@
 	StatusCode D0phi_KpipiKK::execute_rest()
 	{ PrintFunctionName("D0phi_KpipiKK", __func__);
 		/// <ol type="A">
-		/// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only **4 charged tracks in total**.
+		/// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4 charged tracks in total**.
 			if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
 			++fCutFlow_NChargedOK;
+
+
+		/// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
+			if(fNetChargeMDC) return StatusCode::SUCCESS;
+			++fCutFlow_NetChargeOK;
 
 
 		/// <li> Create selection of **charged** tracks.
@@ -157,57 +183,79 @@
 			}
 
 
-		/// <li> Create specific selection of **neutral** tracks (photons).
-			// * Clear vectors of selected particles *
-				fKaonNeg.clear();
-				fKaonPos.clear();
-				fPionPos.clear();
+		/// <li> Create selection **neutral** tracks (photons)
+			fPhotons.clear();
+			for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end(); ++fTrackIterator) {
 
-			// * Loop over charged tracks *
-			for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
 				/// <ol>
-				/// <li> Initialise PID and skip if it fails:
-					/// <ul>
-					if(!InitializePID(
-						/// <li> use <b>probability method</b>
-						fPIDInstance->methodProbability(),
-						/// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
-						fPIDInstance->useDedx() |
-						fPIDInstance->useTof1() |
-						fPIDInstance->useTof2() |
-						fPIDInstance->useTofE(),
-						/// <li> identify only pions and kaons
-						fPIDInstance->onlyPion() |
-						fPIDInstance->onlyKaon(),
-						/// <li> use \f$\chi^2 > 4.0\f$
-						4.0
-					)) continue;
-					/// </ul>
+				/// <li> Get EM calorimeter info.
+					fTrackEMC = (*fTrackIterator)->emcShower();
+					Hep3Vector emcpos = fTrackEMC->position();
 
-				/// <li> @b Write Particle Identification information of all tracks
-					WritePIDInformation();
+				/// <li> Find angle differences with nearest charged pion.
+					double smallestTheta = DBL_MAX; // start value for difference in theta
+					double smallestPhi   = DBL_MAX; // start value for difference in phi
+					double smallestAngle = DBL_MAX; // start value for difference in angle (?)
+					for(fPionNegIter = fGoodChargedTracks.begin(); fPionNegIter != fGoodChargedTracks.end(); ++fPionNegIter) {
+						/// * Get the extension object from MDC to EMC.
+						if(!(*fPionNegIter)->isExtTrackValid()) continue;
+						fTrackExt = (*fPionNegIter)->extTrack();
+						if(fTrackExt->emcVolumeNumber() == -1) continue;
+						Hep3Vector extpos(fTrackExt->emcPosition());
 
-				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
-					fTrackKal = (*fTrackIterator)->mdcKalTrack();
-					if(fPIDInstance->probPion() > fPIDInstance->probKaon()) { /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
-						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
-						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpipiKK.txt`).
-						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-						if(fTrackKal->charge()>0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+						/// * Get angles in @b radians.
+						// double cosTheta = extpos.cosTheta(emcpos);
+						double angle  = extpos.angle(emcpos);
+						double dTheta = extpos.theta() - emcpos.theta();
+						double dPhi   = extpos.deltaPhi(emcpos);
+						dTheta = fmod(dTheta + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
+						dPhi   = fmod(dPhi   + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
+						if(angle < smallestAngle){
+							smallestAngle = angle;
+							smallestTheta = dTheta;
+							smallestPhi   = dPhi;
+						}
 					}
-					else {
-						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
-						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
-						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-						if(fTrackKal->charge()<0) fKaonNeg.push_back(*fTrackIterator);
-						else                      fKaonPos.push_back(*fTrackIterator);
+
+				/// <li> Convert angles from radians to degrees.
+					smallestTheta *= (180. / (CLHEP::pi));
+					smallestPhi   *= (180. / (CLHEP::pi));
+					smallestAngle *= (180. / (CLHEP::pi));
+
+				/// <li> @b Write photon info (`"photon"` branch).
+					if(fNTuple_photon.DoWrite()) {
+						double eraw  = fTrackEMC->energy();
+						double phi   = fTrackEMC->phi();
+						double theta = fTrackEMC->theta();
+						HepLorentzVector four_mom(
+							eraw * sin(theta) * cos(phi),
+							eraw * sin(theta) * sin(phi),
+							eraw * cos(theta),
+							eraw);
+						fNTuple_photon.GetItem<double>("E")  = four_mom.e();
+						fNTuple_photon.GetItem<double>("px") = four_mom.px();
+						fNTuple_photon.GetItem<double>("py") = four_mom.py();
+						fNTuple_photon.GetItem<double>("pz") = four_mom.pz();
+						fNTuple_photon.GetItem<double>("smallest_phi")   = smallestTheta;
+						fNTuple_photon.GetItem<double>("smallest_theta") = smallestPhi;
+						fNTuple_photon.GetItem<double>("smallest_angle") = smallestAngle;
+						fNTuple_photon.Write();
 					}
+
+				/// <li> Apply photon cuts (energy cut has already been applied in TrackSelector)
+					if(
+						fCut_GammaTheta.FailsMax(fabs(smallestTheta)) &&
+						fCut_GammaPhi  .FailsMax(fabs(smallestPhi))) continue;
+					if(fCut_GammaAngle.FailsMax(fabs(smallestAngle))) continue;
+
+				/// <li> Add photon track to vector for gammas
+					fPhotons.push_back(*fTrackIterator);
 
 				/// </ol>
 			}
 
 
-		/// <li> @b Write the multiplicities of the selected particles.
+		/// <li> **Write** the multiplicities of the selected particles.
 			fLog << MSG::DEBUG
 				<< "N_{K^-} = "   << fKaonNeg.size() << ", "
 				<< "N_{K^+} = "   << fKaonPos.size() << ", "
@@ -216,22 +264,24 @@
 				fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
 				fNTuple_mult_sel.GetItem<int>("NKaonPos") = fKaonPos.size();
 				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
+				fNTuple_mult_sel.GetItem<int>("NPhoton")  = fPhotons.size();
 				fNTuple_mult_sel.Write();
 			}
 
 
-		/// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only:
+		/// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only continue if:
 			/// <ol>
 			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
 			if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
 			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
+			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$'s)
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
 			fLog << MSG::INFO << "PID selection passed for (run, event) = ("
 				<< fEventHeader->runNumber() << ", "
 				<< fEventHeader->eventNumber() << ")" << endmsg;
 
-		/// <li> @b Write \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
+		/// <li> **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
 			WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
 			WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
 			WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);

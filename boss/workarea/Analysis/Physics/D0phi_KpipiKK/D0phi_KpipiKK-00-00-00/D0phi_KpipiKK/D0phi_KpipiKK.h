@@ -72,6 +72,7 @@
 			NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing <i>all</i> combinations.
 			NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 4-constraint fit branch containing only the <i>best</i> combination.
 			NTupleContainer fNTuple_fit_mc;     ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
+			NTupleContainer fNTuple_photon;     ///< `NTuple::Tuple` container for the photon branch.
 			///@}
 
 
@@ -80,12 +81,16 @@
 			CutObject fCutFlow_NChargedOK;    ///< <b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want.
 			CutObject fCutFlow_NFitOK;        ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
 			CutObject fCutFlow_NPIDnumberOK;  ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
+			CutObject fCutFlow_NetChargeOK;  ///< <b>Cut flow counter</b>: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
 			CutObject fCutFlow_mD0_mphi;      ///< <b>Cut flow counter</b>: number of events that passed the wide cut on both masses.
 			CutObject fCutFlow_mD0_mphi_3sig; ///< <b>Cut flow counter</b>: number of events that passed the \f$3\sigma\f$ cut on both masses.
 			CutObject fCut_mD0;               ///< Loose cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
 			CutObject fCut_mD0_3sig;          ///< \f$3\sigma\f$ cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
 			CutObject fCut_mphi;              ///< Loose cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
 			CutObject fCut_mphi_3sig;         ///< \f$3\sigma\f$ cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
+			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
+			CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
+			CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.
 			///@}
 
 
