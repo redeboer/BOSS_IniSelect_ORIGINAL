@@ -35,17 +35,17 @@
 		/// * Construct base algorithm `TrackSelector`.
 			TrackSelector(name, pSvcLocator),
 		/// * Construct `NTuple::Tuple` containers used in derived classes.
-			fNTuple_dedx_K    ("dedx_K",      "dE/dx of the kaons"),
-			fNTuple_dedx_pi   ("dedx_pi",     "dE/dx of the pions"),
-			fNTuple_fit5c_all ("fit5c_all",   "5-constraint fit information (CMS 4-momentum)"),
-			fNTuple_fit5c_best("fit5c_best",  "5-constraint fit information of the invariant masses closest to the reconstructed particles"),
-			fNTuple_fit_mc    ("fit_mc",      "Fake fit information according to MC truth"),
-			fNTuple_photon    ("photon",  "Kinematics of selected photons"),
+			fNTuple_dedx_K    ("dedx_K",     "dE/dx of the kaons"),
+			fNTuple_dedx_pi   ("dedx_pi",    "dE/dx of the pions"),
+			fNTuple_fit5c_all ("fit5c_all",  "5-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit5c_best("fit5c_best", "5-constraint fit information of the invariant masses closest to the reconstructed particles"),
+			fNTuple_fit_mc    ("fit_mc",     "Fake fit information according to MC truth"),
+			fNTuple_photon    ("photon",     "Kinematics of selected photons"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
-			fCutFlow_NChargedOK   ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
-			fCutFlow_NFitOK       ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked"),
-			fCutFlow_NPIDnumberOK ("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-			fCutFlow_NetChargeOK  ("N_netcharge_OK", "Number of events where the total charge detected in the detectors was 0"),
+			fCutFlow_NChargedOK   ("N_charged_OK",    "Number of events that had exactly 4 charged tracks"),
+			fCutFlow_NFitOK       ("N_Fit_OK",        "Number of combinations where where the kinematic fit worked"),
+			fCutFlow_NPIDnumberOK ("N_PID_OK",        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+			fCutFlow_NetChargeOK  ("N_netcharge_OK",  "Number of events where the total charge detected in the detectors was 0"),
 			fCutFlow_mD0_mphi     ("N_mD0_mphi",      "Number of events that passed the wide cut on both invariant masses"),
 			fCutFlow_mD0_mphi_3sig("N_mD0_mphi_3sig", "Number of events that passed the 3sigma cut on both invariant masses"),
 		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.

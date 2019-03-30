@@ -106,7 +106,7 @@ set -e # exit if a command or function exits with a non-zero status
 	# * Loop over input files * #
 		jobNo=0 # set counter
 		for file in $(ls ${searchTerm}); do
-			echo "Parsing \"$(basename "${file}")\""
+			echo "Adding file names in \"$(basename "${file}")\" to \"ana_${packageName}_${jobNo}.txt\""
 
 			# * Format file for implementation into vector
 				FormatTextFileToCppVectorArguments "${file}"

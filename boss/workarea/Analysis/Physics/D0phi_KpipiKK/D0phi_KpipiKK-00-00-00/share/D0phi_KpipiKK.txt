@@ -19,10 +19,11 @@ D0phi_KpipiKK.write_topology = 1;
 // * Whether or not to fill a tree/NTuple (D0phi_KpipiKK) *
 D0phi_KpipiKK.write_dedx_K      = 0;
 D0phi_KpipiKK.write_dedx_pi     = 0;
-D0phi_KpipiKK.write_fit4c_all   = 1;
-D0phi_KpipiKK.write_fit4c_best  = 1;
+D0phi_KpipiKK.write_fit5c_all   = 1;
+D0phi_KpipiKK.write_fit5c_best  = 1;
 D0phi_KpipiKK.write_fit_mc      = 0;
 D0phi_KpipiKK.write_mult_select = 0;
+D0phi_KpipiKK.write_photon      = 0;
 
 // * Geometry cuts *
 D0phi_KpipiKK.cut_declen_z_max  = 10.;

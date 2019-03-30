@@ -13,20 +13,20 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK"
+packageName="D0phi_KpipiKK"
 nFilesPerJob=100
 nEventsPerJob=-1
 outputLevel=4
-data_or_MC=3 # 1: exclusive MC, 2: inclusive MC, 3: data
+data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ ${data_or_MC} == 1 ]; then 
-		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}_MC_1e5"
+		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}/100,000_events"
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ ${data_or_MC} == 2 ]; then
-		fileToRead="directories/incl/incl_Jpsi2009+2012"
-		nFilesPerJob=300
+		fileToRead="directories/incl/incl_Jpsi2009"
+		nFilesPerJob=100
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ ${data_or_MC} == 3 ]; then
