@@ -24,13 +24,65 @@
 
 
 
+		// * ======================= * //
+		// * ------- GLOBALS ------- * //
+		// * ======================= * //
+
+
+			// * Particle decay labels * //
+				const char* gTex_D0     {"#it{D}^{0}"};
+				const char* gTex_D0dec  {"#it{D}^{0} #rightarrow #it{K}^{-} #pi^{+}"};
+				const char* gTex_phi    {"#phi"};
+				const char* gTex_phidec {"#phi #rightarrow #it{K}^{-} #it{K}^{+}"};
+				const char* gMassUnit   {"GeV/#it{c}^{2}"};
+
+
+			// * Binnings full data * //
+				int gNBins_phi_full;
+				int gNBins_D0_full;
+				TString gBins_phi_full {"100"};
+				TString gBins_D0_full  {"100"};
+
+
+			// * Binnings 3 sigma cut * //
+				int gNBins_phi_3sig;
+				int gNBins_D0_3sig;
+				TString gBins_phi_3sig {"100"};
+				TString gBins_D0_3sig  {"100"};
+
+
+			// * determined statistically from distribution
+				double gM_D0 {1.872};
+				double gM_phi{1.021};
+				double gSigma_D0 {0.00426};
+				double gSigma_phi{0.00837};
+
+
+			// * determined from fit
+				// double gM_D0 {1.8719134};
+				// double gM_phi{1.0192461};
+				// double gSigma_D0 {0.00779};
+				// double gSigma_phi{0.00989};
+
+
+
 // * ============================ * //
 // * ------- DECLARATIONS ------- * //
 // * ============================ * //
 
 
+	class ParBase {
+	public:
+		ParBase(const char *name);
+		virtual bool Set(const std::string &name, const std::string &value) = 0;
+		static std::map<std::string, ParBase*> Instances;
+	protected:
+		const string fName;
+	};
+
+
 	template<class TYPE>
-	class Parameter {
+	class Parameter : public ParBase {
 	public:
 		Parameter(const char *name);
 		Parameter(const char *name, const TYPE val);
@@ -39,9 +91,7 @@
     TYPE* operator->() { return &fValue; }
 		// operator const char*() const;
 		bool Set(const std::string &name, const std::string &value);
-		static std::map<std::string, Parameter*> Instances;
 	private:
-		const string fName;
 		TYPE fValue;
 		void SetValue(const string &value);
 	};
@@ -56,80 +106,89 @@
 
 
 
-// * ======================= * //
-// * ------- GLOBALS ------- * //
-// * ======================= * //
-
-
-	// * File names * //
-		Parameter<TString> gDir_excl {"gDir_excl",   "/mnt/d/IHEP/root/D0phi_KpiKK/100,000_events"};
-		Parameter<TString> gDir_incl {"gDir_incl",   "/mnt/d/IHEP/root/D0phi_KpiKK/incl_Jpsi2009+2012"};
-		Parameter<TString> gDir_data {"gDir_data",   "/mnt/d/IHEP/root/D0phi_KpiKK/Jpsi2009+2012+2018_dst"};
-		Parameter<TString> gTreeName {"gTreeName",  "fit4c_best"};
-		Parameter<TString> gOutputDir{"gOutputDir", "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/"};
-
-
-	// * Switch settings (booleans) * //
-		Parameter<bool> gSetLogY   {"gSetLogY",   false};
-		Parameter<bool> gSetLogZ   {"gSetLogZ",   false};
-		Parameter<bool> gPlotStats {"gPlotStats", false};
-
-
-	// * Particle decay labels * //
-		const char* gTex_D0     {"#it{D}^{0}"};
-		const char* gTex_D0dec  {"#it{D}^{0} #rightarrow #it{K}^{-} #pi^{+}"};
-		const char* gTex_phi    {"#phi"};
-		const char* gTex_phidec {"#phi #rightarrow #it{K}^{-} #it{K}^{+}"};
-		const char* gMassUnit   {"GeV/#it{c}^{2}"};
-
-
-	// * Binnings full data * //
-		Parameter<double> gBinsMin_phi_full   {"gBinsMin_phi_full",   .95};
-		Parameter<double> gBinsMax_phi_full   {"gBinsMax_phi_full",   1.2};
-		Parameter<double> gBinsWidth_phi_full {"gBinsWidth_phi_full", .01};
-		Parameter<double> gBinsMin_D0_full    {"gBinsMin_D0_full",    1.6};
-		Parameter<double> gBinsMax_D0_full    {"gBinsMax_D0_full",    2.0};
-		Parameter<double> gBinsWidth_D0_full  {"gBinsWidth_D0_full",  .01};
-		int gNBins_phi_full;
-		int gNBins_D0_full;
-		TString gBins_phi_full {"100"};
-		TString gBins_D0_full  {"100"};
-	// * Binnings 3 sigma cut * //
-		Parameter<double> gBinsMin_phi_3sig   {"gBinsMin_phi_3sig",   .95};
-		Parameter<double> gBinsMax_phi_3sig   {"gBinsMax_phi_3sig",   1.2};
-		Parameter<double> gBinsWidth_phi_3sig {"gBinsWidth_phi_3sig", .01};
-		Parameter<double> gBinsMin_D0_3sig    {"gBinsMin_D0_3sig",    1.6};
-		Parameter<double> gBinsMax_D0_3sig    {"gBinsMax_D0_3sig",    2.0};
-		Parameter<double> gBinsWidth_D0_3sig  {"gBinsWidth_D0_3sig",  .01};
-		int gNBins_phi_3sig;
-		int gNBins_D0_3sig;
-		TString gBins_phi_3sig {"100"};
-		TString gBins_D0_3sig  {"100"};
-
-
-	// * TChains * //
-		TChain gChain_excl(gTreeName->Data());
-		TChain gChain_incl(gTreeName->Data());
-		TChain gChain_data(gTreeName->Data());
-	// * determined statistically from distribution
-		double gM_D0 {1.872};
-		double gM_phi{1.021};
-		double gSigma_D0 {0.00426};
-		double gSigma_phi{0.00837};
-	// * determined from fit
-		// double gM_D0 {1.8719134};
-		// double gM_phi{1.0192461};
-		// double gSigma_D0 {0.00779};
-		// double gSigma_phi{0.00989};
-
-
-
 // * ============================= * //
 // * ------- MAIN FUNCTION ------- * //
 // * ============================= * //
 	void backgroundEstimate(const char* settingsFile="quick/D0phi_KpiKK.set")
 	{
+
+
+		// * ------- GLOBALS ------- * //
+
+
+			// * File names * //
+				Parameter<TString> gDir_excl {"gDir_excl",   "/mnt/d/IHEP/root/D0phi_KpiKK/100,000_events"};
+				Parameter<TString> gDir_incl {"gDir_incl",   "/mnt/d/IHEP/root/D0phi_KpiKK/incl_Jpsi2009+2012"};
+				Parameter<TString> gDir_data {"gDir_data",   "/mnt/d/IHEP/root/D0phi_KpiKK/Jpsi2009+2012+2018_dst"};
+				Parameter<TString> gTreeName {"gTreeName",  "fit4c_best"};
+				Parameter<TString> gOutputDir{"gOutputDir", "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/"};
+
+
+			// * Switch settings (booleans) * //
+				Parameter<bool> gSetLogY   {"gSetLogY",   false};
+				Parameter<bool> gSetLogZ   {"gSetLogZ",   false};
+				Parameter<bool> gPlotStats {"gPlotStats", false};
+
+
+			// * Particle decay labels * //
+				const char* gTex_D0     {"#it{D}^{0}"};
+				const char* gTex_D0dec  {"#it{D}^{0} #rightarrow #it{K}^{-} #pi^{+}"};
+				const char* gTex_phi    {"#phi"};
+				const char* gTex_phidec {"#phi #rightarrow #it{K}^{-} #it{K}^{+}"};
+				const char* gMassUnit   {"GeV/#it{c}^{2}"};
+
+
+			// * Binnings full data * //
+				static Parameter<double> gBinsMin_phi_full   {"gBinsMin_phi_full",   .95};
+				static Parameter<double> gBinsMax_phi_full   {"gBinsMax_phi_full",   1.2};
+				static Parameter<double> gBinsWidth_phi_full {"gBinsWidth_phi_full", .01};
+				static Parameter<double> gBinsMin_D0_full    {"gBinsMin_D0_full",    1.6};
+				static Parameter<double> gBinsMax_D0_full    {"gBinsMax_D0_full",    2.0};
+				static Parameter<double> gBinsWidth_D0_full  {"gBinsWidth_D0_full",  .01};
+				int gNBins_phi_full;
+				int gNBins_D0_full;
+				TString gBins_phi_full {"100"};
+				TString gBins_D0_full  {"100"};
+			// * Binnings 3 sigma cut * //
+				Parameter<double> gBinsMin_phi_3sig   {"gBinsMin_phi_3sig",   .95};
+				Parameter<double> gBinsMax_phi_3sig   {"gBinsMax_phi_3sig",   1.2};
+				Parameter<double> gBinsWidth_phi_3sig {"gBinsWidth_phi_3sig", .01};
+				Parameter<double> gBinsMin_D0_3sig    {"gBinsMin_D0_3sig",    1.6};
+				Parameter<double> gBinsMax_D0_3sig    {"gBinsMax_D0_3sig",    2.0};
+				Parameter<double> gBinsWidth_D0_3sig  {"gBinsWidth_D0_3sig",  .01};
+				int gNBins_phi_3sig;
+				int gNBins_D0_3sig;
+				TString gBins_phi_3sig {"100"};
+				TString gBins_D0_3sig  {"100"};
+
+
+			// * TChains * //
+				TChain gChain_excl(gTreeName->Data());
+				TChain gChain_incl(gTreeName->Data());
+				TChain gChain_data(gTreeName->Data());
+			// * determined statistically from distribution
+				double gM_D0 {1.872};
+				double gM_phi{1.021};
+				double gSigma_D0 {0.00426};
+				double gSigma_phi{0.00837};
+			// * determined from fit
+				// double gM_D0 {1.8719134};
+				// double gM_phi{1.0192461};
+				// double gSigma_D0 {0.00779};
+				// double gSigma_phi{0.00989};
 		LoadSettings(settingsFile);
+		// * Set new nbins full range
+			gNBins_phi_full = ((gBinsMax_phi_full - gBinsMin_phi_full)/gBinsWidth_phi_full);
+			gNBins_D0_full  = ((gBinsMax_D0_full  - gBinsMin_D0_full)/gBinsWidth_D0_full);
+			gBins_phi_full = Form("%d,%f,%f", gNBins_phi_full, (double)gBinsMin_phi_full, (double)gBinsMax_phi_full);
+			gBins_D0_full  = Form("%d,%f,%f", gNBins_D0_full , (double)gBinsMin_D0_full , (double)gBinsMax_D0_full );
+		// * Set new nbins full range
+			gNBins_phi_3sig = ((gBinsMax_phi_3sig - gBinsMin_phi_3sig)/gBinsWidth_phi_3sig);
+			gNBins_D0_3sig  = ((gBinsMax_D0_3sig  - gBinsMin_D0_3sig)/gBinsWidth_D0_3sig);
+			gBins_phi_3sig = Form("%d,%f,%f", gNBins_phi_3sig, (double)gBinsMin_phi_3sig, (double)gBinsMax_phi_3sig);
+			gBins_D0_3sig  = Form("%d,%f,%f", gNBins_D0_3sig , (double)gBinsMin_D0_3sig , (double)gBinsMax_D0_3sig );
+		// * Implement switch settings
+			if(!gPlotStats) gStyle->SetOptStat(0);
 		// * Load directory of ROOT files * //
 			LoadChain(gChain_excl, gDir_excl);
 			LoadChain(gChain_incl, gDir_incl);
@@ -220,9 +279,114 @@
 
 
 
-// * =========================== * //
-// * ------- DEFINITIONS ------- * //
-// * =========================== * //
+// * ======================================== * //
+// * ------- CLASS METHOD DEFINITIONS ------- * //
+// * ======================================== * //
+
+
+	ParBase::ParBase(const char *name) : fName(name){
+		if(Instances.find(name) != Instances.end()) {
+			cout << "FATAL ERROR: Parameter \"" << name << "\" already exists" << endl;
+			terminate();
+		}
+		Instances.emplace(name, this);
+	}
+
+	map<std::string, ParBase*> ParBase::Instances;
+
+
+	template<class TYPE>
+	Parameter<TYPE>::Parameter(const char *name) : ParBase(name) {}
+
+
+	template<class TYPE>
+	Parameter<TYPE>::Parameter(const char *name, const TYPE val) : ParBase(name), fValue(val) {}
+
+
+	template<class TYPE>
+	TYPE Draw(TChain &chain, const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle, const Color_t linecolor, const char *outputFile, const bool buildlegend, const double mass, const double sigma)
+	{
+		// * Add binning to varexp
+			TString varExp;
+			if(binning) varExp = Form("%s>>output(%s)", varexp, binning);
+			else        varExp = varexp;
+		// * Draw branch(es) with TTree::Draw method
+			TTimeStamp stamp;
+			chain.Draw(Form("%s>>hist%d(%s)", varexp, stamp.GetNanoSec(), binning), selection, option);
+		// * Get histogram from TPad
+			TH1* hist = dynamic_cast<TH1*>(gPad->GetPrimitive(Form("hist%d", stamp.GetNanoSec())));
+			if(!dynamic_cast<TYPE>(hist)){
+				return nullptr;
+			}
+		// * Modify histogram
+			hist->GetXaxis()->SetTitle(xTitle);
+			hist->GetYaxis()->SetTitle(yTitle);
+			if(linecolor) hist->SetLineColor(linecolor);
+			// if(gSetLogY) gPad->SetLogy();
+			// if(gSetLogZ) gPad->SetLogz();
+			gPad->Update();
+			double x1, y1, x2, y2;
+			gPad->GetRangeAxis(x1, y1, x2, y2);
+			// if(!gSetLogY) hist->GetYaxis()->SetRangeUser(0., y2);
+			// else y2 = DBL_MAX;
+			if(buildlegend) gPad->BuildLegend();
+		// * Draw mass lines
+			if(mass<DBL_MAX) {
+				auto line = new TLine(mass, 0, mass, y2);
+				line->SetLineStyle(9);
+				line->SetLineColor(kGray+2);
+				line->Draw();
+			}
+			if(mass<DBL_MAX) {
+				auto line1 = new TLine(mass+3*sigma, 0, mass+3*sigma, y2);
+				auto line2 = new TLine(mass-3*sigma, 0, mass-3*sigma, y2);
+				line1->SetLineColor(kGray+2);
+				line2->SetLineColor(kGray+2);
+				line1->SetLineStyle(3);
+				line2->SetLineStyle(3);
+				line1->Draw();
+				line2->Draw();
+			}
+		// * Set output file name and save canvas
+			// if(outputFile) gPad->SaveAs((gOutputDir+outputFile).Data());
+		return dynamic_cast<TYPE>(hist);
+	}
+
+
+	template<class TYPE>
+	void Parameter<TYPE>::operator=(const TYPE val)
+	{
+		fValue = val;
+	}
+
+
+	template<class TYPE>
+	bool Parameter<TYPE>::Set(const std::string &name, const std::string &value)
+	{
+		if(fName.compare(name)) return false;
+		SetValue(value);
+		return true;
+	}
+
+
+	template<class TYPE>
+	void Parameter<TYPE>::SetValue(const string &value)
+	{
+		stringstream ss(value);
+		ss >> fValue;
+	}
+
+
+	template<> void Parameter<TString>::SetValue(const string &value)
+	{
+		fValue = value;
+	}
+
+
+
+// * ==================================== * //
+// * ------- FUNCTION DEFINITIONS ------- * //
+// * ==================================== * //
 
 
 	void LoadChain(TChain &chain, const Parameter<TString> &par)
@@ -305,135 +469,9 @@
 				TrimString(name);
 				TrimString(val);
 				// Set file and directory names
-				if(gDir_excl .Set(name, val)) continue;
-				if(gDir_incl .Set(name, val)) continue;
-				if(gDir_data .Set(name, val)) continue;
-				if(gTreeName .Set(name, val)) continue;
-				if(gOutputDir.Set(name, val)) continue;
-				// Set binnings full data
-				if(gBinsMin_phi_full  .Set(name, val)) continue;
-				if(gBinsMax_phi_full  .Set(name, val)) continue;
-				if(gBinsWidth_phi_full.Set(name, val)) continue;
-				if(gBinsMin_D0_full   .Set(name, val)) continue;
-				if(gBinsMax_D0_full   .Set(name, val)) continue;
-				if(gBinsWidth_D0_full .Set(name, val)) continue;
-				// Set binnings 3 sigma cut
-				if(gBinsMin_phi_3sig  .Set(name, val)) continue;
-				if(gBinsMax_phi_3sig  .Set(name, val)) continue;
-				if(gBinsWidth_phi_3sig.Set(name, val)) continue;
-				if(gBinsMin_D0_3sig   .Set(name, val)) continue;
-				if(gBinsMax_D0_3sig   .Set(name, val)) continue;
-				if(gBinsWidth_D0_3sig .Set(name, val)) continue;
-				// Set switch settings
-				if(gSetLogY  .Set(name, val)) continue;
-				if(gSetLogZ  .Set(name, val)) continue;
-				if(gPlotStats.Set(name, val)) continue;
+				for(auto &it : ParBase::Instances)
+					if(it.second->Set(name, val)) return;
 				// Default
 				cout << "WARNING: Parameter \"" << name << "\" not defined" << endl;
 			}
-		// * Set new nbins full range
-			gNBins_phi_full = ((gBinsMax_phi_full - gBinsMin_phi_full)/gBinsWidth_phi_full);
-			gNBins_D0_full  = ((gBinsMax_D0_full  - gBinsMin_D0_full)/gBinsWidth_D0_full);
-			gBins_phi_full = Form("%d,%f,%f", gNBins_phi_full, (double)gBinsMin_phi_full, (double)gBinsMax_phi_full);
-			gBins_D0_full  = Form("%d,%f,%f", gNBins_D0_full , (double)gBinsMin_D0_full , (double)gBinsMax_D0_full );
-		// * Set new nbins full range
-			gNBins_phi_3sig = ((gBinsMax_phi_3sig - gBinsMin_phi_3sig)/gBinsWidth_phi_3sig);
-			gNBins_D0_3sig  = ((gBinsMax_D0_3sig  - gBinsMin_D0_3sig)/gBinsWidth_D0_3sig);
-			gBins_phi_3sig = Form("%d,%f,%f", gNBins_phi_3sig, (double)gBinsMin_phi_3sig, (double)gBinsMax_phi_3sig);
-			gBins_D0_3sig  = Form("%d,%f,%f", gNBins_D0_3sig , (double)gBinsMin_D0_3sig , (double)gBinsMax_D0_3sig );
-		// * Implement switch settings
-			if(!gPlotStats) gStyle->SetOptStat(0);
-	}
-
-	template<class TYPE>
-	TYPE Draw(TChain &chain, const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle, const Color_t linecolor, const char *outputFile, const bool buildlegend, const double mass, const double sigma)
-	{
-		// * Add binning to varexp
-			TString varExp;
-			if(binning) varExp = Form("%s>>output(%s)", varexp, binning);
-			else        varExp = varexp;
-		// * Draw branch(es) with TTree::Draw method
-			TTimeStamp stamp;
-			chain.Draw(Form("%s>>hist%d(%s)", varexp, stamp.GetNanoSec(), binning), selection, option);
-		// * Get histogram from TPad
-			TH1* hist = dynamic_cast<TH1*>(gPad->GetPrimitive(Form("hist%d", stamp.GetNanoSec())));
-			if(!dynamic_cast<TYPE>(hist)){
-				return nullptr;
-			}
-		// * Modify histogram
-			hist->GetXaxis()->SetTitle(xTitle);
-			hist->GetYaxis()->SetTitle(yTitle);
-			if(linecolor) hist->SetLineColor(linecolor);
-			if(gSetLogY) gPad->SetLogy();
-			if(gSetLogZ) gPad->SetLogz();
-			gPad->Update();
-			double x1, y1, x2, y2;
-			gPad->GetRangeAxis(x1, y1, x2, y2);
-			if(!gSetLogY) hist->GetYaxis()->SetRangeUser(0., y2);
-			else y2 = DBL_MAX;
-			if(buildlegend) gPad->BuildLegend();
-		// * Draw mass lines
-			if(mass<DBL_MAX) {
-				auto line = new TLine(mass, 0, mass, y2);
-				line->SetLineStyle(9);
-				line->SetLineColor(kGray+2);
-				line->Draw();
-			}
-			if(mass<DBL_MAX) {
-				auto line1 = new TLine(mass+3*sigma, 0, mass+3*sigma, y2);
-				auto line2 = new TLine(mass-3*sigma, 0, mass-3*sigma, y2);
-				line1->SetLineColor(kGray+2);
-				line2->SetLineColor(kGray+2);
-				line1->SetLineStyle(3);
-				line2->SetLineStyle(3);
-				line1->Draw();
-				line2->Draw();
-			}
-		// * Set output file name and save canvas
-			if(outputFile) gPad->SaveAs((gOutputDir+outputFile).Data());
-		return dynamic_cast<TYPE>(hist);
-	}
-
-
-	template<class TYPE>
-	Parameter<TYPE>::Parameter(const char *name) : fName(name) {
-		if(Instances.find(name) != Instances.end()) {
-			std::cout << "FATAL ERROR: Parameter \"" << name << "\" already exists" << std::endl;
-			std::terminate();
-		}
-		Instances.emplace(name, this);
-	}
-
-
-	template<class TYPE>
-	Parameter<TYPE>::Parameter(const char *name, const TYPE val) : fName(name), fValue(val) {}
-
-
-	template<class TYPE>
-	void Parameter<TYPE>::operator=(const TYPE val)
-	{
-		fValue = val;
-	}
-
-
-	template<class TYPE>
-	bool Parameter<TYPE>::Set(const std::string &name, const std::string &value)
-	{
-		if(fName.compare(name)) return false;
-		SetValue(value);
-		return true;
-	}
-
-
-	template<class TYPE>
-	void Parameter<TYPE>::SetValue(const string &value)
-	{
-		stringstream ss(value);
-		ss >> fValue;
-	}
-
-
-	template<> void Parameter<TString>::SetValue(const string &value)
-	{
-		fValue = value;
 	}
