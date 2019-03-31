@@ -36,9 +36,10 @@
 		Parameter(const char *name, const TYPE val);
 		void operator=(const TYPE val);
 		operator TYPE() const { return fValue; }
-		const char* Data() const;
+    TYPE* operator->() { return &fValue; }
 		// operator const char*() const;
 		bool Set(const std::string &name, const std::string &value);
+		static std::map<std::string, Parameter*> Instances;
 	private:
 		const string fName;
 		TYPE fValue;
@@ -46,13 +47,12 @@
 	};
 
 
-	template<> const char* Parameter<TString>::Data() const;
-
-
+	void LoadChain(TChain &chain, const Parameter<TString> &par);
+	void TrimString(string &line);
 	void TrimString(string &line);
 	void LoadSettings(const char* filename);
 	template<class TYPE>
-	TYPE Draw(const char *varexp, const char *selection, Option_t *option="", const char *binning=nullptr, const char *xTitle=nullptr, const char *yTitle=nullptr, const Color_t linecolor=0, const char *outputFile=nullptr, const bool buildlegend=false, const double mass=DBL_MAX, const double sigma=DBL_MAX);
+	TYPE Draw(TChain &chain, const char *varexp, const char *selection, Option_t *option="", const char *binning=nullptr, const char *xTitle=nullptr, const char *yTitle=nullptr, const Color_t linecolor=0, const char *outputFile=nullptr, const bool buildlegend=false, const double mass=DBL_MAX, const double sigma=DBL_MAX);
 
 
 
@@ -62,7 +62,9 @@
 
 
 	// * File names * //
-		Parameter<TString> gDirName  {"gDirName",   "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"};
+		Parameter<TString> gDir_excl {"gDir_excl",   "/mnt/d/IHEP/root/D0phi_KpiKK/100,000_events"};
+		Parameter<TString> gDir_incl {"gDir_incl",   "/mnt/d/IHEP/root/D0phi_KpiKK/incl_Jpsi2009+2012"};
+		Parameter<TString> gDir_data {"gDir_data",   "/mnt/d/IHEP/root/D0phi_KpiKK/Jpsi2009+2012+2018_dst"};
 		Parameter<TString> gTreeName {"gTreeName",  "fit4c_best"};
 		Parameter<TString> gOutputDir{"gOutputDir", "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/"};
 
@@ -105,7 +107,10 @@
 		TString gBins_D0_3sig  {"100"};
 
 
-	TChain gChain(gTreeName.Data());
+	// * TChains * //
+		TChain gChain_excl(gTreeName->Data());
+		TChain gChain_incl(gTreeName->Data());
+		TChain gChain_data(gTreeName->Data());
 	// * determined statistically from distribution
 		double gM_D0 {1.872};
 		double gM_phi{1.021};
@@ -122,123 +127,92 @@
 // * ============================= * //
 // * ------- MAIN FUNCTION ------- * //
 // * ============================= * //
-	void sideband(const char* settingsFile="quick/D0phi_KpiKK_excl.set")
+	void backgroundEstimate(const char* settingsFile="quick/D0phi_KpiKK.set")
 	{
 		LoadSettings(settingsFile);
 		// * Load directory of ROOT files * //
-			TString dirname((TString)gDirName);
-			if(!dirname.EndsWith("/")) dirname += "/";
-			TSystemDirectory dir(dirname.Data(), dirname.Data());
-			auto listOfFiles = dir.GetListOfFiles();
-			if(!listOfFiles) {
-				return;
-			}
-
-		// * Add files to a TChain * //
-			TIter next(listOfFiles);
-			while(auto obj = next()) {
-				TString filename(obj->GetName());
-				if(!filename.EndsWith(".root")) continue;
-				TFile test((dirname+filename).Data());
-				if(test.IsZombie()) continue;
-				gChain.AddFile((dirname+filename).Data());
-			}
-
-		// * Check chain * //
-			auto listOfAddedFiles = gChain.GetListOfFiles();
-			if(!listOfAddedFiles || !listOfAddedFiles->GetEntries()) {
-				return;
-			}
-			auto listOfBranches = gChain.GetListOfBranches();
-			if(!listOfBranches || !listOfBranches->GetEntries()) {
-				return;
-			}
-			if(!gChain.GetTree()) {
-				((TFile*)listOfAddedFiles->First())->ls();
-				return;
-			}
-			TIter next2(listOfBranches);
-			while(auto obj = next2()) {
-			}
+			LoadChain(gChain_excl, gDir_excl);
+			LoadChain(gChain_incl, gDir_incl);
+			LoadChain(gChain_data, gDir_data);
 
 
 		// * Create output directory * //
-			gSystem->mkdir(gOutputDir.Data());
+			gSystem->mkdir(gOutputDir->Data());
 
-		// * Plot branches * //
-			cout << endl;
+		// * Signal analysis (excl MC) * //
+			cout << endl << endl << "SIGNAL ANALYSIS (EXCLUSIVE MC)" << endl;
 			TCanvas c;
 
 			// * D0
-				Draw<TH1F*>(
-					"mD0", "", "e1", gBins_D0_full,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_full, gMassUnit),
-					0, "mD0_full.pdf", false, gM_D0, gSigma_D0);
-				Draw<TH1F*>(
-					"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1", gBins_D0_3sig,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
-					kRed, "mD0_3sig.pdf", false, gM_D0, gSigma_D0);
+				// Draw<TH1F*>(gChain_excl,
+				// 	"mD0", "", "e1", gBins_D0_full,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_full, gMassUnit),
+				// 	0, "mD0_full.pdf", false, gM_D0, gSigma_D0);
+				// Draw<TH1F*>(gChain_excl,
+				// 	"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1", gBins_D0_3sig,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+				// 	kRed, "mD0_3sig.pdf", false, gM_D0, gSigma_D0);
 
-				Draw<TH1F*>(
-					"mD0", "", "e1", gBins_D0_3sig,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit));
-				Draw<TH1F*>( // SIDEBAND
-					"mD0", "mphi>1.1 && mphi<1.5", "e1 same", gBins_D0_3sig,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
-					kOrange-2);
-				Draw<TH1F*>(
-					"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1 same", gBins_D0_3sig,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
-					kRed, "mD0.pdf", true, gM_D0, gSigma_D0);
+				// Draw<TH1F*>(
+				// 	"mD0", "", "e1", gBins_D0_3sig,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit));
+				// Draw<TH1F*>( // SIDEBAND
+				// 	"mD0", "mphi>1.1 && mphi<1.5", "e1 same", gBins_D0_3sig,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+				// 	kOrange-2);
+				// Draw<TH1F*>(
+				// 	"mD0", Form("mphi>%f && mphi<%f", gM_phi-3*gSigma_phi, gM_phi+3*gSigma_phi), "e1 same", gBins_D0_3sig,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+				// 	kRed, "mD0.pdf", true, gM_D0, gSigma_D0);
 
 			// * phi
-				Draw<TH1F*>(
-					"mphi", "", "e1", gBins_phi_full,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_full, gMassUnit),
-					0, "mphi_full.pdf", false, gM_phi, gSigma_phi);
-				Draw<TH1F*>(
-					"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
-					kRed, "mphi_3sig.pdf", false, gM_phi, gSigma_phi);
+				// Draw<TH1F*>(
+				// 	"mphi", "", "e1", gBins_phi_full,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_full, gMassUnit),
+				// 	0, "mphi_full.pdf", false, gM_phi, gSigma_phi);
+				// Draw<TH1F*>(
+				// 	"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+				// 	kRed, "mphi_3sig.pdf", false, gM_phi, gSigma_phi);
 
-				Draw<TH1F*>(
-					"mphi", "", "e1", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit));
-				Draw<TH1F*>(
-					"mphi", "mD0>1.7 && mD0<2.0", "e1 same", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
-					kGreen+2);
-				Draw<TH1F*>( // SIDEBAND
-					"mphi", "mD0>1.2 && mD0<1.8", "e1 same", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
-					kOrange-2);
-				Draw<TH1F*>(
-					"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1 same", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
-					kRed, "mphi.pdf", true, gM_phi, gSigma_phi);
+				// Draw<TH1F*>(
+				// 	"mphi", "", "e1", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit));
+				// Draw<TH1F*>(
+				// 	"mphi", "mD0>1.7 && mD0<2.0", "e1 same", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+				// 	kGreen+2);
+				// Draw<TH1F*>( // SIDEBAND
+				// 	"mphi", "mD0>1.2 && mD0<1.8", "e1 same", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+				// 	kOrange-2);
+				// Draw<TH1F*>(
+				// 	"mphi", Form("mD0>%f && mD0<%f", gM_D0-3*gSigma_D0, gM_D0+3*gSigma_D0), "e1 same", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+				// 	kRed, "mphi.pdf", true, gM_phi, gSigma_phi);
 
-				Draw<TH1F*>(
-					"mD0", "mphi>1.1 && mphi<1.5", "e1", gBins_D0_3sig,
-					Form("%s (%s)", gTex_D0dec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
-					0, "mD0_sideband.pdf");
+				// Draw<TH1F*>(
+				// 	"mD0", "mphi>1.1 && mphi<1.5", "e1", gBins_D0_3sig,
+				// 	Form("%s (%s)", gTex_D0dec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_D0_3sig, gMassUnit),
+				// 	0, "mD0_sideband.pdf");
 
-				Draw<TH1F*>(
-					"mphi", "mD0>1.2 && mD0<1.8", "e1", gBins_phi_3sig,
-					Form("%s (%s)", gTex_phidec, gMassUnit),
-					Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
-					0, "mphi_sideband.pdf");
+				// Draw<TH1F*>(
+				// 	"mphi", "mD0>1.2 && mD0<1.8", "e1", gBins_phi_3sig,
+				// 	Form("%s (%s)", gTex_phidec, gMassUnit),
+				// 	Form("counts per %g %s", (double)gBinsWidth_phi_3sig, gMassUnit),
+				// 	0, "mphi_sideband.pdf");
 
 			cout << endl;
 			exit(1);
@@ -249,6 +223,47 @@
 // * =========================== * //
 // * ------- DEFINITIONS ------- * //
 // * =========================== * //
+
+
+	void LoadChain(TChain &chain, const Parameter<TString> &par)
+	{
+		// * Load directory of ROOT files * //
+			TString dirname((TString)par);
+			if(!dirname.EndsWith("/")) dirname += "/";
+			TSystemDirectory dir(dirname.Data(), dirname.Data());
+			auto listOfFiles = dir.GetListOfFiles();
+			if(!listOfFiles) {
+				cout << "FATAL ERROR: No files loaded in TChain \"" << par << "\"" << endl;
+				std::terminate();
+			}
+
+		// * Add files to a TChain * //
+			TIter next(listOfFiles);
+			while(auto obj = next()) {
+				TString filename(obj->GetName());
+				if(!filename.EndsWith(".root")) continue;
+				TFile test((dirname+filename).Data());
+				if(test.IsZombie()) continue;
+				chain.AddFile((dirname+filename).Data());
+			}
+
+		// * Check chain * //
+			auto listOfAddedFiles = chain.GetListOfFiles();
+			if(!listOfAddedFiles || !listOfAddedFiles->GetEntries()) {
+				return;
+			}
+			auto listOfBranches = chain.GetListOfBranches();
+			if(!listOfBranches || !listOfBranches->GetEntries()) {
+				return;
+			}
+			if(!chain.GetTree()) {
+				((TFile*)listOfAddedFiles->First())->ls();
+				return;
+			}
+			TIter next2(listOfBranches);
+			while(auto obj = next2()) {
+			}
+	}
 
 
 	void TrimString(string &line)
@@ -290,7 +305,9 @@
 				TrimString(name);
 				TrimString(val);
 				// Set file and directory names
-				if(gDirName  .Set(name, val)) continue;
+				if(gDir_excl .Set(name, val)) continue;
+				if(gDir_incl .Set(name, val)) continue;
+				if(gDir_data .Set(name, val)) continue;
 				if(gTreeName .Set(name, val)) continue;
 				if(gOutputDir.Set(name, val)) continue;
 				// Set binnings full data
@@ -329,7 +346,7 @@
 	}
 
 	template<class TYPE>
-	TYPE Draw(const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle, const Color_t linecolor, const char *outputFile, const bool buildlegend, const double mass, const double sigma)
+	TYPE Draw(TChain &chain, const char *varexp, const char *selection, Option_t *option, const char *binning, const char *xTitle, const char *yTitle, const Color_t linecolor, const char *outputFile, const bool buildlegend, const double mass, const double sigma)
 	{
 		// * Add binning to varexp
 			TString varExp;
@@ -337,7 +354,7 @@
 			else        varExp = varexp;
 		// * Draw branch(es) with TTree::Draw method
 			TTimeStamp stamp;
-			gChain.Draw(Form("%s>>hist%d(%s)", varexp, stamp.GetNanoSec(), binning), selection, option);
+			chain.Draw(Form("%s>>hist%d(%s)", varexp, stamp.GetNanoSec(), binning), selection, option);
 		// * Get histogram from TPad
 			TH1* hist = dynamic_cast<TH1*>(gPad->GetPrimitive(Form("hist%d", stamp.GetNanoSec())));
 			if(!dynamic_cast<TYPE>(hist)){
@@ -379,7 +396,13 @@
 
 
 	template<class TYPE>
-	Parameter<TYPE>::Parameter(const char *name) : fName(name) {}
+	Parameter<TYPE>::Parameter(const char *name) : fName(name) {
+		if(Instances.find(name) != Instances.end()) {
+			std::cout << "FATAL ERROR: Parameter \"" << name << "\" already exists" << std::endl;
+			std::terminate();
+		}
+		Instances.emplace(name, this);
+	}
 
 
 	template<class TYPE>
@@ -390,12 +413,6 @@
 	void Parameter<TYPE>::operator=(const TYPE val)
 	{
 		fValue = val;
-	}
-
-
-	template<> const char* Parameter<TString>::Data() const
-	{
-		return fValue.Data();
 	}
 
 

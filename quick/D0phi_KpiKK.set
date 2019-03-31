@@ -1,0 +1,28 @@
+// * Filenames * //
+	gDir_excl   = "/mnt/d/IHEP/root/D0phi_KpiKK/excl/1e6"
+	gDir_incl   = "/mnt/d/IHEP/root/D0phi_KpiKK/incl_Jpsi2009+2012"
+	gDir_data   = "/mnt/d/IHEP/root/D0phi_KpiKK/Jpsi2009+2012+2018_dst"
+	gTreeName  = "fit4c_best"
+	gOutputDir = "/mnt/c/IHEP/besfs/users/deboer/BOSS_Afterburner/plots/quick/backgroundEstimate/"
+
+// * Binnings phi * //
+	gBinsMin_phi_full   = .98
+	gBinsMax_phi_full   = 1.1
+	gBinsWidth_phi_full = .002
+
+	gBinsMin_phi_3sig   = .98
+	gBinsMax_phi_3sig   = 1.1
+	gBinsWidth_phi_3sig = .002
+
+// * Binnings D0 * //
+	gBinsMin_D0_full    = 1.76
+	gBinsMax_D0_full    = 1.91
+	gBinsWidth_D0_full  = .005
+
+	gBinsMin_D0_3sig    = 1.76
+	gBinsMax_D0_3sig    = 1.91
+	gBinsWidth_D0_3sig  = .01
+
+// * Plot settings * //
+	gSetLogY = 0
+	gPlotStats = 1
