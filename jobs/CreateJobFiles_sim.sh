@@ -86,7 +86,7 @@ set -e # exit if a command or function exits with a non-zero status
 		echo "   \"${outputDir_rec}\""
 		echo "   \"${outputDir_sub}\""
 		echo
-		echo "  --> Total number of events: $(printf "%'d" $((${nJobs} * ${nEventsPerJob})))"
+		echo "  --> Total number of events: $((${nJobs} * ${nEventsPerJob}))"
 		echo
 		AskForInput "Write ${nJobs} \"${packageName}\" simulation and reconstruction job files?"
 

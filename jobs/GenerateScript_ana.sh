@@ -12,26 +12,33 @@
 
 source CommonFunctions.sh
 
-# * Scripts parameters * #
-packageName="D0phi_KpipiKK"
-nFilesPerJob=100
-nEventsPerJob=-1
-outputLevel=4
-data_or_MC=2 # 1: exclusive MC, 2: inclusive MC, 3: data
+# * Input parameters * #
+	# * (1) Package name
+	packageName="D0phi_KpiKK" # default argument
+	if [ $# -ge 1 ]; then packageName="${1}"; fi
+	# * (2) Input files that will be used to create the list of dst files
+	data_or_MC="data" # default argument
+	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
+
+# * Default parameters * #
+	nFilesPerJob=100
+	nEventsPerJob=-1
+	outputLevel=4
 
 # * In case of analysing EXclusive Monte Carlo output * #
-	if [ ${data_or_MC} == 1 ]; then 
+	if [ "${data_or_MC}" == "excl" ]; then 
 		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}/100,000_events"
+		nFilesPerJob=-1
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
-	elif [ ${data_or_MC} == 2 ]; then
+	elif [ "${data_or_MC}" == "incl" ]; then
 		fileToRead="directories/incl/incl_Jpsi2009"
 		nFilesPerJob=100
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
-	elif [ ${data_or_MC} == 3 ]; then
+	elif [ "${data_or_MC}" == "data" ]; then
 		fileToRead="directories/data/data_Jpsi2018_round11"
-		nFilesPerJob=100
+		nFilesPerJob=300
 		identifier="${packageName}_data"
 # * If not defined properly * #
 	else

@@ -13,11 +13,11 @@
 source CommonFunctions.sh
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK"
+packageName="D0phi_KpipiKK"
 nJobs=20
 nEventsPerJob=5000
 outputLevel=4
-outputSubdir="${packageName}/$(printf "%'d" $((${nJobs} * ${nEventsPerJob})))_events"
+outputSubdir="${packageName}/$(printf "%d" $((${nJobs} * ${nEventsPerJob})))_events"
 
 # * Create job from template and submit * #
 bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
