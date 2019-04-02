@@ -78,6 +78,7 @@ main
 *.bosserr
 *.bosslog
 *.tmp
+jobs/temp.sh
 
 # Compontents of topoana
 **.dat_auto

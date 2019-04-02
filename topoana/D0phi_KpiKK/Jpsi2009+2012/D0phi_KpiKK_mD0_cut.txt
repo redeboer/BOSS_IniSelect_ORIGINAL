@@ -1,0 +1,228 @@
+Decay trees and their respective final states:
+
+index:  1	iDcyTr:  2	iDcyFSt:  0	nEtrs:  104	nCmltEtrs:  104
+  e+ e- --> J/psi
+  J/psi --> phi f_0(1790)
+  phi --> K+ K-
+  f_0(1790) --> pi+ pi-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  2	iDcyTr:  5	iDcyFSt:  0	nEtrs:  31	nCmltEtrs:  135
+  e+ e- --> J/psi
+  J/psi --> pi+ pi- phi
+  phi --> K+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  3	iDcyTr:  0	iDcyFSt:  0	nEtrs:  16	nCmltEtrs:  151
+  e+ e- --> J/psi
+  J/psi --> anti-K*0 K_2*0
+  anti-K*0 --> pi+ K-
+  K_2*0 --> pi- K+
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  4	iDcyTr:  3	iDcyFSt:  0	nEtrs:  10	nCmltEtrs:  161
+  e+ e- --> J/psi
+  J/psi --> pi+ pi- a_00
+  a_00 --> K+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  5	iDcyTr:  1	iDcyFSt:  0	nEtrs:  5	nCmltEtrs:  166
+  e+ e- --> J/psi
+  J/psi --> pi+ pi- K+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  6	iDcyTr:  4	iDcyFSt:  0	nEtrs:  4	nCmltEtrs:  170
+  e+ e- --> J/psi
+  J/psi --> pi+ K_2*0 K-
+  K_2*0 --> pi- K+
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  7	iDcyTr:  12	iDcyFSt:  3	nEtrs:  4	nCmltEtrs:  174
+  e+ e- --> J/psi
+  J/psi --> pi0 pi+ pi- K+ K-
+  pi0 --> gamma gamma
+( e+ e- --> pi+ pi- K+ K- gamma gamma )
+
+index:  8	iDcyTr:  13	iDcyFSt:  0	nEtrs:  4	nCmltEtrs:  178
+  e+ e- --> J/psi
+  J/psi --> pi- anti-K*0 K+
+  anti-K*0 --> pi+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  9	iDcyTr:  8	iDcyFSt:  0	nEtrs:  2	nCmltEtrs:  180
+  e+ e- --> J/psi
+  J/psi --> f_2 phi
+  f_2 --> pi+ pi-
+  phi --> K+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  10	iDcyTr:  11	iDcyFSt:  0	nEtrs:  2	nCmltEtrs:  182
+  e+ e- --> J/psi
+  J/psi --> anti-K*0 K_0*0
+  anti-K*0 --> pi+ K-
+  K_0*0 --> pi- K+
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  11	iDcyTr:  6	iDcyFSt:  1	nEtrs:  2	nCmltEtrs:  184
+  e+ e- --> J/psi
+  J/psi --> eta_c gamma
+  eta_c --> pi- anti-K*0 K+
+  anti-K*0 --> pi+ K-
+( e+ e- --> pi+ pi- K+ K- gamma )
+
+index:  12	iDcyTr:  7	iDcyFSt:  0	nEtrs:  2	nCmltEtrs:  186
+  e+ e- --> J/psi
+  J/psi --> pi+ K- K_0*0
+  K_0*0 --> pi- K+
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  13	iDcyTr:  16	iDcyFSt:  2	nEtrs:  2	nCmltEtrs:  188
+  e+ e- --> J/psi
+  J/psi --> K+ K- phi
+  phi --> K+ K-
+( e+ e- --> K+ K+ K- K- )
+
+index:  14	iDcyTr:  9	iDcyFSt:  0	nEtrs:  1	nCmltEtrs:  189
+  e+ e- --> J/psi
+  J/psi --> phi f_0(1500)
+  phi --> K+ K-
+  f_0(1500) --> pi+ pi-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  15	iDcyTr:  14	iDcyFSt:  0	nEtrs:  1	nCmltEtrs:  190
+  e+ e- --> J/psi
+  J/psi --> pi- K+ anti-K_0*0
+  anti-K_0*0 --> pi+ K-
+( e+ e- --> pi+ pi- K+ K- )
+
+index:  16	iDcyTr:  15	iDcyFSt:  3	nEtrs:  1	nCmltEtrs:  191
+  e+ e- --> J/psi
+  J/psi --> anti-K*0 K_20
+  anti-K*0 --> pi+ K-
+  K_20 --> pi0 K_2*0
+  pi0 --> gamma gamma
+  K_2*0 --> pi- K+
+( e+ e- --> pi+ pi- K+ K- gamma gamma )
+
+index:  17	iDcyTr:  10	iDcyFSt:  2	nEtrs:  1	nCmltEtrs:  192
+  e+ e- --> J/psi
+  J/psi --> K+ K+ K- K-
+( e+ e- --> K+ K+ K- K- )
+
+index:  18	iDcyTr:  17	iDcyFSt:  2	nEtrs:  1	nCmltEtrs:  193
+  e+ e- --> J/psi
+  J/psi --> f_2 K+ K-
+  f_2 --> K+ K-
+( e+ e- --> K+ K+ K- K- )
+
+index:  19	iDcyTr:  18	iDcyFSt:  2	nEtrs:  1	nCmltEtrs:  194
+  e+ e- --> J/psi
+  J/psi --> K+ K- f'_2
+  f'_2 --> K+ K-
+( e+ e- --> K+ K+ K- K- )
+
+
+Decay final states:
+
+index:  1	iDcyFSt:  0	nEtrs:  182	nCmltEtrs:  182
+  e+ e- --> pi+ pi- K+ K-
+
+index:  2	iDcyFSt:  2	nEtrs:  5	nCmltEtrs:  187
+  e+ e- --> K+ K+ K- K-
+
+index:  3	iDcyFSt:  3	nEtrs:  5	nCmltEtrs:  192
+  e+ e- --> pi+ pi- K+ K- gamma gamma
+
+index:  4	iDcyFSt:  1	nEtrs:  2	nCmltEtrs:  194
+  e+ e- --> pi+ pi- K+ K- gamma
+
+
+Decay branches begun with D*0:
+
+
+Decay branches begun with D0:
+
+
+Decay branches begun with anti-D*0:
+
+
+Decay branches begun with anti-D0:
+
+
+Decay branches begun with omega:
+
+
+Decay branches begun with phi:
+
+index:  1	iDcyBrP6:  0	nCases:  140	nCmltCases:  140
+  phi --> K+ K-
+
+
+Exclusive decay branches matched with J/psi --> phi D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> phi D*0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> omega D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> D0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> D*0 + anything:
+
+
+Exclusive decay branches matched with J/psi --> phi + anything:
+
+index:  1	iDcyBrIncDcyBr6:  0	nCases:  104	nCmltCases:  104
+  J/psi --> phi f_0(1790)
+
+index:  2	iDcyBrIncDcyBr6:  1	nCases:  31	nCmltCases:  135
+  J/psi --> pi+ pi- phi
+
+index:  3	iDcyBrIncDcyBr6:  2	nCases:  2	nCmltCases:  137
+  J/psi --> f_2 phi
+
+index:  4	iDcyBrIncDcyBr6:  4	nCases:  2	nCmltCases:  139
+  J/psi --> K+ K- phi
+
+index:  5	iDcyBrIncDcyBr6:  3	nCases:  1	nCmltCases:  140
+  J/psi --> phi f_0(1500)
+
+
+Exclusive decay branches matched with phi --> K+ K- + anything:
+
+index:  1	iDcyBrIncDcyBr7:  0	nCases:  140	nCmltCases:  140
+  phi --> K+ K-
+
+
+Exclusive decay branches matched with D0 --> pi+ K- + anything:
+
+
+Signal particles:
+
+index:  1	SigP:  phi	iSigP:  4	nPs:   140	nCmltPs:  140
+
+index:  2	SigP:  D*0	iSigP:  1	nPs:   0	nCmltPs:  140
+
+index:  3	SigP:  anti-D0	iSigP:  2	nPs:   0	nCmltPs:  140
+
+index:  4	SigP:  anti-D*0	iSigP:  3	nPs:   0	nCmltPs:  140
+
+index:  5	SigP:  D0	iSigP:  0	nPs:   0	nCmltPs:  140
+
+index:  6	SigP:  omega	iSigP:  5	nPs:   0	nCmltPs:  140
+
+
+Signal decay final states:
+
+index:  1	iSigDcyFSt2:  0	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi+ K+ K- K-
+
+index:  2	iSigDcyFSt2:  1	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi0 pi+ pi+ pi- K-
+
+index:  3	iSigDcyFSt2:  2	iDcyFSt2:  ---	nEtrs:  0	nCmltEtrs:  0
+  e+ e- --> pi+ pi+ pi- K-
+

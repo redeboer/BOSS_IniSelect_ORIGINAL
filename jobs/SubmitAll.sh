@@ -65,17 +65,17 @@
 # * ====================================== * #
 
 	AskForInput "Submit ${nJobs} jobs for \"${jobIdentifier}\"?"
-	tempFilename="${temp.sh}"
+	tempFilename="temp.sh"
 	echo > ${tempFilename} # temporary fix due to submit error: "Failed to create new proc id"
 	for job in $(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${jobIdentifier}_[0-9]+.sh$); do
-		echo "hep_sub -g physics \"${job}\"" >> ${tempFilename}
+		chmod +x "${job}"
+		echo "hep_sub -g physics \"${job}\"" >> "${tempFilename}"
 		# hep_sub -g physics "${job}"
 		# if [ $? != 0 ]; then
 		# 	PrintErrorMessage "Aborted submitting jobs"
 		# 	exit
 		# fi
 	done
-	bash ${tempFilename}
 echo "Now run:"
 echo "  bash ${tempFilename}"
 echo "and use:"
@@ -83,7 +83,8 @@ echo "  hep_q -u $USER"
 echo "to see which jobs you have running."
 echo "Yes, it's a temporary solution..."
 exit
-	# rm temp.sh
+	bash "${tempFilename}"
+	rm temp.sh
 
 
 # * ===================================== * #

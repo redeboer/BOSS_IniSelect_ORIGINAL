@@ -94,9 +94,9 @@ set -e # exit if a command or function exits with a non-zero status
 		CreateOrEmptyDirectory "${outputDir_sim}"
 		CreateOrEmptyDirectory "${outputDir_rec}"
 		CreateOrEmptyDirectory "${outputDir_sub}"
-		CreateOrEmptyDirectory "${outputDir_raw}"
-		CreateOrEmptyDirectory "${outputDir_dst}"
-		CreateOrEmptyDirectory "${outputDir_log}"
+		mkdir -p "${outputDir_raw}"
+		mkdir -p "${outputDir_dst}"
+		mkdir -p "${outputDir_log}"
 
 	# * Loop over jobs
 	for jobNo in $(seq 0 $((${nJobs} - 1))); do

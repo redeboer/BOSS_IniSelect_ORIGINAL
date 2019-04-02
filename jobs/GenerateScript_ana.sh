@@ -14,10 +14,10 @@ source CommonFunctions.sh
 
 # * Input parameters * #
 	# * (1) Package name
-	packageName="D0phi_KpiKK" # default argument
+	packageName="D0phi_KpipiKK" # default argument
 	if [ $# -ge 1 ]; then packageName="${1}"; fi
 	# * (2) Input files that will be used to create the list of dst files
-	data_or_MC="data" # default argument
+	data_or_MC="excl" # default argument
 	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
 
 # * Default parameters * #
