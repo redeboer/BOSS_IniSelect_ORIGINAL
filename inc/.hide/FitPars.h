@@ -5,7 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-
+	#include "TString.h"
+	#include <utility>
 
 
 // * ================================ * //
@@ -40,6 +41,8 @@
 			}; ///< Enumerate for the different types of background types.
 			///@}
 	private:
+		std::pair<double, double> fFitRange; ///< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).
+		std::pair<double, double> fPlotRange; ///< Invariant mass range that you plot.
 	};
 
 
