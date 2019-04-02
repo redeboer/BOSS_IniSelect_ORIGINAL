@@ -2,9 +2,9 @@ var searchData=
 [
   ['chainloader',['ChainLoader',['../classChainLoader.html',1,'']]],
   ['configloader',['ConfigLoader',['../classConfigLoader.html',1,'']]],
-  ['configloader_5finvmass',['ConfigLoader_InvMass',['../classConfigLoader__InvMass.html',1,'']]],
-  ['configloader_5fplot',['ConfigLoader_Plot',['../classConfigLoader__Plot.html',1,'']]],
-  ['configloader_5fprintcontent',['ConfigLoader_PrintContent',['../classConfigLoader__PrintContent.html',1,'']]],
+  ['configloader_5fanalyseinvmass',['ConfigLoader_AnalyseInvMass',['../classConfigLoader__AnalyseInvMass.html',1,'']]],
+  ['configloader_5finvestigatecontent',['ConfigLoader_InvestigateContent',['../classConfigLoader__InvestigateContent.html',1,'']]],
+  ['configloader_5fplotinvmass',['ConfigLoader_PlotInvMass',['../classConfigLoader__PlotInvMass.html',1,'']]],
   ['configparameter',['ConfigParameter',['../classConfigParameter.html',1,'']]],
   ['configparameter_3c_20bool_20_3e',['ConfigParameter&lt; bool &gt;',['../classConfigParameter.html',1,'']]],
   ['configparameter_3c_20std_3a_3alist_3c_20branchplotoptions_20_3e_20_3e',['ConfigParameter&lt; std::list&lt; BranchPlotOptions &gt; &gt;',['../classConfigParameter.html',1,'']]],

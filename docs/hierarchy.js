@@ -15,9 +15,9 @@ var hierarchy =
     [ "BranchPlotOptions", "classBranchPlotOptions.html", null ],
     [ "ChainLoader", "classChainLoader.html", null ],
     [ "ConfigLoader", "classConfigLoader.html", [
-      [ "ConfigLoader_InvMass", "classConfigLoader__InvMass.html", null ],
-      [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", null ],
-      [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html", null ]
+      [ "ConfigLoader_AnalyseInvMass", "classConfigLoader__AnalyseInvMass.html", null ],
+      [ "ConfigLoader_InvestigateContent", "classConfigLoader__InvestigateContent.html", null ],
+      [ "ConfigLoader_PlotInvMass", "classConfigLoader__PlotInvMass.html", null ]
     ] ],
     [ "ConfigParBase", "classConfigParBase.html", [
       [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],
@@ -34,8 +34,6 @@ var hierarchy =
         [ "NTupleTopoAna", "classNTupleTopoAna.html", null ]
       ] ]
     ] ],
-    [ "FitPars", "classFitPars.html", null ],
-    [ "FitPars_DoubleGaussian", "classFitPars__DoubleGaussian.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ],
       [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html", null ],

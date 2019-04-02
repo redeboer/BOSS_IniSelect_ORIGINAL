@@ -123,7 +123,7 @@ var searchData=
   ['m_5fvz0cut',['m_vz0cut',['../classPipiJpsi.html#af5659cb3d8337f54e6545be0aec0d9e9',1,'PipiJpsi']]],
   ['m_5fzhit_5fbtof1',['m_zhit_btof1',['../classPipiJpsi.html#a4815ea91b3e3dfad7071a5392c99a4ad',1,'PipiJpsi']]],
   ['m_5fzhit_5fbtof2',['m_zhit_btof2',['../classPipiJpsi.html#ac3cf83392d6831700c8aae34602736d6',1,'PipiJpsi']]],
-  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'D0phi_KpiKK.C']]],
+  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'AnalyseInvMass.C']]],
   ['make_5funique',['make_unique',['../namespacestd__fix.html#a5b65c629c2a53fee88cacf05c6cf6e26',1,'std_fix']]],
   ['maphaskey',['MapHasKey',['../namespaceCommonFunctions_1_1TerminalIO.html#a0fbcadcd02cb344b56eecade2d9ea6a7',1,'CommonFunctions::TerminalIO']]],
   ['mass',['Mass',['../classParticle.html#afa7faac580ed024253fe8de88a3d8bd0',1,'Particle']]],

@@ -157,46 +157,46 @@ var group__BOSS__Afterburner__objects =
       [ "fConfigPath", "classConfigLoader.html#a2c57f6b311c0daa808fb66bbf243b456", null ],
       [ "fPrint", "classConfigLoader.html#a3262a392500fc22c533455b595138296", null ]
     ] ],
-    [ "ConfigLoader_InvMass", "classConfigLoader__InvMass.html", [
-      [ "ConfigLoader_InvMass", "classConfigLoader__InvMass.html#a920b34c8ad6bd70583ca2abae197816d", null ],
-      [ "Do_Fit", "classConfigLoader__InvMass.html#a5fddc582443551bfa178403b2e95e227", null ],
-      [ "Do_PlotStatsLegend", "classConfigLoader__InvMass.html#a668249a90f0dc65627bd4d19597687a2", null ],
-      [ "Do_PrintCutFlow", "classConfigLoader__InvMass.html#aabdd74eb6759a374448a2aef29dbd5de", null ],
-      [ "Do_PureHists", "classConfigLoader__InvMass.html#ac63c1e09695b4c4637504190da460748", null ],
-      [ "ExclFits", "classConfigLoader__InvMass.html#ac7d1bf04095aaf72ee8628b12435bc22", null ],
-      [ "Filename_data", "classConfigLoader__InvMass.html#af7d8530899b0eb6012a83842973c71c3", null ],
-      [ "Filename_excl", "classConfigLoader__InvMass.html#afdf21b399f34f7674e921ffce5af8a42", null ],
-      [ "Filename_incl", "classConfigLoader__InvMass.html#af8374e9e88ce1d7f29b0f76b076e8ed6", null ],
-      [ "ListOfbranches_data", "classConfigLoader__InvMass.html#a63d684cc619156cce4b7730fbb1ed2e5", null ],
-      [ "ListOfbranches_excl", "classConfigLoader__InvMass.html#a4c1dc65cf7124ef95e99b500432cb7bd", null ],
-      [ "ListOfbranches_incl", "classConfigLoader__InvMass.html#a738b8cc2b191fa7ba09908b1e25d902d", null ]
+    [ "ConfigLoader_AnalyseInvMass", "classConfigLoader__AnalyseInvMass.html", [
+      [ "ConfigLoader_AnalyseInvMass", "classConfigLoader__AnalyseInvMass.html#aaf6981028027a32eedaa62ea8b3e51e2", null ],
+      [ "Do_Fit", "classConfigLoader__AnalyseInvMass.html#abbc479c6fba34f08f860a289b365ebdc", null ],
+      [ "Do_PlotStatsLegend", "classConfigLoader__AnalyseInvMass.html#a7ef049347110f9ef08a17a5049dc9b11", null ],
+      [ "Do_PrintCutFlow", "classConfigLoader__AnalyseInvMass.html#a92fa60ed8b67b873753284b4a991f113", null ],
+      [ "Do_PureHists", "classConfigLoader__AnalyseInvMass.html#a29e73b9ec45445f7abd684ff82c5a32a", null ],
+      [ "ExclFits", "classConfigLoader__AnalyseInvMass.html#adcc416e1a9fa6314fe073bf12dbb232f", null ],
+      [ "Filename_data", "classConfigLoader__AnalyseInvMass.html#ae53ce01cb8cab2e1694e97d99424e9fe", null ],
+      [ "Filename_excl", "classConfigLoader__AnalyseInvMass.html#a203faab42d9edd2c47b3a43de9b42b8d", null ],
+      [ "Filename_incl", "classConfigLoader__AnalyseInvMass.html#aa1aa6192e0c92279276e27f92b3637e6", null ],
+      [ "ListOfbranches_data", "classConfigLoader__AnalyseInvMass.html#aaa41f4c5eeac0779a2e87210f6dc6153", null ],
+      [ "ListOfbranches_excl", "classConfigLoader__AnalyseInvMass.html#a324b3801620051997db6975d02be0cb3", null ],
+      [ "ListOfbranches_incl", "classConfigLoader__AnalyseInvMass.html#a57e829d65df3b4fd8552aa7d19f79182", null ]
     ] ],
-    [ "ConfigLoader_Plot", "classConfigLoader__Plot.html", [
-      [ "ConfigLoader_Plot", "classConfigLoader__Plot.html#a28a68312f0f67fa88e4bc9ed7bb69628", null ],
-      [ "fDo_conv_d", "classConfigLoader__Plot.html#a759bd78d7f9034495922a2034302c269", null ],
-      [ "fDo_conv_s", "classConfigLoader__Plot.html#aa8ddcabb784af9194ed5b86dfe0d2d29", null ],
-      [ "fDo_gauss", "classConfigLoader__Plot.html#a82714e82e45bb630f896bea28bf5fb40", null ],
-      [ "fDraw_fit", "classConfigLoader__Plot.html#a96e5d6d70ddd4fac9f42a586c28a3df4", null ],
-      [ "fDraw_mctruth", "classConfigLoader__Plot.html#aa16dd9ffe3269135e477e6f74ea8fbb1", null ],
-      [ "fDraw_mult", "classConfigLoader__Plot.html#ae21ea1e9647e4a75416aafb724bd8546", null ],
-      [ "fDraw_tof", "classConfigLoader__Plot.html#a9c32da75e98ab5f8f72a221f3241af79", null ],
-      [ "fDraw_vertex", "classConfigLoader__Plot.html#a9f695b2bcef0ede69766f6a31692c1e1", null ],
-      [ "fFitplots", "classConfigLoader__Plot.html#a131c38ac4beced2b30d090bcb54828b1", null ],
-      [ "fInputFilename", "classConfigLoader__Plot.html#a3608d9e3259ce4113a1b78964b8d9a00", null ],
-      [ "fListOfbranches", "classConfigLoader__Plot.html#a259bc4b3212ec44e9a85274434f2908a", null ],
-      [ "fLogY", "classConfigLoader__Plot.html#ac595568818504483f3e3855b978e0b1a", null ],
-      [ "fLogZ", "classConfigLoader__Plot.html#aac65a322109b29af0e3e62bbbe2a4328", null ],
-      [ "fPlotstats", "classConfigLoader__Plot.html#ac4b80c8ee8eac354e9aa6d2f3d57b634", null ],
-      [ "fPrintAverages", "classConfigLoader__Plot.html#abc782933d330781ac016b00e0275e4be", null ],
-      [ "fPrintBranches", "classConfigLoader__Plot.html#a316b532809f2d4847112e410b0e7524e", null ],
-      [ "fPureplot", "classConfigLoader__Plot.html#a02abd1683b97ecd6f6d9870778fea9e9", null ],
-      [ "fSetranges", "classConfigLoader__Plot.html#a27c41b0993ede8089c2b38ac38d5acc0", null ]
+    [ "ConfigLoader_InvestigateContent", "classConfigLoader__InvestigateContent.html", [
+      [ "ConfigLoader_InvestigateContent", "classConfigLoader__InvestigateContent.html#a9e0c25684d2ba0661ce71089d4dc38b3", null ],
+      [ "fInputFilename", "classConfigLoader__InvestigateContent.html#a67ec5ed6f83b517f5a515de1730cc3db", null ],
+      [ "fPrintBranches", "classConfigLoader__InvestigateContent.html#a0aa5a08bcfbc4e8dae8ce7cb4f82bc1c", null ],
+      [ "fPrintCutFlow", "classConfigLoader__InvestigateContent.html#ae124660c11cc07eb6f9a662d9ebf1f43", null ]
     ] ],
-    [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html", [
-      [ "ConfigLoader_PrintContent", "classConfigLoader__PrintContent.html#a1f00821ac8523c5384f73dfc589728d2", null ],
-      [ "fInputFilename", "classConfigLoader__PrintContent.html#a2658825a63574f95ea2559030114d5ee", null ],
-      [ "fPrintBranches", "classConfigLoader__PrintContent.html#a05a900a1d930b8f7d6f67d6cc863c8ce", null ],
-      [ "fPrintCutFlow", "classConfigLoader__PrintContent.html#ae6a09ae83cc9384db0f5b5ddffaf10c9", null ]
+    [ "ConfigLoader_PlotInvMass", "classConfigLoader__PlotInvMass.html", [
+      [ "ConfigLoader_PlotInvMass", "classConfigLoader__PlotInvMass.html#ab6836b18f476d1b22a76b37a383612ea", null ],
+      [ "fDo_conv_d", "classConfigLoader__PlotInvMass.html#a1df97c43ba4d9193bc5d383c1e67b709", null ],
+      [ "fDo_conv_s", "classConfigLoader__PlotInvMass.html#afef6b1ad9eb0d78c5e10450cee5bd736", null ],
+      [ "fDo_gauss", "classConfigLoader__PlotInvMass.html#a2d316ed6aa863f85582160744f5d73fa", null ],
+      [ "fDraw_fit", "classConfigLoader__PlotInvMass.html#a4985eb32834a03f298bd12eefb7e4136", null ],
+      [ "fDraw_mctruth", "classConfigLoader__PlotInvMass.html#a98c1aed6e4688b5cc987c349c8e17730", null ],
+      [ "fDraw_mult", "classConfigLoader__PlotInvMass.html#aea3aeb97578375628ed426de97e3e4f6", null ],
+      [ "fDraw_tof", "classConfigLoader__PlotInvMass.html#ab6c975eb0c3a1148ccf7af3a538efc21", null ],
+      [ "fDraw_vertex", "classConfigLoader__PlotInvMass.html#a092174ceede970ae0dfbd1d384384f42", null ],
+      [ "fFitplots", "classConfigLoader__PlotInvMass.html#ae6a8552b641e84bbf0c4edf800d0eb63", null ],
+      [ "fInputFilename", "classConfigLoader__PlotInvMass.html#a284b96eae01df4d0afb9bad3657683eb", null ],
+      [ "fListOfbranches", "classConfigLoader__PlotInvMass.html#aea1855ae4dfc5e4947bdda20bd0677e4", null ],
+      [ "fLogY", "classConfigLoader__PlotInvMass.html#a99edc0e8937cbd61ee55a7cc6eaebe5d", null ],
+      [ "fLogZ", "classConfigLoader__PlotInvMass.html#a89a08de7e22061e182351b9597a48e75", null ],
+      [ "fPlotstats", "classConfigLoader__PlotInvMass.html#a9428d7566ff9c3f64183d257683ce61c", null ],
+      [ "fPrintAverages", "classConfigLoader__PlotInvMass.html#ae48333ddea7a82e21089f08eec265615", null ],
+      [ "fPrintBranches", "classConfigLoader__PlotInvMass.html#ab8a6a3a02e271dbd4caaafb28c964851", null ],
+      [ "fPureplot", "classConfigLoader__PlotInvMass.html#a4c6094493875545128426539e2cfc0c1", null ],
+      [ "fSetranges", "classConfigLoader__PlotInvMass.html#ac6af9bff392e0ff3bf5f7ea87c9cc218", null ]
     ] ],
     [ "ConfigParameter", "classConfigParameter.html", [
       [ "ConfigParameter", "classConfigParameter.html#ad2a568e082f15aaae37aa5da57bb6374", null ],
@@ -242,21 +242,6 @@ var group__BOSS__Afterburner__objects =
       [ "fReadStrings", "classConfigParBase.html#a580b9d64e7d9283c374b3b84ef83a31b", null ],
       [ "fValueIsSet", "classConfigParBase.html#a6602e18e53f4d316c2cf5d538d650c34", null ]
     ] ],
-    [ "FitPars", "classFitPars.html", [
-      [ "EBkgType", "classFitPars.html#ac4964d032139f19e51545c07508d981a", [
-        [ "kPolynomial", "classFitPars.html#ac4964d032139f19e51545c07508d981aa1994bdac236c0e4add83d1e12f49ad82", null ],
-        [ "kArgus", "classFitPars.html#ac4964d032139f19e51545c07508d981aa6d979adad64a4d9e684ffccbe7990301", null ],
-        [ "kRooChebychev", "classFitPars.html#ac4964d032139f19e51545c07508d981aac862dd5049853cdf5befb5c3f56c8110", null ]
-      ] ],
-      [ "ESignalType", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5", [
-        [ "kSingleGauss", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5a519b8dc93ba7c552a8324907f8a6684d", null ],
-        [ "kDoubleGauss", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5af643e3691f73a760b2de74521e793e9c", null ],
-        [ "kBW", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5a33a44837bc808e80a1f377453cf8e8ec", null ],
-        [ "kBWconvSingleG", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5ae27622f91eb1726f2bffe56df602c38b", null ],
-        [ "kBWconvDoubleG", "classFitPars.html#a9dedd9bd4f3c28aa62991dd35a9feae5a99db4222f5b84381b7035ec291cd3c8c", null ]
-      ] ]
-    ] ],
-    [ "FitPars_DoubleGaussian", "classFitPars__DoubleGaussian.html", null ],
     [ "Particle", "classParticle.html", [
       [ "Particle", "classParticle.html#a019a9808db99237fb6fbe423f62ce2a6", null ],
       [ "Particle", "classParticle.html#a7121e9afc2587bcad901ea025bada0d0", null ],

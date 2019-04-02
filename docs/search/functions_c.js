@@ -8,7 +8,7 @@ var searchData=
   ['m_5fcout_5fngood',['m_cout_nGood',['../PipiJpsi_8cxx.html#aca8bca9d3a28e4a992bd7e83cf902d83',1,'PipiJpsi.cxx']]],
   ['m_5fcout_5frecoil',['m_cout_recoil',['../PipiJpsi_8cxx.html#ae34a0bae64652cad80a09e7af2a83fc1',1,'PipiJpsi.cxx']]],
   ['m_5ftrkinfo',['m_trkInfo',['../classm__trkInfo.html#af8a60e4ede5d5ae9be9bb3884e7a533b',1,'m_trkInfo']]],
-  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'D0phi_KpiKK.C']]],
+  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'AnalyseInvMass.C']]],
   ['make_5funique',['make_unique',['../namespacestd__fix.html#a5b65c629c2a53fee88cacf05c6cf6e26',1,'std_fix']]],
   ['maphaskey',['MapHasKey',['../namespaceCommonFunctions_1_1TerminalIO.html#a0fbcadcd02cb344b56eecade2d9ea6a7',1,'CommonFunctions::TerminalIO']]],
   ['mass',['Mass',['../classParticle.html#afa7faac580ed024253fe8de88a3d8bd0',1,'Particle']]],

@@ -19,9 +19,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ],
-        [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ]
+        [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -39,11 +37,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AxisBinning_8cxx.html",
-"classAxisBinning.html#ad07436b39a7efccfc39109a1bbad3440",
-"classD0phi__KpiKK.html#a30f758cc2481aef440f5e2197c64398b",
-"classPipiJpsi.html#a4c4efde2bd7bac5c80784fb0fa017bce",
-"classTrackSelector.html#a8611bb6308f03110601aa7787c38a304"
+"AnalyseInvMass_8C.html",
+"classAxisBinning.html#aeb6bd045276790ec473d6883b6cd196e",
+"classD0phi__KpiKK.html#a398db1b0bdd450bfc4d99b55679d628d",
+"classPipiJpsi.html#a7d6b105e12862e5e8c9128b18fc24853",
+"classTrackSelector.html#aa119db4b668a559859f84a11d9bf0cc7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
