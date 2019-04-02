@@ -22,7 +22,7 @@
 	///
 	/// A `FitPars_BW` object is added to 
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     Mrach 28th, 2019
+	/// @date     March 28th, 2019
 	class FitPars_BW : public FitPars
 	{
 	public:

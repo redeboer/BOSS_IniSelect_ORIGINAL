@@ -69,11 +69,10 @@
 		namespace Fit
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
-			RooRealVar CreateRooFitInvMassVar(const ReconstructedParticle& particle);
-			void FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
-			void FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
-			void FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle);
-			void FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
+			void FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			void FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			void FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
+			void FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 		}
 		/// Namespace containing functions related to generating and modifying histograms.
 		namespace Hist
@@ -191,7 +190,7 @@
 	template<class TYPE> inline
 	bool CommonFunctions::TerminalIO::MapHasKey(std::unordered_map<std::string, TYPE> &map, const std::string &key)
 	{
-		return !(map.find(key) == map.end());
+		return map.find(key) != map.end();
 	}
 
 

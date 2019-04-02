@@ -154,8 +154,8 @@
 
 			// * Fit double gaussian
 				if(config.fDo_gauss) {
-					FitDoubleGaussian(hist_D0,  D0,  logY);
-					FitDoubleGaussian(hist_phi, phi, logY);
+					FitPureGaussians(hist_D0,  D0,  logY);
+					FitPureGaussians(hist_phi, phi, logY);
 				}
 
 			// * Fit Breit-Wigner convoluted with singe Gaussian

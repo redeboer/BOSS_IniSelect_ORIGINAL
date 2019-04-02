@@ -11,6 +11,7 @@
 	#include "BranchPlotOptions.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParBase.h"
+	#include "FitPars.h"
 	#include "ReconstructedParticle.h"
 	#include "TString.h"
 	#include <iomanip>
@@ -177,16 +178,6 @@
 	}
 
 
-	/// `ConvertStringsToValue` handler for an object that can be contructed from a `std::string`.
-	// template<class TYPE> inline
-	// const bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
-	// {
-	// 	if(!HasSingleString()) return false;
-	// 	fValue = fReadStrings.front();
-	// 	return true;
-	// }
-
-
 	/// `ConvertStringsToValue` handler for `AxisBinning`s (has a `string` constructor).
 	template<> inline
 	const bool ConfigParameter<AxisBinning>::ConvertStringsToValue_impl()
@@ -227,24 +218,41 @@
 	{
 		/// <ol>
 		/// <li> **Abort** if the number of read strings for this parameter is not a multiple of 3. Each batch of 3 read values is used to construct a pair of a `ReconstructedParticle` with a `BranchPlotOptions`.
-			if(fReadStrings.size()%3 != 0) {
+			size_t numargs = 6;
+			if(fReadStrings.size()%numargs != 0) {
 				CommonFunctions::TerminalIO::PrintWarning(Form(
-					"Converting parameter \"%s\" failed because it needs exactly 3 read values", GetIdentifier().c_str()));
+					"Converting parameter \"%s\" failed because it needs exactly %u read values", GetIdentifier().c_str(), numargs));
 				return false;
 			}
+		/// <li> Convert each read value to values in the parameter object.
 			for(auto it = fReadStrings.begin(); it != fReadStrings.end(); ++it) {
-		/// <li> Read value 1: the PDG code or name of the decaying particle.
-			TString pdgName{it->c_str()};
-			auto pdgCode{pdgName.Atoi()};
-		/// <li> Read value 2: the daughters of the decaying particle.
-			++it;
-			TString daughters{it->c_str()};
-		/// <li> Read value 3: the input string for constructing the `BranchPlotOptions` object.
-			++it;
-			std::string options{it->c_str()};
-		/// <li> Insert a pair (using constructor brackets) into the `fValue` list.
-			if(pdgCode) fValue.push_back(std::make_pair(ReconstructedParticle{pdgCode,        daughters.Data()}, BranchPlotOptions{options}));
-			else        fValue.push_back(std::make_pair(ReconstructedParticle{pdgName.Data(), daughters.Data()}, BranchPlotOptions{options}));
+				/// <ol>
+				/// <li> Read value 1: the PDG code or name of the decaying particle.
+					TString pdgName{it->c_str()};
+					auto pdgCode{pdgName.Atoi()};
+				/// <li> Read value 2: the daughters of the decaying particle.
+					++it;
+					TString daughters{it->c_str()};
+				/// <li> Read value 3: the input string for constructing the `BranchPlotOptions` object.
+					++it;
+					std::string options{it->c_str()};
+				/// <li> Read value 4: the list of fit parameters for the signal.
+					++it;
+					TString fitspars_sig{it->c_str()};
+				/// <li> Read value 5: the list of fit parameters for the signal.
+					++it;
+					TString fitspars_gauss{it->c_str()};
+				/// <li> Read value 6: the list of fit parameters for the background.
+					++it;
+					TString fitspars_bkg{it->c_str()};
+				/// <li> Insert a pair (using constructor brackets) into the `fValue` list.
+					if(pdgCode) fValue.push_back(std::make_pair(ReconstructedParticle{pdgCode,        daughters.Data()}, BranchPlotOptions{options}));
+					else        fValue.push_back(std::make_pair(ReconstructedParticle{pdgName.Data(), daughters.Data()}, BranchPlotOptions{options}));
+				/// <li> Add the line of fit parameters to the `FitPars` object in `ReconstructedParticle`.
+					fValue.back().first.SetFitPars(fitspars_sig, fitspars_bkg);
+					fValue.back().first.SetGaussianPars(fitspars_gauss);
+					fValue.back().first.ImportFitPars_DG();
+				/// </ol>
 			}
 		/// </ol>
 		return true;

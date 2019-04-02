@@ -9,7 +9,7 @@
 	#include "CommonFunctions.h"
 	#include "ConfigLoader.h"
 	#include "ConfigParameter.h"
-	#include <list>
+	#include "FitPars.h"
 	#include <string>
 
 

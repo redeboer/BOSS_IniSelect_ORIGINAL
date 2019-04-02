@@ -32,6 +32,8 @@
 
 	#include "Particle.h"
 	#include "TString.h"
+	#include "TColor.h"
+	#include <vector>
 
 	// * For backward compatibility with ROOT5 * //
 	#ifdef __CINT__
@@ -88,6 +90,10 @@
 		{
 			inline constexpr double gSigmaScaleFactorLow = 0.;
 			inline constexpr double gSigmaScaleFactorUp = 10.;
+		}
+		namespace Draw
+		{
+			const std::vector<Color_t> gColorPalette { kRed-4, kBlue, kGreen+2, kOrange+1 };
 		}
 		/// List of relevant particles used in this analysis.
 		/// Particles are generated using the `ROOT` PDG database. For a list of PDG codes, see http://home.fnal.gov/~mrenna/lutp0613man2/node44.html
