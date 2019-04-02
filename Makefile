@@ -2,30 +2,28 @@
 # * Date: January 11th, 2019
 # * Based on the NIKHEFproject2018 repository
 # * For explanations, see https://www.gnu.org/software/make/manual/make.html
-# TODO: implent auto dependency generation, see http://make.mad-scientist.net/papers/advanced-auto-dependency-generation/
 
 
 # * PATH DEFINITIONS * #
+SUFFIXES += .d
 DEPDIR := .d
 INCDIR := inc
 SRCDIR := src
-BINDIR = bin
-EXEDIR = exe
+SCRDIR := scripts
+BINDIR := bin
+EXEDIR := exe
 INCLUDE_PATH = -I${INCDIR}
 LIBNAME = BossAfterburner
-LIBRARY = lib${LIBNAME}.a
+OUTLIBF = lib${LIBNAME}.a
 
 
 # * PREPARE DIRECTORIES * #
 $(shell mkdir -p $(DEPDIR) >/dev/null)
-$(shell mkdir -p $(BINDIR) >/dev/null)
-$(shell mkdir -p $(EXEDIR) >/dev/null)
 
 
 # * COMPILER FLAGS * #
-SUFFIXES += .d
-COMPILER = g++
-# COMPILER = clang++
+CC = g++
+# CC = clang++
 ROOTINC    := -I$(shell root-config --incdir)
 ROOTCFLAGS := $(shell root-config --cflags)
 ROOTLIBS   := $(shell root-config --libs --evelibs --glibs)
@@ -38,12 +36,11 @@ POSTCOMPILE = @mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d && touch $@
 # * INVENTORIES OF OBJECTS AND THEIR EVENTUAL BINARIES * #
 # * for the objects (inc and src)
 OBJECTS  = $(notdir $(wildcard ${SRCDIR}/*.cxx))
-# $(shell find src/ -name "*.cxx")
 OBJ_BIN  = $(OBJECTS:.cxx=.o)
 OBJ_BIN := $(addprefix ${BINDIR}/, ${OBJ_BIN})
 
 # * for the scripts (executables)
-SCRIPTS  = $(notdir $(wildcard scripts/*.C))
+SCRIPTS  = $(notdir $(wildcard ${SCRDIR}/*.C))
 SCR_BIN  = $(SCRIPTS:.C=.exe)
 SCR_BIN := $(addprefix ${EXEDIR}/, ${SCR_BIN})
 
@@ -52,7 +49,7 @@ DEPENDS  = $(notdir $(wildcard ${DEPDIR}/*.d))
 
 # * Compile objects: the parametesr are the rules defines below and above
 .PHONY: all
-all : ${OBJ_BIN} $(LIBRARY) ${SCR_BIN}
+all : ${OBJ_BIN} $(OUTLIBF) ${SCR_BIN}
 	@echo "COMPILING DONE"
 
 
@@ -61,23 +58,20 @@ all : ${OBJ_BIN} $(LIBRARY) ${SCR_BIN}
 # * for the objects (inc and src)
 ${BINDIR}/%.o : ${SRCDIR}/%.cxx ${INCDIR}/%.h $(DEPDIR)/%.d
 	@echo "Compiling object \"$(notdir $<)\""
-	@$(COMPILER) $(CFLAGS) ${INCLUDE_PATH} ${DEPFLAGS} -c $< -o $@
+	@mkdir -p $(@D) > /dev/null
+	@$(CC) $(CFLAGS) ${INCLUDE_PATH} ${DEPFLAGS} -c $< -o $@
 	$(POSTCOMPILE)
-# @mv -f ${DEPDIR}/$*.d ${DEPDIR}/$*.d.tmp
-# @sed -e 's|.*:|$*.o:|' < ${DEPDIR}/$*.d.tmp > ${DEPDIR}/$*.d
-# @sed -e 's/.*://' -e 's/\\$$//' < ${DEPDIR}/$*.d.tmp | fmt -1 | \
-# 	sed -e 's/^ *//' -e 's/$$/:/' >> ${DEPDIR}/$*.d
-# @rm -f ${DEPDIR}/$*.d.tmp
 
 # * for linking the objects generated above.
-$(LIBRARY) : $(shell find bin/ -name "*.o")
-	ar ru $@ $^
-	ranlib $@
+$(OUTLIBF) : ${OBJ_BIN}
+	@ar rU $@ $^ > /dev/null
+	@ranlib $@
 
 # * for the scripts (executables)
-${EXEDIR}/%.exe : scripts/%.C $(DEPDIR)/%.d $(LIBRARY)
+${EXEDIR}/%.exe : ${SCRDIR}/%.C $(DEPDIR)/%.d $(OUTLIBF)
 	@echo "Compiling script \"$(notdir $<)\""
-	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEPFLAGS} -L. -l${LIBNAME} ${LFLAGS}
+	@mkdir -p $(@D) > /dev/null
+	@$(CC) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEPFLAGS} -L. -l${LIBNAME} ${LFLAGS}
 	$(POSTCOMPILE)
 
 # * for the dependencies
