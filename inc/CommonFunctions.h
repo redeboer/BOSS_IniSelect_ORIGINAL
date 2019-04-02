@@ -70,10 +70,10 @@
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
 			RooRealVar CreateRooFitInvMassVar(const ReconstructedParticle& particle);
-			void FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0, TString logScale="");
-			void FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0, TString logScale="");
-			void FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0);
-			void FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials = 0, TString logScale="");
+			void FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
+			void FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
+			void FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle);
+			void FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, TString logScale="");
 		}
 		/// Namespace containing functions related to generating and modifying histograms.
 		namespace Hist

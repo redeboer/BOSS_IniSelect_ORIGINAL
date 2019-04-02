@@ -163,7 +163,7 @@
 	/// Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
 	RooDataHist CommonFunctions::Fit::CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle) {
 		RooDataHist distr(
-			Form("%scandidate_RooDataHist", particle.GetName()),
+			Form("%scandidate_RooDataHist", particle.Name()),
 			hist->GetTitle(), var, RooFit::Import(*hist));
 		return distr;
 	}
@@ -173,8 +173,8 @@
 	RooRealVar CommonFunctions::Fit::CreateRooFitInvMassVar(const ReconstructedParticle& particle)
 	{
 		RooRealVar var(
-			Form("#it{M}_{%s}", particle.GetDaughterLabel()),
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("#it{M}_{%s}", particle.DaughterLabel()),
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			particle.PlotFrom(),
 			particle.PlotUntil()
 		);
@@ -187,9 +187,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit.
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -198,23 +197,23 @@
 
 		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
-			RooRealVar fSigma("#sigma_{gauss}", Form("%s Gaussian width", particle.GetNameLaTeX()),
-					particle.GetSingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetSingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetSingleGaussianWidth());
+			RooRealVar fSigma("#sigma_{gauss}", Form("%s Gaussian width", particle.NameLaTeX()),
+					particle.SingleGaussianWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.SingleGaussianWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.SingleGaussianWidth());
 			RooGaussian fGaussian("gauss",
-				Form("Gaussian PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma);
 
 		// * Create Breit-Wigner/Cauchy distribution * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.GetNameLaTeX()),
-				particle.GetBWConvolutedWidth(), 0., 10.*particle.GetBWConvolutedWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.NameLaTeX()),
+				particle.BWConvolutedWidth(), 0., 10.*particle.BWConvolutedWidth());
 			RooBreitWigner bw("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 
 		// * Convolute * //
@@ -225,18 +224,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -254,7 +253,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw signal
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -263,7 +262,7 @@
 			fFullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
-			TString pname = particle.GetName();
+			TString pname = particle.Name();
 			pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWSingleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
@@ -276,9 +275,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -287,15 +285,15 @@
 
 		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
-			RooRealVar fSigma1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()),
-				particle.GetGaussianSmallWidth()); //! width is fixed
-			RooRealVar fSigma2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()),
-				particle.GetGaussianWideWidth()); //! width is fixed
+			RooRealVar fSigma1("#sigma_{1}", Form("%s width 1", particle.NameLaTeX()),
+				particle.GaussianSmallWidth()); //! width is fixed
+			RooRealVar fSigma2("#sigma_{2}", Form("%s width 2", particle.NameLaTeX()),
+				particle.GaussianWideWidth()); //! width is fixed
 			RooGaussian fGaussian1("gauss1",
-				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma1);
 			RooGaussian fGaussian2("gauss2",
-				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma2);
 
 		// * Add the Gaussian components * //
@@ -307,13 +305,13 @@
 
 		// * Create Breit-Wigner/Cauchy distribution * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.GetNameLaTeX()),
-				particle.GetBWConvolutedWidth(), 0., 10.*particle.GetBWConvolutedWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.NameLaTeX()),
+				particle.BWConvolutedWidth(), 0., 10.*particle.BWConvolutedWidth());
 			RooBreitWigner bw("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 
 		// * Convolute * //
@@ -324,18 +322,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -353,7 +351,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw signal
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -362,7 +360,7 @@
 			fFullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
-			TString pname = particle.GetName();
+			TString pname = particle.Name();
 			pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWDoubleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
@@ -375,8 +373,7 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
-	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials)
+	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -385,13 +382,13 @@
 
 		// * Create Breit-Wigner function and fit * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("width", Form("%s width", particle.GetNameLaTeX()),
-				particle.GetBWPureWidth(), 0., 100.*particle.GetBWPureWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("width", Form("%s width", particle.NameLaTeX()),
+				particle.BWPureWidth(), 0., 100.*particle.BWPureWidth());
 			RooGaussian signal("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 			RooRealVar n("N_{BW}", "N_{BW}", 1e2, 0., 1e6);
 			RooArgList fComponents(signal);
@@ -399,18 +396,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -428,7 +425,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw Breit-Wigner
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -440,7 +437,7 @@
 			TCanvas c;
 			c.SetBatch();
 			frame->Draw();
-			CommonFunctions::Draw::SaveCanvas(Form("BreitWigner_%s", particle.GetName()), &c);
+			CommonFunctions::Draw::SaveCanvas(Form("BreitWigner_%s", particle.Name()), &c);
 
 	}
 
@@ -450,9 +447,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 		if(CommonFunctions::TerminalIO::IsEmptyPtr(hist)) return;
 		// * DATA MEMBERS * //
@@ -475,31 +471,31 @@
 				std::unique_ptr<RooRealVar>    fSigma2;
 
 		// * METHODS * //
-		if(true) { // local namespace for beginning of class design
+		if(true) { // local namespace for testing the beginnings of a class design
 			// * Create RooFit variable and data distribution * //
 				fRooRealVar  = std_fix::make_unique<RooRealVar>(CreateRooFitInvMassVar(particle));
 				fRooDataHist = std_fix::make_unique<RooDataHist>(CreateRooFitInvMassDistr(hist, *fRooRealVar, particle));
 
 			// * Create Gaussian functions * //
 				fMean = std_fix::make_unique<RooRealVar>(
-					Form("m_{%s}", particle.GetNameLaTeX()),
-					Form("%s mass", particle.GetNameLaTeX()),
-					particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
+					Form("m_{%s}", particle.NameLaTeX()),
+					Form("%s mass", particle.NameLaTeX()),
+					particle.Mass(), particle.LowerMass(), particle.UpperMass());
 				fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
-					Form("%s width 1", particle.GetNameLaTeX()),
-					particle.GetGaussianSmallWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetGaussianSmallWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetGaussianSmallWidth());
+					Form("%s width 1", particle.NameLaTeX()),
+					particle.GaussianSmallWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.GaussianSmallWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.GaussianSmallWidth());
 				fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
-					Form("%s width 2", particle.GetNameLaTeX()),
-					particle.GetGaussianWideWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetGaussianWideWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetGaussianWideWidth());
+					Form("%s width 2", particle.NameLaTeX()),
+					particle.GaussianWideWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.GaussianWideWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.GaussianWideWidth());
 				fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
-					Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 					*fRooRealVar, *fMean, *fSigma1);
 				fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
-					Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 					*fRooRealVar, *fMean, *fSigma2);
 				fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
 				fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
@@ -509,17 +505,17 @@
 				fNContributions.add(*fNGauss2);
 
 			// * Add polynomial background if required * //
-				for(UChar_t i = 0; i <= numPolynomials; ++i) {
+				for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 					fBckParameters.addClone(RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6));
 				}
 				fPolBackground = std_fix::make_unique<RooChebychev>("polBkg",
-					Form("Polynomial-%u background", numPolynomials),
+					Form("Polynomial-%u background", particle.NPol()),
 					*fRooRealVar, fBckParameters);
 				fSigToBckRatio = std_fix::make_unique<RooRealVar>(
-					Form("N_{pol%u}", numPolynomials),
-					Form("N_{pol%u}", numPolynomials),
+					Form("N_{pol%u}", particle.NPol()),
+					Form("N_{pol%u}", particle.NPol()),
 					0., 0., 1e5);
-				if(numPolynomials) {
+				if(particle.NPol()) {
 					fComponents.add(*fPolBackground);
 					fNContributions.add(*fSigToBckRatio);
 				}
@@ -541,14 +537,14 @@
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(1)), // draw gauss 2
 					RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
-				if(numPolynomials) {
+				if(particle.NPol()) {
 					fFullShape->plotOn(frame, RooFit::Components(*fPolBackground), // draw background
 						RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
 				}
 				fFullShape->paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 			// * Write fitted histograms * //
-				TString pname = particle.GetName();
+				TString pname = particle.Name();
 				pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 				CommonFunctions::Draw::DrawAndSave(Form("DoubleGauss_%s", pname.Data()), "", logScale, frame);
 				delete frame;
@@ -569,9 +565,9 @@
 	TH1D CommonFunctions::Hist::CreateInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins)
 	{
 		return TH1D(
-			Form("hist_%s", particle.GetName()),
+			Form("hist_%s", particle.Name()),
 			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				particle.GetNameLaTeX(), particle.GetDaughterLabel()),
+				particle.NameLaTeX(), particle.DaughterLabel()),
 			nBins, particle.PlotFrom(), particle.PlotUntil());
 	}
 

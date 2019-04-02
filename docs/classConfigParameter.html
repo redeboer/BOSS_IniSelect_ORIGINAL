@@ -158,9 +158,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a29d66c737ac325a851e2d0ea7bd8e0ec"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a29d66c737ac325a851e2d0ea7bd8e0ec">ConvertStringsToValue_impl_str</a> ()</td></tr>
-<tr class="memdesc:a29d66c737ac325a851e2d0ea7bd8e0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>.  <a href="#a29d66c737ac325a851e2d0ea7bd8e0ec">More...</a><br /></td></tr>
-<tr class="separator:a29d66c737ac325a851e2d0ea7bd8e0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6a7f578bf5110c8b1a790ac4dbb8e03"><td class="memItemLeft" align="right" valign="top">virtual const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#ab6a7f578bf5110c8b1a790ac4dbb8e03">ConvertStringsToValue_impl</a> ()</td></tr>
 <tr class="memdesc:ab6a7f578bf5110c8b1a790ac4dbb8e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default implementation handler for <code>ConvertStringsToValue</code> (only works for internal C++ types).  <a href="#ab6a7f578bf5110c8b1a790ac4dbb8e03">More...</a><br /></td></tr>
 <tr class="separator:ab6a7f578bf5110c8b1a790ac4dbb8e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,7 +173,7 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a3b8b5f2d8445f33201168d72238b13ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memTemplItemLeft" align="right" valign="top">const bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConvertStringsToValue_impl</a> ()</td></tr>
-<tr class="memdesc:a417a71796abc4aa89f1a56ba3a706dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for <code><a class="el" href="classAxisBinning.html" title="Container object for the binning for one axis. ">AxisBinning</a></code>s (has a <code>string</code> constructor).  <a href="#a417a71796abc4aa89f1a56ba3a706dc8">More...</a><br /></td></tr>
+<tr class="memdesc:a417a71796abc4aa89f1a56ba3a706dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>.  <a href="#a417a71796abc4aa89f1a56ba3a706dc8">More...</a><br /></td></tr>
 <tr class="separator:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -345,42 +342,12 @@ template&lt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>. </p>
 <p><code>ConvertStringsToValue</code> handler for <code><a class="el" href="classAxisBinning.html" title="Container object for the binning for one axis. ">AxisBinning</a></code>s (has a <code>string</code> constructor). </p>
 
 <p>Implements <a class="el" href="classConfigParBase.html#a5356bf53640230aaa05290492822a7d3">ConfigParBase</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00192">192</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
-
-</div>
-</div>
-<a id="a29d66c737ac325a851e2d0ea7bd8e0ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29d66c737ac325a851e2d0ea7bd8e0ec">&#9670;&nbsp;</a></span>ConvertStringsToValue_impl_str()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class TYPE &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const bool <a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; TYPE &gt;::ConvertStringsToValue_impl_str </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>. </p>
-
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00182">182</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -507,7 +474,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Check if <code>fReadStrings</code> contains more than one value and print warning if so. </p>
 <p>This should not be the case in case <code>fValue</code> is of type <code>double</code>, <code>bool</code>, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00329">329</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00333">333</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -717,7 +684,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00268">268</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00272">272</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -750,7 +717,7 @@ template&lt;&gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00288">288</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00292">292</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>

@@ -2,6 +2,8 @@ var searchData=
 [
   ['p',['P',['../namespaceSettings_1_1Particles.html#a83833507ff0e0f2022c7e3b731ba9156',1,'Settings::Particles']]],
   ['particle',['Particle',['../classParticle.html#a019a9808db99237fb6fbe423f62ce2a6',1,'Particle::Particle(int pdgCode)'],['../classParticle.html#a7121e9afc2587bcad901ea025bada0d0',1,'Particle::Particle(const char *pdgCode)']]],
+  ['particlepdg',['ParticlePDG',['../classParticle.html#a1f8a6693d7533abc429bac1e34d70dd7',1,'Particle']]],
+  ['pdgcode',['PDGCode',['../classParticle.html#ab5b9acc6b72547abe6a3b83e274ef1eb',1,'Particle']]],
   ['pi0',['Pi0',['../namespaceSettings_1_1Particles.html#aa534e80659835947f45397eb4ce034d8',1,'Settings::Particles']]],
   ['pip',['Pip',['../namespaceSettings_1_1Particles.html#ac9ed6f077e1c0ffdd1c127ba86724796',1,'Settings::Particles']]],
   ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi']]],

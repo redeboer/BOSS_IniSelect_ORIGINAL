@@ -1,6 +1,5 @@
 var files =
 [
-    [ "AnalyseInvMass.C", "AnalyseInvMass_8C.html", "AnalyseInvMass_8C" ],
     [ "AxisBinning.cxx", "AxisBinning_8cxx.html", null ],
     [ "AxisBinning.h", "AxisBinning_8h.html", null ],
     [ "BOSSOutputLoader.cxx", "BOSSOutputLoader_8cxx.html", null ],
@@ -25,6 +24,7 @@ var files =
     [ "Container_indexed.h", "Container__indexed_8h.html", null ],
     [ "CutObject.cxx", "CutObject_8cxx.html", null ],
     [ "CutObject.h", "CutObject_8h.html", null ],
+    [ "D0phi_KpiKK.C", "D0phi__KpiKK_8C.html", "D0phi__KpiKK_8C" ],
     [ "D0phi_KpiKK.cxx", "D0phi__KpiKK_8cxx.html", "D0phi__KpiKK_8cxx" ],
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", null ],
     [ "D0phi_KpipiKK.cxx", "D0phi__KpipiKK_8cxx.html", "D0phi__KpipiKK_8cxx" ],
@@ -52,7 +52,6 @@ var files =
     [ "Particle.h", "Particle_8h.html", "Particle_8h" ],
     [ "PipiJpsi.cxx", "PipiJpsi_8cxx.html", "PipiJpsi_8cxx" ],
     [ "PipiJpsi.h", "PipiJpsi_8h.html", null ],
-    [ "PlotInvMass.C", "PlotInvMass_8C.html", "PlotInvMass_8C" ],
     [ "ReconstructedParticle.cxx", "ReconstructedParticle_8cxx.html", null ],
     [ "ReconstructedParticle.h", "ReconstructedParticle_8h.html", null ],
     [ "rhopi_pipigg.cxx", "rhopi__pipigg_8cxx.html", "rhopi__pipigg_8cxx" ],

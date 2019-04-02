@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['name',['Name',['../classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f',1,'Container_base']]],
+  ['name',['Name',['../classContainer__base.html#ac1d60df5ba52f752ad2f5d61fb07067f',1,'Container_base::Name()'],['../classParticle.html#ad30a585b6978c1be9fe055b991aae27d',1,'Particle::Name()']]],
+  ['namelatex',['NameLaTeX',['../classParticle.html#a277d1d1b4dfb9f52534fd47ddd204cf7',1,'Particle']]],
   ['namemax',['NameMax',['../classCutObject.html#a2707aa81e7a21f7f60f45addfbd21f45',1,'CutObject']]],
   ['namemin',['NameMin',['../classCutObject.html#a31a0377f6645fc24409f7aa8c2e60b74',1,'CutObject']]],
   ['nbins',['NBins',['../classAxisBinning.html#a1ab1e1986de0f0b708fe557c55dd2244',1,'AxisBinning']]],
@@ -11,6 +12,7 @@ var searchData=
   ['ncut4',['Ncut4',['../RhopiAlg_8cxx.html#afc66a2c95f4c764112c430d34ac53985',1,'RhopiAlg.cxx']]],
   ['ncut5',['Ncut5',['../RhopiAlg_8cxx.html#a87a44bb9989e7d593d89d0b2b7aa553d',1,'RhopiAlg.cxx']]],
   ['ncut6',['Ncut6',['../RhopiAlg_8cxx.html#af1d2be22861b1e83a550b9ca430b58cf',1,'RhopiAlg.cxx']]],
+  ['npol',['NPol',['../classReconstructedParticle.html#ad0e66b30c44b9b96cd1e312ada68ec71',1,'ReconstructedParticle']]],
   ['ntuplecontainer',['NTupleContainer',['../classNTupleContainer.html',1,'NTupleContainer'],['../classNTupleContainer.html#aad4fcf64aac5b99f3980dde865f253a1',1,'NTupleContainer::NTupleContainer()']]],
   ['ntuplecontainer_2ecxx',['NTupleContainer.cxx',['../NTupleContainer_8cxx.html',1,'']]],
   ['ntuplecontainer_2eh',['NTupleContainer.h',['../NTupleContainer_8h.html',1,'']]],

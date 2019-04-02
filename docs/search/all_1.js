@@ -14,5 +14,7 @@ var searchData=
   ['branchplotoptions_2ecxx',['BranchPlotOptions.cxx',['../BranchPlotOptions_8cxx.html',1,'']]],
   ['branchplotoptions_2eh',['BranchPlotOptions.h',['../BranchPlotOptions_8h.html',1,'']]],
   ['buildhistname',['BuildHistName',['../classBranchPlotOptions.html#a4c352d54d12f40c9e61ac95fa99e897b',1,'BranchPlotOptions']]],
-  ['buildoriginalstring',['BuildOriginalString',['../classBranchPlotOptions.html#aae3514dfafb9f1ab3a3d849c31509d99',1,'BranchPlotOptions']]]
+  ['buildoriginalstring',['BuildOriginalString',['../classBranchPlotOptions.html#aae3514dfafb9f1ab3a3d849c31509d99',1,'BranchPlotOptions']]],
+  ['bwconvolutedwidth',['BWConvolutedWidth',['../classReconstructedParticle.html#a821eeee8b22b05e67cb7408aad001085',1,'ReconstructedParticle']]],
+  ['bwpurewidth',['BWPureWidth',['../classReconstructedParticle.html#a141b634c6503200ed4dcb77f45a31d55',1,'ReconstructedParticle']]]
 ];

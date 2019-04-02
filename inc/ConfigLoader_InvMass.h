@@ -23,11 +23,13 @@
 
 	/// Derived class of `ConfigLoader` that contains parameters used for a simple plotting algorithm.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     March 26th, 2018
+	/// @date     March 26th, 2019
 	class ConfigLoader_InvMass : public ConfigLoader
 	{
 	public:
-		ConfigLoader_InvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { LoadConfiguration(path); }
+		ConfigLoader_InvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { ConfigParBase::PrintAll();
+		LoadConfiguration(path);
+		}
 		/// @name I/O strings
 			///@{
 			ConfigParameter<std::string> Filename_excl{"Exclusive MC file"};

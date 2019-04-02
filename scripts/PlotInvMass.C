@@ -151,27 +151,23 @@
 			// * Create invariant mass histogram
 				TH1F* hist_D0  = file["fit4c"].GetInvariantMassHistogram("mD0",   D0,   500);
 				TH1F* hist_phi = file["fit4c"].GetInvariantMassHistogram("mphi",  phi,  500);
-				// TH1F* hist_Jpsi = file["fit4c"].GetInvariantMassHistogram("mJpsi", Jpsi, 2000); //! useless plot
 
 			// * Fit double gaussian
 				if(config.fDo_gauss) {
-					FitDoubleGaussian(hist_D0,   D0,   0, logY);
-					FitDoubleGaussian(hist_phi,  phi,  2, logY);
-					// FitDoubleGaussian(hist_Jpsi, Jpsi, 0, gLogY.data()); //! useless plot
+					FitDoubleGaussian(hist_D0,  D0,  logY);
+					FitDoubleGaussian(hist_phi, phi, logY);
 				}
 
 			// * Fit Breit-Wigner convoluted with singe Gaussian
 				if(config.fDo_conv_s) {
-					FitBWGaussianConvolution(hist_D0,   D0,   0, logY);
-					FitBWGaussianConvolution(hist_phi,  phi,  2, logY);
-					// FitBWGaussianConvolution(hist_Jpsi, Jpsi, 2, logY); //! useless plot
+					FitBWGaussianConvolution(hist_D0,  D0,  logY);
+					FitBWGaussianConvolution(hist_phi, phi, logY);
 				}
 
 			// * Fit Breit-Wigner convoluted with double Gaussian
 				if(config.fDo_conv_s) {
-					FitBWDoubleGaussianConvolution(hist_D0,   D0,   0, logY);
-					FitBWDoubleGaussianConvolution(hist_phi,  phi,  2, logY);
-					// FitBWDoubleGaussianConvolution(hist_Jpsi, Jpsi, 2, logY); //! useless plot
+					FitBWDoubleGaussianConvolution(hist_D0,  D0,  logY);
+					FitBWDoubleGaussianConvolution(hist_phi, phi, logY);
 				}
 
 			}

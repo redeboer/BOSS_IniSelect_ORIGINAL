@@ -20,7 +20,7 @@
 
 	/// Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     March 29th, 2018
+	/// @date     March 29th, 2019
 	class KKFitResult_D0phi_KpipiKK : public KKFitResult
 	{
 	public:

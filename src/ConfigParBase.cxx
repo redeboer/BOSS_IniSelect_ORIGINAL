@@ -20,9 +20,9 @@
 		fIdentifier(identifier),
 		fValueIsSet(false)
 	{
-		if(!(fInstances.find(fIdentifier) == fInstances.end()))
+		if(fInstances.find(fIdentifier) != fInstances.end())
 			TerminalIO::PrintFatalError(Form("Parameter \"%s\" is already defined", fIdentifier.c_str()));
-		fInstances.emplace(make_pair(fIdentifier, this));
+		fInstances.emplace(fIdentifier, this);
 	}
 
 
@@ -111,6 +111,8 @@
 
 	void ConfigParBase::PrintAll()
 	{
+		if(!fInstances.size())
+			TerminalIO::PrintFatalError("No parameters have been declared");
 		std::cout << std::endl << "Loaded " << fInstances.size() << " parameters" << std::endl;
 		size_t width{0};
 		for(auto &it : fInstances) if(it.first.size() > width) width = it.first.size();

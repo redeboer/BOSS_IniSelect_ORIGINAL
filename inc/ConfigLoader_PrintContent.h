@@ -22,7 +22,7 @@
 
 	/// Derived class of `ConfigLoader` that contains parameters used for the `InvestigateContent` algorithm.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     March 26th, 2018
+	/// @date     March 26th, 2019
 	class ConfigLoader_PrintContent : public ConfigLoader
 	{
 	public:

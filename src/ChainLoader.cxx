@@ -216,9 +216,9 @@
 		}
 		// * Get histogram and modify
 		auto hist = Draw(varexp, nBins, particle.PlotFrom(), particle.PlotUntil(), option, false, logScale);
-		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
+		hist->SetTitle(Form("Invariant mass for %s candidate", particle.NameLaTeX()));
 		CommonFunctions::Hist::SetAxisTitles(hist,
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
 		return hist;
 	}
@@ -242,9 +242,9 @@
 		gPad->SetLogx(branch.LogX());
 		gPad->SetLogy(branch.LogY());
 		gPad->SetLogz(branch.LogZ());
-		hist->SetTitle(Form("Invariant mass for %s candidate", particle.GetNameLaTeX()));
+		hist->SetTitle(Form("Invariant mass for %s candidate", particle.NameLaTeX()));
 		CommonFunctions::Hist::SetAxisTitles(hist,
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
 		return hist;
 	}

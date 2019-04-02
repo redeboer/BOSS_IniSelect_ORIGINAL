@@ -51,11 +51,11 @@
 
 		/// @name Getters
 			///@{
-			TParticlePDG* GetParticlePDG() const;
-			int GetPDGCode() const;
-			double GetMass() const;
-			const char* GetNameLaTeX() const;
-			const char* GetName() const;
+			TParticlePDG* ParticlePDG() const { return fParticlePDG; }
+			int PDGCode() const;
+			double Mass() const;
+			const char* NameLaTeX() const;
+			const char* Name() const;
 			///@}
 
 	protected:

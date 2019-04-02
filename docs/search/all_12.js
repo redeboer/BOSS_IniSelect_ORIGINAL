@@ -32,5 +32,6 @@ var searchData=
   ['setwriteswitch',['SetWriteSwitch',['../classNTupleContainer.html#aee15cc4f0569ca47ae90af3d1e269222',1,'NTupleContainer']]],
   ['shared_5fptr',['SHARED_PTR',['../FrameworkSettings_8h.html#aad1cfcc8d905aaf9a625304b8d6f476e',1,'FrameworkSettings.h']]],
   ['simulation_2etxt',['simulation.txt',['../simulation_8txt.html',1,'']]],
+  ['singlegaussianwidth',['SingleGaussianWidth',['../classReconstructedParticle.html#aaaadd3935055e4e47238f6a61dedb592',1,'ReconstructedParticle']]],
   ['std_5ffix',['std_fix',['../namespacestd__fix.html',1,'']]]
 ];

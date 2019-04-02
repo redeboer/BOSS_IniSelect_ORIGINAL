@@ -41,7 +41,7 @@
 		/// 	"treeName; branch1; branch2; colz; branch1 > 1.5 && branch1 < 2.8 && sqrt(branch2) > 6.2e-3; lego"
 		/// ```
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     March 24th, 2018
+	/// @date     March 24th, 2019
 	class BranchPlotOptions
 	{
 	public:
