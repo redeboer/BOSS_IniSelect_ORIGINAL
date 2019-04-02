@@ -83,128 +83,6 @@
 	}
 
 
-	/// Get offset mass percentage. Useful for fitting parameters.
-	const double ReconstructedParticle::GetMassOffsetPercentage() const
-	{
-		return fMassOffset;
-	}
-
-
-	/// Get estimate for the width of the Breit-Wigner function when fitting a pure BW only.
-	const double ReconstructedParticle::GetBWPureWidth() const
-	{
-		return fBWPureWidth;
-	}
-
-
-	/// Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian.
-	const double ReconstructedParticle::GetBWConvolutedWidth() const
-	{
-		return fBWConvolutedWidth;
-	}
-
-
-	/// Get estimate for the width of the Breit-Wigner function when the BW is convoluted with a Double gaussian.
-	const double ReconstructedParticle::GetSingleGaussianWidth() const
-	{
-		return fSingleGaussianWidth;
-	}
-
-
-	/// Get the estimate for the width of the smaller Gaussian function.
-	const double ReconstructedParticle::GetGaussianSmallWidth() const
-	{
-		return fDoubleGaussianWidths.first;
-	}
-
-
-	/// Get the estimate for the width of the wider Gaussian function.
-	const double ReconstructedParticle::GetGaussianWideWidth() const
-	{
-		return fDoubleGaussianWidths.second;
-	}
-
-
-	/// Get the left boundary of the plotting range.
-	const double ReconstructedParticle::FitFrom() const
-	{
-		return fFitRange.first;
-	}
-
-
-	/// Get the right boundary of the plotting range.
-	const double ReconstructedParticle::FitUntil() const
-	{
-		return fFitRange.second;
-	}
-
-
-	/// Get the left boundary of the plotting range.
-	const double ReconstructedParticle::PlotFrom() const
-	{
-		return fPlotRange.first;
-	}
-
-
-	/// Get the right boundary of the plotting range.
-	const double ReconstructedParticle::PlotUntil() const
-	{
-		return fPlotRange.second;
-	}
-
-
-	/// Get plot range through a `return` statement.
-	const std::pair<double, double> ReconstructedParticle::GetDoubleGaussianWidths() const
-	{
-		return fDoubleGaussianWidths;
-	}
-
-
-	/// Get fit range through a `return` statement.
-	const std::pair<double, double> ReconstructedParticle::GetFitRange() const
-	{
-		return fFitRange;
-	}
-
-
-	/// Get plot range through a `return` statement.
-	const std::pair<double, double> ReconstructedParticle::GetPlotRange() const
-	{
-		return fPlotRange;
-	}
-
-
-	/// Get the plot range through reference.
-	void ReconstructedParticle::GetDoubleGaussianWidths(double& from, double& to) const
-	{
-		from = fDoubleGaussianWidths.first;
-		to   = fDoubleGaussianWidths.second;
-	}
-
-
-	/// Get the plot range through reference.
-	void ReconstructedParticle::GetFitRange(double& from, double& to) const
-	{
-		from = fFitRange.first;
-		to   = fFitRange.second;
-	}
-
-
-	/// Get the plot range through reference.
-	void ReconstructedParticle::GetPlotRange(double& from, double& to) const
-	{
-		from = fPlotRange.first;
-		to   = fPlotRange.second;
-	}
-
-
-	/// Get the LaTeX label for the daughters.
-	const char* ReconstructedParticle::GetDaughterLabel() const
-	{
-		return fDaughterLabels.Data();
-	}
-
-
 
 // * =============================== * //
 // * ------- PRIVATE METHODS ------- * //
@@ -225,6 +103,7 @@
 					fDoubleGaussianWidths = {.00499, .0135};
 					fFitRange             = {.10, .17};
 					fPlotRange            = {.10, .17};
+					fNPol                 = 2;
 					break;
 				case 113: // neutral rho
 					fMassOffset           = .05;
@@ -234,6 +113,7 @@
 					fDoubleGaussianWidths = {.0469, .1312};
 					fFitRange             = {.40, 1.1};
 					fPlotRange            = {.30, 1.7};
+					fNPol                 = 2;
 					break;
 				case 213:
 				case -213: // rho meson
@@ -244,6 +124,7 @@
 					fDoubleGaussianWidths = {.0542, .209};
 					fFitRange             = {.50, 1.42};
 					fPlotRange            = {.30, 1.7};
+					fNPol                 = 2;
 					break;
 				case 421: // D0 meson
 					fMassOffset           = .05;
@@ -253,6 +134,7 @@
 					fDoubleGaussianWidths = {.0542, .209};
 					fFitRange             = {1.84, 1.91};
 					fPlotRange            = {1.83, 1.94};
+					fNPol                 = 0;
 					break;
 				case 333: // phi meson
 					fMassOffset           = .05;
@@ -262,6 +144,7 @@
 					fDoubleGaussianWidths = {.002, .006};
 					fFitRange             = {.99, 1.053};
 					fPlotRange            = {.99, 1.18};
+					fNPol                 = 2;
 					break;
 				case 443: // J/psi meson
 					fMassOffset           = .05;
@@ -271,6 +154,7 @@
 					fDoubleGaussianWidths = {1e-8, 1e-8};
 					fFitRange             = {3.096813, 3.096815};
 					fPlotRange            = {3.096813, 3.096815};
+					fNPol                 = 2;
 					break;
 				default:
 					std::cout << "ERROR: No particle reconstruction defined for PDG code " << fParticlePDG->PdgCode() << " (" << fParticlePDG->GetName() << ")" << std::endl;

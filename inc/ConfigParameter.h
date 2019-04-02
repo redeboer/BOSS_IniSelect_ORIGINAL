@@ -46,7 +46,7 @@
 		operator TYPE() { return fValue; }
 		void PrintValue() const;
 	private:
-		const bool ConvertStringsToValue_impl_str();
+		// const bool ConvertStringsToValue_impl_str();
 		virtual const bool ConvertStringsToValue_impl();
 		virtual const bool ConvertValueToStrings_impl();
 		const bool HasSingleString() const;
@@ -178,20 +178,22 @@
 
 
 	/// `ConvertStringsToValue` handler for an object that can be contructed from a `std::string`.
-	template<class TYPE> inline
-	const bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
-	{
-		if(!HasSingleString()) return false;
-		fValue = fReadStrings.front();
-		return true;
-	}
+	// template<class TYPE> inline
+	// const bool ConfigParameter<TYPE>::ConvertStringsToValue_impl_str()
+	// {
+	// 	if(!HasSingleString()) return false;
+	// 	fValue = fReadStrings.front();
+	// 	return true;
+	// }
 
 
 	/// `ConvertStringsToValue` handler for `AxisBinning`s (has a `string` constructor).
 	template<> inline
 	const bool ConfigParameter<AxisBinning>::ConvertStringsToValue_impl()
 	{
-		return ConvertStringsToValue_impl_str();
+		if(!HasSingleString()) return false;
+		fValue = fReadStrings.front();
+		return true;
 	}
 
 
@@ -253,7 +255,9 @@
 	template<> inline
 	const bool ConfigParameter<std::string>::ConvertStringsToValue_impl()
 	{
-		return ConvertStringsToValue_impl_str();
+		if(!HasSingleString()) return false;
+		fValue = fReadStrings.front();
+		return true;
 	}
 
 

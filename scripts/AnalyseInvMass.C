@@ -84,7 +84,7 @@
 					/// @todo Trouble with the number of polynomials... Perhaps somehow implement a fit object (extension of `BranchPlotOptions`)?
 					FitDoubleGaussian(
 						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
-						*particles[i], 2, fit.second.LogXYZ().c_str());
+						*particles[i], fit.second.LogXYZ().c_str());
 					++i;
 				}
 

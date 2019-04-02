@@ -39,26 +39,20 @@
 
 		/// @name Getters
 			///@{
-			const char* GetDaughterLabel() const;
-			const double FitFrom() const;
-			const double FitUntil() const;
-			const double GetBWConvolutedWidth() const;
-			const double GetBWPureWidth() const;
-			const double GetGaussianSmallWidth() const;
-			const double GetGaussianWideWidth() const;
-			const double GetLowerMass() const;
-			const double GetMassOffsetPercentage() const;
-			const double GetSingleGaussianWidth() const;
-			const double GetUpperMass() const;
-			const double PlotFrom() const;
-			const double PlotUntil() const;
-			const std::pair<double, double> GetDoubleGaussianRatio() const;
-			const std::pair<double, double> GetDoubleGaussianWidths() const;
-			const std::pair<double, double> GetFitRange() const;
-			const std::pair<double, double> GetPlotRange() const;
-			void GetDoubleGaussianWidths(double& from, double& to) const;
-			void GetFitRange(double& from, double& to) const;
-			void GetPlotRange(double& from, double& to) const;
+			const char* GetDaughterLabel() const { return fDaughterLabels.Data(); }
+			const double BWConvolutedWidth() const { return fBWConvolutedWidth; }
+			const double BWPureWidth() const { return fBWPureWidth; }
+			const double FitFrom() const { return fFitRange.first; }
+			const double FitUntil() const  { return fFitRange.second; }
+			const double GaussianSmallWidth() const { return fDoubleGaussianWidths.first; }
+			const double GaussianWideWidth() const { return fDoubleGaussianWidths.second; }
+			const double LowerMass() const;
+			const double MassOffsetPercentage() const { return fMassOffset; }
+			const double PlotFrom() const { return fPlotRange.first; }
+			const double PlotUntil() const { return fPlotRange.second; }
+			const double SingleGaussianWidth() const { return fSingleGaussianWidth; }
+			const double UpperMass() const;
+			const UChar_t NPol() const { return fNPol; }
 			///@}
 
 	protected:
@@ -69,6 +63,7 @@
 			double fBWPureWidth; ///< Estimate for the width of the Breit-Wigner function when fitting BW only.
 			double fMassOffset; ///< Percentage (divided by 100) that the mean (namely, the mass) may vary.
 			double fSingleGaussianWidth; ///< Estimate for the width of one Gaussian function.
+			UChar_t fNPol; ///< Degree of the background polynomial (whether Chebychev or normal polynomial).
 			std::pair<double, double> fDoubleGaussianWidths; ///< Pair of two sigma values. You can use that as estimates of the widths for the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second.
 			std::pair<double, double> fFitRange; ///< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).
 			std::pair<double, double> fPlotRange; ///< Invariant mass range that you plot.

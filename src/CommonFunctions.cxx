@@ -187,9 +187,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit.
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -225,18 +224,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -254,7 +253,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw signal
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -276,9 +275,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -324,18 +322,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -353,7 +351,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw signal
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -375,8 +373,7 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
-	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials)
+	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, const ReconstructedParticle& particle)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -399,18 +396,18 @@
 
 		// * Add polynomial background if required * //
 			RooArgList fBckParameters;
-			for(UChar_t i = 0; i <= numPolynomials; ++i) {
+			for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 				auto p = new RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6);
 				fBckParameters.add(*p);
 			}
 			RooChebychev fPolBackground("polBkg",
-				Form("Polynomial-%u background", numPolynomials),
+				Form("Polynomial-%u background", particle.NPol()),
 				fRooRealVar, fBckParameters);
 			RooRealVar fSigToBckRatio(
-				Form("N_{pol%u}", numPolynomials),
-				Form("N_{pol%u}", numPolynomials),
+				Form("N_{pol%u}", particle.NPol()),
+				Form("N_{pol%u}", particle.NPol()),
 				0., 0., 1e5);
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fComponents.add(fPolBackground);
 				fNContributions.add(fSigToBckRatio);
 			}
@@ -428,7 +425,7 @@
 				RooFit::LineWidth(2), RooFit::LineColor(kBlue+2), RooFit::LineWidth(1),
 				RooFit::MarkerColor(kBlue+2), RooFit::MarkerSize(.5));
 			fFullShape.plotOn(frame, RooFit::LineWidth(2), RooFit::LineColor(kBlack));
-			if(numPolynomials) {
+			if(particle.NPol()) {
 				fFullShape.plotOn(frame, RooFit::Components(signal), // draw Breit-Wigner
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape.plotOn(frame, RooFit::Components(fPolBackground), // draw background
@@ -450,9 +447,8 @@
 	/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-		/// @param numPolynomials The degree of the polynomial that describes the background.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, const UChar_t numPolynomials, TString logScale)
+	void CommonFunctions::Fit::FitDoubleGaussian(TH1F *hist, const ReconstructedParticle& particle, TString logScale)
 	{
 		if(CommonFunctions::TerminalIO::IsEmptyPtr(hist)) return;
 		// * DATA MEMBERS * //
@@ -475,7 +471,7 @@
 				std::unique_ptr<RooRealVar>    fSigma2;
 
 		// * METHODS * //
-		if(true) { // local namespace for beginning of class design
+		if(true) { // local namespace for testing the beginnings of a class design
 			// * Create RooFit variable and data distribution * //
 				fRooRealVar  = std_fix::make_unique<RooRealVar>(CreateRooFitInvMassVar(particle));
 				fRooDataHist = std_fix::make_unique<RooDataHist>(CreateRooFitInvMassDistr(hist, *fRooRealVar, particle));
@@ -509,17 +505,17 @@
 				fNContributions.add(*fNGauss2);
 
 			// * Add polynomial background if required * //
-				for(UChar_t i = 0; i <= numPolynomials; ++i) {
+				for(UChar_t i = 0; i <= particle.NPol(); ++i) {
 					fBckParameters.addClone(RooRealVar(Form("p%u", i), Form("p%u", i), 0., -1e6, 1e6));
 				}
 				fPolBackground = std_fix::make_unique<RooChebychev>("polBkg",
-					Form("Polynomial-%u background", numPolynomials),
+					Form("Polynomial-%u background", particle.NPol()),
 					*fRooRealVar, fBckParameters);
 				fSigToBckRatio = std_fix::make_unique<RooRealVar>(
-					Form("N_{pol%u}", numPolynomials),
-					Form("N_{pol%u}", numPolynomials),
+					Form("N_{pol%u}", particle.NPol()),
+					Form("N_{pol%u}", particle.NPol()),
 					0., 0., 1e5);
-				if(numPolynomials) {
+				if(particle.NPol()) {
 					fComponents.add(*fPolBackground);
 					fNContributions.add(*fSigToBckRatio);
 				}
@@ -541,7 +537,7 @@
 					RooFit::LineWidth(1), RooFit::LineColor(kRed-4));
 				fFullShape->plotOn(frame, RooFit::Components(*fComponents.at(1)), // draw gauss 2
 					RooFit::LineWidth(1), RooFit::LineColor(kBlue-4));
-				if(numPolynomials) {
+				if(particle.NPol()) {
 					fFullShape->plotOn(frame, RooFit::Components(*fPolBackground), // draw background
 						RooFit::LineStyle(kDashed), RooFit::LineWidth(1), RooFit::LineColor(kGray));
 				}

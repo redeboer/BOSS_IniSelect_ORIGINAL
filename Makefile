@@ -69,10 +69,11 @@ ${BINDIR}/%.o : ${SRCDIR}/%.cxx ${INCDIR}/%.h $(DEPDIR)/%.d
 
 # * for linking the objects generated above.
 LINK : $(shell find bin/ -name "*.o")
+	$(RM) lib${LIBNAME}.a
 	@ar q lib${LIBNAME}.a ${OBJ_BIN}
 
 # * for the scripts (executables)
-${EXEDIR}/%.exe : scripts/%.C $(DEPDIR)/%.d #lib${LIBNAME}.a
+${EXEDIR}/%.exe : scripts/%.C $(DEPDIR)/%.d LINK
 	@echo "Compiling script \"$(notdir $<)\""
 	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEPFLAGS} -L. -l${LIBNAME} ${LFLAGS}
 	$(POSTCOMPILE)

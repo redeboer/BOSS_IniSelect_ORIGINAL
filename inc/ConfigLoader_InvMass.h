@@ -27,7 +27,9 @@
 	class ConfigLoader_InvMass : public ConfigLoader
 	{
 	public:
-		ConfigLoader_InvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { LoadConfiguration(path); }
+		ConfigLoader_InvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { ConfigParBase::PrintAll();
+		LoadConfiguration(path);
+		}
 		/// @name I/O strings
 			///@{
 			ConfigParameter<std::string> Filename_excl{"Exclusive MC file"};
