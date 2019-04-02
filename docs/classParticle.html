@@ -113,16 +113,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a453db7c050e9e50dc7f7333d1c558bd5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a453db7c050e9e50dc7f7333d1c558bd5">IsLoaded</a> () const</td></tr>
 <tr class="separator:a453db7c050e9e50dc7f7333d1c558bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Getters</div></td></tr>
-<tr class="memitem:aa9f7152d465aadc5f9414edc45a47386"><td class="memItemLeft" align="right" valign="top">TParticlePDG *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#aa9f7152d465aadc5f9414edc45a47386">GetParticlePDG</a> () const</td></tr>
-<tr class="separator:aa9f7152d465aadc5f9414edc45a47386"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b8ac08a6780525067a126f69e42def7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a4b8ac08a6780525067a126f69e42def7">GetPDGCode</a> () const</td></tr>
-<tr class="separator:a4b8ac08a6780525067a126f69e42def7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad34f1d39fb95328fcfb59d74f71a736c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#ad34f1d39fb95328fcfb59d74f71a736c">GetMass</a> () const</td></tr>
-<tr class="separator:ad34f1d39fb95328fcfb59d74f71a736c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ad89f7795ac792af9aa0c553b555eee"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a0ad89f7795ac792af9aa0c553b555eee">GetNameLaTeX</a> () const</td></tr>
-<tr class="separator:a0ad89f7795ac792af9aa0c553b555eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f2ca39f24510c12afcb574c6bb57e42"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a4f2ca39f24510c12afcb574c6bb57e42">GetName</a> () const</td></tr>
-<tr class="separator:a4f2ca39f24510c12afcb574c6bb57e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f8a6693d7533abc429bac1e34d70dd7"><td class="memItemLeft" align="right" valign="top">TParticlePDG *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a1f8a6693d7533abc429bac1e34d70dd7">ParticlePDG</a> () const</td></tr>
+<tr class="separator:a1f8a6693d7533abc429bac1e34d70dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b9acc6b72547abe6a3b83e274ef1eb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#ab5b9acc6b72547abe6a3b83e274ef1eb">PDGCode</a> () const</td></tr>
+<tr class="separator:ab5b9acc6b72547abe6a3b83e274ef1eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7faac580ed024253fe8de88a3d8bd0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#afa7faac580ed024253fe8de88a3d8bd0">Mass</a> () const</td></tr>
+<tr class="separator:afa7faac580ed024253fe8de88a3d8bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a277d1d1b4dfb9f52534fd47ddd204cf7"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a277d1d1b4dfb9f52534fd47ddd204cf7">NameLaTeX</a> () const</td></tr>
+<tr class="separator:a277d1d1b4dfb9f52534fd47ddd204cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad30a585b6978c1be9fe055b991aae27d"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#ad30a585b6978c1be9fe055b991aae27d">Name</a> () const</td></tr>
+<tr class="separator:ad30a585b6978c1be9fe055b991aae27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -223,107 +223,7 @@ Protected Attributes</h2></td></tr>
 <p>Determines a LaTeX string in <code>ROOT</code> format from the PDG code of the particle that was loaded. </p>
 <p>See instructions here: <a href="https://root.cern.ch/doc/master/classTLatex.html">https://root.cern.ch/doc/master/classTLatex.html</a>. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000027">Todo:</a></b></dt><dd>Expand the switch statement here if you miss any particles. See e.g. <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,">http://home.fnal.gov/~mrenna/lutp0613man2/node44.html,</a> or use the <code>TDatabasePDG</code> in <code>ROOT</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00108">108</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
-
-</div>
-</div>
-<a id="ad34f1d39fb95328fcfb59d74f71a736c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad34f1d39fb95328fcfb59d74f71a736c">&#9670;&nbsp;</a></span>GetMass()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double Particle::GetMass </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>double Mass of the particle according to the PDG. Returns 0 if particle was not loaded. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00056">56</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a4f2ca39f24510c12afcb574c6bb57e42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f2ca39f24510c12afcb574c6bb57e42">&#9670;&nbsp;</a></span>GetName()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * Particle::GetName </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle as registered in the <code>TDatabasePDG</code>. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00072">72</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a0ad89f7795ac792af9aa0c553b555eee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0ad89f7795ac792af9aa0c553b555eee">&#9670;&nbsp;</a></span>GetNameLaTeX()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * Particle::GetNameLaTeX </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle in LaTeX <code>ROOT</code> format. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00064">64</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
-
-</div>
-</div>
-<a id="aa9f7152d465aadc5f9414edc45a47386"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9f7152d465aadc5f9414edc45a47386">&#9670;&nbsp;</a></span>GetParticlePDG()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">TParticlePDG * Particle::GetParticlePDG </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>TParticlePDG* Pointer to the <code>TParticlePDG</code> in the <code>TDatabasePDG</code> (located in <code><a class="el" href="FrameworkSettings_8h.html">FrameworkSettings.h</a></code>). Is a <code>nullptr</code> if particle was not properly loaded. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00049">49</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a4b8ac08a6780525067a126f69e42def7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b8ac08a6780525067a126f69e42def7">&#9670;&nbsp;</a></span>GetPDGCode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Particle::GetPDGCode </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>int PDG code, and 0 if particle was not loaded. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00080">80</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00101">101</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
 
 </div>
 </div>
@@ -372,7 +272,114 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00093">93</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00086">86</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+
+</div>
+</div>
+<a id="afa7faac580ed024253fe8de88a3d8bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7faac580ed024253fe8de88a3d8bd0">&#9670;&nbsp;</a></span>Mass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Particle::Mass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>double Mass of the particle according to the PDG. Returns 0 if particle was not loaded. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00049">49</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+
+</div>
+</div>
+<a id="ad30a585b6978c1be9fe055b991aae27d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad30a585b6978c1be9fe055b991aae27d">&#9670;&nbsp;</a></span>Name()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Particle::Name </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle as registered in the <code>TDatabasePDG</code>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00065">65</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a277d1d1b4dfb9f52534fd47ddd204cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a277d1d1b4dfb9f52534fd47ddd204cf7">&#9670;&nbsp;</a></span>NameLaTeX()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * Particle::NameLaTeX </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>const char* Name of the particle in LaTeX <code>ROOT</code> format. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00057">57</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a1f8a6693d7533abc429bac1e34d70dd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f8a6693d7533abc429bac1e34d70dd7">&#9670;&nbsp;</a></span>ParticlePDG()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TParticlePDG* Particle::ParticlePDG </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="Particle_8h_source.html#l00054">54</a> of file <a class="el" href="Particle_8h_source.html">Particle.h</a>.</p>
+
+</div>
+</div>
+<a id="ab5b9acc6b72547abe6a3b83e274ef1eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b9acc6b72547abe6a3b83e274ef1eb">&#9670;&nbsp;</a></span>PDGCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Particle::PDGCode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>int PDG code, and 0 if particle was not loaded. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="Particle_8cxx_source.html#l00073">73</a> of file <a class="el" href="Particle_8cxx_source.html">Particle.cxx</a>.</p>
 
 </div>
 </div>

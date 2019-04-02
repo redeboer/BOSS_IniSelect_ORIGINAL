@@ -45,15 +45,8 @@
 // * ======================= * //
 
 
-	/// @return TParticlePDG* Pointer to the `TParticlePDG` in the `TDatabasePDG` (located in `FrameworkSettings.h`). Is a `nullptr` if particle was not properly loaded.
-	TParticlePDG* Particle::GetParticlePDG() const
-	{
-		return fParticlePDG;
-	}
-
-
 	/// @return double Mass of the particle according to the PDG. Returns 0 if particle was not loaded.
-	double Particle::GetMass() const
+	double Particle::Mass() const
 	{
 		if(fParticlePDG) return fParticlePDG->Mass();
 		else return 0.;
@@ -61,7 +54,7 @@
 
 
 	/// @return const char* Name of the particle in LaTeX `ROOT` format.
-	const char* Particle::GetNameLaTeX() const
+	const char* Particle::NameLaTeX() const
 	{
 		if(fParticlePDG) return fParticleNameLaTeX;
 		else return nullptr;
@@ -69,7 +62,7 @@
 
 
 	/// @return const char* Name of the particle as registered in the `TDatabasePDG`.
-	const char* Particle::GetName() const
+	const char* Particle::Name() const
 	{
 		if(fParticlePDG) return fParticlePDG->GetName();
 		else return nullptr;
@@ -77,7 +70,7 @@
 
 
 	/// @return int PDG code, and 0 if particle was not loaded.
-	int Particle::GetPDGCode() const
+	int Particle::PDGCode() const
 	{
 		if(fParticlePDG) return fParticlePDG->PdgCode();
 		else return 0;

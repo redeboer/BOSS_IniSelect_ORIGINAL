@@ -39,7 +39,7 @@
 
 		/// @name Getters
 			///@{
-			const char* GetDaughterLabel() const { return fDaughterLabels.Data(); }
+			const char* DaughterLabel() const { return fDaughterLabels.Data(); }
 			const double BWConvolutedWidth() const { return fBWConvolutedWidth; }
 			const double BWPureWidth() const { return fBWPureWidth; }
 			const double FitFrom() const { return fFitRange.first; }

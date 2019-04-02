@@ -152,8 +152,8 @@
 	const bool ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >::ConvertValueToStrings_impl()
 	{
 		for(auto &it : fValue) {
-			AddValue(Form("%d", it.first.GetPDGCode()));
-			AddValue(it.first.GetDaughterLabel());
+			AddValue(Form("%d", it.first.PDGCode()));
+			AddValue(it.first.DaughterLabel());
 			AddValue(it.second.BuildOriginalString().c_str());
 		}
 		return true;

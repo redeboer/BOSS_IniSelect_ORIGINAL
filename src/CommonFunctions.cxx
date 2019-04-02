@@ -163,7 +163,7 @@
 	/// Create a `RooDataHist` specifically for resonstructing a certain particle (`ReconstructedParticle`).
 	RooDataHist CommonFunctions::Fit::CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle) {
 		RooDataHist distr(
-			Form("%scandidate_RooDataHist", particle.GetName()),
+			Form("%scandidate_RooDataHist", particle.Name()),
 			hist->GetTitle(), var, RooFit::Import(*hist));
 		return distr;
 	}
@@ -173,8 +173,8 @@
 	RooRealVar CommonFunctions::Fit::CreateRooFitInvMassVar(const ReconstructedParticle& particle)
 	{
 		RooRealVar var(
-			Form("#it{M}_{%s}", particle.GetDaughterLabel()),
-			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.GetDaughterLabel()),
+			Form("#it{M}_{%s}", particle.DaughterLabel()),
+			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			particle.PlotFrom(),
 			particle.PlotUntil()
 		);
@@ -197,23 +197,23 @@
 
 		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
-			RooRealVar fSigma("#sigma_{gauss}", Form("%s Gaussian width", particle.GetNameLaTeX()),
-					particle.GetSingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetSingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetSingleGaussianWidth());
+			RooRealVar fSigma("#sigma_{gauss}", Form("%s Gaussian width", particle.NameLaTeX()),
+					particle.SingleGaussianWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.SingleGaussianWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.SingleGaussianWidth());
 			RooGaussian fGaussian("gauss",
-				Form("Gaussian PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma);
 
 		// * Create Breit-Wigner/Cauchy distribution * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.GetNameLaTeX()),
-				particle.GetBWConvolutedWidth(), 0., 10.*particle.GetBWConvolutedWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.NameLaTeX()),
+				particle.BWConvolutedWidth(), 0., 10.*particle.BWConvolutedWidth());
 			RooBreitWigner bw("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 
 		// * Convolute * //
@@ -262,7 +262,7 @@
 			fFullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
-			TString pname = particle.GetName();
+			TString pname = particle.Name();
 			pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWSingleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
@@ -285,15 +285,15 @@
 
 		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
-			RooRealVar fSigma1("#sigma_{1}", Form("%s width 1", particle.GetNameLaTeX()),
-				particle.GetGaussianSmallWidth()); //! width is fixed
-			RooRealVar fSigma2("#sigma_{2}", Form("%s width 2", particle.GetNameLaTeX()),
-				particle.GetGaussianWideWidth()); //! width is fixed
+			RooRealVar fSigma1("#sigma_{1}", Form("%s width 1", particle.NameLaTeX()),
+				particle.GaussianSmallWidth()); //! width is fixed
+			RooRealVar fSigma2("#sigma_{2}", Form("%s width 2", particle.NameLaTeX()),
+				particle.GaussianWideWidth()); //! width is fixed
 			RooGaussian fGaussian1("gauss1",
-				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma1);
 			RooGaussian fGaussian2("gauss2",
-				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, m0, fSigma2);
 
 		// * Add the Gaussian components * //
@@ -305,13 +305,13 @@
 
 		// * Create Breit-Wigner/Cauchy distribution * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.GetNameLaTeX()),
-				particle.GetBWConvolutedWidth(), 0., 10.*particle.GetBWConvolutedWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("#sigma_{BW}", Form("%s BW width", particle.NameLaTeX()),
+				particle.BWConvolutedWidth(), 0., 10.*particle.BWConvolutedWidth());
 			RooBreitWigner bw("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 
 		// * Convolute * //
@@ -360,7 +360,7 @@
 			fFullShape.paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 		// * Write fitted histograms * //
-			TString pname = particle.GetName();
+			TString pname = particle.Name();
 			pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWDoubleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
@@ -382,13 +382,13 @@
 
 		// * Create Breit-Wigner function and fit * //
 			RooRealVar mean(
-				Form("m_{%s}", particle.GetNameLaTeX()),
-				Form("%s mass", particle.GetNameLaTeX()),
-				particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
-			RooRealVar width("width", Form("%s width", particle.GetNameLaTeX()),
-				particle.GetBWPureWidth(), 0., 100.*particle.GetBWPureWidth());
+				Form("m_{%s}", particle.NameLaTeX()),
+				Form("%s mass", particle.NameLaTeX()),
+				particle.Mass(), particle.LowerMass(), particle.UpperMass());
+			RooRealVar width("width", Form("%s width", particle.NameLaTeX()),
+				particle.BWPureWidth(), 0., 100.*particle.BWPureWidth());
 			RooGaussian signal("breitwigner",
-				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+				Form("Breit-Wigner PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				fRooRealVar, mean, width);
 			RooRealVar n("N_{BW}", "N_{BW}", 1e2, 0., 1e6);
 			RooArgList fComponents(signal);
@@ -437,7 +437,7 @@
 			TCanvas c;
 			c.SetBatch();
 			frame->Draw();
-			CommonFunctions::Draw::SaveCanvas(Form("BreitWigner_%s", particle.GetName()), &c);
+			CommonFunctions::Draw::SaveCanvas(Form("BreitWigner_%s", particle.Name()), &c);
 
 	}
 
@@ -478,24 +478,24 @@
 
 			// * Create Gaussian functions * //
 				fMean = std_fix::make_unique<RooRealVar>(
-					Form("m_{%s}", particle.GetNameLaTeX()),
-					Form("%s mass", particle.GetNameLaTeX()),
-					particle.GetMass(), particle.GetLowerMass(), particle.GetUpperMass());
+					Form("m_{%s}", particle.NameLaTeX()),
+					Form("%s mass", particle.NameLaTeX()),
+					particle.Mass(), particle.LowerMass(), particle.UpperMass());
 				fSigma1 = std_fix::make_unique<RooRealVar>("#sigma_{1}",
-					Form("%s width 1", particle.GetNameLaTeX()),
-					particle.GetGaussianSmallWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetGaussianSmallWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetGaussianSmallWidth());
+					Form("%s width 1", particle.NameLaTeX()),
+					particle.GaussianSmallWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.GaussianSmallWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.GaussianSmallWidth());
 				fSigma2 = std_fix::make_unique<RooRealVar>("#sigma_{2}",
-					Form("%s width 2", particle.GetNameLaTeX()),
-					particle.GetGaussianWideWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.GetGaussianWideWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.GetGaussianWideWidth());
+					Form("%s width 2", particle.NameLaTeX()),
+					particle.GaussianWideWidth(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.GaussianWideWidth(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.GaussianWideWidth());
 				fGaussian1 = std_fix::make_unique<RooGaussian>("gauss1",
-					Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					Form("Gaussian PDF 1 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 					*fRooRealVar, *fMean, *fSigma1);
 				fGaussian2 = std_fix::make_unique<RooGaussian>("gauss2",
-					Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.GetDaughterLabel()),
+					Form("Gaussian PDF 2 for #it{M}_{%s} distribution", particle.DaughterLabel()),
 					*fRooRealVar, *fMean, *fSigma2);
 				fNGauss1 = std_fix::make_unique<RooRealVar>("N_{gaus1}", "N_{gaus1}", 1e2, 0., 1e6);
 				fNGauss2 = std_fix::make_unique<RooRealVar>("N_{gaus2}", "N_{gaus2}", 1e4, 0., 1e6);
@@ -544,7 +544,7 @@
 				fFullShape->paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 			// * Write fitted histograms * //
-				TString pname = particle.GetName();
+				TString pname = particle.Name();
 				pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
 				CommonFunctions::Draw::DrawAndSave(Form("DoubleGauss_%s", pname.Data()), "", logScale, frame);
 				delete frame;
@@ -565,9 +565,9 @@
 	TH1D CommonFunctions::Hist::CreateInvariantMassHistogram(const ReconstructedParticle& particle, const int nBins)
 	{
 		return TH1D(
-			Form("hist_%s", particle.GetName()),
+			Form("hist_%s", particle.Name()),
 			Form("Invariant mass for %s candidate;#it{M}_{%s} (GeV/#it{c}^{2});counts",
-				particle.GetNameLaTeX(), particle.GetDaughterLabel()),
+				particle.NameLaTeX(), particle.DaughterLabel()),
 			nBins, particle.PlotFrom(), particle.PlotUntil());
 	}
 

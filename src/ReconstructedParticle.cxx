@@ -68,17 +68,17 @@
 
 
 	/// Get (compute) the lower mass boundary. Useful for fitting parameters.
-	const double ReconstructedParticle::GetLowerMass() const
+	const double ReconstructedParticle::LowerMass() const
 	{
-		if(fParticlePDG) return (1. - fMassOffset) * GetMass();
+		if(fParticlePDG) return (1. - fMassOffset) * Mass();
 		else return 0.;
 	}
 
 
 	/// Get (compute) the upper mass boundary. Useful for fitting parameters.
-	const double ReconstructedParticle::GetUpperMass() const
+	const double ReconstructedParticle::UpperMass() const
 	{
-		if(fParticlePDG) return (1. + fMassOffset) * GetMass();
+		if(fParticlePDG) return (1. + fMassOffset) * Mass();
 		else return 0.;
 	}
 
