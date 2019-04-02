@@ -58,11 +58,11 @@ source CommonFunctions.sh
 if [ "${fileToRead}" != "" ]; then
 	# * This will create your job files based on a file listing dst files and directories
 	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 else
 	# * This will create your job files based on a directory containing dst files
 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 fi
 
 # * SUBMIT * #

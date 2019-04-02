@@ -14,8 +14,8 @@ source CommonFunctions.sh
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"
-nJobs=20
-nEventsPerJob=5000
+nJobs=100
+nEventsPerJob=10000
 outputLevel=4
 outputSubdir="${packageName}/$(printf "%'d" $((${nJobs} * ${nEventsPerJob})))_events"
 

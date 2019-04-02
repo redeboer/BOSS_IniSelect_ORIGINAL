@@ -129,8 +129,8 @@
 
 
 		/// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
-			if(fNetChargeMDC) return StatusCode::SUCCESS;
-			++fCutFlow_NetChargeOK;
+			// if(fNetChargeMDC) return StatusCode::SUCCESS;
+			// ++fCutFlow_NetChargeOK;
 
 
 		/// <li> Create selection of **charged** tracks.
@@ -390,6 +390,7 @@
 							kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
 							kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
 							kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+							kkmfit->AddResonance(1, gM_pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$ resonance
 							if(kkmfit->Fit()) {
 								/// <ol>
 								/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
@@ -421,6 +422,7 @@
 								<< fEventHeader->runNumber() << ", "
 								<< fEventHeader->eventNumber() << "):" << std::endl
 								<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
+								<< "    m_pi0  = " << bestKalmanFit.fM_pi0      << std::endl
 								<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
 								<< "    m_phi  = " << bestKalmanFit.fM_phi      << std::endl
 								<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
@@ -428,6 +430,7 @@
 							++fCutFlow_NFitOK;
 							CreateMCTruthCollection();
 							fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;
+							fNTuple_topology.GetItem<double>("mpi0") = bestKalmanFit.fM_pi0;
 							fNTuple_topology.GetItem<double>("mD0")  = bestKalmanFit.fM_D0;
 							fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
 							fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
@@ -469,8 +472,9 @@
 	void D0phi_KpipiKK::AddNTupleItems_Fit(NTupleContainer &tuple)
 	{
 		if(!tuple.DoWrite()) return;
-		tuple.AddItem<double>("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
-		tuple.AddItem<double>("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+ K^+  \f$ (\f$\phi\f$).
+		tuple.AddItem<double>("mpi0");  /// * `"mpi0"`:  Invariant mass for \f$gamma\gamma\f$ (\f$\pi^0\f$).
+		tuple.AddItem<double>("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^-\pi^+\f$ (\f$D^0\f$).
+		tuple.AddItem<double>("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+K^+\f$ (\f$\phi\f$).
 		tuple.AddItem<double>("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
 		tuple.AddItem<double>("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
 		tuple.AddItem<double>("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
@@ -517,11 +521,11 @@
 			}
 
 		/// -# Set the `NTuple::Item`s.
-			tuple.GetItem<double>("mpi0")  = fit->fM_pi0;
+			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 			tuple.GetItem<double>("mD0")   = fit->fM_D0;
 			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
 			tuple.GetItem<double>("mphi")  = fit->fM_phi;
+			tuple.GetItem<double>("mpi0")  = fit->fM_pi0;
 			tuple.GetItem<double>("pD0")   = fit->fP_D0;
 			tuple.GetItem<double>("pphi")  = fit->fP_phi;
-			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 	}

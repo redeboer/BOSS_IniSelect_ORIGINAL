@@ -94,19 +94,19 @@
 		/// <ol>
 		/// <li> Compute Lorentz vectors of the particles to be reconstructed:
 			/// <ul>
-			HepLorentzVector ppi0  = pPhoton1 + pPhoton2;  /// <li> \f$pi^0 \rightarrow \gamma\gamma\f$
-			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^0\f$
-			HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// <li> \f$\phi \rightarrow K^-K^+\f$
-			HepLorentzVector pJpsi = pD0 + pphi;           /// <li> \f$J/\psi \rightarrow D^0\phi\f$
+			HepLorentzVector ppi0  = pPhoton1 + pPhoton2;         /// <li> \f$pi^0 \rightarrow \gamma\gamma\f$
+			HepLorentzVector pD0   = pKaonNeg1 + pPionPos + ppi0; /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^0\f$
+			HepLorentzVector pphi  = pKaonNeg2 + pKaonPos;        /// <li> \f$\phi \rightarrow K^-K^+\f$
+			HepLorentzVector pJpsi = pD0 + pphi;                  /// <li> \f$J/\psi \rightarrow D^0\phi\f$
 			/// </ul>
 		/// <li> Compute invariant masses and momentum:
 			/// <ul>
-			fM_pi0  = ppi0.m();   /// <li> `fM_pi0`  = \f$M_{\gamma\gamma}\f$
-			fM_D0   = pD0.m();    /// <li> `fM_D0`   = \f$M_{K^-\pi^+}\f$
-			fM_phi  = pphi.m();   /// <li> `fM_phi`  = \f$M_{K^-K^+}\f$
-			fM_Jpsi = pJpsi.m();  /// <li> `fM_Jpsi` = \f$M_{D^0\phi}\f$
-			fP_D0   = std::sqrt(pD0 .px()*pD0 .px() + pD0 .py()*pD0 .py() + pD0 .pz()*pD0 .pz());  /// <li> `fP_D0`  = \f$|\vec{p}_{K^-\pi^+}|\f$
-			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz());  /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
+			fM_pi0  = ppi0 .m(); /// <li> `fM_pi0`  = \f$M_{\gamma\gamma}\f$
+			fM_D0   = pD0  .m(); /// <li> `fM_D0`   = \f$M_{K^-\pi^+\pi^0}\f$
+			fM_phi  = pphi .m(); /// <li> `fM_phi`  = \f$M_{K^-K^+}\f$
+			fM_Jpsi = pJpsi.m(); /// <li> `fM_Jpsi` = \f$M_{D^0\phi}\f$
+			fP_D0   = std::sqrt(pD0 .px()*pD0 .px() + pD0 .py()*pD0 .py() + pD0 .pz()*pD0 .pz()); /// <li> `fP_D0`  = \f$|\vec{p}_{K^-\pi^+}|\f$
+			fP_phi  = std::sqrt(pphi.px()*pphi.px() + pphi.py()*pphi.py() + pphi.pz()*pphi.pz()); /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
 			/// </ul>
 		/// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
 			fFitMeasure = std::abs(fM_phi - gM_phi);
