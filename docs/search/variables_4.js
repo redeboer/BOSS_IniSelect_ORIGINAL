@@ -168,6 +168,7 @@ var searchData=
   ['fnbins',['fNBins',['../classAxisBinning.html#a0edc19c9482f5b6a6b99f2cce8d558ed',1,'AxisBinning']]],
   ['fnetchargemdc',['fNetChargeMDC',['../classTrackSelector.html#ae1438702d17070d27437f08600daf102',1,'TrackSelector']]],
   ['fnormph',['fNormPH',['../classRhopiAlg.html#a2104747b628e5e2ca62eea29eab08257',1,'RhopiAlg']]],
+  ['fnpol',['fNPol',['../classReconstructedParticle.html#ac05ca037e247e98c309c9b8dfa474b4f',1,'ReconstructedParticle']]],
   ['fntuple_5fcharged',['fNTuple_charged',['../classTrackSelector.html#ad55766b1e861a00c51247237bb53d3d3',1,'TrackSelector']]],
   ['fntuple_5fcuts',['fNTuple_cuts',['../classTrackSelector.html#a7bbc529b932aaa34f0ee0e80d0c7723f',1,'TrackSelector']]],
   ['fntuple_5fdedx',['fNTuple_dedx',['../classTrackSelector.html#af537061769db9ee47f86f6fc18e45035',1,'TrackSelector']]],

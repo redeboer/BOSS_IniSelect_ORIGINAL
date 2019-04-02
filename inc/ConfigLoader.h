@@ -54,7 +54,7 @@
 		/// 	-# its values are separated by a semicolumn (`;`).
 		/// What you want to do with these read values is up to use to define in a derived class.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-	/// @date     January 24th, 2018
+	/// @date     January 24th, 2019
 	class ConfigLoader
 	{
 	public:

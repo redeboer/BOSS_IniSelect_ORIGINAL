@@ -1,8 +1,10 @@
 var searchData=
 [
-  ['_7econfigparbase',['~ConfigParBase',['../classConfigParBase.html#a31d7ea191047d05c7caf261373641cd8',1,'ConfigParBase']]],
-  ['_7econtainer_5findexed',['~Container_indexed',['../classContainer__indexed.html#ad597183952e6a9724b19e99b20d04ff0',1,'Container_indexed']]],
-  ['_7ecutobject',['~CutObject',['../classCutObject.html#a93d3f2fb2b98fb2013b9aea2f908abe1',1,'CutObject']]],
-  ['_7ejobswitch',['~JobSwitch',['../classJobSwitch.html#a6edd98f42da2f1f82142044f5d06d209',1,'JobSwitch']]],
-  ['_7entuplecontainer',['~NTupleContainer',['../classNTupleContainer.html#ac3a8e746abd9be026bf04ccac612a6d7',1,'NTupleContainer']]]
+  ['write',['Write',['../classNTupleContainer.html#af03ecf69c2115a12c6685a8dc998cf4e',1,'NTupleContainer']]],
+  ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b',1,'TrackSelector']]],
+  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508',1,'TrackSelector']]],
+  ['writefitresults',['WriteFitResults',['../classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d',1,'TrackSelector']]],
+  ['writemctruthfortopoana',['WriteMCTruthForTopoAna',['../classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1',1,'TrackSelector']]],
+  ['writepidinformation',['WritePIDInformation',['../classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf',1,'TrackSelector']]],
+  ['writetofinformation',['WriteTofInformation',['../classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae',1,'TrackSelector']]]
 ];

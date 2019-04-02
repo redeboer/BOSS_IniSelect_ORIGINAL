@@ -8,9 +8,10 @@ var searchData=
   ['m_5fcout_5fngood',['m_cout_nGood',['../PipiJpsi_8cxx.html#aca8bca9d3a28e4a992bd7e83cf902d83',1,'PipiJpsi.cxx']]],
   ['m_5fcout_5frecoil',['m_cout_recoil',['../PipiJpsi_8cxx.html#ae34a0bae64652cad80a09e7af2a83fc1',1,'PipiJpsi.cxx']]],
   ['m_5ftrkinfo',['m_trkInfo',['../classm__trkInfo.html#af8a60e4ede5d5ae9be9bb3884e7a533b',1,'m_trkInfo']]],
-  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'AnalyseInvMass.C']]],
+  ['main',['main',['../group__BOSS__Afterburner__scripts.html#ga0ddf1224851353fc92bfbff6f499fa97',1,'D0phi_KpiKK.C']]],
   ['make_5funique',['make_unique',['../namespacestd__fix.html#a5b65c629c2a53fee88cacf05c6cf6e26',1,'std_fix']]],
   ['maphaskey',['MapHasKey',['../namespaceCommonFunctions_1_1TerminalIO.html#a0fbcadcd02cb344b56eecade2d9ea6a7',1,'CommonFunctions::TerminalIO']]],
+  ['massoffsetpercentage',['MassOffsetPercentage',['../classReconstructedParticle.html#a24da291fdb25e1d49f926dab5fc77206',1,'ReconstructedParticle']]],
   ['mctruthfortopoana',['MctruthForTopoAna',['../classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6',1,'MctruthForTopoAna']]],
   ['mum',['Mum',['../namespaceSettings_1_1Particles.html#a919e92dcdc1e21f87041ff5869fbaf67',1,'Settings::Particles']]]
 ];

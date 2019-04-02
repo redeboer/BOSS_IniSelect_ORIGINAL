@@ -26,11 +26,10 @@
 // * ============================= * //
 
 
-	/// This script allows one to go through the full procedure of analysing a peak in an invariant mass spectrum plot.
-		/// Currently, the script is designed based on the \f$J/\psi \to D^0\phi \to K^-\pi+K^-K+\f$ analysis.
+	/// This script originates from `AnalyseInvMass` and is here for temporary developmental purposes.
 		/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-		/// @date     March 26th, 2018
-	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
+		/// @date     April 2nd, 2019
+	void D0phi_KpiKK(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
 			ConfigLoader_InvMass config(configuration_file, false);
@@ -98,8 +97,8 @@
 			cout << "FATAL ERROR: Cannot run this macro with more than one argument" << endl;
 			return 1;
 		}
-		if(argc==1) AnalyseBOSSOutput();
-		else        AnalyseBOSSOutput(argv[1]);
+		if(argc==1) D0phi_KpiKK();
+		else        D0phi_KpiKK(argv[1]);
 		return 0;
 	}
 

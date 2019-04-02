@@ -29,7 +29,7 @@
 	/// This script allows one to go through the full procedure of analysing a peak in an invariant mass spectrum plot.
 		/// Currently, the script is designed based on the \f$J/\psi \to D^0\phi \to K^-\pi+K^-K+\f$ analysis.
 		/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-		/// @date     March 26th, 2018
+		/// @date     March 26th, 2019
 	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
