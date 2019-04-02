@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['backgroundparameters',['BackgroundParameters',['../classFitPars.html#a1757df095e72f863dcc58d820a8e9d4e',1,'FitPars']]],
   ['beamenergyspread',['BeamEnergySpread',['../simulation_8txt.html#a13543242e0e1d83854948d751e8c91f6',1,'simulation.txt']]],
   ['binwidth',['BinWidth',['../classAxisBinning.html#a94fd4584e3c2866abebe576e1909b8ec',1,'AxisBinning']]],
   ['bookaddresses',['BookAddresses',['../classChainLoader.html#ad93ba90c4a626e758b98a29f4729bf70',1,'ChainLoader']]],

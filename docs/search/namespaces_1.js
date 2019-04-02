@@ -1,6 +1,7 @@
 var searchData=
 [
   ['detector',['Detector',['../namespaceSettings_1_1Detector.html',1,'Settings']]],
+  ['draw',['Draw',['../namespaceSettings_1_1Draw.html',1,'Settings']]],
   ['file',['File',['../namespaceSettings_1_1File.html',1,'Settings']]],
   ['fit',['Fit',['../namespaceSettings_1_1Fit.html',1,'Settings']]],
   ['particles',['Particles',['../namespaceSettings_1_1Particles.html',1,'Settings']]],

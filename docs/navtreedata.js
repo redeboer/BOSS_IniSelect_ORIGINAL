@@ -38,10 +38,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AnalyseInvMass_8C.html",
-"classAxisBinning.html#aeb6bd045276790ec473d6883b6cd196e",
-"classD0phi__KpiKK.html#a398db1b0bdd450bfc4d99b55679d628d",
-"classPipiJpsi.html#a7d6b105e12862e5e8c9128b18fc24853",
-"classTrackSelector.html#aa119db4b668a559859f84a11d9bf0cc7"
+"classAxisBinning.html#ab7b18756c7f37d1e878ef3e92c949e3b",
+"classD0phi__KpiKK.html#a20554939bd2bb2eea7d6715ec903e108",
+"classPipiJpsi.html#a49886c7fc5a4358a249329032dabf109",
+"classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -3,6 +3,7 @@ var searchData=
   ['i',['i',['../classm__trkInfo.html#a0fb1a921c83c01d212bda111425db064',1,'m_trkInfo']]],
   ['ievt',['ievt',['../MctruthForTopoAna_8cxx.html#a6b1e62f31ae021d65a1151f8b8a6729b',1,'MctruthForTopoAna.cxx']]],
   ['import',['Import',['../classBranchPlotOptions.html#a500ac42a9904ec41ff87761706efccd2',1,'BranchPlotOptions']]],
+  ['importfitpars_5fdg',['ImportFitPars_DG',['../classReconstructedParticle.html#ae6920ec17e449a0ab49f4db2bf06b1c8',1,'ReconstructedParticle']]],
   ['importvalues',['ImportValues',['../classConfigLoader.html#a0ab2b46d0fc05f60d5fed4e086e928c1',1,'ConfigLoader::ImportValues(ConfigParBase *par, std::string line)'],['../classConfigLoader.html#a5a59e651d982c5157cea7faa4b64a626',1,'ConfigLoader::ImportValues(ConfigParBase *par, const TString &amp;line)']]],
   ['importwarning',['ImportWarning',['../classBranchPlotOptions.html#a5575203f205a3148450b5c5d97ead3a2',1,'BranchPlotOptions']]],
   ['index',['index',['../classNTupleTopoAna.html#a4e50e1826ad9ebe5b326c03649575bfa',1,'NTupleTopoAna']]],

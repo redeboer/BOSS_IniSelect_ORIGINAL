@@ -173,7 +173,7 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a3b8b5f2d8445f33201168d72238b13ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memTemplParams" colspan="2">template&lt;&gt; </td></tr>
 <tr class="memitem:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memTemplItemLeft" align="right" valign="top">const bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classConfigParameter.html#a417a71796abc4aa89f1a56ba3a706dc8">ConvertStringsToValue_impl</a> ()</td></tr>
-<tr class="memdesc:a417a71796abc4aa89f1a56ba3a706dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>.  <a href="#a417a71796abc4aa89f1a56ba3a706dc8">More...</a><br /></td></tr>
+<tr class="memdesc:a417a71796abc4aa89f1a56ba3a706dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>ConvertStringsToValue</code> handler for <code><a class="el" href="classAxisBinning.html" title="Container object for the binning for one axis. ">AxisBinning</a></code>s (has a <code>string</code> constructor).  <a href="#a417a71796abc4aa89f1a56ba3a706dc8">More...</a><br /></td></tr>
 <tr class="separator:a417a71796abc4aa89f1a56ba3a706dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -211,7 +211,7 @@ class ConfigParameter&lt; TYPE &gt;</h3>
 <p>You should define in this derived class how to go from the loaded string values to data. This has to defined for each <code>TYPE</code>. In principle, the <code>TYPE</code> is just a <code>typename</code>, that is, for instance a <code>double</code> or <code>int</code>. But you can also overload the <code>ConvertStringsToValue</code> function and specify in that overload how to go from the strings in <code>fReadStrings</code> to the data of your object. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>March 15th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00036">36</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00037">37</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad2a568e082f15aaae37aa5da57bb6374"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad2a568e082f15aaae37aa5da57bb6374">&#9670;&nbsp;</a></span>ConfigParameter() <span class="overload">[1/2]</span></h2>
@@ -239,7 +239,7 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00079">79</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00080">80</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +279,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00084">84</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00085">85</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -313,7 +313,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#a5356bf53640230aaa05290492822a7d3">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00171">171</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00172">172</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -342,12 +342,11 @@ template&lt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p><code>ConvertStringsToValue</code> handler for an object that can be contructed from a <code>std::string</code>. </p>
 <p><code>ConvertStringsToValue</code> handler for <code><a class="el" href="classAxisBinning.html" title="Container object for the binning for one axis. ">AxisBinning</a></code>s (has a <code>string</code> constructor). </p>
 
 <p>Implements <a class="el" href="classConfigParBase.html#a5356bf53640230aaa05290492822a7d3">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00192">192</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00183">183</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -380,7 +379,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#a018645f082cd18899ec47cb655d217d4">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00099">99</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00100">100</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -413,7 +412,7 @@ template&lt;&gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#a018645f082cd18899ec47cb655d217d4">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00110">110</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00111">111</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -442,7 +441,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -474,7 +473,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Check if <code>fReadStrings</code> contains more than one value and print warning if so. </p>
 <p>This should not be the case in case <code>fValue</code> is of type <code>double</code>, <code>bool</code>, etc. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00333">333</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00341">341</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -503,7 +502,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00047">47</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -533,7 +532,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00045">45</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -562,7 +561,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00042">42</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00043">43</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -591,7 +590,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00041">41</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00042">42</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -621,7 +620,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00043">43</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00044">44</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +650,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00044">44</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00045">45</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -684,7 +683,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00272">272</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00280">280</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -717,7 +716,7 @@ template&lt;&gt; </div>
 
 <p>Implements <a class="el" href="classConfigParBase.html#abdc393da8f2f6de1ab6a15b68531c8b9">ConfigParBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00292">292</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00300">300</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>
@@ -744,7 +743,7 @@ template&lt;class TYPE&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00053">53</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ConfigParameter_8h_source.html#l00054">54</a> of file <a class="el" href="ConfigParameter_8h_source.html">ConfigParameter.h</a>.</p>
 
 </div>
 </div>

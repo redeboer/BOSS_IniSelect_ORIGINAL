@@ -13,6 +13,7 @@ var FrameworkSettings_8h =
     [ "Pip", "FrameworkSettings_8h.html#ac9ed6f077e1c0ffdd1c127ba86724796", null ],
     [ "Rho0", "FrameworkSettings_8h.html#a5a404d3db862276fa70b85a353496d4e", null ],
     [ "Rhop", "FrameworkSettings_8h.html#ac5ee28e78d69a5286adf393275007703", null ],
+    [ "gColorPalette", "FrameworkSettings_8h.html#a329a4c6b9d2a581ae129f78a33e7ef79", null ],
     [ "gConfigs", "FrameworkSettings_8h.html#a890b21da3444e2402f9fa92a3879b297", null ],
     [ "gExtension", "FrameworkSettings_8h.html#a7175930b2173ec145ea7aeff45b48063", null ],
     [ "gPlotOutputDir", "FrameworkSettings_8h.html#a362a79dc7589cbb88544209eadc814a4", null ],

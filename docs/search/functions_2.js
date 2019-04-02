@@ -32,7 +32,6 @@ var searchData=
   ['createneutralcollection',['CreateNeutralCollection',['../classTrackSelector.html#a50338f3dca1f6a942971811f31aecab5',1,'TrackSelector']]],
   ['createorderedmap',['CreateOrderedMap',['../classBOSSOutputLoader.html#ab6d81022b14f0de41438dcf699a5e01c',1,'BOSSOutputLoader']]],
   ['createroofitinvmassdistr',['CreateRooFitInvMassDistr',['../namespaceCommonFunctions_1_1Fit.html#a01b6b2fa0844a972c92e0ae27ba81ead',1,'CommonFunctions::Fit']]],
-  ['createroofitinvmassvar',['CreateRooFitInvMassVar',['../namespaceCommonFunctions_1_1Fit.html#a9b760f35ce2828d857cfa8af2b795992',1,'CommonFunctions::Fit']]],
   ['cutobject',['CutObject',['../classCutObject.html#a529ad466034cc01f983c57a03949331d',1,'CutObject']]],
   ['cutselection',['CutSelection',['../classBranchPlotOptions.html#aced5bf5f8b3bdfe2a14bb320eb80ae90',1,'BranchPlotOptions']]]
 ];

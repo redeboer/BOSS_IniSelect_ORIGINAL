@@ -17,6 +17,7 @@ var annotated_dup =
     [ "CutObject", "classCutObject.html", "classCutObject" ],
     [ "D0phi_KpiKK", "classD0phi__KpiKK.html", "classD0phi__KpiKK" ],
     [ "D0phi_KpipiKK", "classD0phi__KpipiKK.html", "classD0phi__KpipiKK" ],
+    [ "FitPars", "classFitPars.html", "classFitPars" ],
     [ "JobSwitch", "classJobSwitch.html", "classJobSwitch" ],
     [ "KKFitResult", "classKKFitResult.html", "classKKFitResult" ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", "classKKFitResult__D0phi__KpiKK" ],

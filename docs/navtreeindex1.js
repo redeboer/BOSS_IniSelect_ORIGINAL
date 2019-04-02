@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"classAxisBinning.html#ab7b18756c7f37d1e878ef3e92c949e3b":[2,1,0,0,20],
+"classAxisBinning.html#abf7e685998bc451dbc30ba543d480215":[2,1,0,0,12],
+"classAxisBinning.html#ad07436b39a7efccfc39109a1bbad3440":[2,1,0,0,11],
+"classAxisBinning.html#ad576ebbb9c5b736bd9a5887647e7ff45":[2,1,0,0,0],
 "classAxisBinning.html#aeb6bd045276790ec473d6883b6cd196e":[2,1,0,0,32],
 "classAxisBinning.html#af3afc04bc280b36681675278e780f6a8":[2,1,0,0,6],
 "classAxisBinning.html#af6a04dd98bf664ba6b885deefce4ffe8":[2,1,0,0,9],
@@ -245,9 +249,5 @@ var NAVTREEINDEX1 =
 "classD0phi__KpiKK.html":[2,0,0,0],
 "classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4":[2,0,0,0,3],
 "classD0phi__KpiKK.html#a0f0f6eced07ae025fac22c189f48f758":[2,0,0,0,33],
-"classD0phi__KpiKK.html#a1e4df395aea7bbf8d32bcbd4c22d9e5f":[2,0,0,0,23],
-"classD0phi__KpiKK.html#a20554939bd2bb2eea7d6715ec903e108":[2,0,0,0,19],
-"classD0phi__KpiKK.html#a30ce41f2bade5dc32370f69dd91a940a":[2,0,0,0,31],
-"classD0phi__KpiKK.html#a30f758cc2481aef440f5e2197c64398b":[2,0,0,0,8],
-"classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752":[2,0,0,0,4]
+"classD0phi__KpiKK.html#a1e4df395aea7bbf8d32bcbd4c22d9e5f":[2,0,0,0,23]
 };

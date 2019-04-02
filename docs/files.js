@@ -29,6 +29,8 @@ var files =
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", null ],
     [ "D0phi_KpipiKK.cxx", "D0phi__KpipiKK_8cxx.html", "D0phi__KpipiKK_8cxx" ],
     [ "D0phi_KpipiKK.h", "D0phi__KpipiKK_8h.html", null ],
+    [ "FitPars.cxx", "FitPars_8cxx.html", null ],
+    [ "FitPars.h", "FitPars_8h.html", null ],
     [ "FrameworkSettings.h", "FrameworkSettings_8h.html", "FrameworkSettings_8h" ],
     [ "InvestigateContent.C", "InvestigateContent_8C.html", "InvestigateContent_8C" ],
     [ "JobSwitch.cxx", "JobSwitch_8cxx.html", null ],

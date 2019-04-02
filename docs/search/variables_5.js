@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['gcolorpalette',['gColorPalette',['../namespaceSettings_1_1Draw.html#a329a4c6b9d2a581ae129f78a33e7ef79',1,'Settings::Draw']]],
   ['gconfigs',['gConfigs',['../namespaceSettings_1_1File.html#a890b21da3444e2402f9fa92a3879b297',1,'Settings::File']]],
   ['gcutobjects',['gCutObjects',['../classCutObject.html#a457c6dc4078222cd1f654c49752370d0',1,'CutObject']]],
   ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],

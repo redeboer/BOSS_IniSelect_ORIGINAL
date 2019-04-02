@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jobswitch',['JobSwitch',['../classJobSwitch.html',1,'']]]
+  ['fitpars',['FitPars',['../classFitPars.html',1,'']]]
 ];
