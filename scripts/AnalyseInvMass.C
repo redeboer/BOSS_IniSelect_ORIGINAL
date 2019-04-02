@@ -4,7 +4,7 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 
-	#include "ConfigLoader_InvMass.h"
+	#include "ConfigLoader_AnalyseInvMass.h"
 	#include "BOSSOutputLoader.h"
 	#include "CommonFunctions.h"
 	#include "TStyle.h"
@@ -32,7 +32,7 @@
 	void D0phi_KpiKK(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
-			ConfigLoader_InvMass config(configuration_file, false);
+			ConfigLoader_AnalyseInvMass config(configuration_file, false);
 
 		/// -# Attempt to load three directories of ROOT files as a `BOSSOutputLoader` objects: a set of exlusive MC files, a set of inclusive MC files, and a set of data files (the BESIII measurements).
 			BOSSOutputLoader excl(config.Filename_excl, false, false);

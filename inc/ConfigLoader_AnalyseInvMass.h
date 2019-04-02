@@ -1,5 +1,5 @@
-#ifndef BOSS_Afterburner_ConfigLoader_InvMass_H
-#define BOSS_Afterburner_ConfigLoader_InvMass_H
+#ifndef BOSS_Afterburner_ConfigLoader_AnalyseInvMass_H
+#define BOSS_Afterburner_ConfigLoader_AnalyseInvMass_H
 
 
 // * ========================= * //
@@ -24,10 +24,10 @@
 	/// Derived class of `ConfigLoader` that contains parameters used for a simple plotting algorithm.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     March 26th, 2019
-	class ConfigLoader_InvMass : public ConfigLoader
+	class ConfigLoader_AnalyseInvMass : public ConfigLoader
 	{
 	public:
-		ConfigLoader_InvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { ConfigParBase::PrintAll();
+		ConfigLoader_AnalyseInvMass(const std::string &path, const bool print=true) : ConfigLoader(path, print) { ConfigParBase::PrintAll();
 		LoadConfiguration(path);
 		}
 		/// @name I/O strings

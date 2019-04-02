@@ -6,7 +6,7 @@
 
 	#include "BOSSOutputLoader.h"
 	#include "CommonFunctions.h"
-	#include "ConfigLoader_PrintContent.h"
+	#include "ConfigLoader_InvestigateContent.h"
 	#include <iostream>
 
 	using namespace CommonFunctions;
@@ -24,7 +24,7 @@
 	void InvestigateContent(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
-		ConfigLoader_PrintContent config(configuration_file, true);
+		ConfigLoader_InvestigateContent config(configuration_file, true);
 
 		/// -# Attempt to load input ROOT file as a `BOSSOutputLoader` object).
 		BOSSOutputLoader file(config.fInputFilename, false, false);

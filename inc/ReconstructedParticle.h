@@ -5,7 +5,6 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 	#include "Particle.h"
-	#include "FitPars.h"
 	#include "TString.h"
 	#include <utility>
 

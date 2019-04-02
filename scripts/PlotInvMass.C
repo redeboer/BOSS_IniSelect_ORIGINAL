@@ -4,7 +4,7 @@
 // * ------- LIBRARIES AND NAMESPACES ------- * //
 // * ======================================== * //
 
-	#include "ConfigLoader_Plot.h"
+	#include "ConfigLoader_PlotInvMass.h"
 	#include "BOSSOutputLoader.h"
 	#include "CommonFunctions.h"
 	#include "TStyle.h"
@@ -31,7 +31,7 @@
 	void AnalyseBOSSOutput(const char* configuration_file="configs/debug.config")
 	{
 		/// -# Attempt to load `configuration_file`.
-			ConfigLoader_Plot config(configuration_file, false);
+			ConfigLoader_PlotInvMass config(configuration_file, false);
 
 		/// -# Attempt to load input ROOT file as a `BOSSOutputLoader` object).
 			BOSSOutputLoader file(config.fInputFilename, config.fPrintBranches, config.fPrintAverages);
