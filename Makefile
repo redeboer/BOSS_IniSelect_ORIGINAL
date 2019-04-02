@@ -13,6 +13,7 @@ BINDIR = bin
 EXEDIR = exe
 INCLUDE_PATH = -I${INCDIR}
 LIBNAME = BossAfterburner
+LIBRARY = lib${LIBNAME}.a
 
 
 # * PREPARE DIRECTORIES * #
@@ -50,7 +51,8 @@ SCR_BIN := $(addprefix ${EXEDIR}/, ${SCR_BIN})
 DEPENDS  = $(notdir $(wildcard ${DEPDIR}/*.d))
 
 # * Compile objects: the parametesr are the rules defines below and above
-all : ${OBJ_BIN} LINK ${SCR_BIN}
+.PHONY: all
+all : ${OBJ_BIN} $(LIBRARY) ${SCR_BIN}
 	@echo "COMPILING DONE"
 
 
@@ -68,12 +70,12 @@ ${BINDIR}/%.o : ${SRCDIR}/%.cxx ${INCDIR}/%.h $(DEPDIR)/%.d
 # @rm -f ${DEPDIR}/$*.d.tmp
 
 # * for linking the objects generated above.
-LINK : $(shell find bin/ -name "*.o")
-	$(RM) lib${LIBNAME}.a
-	@ar q lib${LIBNAME}.a ${OBJ_BIN}
+$(LIBRARY) : $(shell find bin/ -name "*.o")
+	ar ru $@ $^
+	ranlib $@
 
 # * for the scripts (executables)
-${EXEDIR}/%.exe : scripts/%.C $(DEPDIR)/%.d LINK
+${EXEDIR}/%.exe : scripts/%.C $(DEPDIR)/%.d $(LIBRARY)
 	@echo "Compiling script \"$(notdir $<)\""
 	@$(COMPILER) $< -o $@ ${CFLAGS} ${INCLUDE_PATH} ${DEPFLAGS} -L. -l${LIBNAME} ${LFLAGS}
 	$(POSTCOMPILE)
