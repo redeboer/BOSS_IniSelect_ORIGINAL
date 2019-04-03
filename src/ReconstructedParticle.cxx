@@ -122,6 +122,13 @@
 	}
 
 
+	std::shared_ptr<RooRealVar> ReconstructedParticle::RooRealVarMeanZero() {
+		auto ptr = std::make_shared<RooRealVar>("GaussianMeanZero", "GaussianMeanZero", 0.);
+		fRooRealVars.push_back(ptr);
+		return ptr;
+	}
+
+
 	std::shared_ptr<RooRealVar> ReconstructedParticle::RooRealVarSigma(UChar_t num) {
 		auto ptr = std::make_shared<RooRealVar>(
 			Form("#sigma_{%u}", num+1),
@@ -129,6 +136,16 @@
 			fGaussianWidths[num],
 			Settings::Fit::gSigmaScaleFactorLow * fGaussianWidths[num],
 			Settings::Fit::gSigmaScaleFactorUp  * fGaussianWidths[num]);
+		fRooRealVars.push_back(ptr);
+		return ptr;
+	}
+
+
+	std::shared_ptr<RooRealVar> ReconstructedParticle::RooRealVarSigmaFixed(UChar_t num) {
+		auto ptr = std::make_shared<RooRealVar>(
+			Form("#sigma_{%u}", num+1),
+			Form("%s width %u", NameLaTeX(), num+1),
+			fGaussianWidths[num]);
 		fRooRealVars.push_back(ptr);
 		return ptr;
 	}

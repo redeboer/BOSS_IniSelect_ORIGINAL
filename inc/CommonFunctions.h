@@ -70,8 +70,7 @@
 		namespace Fit
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
-			RooFitResult* FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
-			RooFitResult* FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			RooFitResult* FitConvolutionBWGaussian(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 			RooFitResult* FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
 			RooFitResult* FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 		}

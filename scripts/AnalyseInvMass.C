@@ -133,7 +133,7 @@
 			// * Fit double gaussians
 				int i = 0;
 				for(auto &fit : *config.ExclFits) {
-					auto result = FitPureGaussians(
+					auto result = FitConvolutionBWGaussian(
 						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
 						*particles[i], fit.second.LogXYZ().c_str());
 					++i;

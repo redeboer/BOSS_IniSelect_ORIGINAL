@@ -51,7 +51,9 @@
 			///@{
 			std::shared_ptr<RooRealVar> RooRealVarInvMass();
 			std::shared_ptr<RooRealVar> RooRealVarMean();
+			std::shared_ptr<RooRealVar> RooRealVarMeanZero();
 			std::shared_ptr<RooRealVar> RooRealVarSigma(UChar_t num);
+			std::shared_ptr<RooRealVar> RooRealVarSigmaFixed(UChar_t num);
 			///@}
 
 		/// @name Getters

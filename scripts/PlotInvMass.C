@@ -44,7 +44,6 @@
 		/// @name Do switches
 			///@{
 			ConfigParameter<bool> fDo_conv_d{"Do double convolution", false}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>double</i> Gaussian.
-			ConfigParameter<bool> fDo_conv_s{"Do single convolution", false}; ///< Whether or not to produce perform a Breit-Wigner convoluted with a <i>single</i> Gaussian.
 			ConfigParameter<bool> fDo_gauss {"Do Gaussian",           true};  ///< Whether or not to produce perform a double Gaussian fit.
 			///@}
 
@@ -215,16 +214,10 @@
 					FitPureGaussians(hist_phi, phi, logY);
 				}
 
-			// * Fit Breit-Wigner convoluted with singe Gaussian
-				if(config.fDo_conv_s) {
-					FitBWGaussianConvolution(hist_D0,  D0,  logY);
-					FitBWGaussianConvolution(hist_phi, phi, logY);
-				}
-
 			// * Fit Breit-Wigner convoluted with double Gaussian
-				if(config.fDo_conv_s) {
-					FitBWDoubleGaussianConvolution(hist_D0,  D0,  logY);
-					FitBWDoubleGaussianConvolution(hist_phi, phi, logY);
+				if(config.fDo_conv_d) {
+					FitConvolutionBWGaussian(hist_D0,  D0,  logY);
+					FitConvolutionBWGaussian(hist_phi, phi, logY);
 				}
 
 			}
