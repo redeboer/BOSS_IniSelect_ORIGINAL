@@ -7,6 +7,7 @@
 	#include "ConfigLoader.h"
 	#include "TStyle.h"
 	#include "TError.h"
+	#include <iomanip>
 	#include <iostream>
 	#include <list>
 	#include <vector>
@@ -131,14 +132,43 @@
 
 			// * Fit double gaussians
 				int i = 0;
-				std::vector<std::vector<std::shared_ptr<RooRealVar> > > results;
+				std::vector<std::vector<std::shared_ptr<RooRealVar> > > fitResultsAll;
 				for(auto &fit : *config.ExclFits) {
-					results.push_back(fit.first.FitPureGaussians(
+					fitResultsAll.push_back(fit.first.FitPureGaussians(
 						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
 						fit.second.LogXYZ().c_str()));
 					++i;
 				}
-				for(auto &res : results) for(auto &r : res) std::cout << r->GetName() << std::endl;
+
+			// * Print fit results
+				for(auto &fitResult : fitResultsAll) {
+					std::cout << std::endl;
+					Int_t width_name{0};
+					Int_t width_val{0};
+					Double_t sigma{0.};
+					Double_t sigmaErr{0.};
+					for(auto &rooVar : fitResult) {
+						auto value = rooVar->getVal();
+						TString name{rooVar->GetName()};
+						TString vstr{Form("%g", value)};
+						if(name.Length() > width_name) width_name = name.Length();
+						if(vstr.Length() > width_val ) width_val  = vstr.Length();
+						if(name.Contains("sigma")) {
+							sigma += value*value;
+							sigmaErr += rooVar->getError()*rooVar->getError();
+						}
+					}
+					for(auto &rooVar : fitResult) {
+						std::cout
+							<< std::setw(width_name) << std::left << rooVar->GetName() << " = "
+							<< std::left << std::fixed << rooVar->getVal()  << " \\pm "
+							<< rooVar->getError() << std::endl;
+					}
+					std::cout
+						<< std::setw(width_name) << std::left << "#sigma" << " = "
+						<< std::left << std::fixed << std::sqrt(sigma)  << " \\pm "
+						<< std::sqrt(sigmaErr) << std::endl;
+				}
 
 	}
 

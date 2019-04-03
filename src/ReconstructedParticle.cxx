@@ -433,13 +433,6 @@
 				fFullShape->fitTo(
 					*fRooDataHist,
 					RooFit::Range(FitFrom(), FitUntil()));
-			double sigma{0.};
-			std::cout << "mean:        " << fFitPars[0]->getVal() << std::endl;
-			for(int i = 1; i < fFitPars.size(); ++i) {
-				std::cout << "sigma " << i << ":     " << fFitPars[i]->getVal() << std::endl;
-				sigma += fFitPars[i]->getVal() * fFitPars[i]->getVal();
-			}
-			std::cout << "total sigma: " << std::sqrt(sigma) << std::endl;
 
 
 			// * Plot results and save * //
