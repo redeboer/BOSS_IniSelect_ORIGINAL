@@ -67,7 +67,6 @@
 			const double MassOffsetPercentage() const { return fMassOffset; }
 			const double PlotFrom() const { return fPlotRange.first; }
 			const double PlotUntil() const { return fPlotRange.second; }
-			const double SingleGaussianWidth() const { return fSingleGaussianWidth; }
 			const double UpperMass() const;
 			const std::vector<double> GaussianWidths() const { return fGaussianWidths; }
 			const UChar_t NPol() const { return fNPol; }
@@ -82,7 +81,6 @@
 			double fBWConvolutedWidth; ///< Estimate for the width of the Breit-Wigner function when convoluted with a double Gaussian.
 			double fBWPureWidth; ///< Estimate for the width of the Breit-Wigner function when fitting BW only.
 			double fMassOffset; ///< Percentage (divided by 100) that the mean (namely, the mass) may vary.
-			double fSingleGaussianWidth; ///< Estimate for the width of one Gaussian function.
 			UChar_t fNPol; ///< Degree of the background polynomial (whether Chebychev or normal polynomial).
 			std::vector<double> fGaussianWidths; ///< Vector of for Gaussian widths that you can use that as estimates of the widths for e.g. the double gaussian that you plan to fit. These sigmas are supposed to characterise the resolution of the detector. For consistency in naming, the first one should be smaller than the second and so forth.
 			std::pair<double, double> fFitRange; ///< Invariant mass range over which you fit a function (double Gaussian, Crystal ball, Breit-Wigner, etc.).

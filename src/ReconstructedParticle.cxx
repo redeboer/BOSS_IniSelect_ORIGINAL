@@ -172,7 +172,6 @@
 					fMassOffset          = .02;
 					fBWPureWidth         = .013;
 					fBWConvolutedWidth   = .00002;
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {.00499, .0135};
 					fFitRange            = {.10, .17};
 					fPlotRange           = {.10, .17};
@@ -182,7 +181,6 @@
 					fMassOffset          = .05;
 					fBWPureWidth         = .8;
 					fBWConvolutedWidth   = .001;
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {.0469, .1312};
 					fFitRange            = {.40, 1.1};
 					fPlotRange           = {.30, 1.7};
@@ -193,7 +191,6 @@
 					fMassOffset          = .05;
 					fBWPureWidth         = .8;
 					fBWConvolutedWidth   = .0004;
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {.0542, .209};
 					fFitRange            = {.50, 1.42};
 					fPlotRange           = {.30, 1.7};
@@ -203,7 +200,6 @@
 					fMassOffset          = .05;
 					fBWPureWidth         = .8;    //! not yet optimised
 					fBWConvolutedWidth   = .0004; //! not yet optimised
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {.0542, .15, .5};
 					fFitRange            = {1.84, 1.91};
 					fPlotRange           = {1.83, 1.94};
@@ -213,7 +209,6 @@
 					fMassOffset          = .05;
 					fBWPureWidth         = .8;    //! not yet optimised
 					fBWConvolutedWidth   = .0004; //! not yet optimised
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {.002, .006};
 					fFitRange            = {.99, 1.053};
 					fPlotRange           = {.99, 1.18};
@@ -223,7 +218,6 @@
 					fMassOffset          = .05;
 					fBWPureWidth         = .8;
 					fBWConvolutedWidth   = .0004;
-					fSingleGaussianWidth = .002;
 					fGaussianWidths      = {1e-8, 1e-8};
 					fFitRange            = {3.096813, 3.096815};
 					fPlotRange           = {3.096813, 3.096815};
