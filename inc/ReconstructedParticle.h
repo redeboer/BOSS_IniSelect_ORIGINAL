@@ -7,12 +7,13 @@
 
 	#include "FitPars.h"
 	#include "Particle.h"
-	#include "RooRealVar.h"
+	#include "RooDataHist.h"
 	#include "RooGaussian.h"
+	#include "RooRealVar.h"
 	#include "TString.h"
 	#include <list>
-	#include <vector>
 	#include <utility>
+	#include <vector>
 
 
 
@@ -39,6 +40,7 @@
 			ReconstructedParticle(const char* pdgCode, const char* daughters);
 			///@}
 
+
 		/// @name Setters
 			///@{
 			void SetDaughterLabel(const char* daughters);
@@ -47,6 +49,7 @@
 			void ImportFitPars_DG();
 			///@}
 
+
 		/// @name RooFit
 			///@{
 			std::shared_ptr<RooRealVar> RooRealVarInvMass();
@@ -54,7 +57,12 @@
 			std::shared_ptr<RooRealVar> RooRealVarMeanZero();
 			std::shared_ptr<RooRealVar> RooRealVarSigma(UChar_t num);
 			std::shared_ptr<RooRealVar> RooRealVarSigmaFixed(UChar_t num);
+			std::vector<std::shared_ptr<RooRealVar> > FitConvolutionBWGaussian(TH1F *hist, TString logScale);
+			std::vector<std::shared_ptr<RooRealVar> > FitBreitWigner(TH1F *hist, TString logScale);
+			std::vector<std::shared_ptr<RooRealVar> > FitPureGaussians(TH1F *hist, TString logScale);
+			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var);
 			///@}
+
 
 		/// @name Getters
 			///@{
@@ -75,6 +83,7 @@
 			const FitPars& FitParameters() const { return fFitParameters; }
 			///@}
 
+
 	protected:
 		/// @name Data members
 			///@{
@@ -91,11 +100,13 @@
 			std::list<std::shared_ptr<RooGaussian> > fRooGaussians; ///< This list is to ensure that `RooGaussian` remain existing untill this `ReconstructedParcticle` is destroyed.
 			///@}
 
+
 		/// @name Helper methods
 			///@{
 			void DetermineReconstructionParameters();
 			void Initialize();
 			///@}
+
 
 	};
 

@@ -9,9 +9,6 @@
 	#include "FrameworkSettings.h"
 	#include "Particle.h"
 	#include "ReconstructedParticle.h"
-	#include "RooDataHist.h"
-	#include "RooFitResult.h"
-	#include "RooRealVar.h"
 	#include "TCanvas.h"
 	#include "TH1.h"
 	#include "TH1D.h"
@@ -65,14 +62,6 @@
 		{
 			const char* GetOutputFilename(const char* filenameWithoutExt);
 			const char* SetOutputFilename(const char* filenameWithoutExt);
-		}
-		/// Namespace containing functions related to performing fits on histograms (in particular related to `RooFit`).
-		namespace Fit
-		{
-			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
-			std::vector<std::shared_ptr<RooRealVar> > FitConvolutionBWGaussian(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
-			std::vector<std::shared_ptr<RooRealVar> > FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
-			std::vector<std::shared_ptr<RooRealVar> > FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 		}
 		/// Namespace containing functions related to generating and modifying histograms.
 		namespace Hist

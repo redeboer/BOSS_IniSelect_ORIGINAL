@@ -13,7 +13,6 @@
 
 	using namespace CommonFunctions;
 	using namespace CommonFunctions::Draw;
-	using namespace CommonFunctions::Fit;
 	using namespace RooFit;
 	using namespace Settings;
 	using namespace std;
@@ -134,9 +133,9 @@
 				int i = 0;
 				std::vector<std::vector<std::shared_ptr<RooRealVar> > > results;
 				for(auto &fit : *config.ExclFits) {
-					results.push_back(FitPureGaussians(
+					results.push_back(fit.first.FitPureGaussians(
 						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
-						*particles[i], fit.second.LogXYZ().c_str()));
+						fit.second.LogXYZ().c_str()));
 					++i;
 				}
 				for(auto &res : results) for(auto &r : res) std::cout << r->GetName() << std::endl;

@@ -13,7 +13,6 @@
 
 	using namespace CommonFunctions;
 	using namespace CommonFunctions::Draw;
-	using namespace CommonFunctions::Fit;
 	using namespace RooFit;
 	using namespace Settings;
 	using namespace std;
@@ -210,14 +209,14 @@
 
 			// * Fit double gaussian
 				if(config.fDo_gauss) {
-					FitPureGaussians(hist_D0,  D0,  logY);
-					FitPureGaussians(hist_phi, phi, logY);
+					D0. FitPureGaussians(hist_D0,  logY);
+					phi.FitPureGaussians(hist_phi, logY);
 				}
 
 			// * Fit Breit-Wigner convoluted with double Gaussian
 				if(config.fDo_conv_d) {
-					FitConvolutionBWGaussian(hist_D0,  D0,  logY);
-					FitConvolutionBWGaussian(hist_phi, phi, logY);
+					D0. FitConvolutionBWGaussian(hist_D0,  logY);
+					phi.FitConvolutionBWGaussian(hist_phi, logY);
 				}
 
 			}
