@@ -13,10 +13,12 @@
 	#include "ConfigParBase.h"
 	#include "FitPars.h"
 	#include "ReconstructedParticle.h"
+	#include "RooFit.h"
 	#include "TString.h"
 	#include <iomanip>
 	#include <iostream>
 	#include <list>
+	#include <map>
 	#include <sstream>
 	#include <string>
 
@@ -64,11 +66,11 @@
 
 
 	template class ConfigParameter<AxisBinning>;
+	template class ConfigParameter<RooFit::MsgLevel>;
 	template class ConfigParameter<bool>;
 	template class ConfigParameter<std::list<BranchPlotOptions> >;
 	template class ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >;
 	template class ConfigParameter<std::string>;
-
 
 
 // * ============================ * //
@@ -117,6 +119,23 @@
 		}
 		ss << fValue.NBins() << ", " << fValue.From() << ", " << fValue.To();
 		AddValue(ss.str());
+		return true;
+	}
+
+
+	/// `ConvertValueToStrings` implementation handler for `RooFit::MsgLevel`.
+	template<> inline
+	const bool ConfigParameter<RooFit::MsgLevel>::ConvertValueToStrings_impl()
+	{
+		switch(fValue) {
+			case RooFit::DEBUG:    AddValue("DEBUG");    break;
+			case RooFit::INFO:     AddValue("INFO");     break;
+			case RooFit::PROGRESS: AddValue("PROGRESS"); break;
+			case RooFit::WARNING:  AddValue("WARNING");  break;
+			case RooFit::ERROR:    AddValue("ERROR");    break;
+			case RooFit::FATAL:    AddValue("FATAL");    break;
+			default: return false;
+		}
 		return true;
 	}
 
@@ -184,6 +203,23 @@
 	{
 		if(!HasSingleString()) return false;
 		fValue = fReadStrings.front();
+		return true;
+	}
+
+
+	/// `ConvertStringsToValue` handler for `RooFit::MsgLevel`.
+	template<> inline
+	const bool ConfigParameter<RooFit::MsgLevel>::ConvertStringsToValue_impl()
+	{
+		if(!HasSingleString()) return false;
+		std::string &str = fReadStrings.front();
+		if     (!str.compare("DEBUG"))    fValue = RooFit::DEBUG;
+		else if(!str.compare("INFO"))     fValue = RooFit::INFO;
+		else if(!str.compare("PROGRESS")) fValue = RooFit::PROGRESS;
+		else if(!str.compare("WARNING"))  fValue = RooFit::WARNING;
+		else if(!str.compare("ERROR"))    fValue = RooFit::ERROR;
+		else if(!str.compare("FATAL"))    fValue = RooFit::FATAL;
+		else return false;
 		return true;
 	}
 

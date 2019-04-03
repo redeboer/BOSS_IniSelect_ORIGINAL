@@ -10,6 +10,7 @@
 	#include "Particle.h"
 	#include "ReconstructedParticle.h"
 	#include "RooDataHist.h"
+	#include "RooFitResult.h"
 	#include "RooRealVar.h"
 	#include "TCanvas.h"
 	#include "TH1.h"
@@ -69,10 +70,10 @@
 		namespace Fit
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
-			void FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
-			void FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
-			void FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
-			void FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			RooFitResult* FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			RooFitResult* FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			RooFitResult* FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
+			RooFitResult* FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 		}
 		/// Namespace containing functions related to generating and modifying histograms.
 		namespace Hist

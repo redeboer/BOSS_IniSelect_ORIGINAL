@@ -176,7 +176,7 @@
 		/// @param hist Invariant mass histogram that you would like to fit.
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale)
+	RooFitResult* CommonFunctions::Fit::FitBWGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale)
 	{
 
 		// * Create RooFit variable and data distribution * //
@@ -230,7 +230,7 @@
 
 		// * Add the components and fit * //
 			RooAddPdf fFullShape("full_shape", "Double gaussian + background", fComponents, fNContributions);
-			fFullShape.fitTo(
+			auto result = fFullShape.fitTo(
 				fRooDataHist,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -255,6 +255,7 @@
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWSingleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
 
+		return result;
 	}
 
 
@@ -264,9 +265,8 @@
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale)
+	RooFitResult* CommonFunctions::Fit::FitBWDoubleGaussianConvolution(TH1F *hist, ReconstructedParticle& particle, TString logScale)
 	{
-
 		// * Create RooFit variable and data distribution * //
 			auto fRooRealVar = particle.RooRealVarInvMass();
 			auto fRooDataHist = CreateRooFitInvMassDistr(hist, *fRooRealVar, particle);
@@ -328,7 +328,7 @@
 
 		// * Add the components and fit * //
 			RooAddPdf fFullShape("full_shape", "Double gaussian + background", fComponents, fNContributions);
-			fFullShape.fitTo(
+			auto result = fFullShape.fitTo(
 				fRooDataHist,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -353,6 +353,7 @@
 			CommonFunctions::Draw::DrawAndSave(Form("ConvBWDoubleGauss_%s", pname.Data()), "", logScale, frame);
 			delete frame;
 
+		return result;
 	}
 
 
@@ -361,9 +362,8 @@
 		/// See https://root.cern.ch/roofit-20-minutes for an instructive tutorial.
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
-	void CommonFunctions::Fit::FitBreitWigner(TH1F *hist, ReconstructedParticle& particle)
+	RooFitResult* CommonFunctions::Fit::FitBreitWigner(TH1F *hist, ReconstructedParticle& particle)
 	{
-
 		// * Create RooFit variable and data distribution * //
 			auto fRooRealVar = particle.RooRealVarInvMass();
 			auto fRooDataHist = CreateRooFitInvMassDistr(hist, *fRooRealVar, particle);
@@ -402,7 +402,7 @@
 
 		// * Add the components and fit * //
 			RooAddPdf fFullShape("full_shape", "Breit-Wigner + background", fComponents, fNContributions);
-			fFullShape.fitTo(
+			auto result = fFullShape.fitTo(
 				fRooDataHist,
 				RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -426,7 +426,7 @@
 			c.SetBatch();
 			frame->Draw();
 			CommonFunctions::Draw::SaveCanvas(Form("BreitWigner_%s", particle.Name()), &c);
-
+		return result;
 	}
 
 
@@ -436,9 +436,9 @@
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void CommonFunctions::Fit::FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale)
+	RooFitResult* CommonFunctions::Fit::FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale)
 	{
-		if(CommonFunctions::TerminalIO::IsEmptyPtr(hist)) return;
+		if(CommonFunctions::TerminalIO::IsEmptyPtr(hist)) return nullptr;
 		// * DATA MEMBERS * //
 			// * FitObject
 				std::shared_ptr<RooDataHist> fRooDataHist;
@@ -454,6 +454,7 @@
 				std::vector<std::shared_ptr<RooGaussian> > fGaussians;
 				std::vector<std::shared_ptr<RooRealVar> >  fNGauss;
 
+		RooFitResult* result = nullptr;
 		// * METHODS * //
 		if(true) { // local namespace for testing the beginnings of a class design
 			// * Create RooFit variable and data distribution * //
@@ -493,7 +494,7 @@
 
 			// * Add the components and fit * //
 				fFullShape = std::make_shared<RooAddPdf>("full_shape", "Double gaussian + background", fComponents, fNContributions);
-				fFullShape->fitTo(
+				result = fFullShape->fitTo(
 					*fRooDataHist,
 					RooFit::Range(particle.FitFrom(), particle.FitUntil()));
 
@@ -520,7 +521,7 @@
 				CommonFunctions::Draw::DrawAndSave(Form("DoubleGauss_%s", pname.Data()), "", logScale, frame);
 				delete frame;
 		}
-
+		return result;
 	}
 
 

@@ -9,6 +9,8 @@
 	#include "AxisBinning.h"
 	#include "CommonFunctions.h"
 	#include "ConfigParameter.h"
+	#include "RooFit.h"
+	#include "TError.h"
 	#include <string>
 
 
@@ -60,6 +62,8 @@
 	public:
 		ConfigLoader(const std::string &path, const bool print=true) :
 			fConfigPath(path), fPrint("Print loaded configuration parameters", print) {}
+		ConfigParameter<RooFit::MsgLevel> fRooFitMsgLevel{"RooFit output message level", RooFit::MsgLevel::INFO};
+		ConfigParameter<Int_t> fRootMsgLevel{"ROOT output message level", kPrint};
 
 	protected:
 		size_t LoadConfiguration(const std::string &path);

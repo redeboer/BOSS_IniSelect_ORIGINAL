@@ -1,8 +1,9 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-	#include "ConfigLoader.h"
 	#include "CommonFunctions.h"
+	#include "ConfigLoader.h"
+	#include "RooMinuit.h"
 	#include "FrameworkSettings.h"
 	#include <fstream>
 	using namespace CommonFunctions;
@@ -182,6 +183,11 @@
 				ConfigParBase::PrintAll();
 				std::cout << std::endl;
 			}
+		/// <li> Set global parameters such as that for `RooMsgService`.
+			RooMsgService::instance().setGlobalKillBelow(fRooFitMsgLevel);
+				/// Set `RooFit` output level (see [here](https://root.cern.ch/doc/master/namespaceRooFit.html#a36e12ae9ea9c0d3ab48f71c4ffcdace3) for more info).
+			gErrorIgnoreLevel = fRootMsgLevel;
+				/// Set verbosity level of ROOT (see [`TError::gErrorIgnoreLevel`](https://root.cern.ch/doc/master/TError_8h.html#ad79dd6699eb25a20c4f95d4f7a0b6407) for more info).
 		/// </ol>
 		/// @return Number of valid loaded arguments
 			return ConfigParBase::GetNParameters();

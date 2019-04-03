@@ -6,6 +6,7 @@
 	#include "CommonFunctions.h"
 	#include "ConfigLoader.h"
 	#include "TStyle.h"
+	#include "TError.h"
 	#include <iostream>
 	#include <list>
 	#include <vector>
