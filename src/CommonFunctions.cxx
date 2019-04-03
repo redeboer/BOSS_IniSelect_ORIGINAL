@@ -187,9 +187,9 @@
 		// * Create double Gaussian function * //
 			RooRealVar m0("GaussianMeanZero", "GaussianMeanZero", 0.);
 			RooRealVar fSigma("#sigma_{gauss}", Form("%s Gaussian width", particle.NameLaTeX()),
-					particle.SingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorLow * particle.SingleGaussianWidth(),
-					Settings::Fit::gSigmaScaleFactorUp  * particle.SingleGaussianWidth());
+					particle.GaussianWidths().front(),
+					Settings::Fit::gSigmaScaleFactorLow * particle.GaussianWidths().front(),
+					Settings::Fit::gSigmaScaleFactorUp  * particle.GaussianWidths().front());
 			RooGaussian fGaussian("gauss",
 				Form("Gaussian PDF for #it{M}_{%s} distribution", particle.DaughterLabel()),
 				*fRooRealVar, m0, fSigma);
