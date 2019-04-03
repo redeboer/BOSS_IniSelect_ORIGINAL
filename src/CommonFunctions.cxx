@@ -99,14 +99,12 @@
 	void CommonFunctions::Draw::SetLogScale(TString logScale, TVirtualPad *pad)
 	{
 		// * Check arguments * //
-		if(logScale.EqualTo("")) return;
 		if(CommonFunctions::TerminalIO::IsEmptyPtr(pad)) return;
 		logScale.ToLower();
 		// * Set log scale * //
-		pad->SetLogx(0); pad->SetLogy(0); pad->SetLogz(0);
-		if(logScale.Contains("x")) pad->SetLogx();
-		if(logScale.Contains("y")) pad->SetLogy();
-		if(logScale.Contains("z")) pad->SetLogz();
+		pad->SetLogx(logScale.Contains("x"));
+		pad->SetLogy(logScale.Contains("y"));
+		pad->SetLogz(logScale.Contains("z"));
 	}
 
 

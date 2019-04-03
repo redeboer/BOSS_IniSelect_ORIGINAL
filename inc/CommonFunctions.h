@@ -115,11 +115,11 @@
 
 
 	/// The `DrawAndSaveRecursion` functions are necessary for `DrawAndSave`, which is a <i>variadic</i> template function.
-	/// @tparam TYPE The type of objects that you want to draw. @todo Should ideally be `TObject`s.
-	/// @tparam ARGS The type of the rest of the objects that you want to draw. The type is actually inferred from `TYPE`.
-	/// @param opt Draw options.
-	/// @param first The first object that you want to plot.
-	/// @param args The objects that you want to plot.
+		/// @tparam TYPE The type of objects that you want to draw. @todo Should ideally be `TObject`s.
+		/// @tparam ARGS The type of the rest of the objects that you want to draw. The type is actually inferred from `TYPE`.
+		/// @param opt Draw options.
+		/// @param first The first object that you want to plot.
+		/// @param args The objects that you want to plot.
 	template<class TYPE, class... ARGS> inline
 	void CommonFunctions::Draw::DrawAndSaveRecursion(Option_t* opt, TYPE first, ARGS... args)
 	{
@@ -134,11 +134,11 @@
 
 
 	/// Function that allows you to draw and save any set of `TObject`s.
-	/// @tparam ARGS The type of objects that you want to draw. @todo Should ideally be `TObject`s.
-	/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
-	/// @param opt Draw options.
-	/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	/// @param args The objects that you want to plot.
+		/// @tparam ARGS The type of objects that you want to draw. @todo Should ideally be `TObject`s.
+		/// @param saveas Filename that the output file name should have. See `CommonFunctions::CommonFunctions::File::SetOutputFilename` for more information.
+		/// @param opt Draw options.
+		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
+		/// @param args The objects that you want to plot.
 	template<class ...ARGS> inline
 	void CommonFunctions::Draw::DrawAndSave(const char* saveas, Option_t* opt, const char* logScale, ARGS... args)
 	{
@@ -211,7 +211,7 @@
 
 
 	/// Create a std::string from a number that has a number between each 
-	/// @param number Number that you want to format.
+		/// @param number Number that you want to format.
 	/// @return Formatted std::string.
 	template<typename TYPE> inline
 	std::string CommonFunctions::Print::CommaFormattedString(TYPE number)

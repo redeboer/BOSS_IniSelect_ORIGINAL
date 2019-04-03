@@ -71,6 +71,7 @@
 		/// @name Getters
 			///@{
 			const size_t GetNBranches() const { return fListOfBranches.size(); }
+			AxisBinning& operator[](size_t i) { return fListOfBranches[i]; }
 			///@}
 
 		/// @name TTree::Draw argument builders

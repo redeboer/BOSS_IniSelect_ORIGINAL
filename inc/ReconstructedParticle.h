@@ -59,7 +59,7 @@
 			std::shared_ptr<RooRealVar> RooRealVarSigmaFixed(UChar_t num);
 			std::vector<std::shared_ptr<RooRealVar> > FitConvolutionBWGaussian(TH1F *hist, TString logScale);
 			std::vector<std::shared_ptr<RooRealVar> > FitBreitWigner(TH1F *hist, TString logScale);
-			std::vector<std::shared_ptr<RooRealVar> > FitPureGaussians(TH1F *hist, TString logScale);
+			std::vector<std::shared_ptr<RooRealVar> > FitPureGaussians(TH1F *hist, TString logScale, TString outputName = "", const bool fixpars=false);
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var);
 			///@}
 

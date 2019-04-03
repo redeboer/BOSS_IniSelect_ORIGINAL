@@ -43,8 +43,8 @@
 			TH1F* Draw(const char* chainName, const char* branchX, const Int_t nBinx, const double x1, const double x2, Option_t *option="", const TString &logScale="", const char* cut="");
 			TH2F* Draw(const char* chainName, const char* branchX, const char* branchY, const Int_t nBinx, const double x1, const double x2, const Int_t nBiny, const double y1, const double y2, Option_t *option="", const TString &logScale="", const char* cut="");
 			bool IsZombie();
-			void Draw(const char* chainName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
-			void Draw(const BranchPlotOptions &options);
+			TH1* Draw(const char* chainName, const char* branchNames, const char* cut="", Option_t *option="", const TString &logScale="");
+			TH1* Draw(const BranchPlotOptions &options);
 			void DrawAndSaveAllBranches(const char* chainName, Option_t *option="", const TString &logScale="");
 			void Print();
 			void Print(const char* nameOfTree, Option_t *option = "toponly");

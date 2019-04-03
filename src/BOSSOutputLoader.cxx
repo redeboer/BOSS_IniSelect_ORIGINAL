@@ -431,25 +431,25 @@
 
 	/// Draw the distributions of all branches available in the ROOT file.
 		/// @param treeName Name of the `TChain` that you are looking for.
-		/// @param branchNames Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
+		/// @param varexp Name of the branch names that you want to plot. See https://root.cern.ch/doc/master/classTChain.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for the syntax.
 		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
 		/// @param option Draw options.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	void BOSSOutputLoader::Draw(const char* treeName, const char* branchNames, const char* cut, Option_t *option, const TString &logScale)
+	TH1* BOSSOutputLoader::Draw(const char* treeName, const char* varexp, const char* cut, Option_t *option, const TString &logScale)
 	{
-		GetChainLoader(treeName).Draw(branchNames, cut, option, true, logScale);
+		return GetChainLoader(treeName).Draw(varexp, cut, option, true, logScale);
 	}
 
 
 	/// Draw the distributions of all branches available in the ROOT file.
-	void BOSSOutputLoader::Draw(const BranchPlotOptions &options)
+	TH1* BOSSOutputLoader::Draw(const BranchPlotOptions &options)
 	{
-		if(!options.IsOK()) return;
+		if(!options.IsOK()) return nullptr;
 		if(!HasChain(options.TreeName())) {
 			TerminalIO::PrintWarning(Form("Cannot draw non-existing branch \"%s\" in file \"%s\"", options.TreeName(), fDirectoryPath.Data()));
-			return;
+			return nullptr;
 		}
-		GetChainLoader(options.TreeName()).Draw(options);
+		return GetChainLoader(options.TreeName()).Draw(options);
 	}
 
 

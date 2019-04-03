@@ -100,9 +100,9 @@
 			input.ToLower();
 		/// <li> Set logscale bits if the `input` string contains a substring `"log"`. All characters that are `x`, `y`, or `z` after each `"log"` substring are read and used to set the corresponding log bits.
 			auto start{input.Index("log")};
+			for(size_t i = 0; i < fSetLog.size(); ++i) fSetLog[i] = false; // reset bits
 			if(start > 0) {
 				TString tok;
-				for(auto i : fSetLog) i = false; // reset bits
 				while(input.Tokenize(tok, start, "log")) {
 					for(int i=0; i<tok.Length(); ++i) {
 						UChar_t index = tok[i]-'x'; // unsiged to simplify next if statement

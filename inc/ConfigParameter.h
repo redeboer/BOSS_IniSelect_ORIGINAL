@@ -71,6 +71,7 @@
 	template class ConfigParameter<std::list<BranchPlotOptions> >;
 	template class ConfigParameter<std::list<std::pair<ReconstructedParticle, BranchPlotOptions> > >;
 	template class ConfigParameter<std::string>;
+	template class ConfigParameter<std::vector<double> >;
 
 
 // * ============================ * //
@@ -176,6 +177,16 @@
 			AddValue(it.first.DaughterLabel());
 			AddValue(it.second.BuildOriginalString().c_str());
 		}
+		return true;
+	}
+
+
+	/// `ConvertValueToStrings` implementation handler for a `vector` of `double`s.
+	template<> inline
+	const bool ConfigParameter<std::vector<double> >::ConvertValueToStrings_impl()
+	{
+		if(!fValue.size()) return false;
+		for(auto &val : fValue) AddValue(Form("%f", val));
 		return true;
 	}
 
@@ -301,6 +312,19 @@
 	{
 		if(!HasSingleString()) return false;
 		fValue = fReadStrings.front();
+		return true;
+	}
+
+
+	/// `ConvertStringsToValue` implementation handler for list of pairs of a `ReconstructedParticle` object (which characterise a signal that is to be fit) with a corresponding `BranchPlotOptions` object (which characterise the histogram that is to be fit).
+	template<> inline
+	const bool ConfigParameter<std::vector<double> >::ConvertStringsToValue_impl()
+	{
+		if(!fReadStrings.size()) return true;
+		for(auto &str : fReadStrings) {
+			TString tstring{str.c_str()};
+			fValue.push_back(tstring.Atof());
+		}
 		return true;
 	}
 

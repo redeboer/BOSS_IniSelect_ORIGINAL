@@ -372,7 +372,7 @@
 		/// @param hist Invariant mass histogram that you would like to fit
 		/// @param particle Hypothesis particle: which particle are you reconstructing? All analysis parameters, such as estimates for Gaussian widths, are contained within this object.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
-	std::vector<std::shared_ptr<RooRealVar> > ReconstructedParticle::FitPureGaussians(TH1F *hist, TString logScale)
+	std::vector<std::shared_ptr<RooRealVar> > ReconstructedParticle::FitPureGaussians(TH1F *hist, TString logScale, TString outputName, const bool fixpars)
 	{
 		// * DATA MEMBERS * //
 			// * FitObject
@@ -399,7 +399,8 @@
 			// * Create Gaussian functions * //
 				fFitPars.push_back(RooRealVarMean());
 				for(UChar_t i = 0; i < GaussianWidths().size(); ++i) {
-					fFitPars.push_back(RooRealVarSigma(i));
+					if(fixpars) fFitPars.push_back(RooRealVarSigmaFixed(i));
+					else        fFitPars.push_back(RooRealVarSigma(i));
 					fGaussians.push_back(std::make_shared<RooGaussian>(
 						Form("gauss%u", i+1),
 						Form("Gaussian PDF %u for #it{M}_{%s} distribution", i+1, DaughterLabel()),
@@ -453,9 +454,9 @@
 				fFullShape->paramOn(frame, RooFit::Layout(.56, .98, .92));
 
 			// * Write fitted histograms * //
-				TString pname = Name();
-				pname.ReplaceAll("/", ""); // in case of for instance "J/psi"
-				Draw::DrawAndSave(Form("DoubleGauss_%s", pname.Data()), "", logScale, frame);
+				if(outputName.EqualTo("")) outputName = Name();
+				outputName.ReplaceAll("/", ""); // in case of for instance "J/psi"
+				Draw::DrawAndSave(Form("DoubleGauss_%s", outputName.Data()), "", logScale, frame);
 				delete frame;
 		}
 		return fFitPars;

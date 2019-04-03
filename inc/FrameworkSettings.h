@@ -79,6 +79,8 @@
 		{
 			inline constexpr double TofUnitCm = 29.9792458;
 			inline constexpr double TofUnitMm = 299.792458;
+			inline constexpr const char* gUnitGeV = "GeV/#it{c}^{2}";
+			inline constexpr const char* gUnitMeV = "GeV/#it{c}^{2}";
 		}
 		namespace File
 		{

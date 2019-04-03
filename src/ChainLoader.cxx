@@ -5,6 +5,7 @@
 	#include "CommonFunctions.h"
 	#include "FrameworkSettings.h"
 	#include "TList.h"
+	#include "TTimeStamp.h"
 	#include <iomanip>
 	#include <iostream>
 	using namespace CommonFunctions;
@@ -91,31 +92,43 @@
 			auto maxbin = hist->GetMaximumBin();
 			hist->GetYaxis()->SetRangeUser(0., hist->GetBinContent(maxbin)+1.5*hist->GetBinErrorUp(maxbin));
 		}
-		CommonFunctions::Hist::SetAxisTitles(hist, branchX, Form("count / %g", hist->GetBinWidth(1)));
+		Hist::SetAxisTitles(hist, branchX, Form("count / %g", hist->GetBinWidth(1)));
 		// * Save and return histogram * //
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), branchX), gPad, logScale);
+		if(save) Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), branchX), gPad, logScale);
 		return hist;
 	}
 
 
 	/// Draw a distribution of one of the branches in the file.
-		/// @param branchNames Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
+		/// @param varexp Names of the branches that you want to plot. See https://root.cern.ch/doc/master/classTTree.html#a8a2b55624f48451d7ab0fc3c70bfe8d7 for how this works.
 		/// @param save Set to `false` if you do not want to save the histogram that has been drawn.
 		/// @param option Draw options.
 		/// @param logScale If this argument contains an `'x'`, the \f$x\f$-scale will be set to log scale (same for `'y'` and `'z'`).
 		/// @param cut Fill in a cut according to the syntax described <a href="https://root.cern.ch/doc/master/classTTree.html#a73450649dc6e54b5b94516c468523e45">here</a>.
-	void ChainLoader::Draw(const char* branchNames, const char* cut, Option_t *option, const bool save, const TString& logScale)
+	TH1* ChainLoader::Draw(const char* varexp, const char* cut, Option_t *option, const bool save, const TString& logScale)
 	{
 		/// <ol>
 		/// <li> Check if `TChain` contains entries.
-		if(!fChain.GetEntries()) return;
-		/// <li> Remove possible output options from `branchNames` parameter.
-		TString outputName(branchNames);
-		if(outputName.Contains(">")) outputName.Resize(outputName.First('>'));
+		if(!fChain.GetEntries()) return nullptr;
+		/// <li> Remove possible output options from `varexp` parameter.
+		TString outputName{varexp};
+		TString histName  {varexp};
+		if(outputName.Contains(">>")) {
+			auto firstPipe{outputName.First('>')};
+			outputName.Resize(firstPipe);
+			histName.Remove(0, firstPipe+2);
+			histName.Strip(TString::kBoth, ' ');
+		} else {
+			TTimeStamp stamp;
+			histName = Form("hist_%d", stamp.GetNanoSec());
+			outputName += Form(">>%s", histName.Data());
+		}
 		/// <li> Draw histogram and save
-		fChain.Draw(branchNames, cut, option);
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
+		fChain.Draw(varexp, cut, option);
+		auto hist = dynamic_cast<TH1*>(gDirectory->Get(histName.Data()));
+		if(save) Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), outputName.Data()), gPad, logScale);
 		/// </ol>
+		return hist;
 	}
 
 
@@ -140,14 +153,14 @@
 		// * Modify histogram * //
 		TH2F *hist = (TH2F*)gDirectory->Get(histName);
 		hist->SetTitle(Form("\"%s\" tree: #it{%s} vs #it{%s}", fChain.GetName(), branchX, branchY));
-		CommonFunctions::Hist::SetAxisTitles(
+		Hist::SetAxisTitles(
 			hist, branchX, branchY,
 			Form("count / (%gx%g)",
 				hist->GetXaxis()->GetBinWidth(1),
 				hist->GetYaxis()->GetBinWidth(1)
 			));
 		// * Save and return histogram * //
-		if(save) CommonFunctions::Draw::SaveCanvas(Form("%s/%s:%s", fChain.GetName(), branchY, branchX), gPad, logScale);
+		if(save) Draw::SaveCanvas(Form("%s/%s:%s", fChain.GetName(), branchY, branchX), gPad, logScale);
 		return hist;
 	}
 
@@ -163,7 +176,7 @@
 		/// -# Draw histogram and save
 			fChain.Draw(options.VarExp(), options.CutSelection(), options.DrawOption());
 			auto hist = dynamic_cast<TH1*>(gDirectory->Get(options.BuildHistName().c_str()));
-			if(options.IsWrite()) CommonFunctions::Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), options.OutputFileName()), gPad, options.LogXYZ());
+			if(options.IsWrite()) Draw::SaveCanvas(Form("%s/%s", fChain.GetName(), options.OutputFileName()), gPad, options.LogXYZ());
 			return hist;
 	}
 
@@ -217,7 +230,7 @@
 		// * Get histogram and modify
 		auto hist = Draw(varexp, nBins, particle.PlotFrom(), particle.PlotUntil(), option, false, logScale);
 		hist->SetTitle(Form("Invariant mass for %s candidate", particle.NameLaTeX()));
-		CommonFunctions::Hist::SetAxisTitles(hist,
+		Hist::SetAxisTitles(hist,
 			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
 		return hist;
@@ -243,7 +256,7 @@
 		gPad->SetLogy(branch.LogY());
 		gPad->SetLogz(branch.LogZ());
 		hist->SetTitle(Form("Invariant mass for %s candidate", particle.NameLaTeX()));
-		CommonFunctions::Hist::SetAxisTitles(hist,
+		Hist::SetAxisTitles(hist,
 			Form("#it{M}_{%s} (GeV/#it{c}^{2})", particle.DaughterLabel()),
 			Form("count / %g", hist->GetYaxis()->GetBinWidth(1)));
 		return hist;
