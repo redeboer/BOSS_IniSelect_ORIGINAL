@@ -132,12 +132,14 @@
 
 			// * Fit double gaussians
 				int i = 0;
+				std::vector<std::vector<std::shared_ptr<RooRealVar> > > results;
 				for(auto &fit : *config.ExclFits) {
-					auto result = FitConvolutionBWGaussian(
+					results.push_back(FitPureGaussians(
 						excl[fit.second.TreeName()].GetInvariantMassHistogram(fit.second, fit.first),
-						*particles[i], fit.second.LogXYZ().c_str());
+						*particles[i], fit.second.LogXYZ().c_str()));
 					++i;
 				}
+				for(auto &res : results) for(auto &r : res) std::cout << r->GetName() << std::endl;
 
 	}
 

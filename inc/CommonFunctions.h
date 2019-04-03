@@ -70,9 +70,9 @@
 		namespace Fit
 		{
 			RooDataHist CreateRooFitInvMassDistr(TH1F *hist, const RooRealVar &var, const ReconstructedParticle& particle);
-			RooFitResult* FitConvolutionBWGaussian(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
-			RooFitResult* FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
-			RooFitResult* FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			std::vector<std::shared_ptr<RooRealVar> > FitConvolutionBWGaussian(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
+			std::vector<std::shared_ptr<RooRealVar> > FitBreitWigner(TH1F *hist, ReconstructedParticle& particle);
+			std::vector<std::shared_ptr<RooRealVar> > FitPureGaussians(TH1F *hist, ReconstructedParticle& particle, TString logScale="");
 		}
 		/// Namespace containing functions related to generating and modifying histograms.
 		namespace Hist
