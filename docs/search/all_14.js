@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['unique_5fptr',['UNIQUE_PTR',['../FrameworkSettings_8h.html#ab23c42f2e2fc652c8f76ec9fd0fe9a2b',1,'FrameworkSettings.h']]],
-  ['uppermass',['UpperMass',['../classReconstructedParticle.html#a9c64f7035a5b41e50b1dc256a2d3509f',1,'ReconstructedParticle']]],
-  ['usecolors',['useColors',['../analysis_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;analysis.txt'],['../reconstruction_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;reconstruction.txt'],['../simulation_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;simulation.txt']]],
-  ['userdecaytablename',['userDecayTableName',['../simulation_8txt.html#a55256d81eaf9866510e6e879b6b1e120',1,'simulation.txt']]]
+  ['write',['Write',['../classNTupleContainer.html#af03ecf69c2115a12c6685a8dc998cf4e',1,'NTupleContainer']]],
+  ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b',1,'TrackSelector']]],
+  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508',1,'TrackSelector']]],
+  ['writefitresults',['WriteFitResults',['../classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d',1,'TrackSelector']]],
+  ['writemctruthfortopoana',['WriteMCTruthForTopoAna',['../classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1',1,'TrackSelector']]],
+  ['writepidinformation',['WritePIDInformation',['../classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf',1,'TrackSelector']]],
+  ['writetofinformation',['WriteTofInformation',['../classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae',1,'TrackSelector']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['functions',['Functions',['../group__BOSS__Afterburner__functions.html',1,'']]]
+  ['helper_20objects',['Helper objects',['../group__BOSS__objects.html',1,'']]]
 ];

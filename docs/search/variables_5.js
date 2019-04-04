@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['gcolorpalette',['gColorPalette',['../namespaceSettings_1_1Draw.html#a329a4c6b9d2a581ae129f78a33e7ef79',1,'Settings::Draw']]],
-  ['gconfigs',['gConfigs',['../namespaceSettings_1_1File.html#a890b21da3444e2402f9fa92a3879b297',1,'Settings::File']]],
   ['gcutobjects',['gCutObjects',['../classCutObject.html#a457c6dc4078222cd1f654c49752370d0',1,'CutObject']]],
   ['gecms',['gEcms',['../namespaceTSGlobals.html#a7627214df596524af6630d00620e99c7',1,'TSGlobals']]],
   ['generatejpsi',['GenerateJPsi',['../simulation_8txt.html#a4ed12cc59fe19170c9a4c26c96a0681e',1,'simulation.txt']]],
-  ['gextension',['gExtension',['../namespaceSettings_1_1File.html#a7175930b2173ec145ea7aeff45b48063',1,'Settings::File']]],
   ['gjobswitches',['gJobSwitches',['../classJobSwitch.html#a8c92206543b7dcc0289d2809b6eca1ca',1,'JobSwitch']]],
   ['gm_5fd0',['gM_D0',['../namespaceTSGlobals.html#a2a9b392d7ba7887fbea1cfe5b0b936c3',1,'TSGlobals']]],
   ['gm_5fjpsi',['gM_Jpsi',['../namespaceTSGlobals.html#aa28898a97d6edd6e532f0e7ffc612cee',1,'TSGlobals']]],
@@ -15,13 +12,6 @@ var searchData=
   ['gm_5fpi0',['gM_pi0',['../namespaceTSGlobals.html#a371dcec7e794e8a868c1eaed4fe7ded1',1,'TSGlobals']]],
   ['gm_5frho',['gM_rho',['../namespaceTSGlobals.html#aec8a67002d4b9735788d316dda8decfc',1,'TSGlobals']]],
   ['gmasses',['gMasses',['../TrackSelector_8cxx.html#a94635a4a9049c12a1635e76e633dbfe6',1,'TrackSelector.cxx']]],
-  ['gmaxnbins',['gMaxNBins',['../classAxisBinning.html#ab02d3ce5c25e4cce1249ba51c6127684',1,'AxisBinning']]],
   ['gnmasses',['gNMasses',['../TrackSelector_8cxx.html#add1e3e93af63c85166fd1d56dcbbd123',1,'TrackSelector.cxx']]],
-  ['gpdg',['gPDG',['../group__BOSS__Afterburner__settings.html#gac9e84faed4bc1858d832bc0242dbfb9e',1,'Particle.h']]],
-  ['gplotoutputdir',['gPlotOutputDir',['../namespaceSettings_1_1File.html#a362a79dc7589cbb88544209eadc814a4',1,'Settings::File']]],
-  ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#ac3e4eee61b387e1ee055453f23505cc8',1,'Settings::Fit']]],
-  ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a6ae0a60c2e70326a709a2f039a609d06',1,'Settings::Fit']]],
-  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]],
-  ['gunitgev',['gUnitGeV',['../namespaceSettings_1_1Detector.html#ab6796df1fd5a5d5f316ea5616be3c9e8',1,'Settings::Detector']]],
-  ['gunitmev',['gUnitMeV',['../namespaceSettings_1_1Detector.html#adb700f5c67a637cb1cea2164f8345e3c',1,'Settings::Detector']]]
+  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]]
 ];

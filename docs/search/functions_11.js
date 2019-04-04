@@ -1,15 +1,4 @@
 var searchData=
 [
-  ['reconstructedparticle',['ReconstructedParticle',['../classReconstructedParticle.html#a92d433507c9aaa350dd5999eff1c5cab',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode)'],['../classReconstructedParticle.html#a4d4ac611435e63765574304852ec23e6',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode)'],['../classReconstructedParticle.html#a38b19a3d3f5b338ac7e5e553cc925442',1,'ReconstructedParticle::ReconstructedParticle(int pdgCode, const char *daughters)'],['../classReconstructedParticle.html#a95cf3aff593e7dbbb86849109cadc894',1,'ReconstructedParticle::ReconstructedParticle(const char *pdgCode, const char *daughters)']]],
-  ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
-  ['resetifhasvalue',['ResetIfHasValue',['../classConfigParBase.html#a39575cd86baadb0d664802e0894add9a',1,'ConfigParBase']]],
-  ['rho0',['Rho0',['../namespaceSettings_1_1Particles.html#a5a404d3db862276fa70b85a353496d4e',1,'Settings::Particles']]],
-  ['rhop',['Rhop',['../namespaceSettings_1_1Particles.html#ac5ee28e78d69a5286adf393275007703',1,'Settings::Particles']]],
-  ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg']]],
-  ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg']]],
-  ['roorealvarinvmass',['RooRealVarInvMass',['../classReconstructedParticle.html#a44ae7cd9ea48ce3c6dc806ab3dddd455',1,'ReconstructedParticle']]],
-  ['roorealvarmean',['RooRealVarMean',['../classReconstructedParticle.html#add58a5ab5fa9d5a5a468397f2fd56cff',1,'ReconstructedParticle']]],
-  ['roorealvarmeanzero',['RooRealVarMeanZero',['../classReconstructedParticle.html#afbaf8bad6d1322924a4c43d5d73aae3a',1,'ReconstructedParticle']]],
-  ['roorealvarsigma',['RooRealVarSigma',['../classReconstructedParticle.html#ad298e3971f99319ba7ebfd53b7419735',1,'ReconstructedParticle']]],
-  ['roorealvarsigmafixed',['RooRealVarSigmaFixed',['../classReconstructedParticle.html#a21c575056b3907105d289fbe46516e50',1,'ReconstructedParticle']]]
+  ['trackselector',['TrackSelector',['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector']]]
 ];

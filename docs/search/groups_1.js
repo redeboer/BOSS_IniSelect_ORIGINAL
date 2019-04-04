@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['event_20selection',['Event selection',['../group__BOSS__packages.html',1,'']]]
+  ['globals',['Globals',['../group__BOSS__globals.html',1,'']]]
 ];

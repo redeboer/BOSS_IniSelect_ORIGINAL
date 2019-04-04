@@ -6,19 +6,13 @@
 // * ------- DOXYGEN GROUP DEFINITIONS ------- * //
 // * ========================================= * //
 
-	/// @defgroup BOSS BOSS
-	/// <b>Classes and packages for the <i>BOSS framework</i></b>. The core of these packages is the `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`. Supporting these algorithms are helper classers, such as the `CutObject`.
-
 	/// @defgroup BOSS_packages Event selection
-	/// @ingroup BOSS
 	/// Event selection __packages__ for the BOSS framework. The core of these packages is the `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`.
 
 	/// @defgroup BOSS_objects Helper objects
-	/// @ingroup BOSS
 	/// Helper __classes__ for the event selection packages. An example would be the `CutObject`, which is can be used in all packages for applying cuts and storing their paramters in the final ROOT output file.
 
 	/// @defgroup BOSS_globals Globals
-	/// @ingroup BOSS
 	/// Global __parameters__ encapsulated in namespaces.
 
 

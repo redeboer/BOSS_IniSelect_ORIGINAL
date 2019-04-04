@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "BOSS Afterburner", "index.html", [
+  [ "BOSS IniSelect", "index.html", [
     [ "Main Page", "index.html", null ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
@@ -18,7 +18,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
@@ -28,8 +28,7 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
-        [ "Typedefs", "globals_type.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+        [ "Typedefs", "globals_type.html", null ]
       ] ]
     ] ]
   ] ]
@@ -37,13 +36,10 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AnalyseInvMass_8C.html",
-"classAxisBinning.html#a672e4f08721caf2086837a4865dbfbc1",
-"classChainLoader.html#aec1e2d75426bed826afa836d7da5d52c",
-"classD0phi__KpiKK.html#a50fa3b34681c5ce75c05c1ff1e5fc369",
-"classPipiJpsi.html#a1b14fcbe763282795420a77a177e98fb",
-"classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb",
-"functions_i.html"
+"Container__base_8cxx.html",
+"classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0",
+"classRhopiAlg.html#a50604008aeb7c1eddf622a0e0a535124",
+"trkInfo_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

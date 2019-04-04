@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['k',['K',['../namespaceSettings_1_1Particles.html#abce29a1f057a1b534fcac561320c7c44',1,'Settings::Particles']]],
-  ['k0',['K0',['../namespaceSettings_1_1Particles.html#a05993391739a93b43dba53da3d9f00ff',1,'Settings::Particles']]],
   ['keyexists',['KeyExists',['../classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087',1,'Container_indexed::KeyExists(const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const'],['../classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423',1,'Container_indexed::KeyExists(const std::string &amp;key) const']]],
   ['kkfitresult',['KKFitResult',['../classKKFitResult.html',1,'KKFitResult'],['../classKKFitResult.html#a7cd27e315fc41838d21ece3055268742',1,'KKFitResult::KKFitResult()']]],
   ['kkfitresult_2ecxx',['KKFitResult.cxx',['../KKFitResult_8cxx.html',1,'']]],
