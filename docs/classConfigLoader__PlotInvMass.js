@@ -2,7 +2,6 @@ var classConfigLoader__PlotInvMass =
 [
     [ "ConfigLoader_PlotInvMass", "classConfigLoader__PlotInvMass.html#ab6836b18f476d1b22a76b37a383612ea", null ],
     [ "fDo_conv_d", "classConfigLoader__PlotInvMass.html#a1df97c43ba4d9193bc5d383c1e67b709", null ],
-    [ "fDo_conv_s", "classConfigLoader__PlotInvMass.html#afef6b1ad9eb0d78c5e10450cee5bd736", null ],
     [ "fDo_gauss", "classConfigLoader__PlotInvMass.html#a2d316ed6aa863f85582160744f5d73fa", null ],
     [ "fDraw_fit", "classConfigLoader__PlotInvMass.html#a4985eb32834a03f298bd12eefb7e4136", null ],
     [ "fDraw_mctruth", "classConfigLoader__PlotInvMass.html#a98c1aed6e4688b5cc987c349c8e17730", null ],

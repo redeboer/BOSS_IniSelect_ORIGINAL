@@ -22,9 +22,13 @@ var hierarchy =
     [ "ConfigParBase", "classConfigParBase.html", [
       [ "ConfigParameter< TYPE >", "classConfigParameter.html", null ],
       [ "ConfigParameter< bool >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< int >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< Int_t >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< RooFit::MsgLevel >", "classConfigParameter.html", null ],
       [ "ConfigParameter< std::list< BranchPlotOptions > >", "classConfigParameter.html", null ],
       [ "ConfigParameter< std::list< std::pair< ReconstructedParticle, BranchPlotOptions > > >", "classConfigParameter.html", null ],
-      [ "ConfigParameter< std::string >", "classConfigParameter.html", null ]
+      [ "ConfigParameter< std::string >", "classConfigParameter.html", null ],
+      [ "ConfigParameter< std::vector< double > >", "classConfigParameter.html", null ]
     ] ],
     [ "Container_base", "classContainer__base.html", [
       [ "Container_indexed", "classContainer__indexed.html", null ],
@@ -43,5 +47,6 @@ var hierarchy =
     [ "m_trkInfo", "classm__trkInfo.html", null ],
     [ "Particle", "classParticle.html", [
       [ "ReconstructedParticle", "classReconstructedParticle.html", null ]
-    ] ]
+    ] ],
+    [ "RooFitBuilder", "classRooFitBuilder.html", null ]
 ];

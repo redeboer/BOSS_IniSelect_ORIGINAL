@@ -13,9 +13,6 @@ var files =
     [ "CommonFunctions.h", "CommonFunctions_8h.html", "CommonFunctions_8h" ],
     [ "ConfigLoader.cxx", "ConfigLoader_8cxx.html", null ],
     [ "ConfigLoader.h", "ConfigLoader_8h.html", null ],
-    [ "ConfigLoader_AnalyseInvMass.h", "ConfigLoader__AnalyseInvMass_8h.html", null ],
-    [ "ConfigLoader_InvestigateContent.h", "ConfigLoader__InvestigateContent_8h.html", null ],
-    [ "ConfigLoader_PlotInvMass.h", "ConfigLoader__PlotInvMass_8h.html", null ],
     [ "ConfigParameter.h", "ConfigParameter_8h.html", null ],
     [ "ConfigParBase.cxx", "ConfigParBase_8cxx.html", null ],
     [ "ConfigParBase.h", "ConfigParBase_8h.html", null ],
@@ -59,6 +56,8 @@ var files =
     [ "rhopi_pipigg.h", "rhopi__pipigg_8h.html", null ],
     [ "RhopiAlg.cxx", "RhopiAlg_8cxx.html", "RhopiAlg_8cxx" ],
     [ "RhopiAlg.h", "RhopiAlg_8h.html", null ],
+    [ "RooFitBuilder.cxx", "RooFitBuilder_8cxx.html", null ],
+    [ "RooFitBuilder.h", "RooFitBuilder_8h.html", null ],
     [ "TrackSelector.cxx", "TrackSelector_8cxx.html", "TrackSelector_8cxx" ],
     [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ],
     [ "trkInfo.h", "trkInfo_8h.html", "trkInfo_8h" ]

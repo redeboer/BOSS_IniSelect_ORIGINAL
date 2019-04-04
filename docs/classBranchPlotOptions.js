@@ -17,6 +17,7 @@ var classBranchPlotOptions =
     [ "LogXYZ", "classBranchPlotOptions.html#a4521b5c9fc0a91c1e4e9de8eecf311f0", null ],
     [ "LogY", "classBranchPlotOptions.html#acb826b5dc169d26711c77c4351537fe0", null ],
     [ "LogZ", "classBranchPlotOptions.html#a55f6f59d96cd951490679bfe373e2f5e", null ],
+    [ "operator[]", "classBranchPlotOptions.html#abe029484488ebe3cc74798961ec39bf1", null ],
     [ "OutputFileName", "classBranchPlotOptions.html#a498ab708e3c66d9b39b93d242b741c10", null ],
     [ "Print", "classBranchPlotOptions.html#adb3800484082346d3aaa7b61cc8b581f", null ],
     [ "SetCutSelection", "classBranchPlotOptions.html#a8688a87255875f228f0d88a8b31f72dc", null ],

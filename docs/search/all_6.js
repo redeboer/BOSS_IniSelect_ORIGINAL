@@ -55,5 +55,7 @@ var searchData=
   ['gplotoutputdir',['gPlotOutputDir',['../namespaceSettings_1_1File.html#a362a79dc7589cbb88544209eadc814a4',1,'Settings::File']]],
   ['gsigmascalefactorlow',['gSigmaScaleFactorLow',['../namespaceSettings_1_1Fit.html#ac3e4eee61b387e1ee055453f23505cc8',1,'Settings::Fit']]],
   ['gsigmascalefactorup',['gSigmaScaleFactorUp',['../namespaceSettings_1_1Fit.html#a6ae0a60c2e70326a709a2f039a609d06',1,'Settings::Fit']]],
-  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]]
+  ['gspeedoflight',['gSpeedOfLight',['../TrackSelector_8cxx.html#ac1a7910e0394ee042f649bd450d63034',1,'TrackSelector.cxx']]],
+  ['gunitgev',['gUnitGeV',['../namespaceSettings_1_1Detector.html#ab6796df1fd5a5d5f316ea5616be3c9e8',1,'Settings::Detector']]],
+  ['gunitmev',['gUnitMeV',['../namespaceSettings_1_1Detector.html#adb700f5c67a637cb1cea2164f8345e3c',1,'Settings::Detector']]]
 ];

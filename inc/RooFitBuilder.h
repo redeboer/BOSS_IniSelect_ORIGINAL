@@ -24,6 +24,11 @@
 
 
 	/// **DEVELOPMENTAL** Object that can be used to construct and fit `RooFit` objects.
+		/// One of the challenges with `RooFit` is whether obhects in memory are owned or not. Usually, you write one script and build fits from `RooFit` objects within one scope, but if you want to modulate this process (whether through functions or through some `RooFit` wrapper class), you'll run into trouble.
+		///
+		/// This class is an attempt streamlining that process of building `RooFit` objects within a modulated class. The class makes use of shared pointers (`shared_ptr`) to reduce the risk of memory leaks while at the same time being able to pass the objects as pointer arguments to `RooFit`.
+		///
+		/// At present, the class is not fully developed and is therefore not use anywhere else, but has been included in the release to show how to 'own' and maintain of `RooFit` object through shared pointers.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     April 3rd, 2019
 	class RooFitBuilder

@@ -19,6 +19,8 @@ var FrameworkSettings_8h =
     [ "gPlotOutputDir", "FrameworkSettings_8h.html#a362a79dc7589cbb88544209eadc814a4", null ],
     [ "gSigmaScaleFactorLow", "FrameworkSettings_8h.html#ac3e4eee61b387e1ee055453f23505cc8", null ],
     [ "gSigmaScaleFactorUp", "FrameworkSettings_8h.html#a6ae0a60c2e70326a709a2f039a609d06", null ],
+    [ "gUnitGeV", "FrameworkSettings_8h.html#ab6796df1fd5a5d5f316ea5616be3c9e8", null ],
+    [ "gUnitMeV", "FrameworkSettings_8h.html#adb700f5c67a637cb1cea2164f8345e3c", null ],
     [ "TofUnitCm", "FrameworkSettings_8h.html#a237466bd3bc3165007e367f5266e1fb6", null ],
     [ "TofUnitMm", "FrameworkSettings_8h.html#a56a0c8c9c4803afe1e5cea4e5fed8fb3", null ]
 ];

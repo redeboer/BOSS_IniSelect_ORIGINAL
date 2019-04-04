@@ -15,9 +15,14 @@ var searchData=
   ['rhopialg_2ecxx',['RhopiAlg.cxx',['../RhopiAlg_8cxx.html',1,'']]],
   ['rhopialg_2eh',['RhopiAlg.h',['../RhopiAlg_8h.html',1,'']]],
   ['rndmseed',['RndmSeed',['../reconstruction_8txt.html#a8c2c1e69b2ea073b3e629c2ed6dd0b49',1,'RndmSeed():&#160;reconstruction.txt'],['../simulation_8txt.html#a8c2c1e69b2ea073b3e629c2ed6dd0b49',1,'RndmSeed():&#160;simulation.txt']]],
+  ['roofitbuilder',['RooFitBuilder',['../classRooFitBuilder.html',1,'']]],
+  ['roofitbuilder_2ecxx',['RooFitBuilder.cxx',['../RooFitBuilder_8cxx.html',1,'']]],
+  ['roofitbuilder_2eh',['RooFitBuilder.h',['../RooFitBuilder_8h.html',1,'']]],
   ['roorealvarinvmass',['RooRealVarInvMass',['../classReconstructedParticle.html#a44ae7cd9ea48ce3c6dc806ab3dddd455',1,'ReconstructedParticle']]],
   ['roorealvarmean',['RooRealVarMean',['../classReconstructedParticle.html#add58a5ab5fa9d5a5a468397f2fd56cff',1,'ReconstructedParticle']]],
+  ['roorealvarmeanzero',['RooRealVarMeanZero',['../classReconstructedParticle.html#afbaf8bad6d1322924a4c43d5d73aae3a',1,'ReconstructedParticle']]],
   ['roorealvarsigma',['RooRealVarSigma',['../classReconstructedParticle.html#ad298e3971f99319ba7ebfd53b7419735',1,'ReconstructedParticle']]],
+  ['roorealvarsigmafixed',['RooRealVarSigmaFixed',['../classReconstructedParticle.html#a21c575056b3907105d289fbe46516e50',1,'ReconstructedParticle']]],
   ['runid',['runID',['../classNTupleTopoAna.html#aff15bbada688880d37ef9fc5d37b4e05',1,'NTupleTopoAna']]],
   ['runidlist',['RunIdList',['../simulation_8txt.html#ae04425acdc7696b1027a5caef59d8e2a',1,'simulation.txt']]]
 ];

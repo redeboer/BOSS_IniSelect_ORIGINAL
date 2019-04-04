@@ -83,14 +83,12 @@ $(document).ready(function(){initNavTree('classConfigLoader__AnalyseInvMass.html
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classConfigLoader__AnalyseInvMass-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">ConfigLoader_AnalyseInvMass Class Reference<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a> &raquo; <a class="el" href="group__BOSS__Afterburner__objects.html">Objects</a></div></div>  </div>
+<div class="title">ConfigLoader_AnalyseInvMass Class Reference<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a> &raquo;  &#124; <a class="el" href="group__BOSS__Afterburner__scripts.html">Scripts</a> &raquo; <a class="el" href="group__BOSS__Afterburner__objects.html">Objects</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Derived class of <code><a class="el" href="classConfigLoader.html" title="Base container object for a BOSS Afterburner analysis configuration file. ">ConfigLoader</a></code> that contains parameters used for a simple plotting algorithm.  
  <a href="classConfigLoader__AnalyseInvMass.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ConfigLoader_AnalyseInvMass:</div>
 <div class="dyncontent">
@@ -118,6 +116,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aa1aa6192e0c92279276e27f92b3637e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae53ce01cb8cab2e1694e97d99424e9fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#ae53ce01cb8cab2e1694e97d99424e9fe">Filename_data</a> {&quot;Measurements file&quot;}</td></tr>
 <tr class="separator:ae53ce01cb8cab2e1694e97d99424e9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec04aa686ba249c9b1eb36396dfd588e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#aec04aa686ba249c9b1eb36396dfd588e">BranchName</a> {&quot;Branch name containing invariant mass results&quot;, &quot;fit4c_best&quot;}</td></tr>
+<tr class="separator:aec04aa686ba249c9b1eb36396dfd588e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a324b3801620051997db6975d02be0cb3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::list&lt; <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a324b3801620051997db6975d02be0cb3">ListOfbranches_excl</a> {&quot;Plot these inclusive MC branches&quot;}</td></tr>
 <tr class="separator:a324b3801620051997db6975d02be0cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57e829d65df3b4fd8552aa7d19f79182"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::list&lt; <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a57e829d65df3b4fd8552aa7d19f79182">ListOfbranches_incl</a> {&quot;Plot these exclusive MC branches&quot;}</td></tr>
@@ -130,15 +130,31 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a92fa60ed8b67b873753284b4a991f113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29e73b9ec45445f7abd684ff82c5a32a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a29e73b9ec45445f7abd684ff82c5a32a">Do_PureHists</a> {&quot;Draw and save histograms without fits&quot;, true}</td></tr>
 <tr class="separator:a29e73b9ec45445f7abd684ff82c5a32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbc479c6fba34f08f860a289b365ebdc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#abbc479c6fba34f08f860a289b365ebdc">Do_Fit</a> {&quot;Draw and save fits&quot;, true}</td></tr>
-<tr class="separator:abbc479c6fba34f08f860a289b365ebdc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0baf37dad0ad32b9f7f712b162179315"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a0baf37dad0ad32b9f7f712b162179315">Do_Fit_excl</a> {&quot;Draw and save fits exclusive&quot;, true}</td></tr>
+<tr class="separator:a0baf37dad0ad32b9f7f712b162179315"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cc6f2e2a71e1b073f540f093a060e50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a3cc6f2e2a71e1b073f540f093a060e50">Do_Signal</a> {&quot;Plot inclusive and data signal&quot;, true}</td></tr>
+<tr class="separator:a3cc6f2e2a71e1b073f540f093a060e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b1987b7316aeb1d81434361e02a5a8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a6b1987b7316aeb1d81434361e02a5a8e">Do_Fit_incl</a> {&quot;Draw and save fits data and inclusive&quot;, true}</td></tr>
+<tr class="separator:a6b1987b7316aeb1d81434361e02a5a8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Fit parameters</div></td></tr>
-<tr class="memitem:adcc416e1a9fa6314fe073bf12dbb232f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::list&lt; std::pair&lt; <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a>, <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#adcc416e1a9fa6314fe073bf12dbb232f">ExclFits</a> {&quot;Signals to fit&quot;}</td></tr>
-<tr class="separator:adcc416e1a9fa6314fe073bf12dbb232f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9fceeaa6ef281d42587b763045144f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::list&lt; std::pair&lt; <a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a>, <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a> &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a5a9fceeaa6ef281d42587b763045144f">ParticleBranchPairs</a> {&quot;Signals to fit&quot;}</td></tr>
+<tr class="memdesc:a5a9fceeaa6ef281d42587b763045144f"><td class="mdescLeft">&#160;</td><td class="mdescRight">};  <a href="#a5a9fceeaa6ef281d42587b763045144f">More...</a><br /></td></tr>
+<tr class="separator:a5a9fceeaa6ef281d42587b763045144f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5491c7e3ab0bd88c25f968330bfe56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a7e5491c7e3ab0bd88c25f968330bfe56">nSigma_cut</a> {&quot;nSigma cut&quot;, 3}</td></tr>
+<tr class="separator:a7e5491c7e3ab0bd88c25f968330bfe56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da865604e93c783e3eb4891f793d354"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a4da865604e93c783e3eb4891f793d354">nSigma_plot</a> {&quot;nSigma plot range&quot;, 5}</td></tr>
+<tr class="separator:a4da865604e93c783e3eb4891f793d354"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a0f84233734fca5f17c2708e457179"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; std::vector&lt; double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a88a0f84233734fca5f17c2708e457179">BinWidths</a> {&quot;Bin widths&quot;, {.004, .002}}</td></tr>
+<tr class="separator:a88a0f84233734fca5f17c2708e457179"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Global plot style options</div></td></tr>
 <tr class="memitem:a7ef049347110f9ef08a17a5049dc9b11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader__AnalyseInvMass.html#a7ef049347110f9ef08a17a5049dc9b11">Do_PlotStatsLegend</a> {&quot;Plot legend with statistics&quot;, false}</td></tr>
 <tr class="memdesc:a7ef049347110f9ef08a17a5049dc9b11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not to draw the legend in the upper right corner with histogram statistics.  <a href="#a7ef049347110f9ef08a17a5049dc9b11">More...</a><br /></td></tr>
 <tr class="separator:a7ef049347110f9ef08a17a5049dc9b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_attribs_classConfigLoader"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classConfigLoader')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classConfigLoader.html">ConfigLoader</a></td></tr>
+<tr class="memitem:a1fc56f99e8fa81bd4140cda6e56ab443 inherit pub_attribs_classConfigLoader"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; RooFit::MsgLevel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a1fc56f99e8fa81bd4140cda6e56ab443">fRooFitMsgLevel</a> {&quot;RooFit output message level&quot;, RooFit::MsgLevel::INFO}</td></tr>
+<tr class="separator:a1fc56f99e8fa81bd4140cda6e56ab443 inherit pub_attribs_classConfigLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a918e0f955f6df4fa53e995d470df23 inherit pub_attribs_classConfigLoader"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt; Int_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classConfigLoader.html#a8a918e0f955f6df4fa53e995d470df23">fRootMsgLevel</a> {&quot;ROOT output message level&quot;, kPrint}</td></tr>
+<tr class="separator:a8a918e0f955f6df4fa53e995d470df23 inherit pub_attribs_classConfigLoader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -165,7 +181,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>March 26th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00027">27</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00037">37</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aaf6981028027a32eedaa62ea8b3e51e2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf6981028027a32eedaa62ea8b3e51e2">&#9670;&nbsp;</a></span>ConfigLoader_AnalyseInvMass()</h2>
@@ -201,24 +217,72 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00030">30</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00040">40</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="abbc479c6fba34f08f860a289b365ebdc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbc479c6fba34f08f860a289b365ebdc">&#9670;&nbsp;</a></span>Do_Fit</h2>
+<a id="a88a0f84233734fca5f17c2708e457179"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a0f84233734fca5f17c2708e457179">&#9670;&nbsp;</a></span>BinWidths</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;bool&gt; ConfigLoader_AnalyseInvMass::Do_Fit {&quot;Draw and save fits&quot;, true}</td>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;std::vector&lt;double&gt; &gt; ConfigLoader_AnalyseInvMass::BinWidths {&quot;Bin widths&quot;, {.004, .002}}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00048">48</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00070">70</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="aec04aa686ba249c9b1eb36396dfd588e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec04aa686ba249c9b1eb36396dfd588e">&#9670;&nbsp;</a></span>BranchName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;std::string&gt; ConfigLoader_AnalyseInvMass::BranchName {&quot;Branch name containing invariant mass results&quot;, &quot;fit4c_best&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00048">48</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="a0baf37dad0ad32b9f7f712b162179315"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0baf37dad0ad32b9f7f712b162179315">&#9670;&nbsp;</a></span>Do_Fit_excl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;bool&gt; ConfigLoader_AnalyseInvMass::Do_Fit_excl {&quot;Draw and save fits exclusive&quot;, true}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00059">59</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="a6b1987b7316aeb1d81434361e02a5a8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b1987b7316aeb1d81434361e02a5a8e">&#9670;&nbsp;</a></span>Do_Fit_incl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;bool&gt; ConfigLoader_AnalyseInvMass::Do_Fit_incl {&quot;Draw and save fits data and inclusive&quot;, true}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00061">61</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -236,7 +300,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Whether or not to draw the legend in the upper right corner with histogram statistics. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00060">60</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00076">76</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -254,7 +318,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Whether or not to print an indication of the cut flow for the three files. </p>
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00046">46</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00057">57</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -270,23 +334,23 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00047">47</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00058">58</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
-<a id="adcc416e1a9fa6314fe073bf12dbb232f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adcc416e1a9fa6314fe073bf12dbb232f">&#9670;&nbsp;</a></span>ExclFits</h2>
+<a id="a3cc6f2e2a71e1b073f540f093a060e50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cc6f2e2a71e1b073f540f093a060e50">&#9670;&nbsp;</a></span>Do_Signal</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;std::list&lt;std::pair&lt;<a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a>, <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a>&gt; &gt; &gt; ConfigLoader_AnalyseInvMass::ExclFits {&quot;Signals to fit&quot;}</td>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;bool&gt; ConfigLoader_AnalyseInvMass::Do_Signal {&quot;Plot inclusive and data signal&quot;, true}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00054">54</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00060">60</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -302,7 +366,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00037">37</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00047">47</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -318,7 +382,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00035">35</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00045">45</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -334,7 +398,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00036">36</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00046">46</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -350,7 +414,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00040">40</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00051">51</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -366,7 +430,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00038">38</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00049">49</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -382,12 +446,62 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html#l00039">39</a> of file <a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00050">50</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="a7e5491c7e3ab0bd88c25f968330bfe56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e5491c7e3ab0bd88c25f968330bfe56">&#9670;&nbsp;</a></span>nSigma_cut</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;int&gt; ConfigLoader_AnalyseInvMass::nSigma_cut {&quot;nSigma cut&quot;, 3}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00068">68</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="a4da865604e93c783e3eb4891f793d354"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da865604e93c783e3eb4891f793d354">&#9670;&nbsp;</a></span>nSigma_plot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;int&gt; ConfigLoader_AnalyseInvMass::nSigma_plot {&quot;nSigma plot range&quot;, 5}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00069">69</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+
+</div>
+</div>
+<a id="a5a9fceeaa6ef281d42587b763045144f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9fceeaa6ef281d42587b763045144f">&#9670;&nbsp;</a></span>ParticleBranchPairs</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classConfigParameter.html">ConfigParameter</a>&lt;std::list&lt;std::pair&lt;<a class="el" href="classReconstructedParticle.html">ReconstructedParticle</a>, <a class="el" href="classBranchPlotOptions.html">BranchPlotOptions</a>&gt; &gt; &gt; ConfigLoader_AnalyseInvMass::ParticleBranchPairs {&quot;Signals to fit&quot;}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>}; </p>
+
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00067">67</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li><a class="el" href="ConfigLoader__AnalyseInvMass_8h_source.html">ConfigLoader_AnalyseInvMass.h</a></li>
+<li><a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

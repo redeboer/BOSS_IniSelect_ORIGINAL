@@ -31,7 +31,7 @@ var searchData=
   ['createmctruthselection',['CreateMCTruthSelection',['../classD0phi__KpiKK.html#aac0ad99f7e64533cbdfe7ecb50f5d2ab',1,'D0phi_KpiKK::CreateMCTruthSelection()'],['../classD0phi__KpipiKK.html#a10b5d2e804348c6731a578e661d9f99e',1,'D0phi_KpipiKK::CreateMCTruthSelection()'],['../classrhopi__pipigg.html#a8de916bfb48571227377c9216215ba1d',1,'rhopi_pipigg::CreateMCTruthSelection()'],['../classTrackSelector.html#a129b0c7acd91d7c29d0f61233c7b6416',1,'TrackSelector::CreateMCTruthSelection()']]],
   ['createneutralcollection',['CreateNeutralCollection',['../classTrackSelector.html#a50338f3dca1f6a942971811f31aecab5',1,'TrackSelector']]],
   ['createorderedmap',['CreateOrderedMap',['../classBOSSOutputLoader.html#ab6d81022b14f0de41438dcf699a5e01c',1,'BOSSOutputLoader']]],
-  ['createroofitinvmassdistr',['CreateRooFitInvMassDistr',['../namespaceCommonFunctions_1_1Fit.html#a01b6b2fa0844a972c92e0ae27ba81ead',1,'CommonFunctions::Fit']]],
+  ['createroofitinvmassdistr',['CreateRooFitInvMassDistr',['../classReconstructedParticle.html#abbd9cb0d080c38be2194e9a1033aacb1',1,'ReconstructedParticle::CreateRooFitInvMassDistr()'],['../classRooFitBuilder.html#afcb05f6c01351d9f10fb0cb92e95be47',1,'RooFitBuilder::CreateRooFitInvMassDistr()']]],
   ['cutobject',['CutObject',['../classCutObject.html#a529ad466034cc01f983c57a03949331d',1,'CutObject']]],
   ['cutselection',['CutSelection',['../classBranchPlotOptions.html#aced5bf5f8b3bdfe2a14bb320eb80ae90',1,'BranchPlotOptions']]]
 ];

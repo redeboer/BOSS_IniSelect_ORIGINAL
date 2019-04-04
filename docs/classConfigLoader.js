@@ -8,5 +8,7 @@ var classConfigLoader =
     [ "ImportValues", "classConfigLoader.html#a5a59e651d982c5157cea7faa4b64a626", null ],
     [ "LoadConfiguration", "classConfigLoader.html#a24aba3c2e19427dabefe553e29463744", null ],
     [ "fConfigPath", "classConfigLoader.html#a2c57f6b311c0daa808fb66bbf243b456", null ],
-    [ "fPrint", "classConfigLoader.html#a3262a392500fc22c533455b595138296", null ]
+    [ "fPrint", "classConfigLoader.html#a3262a392500fc22c533455b595138296", null ],
+    [ "fRooFitMsgLevel", "classConfigLoader.html#a1fc56f99e8fa81bd4140cda6e56ab443", null ],
+    [ "fRootMsgLevel", "classConfigLoader.html#a8a918e0f955f6df4fa53e995d470df23", null ]
 ];

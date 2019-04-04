@@ -13,6 +13,8 @@ var searchData=
   ['ncut5',['Ncut5',['../RhopiAlg_8cxx.html#a87a44bb9989e7d593d89d0b2b7aa553d',1,'RhopiAlg.cxx']]],
   ['ncut6',['Ncut6',['../RhopiAlg_8cxx.html#af1d2be22861b1e83a550b9ca430b58cf',1,'RhopiAlg.cxx']]],
   ['npol',['NPol',['../classReconstructedParticle.html#ad0e66b30c44b9b96cd1e312ada68ec71',1,'ReconstructedParticle']]],
+  ['nsigma_5fcut',['nSigma_cut',['../classConfigLoader__AnalyseInvMass.html#a7e5491c7e3ab0bd88c25f968330bfe56',1,'ConfigLoader_AnalyseInvMass']]],
+  ['nsigma_5fplot',['nSigma_plot',['../classConfigLoader__AnalyseInvMass.html#a4da865604e93c783e3eb4891f793d354',1,'ConfigLoader_AnalyseInvMass']]],
   ['ntuplecontainer',['NTupleContainer',['../classNTupleContainer.html',1,'NTupleContainer'],['../classNTupleContainer.html#aad4fcf64aac5b99f3980dde865f253a1',1,'NTupleContainer::NTupleContainer()']]],
   ['ntuplecontainer_2ecxx',['NTupleContainer.cxx',['../NTupleContainer_8cxx.html',1,'']]],
   ['ntuplecontainer_2eh',['NTupleContainer.h',['../NTupleContainer_8h.html',1,'']]],

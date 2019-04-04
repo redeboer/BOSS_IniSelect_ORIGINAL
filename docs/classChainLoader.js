@@ -7,7 +7,7 @@ var classChainLoader =
     [ "ComputeMean", "classChainLoader.html#a58451645958f14410eff8e2b201047ac", null ],
     [ "Draw", "classChainLoader.html#a8831d77ec57d390d0a3a0eec23b56c4a", null ],
     [ "Draw", "classChainLoader.html#a45b885862b28f642fcfefd165be5d150", null ],
-    [ "Draw", "classChainLoader.html#a8ad8049e9040096dd44790b199ef8478", null ],
+    [ "Draw", "classChainLoader.html#ae90218f2d7340ef42601565383f67d24", null ],
     [ "Draw", "classChainLoader.html#afb5e303555e552948b1a00a0e51d6ac7", null ],
     [ "DrawAndSaveAllBranches", "classChainLoader.html#abc9762fc07c51196df16f437342a13ef", null ],
     [ "DrawAndSaveAllMultiplicityBranches", "classChainLoader.html#ab4a1067ee3302766465f85dfbe164828", null ],

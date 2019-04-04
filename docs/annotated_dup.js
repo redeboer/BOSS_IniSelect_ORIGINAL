@@ -32,5 +32,6 @@ var annotated_dup =
     [ "ReconstructedParticle", "classReconstructedParticle.html", "classReconstructedParticle" ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ],
     [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
+    [ "RooFitBuilder", "classRooFitBuilder.html", "classRooFitBuilder" ],
     [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ]
 ];

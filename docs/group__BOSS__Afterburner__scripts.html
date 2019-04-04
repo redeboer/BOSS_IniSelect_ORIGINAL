@@ -80,6 +80,7 @@ $(document).ready(function(){initNavTree('group__BOSS__Afterburner__scripts.html
 
 <div class="header">
   <div class="summary">
+<a href="#groups">Modules</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">Scripts<div class="ingroups"><a class="el" href="group__BOSS__Afterburner.html">BOSS Afterburner</a></div></div>  </div>
@@ -89,6 +90,12 @@ $(document).ready(function(){initNavTree('group__BOSS__Afterburner__scripts.html
 <p>Analysis <b>scripts</b> of the <em>BOSS Afterburner</em>.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:group__BOSS__Afterburner__objects"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__objects.html">Objects</a></td></tr>
+<tr class="memdesc:group__BOSS__Afterburner__objects"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base and derived <b>classes</b> that represent the structure of BOSS output files. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga27ce20dce329feda76fdf7041166bae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BOSS__Afterburner__scripts.html#ga27ce20dce329feda76fdf7041166bae1">D0phi_KpiKK</a> (const char *configuration_file=&quot;configs/debug.config&quot;)</td></tr>
@@ -144,7 +151,7 @@ Functions</h2></td></tr>
 <li>Perform and plot fits </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="PlotInvMass_8C_source.html#l00031">31</a> of file <a class="el" href="PlotInvMass_8C_source.html">PlotInvMass.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PlotInvMass_8C_source.html#l00086">86</a> of file <a class="el" href="PlotInvMass_8C_source.html">PlotInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -167,17 +174,130 @@ Functions</h2></td></tr>
 <p>This script originates from <code>AnalyseInvMass</code> and is here for temporary developmental purposes. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>April 2nd, 2019 </dd></dl>
-<ol type="1">
-<li>Attempt to load <code>configuration_file</code>.</li>
-<li>Attempt to load three directories of ROOT files as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> objects: a set of exlusive MC files, a set of inclusive MC files, and a set of data files (the BESIII measurements).</li>
-<li>Print three cut flows.</li>
-<li>Set global plotting style based on loaded configuration settings.</li>
-<li>Plot branches without fits</li>
-<li>Perform fit over exclusive Monte Carlo data sets.</li>
+<ol>
+<li>
+<p class="startli">Attempt to load <code>configuration_file</code>.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Attempt to load three directories of ROOT files as a <code><a class="el" href="classBOSSOutputLoader.html" title="General container for BOSS analysis output. ">BOSSOutputLoader</a></code> objects: a set of exlusive MC files, a set of inclusive MC files, and a set of data files (the BESIII measurements).</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Print three cut flows.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set global plotting style based on loaded configuration settings.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Plot branches without fits</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Perform fit over exclusive Monte Carlo data sets.</p>
+<ol>
+<li>
+<p class="startli"><b>Abort</b> if config file says fits should not be performed.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Create vector of particles.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Fit and draw double gaussians.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Print fit results.</p>
+<ol>
+<li>
+<p class="startli">Print opening line particle name for this fit result.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Compute print widths for name and final fit value columns.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Compute total sigma.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Print a table of fit parameters with their names and values.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Push back a pair of mass with total signal.</p>
+<p class="endli"></p>
+</li>
 </ol>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000023">Todo:</a></b></dt><dd>Trouble with the number of polynomials... Perhaps somehow implement a fit object (extension of <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code>)? </dd></dl>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Print masses as determined from exclusive MC.</p>
+<p class="endli"></p>
+</li>
+</ol>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Plot signal histograms.</p>
+<ol>
+<li>
+<p class="startli"><b>Abort</b> if config file says fits should not be performed.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Create a new <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> from the one used for the exclusive plots.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set a <img class="formulaInl" alt="$3\sigma$" src="form_5.png"/> cut on the invariant masses of the <em>other</em> particles.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Set a <img class="formulaInl" alt="$5\sigma$" src="form_110.png"/> as plot range.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli"><b>Temporary</b>: Print the new <code><a class="el" href="classBranchPlotOptions.html" title="This object is used as a container of information you need to plot a branch or a collection of branch...">BranchPlotOptions</a></code> object.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Modify histogram.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Draw mass lines</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Save canvas.</p>
+<p class="endli"></p>
+</li>
+</ol>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Perform fit over data and inclusve Monte Carlo data sets.</p>
+<ol>
+<li>
+<p class="startli"><b>Abort</b> if config file says fits on signal of data and incluive MC should not be performed.</p>
+<p class="endli"></p>
+</li>
+<li>
+<p class="startli">Fit and draw double gaussians.</p>
+<p class="endli"></p>
+</li>
+</ol>
+<p class="endli"></p>
+</li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00032">32</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00095">95</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>
@@ -207,7 +327,7 @@ Functions</h2></td></tr>
 <li>If loaded successfully, print the cut flow (if requested by <code>fPrintCutFlow</code>). </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00024">24</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="InvestigateContent_8C_source.html#l00056">56</a> of file <a class="el" href="InvestigateContent_8C_source.html">InvestigateContent.C</a>.</p>
 
 </div>
 </div>
@@ -239,7 +359,7 @@ Functions</h2></td></tr>
 
 <p>Main function that is called when executing the executable compiled using e.g. <code>g++</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00094">94</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AnalyseInvMass_8C_source.html#l00313">313</a> of file <a class="el" href="AnalyseInvMass_8C_source.html">AnalyseInvMass.C</a>.</p>
 
 </div>
 </div>

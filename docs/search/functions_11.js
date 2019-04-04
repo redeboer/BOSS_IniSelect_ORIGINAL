@@ -9,5 +9,7 @@ var searchData=
   ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg']]],
   ['roorealvarinvmass',['RooRealVarInvMass',['../classReconstructedParticle.html#a44ae7cd9ea48ce3c6dc806ab3dddd455',1,'ReconstructedParticle']]],
   ['roorealvarmean',['RooRealVarMean',['../classReconstructedParticle.html#add58a5ab5fa9d5a5a468397f2fd56cff',1,'ReconstructedParticle']]],
-  ['roorealvarsigma',['RooRealVarSigma',['../classReconstructedParticle.html#ad298e3971f99319ba7ebfd53b7419735',1,'ReconstructedParticle']]]
+  ['roorealvarmeanzero',['RooRealVarMeanZero',['../classReconstructedParticle.html#afbaf8bad6d1322924a4c43d5d73aae3a',1,'ReconstructedParticle']]],
+  ['roorealvarsigma',['RooRealVarSigma',['../classReconstructedParticle.html#ad298e3971f99319ba7ebfd53b7419735',1,'ReconstructedParticle']]],
+  ['roorealvarsigmafixed',['RooRealVarSigmaFixed',['../classReconstructedParticle.html#a21c575056b3907105d289fbe46516e50',1,'ReconstructedParticle']]]
 ];
