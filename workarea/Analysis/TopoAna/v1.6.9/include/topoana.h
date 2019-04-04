@@ -133,7 +133,7 @@ class topoana
   public:
     topoana()
     {
-      m_pkgPath="/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/TopoAna/v1.6.9/";
+      m_pkgPath="${BOSSWORKAREA}/workarea/Analysis/TopoAna/v1.6.9/";
       m_verNum="v1.6.9";
 
       m_nmsOfIptRootFls.clear();

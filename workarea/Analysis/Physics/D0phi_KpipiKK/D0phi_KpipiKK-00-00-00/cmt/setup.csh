@@ -1,4 +1,4 @@
-# echo "setup D0phi_KpipiKK D0phi_KpipiKK-00-00-00 in /besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics"
+# echo "setup D0phi_KpipiKK D0phi_KpipiKK-00-00-00 in ${BOSSWORKAREA}/workarea/Analysis/Physics"
 
 if ( $?CMTROOT == 0 ) then
   setenv CMTROOT /afs/ihep.ac.cn/bes3/offline/ExternalLib/SLC6/contrib/CMT/v1r25
@@ -8,9 +8,9 @@ set cmtD0phi_KpipiKKtempfile=`${CMTROOT}/mgr/cmt -quiet build temporary_name`
 if $status != 0 then
   set cmtD0phi_KpipiKKtempfile=/tmp/cmt.$$
 endif
-${CMTROOT}/mgr/cmt setup -csh -pack=D0phi_KpipiKK -version=D0phi_KpipiKK-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtD0phi_KpipiKKtempfile}
+${CMTROOT}/mgr/cmt setup -csh -pack=D0phi_KpipiKK -version=D0phi_KpipiKK-00-00-00 -path=${BOSSWORKAREA}/workarea/Analysis/Physics  -no_cleanup $* >${cmtD0phi_KpipiKKtempfile}
 if ( $status != 0 ) then
-  echo "${CMTROOT}/mgr/cmt setup -csh -pack=D0phi_KpipiKK -version=D0phi_KpipiKK-00-00-00 -path=/besfs/users/deboer/BOSS_Afterburner/boss/workarea/Analysis/Physics  -no_cleanup $* >${cmtD0phi_KpipiKKtempfile}"
+  echo "${CMTROOT}/mgr/cmt setup -csh -pack=D0phi_KpipiKK -version=D0phi_KpipiKK-00-00-00 -path=${BOSSWORKAREA}/workarea/Analysis/Physics  -no_cleanup $* >${cmtD0phi_KpipiKKtempfile}"
   set cmtsetupstatus=2
   /bin/rm -f ${cmtD0phi_KpipiKKtempfile}
   unset cmtD0phi_KpipiKKtempfile
