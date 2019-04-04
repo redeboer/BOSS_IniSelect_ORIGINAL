@@ -1,16 +1,22 @@
-# * Some BOSS variables * #
-	BESFS="/besfs/users/${USER}"
-	BOSSVERSION="7.0.4"
+# * Repository locations * #
 	BOSS_Afterburner="${BESFS}/BOSS_Afterburner"
-	BOSSWORKAREA="${BOSS_Afterburner}/boss"
+	BOSS_IniSelect="${BESFS}/BOSS_IniSelect"
+	BOSS_GitBook="${BESFS}/BOSS_GitBook"
+	export BOSS_Afterburner
+	export BOSS_IniSelect
+	export BOSS_GitBook
+
+# * BOSS variables * #
+	BOSSVERSION="7.0.4"
+	BESFS="/besfs/users/${USER}"
+	BOSSWORKAREA="${BOSS_Afterburner}"
 	CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-${BOSSVERSION}"
 	CMTHOMENAME="cmthome"
 	IHEPBATCH="/ihepbatch/bes/${USER}"
 	SCRATCHFS="/scratchfs/bes/${USER}"
 	WORKAREANAME="workarea"
-	export BESFS
 	export BOSSVERSION
-	export BOSS_Afterburner
+	export BESFS
 	export BOSSWORKAREA
 	export IHEPBATCH
 	export SCRATCHFS
@@ -24,7 +30,7 @@
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TrackSelector/TrackSelector-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-00-00/cmt/setup.sh"
-	# source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
 	export PATH=$PATH:${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/v1.6.9/bin
 
@@ -85,7 +91,7 @@
 	}
 	export cdmctruth # navigate to BOSS Afterburner (optional argument: subfolder)
 
-# * Some BOSS functions * #
+# * BOSS functions * #
 	function AttemptToExecute()
 	{
 		local commandToExecute="${1}"
