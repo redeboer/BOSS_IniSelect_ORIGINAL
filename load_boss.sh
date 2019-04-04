@@ -1,4 +1,5 @@
 # * Repository locations * #
+	BESFS="/besfs/users/${USER}"
 	BOSS_Afterburner="${BESFS}/BOSS_Afterburner"
 	BOSS_IniSelect="${BESFS}/BOSS_IniSelect"
 	BOSS_GitBook="${BESFS}/BOSS_GitBook"
@@ -8,7 +9,6 @@
 
 # * BOSS variables * #
 	BOSSVERSION="7.0.4"
-	BESFS="/besfs/users/${USER}"
 	BOSSWORKAREA="${BOSS_Afterburner}"
 	CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-${BOSSVERSION}"
 	CMTHOMENAME="cmthome"
