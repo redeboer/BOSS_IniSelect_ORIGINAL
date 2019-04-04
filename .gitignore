@@ -1,24 +1,6 @@
 # Ignore Windows files
 desktop.ini
 
-# Ignore folder contents
-data/**/**.dst
-data/**/**.log
-data/**/**.raw
-data/**/**.rtraw
-data/**/*.dst
-data/**/*.log
-data/**/*.root
-data/**/*.rtraw
-plots/**/**.eps
-plots/**/**.pdf
-plots/**/**.png
-plots/**/**.root
-plots/**/*.eps
-plots/**/*.pdf
-plots/**/*.png
-plots/**/*.root
-
 # Ignore jobs
 jobs/**/sed*
 jobs/filenames/*
@@ -62,6 +44,7 @@ Entries
 Repository
 Root
 Tag
+workarea/InstallArea
 
 # Ignore binaries
 **.[oad]
