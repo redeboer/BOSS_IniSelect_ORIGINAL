@@ -1,26 +1,34 @@
-# Main page
+# BOSS IniSelect
 
-**This repository is still under development!**
-Feedback is very welcome, see [here](https://redeboer.gitbook.io/boss_afterburner/appendices/about) for contact details.
+This repository serves as an extra layer to the BESIII Offline Software System (BOSS). For more information on BOSS, see the [BOSS GitBook](https://besiii.gitbook.io/boss).
 
-## _The BOSS Afterburner_ repository
+The BOSS IniSelect repository contains BOSS packages for **initial track selection** (hence the name). These packages are to facilitate analysis procedures in BESIII by further modulating the procedure for selecting tracks from a DST file. The main feature is the [TrackSelector]()
 
-This repository has been set up as an unofficial extension to the BOSS analysis framework of the [BESIII collaboration](http://bes3.ihep.ac.cn). The repository has three major components:
+Originally, this repository was contained within the [BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner). The repository has been split into BOSS IniSelect for the **initial event selection** and BOSS Afterburner for **final event selection**. The reason is that IniSelect is integrated with BOSS and therefore has to run on the IHEP server, while the Afterburner is perferably run locally (so you can use the newest versions of `gcc`, ROOT, etc).
 
-1. The [tutorial pages on GitBook](https://redeboer.gitbook.io/boss_afterburner) that you are currently looking at. These pages are to serve as an accessible introduction and user guide to the BOSS software framework used in the BESIII collaboration.
-2. A [base-derived algorithm structure for the **initial event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS.html). This part of the repository is integrated in BOSS and is designed to facilitate collaboration on code for initial event selection in hadron research at BESIII.
-3. An [analysis framework for **final event selection**](https://redeboer.github.io/BOSS_Afterburner/group__BOSS__Afterburner.html). This part of the repository is designed to formalise and standardise loading, plotting, and fitting procedures that you perform on the output of the initial event selection.
 
-The source code for all of the above is [available on GitHub](https://github.com/redeboer/BOSS_Afterburner) and can be contributed to through `git`.
+## An overview of the repositories
 
-## Accessing _The BOSS Afterburner_
+### BOSS GitBook
 
-There are three channels through which you can access _The BOSS Afterburner_ online.
+[redeboer.gitbook.io/boss_afterburner](https://besiii.gitbook.io/boss)
 
-1. **GitBook** \([redeboer.gitbook.io/boss_afterburner](https://redeboer.gitbook.io/boss_afterburner)\), which provides an accessible graphical interface for the tutorial-like pages on using BOSS, on the initial event selection packages, and on the final event selection framework in this repository.
-2. **GitPages** \([redeboer.github.io/BOSS\_Afterburner](https://redeboer.github.io/BOSS_Afterburner/)\), which contains class documentation for the initial and final event selection frameworks of _The BOSS Afterburner_. This platform can be consulted for more details about the design of these two frameworks.
-3. **GitHub** \([github.com/redeboer/BOSS\_Afterburner](https://github.com/redeboer/BOSS_Afterburner)\), which is the complete repository itself. It contains the source code \(Markdown, C++, HTML, bash, etc.\) for all components. Collaboration on all of the above is possible through this platform, using `git`.
+This GitBook contains basic *step-by-step tutorials* on BOSS and BESIII analysis procedures in general. In addition, this repository contains a growing *inventory of useful BOSS packages*. The source code is available on [this repository](https://github.com/redeboer/BOSS_Gitbook) and is [open for contributions](https://besiii.gitbook.io/boss/) by BESIII members.
 
-More briefly put, GitHub 'feeds' the content on GitBook and GitPages.
+### BOSS IniSelect
 
-![Means of accessing The BOSS Afterburner](fig/BOSS_Afterburner_Access.png)
+A repository of BOSS packages used for **initial** event selection.
+
+  * Source code on GitHub: [github.com/redeboer/BOSS_IniSelect](https://github.com/redeboer/BOSS_IniSelect)
+  * Class documentation on GitPages: [redeboer.github.io/BOSS_IniSelect](https://redeboer.github.io/BOSS_IniSelect/index.html)
+  * Tutorial pages on GitBook: [redeboer.gitbook.io/boss_afterburner](https://redeboer.gitbook.io/boss_afterburner/)
+  (shared with Afterburner)
+
+### BOSS Afterburner
+
+A repository of BOSS packages used for **initial** event selection.
+
+  * Source code on GitHub: [github.com/redeboer/BOSS_Afterburner](https://github.com/redeboer/BOSS_Afterburner)
+  * Class documentation on GitPages: [redeboer.github.io/BOSS_Afterburner](https://redeboer.github.io/BOSS_Afterburner/index.html)
+  * Tutorial pages on GitBook: [redeboer.gitbook.io/boss_afterburner](https://redeboer.gitbook.io/boss_afterburner/)
+  (shared with IniSelect)
