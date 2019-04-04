@@ -197,13 +197,13 @@ Constructors and destructors</h2></td></tr>
 <tr class="memitem:af162e16e823b754c52e72829daa7b750"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#af162e16e823b754c52e72829daa7b750">NTupleTopoAna</a> (const std::string &amp;name, const std::string &amp;desc)</td></tr>
 <tr class="separator:af162e16e823b754c52e72829daa7b750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a195faf7b6e05c4291e9550ca14a2827f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#a195faf7b6e05c4291e9550ca14a2827f">IsInitialCluster</a> (Event::McParticle *mcparticle)</td></tr>
-<tr class="memdesc:a195faf7b6e05c4291e9550ca14a2827f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/>.  <a href="#a195faf7b6e05c4291e9550ca14a2827f">More...</a><br /></td></tr>
+<tr class="memdesc:a195faf7b6e05c4291e9550ca14a2827f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>.  <a href="#a195faf7b6e05c4291e9550ca14a2827f">More...</a><br /></td></tr>
 <tr class="separator:a195faf7b6e05c4291e9550ca14a2827f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc1c5803edbe707a4c3445a576952ed3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#adc1c5803edbe707a4c3445a576952ed3">IsJPsi</a> (Event::McParticle *mcparticle)</td></tr>
-<tr class="memdesc:adc1c5803edbe707a4c3445a576952ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/> (PDG code <code>91</code>).  <a href="#adc1c5803edbe707a4c3445a576952ed3">More...</a><br /></td></tr>
+<tr class="memdesc:adc1c5803edbe707a4c3445a576952ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>).  <a href="#adc1c5803edbe707a4c3445a576952ed3">More...</a><br /></td></tr>
 <tr class="separator:adc1c5803edbe707a4c3445a576952ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd76c86513c3772ba59fcc0342896682"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#abd76c86513c3772ba59fcc0342896682">IsFromJPsi</a> (Event::McParticle *mcparticle)</td></tr>
-<tr class="memdesc:abd76c86513c3772ba59fcc0342896682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/> (PDG code <code>91</code>).  <a href="#abd76c86513c3772ba59fcc0342896682">More...</a><br /></td></tr>
+<tr class="memdesc:abd76c86513c3772ba59fcc0342896682"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>).  <a href="#abd76c86513c3772ba59fcc0342896682">More...</a><br /></td></tr>
 <tr class="separator:abd76c86513c3772ba59fcc0342896682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -265,7 +265,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><b>OUTDATED</b> Extension of <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> that represents the <code>NTuple</code> containing MC truth necessary for the <code>topoana</code> package. </p>
-<p>This object is still around, because it's <code>static</code> <code>IsJpsi</code> functions etc. are still required by <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> and derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace. </dd></dl>
+<p>This object is still around, because it's <code>static</code> <code>IsJpsi</code> functions etc. are still required by <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> and derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 18th, 2019 </dd></dl>
 
@@ -334,7 +334,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Access to <code>fNTuple</code> (as opposed to <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code>). </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f" title="Easier and expanded version of NTuple::Tuple::addItem that also adds the item to the fItems_* mapping...">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f" title="Easier and expanded version of NTuple::Tuple::addItem that also adds the item to the fItems_* mapping...">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00048">48</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
@@ -364,7 +364,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/> (PDG code <code>91</code>). </p>
+<p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>). </p>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00040">40</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
@@ -394,7 +394,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/>. </p>
+<p>Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>. </p>
 <dl class="section remark"><dt>Remarks</dt><dd>Here you can define the name and title of the branch for the TopoAna pacakge! </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00032">32</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
@@ -425,7 +425,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/> (PDG code <code>91</code>). </p>
+<p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>). </p>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00037">37</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 

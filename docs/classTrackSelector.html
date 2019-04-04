@@ -99,6 +99,7 @@ Inheritance diagram for TrackSelector:</div>
 <area href="classD0phi__KpiKK.html" title="Analyse  events. " alt="D0phi_KpiKK" shape="rect" coords="0,112,96,136"/>
 <area href="classD0phi__KpipiKK.html" title="Analyse  events. " alt="D0phi_KpipiKK" shape="rect" coords="106,112,202,136"/>
 <area href="classrhopi__pipigg.html" title="WIP Analyse  events. " alt="rhopi_pipigg" shape="rect" coords="212,112,308,136"/>
+<area href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). " alt="RhopiAlg" shape="rect" coords="318,112,414,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -119,10 +120,10 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Write methods</div></td></tr>
 <tr class="memitem:a153ed7c278b89accd5fc1f95ac06501b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a153ed7c278b89accd5fc1f95ac06501b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information <em>for one track</em>.  <a href="#a153ed7c278b89accd5fc1f95ac06501b">More...</a><br /></td></tr>
+<tr class="memdesc:a153ed7c278b89accd5fc1f95ac06501b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss information <em>for one track</em>.  <a href="#a153ed7c278b89accd5fc1f95ac06501b">More...</a><br /></td></tr>
 <tr class="separator:a153ed7c278b89accd5fc1f95ac06501b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5d2cc51628faafc21bd4fa6b4489508"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information.  <a href="#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
+<tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss information.  <a href="#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
 <tr class="separator:ac5d2cc51628faafc21bd4fa6b4489508"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ab32d87b4cc2d7e35883e76028107bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">WritePIDInformation</a> ()</td></tr>
 <tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
@@ -182,7 +183,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ab81b438182bfd30ae3de4526ec3e3751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the extension through all detectors. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecExtTrack.html">RecExtTrack</a>.  <a href="#ab81b438182bfd30ae3de4526ec3e3751">More...</a><br /></td></tr>
 <tr class="separator:ab81b438182bfd30ae3de4526ec3e3751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5d79e3f40c41fc90bdb1752befc3829"><td class="memItemLeft" align="right" valign="top">RecMdcDedx *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad5d79e3f40c41fc90bdb1752befc3829">fTrackDedx</a></td></tr>
-<tr class="memdesc:ad5d79e3f40c41fc90bdb1752befc3829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html">RecMdcDedx</a>.  <a href="#ad5d79e3f40c41fc90bdb1752befc3829">More...</a><br /></td></tr>
+<tr class="memdesc:ad5d79e3f40c41fc90bdb1752befc3829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html">RecMdcDedx</a>.  <a href="#ad5d79e3f40c41fc90bdb1752befc3829">More...</a><br /></td></tr>
 <tr class="separator:ad5d79e3f40c41fc90bdb1752befc3829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1246945b0ec81e5059aa3bda2877787"><td class="memItemLeft" align="right" valign="top">RecMdcKalTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac1246945b0ec81e5059aa3bda2877787">fTrackKal</a></td></tr>
 <tr class="memdesc:ac1246945b0ec81e5059aa3bda2877787"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed Kalman fit data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcKalTrack.html">RecMdcKalTrack</a>.  <a href="#ac1246945b0ec81e5059aa3bda2877787">More...</a><br /></td></tr>
@@ -201,7 +202,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a7bbc529b932aaa34f0ee0e80d0c7723f"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the cut parameters.  <a href="#a7bbc529b932aaa34f0ee0e80d0c7723f">More...</a><br /></td></tr>
 <tr class="separator:a7bbc529b932aaa34f0ee0e80d0c7723f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08f40252be298043a4761492c9c83b0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a08f40252be298043a4761492c9c83b0c">fNTuple_PID</a></td></tr>
-<tr class="memdesc:a08f40252be298043a4761492c9c83b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b>  <a href="#a08f40252be298043a4761492c9c83b0c">More...</a><br /></td></tr>
+<tr class="memdesc:a08f40252be298043a4761492c9c83b0c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b>  <a href="#a08f40252be298043a4761492c9c83b0c">More...</a><br /></td></tr>
 <tr class="separator:a08f40252be298043a4761492c9c83b0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abaca84e032fc62b567cadc3686316cfd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abaca84e032fc62b567cadc3686316cfd">fNTuple_TofEC</a></td></tr>
 <tr class="memdesc:abaca84e032fc62b567cadc3686316cfd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the data from the Time-of-Flight end cap detector branch.  <a href="#abaca84e032fc62b567cadc3686316cfd">More...</a><br /></td></tr>
@@ -216,7 +217,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ad55766b1e861a00c51247237bb53d3d3"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the charged track vertex branch.  <a href="#ad55766b1e861a00c51247237bb53d3d3">More...</a><br /></td></tr>
 <tr class="separator:ad55766b1e861a00c51247237bb53d3d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af537061769db9ee47f86f6fc18e45035"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af537061769db9ee47f86f6fc18e45035">fNTuple_dedx</a></td></tr>
-<tr class="memdesc:af537061769db9ee47f86f6fc18e45035"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/>) branch.  <a href="#af537061769db9ee47f86f6fc18e45035">More...</a><br /></td></tr>
+<tr class="memdesc:af537061769db9ee47f86f6fc18e45035"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/>) branch.  <a href="#af537061769db9ee47f86f6fc18e45035">More...</a><br /></td></tr>
 <tr class="separator:af537061769db9ee47f86f6fc18e45035"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a355559541b01ea12ff03f16c2cc78674"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a355559541b01ea12ff03f16c2cc78674">fNTuple_mult</a></td></tr>
 <tr class="memdesc:a355559541b01ea12ff03f16c2cc78674"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the multiplicities branch.  <a href="#a355559541b01ea12ff03f16c2cc78674">More...</a><br /></td></tr>
@@ -333,7 +334,7 @@ NTuple handlers</h2></td></tr>
 <tr class="memdesc:ae1127b90eded632298e2109e8dfd8bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches for the TopoAna package.  <a href="#ae1127b90eded632298e2109e8dfd8bd0">More...</a><br /></td></tr>
 <tr class="separator:ae1127b90eded632298e2109e8dfd8bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe76ee61ca26468ccc0a460975caa981"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981">AddNTupleItems_Dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:abe76ee61ca26468ccc0a460975caa981"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#abe76ee61ca26468ccc0a460975caa981">More...</a><br /></td></tr>
+<tr class="memdesc:abe76ee61ca26468ccc0a460975caa981"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss branch (<code>"dedx"</code>).  <a href="#abe76ee61ca26468ccc0a460975caa981">More...</a><br /></td></tr>
 <tr class="separator:abe76ee61ca26468ccc0a460975caa981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a701d237f6c62d93597247263e89b6ae4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">AddNTupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a701d237f6c62d93597247263e89b6ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="#a701d237f6c62d93597247263e89b6ae4">More...</a><br /></td></tr>
@@ -377,7 +378,7 @@ Particle Identification</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><b>Base algorithm</b> that creates a selection of charged and/or neutral tracks. </p>
-<p>Your analysis has to be defined in <em>derived</em> algorithms, making use of the vectors that are filled in this algorithm. See the <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial">tutorial pages</a> for more information. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>The design of using <code>map</code>s of <code>NTuple::Items</code>s is not ideal, as it does not (yet) allow enough flexibility. </dd></dl>
+<p>Your analysis has to be defined in <em>derived</em> algorithms, making use of the vectors that are filled in this algorithm. See the <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial">tutorial pages</a> for more information. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000019">Todo:</a></b></dt><dd>The design of using <code>map</code>s of <code>NTuple::Items</code>s is not ideal, as it does not (yet) allow enough flexibility. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
@@ -471,11 +472,11 @@ Particle Identification</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss branch (<code>"dedx"</code>). </p>
+<p>This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss branch (<code>"dedx"</code>). </p>
 <p>This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions). </p>
 <ul>
-<li><code>"Ngoodhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> hits (excluding overflow).</li>
-<li><code>"Ntotalhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> hits (including overflow).</li>
+<li><code>"Ngoodhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> hits (excluding overflow).</li>
+<li><code>"Ntotalhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> hits (including overflow).</li>
 <li><code>"chie"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").</li>
 <li><code>"chik"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").</li>
 <li><code>"chimu"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").</li>
@@ -560,7 +561,7 @@ Particle Identification</h2></td></tr>
 <li><code>"path"</code>: Path length.</li>
 <li><code>"cntr"</code>: ToF counter ID.</li>
 <li><code>"ph"</code>: ToF pulse height.</li>
-<li><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_96.png"/> or <img class="formulaInl" alt="$R$" src="form_98.png"/> Hit position.</li>
+<li><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_105.png"/> or <img class="formulaInl" alt="$R$" src="form_107.png"/> Hit position.</li>
 <li><code>"qual"</code>: Data quality of reconstruction.</li>
 <li><code>"tof_e"</code>: Difference with ToF in electron hypothesis.</li>
 <li><code>"tof_mu"</code>: Difference with ToF in muon hypothesis.</li>
@@ -713,7 +714,7 @@ Particle Identification</h2></td></tr>
 <ol>
 <li>
 <p class="startli">Get MDC information</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000009">Todo:</a></b></dt><dd>Check if <code>helixip.pivot(fVertexPoint)</code> doesn't affect <code>fVertexPoint</code>. </dd></dl>
 <p class="endli"></p>
 </li>
 <li>
@@ -787,7 +788,7 @@ Particle Identification</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create a preselection of <b>Monte Carlo truth</b> tracks. </p>
-<p>This method is used in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> only. It is used to fill the <code>fMcParticles</code> <code>vector</code> with a selection of <code>McParticle</code> pointers. This collection starts with the initial cluster (e.g. <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/>) and continues with the rest of the decay chain. Only then is it possible to use <code>CreateMCTruthSelection</code>, so it is called at the end. </p><dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017" title="Vector that, in each event, will be filled by a selection of pointers to MC particles that are of int...">fMcParticles</a></code> </dd>
+<p>This method is used in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> only. It is used to fill the <code>fMcParticles</code> <code>vector</code> with a selection of <code>McParticle</code> pointers. This collection starts with the initial cluster (e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>) and continues with the rest of the decay chain. Only then is it possible to use <code>CreateMCTruthSelection</code>, so it is called at the end. </p><dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017" title="Vector that, in each event, will be filled by a selection of pointers to MC particles that are of int...">fMcParticles</a></code> </dd>
 <dd>
 <code><a class="el" href="classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1" title="Write an NTuple containing branches that are required for the TopoAna method. ">WriteMCTruthForTopoAna</a></code> </dd>
 <dd>
@@ -822,7 +823,7 @@ Particle Identification</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-Only start recording <em>after</em> we have passed the initial simulation <code>cluster</code> (code 91) or <code>string</code> (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. <img class="formulaInl" alt="$J/\psi$" src="form_9.png"/>). <dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classNTupleTopoAna.html#a195faf7b6e05c4291e9550ca14a2827f" title="Test whether an MC truth particle is 91 (the PDG code of a &#39;cluster&#39;) or 92 (the PDG code of a string...">NTupleTopoAna::IsInitialCluster</a></code>.</dd></dl>
+Only start recording <em>after</em> we have passed the initial simulation <code>cluster</code> (code 91) or <code>string</code> (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>). <dl class="section see"><dt>See also</dt><dd><code><a class="el" href="classNTupleTopoAna.html#a195faf7b6e05c4291e9550ca14a2827f" title="Test whether an MC truth particle is 91 (the PDG code of a &#39;cluster&#39;) or 92 (the PDG code of a string...">NTupleTopoAna::IsInitialCluster</a></code>.</dd></dl>
 </li>
 <li>
 <p class="startli">Add the pointer to the <code>fMcParticles</code> collection vector for use in the derived algorithms.</p>
@@ -1089,7 +1090,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>This function is executed at the end of <code>execute</code>. It should be further defined in derived subalgorithms. </p>
 
-<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a9e232c48e45ada91d00579f05ecedda7">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a0a908148b72ca5e83416bbc0f9ec7193">rhopi_pipigg</a>, and <a class="el" href="classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4">D0phi_KpiKK</a>.</p>
+<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a9e232c48e45ada91d00579f05ecedda7">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a0a908148b72ca5e83416bbc0f9ec7193">rhopi_pipigg</a>, <a class="el" href="classD0phi__KpiKK.html#a0be43dabc8154883ec2f0bf20cab38b4">D0phi_KpiKK</a>, and <a class="el" href="classRhopiAlg.html#abf05c98adc4ce7c16573c3ed01985867">RhopiAlg</a>.</p>
 
 </div>
 </div>
@@ -1145,7 +1146,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>This function is executed at the end of <code>finalize</code>. It should be further defined in derived subalgorithms. </p>
 
-<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a71b83622f91c7b725f6e93ec8569635d">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a67dc70e428dac62c286d8d41dce4e9b1">rhopi_pipigg</a>, and <a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">D0phi_KpiKK</a>.</p>
+<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a71b83622f91c7b725f6e93ec8569635d">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a67dc70e428dac62c286d8d41dce4e9b1">rhopi_pipigg</a>, <a class="el" href="classD0phi__KpiKK.html#a337a27a8e41b2767aefc07a84e0b9752">D0phi_KpiKK</a>, and <a class="el" href="classRhopiAlg.html#a790d4f4bedca41aac5f8ba1e42375482">RhopiAlg</a>.</p>
 
 </div>
 </div>
@@ -1239,7 +1240,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"rvphi"</code>: Angle in the <img class="formulaInl" alt="$xy$" src="form_57.png"/>plane.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000005">Todo:</a></b></dt><dd>Get explanation of geometry (angle) definitions in an event. </dd></dl>
+<p class="startli"><code>"rvphi"</code>: Angle in the <img class="formulaInl" alt="$xy$" src="form_57.png"/>plane.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000007">Todo:</a></b></dt><dd>Get explanation of geometry (angle) definitions in an event. </dd></dl>
 <p class="endli"></p>
 </li>
 <li>
@@ -1247,7 +1248,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"p"</code>: Momentum <img class="formulaInl" alt="$p$" src="form_97.png"/> of the track.</p>
+<p class="startli"><code>"p"</code>: Momentum <img class="formulaInl" alt="$p$" src="form_106.png"/> of the track.</p>
 <p class="endli"></p>
 </li>
 </ol>
@@ -1281,14 +1282,14 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"time"</code>: Time of the neutral track according to the EMC.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000006">Todo:</a></b></dt><dd>Investigate what this parameter precisely means. </dd></dl>
+<p class="startli"><code>"time"</code>: Time of the neutral track according to the EMC.</p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Investigate what this parameter precisely means. </dd></dl>
 <p class="endli"></p>
 </li>
 </ol>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"dedx"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::AddNTupleItems_Dedx</a></code> for more info.</p>
+<p class="startli"><code>"dedx"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::AddNTupleItems_Dedx</a></code> for more info.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -1323,7 +1324,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"chidEdx"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of the energy loss <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> of the identified track.</p>
+<p class="startli"><code>"chidEdx"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of the energy loss <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> of the identified track.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -1380,7 +1381,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>This function is executed at the end of <code>initialize</code>. It should be further defined in derived subalgorithms. </p>
 
-<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a04265e615d567a2b19ee085882556180">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a694556f849ed68fba28b46d108e3b5ed">rhopi_pipigg</a>, and <a class="el" href="classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518">D0phi_KpiKK</a>.</p>
+<p>Implemented in <a class="el" href="classD0phi__KpipiKK.html#a04265e615d567a2b19ee085882556180">D0phi_KpipiKK</a>, <a class="el" href="classrhopi__pipigg.html#a694556f849ed68fba28b46d108e3b5ed">rhopi_pipigg</a>, <a class="el" href="classD0phi__KpiKK.html#a72e81af7a2e5613c50f149200c8e0518">D0phi_KpiKK</a>, and <a class="el" href="classRhopiAlg.html#a8064bb8369093c143deee3dca0ccf888">RhopiAlg</a>.</p>
 
 </div>
 </div>
@@ -1431,11 +1432,11 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </div><div class="memdoc">
 
 <p>Method that standardizes the initialisation of the particle identification system. </p>
-<p>Define here <em>as general as possible</em>, but use in the derived subalgorithms. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html">http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html</a> for more info. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10. </dd></dl>
+<p>Define here <em>as general as possible</em>, but use in the derived subalgorithms. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html">http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html</a> for more info. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000010">Todo:</a></b></dt><dd>Since BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>. See talk by Liu Huanhuan on 2019/01/10. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">method</td><td>Which method to use: probability, likelihood, or neuron network (see <code>TSGlobals::PIDMethod</code>). You can also combine using e.g. <code>pid-&gt;methodLikelihood() | pid-&gt;methodProbability()</code>. </td></tr>
-    <tr><td class="paramname">pidsys</td><td>PID systems you want to call. Can combined using bit seperators (<code>|</code>), e.g. <code>pid-&gt;useDedx() | pid-&gt;useTof1() | pid-&gt;useTof2() | pid-&gt;useTofE()</code> for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> plus all ToF detectors. </td></tr>
+    <tr><td class="paramname">pidsys</td><td>PID systems you want to call. Can combined using bit seperators (<code>|</code>), e.g. <code>pid-&gt;useDedx() | pid-&gt;useTof1() | pid-&gt;useTof2() | pid-&gt;useTofE()</code> for <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> plus all ToF detectors. </td></tr>
     <tr><td class="paramname">pidcase</td><td>Which particles to identify. For instance, <code>pid-&gt;onlyPion() | pid-&gt;onlyKaon()</code> in the case of pions and kaons. </td></tr>
     <tr><td class="paramname">chimin</td><td>Minimal <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of the resulting particle identification. </td></tr>
   </table>
@@ -1676,19 +1677,19 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p>Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information <em>for one track</em>. </p>
+<p>Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss information <em>for one track</em>. </p>
 <p>Here, you should use <code>map::at</code> to access the <code>NTuple::Item</code>s and <code>NTuplePtr</code>, because you want your package to throw an exception if the element does not exist. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115">http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115</a> for available data members of <code>RecMdcDedx</code> </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">evtRecTrack</td><td>Pointer to the reconstructed track of which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> data. </td></tr>
-    <tr><td class="paramname">tuple</td><td><code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> to which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> data. </td></tr>
+    <tr><td class="paramname">evtRecTrack</td><td>Pointer to the reconstructed track of which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> data. </td></tr>
+    <tr><td class="paramname">tuple</td><td><code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> to which you want to write the <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> data. </td></tr>
   </table>
   </dd>
 </dl>
 <ol type="1">
 <li>Abort if the 'write <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>' has been set to <code>false</code>.</li>
-<li>Abort if <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> and MDC info does not exist</li>
-<li>Set <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> info and set the <code>NTuple::Item</code>s.</li>
-<li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> info. </li>
+<li>Abort if <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> and MDC info does not exist</li>
+<li>Set <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> info and set the <code>NTuple::Item</code>s.</li>
+<li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> info. </li>
 </ol>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00621">621</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
@@ -1729,8 +1730,8 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p>Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> energy loss information. </p>
-<p>This method allows you to write <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> information for any selection of charged tracks. Just feed it a vector that contains such a collection of <code>EvtRecTrack</code> pointers. </p>
+<p>Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> energy loss information. </p>
+<p>This method allows you to write <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> information for any selection of charged tracks. Just feed it a vector that contains such a collection of <code>EvtRecTrack</code> pointers. </p>
 <ol type="1">
 <li>Abort if the 'write <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>' has been set to <code>false</code>.</li>
 <li>Loop over the vector of <code>EvtRecTrack</code> you fed and perform <code>WriteDedxInfo</code>. </li>
@@ -1781,7 +1782,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Abort</b> if <code>fitresults</code> pointer is a <code>nullptr</code> and not a <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> object.</li>
 <li><b>Abort</b> if <code>fitresults</code> does not have fit results.</li>
 <li>Performed derived version of the <code>virtual</code> <code>SetFitNTuple</code> method.</li>
-<li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> info. </li>
+<li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> info. </li>
 </ol>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00672">672</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
@@ -2641,7 +2642,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/>) branch. </p>
+<p><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/>) branch. </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00177">177</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
@@ -2745,7 +2746,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p><code>NTuple::Tuple</code> container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b> </p>
+<p><code>NTuple::Tuple</code> container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b> </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00172">172</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
@@ -2953,7 +2954,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p>Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_4.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html">RecMdcDedx</a>. </p>
+<p>Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_5.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html">RecMdcDedx</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
