@@ -44,6 +44,15 @@
 		cd "${BOSS_Afterburner}/${subfolder}"
 	}
 	export cdafterburner # navigate to BOSS Afterburner (optional argument: subfolder)
+	function cdiniselect()
+	{
+		local subfolder="${1}"
+		if [ $# == 0 ] ; then
+			subfolder=""
+		fi
+		cd "${BOSS_IniSelect}/${subfolder}"
+	}
+	export cdiniselect # navigate to BOSS IniSelect (optional argument: subfolder)
 	function cdbesfs()
 	{
 		local subfolder="${1}"
