@@ -44,7 +44,6 @@ Entries
 Repository
 Root
 Tag
-workarea/InstallArea
 
 # Ignore binaries
 **.[oad]
@@ -53,9 +52,9 @@ workarea/InstallArea
 **.make
 **.so
 *ACLiC_dict_rdict.pcm
-boss/workarea/InstallArea/**
 execute
 main
+workarea/InstallArea
 
 # Ignore temporary files
 *.bosserr
@@ -73,8 +72,8 @@ jobs/temp.sh
 **.root
 **.tex
 **.time
-boss/workarea/Analysis/TopoAna/v*/test/*
-boss/workarea/Analysis/TopoAna/v*/test/**
+workarea/Analysis/TopoAna/v*/test/*
+workarea/Analysis/TopoAna/v*/test/**
 jobs/topoana/**.txt
 jobs/topoana/**/**.txt
 jobs/topoana/**/**/**.txt
