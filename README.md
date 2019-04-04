@@ -7,7 +7,7 @@ The BOSS IniSelect repository contains BOSS packages for **initial track selecti
 Originally, this repository was contained within the [BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner). The repository has been split into BOSS IniSelect for the **initial event selection** and BOSS Afterburner for **final event selection**. The reason is that IniSelect is integrated with BOSS and therefore has to run on the IHEP server, while the Afterburner is perferably run locally (so you can use the newest versions of `gcc`, ROOT, etc).
 
 
-## An overview of the repositories
+## An overview of related repositories
 
 ### [BOSS GitBook](https://besiii.gitbook.io/boss)
 
