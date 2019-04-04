@@ -12,7 +12,7 @@ Originally, this repository was contained within the [BOSS Afterburner](https://
 You can clone this repository to the IHEP server (or your local pc) using the following command. It is advised that you clone this repository to BESIII file system folder (i.e., first `cd /besfs/users/${USER}`).
 
 ```bash
-  git clone ssh://git@github.com/redeboer/BOSS_IniSelect.git
+git clone ssh://git@github.com/redeboer/BOSS_IniSelect.git
 ```
 
 
