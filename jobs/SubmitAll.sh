@@ -28,8 +28,8 @@
 
 	outputDir="${1}"
 	jobIdentifier="${2}"
-	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
-	scriptFolder="${afterburnerPath}/jobs/sub"
+	iniSelectPath="${PWD/${PWD/*BOSS_IniSelect}}" # get path of BOSS Afterburner
+	scriptFolder="${iniSelectPath}/jobs/sub"
 
 
 

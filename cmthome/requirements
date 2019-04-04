@@ -41,7 +41,7 @@ path_remove CMTPATH  "${BesArea}"
 path_prepend CMTPATH "${BesArea}"
 
 #Add your worarea to CMTPATH
-macro WorkArea "/besfs/users/${USER}/BOSS_Afterburner/boss/workarea"
+macro WorkArea "/besfs/users/${USER}/BOSS_IniSelect/boss/workarea"
 # Add dev area to the front of your CMTPATH (but first remove any previously defined devarea which is under your home directory)
 path_remove  CMTPATH "${WorkArea}"
 path_prepend CMTPATH "${WorkArea}"

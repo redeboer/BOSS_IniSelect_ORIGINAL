@@ -1,7 +1,7 @@
 # ! Script parameters ! #
 BOSSVERSION="7.0.4"
-BOSSWORKAREA="/besfs/users/${USER}/BOSS_Afterburner/boss"
-BOSSWORKAREAbash="/besfs/users/\${USER}/BOSS_Afterburner/boss"
+BOSSWORKAREA="/besfs/users/${USER}/BOSS_IniSelect/boss"
+BOSSWORKAREAbash="/besfs/users/\${USER}/BOSS_IniSelect/boss"
 CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-${BOSSVERSION}"
 CMTHOMENAME="cmthome"
 

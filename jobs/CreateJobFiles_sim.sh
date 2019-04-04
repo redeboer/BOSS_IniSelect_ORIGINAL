@@ -50,7 +50,7 @@ set -e # exit if a command or function exits with a non-zero status
 # * ================================= * #
 # * ------- Script parameters ------- * #
 # * ================================= * #
-	afterburnerPath="${PWD/${PWD/*BOSS_Afterburner}}" # get path of BOSS Afterburner
+	afterburnerPath="${PWD/${PWD/*BOSS_IniSelect}}" # get path of BOSS Afterburner
 	scriptFolder="${afterburnerPath}/jobs" # contains templates and will write scripts to its subfolders
 	decayCardDir="${scriptFolder}/dec"
 	templateFile_sim="${scriptFolder}/templates/simulation.txt"
