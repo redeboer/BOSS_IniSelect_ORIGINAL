@@ -9,9 +9,7 @@ Originally, this repository was contained within the [BOSS Afterburner](https://
 
 ## An overview of the repositories
 
-### BOSS GitBook
-
-[redeboer.gitbook.io/boss_afterburner](https://besiii.gitbook.io/boss)
+### [BOSS GitBook](https://besiii.gitbook.io/boss)
 
 This GitBook contains basic *step-by-step tutorials* on BOSS and BESIII analysis procedures in general. In addition, this repository contains a growing *inventory of useful BOSS packages*. The source code is available on [this repository](https://github.com/redeboer/BOSS_Gitbook) and is [open for contributions](https://besiii.gitbook.io/boss/) by BESIII members.
 
