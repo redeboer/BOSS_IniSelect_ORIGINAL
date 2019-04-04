@@ -7,6 +7,21 @@ The BOSS IniSelect repository contains BOSS packages for **initial event selecti
 Originally, this repository was contained within the [BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner). The repository has been split into BOSS IniSelect for the **initial event selection** and BOSS Afterburner for **final event selection**. The reason is that IniSelect is integrated with BOSS and therefore has to run on the IHEP server, while the Afterburner is perferably run locally (so you can use the newest versions of `gcc`, ROOT, etc).
 
 
+## Major functions
+
+* A `bash` script framework for generating and splitting job files. This allows you to quickly generate a collection of job submit files any type of simulation, reconstruction, or analysis job. Just give a directory of DST files and the number of files you want per job and the paths to the DST files will be distributed accordingly. The same goes for random number generation etc required for simulation and reconstruction jobs.
+
+* A base-derived algorithm structure (`TrackSelector` and its derived classes) for **initial event selection**. Specifics of an analysis are defined in the derived classes so that you don't have to worry about the basics, like creating a collection of tracks. This makes the code for the actual analysis procedure cleaner.
+
+* An `NTupleContainer` faciliates the booking procedure for `NTuple`s.
+
+* A `CutObject` that helps in recording cut flow. The cut names are defined automatically as corresponding job properties and can be set at run time through the job options file.
+
+* A `JobSwitch` object. If this object is declared in the header and constructor of the `TrackSelector` or a derived algorithm, it allows one to set it through the job options.
+
+* `KKFitResults`, an abstract container for storing fit results from the Kalman kinematic fit procedure. It also allows one to compare different fit results and to write the one which is best.
+
+
 ## How to get it and contribute?
 
 You can clone this repository to the IHEP server (or your local pc) using the following command. It is advised that you clone this repository to BESIII file system folder (i.e., first `cd /besfs/users/${USER}`).
@@ -14,6 +29,8 @@ You can clone this repository to the IHEP server (or your local pc) using the fo
 ```bash
 git clone ssh://git@github.com/redeboer/BOSS_IniSelect.git
 ```
+
+To contribute, please have a look at the [contributing page](https://besiii.gitbook.io/boss/appendices/contributing) on GitBook.
 
 
 ## Overview of all related repositories
