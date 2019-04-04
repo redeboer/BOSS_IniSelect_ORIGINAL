@@ -9,7 +9,7 @@
 
 # * BOSS variables * #
 	BOSSVERSION="7.0.4"
-	BOSSWORKAREA="${BOSS_Afterburner}"
+	BOSSWORKAREA="${BOSS_IniSelect}"
 	CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-${BOSSVERSION}"
 	CMTHOMENAME="cmthome"
 	IHEPBATCH="/ihepbatch/bes/${USER}"
