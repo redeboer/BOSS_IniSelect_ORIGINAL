@@ -26,7 +26,7 @@ A repository of BOSS packages used for **initial** event selection.
 
 ### BOSS Afterburner
 
-A repository of BOSS packages used for **initial** event selection.
+A repository of objects and scripts that can be used for **final** event selection. Here, you process the output of the BOSS IniSelect repository.
 
   * Source code on GitHub: [github.com/redeboer/BOSS_Afterburner](https://github.com/redeboer/BOSS_Afterburner)
   * Class documentation on GitPages: [redeboer.github.io/BOSS_Afterburner](https://redeboer.github.io/BOSS_Afterburner/index.html)
