@@ -17,7 +17,7 @@ source CommonFunctions.sh
 	packageName="D0phi_KpiKK" # default argument
 	if [ $# -ge 1 ]; then packageName="${1}"; fi
 	# * (2) Input files that will be used to create the list of dst files
-	data_or_MC="excl" # default argument
+	data_or_MC="data" # default argument
 	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
 
 # * Default parameters * #
@@ -37,8 +37,8 @@ source CommonFunctions.sh
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ "${data_or_MC}" == "data" ]; then
-		fileToRead="directories/data/data_Jpsi2018_round11"
-		nFilesPerJob=300
+		fileToRead="directories/data/data_Jpsi2018_round12"
+		nFilesPerJob=100
 		identifier="${packageName}_data"
 # * If not defined properly * #
 	else
@@ -57,8 +57,8 @@ source CommonFunctions.sh
 # * Create job from template and submit * #
 if [ "${fileToRead}" != "" ]; then
 	# * This will create your job files based on a file listing dst files and directories
-	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
-	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile_???.txt" ${nFilesPerJob} "dst"
+	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 else
 	# * This will create your job files based on a directory containing dst files
 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
