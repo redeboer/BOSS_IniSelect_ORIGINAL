@@ -100,8 +100,8 @@ set -e # exit if a command or function exits with a non-zero status
 		CreateOrEmptyDirectory "${outputDir_ana}"
 		CreateOrEmptyDirectory "${outputDir_sub}"
 	# * Create and EMPTY output directory * #
-		CreateOrEmptyDirectory "${outputDir_log}"
-		CreateOrEmptyDirectory "${outputDir_root}"
+		mkdir -p "${outputDir_log}"
+		mkdir -p "${outputDir_root}"
 
 	# * Loop over input files * #
 		jobNo=0 # set counter

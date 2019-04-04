@@ -89,7 +89,7 @@
 		cd "${BOSSWORKAREA}/workarea/${subfolder}"
 	}
 	export cdworkarea # navigate to workarea (optional argument: subfolder)
-	alias cdjobs="cdafterburner jobs"
+	alias cdjobs="cdiniselect jobs"
 	function cdmctruth()
 	{
 		local number="${1}"
