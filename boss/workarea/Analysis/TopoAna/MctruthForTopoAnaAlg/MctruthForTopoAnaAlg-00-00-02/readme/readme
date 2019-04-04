@@ -1,1 +1,0 @@
-This is a simple version. It is implemented based on the simplest version with the following one cut applied to the particles: if(!(*iter_mc)->decayFromGenerator()) continue;
