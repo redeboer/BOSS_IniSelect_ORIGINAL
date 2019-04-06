@@ -17,6 +17,7 @@ var hierarchy =
       [ "Rhopi", "classRhopi.html", null ],
       [ "RhopiAlg", "classRhopiAlg.html", null ],
       [ "TrackSelector", "classTrackSelector.html", [
+        [ "D0phi_3K3pi", "classD0phi__3K3pi.html", null ],
         [ "D0phi_KpiKK", "classD0phi__KpiKK.html", null ],
         [ "D0phi_KpipiKK", "classD0phi__KpipiKK.html", null ],
         [ "rhopi_pipigg", "classrhopi__pipigg.html", null ],
@@ -50,6 +51,7 @@ var hierarchy =
       [ "NeutralDSelector", "classNeutralDSelector.html", null ]
     ] ],
     [ "KKFitResult", "classKKFitResult.html", [
+      [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html", null ],
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", null ],
       [ "KKFitResult_D0phi_KpipiKK", "classKKFitResult__D0phi__KpipiKK.html", null ],
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", null ]

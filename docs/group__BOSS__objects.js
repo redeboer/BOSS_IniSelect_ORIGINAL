@@ -1,5 +1,17 @@
 var group__BOSS__objects =
 [
+    [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html", [
+      [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html#ac9607b42c63ed8743200d3496312f6d8", null ],
+      [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html#a5767ee147671d0ea229862143b8feba2", null ],
+      [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html#a844b8c30f6b2655416c83be29211ca62", null ],
+      [ "SetValues", "classKKFitResult__D0phi__3K3pi.html#ae394c751702a718a7112e27c1c4b1c0e", null ],
+      [ "SetValues", "classKKFitResult__D0phi__3K3pi.html#aa8b79797694daf41a3cee30ccb77a858", null ],
+      [ "fM_D0", "classKKFitResult__D0phi__3K3pi.html#a4d47a979adc11e32e8fd73b8e97e5849", null ],
+      [ "fM_Jpsi", "classKKFitResult__D0phi__3K3pi.html#a454979567258186da166cef33bd9668e", null ],
+      [ "fM_phi", "classKKFitResult__D0phi__3K3pi.html#a60a13e2853d654cfd09b07f29d75edb9", null ],
+      [ "fP_D0", "classKKFitResult__D0phi__3K3pi.html#aba974344af79395c876d6a8a311de260", null ],
+      [ "fP_phi", "classKKFitResult__D0phi__3K3pi.html#a709fff20c2763286e944d2a502d04831", null ]
+    ] ],
     [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html", [
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#a5e51c24407d7e68bd1122dc3cd9f40cc", null ],
       [ "KKFitResult_D0phi_KpiKK", "classKKFitResult__D0phi__KpiKK.html#abddabe7845286acd74aff933014aeda2", null ],
@@ -133,10 +145,13 @@ var group__BOSS__objects =
       [ "IsBetter", "classKKFitResult.html#a0c87b8ff75e72f27f68bc5814a42c5a3", null ],
       [ "operator bool", "classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065", null ],
       [ "ResetBestCompareValue", "classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb", null ],
+      [ "SetRunAndEventNumber", "classKKFitResult.html#a0bfc1a64d3b3003d47de15516ffca23f", null ],
       [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
       [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
+      [ "fEventNumber", "classKKFitResult.html#a8de025d0097e3db1efa63a6394d5b7b3", null ],
       [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ],
       [ "fFitMeasure", "classKKFitResult.html#a9134622717074a5c0c4721a95e0bc012", null ],
-      [ "fHasResults", "classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6", null ]
+      [ "fHasResults", "classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6", null ],
+      [ "fRunNumber", "classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433", null ]
     ] ]
 ];

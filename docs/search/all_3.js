@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['d0phi_5f3k3pi',['D0phi_3K3pi',['../classD0phi__3K3pi.html',1,'D0phi_3K3pi'],['../classD0phi__3K3pi.html#a13307ada4a5e7701e7a5fb15705b3cc3',1,'D0phi_3K3pi::D0phi_3K3pi()']]],
+  ['d0phi_5f3k3pi_2ecxx',['D0phi_3K3pi.cxx',['../D0phi__3K3pi_8cxx.html',1,'']]],
+  ['d0phi_5f3k3pi_2eh',['D0phi_3K3pi.h',['../D0phi__3K3pi_8h.html',1,'']]],
   ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html',1,'D0phi_KpiKK'],['../classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a',1,'D0phi_KpiKK::D0phi_KpiKK()']]],
   ['d0phi_5fkpikk_2ecxx',['D0phi_KpiKK.cxx',['../D0phi__KpiKK_8cxx.html',1,'']]],
   ['d0phi_5fkpikk_2eh',['D0phi_KpiKK.h',['../D0phi__KpiKK_8h.html',1,'']]],

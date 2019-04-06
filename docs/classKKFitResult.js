@@ -6,9 +6,12 @@ var classKKFitResult =
     [ "IsBetter", "classKKFitResult.html#a0c87b8ff75e72f27f68bc5814a42c5a3", null ],
     [ "operator bool", "classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065", null ],
     [ "ResetBestCompareValue", "classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb", null ],
+    [ "SetRunAndEventNumber", "classKKFitResult.html#a0bfc1a64d3b3003d47de15516ffca23f", null ],
     [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
     [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
+    [ "fEventNumber", "classKKFitResult.html#a8de025d0097e3db1efa63a6394d5b7b3", null ],
     [ "fFit", "classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1", null ],
     [ "fFitMeasure", "classKKFitResult.html#a9134622717074a5c0c4721a95e0bc012", null ],
-    [ "fHasResults", "classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6", null ]
+    [ "fHasResults", "classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6", null ],
+    [ "fRunNumber", "classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433", null ]
 ];
