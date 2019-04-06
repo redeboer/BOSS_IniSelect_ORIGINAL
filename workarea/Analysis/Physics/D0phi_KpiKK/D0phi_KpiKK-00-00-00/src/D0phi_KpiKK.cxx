@@ -208,6 +208,7 @@
 						*fMcKaonPosIter,
 						*fMcPionPosIter
 					);
+					fitresult.SetRunAndEventNumber(fEventHeader);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
 				/// </ol>
 			}

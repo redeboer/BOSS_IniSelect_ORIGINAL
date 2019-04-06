@@ -27,6 +27,19 @@
 
 
 
+// * ========================= * //
+// * -------- SETTERS -------- * //
+// * ========================= * //
+
+
+	void KKFitResult::SetRunAndEventNumber(SmartDataPtr<Event::EventHeader> header)
+	{
+		fRunNumber   = header->runNumber();
+		fEventNumber = header->eventNumber();
+	}
+
+
+
 // * =================================== * //
 // * -------- PROTECTED METHODS -------- * //
 // * =================================== * //

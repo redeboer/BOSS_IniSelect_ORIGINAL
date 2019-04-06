@@ -314,6 +314,7 @@
 						*fMcPhoton1Iter,
 						*fMcPhoton2Iter
 					);
+					fitresult.SetRunAndEventNumber(fEventHeader);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
 				/// </ol>
 			}
@@ -401,6 +402,7 @@
 								}
 								/// <li> Construct fit result object for this combintation.
 								KKFitResult_D0phi_KpipiKK fitresult(kkmfit);
+								fitresult.SetRunAndEventNumber(fEventHeader);
 								/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
 								WriteFitResults(&fitresult, fNTuple_fit5c_all);
 								/// <li> Decide if this fit is better than the previous.

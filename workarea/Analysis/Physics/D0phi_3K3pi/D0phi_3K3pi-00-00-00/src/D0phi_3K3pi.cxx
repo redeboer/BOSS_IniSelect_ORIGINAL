@@ -43,16 +43,9 @@
 		/// * Construct counters (in essence a `CutObject` without cuts).
 			fCutFlow_NChargedOK   ("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
 			fCutFlow_NFitOK       ("N_Fit_OK",     "Number of combinations where where the kinematic fit worked"),
-			fCutFlow_NPIDnumberOK ("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-			fCutFlow_mD0_mphi     ("N_mD0_mphi",      "Number of events that passed the wide cut on both invariant masses"),
-			fCutFlow_mD0_mphi_3sig("N_mD0_mphi_3sig", "Number of events that passed the 3sigma cut on both invariant masses"),
-		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
-			fCut_mphi     ("mphi"),
-			fCut_mD0      ("mD0"),
-			fCut_mphi_3sig("mphi_3sig"),
-			fCut_mD0_3sig ("mD0_3sig")
+			fCutFlow_NPIDnumberOK ("N_PID_OK",     "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
 	{ PrintFunctionName("D0phi_3K3pi", __func__); PostConstructor();
-		fCreateChargedCollection = true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of charged tracks is made. The neutral tracks are not necessary.
+		fCreateChargedCollection = true;
 		fCreateNeutralCollection = false;
 	}
 
@@ -190,24 +183,32 @@
 		/// <li> Loop over MC truth of final decay products.
 			for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
 			for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
-			for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
-			for(fMcPionPosIter  = fMcPionPos.begin(); fMcPionPosIter  != fMcPionPos.end(); ++fMcPionPosIter)
+			for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter )
+			for(fMcPionNegIter  = fMcPionPos.begin(); fMcPionNegIter  != fMcPionPos.end(); ++fMcPionNegIter )
+			for(fMcPionPos1Iter = fMcPionPos.begin(); fMcPionPos1Iter != fMcPionPos.end(); ++fMcPionPos1Iter)
+			for(fMcPionPos2Iter = fMcPionPos.begin(); fMcPionPos2Iter != fMcPionPos.end(); ++fMcPionPos2Iter)
 			{
 				/// <ol>
 				/// <li> Only continue if the two kaons are different.
 					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
+					if(fMcPionPos1Iter == fMcPionPos2Iter) continue;
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
-					if(!IsDecay(*fMcPionPosIter,  421,  211)) continue; // D0  --> pi+
-					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-
+					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-  (1st occurence)
+					if(!IsDecay(*fMcPionPos1Iter, 421,  211)) continue; // D0  --> pi+ (1st occurence)
+					if(!IsDecay(*fMcPionNegIter,  421, -211)) continue; // D0  --> pi-
+					if(!IsDecay(*fMcPionPos2Iter, 421,  211)) continue; // D0  --> pi+ (2nd occurence)
+					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-  (2nd occurence)
 					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // phi --> K+
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_D0phi_3K3pi fitresult(
 						*fMcKaonNeg1Iter,
 						*fMcKaonNeg2Iter,
 						*fMcKaonPosIter,
-						*fMcPionPosIter
+						*fMcPionNegIter,
+						*fMcPionPos1Iter,
+						*fMcPionPos2Iter
 					);
+					fitresult.SetRunAndEventNumber(fEventHeader);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
 				/// </ol>
 			}
@@ -223,24 +224,30 @@
 				int count = 0;
 				for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
 				for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
-				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
-				for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
+				for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter )
+				for(fPionNegIter  = fPionNeg.begin(); fPionNegIter  != fPionNeg.end(); ++fPionNegIter )
+				for(fPionPos1Iter = fPionPos.begin(); fPionPos1Iter != fPionPos.end(); ++fPionPos1Iter)
+				for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end(); ++fPionPos2Iter)
 				{
 					// * Only continue if we are not dealing with the same kaon
 						if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
 						fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
 					// * Get Kalman tracks reconstructed by the MDC
-						RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
-						RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
-						RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
-						RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
+						RecMdcKalTrack* kalTrkKm1  = (*fKaonNeg1Iter)->mdcKalTrack();
+						RecMdcKalTrack* kalTrkKm2  = (*fKaonNeg2Iter)->mdcKalTrack();
+						RecMdcKalTrack* kalTrkKp   = (*fKaonPosIter) ->mdcKalTrack();
+						RecMdcKalTrack* kalTrkpim  = (*fPionNegIter) ->mdcKalTrack();
+						RecMdcKalTrack* kalTrkpip1 = (*fPionPos1Iter)->mdcKalTrack();
+						RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
 
 					// * Get W-tracks
-						WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-						WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-						WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
-						WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
+						WTrackParameter wvKmTrk1 (gM_K,  kalTrkKm1 ->getZHelix(), kalTrkKm1 ->getZError());
+						WTrackParameter wvKmTrk2 (gM_K,  kalTrkKm2 ->getZHelix(), kalTrkKm2 ->getZError());
+						WTrackParameter wvKpTrk  (gM_K,  kalTrkKp  ->getZHelix(), kalTrkKp  ->getZError());
+						WTrackParameter wvpimTrk (gM_pi, kalTrkpim ->getZHelix(), kalTrkpim ->getZError());
+						WTrackParameter wvpipTrk1(gM_pi, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
+						WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
 
 					// * Initiate vertex fit * //
 						HepPoint3D vx(0., 0., 0.);
@@ -261,7 +268,9 @@
 						vtxfit->AddTrack(0, wvKmTrk1);
 						vtxfit->AddTrack(1, wvKmTrk2);
 						vtxfit->AddTrack(2, wvKpTrk);
-						vtxfit->AddTrack(3, wvpipTrk);
+						vtxfit->AddTrack(3, wvpimTrk);
+						vtxfit->AddTrack(4, wvpipTrk1);
+						vtxfit->AddTrack(5, wvpipTrk2);
 						vtxfit->AddVertex(0, vxpar, 0, 1);
 						if(!vtxfit->Fit(0)) {
 							fLog << MSG::WARNING << "vertex fit failed" << endmsg;
@@ -275,7 +284,9 @@
 						kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
 						kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
 						kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
-						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
+						kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi-
+						kkmfit->AddTrack(4, vtxfit->wtrk(4)); // pi+ (1st occurrence)
+						kkmfit->AddTrack(5, vtxfit->wtrk(5)); // pi+ (2nd occurrence)
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
 							/// <ol>
@@ -287,6 +298,7 @@
 							}
 							/// <li> Construct fit result object for this combintation.
 							KKFitResult_D0phi_3K3pi fitresult(kkmfit);
+							fitresult.SetRunAndEventNumber(fEventHeader);
 							/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
 							WriteFitResults(&fitresult, fNTuple_fit4c_all);
 							/// <li> Decide if this fit is better than the previous.
@@ -320,14 +332,6 @@
 						fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
 						fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
 						WriteMCTruthForTopoAna(fNTuple_topology);
-
-					/// Set counters for mass cut flows
-						bool mD0_3sig_ok  = !fCut_mD0_3sig .FailsCut(bestKalmanFit.fM_D0);
-						bool mD0_ok       = !fCut_mD0      .FailsCut(bestKalmanFit.fM_D0);
-						bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
-						bool mphi_ok      = !fCut_mphi     .FailsCut(bestKalmanFit.fM_phi);
-						if(mphi_ok      && mD0_ok     ) ++fCutFlow_mD0_mphi;
-						if(mphi_3sig_ok && mD0_3sig_ok) ++fCutFlow_mD0_mphi_3sig;
 				}
 			}
 

@@ -6,6 +6,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+	#include "EventModel/EventHeader.h"
+	#include "GaudiKernel/SmartDataPtr.h"
 	#include "VertexFit/KalmanKinematicFit.h"
 	#include <float.h> // for DBL_MAX
 
@@ -41,12 +43,15 @@
 		/// @name Setters
 			///@{
 			void ResetBestCompareValue(const double value=DBL_MAX) { fBestCompareValue = value; };
+			void SetRunAndEventNumber(SmartDataPtr<Event::EventHeader> header);
 			///@}
 
 
-		/// @name Parameters computed from fit
+		/// @name Parameters
 			///@{
 			double fChiSquared; ///< \f$\chi^2\f$ of <i>this</i> fit (hence, not `static`).
+			Int_t fRunNumber;   ///< Run number of this event.
+			Int_t fEventNumber; ///< Event number of this event.
 			///@}
 
 

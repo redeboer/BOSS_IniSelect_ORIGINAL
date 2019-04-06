@@ -27,16 +27,25 @@
 			kkmfit->pfit(0), /// -# \f$K^-\f$ (first occurrence)
 			kkmfit->pfit(1), /// -# \f$K^-\f$ (second occurrence)
 			kkmfit->pfit(2), /// -# \f$K^+\f$
-			kkmfit->pfit(3)  /// -# \f$\pi^+\f$
+			kkmfit->pfit(3), /// -# \f$\pi^-\f$
+			kkmfit->pfit(4), /// -# \f$\pi^+\f$ (first occurrence)
+			kkmfit->pfit(5)  /// -# \f$\pi^+\f$ (second occurrence)
 		);
 	}
 
 
 	/// Construct a `KKFitResult_D0phi_3K3pi` object based on a pointer to a `KalmanKinematicFit` object.
-	KKFitResult_D0phi_3K3pi::KKFitResult_D0phi_3K3pi(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2, Event::McParticle* kaonPos, Event::McParticle* pionPos) :
+	KKFitResult_D0phi_3K3pi::KKFitResult_D0phi_3K3pi(
+		Event::McParticle* kaonNeg1, 
+		Event::McParticle* kaonNeg2, 
+		Event::McParticle* kaonPos, 
+		Event::McParticle* pionNeg,
+		Event::McParticle* pionPos1,
+		Event::McParticle* pionPos2
+	) :
 		KKFitResult(nullptr)
 	{
-		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionPos);
+		SetValues(kaonNeg1, kaonNeg2, kaonPos, pionNeg, pionPos1, pionPos2);
 	}
 
 
@@ -51,20 +60,26 @@
 		Event::McParticle *kaonNeg1, 
 		Event::McParticle *kaonNeg2, 
 		Event::McParticle *kaonPos, 
-		Event::McParticle *pionPos)
+		Event::McParticle *pionNeg,
+		Event::McParticle *pionPos1,
+		Event::McParticle *pionPos2)
 	{
 		/// <ol>
 		/// <li> Test whether all `Event::McParticle` pointers exist.
 			if(!kaonNeg1) return;
 			if(!kaonNeg2) return;
 			if(!kaonPos)  return;
-			if(!pionPos)  return;
+			if(!pionNeg)  return;
+			if(!pionPos1)  return;
+			if(!pionPos2)  return;
 		/// <li> Apply `SetValues` to the `initialFourMomentum` of these `Event::McParticle` pointers.
 			SetValues(
 				kaonNeg1->initialFourMomentum(),
 				kaonNeg2->initialFourMomentum(),
 				kaonPos ->initialFourMomentum(),
-				pionPos ->initialFourMomentum()
+				pionNeg ->initialFourMomentum(),
+				pionPos1->initialFourMomentum(),
+				pionPos2->initialFourMomentum()
 			);
 		/// </ol>
 	}
@@ -75,12 +90,14 @@
 		const HepLorentzVector &pKaonNeg1, 
 		const HepLorentzVector &pKaonNeg2, 
 		const HepLorentzVector &pKaonPos, 
-		const HepLorentzVector &pPionPos)
+		const HepLorentzVector &pPionNeg,
+		const HepLorentzVector &pPionPos1,
+		const HepLorentzVector &pPionPos2)
 	{
 		/// <ol>
 		/// <li> Compute Lorentz vectors of the particles to be reconstructed:
 			/// <ul>
-			HepLorentzVector pD0   = pKaonNeg1 + pPionPos; /// <li> \f$D^0 \rightarrow K^-\pi^+\f$
+			HepLorentzVector pD0   = pKaonNeg1 + pPionNeg + pPionPos1 + pPionPos2; /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^-\pi^+\f$
 			HepLorentzVector pphi  = pKaonNeg2 + pKaonPos; /// <li> \f$\phi \rightarrow K^-K^+\f$
 			HepLorentzVector pJpsi = pD0 + pphi;           /// <li> \f$J/\psi \rightarrow D^0\phi\f$
 			/// </ul>
