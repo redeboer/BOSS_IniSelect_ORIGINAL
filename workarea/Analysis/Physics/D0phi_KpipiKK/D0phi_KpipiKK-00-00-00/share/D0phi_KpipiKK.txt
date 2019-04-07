@@ -34,9 +34,6 @@ D0phi_KpipiKK.cut_costheta_max  = .93;
 D0phi_KpipiKK.cut_PhotonEnergy_min = 0.04;
 D0phi_KpipiKK.cut_PIDChiSq_max     = 200.;
 D0phi_KpipiKK.cut_PIDProb_min      = 0.001;
-rhopi_pipigg.cut_gamma_angle_min  = 5.0;
-rhopi_pipigg.cut_gamma_phi_min    = 5.0;
-rhopi_pipigg.cut_gamma_theta_min  = 5.0;
 
 // * Invariant mass cuts *
 D0phi_KpipiKK.cut_mphi_min = 1.0;
