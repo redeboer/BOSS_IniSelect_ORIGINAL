@@ -40,12 +40,12 @@
 
 		/// @name Parameters computed from fit
 			///@{
-			double fM_pi0;  ///< Current computed mass of the \f$\pi^0\f$ candidate.
-			double fM_D0;   ///< Current computed mass of the \f$D^0\f$ candidate.
-			double fM_Jpsi; ///< Current computed mass of the \f$J/\psi\f$ candidate.
-			double fM_phi;  ///< Current computed mass of the \f$\phi\f$ candidate.
-			double fP_D0;   ///< Current computed 3-momentum of \f$D^0\f$ candidate.
-			double fP_phi;  ///< Current computed 3-momentum of \f$D^0\f$ candidate.
+			double fM_pi0;   ///< Current computed mass of the \f$\pi^0\f$ candidate.
+			double fM_D0;    ///< Current computed mass of the \f$D^0\f$ candidate.
+			double fM_Jpsi;  ///< Current computed mass of the \f$J/\psi\f$ candidate.
+			double fM_omega; ///< Current computed mass of the \f$\omega\f$ candidate.
+			double fP_D0;    ///< Current computed 3-momentum of \f$D^0\f$ candidate.
+			double fP_omega; ///< Current computed 3-momentum of \f$\omega\f$ candidate.
 			///@}
 
 

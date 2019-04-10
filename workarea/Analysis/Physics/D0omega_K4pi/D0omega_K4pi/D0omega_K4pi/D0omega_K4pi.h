@@ -17,9 +17,7 @@
 /// @addtogroup BOSS_packages
 /// @{
 
-	/// Analyse \f$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+\pi^0 \pi^-\pi^+ \f$ events.
-	/// This package has been created as an extension of the `D0phi_KpiKK` package. The motivation for reconstructing the \f$D^0\f$ meson through the decay channel \f$D^0 \to K^-\pi^+\pi^0 K^-K^+\f$ (extra \f$\pi^0\f$) is that (1) its branching ratio is much larger (\f$(14.2 \pm 0.5)\%\f$ versus \f$(3.89 \pm 0.04)\%\f$ for \f$D^0 \to K^-\pi^+ K^-K^+\f$) and (2) that the extra \f$\pi^0\f$ excludes the \f$f_0(1790)\f$ that we see as a large backround in the `D0phi_KpiKK` package (due to parity). See [\f$D^0\f$ PDG listing](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-	/// @todo Design another package for \f$K^-\pi^+\pi^-\pi^+\pi^- \pi^-\pi^+\f$ (branching fraction \f$(8.11 \pm 0.15)\%\f$, see [\f$D^0\f$ PDG listing](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf)). However, that does mean the final state will become rather complicated: \f$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+\pi^+\pi^- \pi^-\pi^+ \f$.
+	/// Analyse \f$ J/\psi \rightarrow D^0\omega \rightarrow K^-\pi^+\pi^0 \pi^-\pi^+ \f$ events.
 	/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 	/// @date     March 29th, 2019
 	class D0omega_K4pi : public TrackSelector
@@ -82,12 +80,6 @@
 			CutObject fCutFlow_NFitOK;        ///< <b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked.
 			CutObject fCutFlow_NPIDnumberOK;  ///< <b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.
 			CutObject fCutFlow_NetChargeOK;  ///< <b>Cut flow counter</b>: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
-			CutObject fCutFlow_mD0_mphi;      ///< <b>Cut flow counter</b>: number of events that passed the wide cut on both masses.
-			CutObject fCutFlow_mD0_mphi_3sig; ///< <b>Cut flow counter</b>: number of events that passed the \f$3\sigma\f$ cut on both masses.
-			CutObject fCut_mD0;               ///< Loose cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
-			CutObject fCut_mD0_3sig;          ///< \f$3\sigma\f$ cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
-			CutObject fCut_mphi;              ///< Loose cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
-			CutObject fCut_mphi_3sig;         ///< \f$3\sigma\f$ cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
 			CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track <i>in degrees</i>.
 			CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track <i>in radians</i>.
 			CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track <i>in radians</i>.

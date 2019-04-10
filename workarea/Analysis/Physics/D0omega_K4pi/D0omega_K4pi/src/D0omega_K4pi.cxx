@@ -46,13 +46,6 @@
 			fCutFlow_NFitOK       ("N_Fit_OK",        "Number of combinations where where the kinematic fit worked"),
 			fCutFlow_NPIDnumberOK ("N_PID_OK",        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
 			fCutFlow_NetChargeOK  ("N_netcharge_OK",  "Number of events where the total charge detected in the detectors was 0"),
-			fCutFlow_mD0_mphi     ("N_mD0_mphi",      "Number of events that passed the wide cut on both invariant masses"),
-			fCutFlow_mD0_mphi_3sig("N_mD0_mphi_3sig", "Number of events that passed the 3sigma cut on both invariant masses"),
-		/// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
-			fCut_mphi     ("mphi"),
-			fCut_mD0      ("mD0"),
-			fCut_mphi_3sig("mphi_3sig"),
-			fCut_mD0_3sig ("mD0_3sig"),
 		/// * Construct additional `CutObject`s that are specific for the `rhopi_pipig` package.
 			fCut_GammaAngle("gamma_angle"),
 			fCut_GammaPhi  ("gamma_phi"),
@@ -107,10 +100,10 @@
 			/// <ol>
 			fNTuple_topology.AddItem<double>("chi2"); /// <li> `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
 			fNTuple_topology.AddItem<double>("mpi0"); /// <li> `"mpi0"`: Invariant mass of the \f$\pi^0\f$ candidate in \f$D^0 \to K^-\pi^+\pi^0\f$.
-			fNTuple_topology.AddItem<double>("mD0");  /// <li> `"mD0"`:  Invariant mass of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
-			fNTuple_topology.AddItem<double>("mphi"); /// <li> `"mphi"`: Invariant mass of the \f$\phi\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
-			fNTuple_topology.AddItem<double>("pD0");  /// <li> `"pD0"`:  Momentum of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
-			fNTuple_topology.AddItem<double>("pphi"); /// <li> `"pphi"`: Momentum of the \f$\phi\f$ candidate in the \f$J/\psi \to D^0\phi\f$.
+			fNTuple_topology.AddItem<double>("mD0");  /// <li> `"mD0"`:  Invariant mass of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+			fNTuple_topology.AddItem<double>("momega"); /// <li> `"momega"`: Invariant mass of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+			fNTuple_topology.AddItem<double>("pD0");  /// <li> `"pD0"`:  Momentum of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+			fNTuple_topology.AddItem<double>("pomega"); /// <li> `"pomega"`: Momentum of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
 			/// </ol>
 
 		/// </ol>
@@ -300,11 +293,11 @@
 				/// <li> Only continue if the two kaons are different.
 					if(fMcPhoton1Iter  == fMcPhoton2Iter)  continue;
 					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
-				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
+				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\omega \rightarrow K^-\pi^+ K^-K^+\f$.
 					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
 					if(!IsDecay(*fMcPionPosIter,  421,  211)) continue; // D0  --> pi+
-					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-
-					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // phi --> K+
+					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // omega --> K-
+					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // omega --> K+
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_D0omega_K4pi fitresult(
 						*fMcKaonNeg1Iter,
@@ -320,7 +313,7 @@
 			}
 
 
-		/// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0omega_K4pi::MeasureForBestFit` for the definition of this measure. @todo Decide whether 4-constraints is indeed suitable.
+		/// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\omega}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\omega\f$). See `D0omega_K4pi::MeasureForBestFit` for the definition of this measure. @todo Decide whether 4-constraints is indeed suitable.
 			/// <ol>
 			if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite()) {
 				/// <li> Reset best fit parameters (see `KKFitResult_D0omega_K4pi`).
@@ -420,26 +413,18 @@
 								<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
 								<< "    m_pi0  = " << bestKalmanFit.fM_pi0      << std::endl
 								<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
-								<< "    m_phi  = " << bestKalmanFit.fM_phi      << std::endl
+								<< "    m_omega  = " << bestKalmanFit.fM_omega      << std::endl
 								<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
-								<< "    p_phi  = " << bestKalmanFit.fP_phi      << std::endl;
+								<< "    p_omega  = " << bestKalmanFit.fP_omega      << std::endl;
 							++fCutFlow_NFitOK;
 							CreateMCTruthCollection();
 							fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;
 							fNTuple_topology.GetItem<double>("mpi0") = bestKalmanFit.fM_pi0;
 							fNTuple_topology.GetItem<double>("mD0")  = bestKalmanFit.fM_D0;
-							fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
+							fNTuple_topology.GetItem<double>("momega") = bestKalmanFit.fM_omega;
 							fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
-							fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
+							fNTuple_topology.GetItem<double>("pomega") = bestKalmanFit.fP_omega;
 							WriteMCTruthForTopoAna(fNTuple_topology);
-
-						/// Set counters for mass cut flows
-							bool mD0_3sig_ok  = !fCut_mD0_3sig .FailsCut(bestKalmanFit.fM_D0);
-							bool mD0_ok       = !fCut_mD0      .FailsCut(bestKalmanFit.fM_D0);
-							bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
-							bool mphi_ok      = !fCut_mphi     .FailsCut(bestKalmanFit.fM_phi);
-							if(mphi_ok      && mD0_ok     ) ++fCutFlow_mD0_mphi;
-							if(mphi_3sig_ok && mD0_3sig_ok) ++fCutFlow_mD0_mphi_3sig;
 					}
 			}
 			/// </ol>
@@ -470,10 +455,10 @@
 		if(!tuple.DoWrite()) return;
 		tuple.AddItem<double>("mpi0");  /// * `"mpi0"`:  Invariant mass for \f$gamma\gamma\f$ (\f$\pi^0\f$).
 		tuple.AddItem<double>("mD0");   /// * `"mD0"`:   Invariant mass for \f$K^-\pi^+\f$ (\f$D^0\f$).
-		tuple.AddItem<double>("mphi");  /// * `"mphi"`:  Invariant mass for \f$K^+K^+\f$ (\f$\phi\f$).
-		tuple.AddItem<double>("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \phi \f$ (\f$J/\psi\f$).
+		tuple.AddItem<double>("momega");  /// * `"momega"`:  Invariant mass for \f$K^+K^+\f$ (\f$\omega\f$).
+		tuple.AddItem<double>("mJpsi"); /// * `"mJpsi"`: Invariant mass for \f$D^0 \omega \f$ (\f$J/\psi\f$).
 		tuple.AddItem<double>("pD0");   /// * `"pD0"`:   3-momentum mass for the combination \f$K^- \pi^+\f$ (\f$D^0\f$ candidate).
-		tuple.AddItem<double>("pphi");  /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\phi\f$ candidate).
+		tuple.AddItem<double>("pomega");  /// * `"pomega"`:  3-momentum mass for the combination \f$K^+ K^+  \f$ (\f$\omega\f$ candidate).
 		tuple.AddItem<double>("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
 	}
 
@@ -520,8 +505,8 @@
 			tuple.GetItem<double>("chisq") = fit->fChiSquared;
 			tuple.GetItem<double>("mD0")   = fit->fM_D0;
 			tuple.GetItem<double>("mJpsi") = fit->fM_Jpsi;
-			tuple.GetItem<double>("mphi")  = fit->fM_phi;
+			tuple.GetItem<double>("momega")  = fit->fM_omega;
 			tuple.GetItem<double>("mpi0")  = fit->fM_pi0;
 			tuple.GetItem<double>("pD0")   = fit->fP_D0;
-			tuple.GetItem<double>("pphi")  = fit->fP_phi;
+			tuple.GetItem<double>("pomega")  = fit->fP_omega;
 	}
