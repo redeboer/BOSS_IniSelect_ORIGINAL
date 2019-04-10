@@ -1,0 +1,46 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+
+// * Define which packages to load *
+ApplicationMgr.DLLs   += {"D0omega_K4pi"};
+ApplicationMgr.TopAlg += {"D0omega_K4pi"};
+
+// * Whether or not to fill a tree/NTuple (TrackSelector) *
+D0omega_K4pi.write_charged  = 0;
+D0omega_K4pi.write_neutral  = 0;
+D0omega_K4pi.write_mult     = 0;
+D0omega_K4pi.write_vertex   = 0;
+D0omega_K4pi.write_dedx     = 0;
+D0omega_K4pi.write_TofEC    = 0;
+D0omega_K4pi.write_TofIB    = 0;
+D0omega_K4pi.write_TofOB    = 0;
+D0omega_K4pi.write_PID      = 0;
+D0omega_K4pi.write_topology = 1;
+
+// * Whether or not to fill a tree/NTuple (D0omega_K4pi) *
+D0omega_K4pi.write_dedx_K      = 0;
+D0omega_K4pi.write_dedx_pi     = 0;
+D0omega_K4pi.write_fit5c_all   = 1;
+D0omega_K4pi.write_fit5c_best  = 1;
+D0omega_K4pi.write_fit_mc      = 0;
+D0omega_K4pi.write_mult_select = 0;
+D0omega_K4pi.write_photon      = 0;
+
+// * Geometry cuts *
+D0omega_K4pi.cut_declen_z_max  = 10.;
+D0omega_K4pi.cut_declen_xy_max = 1.;
+D0omega_K4pi.cut_costheta_max  = .93;
+
+// * Particle PID cuts *
+D0omega_K4pi.cut_PhotonEnergy_min = 0.04;
+D0omega_K4pi.cut_PIDChiSq_max     = 200.;
+D0omega_K4pi.cut_PIDProb_min      = 0.001;
+
+// * Invariant mass cuts *
+D0omega_K4pi.cut_mphi_min = 1.0;
+D0omega_K4pi.cut_mphi_max = 1.1;
+D0omega_K4pi.cut_mD0_min  = 1.7;
+D0omega_K4pi.cut_mD0_max  = 2.0;
+D0omega_K4pi.cut_mD0_3sig_min  = 1.859;
+D0omega_K4pi.cut_mD0_3sig_max  = 1.885;
+D0omega_K4pi.cut_mphi_3sig_min = 0.996;
+D0omega_K4pi.cut_mphi_3sig_max = 1.046;
