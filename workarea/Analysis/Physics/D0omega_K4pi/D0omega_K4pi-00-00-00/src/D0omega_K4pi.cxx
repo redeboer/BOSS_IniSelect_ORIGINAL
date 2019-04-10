@@ -129,8 +129,8 @@
 		/// <li> Create selection of **charged** tracks.
 			// * Clear vectors of selected particles *
 				fKaonNeg.clear();
-				fKaonPos.clear();
 				fPionPos.clear();
+				fPionNeg.clear();
 
 			// * Loop over charged tracks *
 			for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end(); ++fTrackIterator) {
@@ -159,17 +159,15 @@
 				/// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
 					fTrackKal = (*fTrackIterator)->mdcKalTrack();
 					if(fPIDInstance->probPion() > fPIDInstance->probKaon()) { /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
-						// if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon)) continue; /// If, according to the likelihood method, the particle is still more likely to be a kaon than a pion, the track is rejected.
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0omega_K4pi.txt`).
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
 						if(fTrackKal->charge()>0) fPionPos.push_back(*fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+						else                      fPionPos.push_back(*fTrackIterator);
 					}
 					else {
-						// if(fPIDInstance->pdf(RecMdcKalTrack::kaon) < fPIDInstance->pdf(RecMdcKalTrack::pion)) continue;
 						if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
 						RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
 						if(fTrackKal->charge()<0) fKaonNeg.push_back(*fTrackIterator);
-						else                      fKaonPos.push_back(*fTrackIterator);
 					}
 
 				/// </ol>
@@ -190,15 +188,14 @@
 					double smallestPhi   = DBL_MAX; // start value for difference in phi
 					double smallestAngle = DBL_MAX; // start value for difference in angle (?)
 					// Note: `fPionPosIter` is just used as a dummy iterator and has nothing to do with pi+
-					for(fPionPosIter = fGoodChargedTracks.begin(); fPionPosIter != fGoodChargedTracks.end(); ++fPionPosIter) {
+					for(fPionNegIter = fGoodChargedTracks.begin(); fPionNegIter != fGoodChargedTracks.end(); ++fPionNegIter) {
 						/// * Get the extension object from MDC to EMC.
-						if(!(*fPionPosIter)->isExtTrackValid()) continue;
-						fTrackExt = (*fPionPosIter)->extTrack();
+						if(!(*fPionNegIter)->isExtTrackValid()) continue;
+						fTrackExt = (*fPionNegIter)->extTrack();
 						if(fTrackExt->emcVolumeNumber() == -1) continue;
 						Hep3Vector extpos(fTrackExt->emcPosition());
 
 						/// * Get angles in @b radians.
-						// double cosTheta = extpos.cosTheta(emcpos);
 						double angle  = extpos.angle(emcpos);
 						double dTheta = extpos.theta() - emcpos.theta();
 						double dPhi   = extpos.deltaPhi(emcpos);
@@ -252,23 +249,23 @@
 		/// <li> **Write** the multiplicities of the selected particles.
 			fLog << MSG::DEBUG
 				<< "N_{K^-} = "   << fKaonNeg.size() << ", "
-				<< "N_{K^+} = "   << fKaonPos.size() << ", "
-				<< "N_{\pi^+} = " << fPionPos.size() << endmsg;
+				<< "N_{\pi^+} = " << fPionPos.size() << ", "
+				<< "N_{\pi^-} = " << fPionNeg.size() << endmsg;
 			if(fNTuple_mult_sel.DoWrite()) {
 				fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
-				fNTuple_mult_sel.GetItem<int>("NKaonPos") = fKaonPos.size();
-				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
 				fNTuple_mult_sel.GetItem<int>("NPhoton")  = fPhotons.size();
+				fNTuple_mult_sel.GetItem<int>("NPionNeg") = fPionNeg.size();
+				fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
 				fNTuple_mult_sel.Write();
 			}
 
 
 		/// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only continue if:
 			/// <ol>
-			if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
-			if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
-			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
+			if(fKaonNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative kaons
 			if(fPhotons.size()  < 2) return StatusCode::SUCCESS; /// <li> at least 2 photons (\f$\gamma\f$'s)
+			if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion
+			if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 2 positive pions
 			/// </ol>
 			++fCutFlow_NPIDnumberOK;
 			fLog << MSG::INFO << "PID selection passed for (run, event) = ("
@@ -277,35 +274,37 @@
 
 		/// <li> **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs)
 			WriteDedxInfoForVector(fKaonNeg, fNTuple_dedx_K);
-			WriteDedxInfoForVector(fKaonPos, fNTuple_dedx_K);
+			WriteDedxInfoForVector(fPionNeg, fNTuple_dedx_pi);
 			WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
 
 
 		/// <li> Loop over MC truth of final decay products.
-			for(fMcPhoton1Iter  = fMcPhotons.begin(); fMcPhoton1Iter  != fMcPhotons.end(); ++fMcPhoton1Iter)
-			for(fMcPhoton2Iter  = fMcPhotons.begin(); fMcPhoton2Iter  != fMcPhotons.end(); ++fMcPhoton2Iter)
-			for(fMcKaonNeg1Iter = fMcKaonNeg.begin(); fMcKaonNeg1Iter != fMcKaonNeg.end(); ++fMcKaonNeg1Iter)
-			for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end(); ++fMcKaonNeg2Iter)
-			for(fMcKaonPosIter  = fMcKaonPos.begin(); fMcKaonPosIter  != fMcKaonPos.end(); ++fMcKaonPosIter)
-			for(fMcPionPosIter  = fMcPionPos.begin(); fMcPionPosIter  != fMcPionPos.end(); ++fMcPionPosIter)
+			for(fMcKaonNegIter  = fMcKaonNeg.begin(); fMcKaonNegIter  != fMcKaonNeg.end(); ++fMcKaonNegIter )
+			for(fMcPhoton1Iter  = fMcPhotons.begin(); fMcPhoton1Iter  != fMcPhotons.end(); ++fMcPhoton1Iter )
+			for(fMcPhoton2Iter  = fMcPhotons.begin(); fMcPhoton2Iter  != fMcPhotons.end(); ++fMcPhoton2Iter )
+			for(fMcPionNegIter  = fMcPionNeg.begin(); fMcPionNegIter  != fMcPionNeg.end(); ++fMcPionNegIter )
+			for(fMcPionPos1Iter = fMcPionPos.begin(); fMcPionPos1Iter != fMcPionPos.end(); ++fMcPionPos1Iter)
+			for(fMcPionPos2Iter = fMcPionPos.begin(); fMcPionPos2Iter != fMcPionPos.end(); ++fMcPionPos2Iter)
 			{
 				/// <ol>
 				/// <li> Only continue if the two kaons are different.
-					if(fMcPhoton1Iter  == fMcPhoton2Iter)  continue;
-					if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
+					if(fMcPhoton1Iter  == fMcPhoton2Iter ) continue;
+					if(fMcPionPos1Iter == fMcPionPos2Iter) continue;
 				/// <li> Check topology: only consider that combination which comes from \f$J/\psi \rightarrow D^0\omega \rightarrow K^-\pi^+ K^-K^+\f$.
-					if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
-					if(!IsDecay(*fMcPionPosIter,  421,  211)) continue; // D0  --> pi+
-					if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // omega --> K-
-					if(!IsDecay(*fMcKaonPosIter,  333,  321)) continue; // omega --> K+
+					if(!IsDecay(*fMcKaonNegIter,  421, -321)) continue; // D0    --> K-
+					if(!IsDecay(*fMcPhoton1Iter,  111,   22)) continue; // pi0   --> gamma
+					if(!IsDecay(*fMcPhoton2Iter,  111,   22)) continue; // pi0   --> gamma
+					if(!IsDecay(*fMcPionNegIter,  223, -221)) continue; // omega --> pi
+					if(!IsDecay(*fMcPionPos1Iter, 421,  211)) continue; // D0    --> pi+
+					if(!IsDecay(*fMcPionPos2Iter, 223,  211)) continue; // omega --> pi
 				/// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC truth.
 					KKFitResult_D0omega_K4pi fitresult(
-						*fMcKaonNeg1Iter,
-						*fMcKaonNeg2Iter,
-						*fMcKaonPosIter,
-						*fMcPionPosIter,
+						*fMcKaonNegIter,
 						*fMcPhoton1Iter,
-						*fMcPhoton2Iter
+						*fMcPhoton2Iter,
+						*fMcPionNegIter,
+						*fMcPionPos1Iter,
+						*fMcPionPos2Iter
 					);
 					fitresult.SetRunAndEventNumber(fEventHeader);
 					WriteFitResults(&fitresult, fNTuple_fit_mc);
@@ -323,29 +322,29 @@
 					/// <ol>
 					bool printfit{true};
 					int count = 0;
-					for(fPhoton1Iter  = fPhotons.begin(); fPhoton1Iter  != fPhotons.end(); ++fPhoton1Iter)
-					for(fPhoton2Iter  = fPhotons.begin(); fPhoton2Iter  != fPhotons.end(); ++fPhoton2Iter)
-					for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
-					for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
-					for(fKaonPosIter  = fKaonPos.begin(); fKaonPosIter  != fKaonPos.end(); ++fKaonPosIter)
-					for(fPionPosIter  = fPionPos.begin(); fPionPosIter  != fPionPos.end(); ++fPionPosIter)
+					for(fKaonNegIter  = fKaonNeg.begin(); fKaonNegIter  != fKaonNeg.end(); ++fKaonNegIter )
+					for(fPhoton1Iter  = fPhotons.begin(); fPhoton1Iter  != fPhotons.end(); ++fPhoton1Iter )
+					for(fPhoton2Iter  = fPhotons.begin(); fPhoton2Iter  != fPhotons.end(); ++fPhoton2Iter )
+					for(fPionNegIter  = fPionNeg.begin(); fPionNegIter  != fPionNeg.end(); ++fPionNegIter )
+					for(fPionPos1Iter = fPionPos.begin(); fPionPos1Iter != fPionPos.end(); ++fPionPos1Iter)
+					for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end(); ++fPionPos2Iter)
 					{
 						/// <li> Only continue if we are not dealing with the same kaon and/or photon.
-							if(fPhoton1Iter == fPhoton2Iter) continue;
-							if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+							if(fPhoton1Iter  == fPhoton2Iter ) continue;
+							if(fPionPos1Iter == fPionPos2Iter) continue;
 							fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
 						/// <li> Get Kalman tracks reconstructed by the MDC.
-							RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
-							RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
-							RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter) ->mdcKalTrack();
-							RecMdcKalTrack* kalTrkpip = (*fPionPosIter) ->mdcKalTrack();
+							RecMdcKalTrack* kalTrkKm   = (*fKaonNegIter) ->mdcKalTrack();
+							RecMdcKalTrack* kalTrkpim  = (*fPionNegIter) ->mdcKalTrack();
+							RecMdcKalTrack* kalTrkpip1 = (*fPionPos1Iter)->mdcKalTrack();
+							RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
 
 						/// <li> Get W-tracks.
-							WTrackParameter wvKmTrk1(gM_K,  kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-							WTrackParameter wvKmTrk2(gM_K,  kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-							WTrackParameter wvKpTrk (gM_K,  kalTrkKp ->getZHelix(), kalTrkKp ->getZError());
-							WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
+							WTrackParameter wvKmTrk  (gM_K,  kalTrkKm  ->getZHelix(), kalTrkKm  ->getZError());
+							WTrackParameter wvpimTrk (gM_K,  kalTrkpim ->getZHelix(), kalTrkpim ->getZError());
+							WTrackParameter wvpipTrk1(gM_K,  kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
+							WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
 
 						/// <li> Initiate vertex fit.
 							HepPoint3D vx(0., 0., 0.);
@@ -363,10 +362,10 @@
 						/// <li> Test vertex fit.
 							VertexFit* vtxfit = VertexFit::instance();
 							vtxfit->init();
-							vtxfit->AddTrack(0, wvKmTrk1);
-							vtxfit->AddTrack(1, wvKmTrk2);
-							vtxfit->AddTrack(2, wvKpTrk);
-							vtxfit->AddTrack(3, wvpipTrk);
+							vtxfit->AddTrack(0, wvKmTrk);
+							vtxfit->AddTrack(1, wvpimTrk);
+							vtxfit->AddTrack(2, wvpipTrk1);
+							vtxfit->AddTrack(3, wvpipTrk2);
 							vtxfit->AddVertex(0, vxpar, 0, 1);
 							if(!vtxfit->Fit(0)) {
 								fLog << MSG::WARNING << "vertex fit failed" << endmsg;
@@ -377,10 +376,10 @@
 						/// <li> Get Kalman kinematic fit for this combination and store if better than previous one.
 							KalmanKinematicFit *kkmfit = KalmanKinematicFit::instance();
 							kkmfit->init();
-							kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
-							kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
-							kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
-							kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
+							kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K-
+							kkmfit->AddTrack(1, vtxfit->wtrk(1)); // pi-
+							kkmfit->AddTrack(2, vtxfit->wtrk(2)); // pi+ (1st occurrence)
+							kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+ (2nd occurrence)
 							kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
 							kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
 							kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
@@ -410,12 +409,12 @@
 							std::cout << "  Result Kalman fit for (run, event) = "
 								<< fEventHeader->runNumber() << ", "
 								<< fEventHeader->eventNumber() << "):" << std::endl
-								<< "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
-								<< "    m_pi0  = " << bestKalmanFit.fM_pi0      << std::endl
-								<< "    m_D0   = " << bestKalmanFit.fM_D0       << std::endl
-								<< "    m_omega  = " << bestKalmanFit.fM_omega      << std::endl
-								<< "    p_D0   = " << bestKalmanFit.fP_D0       << std::endl
-								<< "    p_omega  = " << bestKalmanFit.fP_omega      << std::endl;
+								<< "    chi2   = "   << bestKalmanFit.fChiSquared << std::endl
+								<< "    m_pi0  = "   << bestKalmanFit.fM_pi0      << std::endl
+								<< "    m_D0   = "   << bestKalmanFit.fM_D0       << std::endl
+								<< "    m_omega  = " << bestKalmanFit.fM_omega    << std::endl
+								<< "    p_D0   = "   << bestKalmanFit.fP_D0       << std::endl
+								<< "    p_omega  = " << bestKalmanFit.fP_omega    << std::endl;
 							++fCutFlow_NFitOK;
 							CreateMCTruthCollection();
 							fNTuple_topology.GetItem<double>("chi2") = bestKalmanFit.fChiSquared;
@@ -473,14 +472,14 @@
 			if(!fNTuple_fit_mc.DoWrite()) return;
 		/// -# Clear MC truth particle selections.
 			fMcKaonNeg.clear();
-			fMcKaonPos.clear();
+			fMcPionNeg.clear();
 			fMcPionPos.clear();
 		/// -# Loop over `fMcParticles` collection of MC truth particles and fill the selections.
 			std::vector<Event::McParticle*>::iterator it;
 			for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) {
 				switch((*it)->particleProperty()) {
 					case -321 : fMcKaonNeg.push_back(*it); break;
-					case  321 : fMcKaonPos.push_back(*it); break;
+					case -211 : fMcPionNeg.push_back(*it); break;
 					case  211 : fMcPionPos.push_back(*it); break;
 					default : fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty() << endmsg;
 				}

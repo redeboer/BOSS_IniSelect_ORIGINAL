@@ -29,12 +29,12 @@
 			KKFitResult_D0omega_K4pi() {}
 			KKFitResult_D0omega_K4pi(KalmanKinematicFit* kkmfit);
 			KKFitResult_D0omega_K4pi(
-				Event::McParticle* kaonNeg1,
-				Event::McParticle* kaonNeg2,
-				Event::McParticle* kaonPos,
-				Event::McParticle* pionPos,
+				Event::McParticle* kaonNeg,
 				Event::McParticle* photon1,
-				Event::McParticle* photon2);
+				Event::McParticle* photon2,
+				Event::McParticle* pionNeg,
+				Event::McParticle* pionPos1,
+				Event::McParticle* pionPos2);
 			///@}
 
 
@@ -53,19 +53,19 @@
 		/// @name Setters
 			///@{
 			void SetValues(
-				const HepLorentzVector &pKaonNeg1,
-				const HepLorentzVector &pKaonNeg2,
-				const HepLorentzVector &pKaonPos,
-				const HepLorentzVector &pPionPos,
+				const HepLorentzVector &pKaonNeg,
 				const HepLorentzVector &pPhoton1,
-				const HepLorentzVector &pPhoton2);
+				const HepLorentzVector &pPhoton2,
+				const HepLorentzVector &pPionNeg,
+				const HepLorentzVector &pPionPos1,
+				const HepLorentzVector &pPionPos2);
 			void SetValues(
-				Event::McParticle* kaonNeg1,
-				Event::McParticle* kaonNeg2,
-				Event::McParticle* kaonPos,
-				Event::McParticle* pionPos,
+				Event::McParticle* kaonNeg,
 				Event::McParticle* photon1,
-				Event::McParticle* photon2);
+				Event::McParticle* photon2,
+				Event::McParticle* pionNeg,
+				Event::McParticle* pionPos1,
+				Event::McParticle* pionPos2);
 			///@}
 
 
