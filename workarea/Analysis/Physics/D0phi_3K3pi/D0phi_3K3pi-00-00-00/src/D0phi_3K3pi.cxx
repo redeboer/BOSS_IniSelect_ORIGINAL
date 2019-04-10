@@ -290,12 +290,6 @@
 						kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
 						if(kkmfit->Fit()) {
 							/// <ol>
-							/// <li> Apply max. \f$\chi^2\f$ cut (determined by `fCut_PIDChiSq_max`).
-							if(fCut_PIDChiSq.FailsMax(kkmfit->chisq())) continue;
-							if(printfit) {
-								fLog << MSG::INFO << "  SUCCESS: chisq cut passed with chisq =" << kkmfit->chisq() << endmsg;
-								printfit = false;
-							}
 							/// <li> Construct fit result object for this combintation.
 							KKFitResult_D0phi_3K3pi fitresult(kkmfit);
 							fitresult.SetRunAndEventNumber(fEventHeader);
