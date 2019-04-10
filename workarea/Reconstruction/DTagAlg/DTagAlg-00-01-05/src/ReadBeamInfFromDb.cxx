@@ -49,7 +49,7 @@ double ReadBeamInfFromDb::ReadDb(int run)
   // turned off now
   /*
   MYSQL* mysql=OpenDb();
-  
+  
   char stmt[1024];
   snprintf(stmt, 1024,
            "select BER_PRB, BPR_PRB "
@@ -59,8 +59,8 @@ double ReadBeamInfFromDb::ReadDb(int run)
     CloseDb(mysql);
     return m_beamE ;
   }
-  
-  
+  
+  
   MYSQL_RES* result_set = mysql_store_result(mysql);
   MYSQL_ROW row = mysql_fetch_row(result_set);
   if (!row) {
@@ -69,15 +69,15 @@ double ReadBeamInfFromDb::ReadDb(int run)
     CloseDb(mysql);
     return m_beamE;
   }
-  
+  
 
 
   double E_E=0, E_P=0;
   sscanf(row[0], "%lf", &E_E);
   sscanf(row[1], "%lf", &E_P);
-  
+  
   m_beamE=(E_E+E_P)/2.0;
-  
+  
   // Free the memory to prevent memory leak!
   mysql_free_result(result_set);
   CloseDb(mysql);

@@ -662,7 +662,7 @@ void ChargedDReconstruction::pidtag(vector<int> kaonid, vector<int> pionid,
     if(i==pionid.size()-1)
       ispion=true;
   }
-  
+  
 
   if( iskaon && ispion)
     recDTag->settype( EvtRecDTag::Tight );
