@@ -37,8 +37,8 @@
 		/// * Construct `NTuple::Tuple` containers used in derived classes.
 			fNTuple_dedx_K    ("dedx_K",     "dE/dx of the kaons"),
 			fNTuple_dedx_pi   ("dedx_pi",    "dE/dx of the pions"),
-			fNTuple_fit5c_all ("fit5c_all",  "5-constraint fit information (CMS 4-momentum)"),
-			fNTuple_fit5c_best("fit5c_best", "5-constraint fit information of the invariant masses closest to the reconstructed particles"),
+			fNTuple_fit4c_all ("fit4c_all",  "4-constraint fit information (CMS 4-momentum)"),
+			fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
 			fNTuple_fit_mc    ("fit_mc",     "Fake fit information according to MC truth"),
 			fNTuple_photon    ("photon",     "Kinematics of selected photons"),
 		/// * Construct counters (in essence a `CutObject` without cuts).
@@ -87,17 +87,17 @@
 			AddNTupleItems_Dedx(fNTuple_dedx_K);
 			AddNTupleItems_Dedx(fNTuple_dedx_pi);
 
-		/// <li> `"fit5c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
-			AddNTupleItems_Fit(fNTuple_fit5c_all);
-			AddNTupleItems_Fit(fNTuple_fit5c_best);
+		/// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
+			AddNTupleItems_Fit(fNTuple_fit4c_all);
+			AddNTupleItems_Fit(fNTuple_fit4c_best);
 			AddNTupleItems_Fit(fNTuple_fit_mc);
 
 		/// <li> `"photon"`: information of the selected photons
 			/// <ol>
 			fNTuple_photon.AddItem<double>("E");  /// <li> `"E"`:  Energy of the photon.
-			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 5-momentum of the photon (computed from the detected angles).
-			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 5-momentum of the photon (computed from the detected angles).
-			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 5-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("px"); /// <li> `"px"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("py"); /// <li> `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
+			fNTuple_photon.AddItem<double>("pz"); /// <li> `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
 			fNTuple_photon.AddItem<double>("smallest_phi");   /// <li> `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
 			fNTuple_photon.AddItem<double>("smallest_theta"); /// <li> `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
 			fNTuple_photon.AddItem<double>("smallest_angle"); /// <li> `"angle"`: Smallest angle between the photon and the nearest charged pion.
@@ -320,9 +320,9 @@
 			}
 
 
-		/// <li> Perform Kalman **5-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure. @todo Decide whether 5-constraints is indeed suitable.
+		/// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure. @todo Decide whether 4-constraints is indeed suitable.
 			/// <ol>
-			if(fNTuple_fit5c_all.DoWrite() || fNTuple_fit5c_best.DoWrite()) {
+			if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite()) {
 				/// <li> Reset best fit parameters (see `KKFitResult_D0phi_KpipiKK`).
 					KKFitResult_D0phi_KpipiKK bestKalmanFit;
 					bestKalmanFit.ResetBestCompareValue();
@@ -391,14 +391,14 @@
 							kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
 							kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
 							kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-							kkmfit->AddResonance(1, gM_pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$ resonance
+							// kkmfit->AddResonance(1, gM_pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$ resonance
 							if(kkmfit->Fit()) {
 								/// <ol>
 								/// <li> Construct fit result object for this combintation.
 								KKFitResult_D0phi_KpipiKK fitresult(kkmfit);
 								fitresult.SetRunAndEventNumber(fEventHeader);
-								/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit5c_all"`).
-								WriteFitResults(&fitresult, fNTuple_fit5c_all);
+								/// <li> @b Write results of the Kalman kinematic fit (all combinations, `"fit4c_all"`).
+								WriteFitResults(&fitresult, fNTuple_fit4c_all);
 								/// <li> Decide if this fit is better than the previous.
 								if(fitresult.IsBetter()) bestKalmanFit = fitresult;
 								/// </ol>
@@ -409,8 +409,8 @@
 						++count;
 					}
 					/// </ol>
-				/// <li> **Write** results of the Kalman kitematic fit <i>of the best combination</i> (`"fit5c_best"` branches).
-					WriteFitResults(&bestKalmanFit, fNTuple_fit5c_best);
+				/// <li> **Write** results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"` branches).
+					WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 
 				/// <li> If there is a fit result, **write** the MC truth topology for this event. Also increment `fCutFlow_NFitOK` counter if fit worked.
 					if(bestKalmanFit.HasResults()) {
