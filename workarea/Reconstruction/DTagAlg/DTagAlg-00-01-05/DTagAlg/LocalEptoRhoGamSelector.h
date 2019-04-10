@@ -6,20 +6,17 @@
 
 class LocalEptoRhoGamSelector : public DCSelectionFunction<CDDecay>
 {
-   public :
+public:
+  LocalEptoRhoGamSelector();
 
-      LocalEptoRhoGamSelector();
+  bool operator()(CDDecay& aEp);
 
-      bool operator() (CDDecay& aEp);
+private:
+  LocalEptoRhoGamSelector(const LocalEptoRhoGamSelector&);
+  const LocalEptoRhoGamSelector& operator=(const LocalEptoRhoGamSelector&);
 
-
-   private :
-
-      LocalEptoRhoGamSelector( const LocalEptoRhoGamSelector& );
-      const LocalEptoRhoGamSelector& operator= ( const LocalEptoRhoGamSelector& );
-
-      double m_minMass;
-      double m_maxMass;
+  double m_minMass;
+  double m_maxMass;
 };
 
 extern LocalEptoRhoGamSelector eptoRhoGamSelector;

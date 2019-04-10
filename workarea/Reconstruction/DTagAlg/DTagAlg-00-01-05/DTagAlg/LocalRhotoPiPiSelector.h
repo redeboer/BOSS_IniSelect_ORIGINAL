@@ -6,21 +6,17 @@
 
 class LocalRhotoPiPiSelector : public DCSelectionFunction<CDDecay>
 {
-   public :
+public:
+  LocalRhotoPiPiSelector();
 
-      LocalRhotoPiPiSelector();
+  bool operator()(CDDecay& aRho);
 
-      bool operator() (CDDecay& aRho);
+private:
+  LocalRhotoPiPiSelector(const LocalRhotoPiPiSelector&);
+  const LocalRhotoPiPiSelector& operator=(const LocalRhotoPiPiSelector&);
 
-
-   private :
-
-      LocalRhotoPiPiSelector( const LocalRhotoPiPiSelector& );
-      const LocalRhotoPiPiSelector& operator= ( const LocalRhotoPiPiSelector& );
-
-      double m_minMass;
-      double m_maxMass; 
-
+  double m_minMass;
+  double m_maxMass;
 };
 
 extern LocalRhotoPiPiSelector rhotoPiPiSelector;

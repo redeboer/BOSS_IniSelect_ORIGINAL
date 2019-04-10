@@ -6,25 +6,22 @@
 
 class LocalKsSelector : public DCSelectionFunction<CDKs>
 {
-   public :
+public:
+  LocalKsSelector();
 
-      LocalKsSelector();
+  bool operator()(CDKs& aKs);
 
-      bool operator() (CDKs& aKs);
+private:
+  LocalKsSelector(const LocalKsSelector&);
+  const LocalKsSelector& operator=(const LocalKsSelector&);
 
-   private :
+  double m_minMass;
+  double m_maxMass;
+  double m_maxChisq;
 
-      LocalKsSelector( const LocalKsSelector& );
-      const LocalKsSelector& operator= ( const LocalKsSelector& );
-
-      double m_minMass;
-      double m_maxMass;
-      double m_maxChisq;
-
-      bool m_doSecondaryVFit;
-      double m_maxVFitChisq;
-      double m_minFlightSig;
-
+  bool   m_doSecondaryVFit;
+  double m_maxVFitChisq;
+  double m_minFlightSig;
 };
 
 extern LocalKsSelector ksSelector;

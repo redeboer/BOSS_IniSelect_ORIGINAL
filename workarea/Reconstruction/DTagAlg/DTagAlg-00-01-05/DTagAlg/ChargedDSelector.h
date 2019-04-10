@@ -6,33 +6,30 @@
 
 class ChargedDSelector : public DCSelectionFunction<CDDecay>
 {
-  public :
-    
-    ChargedDSelector();
-  
-    inline void setebeam(double ebeam) {m_ebeam=ebeam;}
-    inline void setbeta(Hep3Vector beta) {m_beta=beta;}
-    bool operator() (CDDecay& theD);
+public:
+  ChargedDSelector();
 
-  private :
-    
-    ChargedDSelector( const ChargedDSelector& );
-    const ChargedDSelector& operator= ( const ChargedDSelector& );
-    
-    double m_ebeam;
-    Hep3Vector m_beta;
+  inline void setebeam(double ebeam) { m_ebeam = ebeam; }
+  inline void setbeta(Hep3Vector beta) { m_beta = beta; }
+  bool        operator()(CDDecay& theD);
 
-    bool m_useMbcCuts;
-    bool m_useDeltaECuts;
-    bool m_useDeltaMassCuts;
+private:
+  ChargedDSelector(const ChargedDSelector&);
+  const ChargedDSelector& operator=(const ChargedDSelector&);
 
-    double m_minMbc;
-    double m_maxMbc;
-    double m_minDeltaE;
-    double m_maxDeltaE;
-    double m_minDeltaMass;
-    double m_maxDeltaMass;
-    
+  double     m_ebeam;
+  Hep3Vector m_beta;
+
+  bool m_useMbcCuts;
+  bool m_useDeltaECuts;
+  bool m_useDeltaMassCuts;
+
+  double m_minMbc;
+  double m_maxMbc;
+  double m_minDeltaE;
+  double m_maxDeltaE;
+  double m_minDeltaMass;
+  double m_maxDeltaMass;
 };
 
 extern ChargedDSelector chargedDSelector;

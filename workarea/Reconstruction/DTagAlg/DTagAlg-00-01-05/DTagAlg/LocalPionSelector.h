@@ -6,42 +6,39 @@
 
 class LocalPionSelector : public DCSelectionFunction<CDChargedPion>
 {
-   public :
+public:
+  LocalPionSelector();
 
-      LocalPionSelector();
+  bool operator()(CDChargedPion& aPion);
+  void setpidtype(int type) { m_pidtype = type; }
 
-      bool operator() (CDChargedPion& aPion);
-      void setpidtype(int type){m_pidtype=type;}  
+private:
+  LocalPionSelector(const LocalPionSelector&);
+  const LocalPionSelector& operator=(const LocalPionSelector&);
 
-   private :
+  int m_pidtype;
 
-      LocalPionSelector( const LocalPionSelector& );
-      const LocalPionSelector& operator= ( const LocalPionSelector& );
+  double m_VrCut;
+  double m_VzCut;
+  double m_CosThetaCut;
 
-      int m_pidtype;
+  bool m_useSimplePID;
+  bool m_useDedx;
+  bool m_useTof1;
+  bool m_useTof2;
+  bool m_useTofE;
+  bool m_useTofQ;
+  bool m_useEmc;
+  bool m_useMuc;
 
+  bool   m_probability;
+  double m_PidProbCut;
+  bool   m_rejectKaon;
+  bool   m_rejectProton;
 
-      double m_VrCut;
-      double m_VzCut;
-      double m_CosThetaCut;
-
-      bool   m_useSimplePID;
-      bool   m_useDedx;
-      bool   m_useTof1;
-      bool   m_useTof2;
-      bool   m_useTofE;
-      bool   m_useTofQ;
-      bool   m_useEmc;
-      bool   m_useMuc;
-
-      bool   m_probability;
-      double m_PidProbCut;
-      bool   m_rejectKaon;
-      bool   m_rejectProton;
-
-      bool m_likelihood;
-      bool m_neuronNetwork;
-      std::vector<double> m_neuronValCut;
+  bool                m_likelihood;
+  bool                m_neuronNetwork;
+  std::vector<double> m_neuronValCut;
 };
 
 extern LocalPionSelector pionSelector;

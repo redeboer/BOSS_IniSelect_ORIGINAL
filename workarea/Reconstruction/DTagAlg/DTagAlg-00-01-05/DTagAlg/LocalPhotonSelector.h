@@ -1,38 +1,35 @@
 #ifndef LOCAL_PHOTON_SELECTOR_H
 #define LOCAL_PHOTON_SELECTOR_H
 
-#include "BesDChain/CDPhoton.h"
 #include "BesDChain/BesDCSelector.h"
+#include "BesDChain/CDPhoton.h"
 
 class LocalPhotonSelector : public BesDCSelector<CDPhoton>
 {
-   public :
+public:
+  LocalPhotonSelector();
 
-      LocalPhotonSelector();
+  bool operator()(CDPhoton& aPhoton);
 
-      bool operator() (CDPhoton& aPhoton);
+private:
+  LocalPhotonSelector(const LocalPhotonSelector&);
+  const LocalPhotonSelector& operator=(const LocalPhotonSelector&);
 
+  double m_minEnergy;
 
-   private :
+  bool   m_useBarrelEndcap;
+  double m_maxCosThetaBarrel;
+  double m_minCosThetaEndcap;
+  double m_maxCosThetaEndcap;
+  double m_minEndcapEnergy;
 
-      LocalPhotonSelector( const LocalPhotonSelector& );
-      const LocalPhotonSelector& operator= ( const LocalPhotonSelector& );
+  bool   m_applyTimeCut;
+  double m_minTime;
+  double m_maxTime;
+  double m_deltaTime;
 
-      double m_minEnergy;
- 
-      bool   m_useBarrelEndcap;
-      double m_maxCosThetaBarrel;
-      double m_minCosThetaEndcap;
-      double m_maxCosThetaEndcap;
-      double m_minEndcapEnergy;
- 
-      bool   m_applyTimeCut;
-      double m_minTime;
-      double m_maxTime;
-      double m_deltaTime;
- 
-      bool m_applyDangCut;
-      double m_minDang;
+  bool   m_applyDangCut;
+  double m_minDang;
 };
 
 extern LocalPhotonSelector photonSelector;

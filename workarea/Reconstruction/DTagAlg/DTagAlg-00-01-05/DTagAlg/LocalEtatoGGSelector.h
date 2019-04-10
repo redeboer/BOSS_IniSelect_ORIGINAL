@@ -6,22 +6,18 @@
 
 class LocalEtatoGGSelector : public DCSelectionFunction<CDEta>
 {
-   public :
+public:
+  LocalEtatoGGSelector();
 
-      LocalEtatoGGSelector();
+  bool operator()(CDEta& aEta);
 
-      bool operator() (CDEta& aEta);
+private:
+  LocalEtatoGGSelector(const LocalEtatoGGSelector&);
+  const LocalEtatoGGSelector& operator=(const LocalEtatoGGSelector&);
 
-
-   private :
-
-      LocalEtatoGGSelector( const LocalEtatoGGSelector& );
-      const LocalEtatoGGSelector& operator= ( const LocalEtatoGGSelector& );
-
-      double m_minMass;
-      double m_maxMass; 
-      double m_maxChisq;
-
+  double m_minMass;
+  double m_maxMass;
+  double m_maxChisq;
 };
 
 extern LocalEtatoGGSelector etatoGGSelector;

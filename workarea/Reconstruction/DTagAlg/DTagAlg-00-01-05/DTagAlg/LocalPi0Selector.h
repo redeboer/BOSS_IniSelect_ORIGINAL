@@ -6,22 +6,18 @@
 
 class LocalPi0Selector : public DCSelectionFunction<CDPi0>
 {
-   public :
+public:
+  LocalPi0Selector();
 
-      LocalPi0Selector();
+  bool operator()(CDPi0& aPi0);
 
-   bool operator() (CDPi0& aPi0);
+private:
+  LocalPi0Selector(const LocalPi0Selector&);
+  const LocalPi0Selector& operator=(const LocalPi0Selector&);
 
-
-   private :
-
-      LocalPi0Selector( const LocalPi0Selector& );
-      const LocalPi0Selector& operator= ( const LocalPi0Selector& );
-
-      double m_minMass;
-      double m_maxMass; 
-      double m_maxChisq;
-
+  double m_minMass;
+  double m_maxMass;
+  double m_maxChisq;
 };
 
 extern LocalPi0Selector pi0Selector;

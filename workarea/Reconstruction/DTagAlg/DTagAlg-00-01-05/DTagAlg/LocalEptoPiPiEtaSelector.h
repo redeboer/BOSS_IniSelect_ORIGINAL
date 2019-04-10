@@ -6,21 +6,17 @@
 
 class LocalEptoPiPiEtaSelector : public DCSelectionFunction<CDDecay>
 {
-   public :
+public:
+  LocalEptoPiPiEtaSelector();
 
-      LocalEptoPiPiEtaSelector();
+  bool operator()(CDDecay& aEp);
 
-      bool operator() (CDDecay& aEp);
+private:
+  LocalEptoPiPiEtaSelector(const LocalEptoPiPiEtaSelector&);
+  const LocalEptoPiPiEtaSelector& operator=(const LocalEptoPiPiEtaSelector&);
 
-
-   private :
-
-      LocalEptoPiPiEtaSelector( const LocalEptoPiPiEtaSelector& );
-      const LocalEptoPiPiEtaSelector& operator= ( const LocalEptoPiPiEtaSelector& );
-
-      double m_minMass;
-      double m_maxMass;
-
+  double m_minMass;
+  double m_maxMass;
 };
 
 extern LocalEptoPiPiEtaSelector eptoPiPiEtaSelector;
