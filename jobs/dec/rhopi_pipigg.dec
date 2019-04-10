@@ -5,4 +5,8 @@ Decay J/psi
   0.1000 rho- pi+ HELAMP 1.0 0.0 0.0 0.0 -1.0 0.0;
 Enddecay
 
+Decay pi0
+  1.0000 gamma gamma PHSP;
+Enddecay
+
 End

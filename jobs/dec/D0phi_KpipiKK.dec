@@ -11,4 +11,8 @@ Decay phi
   1.0 K+ K- VSS;
 Enddecay
 
+Decay pi0
+  1.0000 gamma gamma PHSP;
+Enddecay
+
 End
