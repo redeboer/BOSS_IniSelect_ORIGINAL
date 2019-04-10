@@ -4,8 +4,8 @@
 
 #include "TrackSelector/Containers/JobSwitch.h"
 #include <cmath>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //

@@ -64,9 +64,9 @@ void topoana::writeRsltIntoTexFl()
   {
     if(m_ccSwitch == true) nBrsInALine = 5;
     nLines = 0;
-    vector<list<int>> dcyTr;
-    list<int>         dcyBr;
-    list<int>         dcyFSt;
+    vector<list<int> > dcyTr;
+    list<int>          dcyBr;
+    list<int>          dcyFSt;
     nCmltEtrs = 0;
     unsigned long nDcyTrsToBePrtd =
       m_vDcyTr.size() < m_nDcyTrsToBePrtdMax ? m_vDcyTr.size() : m_nDcyTrsToBePrtdMax;
@@ -861,10 +861,10 @@ void topoana::writeRsltIntoTexFl()
     else
       nBrsInALine = 5;
     nLines = 0;
-    vector<list<int>> sigSeqDcyBrs;
-    vector<int>       vSigSeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigSeqDcyBrs;
+    vector<int>        vSigSeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigSeqDcyBrs.size(); i++)
     {
       if(nLines == 0)
@@ -957,10 +957,10 @@ void topoana::writeRsltIntoTexFl()
     else
       nBrsInALine = 5;
     nLines = 0;
-    vector<list<int>> sigIncSeqDcyBrs;
-    vector<int>       vSigIncSeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigIncSeqDcyBrs;
+    vector<int>        vSigIncSeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigIncSeqDcyBrs.size(); i++)
     {
       if(nLines == 0)
@@ -1112,10 +1112,10 @@ void topoana::writeRsltIntoTexFl()
     else
       nBrsInALine = 5;
     nLines = 0;
-    vector<list<int>> sigIncOrIRASeqDcyBrs;
-    vector<int>       vSigIncOrIRASeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigIncOrIRASeqDcyBrs;
+    vector<int>        vSigIncOrIRASeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigIncOrIRASeqDcyBrs.size(); i++)
     {
       if(nLines == 0)
@@ -1216,9 +1216,9 @@ void topoana::writeRsltIntoTexFl()
     else
       nBrsInALine = 5;
     nLines = 0;
-    vector<list<int>> sigDcyTr;
-    list<int>         sigDcyBr;
-    list<int>         sigDcyFSt;
+    vector<list<int> > sigDcyTr;
+    list<int>          sigDcyBr;
+    list<int>          sigDcyFSt;
     nCmltEtrs = 0;
     for(unsigned int i = 0; i < m_vSigDcyTr.size(); i++)
     {

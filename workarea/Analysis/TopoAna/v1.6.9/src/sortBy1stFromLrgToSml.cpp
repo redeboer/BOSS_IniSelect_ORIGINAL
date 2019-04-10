@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 
-void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>& vVLib,
+void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int> > >& vVLib,
                                     vector<int>& vic)
 {
   if(via.size() != vVLib.size() || vVLib.size() != vic.size())
@@ -19,9 +19,9 @@ void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>&
     cerr << "Infor: The sizes of the three vectors are zero!" << endl << endl;
     return;
   }
-  int               iaTmp;
-  vector<list<int>> vLibTmp;
-  int               icTmp;
+  int                iaTmp;
+  vector<list<int> > vLibTmp;
+  int                icTmp;
   for(unsigned int i = 0; i < (via.size() - 1); i++)
     for(unsigned int j = i + 1; j < via.size(); j++)
       if(via[i] < via[j])
@@ -38,9 +38,9 @@ void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>&
       }
 }
 
-void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>& vVLib,
-                                    vector<int>& vic, vector<vector<int>>& vVid,
-                                    vector<vector<int>>& vVie)
+void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int> > >& vVLib,
+                                    vector<int>& vic, vector<vector<int> >& vVid,
+                                    vector<vector<int> >& vVie)
 {
   if(via.size() != vVLib.size() || vVLib.size() != vic.size() || vic.size() != vVid.size() ||
      vVid.size() != vVie.size())
@@ -59,10 +59,10 @@ void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>&
     cerr << "Infor: The sizes of the five vectors are zero!" << endl << endl;
     return;
   }
-  int               iaTmp;
-  vector<list<int>> vLibTmp;
-  int               icTmp;
-  vector<int>       vidTmp, vieTmp;
+  int                iaTmp;
+  vector<list<int> > vLibTmp;
+  int                icTmp;
+  vector<int>        vidTmp, vieTmp;
   for(unsigned int i = 0; i < (via.size() - 1); i++)
     for(unsigned int j = i + 1; j < via.size(); j++)
       if(via[i] < via[j])
@@ -85,7 +85,7 @@ void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<vector<list<int>>>&
       }
 }
 
-void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<list<int>>& vLib, vector<int>& vic)
+void topoana::sortBy1stFromLrgToSml(vector<int>& via, vector<list<int> >& vLib, vector<int>& vic)
 {
   if(via.size() != vLib.size() || vLib.size() != vic.size())
   {

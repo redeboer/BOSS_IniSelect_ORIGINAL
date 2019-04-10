@@ -524,7 +524,7 @@ void topoana::checkInput()
     m_vPttaICcPid.clear();
     m_vVDcyBrP.clear();
     m_vVDcyBrCcP.clear();
-    vector<list<int>> vDcyBrP, vDcyBrCcP;
+    vector<list<int> > vDcyBrP, vDcyBrCcP;
     vDcyBrP.clear();
     vDcyBrCcP.clear();
     m_vVIDcyBrP.clear();
@@ -641,7 +641,7 @@ void topoana::checkInput()
     m_vPttaICcIncDcyBr.clear();
     m_vVDcyBrIncDcyBr.clear();
     m_vVDcyBrCcIncDcyBr.clear();
-    vector<list<int>> vDcyBrIncDcyBr, vDcyBrCcIncDcyBr;
+    vector<list<int> > vDcyBrIncDcyBr, vDcyBrCcIncDcyBr;
     vDcyBrIncDcyBr.clear();
     vDcyBrCcIncDcyBr.clear();
     m_vVIDcyBrIncDcyBr.clear();
@@ -994,7 +994,7 @@ void topoana::checkInput()
 
     m_vSigSeqDcyBrs.clear();
     m_vCcSigSeqDcyBrs.clear();
-    vector<list<int>> sigSeqDcyBrs, ccSigSeqDcyBrs;
+    vector<list<int> > sigSeqDcyBrs, ccSigSeqDcyBrs;
     m_vVSigSeqDcyBrsIdxOfHead.clear();
     m_vVCcSigSeqDcyBrsIdxOfHead.clear();
     vector<int> vSigSeqDcyBrsIdxOfHead, vCcSigSeqDcyBrsIdxOfHead;
@@ -1159,7 +1159,7 @@ void topoana::checkInput()
 
     m_vSigIncSeqDcyBrs.clear();
     m_vCcSigIncSeqDcyBrs.clear();
-    vector<list<int>> sigIncSeqDcyBrs, ccSigIncSeqDcyBrs;
+    vector<list<int> > sigIncSeqDcyBrs, ccSigIncSeqDcyBrs;
     m_vVSigIncSeqDcyBrsIdxOfHead.clear();
     m_vVCcSigIncSeqDcyBrsIdxOfHead.clear();
     vector<int> vSigIncSeqDcyBrsIdxOfHead, vCcSigIncSeqDcyBrsIdxOfHead;
@@ -1458,7 +1458,7 @@ void topoana::checkInput()
 
     m_vSigIncOrIRASeqDcyBrs.clear();
     m_vCcSigIncOrIRASeqDcyBrs.clear();
-    vector<list<int>> sigIncOrIRASeqDcyBrs, ccSigIncOrIRASeqDcyBrs;
+    vector<list<int> > sigIncOrIRASeqDcyBrs, ccSigIncOrIRASeqDcyBrs;
     m_vVSigIncOrIRASeqDcyBrsIdxOfHead.clear();
     m_vVCcSigIncOrIRASeqDcyBrsIdxOfHead.clear();
     vector<int> vSigIncOrIRASeqDcyBrsIdxOfHead, vCcSigIncOrIRASeqDcyBrsIdxOfHead;
@@ -1656,7 +1656,7 @@ void topoana::checkInput()
 
     m_vSigDcyTr.clear();
     m_vCcSigDcyTr.clear();
-    vector<list<int>> sigDcyTr, ccSigDcyTr;
+    vector<list<int> > sigDcyTr, ccSigDcyTr;
     m_vISigDcyTr.clear();
     m_vICcSigDcyTr.clear();
     m_vNSigDcyTr.clear();

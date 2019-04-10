@@ -17,11 +17,11 @@ void topoana::writeRsltIntoTxtFl()
   if(m_sttaDcyTrsAndDcyFSts == false)
   {
     fout << "Decay trees and their respective final states:" << endl << endl;
-    vector<list<int>> dcyTr;
-    list<int>         dcyBr;
-    list<int>         dcyFSt;
-    unsigned long     nCmltEtrs = 0;
-    unsigned long     nDcyTrsToBePrtd =
+    vector<list<int> > dcyTr;
+    list<int>          dcyBr;
+    list<int>          dcyFSt;
+    unsigned long      nCmltEtrs = 0;
+    unsigned long      nDcyTrsToBePrtd =
       m_vDcyTr.size() < m_nDcyTrsToBePrtdMax ? m_vDcyTr.size() : m_nDcyTrsToBePrtdMax;
     for(unsigned long i = 0; i < nDcyTrsToBePrtd; i++)
     {
@@ -534,10 +534,10 @@ void topoana::writeRsltIntoTxtFl()
     fout << endl;
 
     fout << "Signal sequential decay branches:" << endl << endl;
-    vector<list<int>> sigSeqDcyBrs;
-    vector<int>       vSigSeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigSeqDcyBrs;
+    vector<int>        vSigSeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigSeqDcyBrs.size(); i++)
     {
       sigSeqDcyBrs.clear();
@@ -585,10 +585,10 @@ void topoana::writeRsltIntoTxtFl()
     fout << endl;
 
     fout << "Signal inclusive sequential decay branches:" << endl << endl;
-    vector<list<int>> sigIncSeqDcyBrs;
-    vector<int>       vSigIncSeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigIncSeqDcyBrs;
+    vector<int>        vSigIncSeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigIncSeqDcyBrs.size(); i++)
     {
       sigIncSeqDcyBrs.clear();
@@ -676,10 +676,10 @@ void topoana::writeRsltIntoTxtFl()
 
     fout << "Signal inclusive or intermediate-resonance-allowed sequential decay branches:" << endl
          << endl;
-    vector<list<int>> sigIncOrIRASeqDcyBrs;
-    vector<int>       vSigIncOrIRASeqDcyBrsIdxOfHead;
-    list<int>         sigDcyBr;
-    unsigned long     nCmltCases = 0;
+    vector<list<int> > sigIncOrIRASeqDcyBrs;
+    vector<int>        vSigIncOrIRASeqDcyBrsIdxOfHead;
+    list<int>          sigDcyBr;
+    unsigned long      nCmltCases = 0;
     for(unsigned int i = 0; i < m_vSigIncOrIRASeqDcyBrs.size(); i++)
     {
       sigIncOrIRASeqDcyBrs.clear();
@@ -729,10 +729,10 @@ void topoana::writeRsltIntoTxtFl()
     fout << endl;
 
     fout << "Signal decay trees and their respective final states:" << endl << endl;
-    vector<list<int>> sigDcyTr;
-    list<int>         sigDcyBr;
-    list<int>         sigDcyFSt;
-    unsigned long     nCmltEtrs = 0;
+    vector<list<int> > sigDcyTr;
+    list<int>          sigDcyBr;
+    list<int>          sigDcyFSt;
+    unsigned long      nCmltEtrs = 0;
     for(unsigned int i = 0; i < m_vSigDcyTr.size(); i++)
     {
       sigDcyTr.clear();

@@ -2,11 +2,11 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+#include "rhopi_pipigg/rhopi_pipigg.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "rhopi_pipigg/rhopi_pipigg.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include <float.h> // for DBL_MAX

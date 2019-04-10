@@ -5,9 +5,9 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+#include "McTruth/McParticle.h"
 #include "TrackSelector/KKFitResult.h"
 #include "TrackSelector/TrackSelector.h"
-#include "McTruth/McParticle.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

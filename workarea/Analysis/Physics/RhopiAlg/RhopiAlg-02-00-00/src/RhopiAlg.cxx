@@ -2,11 +2,11 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+#include "RhopiAlg/RhopiAlg.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "RhopiAlg/RhopiAlg.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include <string>

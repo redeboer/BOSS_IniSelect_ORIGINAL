@@ -1,8 +1,8 @@
 #include "../include/topoana.h"
 #include <iostream>
 
-unsigned int topoana::countSeqDcyBrsInDcyTr(vector<list<int>>& seqDcyBrs, vector<int> vIdxOfHead1,
-                                            vector<int> vMidxOfHead1, vector<list<int>>& dcyTr,
+unsigned int topoana::countSeqDcyBrsInDcyTr(vector<list<int> >& seqDcyBrs, vector<int> vIdxOfHead1,
+                                            vector<int> vMidxOfHead1, vector<list<int> >& dcyTr,
                                             vector<int> vIdxOfHead2, vector<int> vMidxOfHead2)
 {
   unsigned int nCount = 0;
@@ -58,7 +58,7 @@ unsigned int topoana::countSeqDcyBrsInDcyTr(vector<list<int>>& seqDcyBrs, vector
       }
     }
 
-    vector<vector<int>> vVIDcyBr2WRTIDcyBr1;
+    vector<vector<int> > vVIDcyBr2WRTIDcyBr1;
     vVIDcyBr2WRTIDcyBr1.clear();
     vector<int> vIDcyBr2WRTIDcyBr1;
     for(unsigned int i = 0; i < dcyTr.size(); i++)

@@ -2,8 +2,8 @@
 #include <cstdlib>
 #include <iostream>
 
-void topoana::sortBySzPidAndPchrg(vector<vector<int>>& vVia, vector<vector<int>>& vVib,
-                                  vector<vector<int>>& vVic, vector<vector<int>>& vVid)
+void topoana::sortBySzPidAndPchrg(vector<vector<int> >& vVia, vector<vector<int> >& vVib,
+                                  vector<vector<int> >& vVic, vector<vector<int> >& vVid)
 {
   if(vVia.size() != vVib.size() || vVib.size() != vVic.size() || vVic.size() != vVid.size())
   {

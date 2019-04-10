@@ -5,8 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "TrackSelector/Containers/Container_base.h"
 #include "TString.h"
+#include "TrackSelector/Containers/Container_base.h"
 #include <list>
 #include <string>
 
@@ -32,8 +32,11 @@ public:
   static void                  PrintSwitches();
   explicit   operator bool() const { return fValue; } /// Convertor for `bool`ean arithmatic.
   const bool Value() const { return fValue; }         /// Read access to `fValue` data member.
-  void SetValue(const bool value) { fValue = value; } /// Write access to `fValue` data member.
-                                                      // private:
+  void       SetValue(const bool value)
+  {
+    fValue = value;
+  }            /// Write access to `fValue` data member.
+               // private:
   bool fValue; /// The actual switch. Not set to `private` because of `Algorithm::declareProperty`
                /// needs it in `TrackSelector`.
 };

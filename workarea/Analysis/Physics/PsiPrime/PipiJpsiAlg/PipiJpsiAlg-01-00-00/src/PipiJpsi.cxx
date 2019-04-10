@@ -1,6 +1,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+#include "PipiJpsiAlg/PipiJpsi.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
@@ -24,7 +25,6 @@
 #include "McTruth/McParticle.h"
 #include "MdcRecEvent/RecMdcKalTrack.h"
 #include "ParticleID/ParticleID.h"
-#include "PipiJpsiAlg/PipiJpsi.h"
 #include "TMath.h"
 #include "TrigEvent/TrigData.h"
 #include "TrigEvent/TrigEvent.h"
@@ -240,10 +240,10 @@ StatusCode PipiJpsi::initialize()
           m_tmu_etof); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
         m_tuple4->addItem("tpi", m_tpi_etof); ///< tr><td>`"tpi"` </td><td>Difference with ToF in
                                               ///< charged pion hypothesis</td></tr>
-        m_tuple4->addItem("tk", m_tk_etof); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                            ///< charged kaon hypothesis</td></tr>
-        m_tuple4->addItem("tp", m_tp_etof); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
-                                            ///< proton hypothesis</td></tr>
+        m_tuple4->addItem("tk", m_tk_etof);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
+                                              ///< charged kaon hypothesis</td></tr>
+        m_tuple4->addItem("tp", m_tp_etof);   ///< tr><td>`"tp"`  </td><td>Difference with ToF in
+                                              ///< proton hypothesis</td></tr>
       }
       else
       {
@@ -276,16 +276,16 @@ StatusCode PipiJpsi::initialize()
         m_tuple5->addItem(
           "qual",
           m_qual_btof1); ///< tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
-        m_tuple5->addItem("te", m_te_btof1); ///< tr><td>`"te"`  </td><td>Difference with ToF in
-                                             ///< electron hypothesis</td></tr>
+        m_tuple5->addItem("te", m_te_btof1);   ///< tr><td>`"te"`  </td><td>Difference with ToF in
+                                               ///< electron hypothesis</td></tr>
         m_tuple5->addItem("tmu", m_tmu_btof1); ///< tr><td>`"tmu"` </td><td>Difference with ToF in
                                                ///< muon hypothesis</td></tr>
         m_tuple5->addItem("tpi", m_tpi_btof1); ///< tr><td>`"tpi"` </td><td>Difference with ToF in
                                                ///< charged pion hypothesis</td></tr>
-        m_tuple5->addItem("tk", m_tk_btof1); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                             ///< charged kaon hypothesis</td></tr>
-        m_tuple5->addItem("tp", m_tp_btof1); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
-                                             ///< proton hypothesis</td></tr>
+        m_tuple5->addItem("tk", m_tk_btof1);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
+                                               ///< charged kaon hypothesis</td></tr>
+        m_tuple5->addItem("tp", m_tp_btof1);   ///< tr><td>`"tp"`  </td><td>Difference with ToF in
+                                               ///< proton hypothesis</td></tr>
       }
       else
       {
@@ -318,16 +318,16 @@ StatusCode PipiJpsi::initialize()
         m_tuple6->addItem(
           "qual",
           m_qual_btof2); ///< tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
-        m_tuple6->addItem("te", m_te_btof2); ///< tr><td>`"te"`  </td><td>Difference with ToF in
-                                             ///< electron hypothesis</td></tr>
+        m_tuple6->addItem("te", m_te_btof2);   ///< tr><td>`"te"`  </td><td>Difference with ToF in
+                                               ///< electron hypothesis</td></tr>
         m_tuple6->addItem("tmu", m_tmu_btof2); ///< tr><td>`"tmu"` </td><td>Difference with ToF in
                                                ///< muon hypothesis</td></tr>
         m_tuple6->addItem("tpi", m_tpi_btof2); ///< tr><td>`"tpi"` </td><td>Difference with ToF in
                                                ///< charged pion hypothesis</td></tr>
-        m_tuple6->addItem("tk", m_tk_btof2); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                             ///< charged kaon hypothesis</td></tr>
-        m_tuple6->addItem("tp", m_tp_btof2); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
-                                             ///< proton hypothesis</td></tr>
+        m_tuple6->addItem("tk", m_tk_btof2);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
+                                               ///< charged kaon hypothesis</td></tr>
+        m_tuple6->addItem("tp", m_tp_btof2);   ///< tr><td>`"tp"`  </td><td>Difference with ToF in
+                                               ///< proton hypothesis</td></tr>
       }
       else
       {
@@ -363,10 +363,12 @@ StatusCode PipiJpsi::initialize()
       m_tuple8->addItem(
         "pipidang",
         m_pipi_dang); ///< tr><td>`"pipidang"`</td><td>Angle between the two pions</td></tr>
-      m_tuple8->addItem("cmslepp", m_cms_lepp); ///< tr><td>`"cmslepp"` </td><td>Boosted
-                                                ///< \f$|\vec{p}|\f$ of the positive lepton</td></tr>
-      m_tuple8->addItem("cmslepm", m_cms_lepm); ///< tr><td>`"cmslepm"` </td><td>Boosted
-                                                ///< \f$|\vec{p}|\f$ of the negative lepton</td></tr>
+      m_tuple8->addItem("cmslepp",
+                        m_cms_lepp); ///< tr><td>`"cmslepp"` </td><td>Boosted
+                                     ///< \f$|\vec{p}|\f$ of the positive lepton</td></tr>
+      m_tuple8->addItem("cmslepm",
+                        m_cms_lepm); ///< tr><td>`"cmslepm"` </td><td>Boosted
+                                     ///< \f$|\vec{p}|\f$ of the negative lepton</td></tr>
       m_tuple8->addIndexedItem(
         "costhe", m_index,
         m_cos_theta); ///< tr><td>`"costhe"` </td><td>\f$\cos(\theta)\f$ of the lorentz vector in
@@ -406,8 +408,8 @@ StatusCode PipiJpsi::initialize()
         m_ep_ratio); ///< tr><td>`"epratio"`     </td><td>Total energy of the EMC showers</td></tr>
       m_tuple8->addItem("eveflag",
                         m_event_flag); ///< tr><td>`"eveflag"`     </td><td>Characterisation of the
-                                       ///< event: 3 or 4 tracks, 4=>4 tracks, 0=> miss pi+, 1=> miss
-                                       ///< pi-, 2=> miss lepton+, 3=> miss lepton-</td></tr>
+                                       ///< event: 3 or 4 tracks, 4=>4 tracks, 0=> miss pi+, 1=>
+                                       ///< miss pi-, 2=> miss lepton+, 3=> miss lepton-</td></tr>
       m_tuple8->addItem(
         "tplepratiom",
         m_trans_ratio_lepm); ///< tr><td>`"tplepratiom"` </td><td>Ratio of the 4-momentum axial
@@ -449,8 +451,8 @@ StatusCode PipiJpsi::initialize()
         "pdgid", m_idxmc,
         m_pdgid); ///< tr><td>`"pdgid"`</td><td>PDG code of the MC truth particle</td></tr>
       m_tuple8->addIndexedItem("motheridx", m_idxmc,
-                               m_motheridx); ///< tr><td>`"motheridx"`</td><td>PDG code of the
-                                             ///< mother of the MC particle</td></tr>
+                               m_motheridx);     ///< tr><td>`"motheridx"`</td><td>PDG code of the
+                                                 ///< mother of the MC particle</td></tr>
       m_tuple8->addItem("truepp", m_true_pionp); ///< tr><td>`"truepp"`</td><td>True \f$|\vec{p}|\f$
                                                  ///< of the positive pion</td></tr>
       m_tuple8->addItem("truepm", m_true_pionm); ///< tr><td>`"truepm"`</td><td>True \f$|\vec{p}|\f$

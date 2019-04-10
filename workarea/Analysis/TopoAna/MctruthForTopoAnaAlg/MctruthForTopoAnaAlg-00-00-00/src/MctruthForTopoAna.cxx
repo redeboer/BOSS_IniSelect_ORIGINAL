@@ -2,10 +2,10 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "GaudiKernel/SmartDataPtr.h"
-#include "EventModel/EventHeader.h"
-#include "McTruth/McParticle.h"
 #include "MctruthForTopoAnaAlg/MctruthForTopoAna.h"
+#include "EventModel/EventHeader.h"
+#include "GaudiKernel/SmartDataPtr.h"
+#include "McTruth/McParticle.h"
 #include <iomanip>
 #include <iostream>
 

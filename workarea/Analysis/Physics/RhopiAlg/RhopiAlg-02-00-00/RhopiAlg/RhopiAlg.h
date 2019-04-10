@@ -70,10 +70,10 @@ private:
                  ///< 4-constraint Kalman kinematic fit.
   bool fDoFit6c; ///< Package property that determines whether or not to perform and record a
                  ///< 6-constraint Kalman kinematic fit.
-  std::map<std::string, NTuple::Item<double>> fDedx_K;  ///< Container for the `"dedx_k"` branch.
-  std::map<std::string, NTuple::Item<double>> fDedx_pi; ///< Container for the `"dedx_pi"` branch.
-  std::map<std::string, NTuple::Item<double>> fFit4c;   ///< Container for the `"fit4c"` branch.
-  std::map<std::string, NTuple::Item<double>> fFit6c;   ///< Container for the `"fit6c"` branch.
+  std::map<std::string, NTuple::Item<double> > fDedx_K;  ///< Container for the `"dedx_k"` branch.
+  std::map<std::string, NTuple::Item<double> > fDedx_pi; ///< Container for the `"dedx_pi"` branch.
+  std::map<std::string, NTuple::Item<double> > fFit4c;   ///< Container for the `"fit4c"` branch.
+  std::map<std::string, NTuple::Item<double> > fFit6c;   ///< Container for the `"fit6c"` branch.
 };
 
 /// @}

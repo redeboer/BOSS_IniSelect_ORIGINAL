@@ -2,6 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+#include "TrackSelector/TrackSelector.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
@@ -12,7 +13,6 @@
 #include "TMath.h"
 #include "TString.h"
 #include "TrackSelector/Containers/NTupleTopoAna.h"
-#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>

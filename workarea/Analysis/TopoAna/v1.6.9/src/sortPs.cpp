@@ -24,9 +24,10 @@ void topoana::sortPs(vector<int>& vPid, vector<int>& vMidx)
   for(unsigned int i = 0; i < vPid.size(); i++)
   {
     // if(((unsigned int) vMidx[i])==i) Sometimes, users may set Midx[i] at -1 rather than i when
-    // the pid of the mother of the partilce i does not appear in the array Pid. Note that the arrays
-    // Pid and Midx are the branches stored in the tree of the input root files. In order to make the
-    // program can handle such cases as well, this statement is revised to be the following one.
+    // the pid of the mother of the partilce i does not appear in the array Pid. Note that the
+    // arrays Pid and Midx are the branches stored in the tree of the input root files. In order to
+    // make the program can handle such cases as well, this statement is revised to be the following
+    // one.
     if((((unsigned int)vMidx[i]) == i) || (vMidx[i] == -1))
     {
       if(vPid[i] != 22)
@@ -59,10 +60,10 @@ void topoana::sortPs(vector<int>& vPid, vector<int>& vMidx)
   bool isIddPid; // Codes related to the variable is used to ignore the decay of the daughters of
                  // the particles specified in the input card and stored in the vector m_vIddPid.
 
-  unsigned int        nCmltSmPids;
-  vector<int>         vIdxYng, vNSmPidsYng;
-  vector<vector<int>> vVPidYngSbst, vVMidxYngSbst, vVIdxYngSbst, vVNSmPidsYngSbst;
-  vector<int>         vPidYngSbst, vMidxYngSbst, vIdxYngSbst, vNSmPidsYngSbst;
+  unsigned int         nCmltSmPids;
+  vector<int>          vIdxYng, vNSmPidsYng;
+  vector<vector<int> > vVPidYngSbst, vVMidxYngSbst, vVIdxYngSbst, vVNSmPidsYngSbst;
+  vector<int>          vPidYngSbst, vMidxYngSbst, vIdxYngSbst, vNSmPidsYngSbst;
   while(hHdDcyBrs < m_hHdDcyBrsMax && vIdxOld.size() != 0)
   {
     vIdxYng.clear();

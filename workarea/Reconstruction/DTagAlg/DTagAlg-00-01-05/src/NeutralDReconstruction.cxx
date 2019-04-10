@@ -196,7 +196,7 @@ StatusCode NeutralDReconstruction::execute()
   dc_fill(ksList, recVeeVertexCol->begin(), recVeeVertexCol->end());
 
   // do a secondary vertex fit and cut on the results
-  map<EvtRecVeeVertex*, vector<double>> fitinfo;
+  map<EvtRecVeeVertex*, vector<double> > fitinfo;
   for(CDKsList::iterator ksit = ksList.particle_begin(); ksit != ksList.particle_end(); ++ksit)
   {
     EvtRecVeeVertex* ks = const_cast<EvtRecVeeVertex*>((*ksit).particle().navKshort());
@@ -810,7 +810,7 @@ void NeutralDReconstruction::pidtag(vector<int> kaonid, vector<int> pionid,
     if(i==pionid.size()-1)
       ispion=true;
   }
-  
+  
 
   if( iskaon && ispion)
     recDTag->settype( EvtRecDTag::Tight );

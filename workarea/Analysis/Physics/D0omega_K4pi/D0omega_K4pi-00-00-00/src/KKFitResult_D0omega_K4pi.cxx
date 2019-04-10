@@ -2,9 +2,9 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
+#include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "TrackSelector/TrackSelector.h"
-#include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include <cmath>
 
 using CLHEP::HepLorentzVector;

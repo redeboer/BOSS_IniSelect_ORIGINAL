@@ -2,8 +2,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "CLHEP/Vector/LorentzVector.h"
 #include "TrackSelector/KKFitResult.h"
+#include "CLHEP/Vector/LorentzVector.h"
 using CLHEP::HepLorentzVector;
 
 // * =========================== * //

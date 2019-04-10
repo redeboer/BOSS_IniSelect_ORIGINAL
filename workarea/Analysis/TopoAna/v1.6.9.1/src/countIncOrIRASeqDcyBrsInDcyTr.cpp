@@ -3,8 +3,8 @@
 
 unsigned int topoana::countIncOrIRASeqDcyBrsInDcyTr(
   vector<int> vIIncIncOrIRASeqDcyBrs, vector<int> vIIRAIncOrIRASeqDcyBrs,
-  vector<list<int>>& incOrIRASeqDcyBrs, vector<int> vIdxOfHead1, vector<int> vMidxOfHead1,
-  vector<list<int>>& dcyTr, vector<int> vIdxOfHead2, vector<int> vMidxOfHead2, vector<int> vPid,
+  vector<list<int> >& incOrIRASeqDcyBrs, vector<int> vIdxOfHead1, vector<int> vMidxOfHead1,
+  vector<list<int> >& dcyTr, vector<int> vIdxOfHead2, vector<int> vMidxOfHead2, vector<int> vPid,
   vector<int> vMidx)
 {
   unsigned int nCount = 0;
@@ -65,7 +65,7 @@ unsigned int topoana::countIncOrIRASeqDcyBrsInDcyTr(
       }
     }
 
-    vector<vector<int>> vVIDcyBr2WRTIDcyBr1;
+    vector<vector<int> > vVIDcyBr2WRTIDcyBr1;
     vVIDcyBr2WRTIDcyBr1.clear();
     vector<int> vIDcyBr2WRTIDcyBr1;
     vector<int> subsetOfVPidFromAP;

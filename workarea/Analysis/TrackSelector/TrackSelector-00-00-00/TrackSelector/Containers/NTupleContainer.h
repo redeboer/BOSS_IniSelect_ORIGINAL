@@ -8,9 +8,9 @@
 #include "GaudiKernel/NTuple.h"
 #include "TrackSelector/Containers/Container_base.h"
 #include "TrackSelector/Containers/JobSwitch.h"
+#include <iostream>
 #include <map>
 #include <string>
-#include <iostream>
 // #include <typeinfo>	// for getting typename of a variable
 
 // * ================================ * //
@@ -100,9 +100,9 @@ protected:
   /// @name NTuple handlers and members
   ///@{
   template <typename TYPE>
-  inline std::map<std::string, NTuple::Item<TYPE>>* GetItems();
+  inline std::map<std::string, NTuple::Item<TYPE> >* GetItems();
   template <typename TYPE>
-  inline std::map<std::string, NTuple::Array<TYPE>>* GetArrays();
+  inline std::map<std::string, NTuple::Array<TYPE> >* GetArrays();
   ///@}
 
   /// @name Data members
@@ -116,11 +116,12 @@ protected:
 
   /// @name NTuple maps
   ///@{
-  std::map<std::string, NTuple::Item<double>> fItems_double; ///< Inventory of added `double` items.
-  std::map<std::string, NTuple::Item<int>>    fItems_int;    ///< Inventory of added `int` items.
-  std::map<std::string, NTuple::Array<double>>
-                                            fArrays_double; ///< Inventory of added `double` arrays.
-  std::map<std::string, NTuple::Array<int>> fArrays_int;    ///< Inventory of added `int` arrays.
+  std::map<std::string, NTuple::Item<double> >
+                                            fItems_double; ///< Inventory of added `double` items.
+  std::map<std::string, NTuple::Item<int> > fItems_int;    ///< Inventory of added `int` items.
+  std::map<std::string, NTuple::Array<double> >
+                                             fArrays_double; ///< Inventory of added `double` arrays.
+  std::map<std::string, NTuple::Array<int> > fArrays_int;    ///< Inventory of added `int` arrays.
   ///@}
 
 private:
@@ -138,24 +139,24 @@ private:
 
 /// Specialisation of `GetItems`.
 template <>
-inline std::map<std::string, NTuple::Item<double>>* NTupleContainer::GetItems<double>()
+inline std::map<std::string, NTuple::Item<double> >* NTupleContainer::GetItems<double>()
 {
   return &fItems_double;
 }
 template <>
-inline std::map<std::string, NTuple::Item<int>>* NTupleContainer::GetItems<int>()
+inline std::map<std::string, NTuple::Item<int> >* NTupleContainer::GetItems<int>()
 {
   return &fItems_int;
 }
 
 /// Specialisation of `GetArrays`.
 template <>
-inline std::map<std::string, NTuple::Array<double>>* NTupleContainer::GetArrays<double>()
+inline std::map<std::string, NTuple::Array<double> >* NTupleContainer::GetArrays<double>()
 {
   return &fArrays_double;
 }
 template <>
-inline std::map<std::string, NTuple::Array<int>>* NTupleContainer::GetArrays<int>()
+inline std::map<std::string, NTuple::Array<int> >* NTupleContainer::GetArrays<int>()
 {
   return &fArrays_int;
 }
@@ -255,7 +256,8 @@ inline NTuple::Item<TYPE>* NTupleContainer::AddItem(const std::string& item_name
 template <typename TYPE>
 inline void NTupleContainer::PrintItems()
 {
-  typename std::map<std::string, NTuple::Item<TYPE>>::const_iterator it = GetItems<TYPE>()->begin();
+  typename std::map<std::string, NTuple::Item<TYPE> >::const_iterator it =
+    GetItems<TYPE>()->begin();
   for(; it != GetItems<TYPE>()->end(); ++it) std::cout << "  [+] " << it->first << std::endl;
 }
 

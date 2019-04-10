@@ -1,6 +1,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
+#include "RhopiAlg/RhopiAlg.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
@@ -17,13 +18,11 @@
 #include "GaudiKernel/IHistogramSvc.h"
 #include "GaudiKernel/INTupleSvc.h"
 #include "GaudiKernel/ISvcLocator.h"
-#include "GaudiKernel/ISvcLocator.h"
 #include "GaudiKernel/MsgStream.h"
 #include "GaudiKernel/NTuple.h"
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
 #include "ParticleID/ParticleID.h"
-#include "RhopiAlg/RhopiAlg.h"
 #include "TMath.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
@@ -398,8 +397,8 @@ StatusCode RhopiAlg::initialize()
           fMuonTofIB); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
         TupleTofIB->addItem("tpi", fProtoniTofIB); ///< tr><td>`"tpi"` </td><td>Difference with ToF
                                                    ///< in charged pion hypothesis</td></tr>
-        TupleTofIB->addItem("tk", fKaonTofIB); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                               ///< charged kaon hypothesis</td></tr>
+        TupleTofIB->addItem("tk", fKaonTofIB);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
+                                                 ///< charged kaon hypothesis</td></tr>
         TupleTofIB->addItem("tp", fProtonTofIB); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
                                                  ///< proton hypothesis</td></tr>
       }
@@ -441,8 +440,8 @@ StatusCode RhopiAlg::initialize()
           fMuonTofOB); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
         TupleTofOB->addItem("tpi", fProtoniTofOB); ///< tr><td>`"tpi"` </td><td>Difference with ToF
                                                    ///< in charged pion hypothesis</td></tr>
-        TupleTofOB->addItem("tk", fKaonTofOB); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                               ///< charged kaon hypothesis</td></tr>
+        TupleTofOB->addItem("tk", fKaonTofOB);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
+                                                 ///< charged kaon hypothesis</td></tr>
         TupleTofOB->addItem("tp", fProtonTofOB); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
                                                  ///< proton hypothesis</td></tr>
       }

@@ -29,12 +29,12 @@ void topoana::recurHighHierExchOrd(vector<int>& vIdxYngi, vector<int>& vIdxYngj,
       cout<<"Idx: "<<i<<"\t"<<"Pid: "<<vPid[i]<<"\t"<<"Midx: "<<vMidx[i]<<endl;
     }*/
 
-  vector<vector<int>> vVPidYngYngi, vVPidYngYngj;
-  vector<int>         vPidYngYngi, vPidYngYngj;
-  vector<int>         vPidYngYngMid, vMidxYngYngMid, vIdxYngYngMid;
-  vector<int>         vIdxYngYngi, vIdxYngYngj;
-  int                 idxYngYng;
-  bool                exchOrd;
+  vector<vector<int> > vVPidYngYngi, vVPidYngYngj;
+  vector<int>          vPidYngYngi, vPidYngYngj;
+  vector<int>          vPidYngYngMid, vMidxYngYngMid, vIdxYngYngMid;
+  vector<int>          vIdxYngYngi, vIdxYngYngj;
+  int                  idxYngYng;
+  bool                 exchOrd;
   while(vIdxYngi.size() != 0)
   {
     vVPidYngYngi.clear();

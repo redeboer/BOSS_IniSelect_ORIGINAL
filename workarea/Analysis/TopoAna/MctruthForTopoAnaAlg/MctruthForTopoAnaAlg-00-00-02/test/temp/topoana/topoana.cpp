@@ -531,7 +531,7 @@ void topoana::evtReorder(vector<int>& vPid, vector<int>& vMidx)
     }*/
 }
 
-void topoana::getEvtDcyTr(vector<int>& vPid, vector<int>& vMidx, vector<list<int>>& evtDcyTr)
+void topoana::getEvtDcyTr(vector<int>& vPid, vector<int>& vMidx, vector<list<int> >& evtDcyTr)
 {
   evtDcyTr.clear();
   list<int> evtDcyChn;
@@ -642,7 +642,7 @@ void topoana::getEvtDcyIFChn(vector<int>& vPid, vector<int>& vMidx, list<int>& e
   evtDcyIFChn.push_front(-11);
 }
 
-void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<vector<list<int>>>& vib,
+void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<vector<list<int> > >& vib,
                                           vector<int>& vic)
 {
   if(via.size() != vib.size() || vib.size() != vic.size())
@@ -659,9 +659,9 @@ void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<vector<list<i
     cerr << "Info: the sizes of the two vectors is zero" << endl;
     return;
   }
-  int               iatemp;
-  vector<list<int>> ibtemp;
-  int               ictemp;
+  int                iatemp;
+  vector<list<int> > ibtemp;
+  int                ictemp;
   for(unsigned int i = 0; i < via.size() - 1; i++)
     for(unsigned int j = i + 1; j < via.size(); j++)
       if(via[i] < via[j])
@@ -678,7 +678,7 @@ void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<vector<list<i
       }
 }
 
-void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<list<int>>& vib,
+void topoana::sortByFirstFromLargeToSmall(vector<int>& via, vector<list<int> >& vib,
                                           vector<int>& vic)
 {
   if(via.size() != vib.size() || vib.size() != vic.size())
@@ -785,7 +785,7 @@ void topoana::getResult()
   vector<int> vMidx;
 
   m_vEvtDcyTr.clear();
-  vector<list<int>> evtDcyTr;
+  vector<list<int> > evtDcyTr;
   m_vNEvtDcyTr.clear();
   m_vEvtDcyIFChn.clear();
   list<int> evtDcyIFChn;
@@ -803,7 +803,7 @@ void topoana::getResult()
   if(m_vVSigPid.size() > 0)
   {
     m_vSigEvtDcyTr.clear();
-    vector<list<int>> sigEvtDcyTr;
+    vector<list<int> > sigEvtDcyTr;
     m_vNSigEvtDcyTr.clear();
     m_vSigEvtDcyIFChn.clear();
     list<int> sigEvtDcyIFChn;
@@ -989,9 +989,9 @@ void topoana::outputResultIntoTxtFile()
   ofstream outfile(outputTxtFileName.c_str(), ios::out);
 
   outfile << "Event decay trees infomation :" << endl << endl;
-  vector<list<int>> evtDcyTr;
-  list<int>         evtDcyChn;
-  int               naccdevents = 0;
+  vector<list<int> > evtDcyTr;
+  list<int>          evtDcyChn;
+  int                naccdevents = 0;
   for(unsigned int i = 0; i < m_vNEvtDcyTr.size(); i++)
   {
     evtDcyTr.clear();
@@ -1056,8 +1056,8 @@ void topoana::outputResultIntoTxtFile()
   if(m_vVSigPid.size() > 0)
   {
     outfile << "Signal event decay trees infomation :" << endl << endl;
-    vector<list<int>> sigEvtDcyTr;
-    list<int>         sigEvtDcyChn;
+    vector<list<int> > sigEvtDcyTr;
+    list<int>          sigEvtDcyChn;
     naccdevents = 0;
     for(unsigned int i = 0; i < m_vNSigEvtDcyTr.size(); i++)
     {
@@ -1135,9 +1135,9 @@ void topoana::outputResultIntoTexFile()
   outfile << "\\maketitle" << endl;
   outfile << endl << endl << endl;
 
-  vector<list<int>> evtDcyTr;
-  list<int>         evtDcyChn;
-  int               naccdevents = 0;
+  vector<list<int> > evtDcyTr;
+  list<int>          evtDcyChn;
+  int                naccdevents = 0;
   for(unsigned int i = 0; i < m_vNEvtDcyTr.size(); i++)
   {
     if(i % 35 == 0)
@@ -1279,8 +1279,8 @@ void topoana::outputResultIntoTexFile()
 
   if(m_vVSigPid.size() > 0)
   {
-    vector<list<int>> sigEvtDcyTr;
-    list<int>         sigEvtDcyChn;
+    vector<list<int> > sigEvtDcyTr;
+    list<int>          sigEvtDcyChn;
     naccdevents = 0;
     for(unsigned int i = 0; i < m_vNSigEvtDcyTr.size(); i++)
     {

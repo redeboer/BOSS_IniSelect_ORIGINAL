@@ -3,9 +3,9 @@
 #include <iostream>
 
 void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& via2,
-                                               vector<vector<list<int>>>& vVLib1,
-                                               vector<vector<list<int>>>& vVLib2, vector<int>& vic1,
-                                               vector<int>& vic2)
+                                               vector<vector<list<int> > >& vVLib1,
+                                               vector<vector<list<int> > >& vVLib2,
+                                               vector<int>& vic1, vector<int>& vic2)
 {
   if(via1.size() != via2.size() || via2.size() != vVLib1.size() || vVLib1.size() != vVLib2.size() ||
      vVLib2.size() != vic1.size() || vic1.size() != vic2.size())
@@ -25,9 +25,9 @@ void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& v
     cerr << "Infor: The sizes of the six vectors are zero!" << endl << endl;
     return;
   }
-  int               iaTmp1, iaTmp2;
-  vector<list<int>> vLibTmp1, vLibTmp2;
-  int               icTmp1, icTmp2;
+  int                iaTmp1, iaTmp2;
+  vector<list<int> > vLibTmp1, vLibTmp2;
+  int                icTmp1, icTmp2;
   for(unsigned int i = 0; i < (via1.size() - 1); i++)
     for(unsigned int j = i + 1; j < via1.size(); j++)
       if(via1[i] + via2[i] < via1[j] + via2[j])
@@ -53,13 +53,11 @@ void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& v
       }
 }
 
-void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& via2,
-                                               vector<vector<list<int>>>& vVLib1,
-                                               vector<vector<list<int>>>& vVLib2, vector<int>& vic1,
-                                               vector<int>& vic2, vector<vector<int>>& vVid1,
-                                               vector<vector<int>>& vVid2,
-                                               vector<vector<int>>& vVie1,
-                                               vector<vector<int>>& vVie2)
+void topoana::sortBySumOf1stAnd2ndFromLrgToSml(
+  vector<int>& via1, vector<int>& via2, vector<vector<list<int> > >& vVLib1,
+  vector<vector<list<int> > >& vVLib2, vector<int>& vic1, vector<int>& vic2,
+  vector<vector<int> >& vVid1, vector<vector<int> >& vVid2, vector<vector<int> >& vVie1,
+  vector<vector<int> >& vVie2)
 {
   if(via1.size() != via2.size() || via2.size() != vVLib1.size() || vVLib1.size() != vVLib2.size() ||
      vVLib2.size() != vic1.size() || vic1.size() != vic2.size() || vic2.size() != vVid1.size() ||
@@ -84,10 +82,10 @@ void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& v
     cerr << "Infor: The sizes of the ten vectors are zero!" << endl << endl;
     return;
   }
-  int               iaTmp1, iaTmp2;
-  vector<list<int>> vLibTmp1, vLibTmp2;
-  int               icTmp1, icTmp2;
-  vector<int>       vidTmp1, vidTmp2, vieTmp1, vieTmp2;
+  int                iaTmp1, iaTmp2;
+  vector<list<int> > vLibTmp1, vLibTmp2;
+  int                icTmp1, icTmp2;
+  vector<int>        vidTmp1, vidTmp2, vieTmp1, vieTmp2;
   for(unsigned int i = 0; i < (via1.size() - 1); i++)
     for(unsigned int j = i + 1; j < via1.size(); j++)
       if(via1[i] + via2[i] < via1[j] + via2[j])
@@ -126,7 +124,7 @@ void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& v
 }
 
 void topoana::sortBySumOf1stAnd2ndFromLrgToSml(vector<int>& via1, vector<int>& via2,
-                                               vector<list<int>>& vLib1, vector<list<int>>& vLib2,
+                                               vector<list<int> >& vLib1, vector<list<int> >& vLib2,
                                                vector<int>& vic1, vector<int>& vic2)
 {
   if(via1.size() != via2.size() || via2.size() != vLib1.size() || vLib1.size() != vLib2.size() ||

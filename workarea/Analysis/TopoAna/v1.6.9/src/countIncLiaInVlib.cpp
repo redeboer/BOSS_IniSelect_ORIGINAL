@@ -2,7 +2,7 @@
 #include <cstdlib>
 #include <iostream>
 
-unsigned int topoana::countIncLiaInVlib(list<int>& lia, vector<list<int>>& Vlib)
+unsigned int topoana::countIncLiaInVlib(list<int>& lia, vector<list<int> >& Vlib)
 {
   unsigned int nCount = 0;
   if(Vlib.size() == 0)

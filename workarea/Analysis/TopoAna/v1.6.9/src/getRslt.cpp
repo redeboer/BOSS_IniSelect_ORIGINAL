@@ -90,16 +90,16 @@ void topoana::getRslt()
   }
   unsigned long nEtrsThroughTheCut = 0;
 
-  vector<int>       vPid, vCcPid;
-  vector<int>       vMidx, vCcMidx;
-  vector<list<int>> dcyTr, ccDcyTr;
-  vector<int>       vIdxOfHead, vCcIdxOfHead;
-  vector<int>       vMidxOfHead, vCcMidxOfHead;
-  string            strDcyTr, strCcDcyTr;
-  list<int>         dcyFSt, ccDcyFSt;
-  string            strDcyFSt, strCcDcyFSt;
-  ostringstream     oss;
-  bool              havesmpd = false;
+  vector<int>        vPid, vCcPid;
+  vector<int>        vMidx, vCcMidx;
+  vector<list<int> > dcyTr, ccDcyTr;
+  vector<int>        vIdxOfHead, vCcIdxOfHead;
+  vector<int>        vMidxOfHead, vCcMidxOfHead;
+  string             strDcyTr, strCcDcyTr;
+  list<int>          dcyFSt, ccDcyFSt;
+  string             strDcyFSt, strCcDcyFSt;
+  ostringstream      oss;
+  bool               havesmpd = false;
 
   if(m_sttaDcyTrsAndDcyFSts == false)
   {
@@ -813,12 +813,12 @@ void topoana::getRslt()
             m_nDcyTrsToBeAnlzdMax < m_vNDcyTr.size() ? m_nDcyTrsToBeAnlzdMax : m_vNDcyTr.size();
           if(nDcyTrsToBeAnlzd < m_vNDcyTr.size())
           {
-            vector<vector<list<int>>>::iterator it_m_vDcyTr_b = m_vDcyTr.begin();
-            vector<vector<list<int>>>::iterator it_m_vDcyTr_e = m_vDcyTr.end();
+            vector<vector<list<int> > >::iterator it_m_vDcyTr_b = m_vDcyTr.begin();
+            vector<vector<list<int> > >::iterator it_m_vDcyTr_e = m_vDcyTr.end();
             m_vDcyTr.erase(it_m_vDcyTr_b + nDcyTrsToBeAnlzd, it_m_vDcyTr_e);
             vector<int> m_vIDcyFSt_temp;
             m_vIDcyFSt_temp.clear();
-            vector<list<int>> m_vDcyFSt_new;
+            vector<list<int> > m_vDcyFSt_new;
             m_vDcyFSt_new.clear();
             map<int, int> m_iDcyTrIDcyFStMap_new;
             m_iDcyTrIDcyFStMap_new.clear();
@@ -877,15 +877,15 @@ void topoana::getRslt()
 
             if(m_ccSwitch == true)
             {
-              vector<vector<list<int>>>::iterator it_m_vCcDcyTr_b = m_vCcDcyTr.begin();
-              vector<vector<list<int>>>::iterator it_m_vCcDcyTr_e = m_vCcDcyTr.end();
+              vector<vector<list<int> > >::iterator it_m_vCcDcyTr_b = m_vCcDcyTr.begin();
+              vector<vector<list<int> > >::iterator it_m_vCcDcyTr_e = m_vCcDcyTr.end();
               m_vCcDcyTr.erase(it_m_vCcDcyTr_b + nDcyTrsToBeAnlzd, it_m_vCcDcyTr_e);
               vector<int>::iterator it_m_vICcDcyTr_b = m_vICcDcyTr.begin();
               vector<int>::iterator it_m_vICcDcyTr_e = m_vICcDcyTr.end();
               m_vICcDcyTr.erase(it_m_vICcDcyTr_b + nDcyTrsToBeAnlzd, it_m_vICcDcyTr_e);
               vector<int> m_vIDcyFSt_temp;
               m_vIDcyFSt_temp.clear();
-              vector<list<int>> m_vCcDcyFSt_new;
+              vector<list<int> > m_vCcDcyFSt_new;
               m_vCcDcyFSt_new.clear();
               vector<int> m_vICcDcyFSt_new;
               m_vICcDcyFSt_new.clear();

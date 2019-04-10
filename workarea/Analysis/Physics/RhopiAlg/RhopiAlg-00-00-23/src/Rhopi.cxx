@@ -421,8 +421,8 @@ StatusCode Rhopi::execute()
     VFHelix      helixip(point0, a, Ea);
     helixip.pivot(IP);
     HepVector vecipa = helixip.a();
-    double    Rvxy0 = fabs(vecipa[0]); // the nearest distance to IP in xy plane
-    double    Rvz0 = vecipa[3];        // the nearest distance to IP in z direction
+    double    Rvxy0  = fabs(vecipa[0]); // the nearest distance to IP in xy plane
+    double    Rvz0   = vecipa[3];       // the nearest distance to IP in z direction
     double    Rvphi0 = vecipa[1];
     m_rvxy0          = Rvxy0;
     m_rvz0           = Rvz0;

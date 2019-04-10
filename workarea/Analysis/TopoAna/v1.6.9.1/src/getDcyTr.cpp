@@ -1,7 +1,7 @@
 #include "../include/topoana.h"
 #include <cstdlib>
 
-void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& dcyTr)
+void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int> >& dcyTr)
 {
   dcyTr.clear();
   list<int> dcyBr;
@@ -33,7 +33,7 @@ void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& d
   }
 }
 
-void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& dcyTr,
+void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int> >& dcyTr,
                        vector<int>& vIdxOfHead, vector<int>& vMidxOfHead)
 {
   dcyTr.clear();
@@ -76,7 +76,7 @@ void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& d
   }
 }
 
-void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& dcyTr,
+void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int> >& dcyTr,
                        vector<int>& vIdxOfHead, vector<int>& vMidxOfHead,
                        vector<int>& vIIncIncSeqDcyBrs)
 {
@@ -134,7 +134,7 @@ void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& d
   }
 }
 
-void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int>>& dcyTr,
+void topoana::getDcyTr(vector<int> vPid, vector<int> vMidx, vector<list<int> >& dcyTr,
                        vector<int>& vIdxOfHead, vector<int>& vMidxOfHead,
                        vector<int>& vIIncIncOrIRASeqDcyBrs, vector<int>& vIIRAIncOrIRASeqDcyBrs)
 {
