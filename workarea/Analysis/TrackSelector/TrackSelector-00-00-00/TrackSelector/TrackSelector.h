@@ -40,7 +40,6 @@
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
-#include "TrackSelector/Containers/ParticleTracks.h"
 #include "TrackSelector/KKFitResult.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
