@@ -1,0 +1,18 @@
+
+Decay J/psi
+  1.0 D0 omega PHSP;
+Enddecay
+
+Decay D0
+  1.0 K- pi+ PHSP;
+Enddecay
+
+Decay omega
+  1.0 pi- pi+ pi0 OMEGA_DALITZ;
+Enddecay
+
+Decay pi0
+  1.0 gamma gamma PHSP;
+Enddecay
+
+End
