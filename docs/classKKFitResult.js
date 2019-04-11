@@ -7,6 +7,7 @@ var classKKFitResult =
     [ "operator bool", "classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065", null ],
     [ "ResetBestCompareValue", "classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb", null ],
     [ "SetRunAndEventNumber", "classKKFitResult.html#a0bfc1a64d3b3003d47de15516ffca23f", null ],
+    [ "ThreeMomentum", "classKKFitResult.html#aad7fbcc9c66124cb225ef4c931a8492c", null ],
     [ "fBestCompareValue", "classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0", null ],
     [ "fChiSquared", "classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46", null ],
     [ "fEventNumber", "classKKFitResult.html#a8de025d0097e3db1efa63a6394d5b7b3", null ],

@@ -45,7 +45,8 @@ const int    gNMasses      = sizeof(gMasses) / sizeof(*gMasses);
 /// `TrackSelector`), and if required a documentation string. Note that you should define the
 /// paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign
 /// the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's
-/// `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html for more
+/// `Algorithm` class. See class `GaudiKernel`s
+/// [`Algorithm`][https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html] for more
 /// details.
 TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) :
   /// * Construct `Algorithm` objects.
@@ -96,8 +97,8 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   PrintFunctionName("TrackSelector", __func__);
 }
 
-/// Rather dubious construction, but this method is required and <b>has to be called at the end of
-/// each derived constructor</b>. The reason for that this method is necessary is that a Gaudi
+/// Rather dubious construction, but this method is required and **has to be called at the end of
+/// each derived constructor**. The reason for that this method is necessary is that a Gaudi
 /// `Algorithm` requires properties to have been declared by the time the `Algorithm` has been
 /// constructed.
 void TrackSelector::PostConstructor()
@@ -112,7 +113,7 @@ void TrackSelector::PostConstructor()
 // * =============================== * //
 
 /// (Inherited) `initialize` step of `Algorithm`.
-/// This function is called once in the beginning <i>of each run</i>. Define and load NTuples here.
+/// This function is called once in the beginning *of each run*. Define and load NTuples here.
 /// The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will
 /// be the branches of those trees.
 StatusCode TrackSelector::initialize()
@@ -157,41 +158,44 @@ StatusCode TrackSelector::initialize()
 
   /// <li> `"charged"`: Charged track info.
   /// <ol>
-  fNTuple_charged.AddItem<double>(
-    "vx"); /// <li> `"vx"`:    \f$x\f$ coordinate of the secondary vertex as determined by MDC.
-  fNTuple_charged.AddItem<double>(
-    "vy"); /// <li> `"vy"`:    \f$y\f$ coordinate of the secondary vertex as determined by MDC.
-  fNTuple_charged.AddItem<double>(
-    "vz"); /// <li> `"vz"`:    \f$z\f$ coordinate of the secondary vertex as determined by MDC.
-  fNTuple_charged.AddItem<double>("vr"); /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
-  fNTuple_charged.AddItem<double>(
-    "rvxy"); /// <li> `"rvxy"`:  Nearest distance to interaction point in \f$xy\f$ plane.
-  fNTuple_charged.AddItem<double>(
-    "rvz"); /// <li> `"rvz"`:   Nearest distance to interaction point in \f$z\f$ direction.
-  fNTuple_charged.AddItem<double>(
-    "rvphi"); /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry
-              /// (angle) definitions in an event.
-  fNTuple_charged.AddItem<double>("phi"); /// <li> `"phi"`:   Helix angle of the particle.
-  fNTuple_charged.AddItem<double>("p");   /// <li> `"p"`:     Momentum \f$p\f$ of the track.
+  fNTuple_charged.AddItem<double>("vx");
+  /// <li> `"vx"`:    \f$x\f$ coordinate of the secondary vertex as determined by MDC.
+  fNTuple_charged.AddItem<double>("vy");
+  /// <li> `"vy"`:    \f$y\f$ coordinate of the secondary vertex as determined by MDC.
+  fNTuple_charged.AddItem<double>("vz");
+  /// <li> `"vz"`:    \f$z\f$ coordinate of the secondary vertex as determined by MDC.
+  fNTuple_charged.AddItem<double>("vr");
+  /// <li> `"vr"`:    Distance from origin in \f$xy\f$ plane.
+  fNTuple_charged.AddItem<double>("rvxy");
+  /// <li> `"rvxy"`:  Nearest distance to interaction point in \f$xy\f$ plane.
+  fNTuple_charged.AddItem<double>("rvz");
+  /// <li> `"rvz"`:   Nearest distance to interaction point in \f$z\f$ direction.
+  fNTuple_charged.AddItem<double>("rvphi");
+  /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle)
+  /// definitions in an event.
+  fNTuple_charged.AddItem<double>("phi");
+  /// <li> `"phi"`:   Helix angle of the particle.
+  fNTuple_charged.AddItem<double>("p");
+  /// <li> `"p"`:     Momentum \f$p\f$ of the track.
   /// </ol>
 
   /// <li> `"neutral"`: Neutral track info.
   /// <ol>
-  fNTuple_neutral.AddItem<double>(
-    "E"); /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
-  fNTuple_neutral.AddItem<double>(
-    "x"); /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
-  fNTuple_neutral.AddItem<double>(
-    "y"); /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
-  fNTuple_neutral.AddItem<double>(
-    "z"); /// <li> `"z"`: \f$z\f$-coordinate of the neutral track according to the EMC.
-  fNTuple_neutral.AddItem<double>(
-    "phi"); /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
-  fNTuple_neutral.AddItem<double>(
-    "theta"); /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
-  fNTuple_neutral.AddItem<double>(
-    "time"); /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate
-             /// what this parameter precisely means.
+  fNTuple_neutral.AddItem<double>("E");
+  /// <li> `"E"`: Energy of the neutral track as determined by the EM calorimeter.
+  fNTuple_neutral.AddItem<double>("x");
+  /// <li> `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
+  fNTuple_neutral.AddItem<double>("y");
+  /// <li> `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
+  fNTuple_neutral.AddItem<double>("z");
+  /// <li> `"z"`: \f$z\f$-coordinate of the neutral track according to the EMC.
+  fNTuple_neutral.AddItem<double>("phi");
+  /// <li> `"phi"`: \f$\phi\f$-angle of the neutral track according to the EMC.
+  fNTuple_neutral.AddItem<double>("theta");
+  /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
+  fNTuple_neutral.AddItem<double>("time");
+  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this
+  /// parameter precisely means.
   /// </ol>
 
   /// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx`
@@ -209,35 +213,41 @@ StatusCode TrackSelector::initialize()
 
   /// <li> `"PID"`: Track PID information.
   /// <ol>
-  fNTuple_PID.AddItem<double>(
-    "p"); /// <li> `"p"`:        Momentum of the track as reconstructed by MDC.
-  fNTuple_PID.AddItem<double>("cost"); /// <li> `"cost"`:     Theta angle of the track.
-  fNTuple_PID.AddItem<double>(
-    "chiToFIB"); /// <li> `"chiToFIB"`: \f$\chi^2\f$ of the inner barrel ToF of the track.
-  fNTuple_PID.AddItem<double>(
-    "chiToFEC"); /// <li> `"chiToFEC"`: \f$\chi^2\f$ of the end cap ToF of the track.
-  fNTuple_PID.AddItem<double>(
-    "chiToFOB"); /// <li> `"chiToFOB"`: \f$\chi^2\f$ of the outer barrel ToF of the track.
-  fNTuple_PID.AddItem<double>("chidEdx"); /// <li> `"chidEdx"`:  \f$\chi^2\f$ of the energy loss
-                                          /// \f$dE/dx\f$ of the identified track.
-  fNTuple_PID.AddItem<double>("prob_K"); /// <li> `"prob_K"`:   Probability that the track is from a
-                                         /// kaon according to the probability method.
-  fNTuple_PID.AddItem<double>("prob_e"); /// <li> `"prob_e"`:   Probability that the track is from a
-                                         /// electron according to the probability method.
-  fNTuple_PID.AddItem<double>("prob_mu"); /// <li> `"prob_mu"`:  Probability that the track is from
-                                          /// a muon according to the probability method.
-  fNTuple_PID.AddItem<double>("prob_p"); /// <li> `"prob_p"`:   Probability that the track is from a
-                                         /// proton according to the probability method.
-  fNTuple_PID.AddItem<double>("prob_pi"); /// <li> `"prob_pi"`:  Probability that the track is from
-                                          /// a pion according to the probability method.
-                                          /// </ol>
+  fNTuple_PID.AddItem<double>("p");
+  /// <li> `"p"`:        Momentum of the track as reconstructed by MDC.
+  fNTuple_PID.AddItem<double>("cost");
+  /// <li> `"cost"`:     Theta angle of the track.
+  fNTuple_PID.AddItem<double>("chiToFIB");
+  /// <li> `"chiToFIB"`: \f$\chi^2\f$ of the inner barrel ToF of the track.
+  fNTuple_PID.AddItem<double>("chiToFEC");
+  /// <li> `"chiToFEC"`: \f$\chi^2\f$ of the end cap ToF of the track.
+  fNTuple_PID.AddItem<double>("chiToFOB");
+  /// <li> `"chiToFOB"`: \f$\chi^2\f$ of the outer barrel ToF of the track.
+  fNTuple_PID.AddItem<double>("chidEdx");
+  /// <li> `"chidEdx"`:  \f$\chi^2\f$ of the energy loss \f$dE/dx\f$ of the identified track.
+  fNTuple_PID.AddItem<double>("prob_K");
+  /// <li> `"prob_K"`:   Probability that the track is from a kaon according to the probability
+  /// method.
+  fNTuple_PID.AddItem<double>("prob_e");
+  /// <li> `"prob_e"`:   Probability that the track is from a electron according to the probability
+  /// method.
+  fNTuple_PID.AddItem<double>("prob_mu");
+  /// <li> `"prob_mu"`:  Probability that the track is from a muon according to the probability
+  /// method.
+  fNTuple_PID.AddItem<double>("prob_p");
+  /// <li> `"prob_p"`:   Probability that the track is from a proton according to the probability
+  /// method.
+  fNTuple_PID.AddItem<double>("prob_pi");
+  /// <li> `"prob_pi"`:  Probability that the track is from a pion according to the probability
+  /// method.
+  /// </ol>
   /// </ol>
 
   initialize_rest();
   return StatusCode::SUCCESS;
 }
 
-/// This method is called <b>for each event</b>.
+/// This method is called **for each event**.
 StatusCode TrackSelector::execute()
 {
   PrintFunctionName("TrackSelector", __func__);
@@ -245,14 +255,13 @@ StatusCode TrackSelector::execute()
   /// <ol>
   /// <li> Load headers from the input file.
   /// <ul>
-  /// <li> <a
-  /// href="http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html">Namespace
-  /// `EventModel`</a> <li> <a
-  /// href="http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html">Class `EvtRecEvent`</a>
-  /// <li> <a href="http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html">Type definition
-  /// `EvtRecTrackCol`</a> <li> <a
-  /// href="http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed">Type
-  /// definition `Event::McParticleCol`</a>
+  /// <li> [Namespace
+  /// `EventModel`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html)
+  /// <li> [Class `EvtRecEvent`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html)
+  /// <li> [Type definition
+  /// `EvtRecTrackCol`](http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html)
+  /// <li> [Type definition
+  /// `Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed)
   /// </ul>
   fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
   fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
@@ -313,7 +322,7 @@ StatusCode TrackSelector::execute()
   return StatusCode::SUCCESS;
 }
 
-/// Is called at the end <i>of the entire process</i>.
+/// Is called at the end *of the entire process*.
 /// Writes total cut flow to terminal and to the output file.
 StatusCode TrackSelector::finalize()
 {
@@ -343,9 +352,9 @@ void TrackSelector::PrintFunctionName(const char* class_name, const char* functi
 // * ================================ * //
 
 /// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna
-/// package. Have a look at <a
-/// href="https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection">this
-/// page</a> as for why these fields are required.
+/// package. Have a look at [this
+/// page](https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection)
+/// as for why these fields are required.
 void TrackSelector::AddNTupleItems_MCTruth(NTupleContainer& tuple)
 {
   if(!tuple.DoWrite()) return;
@@ -632,7 +641,7 @@ void TrackSelector::CreateNeutralCollection()
   /// </ol>
 }
 
-/// Create a preselection of <b>Monte Carlo truth</b> tracks.
+/// Create a preselection of **Monte Carlo truth** tracks.
 /// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles`
 /// `vector` with a selection of `McParticle` pointers. This collection starts with the initial
 /// cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it
@@ -663,8 +672,8 @@ bool TrackSelector::CreateMCTruthCollection()
   }
 
   /// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data
-  /// available in `McParticle`, see <a
-  /// href="http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html">here</a>. Only add to
+  /// available in `McParticle`, see
+  /// [here](http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html). Only add to
   /// `fMcParticles` if the `McParticle` satisfies:
   bool doNotInclude(true); // only start recording if set to false in the loop
   for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it != fMcParticleCol->end();
@@ -677,7 +686,7 @@ bool TrackSelector::CreateMCTruthCollection()
     /// <li> @b Skip if the track is not from the generator. This means that it is simulated in the
     /// detectors, but did not come from the event generator.
     if(!(*it)->decayFromGenerator()) continue;
-    /// <li> Only start recording <i>after</i> we have passed the initial simulation `cluster` (code
+    /// <li> Only start recording *after* we have passed the initial simulation `cluster` (code
     /// 91) or `string` (code 92). The next particle after this cluster or string will be the meson
     /// to which the beam is tuned (e.g. \f$J/\psi\f$). @see `NTupleTopoAna::IsInitialCluster`.
     if(doNotInclude && NTupleTopoAna::IsJPsi(*it)) doNotInclude = false;
@@ -688,7 +697,7 @@ bool TrackSelector::CreateMCTruthCollection()
     /// </ul>
   }
 
-  /// <li> <i>(For the derived class:)</i><br> Create selections of specific MC truth particles
+  /// <li> *(For the derived class:)*<br> Create selections of specific MC truth particles
   /// using `CreateMCTruthSelection`. Will not be performed if not specified in the derived
   /// algorithm.
   CreateMCTruthSelection();
@@ -715,14 +724,11 @@ void TrackSelector::DeclareSwitches()
 // * -------- WRITE METHODS -------- * //
 // * =============================== * //
 
-/// Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information <i>for one
-/// track</i>. Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because
+/// Encapsulates of the writing procedure for \f$dE/dx\f$ energy loss information *for one
+/// track*. Here, you should use `map::at` to access the `NTuple::Item`s and `NTuplePtr`, because
 /// you want your package to throw an exception if the element does not exist. See
 /// http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115 for available data
 /// members of `RecMdcDedx`
-/// @param evtRecTrack Pointer to the reconstructed track of which you want to write the \f$dE/dx\f$
-/// data.
-/// @param tuple `NTupleContainer` to which you want to write the \f$dE/dx\f$ data.
 void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple)
 {
   /// -# Abort if the 'write `JobSwitch`' has been set to `false`.
@@ -815,8 +821,8 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
   tuple.GetItem<int>("evtID") = fEventHeader->eventNumber();
 
   /// -# The `trackIndex` of the first particle is to be the offset for the array index, because
-  /// this entry should have array index `0`. See <a
-  /// href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a>
+  /// this entry should have array index `0`. See
+  /// [here](https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection)
   /// for more information on using `indexOffset`.
   std::vector<Event::McParticle*>::iterator it = fMcParticles.begin();
   int                                       indexOffset((*it)->trackIndex());
@@ -832,11 +838,8 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
     if(!NTupleTopoAna::IsFromJPsi(*it)) --mother[index];
     if(NTupleTopoAna::IsJPsi(*it)) mother[index] = 0;
     ++index;
-    // std::cout
-    // << std::setw(3) << tuple.index
-    // << std::setw(7) << tuple.particle[tuple.index]
-    // << std::setw(4) << tuple.mother[tuple.index]
-    // << std::endl;
+    // std::cout << std::setw(3) << tuple.index << std::setw(7) << tuple.particle[tuple.index]
+    //           << std::setw(4) << tuple.mother[tuple.index] << std::endl;
   }
   // std::cout << std::endl;
 
@@ -919,19 +922,10 @@ void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator it
 // * ========================================= * //
 
 /// Method that standardizes the initialisation of the particle identification system.
-/// Define here <i>as general as possible</i>, but use in the derived subalgorithms. See
+/// Define here *as general as possible*, but use in the derived subalgorithms. See
 /// http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
 /// @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g.
 /// `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
-/// @param method Which method to use: probability, likelihood, or neuron network (see
-/// `TSGlobals::PIDMethod`). You can also combine using e.g. `pid->methodLikelihood() |
-/// pid->methodProbability()`.
-/// @param pidsys PID systems you want to call. Can combined using bit seperators (`|`), e.g.
-/// `pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE()` for \f$dE/dx\f$ plus all ToF
-/// detectors.
-/// @param pidcase Which particles to identify. For instance, `pid->onlyPion() | pid->onlyKaon()` in
-/// the case of pions and kaons.
-/// @param chimin Minimal \f$\chi^2\f$ of the resulting particle identification.
 ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase,
                                          const double chimin)
 {

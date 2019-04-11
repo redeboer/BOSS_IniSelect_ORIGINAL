@@ -60,7 +60,7 @@
 	}
 
 
-	/// Write MC truth properties <i>for each event</i>.
+	/// Write MC truth properties *for each event*.
 	int ievt=0;
 	StatusCode MctruthForTopoAna::execute()
 	{
@@ -111,7 +111,7 @@
 				m_pid[m_nmcps] = (*it)->particleProperty();
 			/// <li> Store a array index of the mother. This ID is `-1` if it is the initial cluster (e.g. \f$J/\psi\f$).
 				m_midx[m_nmcps] = (*it)->mother().trackIndex()-rootIndex-1;
-			// * <i>Debug output</i> Table of stored particles and their indices. *
+			// * *Debug output* Table of stored particles and their indices. *
 				std::endl
 					<< std::setw(3) << m_nmcps
 					<< std::setw(4) << (*it)->trackIndex()

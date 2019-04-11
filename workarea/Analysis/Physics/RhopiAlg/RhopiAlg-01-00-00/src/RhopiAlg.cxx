@@ -108,7 +108,7 @@ RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) : Algorith
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
 /// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the
-/// beginning. <b>Define and load `NTuple`s here.</b>
+/// beginning. **Define and load `NTuple`s here.**
 StatusCode RhopiAlg::initialize()
 {
   // * Log stream and status code * //
@@ -116,8 +116,8 @@ StatusCode RhopiAlg::initialize()
   log << MSG::INFO << "In initialize():" << endmsg;
 
   /// <table>
-  /// <tr><td colspan="2"><b>`NTuple "vxyz"`:   Vertex information of the charged
-  /// tracks</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged
+  /// tracks**</td></tr>
   NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
   if(nt1)
     fTupleVxyz = nt1;
@@ -154,7 +154,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "photon"`: Photon kinematics</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "photon"`: Photon kinematics**</td></tr>
   NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
   if(nt2)
     fTupleAngles = nt2;
@@ -181,7 +181,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "etot"`:   Energy branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "etot"`:   Energy branch**</td></tr>
   NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
   if(nt3)
     fTupleMgg = nt3;
@@ -202,7 +202,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "fit4c"`:  Neutral pion (pi0) fit branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "fit4c"`:  Neutral pion (pi0) fit branch**</td></tr>
   if(fDo_fit4c)
   {
     NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
@@ -227,7 +227,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "fit5c"`:  Rho fit branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "fit5c"`:  Rho fit branch**</td></tr>
   if(fDo_fit5c)
   {
     NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
@@ -259,7 +259,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "geff"`:   Photon detection efficiences</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "geff"`:   Photon detection efficiences**</td></tr>
   if(fDo_fit5c)
   {
     NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
@@ -283,7 +283,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "dedx"`:   Import dE/dx PID branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "dedx"`:   Import dE/dx PID branch**</td></tr>
   if(fCheckDedx)
   {
     NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
@@ -323,7 +323,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "tofe"`:   ToF endcap branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tofe"`:   ToF endcap branch**</td></tr>
   if(fCheckTof)
   {
     NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
@@ -367,7 +367,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "tof1"`:   ToF <i>inner</i> barrel branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tof1"`:   ToF *inner* barrel branch**</td></tr>
   if(fCheckTof)
   {
     NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
@@ -410,7 +410,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "tof2"`:   ToF <i>outer</i> barrel branch</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tof2"`:   ToF *outer* barrel branch**</td></tr>
   if(fCheckTof)
   {
     NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
@@ -453,7 +453,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "pid"`:    Track PID information</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "pid"`:    Track PID information**</td></tr>
   NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
   if(nt11)
     fTuplePID = nt11;
@@ -499,7 +499,7 @@ StatusCode RhopiAlg::execute()
   log << MSG::INFO << "In execute():" << endmsg;
 
   /// <li> Load next event from DST file
-  /// <b> Uses `Ncut0` counter</b>: no cut applied yet.
+  /// ** Uses `Ncut0` counter**: no cut applied yet.
 
   // * Load DST file info *
   SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
@@ -538,7 +538,7 @@ StatusCode RhopiAlg::execute()
   }
 
   /// <li> LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)
-  /// <b> Uses `Ncut1` counter</b>: nGood has to be 2, mdcTrk->charge() has to be more than 0.
+  /// ** Uses `Ncut1` counter**: nGood has to be 2, mdcTrk->charge() has to be more than 0.
   // The first part of the set of reconstructed tracks are the charged tracks
   int nCharge = 0; // Number of charged tracks as identified by the MDC.
   Vint
@@ -603,7 +603,7 @@ StatusCode RhopiAlg::execute()
   Ncut1++; // nGood!=2 or nCharge!=0
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
-  /// <b> Uses `Ncut2` counter</b>: number of good photons has to be 2 at least.
+  /// ** Uses `Ncut2` counter**: number of good photons has to be 2 at least.
   // The second part of the set of reconstructed events consists of the neutral tracks, that is, the
   // photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired
   // with each charged track and if their angle is smaller than a certain value (here, 200), the
@@ -920,7 +920,7 @@ StatusCode RhopiAlg::execute()
     }
   }
 
-  /// <li> RhopiAlg without PID (<i>optional: needs to be uncommented</i>)
+  /// <li> RhopiAlg without PID (*optional: needs to be uncommented*)
   // for(int i = 0; i < nGood; ++i) {
   // EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
   // RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
@@ -945,7 +945,7 @@ StatusCode RhopiAlg::execute()
   // }
   // } // without PID
 
-  /// <b> Uses `Ncut3` counter</b>: `ipip.size()` * `ipim.size()` cannot be `1`.
+  /// ** Uses `Ncut3` counter**: `ipip.size()` * `ipim.size()` cannot be `1`.
   int npip = ipip.size();
   int npim = ipim.size();
   if(npip * npim != 1) return SUCCESS;
@@ -975,7 +975,7 @@ StatusCode RhopiAlg::execute()
   wvpipTrk = WTrackParameter(mpi0, pipTrk->getZHelix(), pipTrk->getZError());
   wvpimTrk = WTrackParameter(mpi0, pimTrk->getZHelix(), pimTrk->getZError());
 
-  /// <li> Default is pion, for other particles (<i>optional: needs to be uncommented</i>)
+  /// <li> Default is pion, for other particles (*optional: needs to be uncommented*)
   // wvppTrk = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP()); // proton
   // wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu()); // muon
   // wvepTrk = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE()); // electron
@@ -1042,7 +1042,7 @@ StatusCode RhopiAlg::execute()
       }
     }
 
-    /// <b> Uses `Ncut4` counter</b>: fit4c passed and ChiSq less than fMaxChiSq.
+    /// ** Uses `Ncut4` counter**: fit4c passed and ChiSq less than fMaxChiSq.
     if(chisq < fMaxChiSq)
     {
       RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + ig1))->emcShower();
@@ -1067,8 +1067,8 @@ StatusCode RhopiAlg::execute()
   }
 
   /// <li> Apply Kalman kinematic fit
-  /// <b> Uses `Ncut5` counter</b>: Kalman kinematic fit 5c is successful.
-  /// <b> Uses `Ncut6` counter</b>: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass
+  /// ** Uses `Ncut5` counter**: Kalman kinematic fit 5c is successful.
+  /// ** Uses `Ncut6` counter**: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass
   /// window).
   if(fDo_fit5c)
   {
@@ -1162,8 +1162,8 @@ StatusCode RhopiAlg::execute()
 // * -------- FINALIZE -------- * //
 // * ========================== * //
 /// Inherited `finalize` method of `Algorithm`. This function is only called once, after running
-/// over all events. Prints the flow chart to the terminal, so <b>make sure you save this
-/// output!</b>
+/// over all events. Prints the flow chart to the terminal, so **make sure you save this
+/// output!**
 StatusCode RhopiAlg::finalize()
 {
   MsgStream log(msgSvc(), name());

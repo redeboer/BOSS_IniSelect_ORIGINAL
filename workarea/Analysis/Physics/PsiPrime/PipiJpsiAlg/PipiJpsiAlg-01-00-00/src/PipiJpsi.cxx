@@ -105,7 +105,7 @@ PipiJpsi::PipiJpsi(const std::string& name, ISvcLocator* pSvcLocator) : Algorith
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
 /// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the
-/// beginning. <b>Define and load `NTuple`s here.</b>
+/// beginning. **Define and load `NTuple`s here.**
 StatusCode PipiJpsi::initialize()
 {
   // * Log stream and status code * //
@@ -113,8 +113,8 @@ StatusCode PipiJpsi::initialize()
   log << MSG::INFO << "in initialize()" << endmsg;
 
   /// <table>
-  /// <tr><td colspan="2"><b>`NTuple "vxyz"`:   Vertex information of the charged
-  /// tracks</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged
+  /// tracks**</td></tr>
   NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
   if(nt1)
     m_tuple1 = nt1;
@@ -142,7 +142,7 @@ StatusCode PipiJpsi::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "photon"`: 'Fake' photon (angles)</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "photon"`: 'Fake' photon (angles)**</td></tr>
   NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
   if(nt2)
     m_tuple2 = nt2;
@@ -168,7 +168,7 @@ StatusCode PipiJpsi::initialize()
     }
   }
 
-  /// <tr><td colspan="2"><b>`NTuple "dedx"`:   Energy loss dE/dx info</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "dedx"`:   Energy loss dE/dx info**</td></tr>
   if(m_checkDedx)
   {
     NTuplePtr nt3(ntupleSvc(), "FILE1/dedx");
@@ -209,7 +209,7 @@ StatusCode PipiJpsi::initialize()
     }
   } // check dE/dx
 
-  /// <tr><td colspan="2"><b>`NTuple "tofe"`:   Endcap ToF</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tofe"`:   Endcap ToF**</td></tr>
   if(m_checkTof)
   {
     NTuplePtr nt4(ntupleSvc(), "FILE1/tofe");
@@ -253,7 +253,7 @@ StatusCode PipiJpsi::initialize()
     }
   } // check Tof: endcap
 
-  /// <tr><td colspan="2"><b>`NTuple "tof1"`:   Barrel inner ToF</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tof1"`:   Barrel inner ToF**</td></tr>
   if(m_checkTof)
   {
     NTuplePtr nt5(ntupleSvc(), "FILE1/tof1");
@@ -295,7 +295,7 @@ StatusCode PipiJpsi::initialize()
     }
   } // check Tof: barrel inner Tof
 
-  /// <tr><td colspan="2"><b>`NTuple "tof2"`:   Barrel outer ToF</b></td></tr>
+  /// <tr><td colspan="2">**`NTuple "tof2"`:   Barrel outer ToF**</td></tr>
   if(m_checkTof)
   {
     NTuplePtr nt6(ntupleSvc(), "FILE1/tof2");
@@ -337,8 +337,8 @@ StatusCode PipiJpsi::initialize()
     }
   } // check Tof: barrel outter Tof
 
-  /// <tr><td colspan="2"><b>`NTuple "infmom"`: Information with the method of momentum
-  /// selection</b> @attention This is the important part of the `PipiJpsi` algorithm!</td></tr>
+  /// <tr><td colspan="2">**`NTuple "infmom"`: Information with the method of momentum
+  /// selection** @attention This is the important part of the `PipiJpsi` algorithm!</td></tr>
   NTuplePtr nt8(ntupleSvc(), "FILE1/infmom");
   if(nt8)
     m_tuple8 = nt8;
@@ -599,12 +599,12 @@ StatusCode PipiJpsi::execute()
     if(fabs(m_vz0) >= m_vz0cut) continue;
     if(m_vr0 >= m_vr0cut) continue;
 
-    /// <li> <b>Store this track as 'good'</b>
+    /// <li> **Store this track as 'good'**
     iGood.push_back(i);
     nCharge += mdcTrk->charge();
 
     /// <li> Count if either pion or lepton. The track is considered to be pion if the
-    /// <i>probability to be an electron</i> is less than 1.
+    /// *probability to be an electron* is less than 1.
     if((*itTrk)->isEmcShowerValid())
     {
       if(mdcTrk->p() < 1.)

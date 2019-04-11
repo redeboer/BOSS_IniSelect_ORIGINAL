@@ -37,7 +37,7 @@
 #include "$CALIBSVCROOT/share/calibConfig_rec_mc.txt"
 
 // * ------- Job options for random number ------- * //
-/// Use a (unique!) number as seed to set the random number generator for the Monte Carlo simulation (`BesRndmGenSvc.RndmSeed`). <b>It should be the same as you used in the simulation step!</b> (Hint: use system time as seed number.)
+/// Use a (unique!) number as seed to set the random number generator for the Monte Carlo simulation (`BesRndmGenSvc.RndmSeed`). **It should be the same as you used in the simulation step!** (Hint: use system time as seed number.)
 BesRndmGenSvc.RndmSeed = __RANDSEED__;
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //

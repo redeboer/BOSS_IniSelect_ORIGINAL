@@ -183,13 +183,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a820fe7a39e403a51c178c759d48f7474"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event number ID.  <a href="#a820fe7a39e403a51c178c759d48f7474">More...</a><br /></td></tr>
 <tr class="separator:a820fe7a39e403a51c178c759d48f7474"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e50e1826ad9ebe5b326c03649575bfa"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#a4e50e1826ad9ebe5b326c03649575bfa">index</a></td></tr>
-<tr class="memdesc:a4e50e1826ad9ebe5b326c03649575bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.  <a href="#a4e50e1826ad9ebe5b326c03649575bfa">More...</a><br /></td></tr>
+<tr class="memdesc:a4e50e1826ad9ebe5b326c03649575bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event.  <a href="#a4e50e1826ad9ebe5b326c03649575bfa">More...</a><br /></td></tr>
 <tr class="separator:a4e50e1826ad9ebe5b326c03649575bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a187f137903a4f73761fad0cc9c76b2bf"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#a187f137903a4f73761fad0cc9c76b2bf">particle</a></td></tr>
 <tr class="memdesc:a187f137903a4f73761fad0cc9c76b2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDG code for the particle in this array.  <a href="#a187f137903a4f73761fad0cc9c76b2bf">More...</a><br /></td></tr>
 <tr class="separator:a187f137903a4f73761fad0cc9c76b2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05106fa19fd872ee7cbca3c0d7d9b770"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#a05106fa19fd872ee7cbca3c0d7d9b770">mother</a></td></tr>
-<tr class="memdesc:a05106fa19fd872ee7cbca3c0d7d9b770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array index that points to which particle in the <code>particle</code> array is the mother particle. Is a <code>-1</code> if the mother is a cluster (not stored in the <code>particle</code> array).  <a href="#a05106fa19fd872ee7cbca3c0d7d9b770">More...</a><br /></td></tr>
+<tr class="memdesc:a05106fa19fd872ee7cbca3c0d7d9b770"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array index that points to which particle in the <code>particle</code> array is the mother particle.  <a href="#a05106fa19fd872ee7cbca3c0d7d9b770">More...</a><br /></td></tr>
 <tr class="separator:a05106fa19fd872ee7cbca3c0d7d9b770"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
@@ -197,7 +197,7 @@ Constructors and destructors</h2></td></tr>
 <tr class="memitem:af162e16e823b754c52e72829daa7b750"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#af162e16e823b754c52e72829daa7b750">NTupleTopoAna</a> (const std::string &amp;name, const std::string &amp;desc)</td></tr>
 <tr class="separator:af162e16e823b754c52e72829daa7b750"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a195faf7b6e05c4291e9550ca14a2827f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#a195faf7b6e05c4291e9550ca14a2827f">IsInitialCluster</a> (Event::McParticle *mcparticle)</td></tr>
-<tr class="memdesc:a195faf7b6e05c4291e9550ca14a2827f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>.  <a href="#a195faf7b6e05c4291e9550ca14a2827f">More...</a><br /></td></tr>
+<tr class="memdesc:a195faf7b6e05c4291e9550ca14a2827f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string).  <a href="#a195faf7b6e05c4291e9550ca14a2827f">More...</a><br /></td></tr>
 <tr class="separator:a195faf7b6e05c4291e9550ca14a2827f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc1c5803edbe707a4c3445a576952ed3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNTupleTopoAna.html#adc1c5803edbe707a4c3445a576952ed3">IsJPsi</a> (Event::McParticle *mcparticle)</td></tr>
 <tr class="memdesc:adc1c5803edbe707a4c3445a576952ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>).  <a href="#adc1c5803edbe707a4c3445a576952ed3">More...</a><br /></td></tr>
@@ -265,11 +265,11 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><b>OUTDATED</b> Extension of <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> that represents the <code>NTuple</code> containing MC truth necessary for the <code>topoana</code> package. </p>
-<p>This object is still around, because it's <code>static</code> <code>IsJpsi</code> functions etc. are still required by <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> and derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace. </dd></dl>
+<p>This object is still around, because it's <code>static</code> <code>IsJpsi</code> functions etc. are still required by <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> and derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 18th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00026">26</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00024">24</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af162e16e823b754c52e72829daa7b750"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af162e16e823b754c52e72829daa7b750">&#9670;&nbsp;</a></span>NTupleTopoAna()</h2>
@@ -305,7 +305,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00031">31</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00029">29</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -334,9 +334,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Access to <code>fNTuple</code> (as opposed to <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code>). </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f" title="Easier and expanded version of NTuple::Tuple::addItem that also adds the item to the fItems_* mapping...">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000018">Todo:</a></b></dt><dd>Develop template <code><a class="el" href="classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f" title="Easier and expanded version of NTuple::Tuple::addItem that also adds the item to the fItems_* mapping...">NTupleContainer::AddItem</a></code> and <code>AddIndexedItem</code> procedure that removes the need to access <code>fTuple</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00048">48</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00050">50</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00040">40</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00042">42</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -394,8 +394,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>. </p>
-<dl class="section remark"><dt>Remarks</dt><dd>Here you can define the name and title of the branch for the TopoAna pacakge! </dd></dl>
+<p>Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Here you can define the name and title of the branch for the TopoAna pacakge! This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00032">32</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
@@ -427,7 +427,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00037">37</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00038">38</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +446,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Event number ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00056">56</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00062">62</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -462,10 +462,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays. </p>
-<dl class="section remark"><dt>Remarks</dt><dd>It is called <code>index</code>, because you use it as an index in the <code>WriteMcTruthForTopoAna</code> loop when filling the <code>particle</code> and <code>mother</code> arrays. Of course, when you exit the loop, this index also gives the number of items. </dd></dl>
+<p>Number of MC particles stored for this event. </p>
+<p>This one is necessary for loading following two items, because they are arrays. </p><dl class="section remark"><dt>Remarks</dt><dd>It is called <code>index</code>, because you use it as an index in the <code>WriteMcTruthForTopoAna</code> loop when filling the <code>particle</code> and <code>mother</code> arrays. Of course, when you exit the loop, this index also gives the number of items. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00057">57</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00064">64</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -481,9 +481,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Array index that points to which particle in the <code>particle</code> array is the mother particle. Is a <code>-1</code> if the mother is a cluster (not stored in the <code>particle</code> array). </p>
+<p>Array index that points to which particle in the <code>particle</code> array is the mother particle. </p>
+<p>Is a <code>-1</code> if the mother is a cluster (not stored in the <code>particle</code> array). </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00059">59</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00070">70</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -501,7 +502,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>PDG code for the particle in this array. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00058">58</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00069">69</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -519,7 +520,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Run number ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00055">55</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleTopoAna_8h_source.html#l00061">61</a> of file <a class="el" href="NTupleTopoAna_8h_source.html">NTupleTopoAna.h</a>.</p>
 
 </div>
 </div>

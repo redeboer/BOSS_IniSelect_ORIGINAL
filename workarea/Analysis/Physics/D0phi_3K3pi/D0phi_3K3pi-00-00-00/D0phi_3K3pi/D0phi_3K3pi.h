@@ -82,20 +82,20 @@ protected:
   NTupleContainer fNTuple_dedx_K;     ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of kaons.
   NTupleContainer fNTuple_dedx_pi;    ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
   NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch
-                                      ///< containing <i>all</i> combinations.
+                                      ///< containing *all* combinations.
   NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 4-constraint fit branch
-                                      ///< containing only the <i>best</i> combination.
+                                      ///< containing only the *best* combination.
   NTupleContainer
     fNTuple_fit_mc; ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
   ///@}
 
   /// @name Counters and cut objects
   ///@{
-  CutObject fCutFlow_NChargedOK; ///< <b>Cut flow counter</b>: total number of events that have
+  CutObject fCutFlow_NChargedOK; ///< **Cut flow counter**: total number of events that have
                                  ///< exactly the number of charged tracks we want.
-  CutObject fCutFlow_NFitOK; ///< <b>Cut flow counter</b>: total number of events where there is at
+  CutObject fCutFlow_NFitOK; ///< **Cut flow counter**: total number of events where there is at
                              ///< least one combination where the kinematic fit worked.
-  CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that
+  CutObject fCutFlow_NPIDnumberOK; ///< **Cut flow counter**: total number of events that that
                                    ///< has exactly the identified tracks that we want.
   ///@}
 

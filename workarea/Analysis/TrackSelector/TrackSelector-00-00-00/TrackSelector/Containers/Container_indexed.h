@@ -18,9 +18,7 @@
 
 /// This is an extension of the `Container_base` base class that in addition keeps track of all
 /// instanecs in a static mapping of all its instances.
-/// @todo Consider implementing <a
-/// href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring
-/// Template Pattern</a> for independent objects of `fInstances` in derived classes.
+/// @todo Consider implementing [Curiously Recurring Template Pattern](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) for independent objects of `fInstances` in derived classes.
 ///
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date   February 20th, 2019

@@ -6,6 +6,7 @@ var TrackSelector_8h =
     [ "gM_D0", "TrackSelector_8h.html#a2a9b392d7ba7887fbea1cfe5b0b936c3", null ],
     [ "gM_Jpsi", "TrackSelector_8h.html#aa28898a97d6edd6e532f0e7ffc612cee", null ],
     [ "gM_K", "TrackSelector_8h.html#a6331f215e01f26c9e2606f3cfdad160e", null ],
+    [ "gM_omega", "TrackSelector_8h.html#a7ea6de6d24b2552936feede094166d39", null ],
     [ "gM_phi", "TrackSelector_8h.html#a433fc06b01bc452af90c5e99a111f971", null ],
     [ "gM_pi", "TrackSelector_8h.html#a5cc91b07af99bf0aa2bfb412d553abc9", null ],
     [ "gM_pi0", "TrackSelector_8h.html#a371dcec7e794e8a868c1eaed4fe7ded1", null ],

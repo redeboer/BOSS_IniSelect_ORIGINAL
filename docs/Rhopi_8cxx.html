@@ -86,33 +86,33 @@ $(document).ready(function(){initNavTree('Rhopi_8cxx.html','');});
 <div class="title">Rhopi.cxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;GaudiKernel/MsgStream.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/AlgFactory.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/ISvcLocator.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/SmartDataPtr.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/IDataProviderSvc.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/PropertyMgr.h&quot;</code><br />
-<code>#include &quot;VertexFit/IVertexDbSvc.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;GaudiKernel/AlgFactory.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/Bootstrap.h&quot;</code><br />
-<code>#include &quot;EventModel/EventModel.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/IDataProviderSvc.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/ISvcLocator.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/MsgStream.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/PropertyMgr.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/SmartDataPtr.h&quot;</code><br />
+<code>#include &quot;VertexFit/IVertexDbSvc.h&quot;</code><br />
 <code>#include &quot;EventModel/Event.h&quot;</code><br />
-<code>#include &quot;EvtRecEvent/EvtRecEvent.h&quot;</code><br />
-<code>#include &quot;EvtRecEvent/EvtRecTrack.h&quot;</code><br />
+<code>#include &quot;EventModel/EventModel.h&quot;</code><br />
 <code>#include &quot;DstEvent/TofHitStatus.h&quot;</code><br />
 <code>#include &quot;EventModel/EventHeader.h&quot;</code><br />
-<code>#include &quot;TMath.h&quot;</code><br />
+<code>#include &quot;EvtRecEvent/EvtRecEvent.h&quot;</code><br />
+<code>#include &quot;EvtRecEvent/EvtRecTrack.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/LorentzVector.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/ThreeVector.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/TwoVector.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/IHistogramSvc.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/INTupleSvc.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/NTuple.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/IHistogramSvc.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/ThreeVector.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/LorentzVector.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/TwoVector.h&quot;</code><br />
+<code>#include &quot;TMath.h&quot;</code><br />
 <code>#include &quot;CLHEP/Geometry/Point3D.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="Rhopi_8h_source.html">RhopiAlg/Rhopi.h</a>&quot;</code><br />
+<code>#include &quot;ParticleID/ParticleID.h&quot;</code><br />
+<code>#include &quot;VertexFit/Helix.h&quot;</code><br />
 <code>#include &quot;VertexFit/KalmanKinematicFit.h&quot;</code><br />
 <code>#include &quot;VertexFit/VertexFit.h&quot;</code><br />
-<code>#include &quot;VertexFit/Helix.h&quot;</code><br />
-<code>#include &quot;ParticleID/ParticleID.h&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="Rhopi_8cxx_source.html">Go to the source code of this file.</a></p>
@@ -130,7 +130,7 @@ Typedefs</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:ad0e80f236a9efd835fca631a45e7f052"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Rhopi_8cxx.html#ad0e80f236a9efd835fca631a45e7f052">mpi</a> = 0.13957</td></tr>
 <tr class="separator:ad0e80f236a9efd835fca631a45e7f052"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850891ce5a4a85d92f96c37288dc134a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a> [5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272}</td></tr>
+<tr class="memitem:a850891ce5a4a85d92f96c37288dc134a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a> [5] = {0.000511, 0.105658, 0.139570, 0.493677, 0.938272}</td></tr>
 <tr class="separator:a850891ce5a4a85d92f96c37288dc134a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92f405646fc58139cc173cbd5d4aff99"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Rhopi_8cxx.html#a92f405646fc58139cc173cbd5d4aff99">velc</a> = 299.792458</td></tr>
 <tr class="separator:a92f405646fc58139cc173cbd5d4aff99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,12 +157,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef HepGeom::Point3D&lt;double&gt; <a class="el" href="D0phi__3K3pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a></td>
+          <td class="memname">typedef HepGeom::Point3D&lt;double&gt; <a class="el" href="D0omega__K4pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00034">34</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00031">31</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -178,7 +178,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00048">48</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -194,7 +194,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00052">52</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00049">49</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00047">47</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00044">44</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -227,7 +227,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -243,7 +243,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -259,7 +259,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -275,7 +275,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -291,7 +291,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -307,7 +307,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -323,7 +323,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00054">54</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00051">51</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -339,7 +339,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00050">50</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00047">47</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>
@@ -350,12 +350,12 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const double xmass[5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272}</td>
+          <td class="memname">const double xmass[5] = {0.000511, 0.105658, 0.139570, 0.493677, 0.938272}</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00048">48</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Rhopi_8cxx_source.html#l00045">45</a> of file <a class="el" href="Rhopi_8cxx_source.html">Rhopi.cxx</a>.</p>
 
 </div>
 </div>

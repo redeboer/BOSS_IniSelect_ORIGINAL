@@ -146,7 +146,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a7f20601b36da5a8c273354c73627b087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memTemplParams" colspan="2">template&lt;class TYPE &gt; </td></tr>
 <tr class="memitem:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classContainer__indexed.html#a4e6d1fa25fc9f96b4318be2691aabde6">Insert</a> (std::map&lt; std::string, TYPE *&gt; &amp;mapping, const std::string &amp;key, TYPE *value)</td></tr>
-<tr class="memdesc:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes.  <a href="#a4e6d1fa25fc9f96b4318be2691aabde6">More...</a><br /></td></tr>
+<tr class="memdesc:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>.  <a href="#a4e6d1fa25fc9f96b4318be2691aabde6">More...</a><br /></td></tr>
 <tr class="separator:a4e6d1fa25fc9f96b4318be2691aabde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -166,11 +166,11 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an extension of the <code><a class="el" href="classContainer__base.html" title="This class is the base class for objects requiring a name and a description. ">Container_base</a></code> base class that in addition keeps track of all instanecs in a static mapping of all its instances. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>February 20th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00027">27</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00025">25</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a7fbbd1d3252b268fe5edf41a459a8c8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7fbbd1d3252b268fe5edf41a459a8c8d">&#9670;&nbsp;</a></span>Container_indexed()</h2>
@@ -188,7 +188,7 @@ Static Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>desccription</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>description</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -200,7 +200,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>The constructor, in addition to setting the name and description, attempts to add <code>Insert</code> an instance of itself to the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00014">14</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00013">13</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -221,7 +221,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>The destructor removes this fInstances from the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00021">21</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00020">20</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -268,9 +268,10 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p>
+<p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into a <code>mapping</code>. </p>
+<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00070">70</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00076">76</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -300,7 +301,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Helper method that allows you to safely (using <code>KeyExists</code>) insert a <code>key</code> with corresponding <code>value</code> into the <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00061">61</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00058">58</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -327,7 +328,7 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00034">34</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00032">32</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -369,12 +370,12 @@ template&lt;class TYPE &gt; </div>
 
 <p>Read access to <code>fInstances</code> mapping. </p>
 <p>Helper method that allows you to to check whether a key already exists in .</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
-<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd><code>Instances</code> function necessary? </dd></dl>
+<p>This method uses a <code>template</code> and has been made <code>protected</code> as to share its functionality for derived classes. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000014">Todo:</a></b></dt><dd>Use error handling for existing keys, not <code>terminate</code>. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>Currently redudant, because of the <code>terminate</code>, but returns <code>false</code> at the end. </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>Contains fatal <code>terminate</code> statement when double booking! Consider turning into a <code>return</code> statement. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00059">59</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00060">60</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>
@@ -404,7 +405,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Helper method that allows you to to check whether a key already exists in <code>fInstances</code> mapping. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00055">55</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00051">51</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -436,7 +437,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classContainer__base.html#a8b58704f557852e75906e4ae2601987a">Container_base</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00035">35</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00033">33</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -478,7 +479,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classContainer__base.html#a815f2a7d603ad8937b72606753e17a44">Container_base</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00042">42</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8cxx_source.html#l00040">40</a> of file <a class="el" href="Container__indexed_8cxx_source.html">Container_indexed.cxx</a>.</p>
 
 </div>
 </div>
@@ -505,7 +506,7 @@ template&lt;class TYPE &gt; </div>
 
 <p>Mapping of instances of this oject. </p>
 
-<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00043">43</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Container__indexed_8h_source.html#l00046">46</a> of file <a class="el" href="Container__indexed_8h_source.html">Container_indexed.h</a>.</p>
 
 </div>
 </div>

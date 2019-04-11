@@ -87,36 +87,36 @@ $(document).ready(function(){initNavTree('PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8c
 <div class="title">PipiJpsiAlg-00-00-03/src/PipiJpsi.cxx File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;GaudiKernel/MsgStream.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/AlgFactory.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/ISvcLocator.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/SmartDataPtr.h&quot;</code><br />
+<div class="textblock"><code>#include &quot;GaudiKernel/AlgFactory.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/IDataProviderSvc.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/ISvcLocator.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/MsgStream.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/PropertyMgr.h&quot;</code><br />
-<code>#include &quot;EventModel/EventModel.h&quot;</code><br />
-<code>#include &quot;EventModel/EventHeader.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/SmartDataPtr.h&quot;</code><br />
 <code>#include &quot;EventModel/Event.h&quot;</code><br />
-<code>#include &quot;TrigEvent/TrigEvent.h&quot;</code><br />
-<code>#include &quot;TrigEvent/TrigData.h&quot;</code><br />
+<code>#include &quot;EventModel/EventHeader.h&quot;</code><br />
+<code>#include &quot;EventModel/EventModel.h&quot;</code><br />
 <code>#include &quot;McTruth/McParticle.h&quot;</code><br />
+<code>#include &quot;TrigEvent/TrigData.h&quot;</code><br />
+<code>#include &quot;TrigEvent/TrigEvent.h&quot;</code><br />
+<code>#include &quot;DstEvent/TofHitStatus.h&quot;</code><br />
 <code>#include &quot;EvtRecEvent/EvtRecEvent.h&quot;</code><br />
 <code>#include &quot;EvtRecEvent/EvtRecTrack.h&quot;</code><br />
-<code>#include &quot;DstEvent/TofHitStatus.h&quot;</code><br />
-<code>#include &quot;TMath.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/INTupleSvc.h&quot;</code><br />
-<code>#include &quot;GaudiKernel/NTuple.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/LorentzVector.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/ThreeVector.h&quot;</code><br />
+<code>#include &quot;CLHEP/Vector/TwoVector.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/Bootstrap.h&quot;</code><br />
 <code>#include &quot;GaudiKernel/IHistogramSvc.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/ThreeVector.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/LorentzVector.h&quot;</code><br />
-<code>#include &quot;CLHEP/Vector/TwoVector.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/INTupleSvc.h&quot;</code><br />
+<code>#include &quot;GaudiKernel/NTuple.h&quot;</code><br />
+<code>#include &quot;TMath.h&quot;</code><br />
 <code>#include &quot;CLHEP/Geometry/Point3D.h&quot;</code><br />
-<code>#include &quot;VertexFit/KinematicFit.h&quot;</code><br />
-<code>#include &quot;VertexFit/VertexFit.h&quot;</code><br />
-<code>#include &quot;VertexFit/SecondVertexFit.h&quot;</code><br />
-<code>#include &quot;VertexFit/WTrackParameter.h&quot;</code><br />
-<code>#include &quot;ParticleID/ParticleID.h&quot;</code><br />
 <code>#include &quot;MdcRecEvent/RecMdcKalTrack.h&quot;</code><br />
+<code>#include &quot;ParticleID/ParticleID.h&quot;</code><br />
+<code>#include &quot;VertexFit/KinematicFit.h&quot;</code><br />
+<code>#include &quot;VertexFit/SecondVertexFit.h&quot;</code><br />
+<code>#include &quot;VertexFit/VertexFit.h&quot;</code><br />
+<code>#include &quot;VertexFit/WTrackParameter.h&quot;</code><br />
 <code>#include &quot;PipiJpsiAlg/PipiJpsi.h&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div>
@@ -160,7 +160,7 @@ Variables</h2></td></tr>
 <tr class="separator:a5ebd99ebcbc11b1c47d4fc04ff209251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20d4b52936fc600c5182beb40bda7a95"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a20d4b52936fc600c5182beb40bda7a95">mpsip</a> = 3.686</td></tr>
 <tr class="separator:a20d4b52936fc600c5182beb40bda7a95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a850891ce5a4a85d92f96c37288dc134a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a> [5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272}</td></tr>
+<tr class="memitem:a850891ce5a4a85d92f96c37288dc134a"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a">xmass</a> [5] = {0.000511, 0.105658, 0.139570, 0.493677, 0.938272}</td></tr>
 <tr class="separator:a850891ce5a4a85d92f96c37288dc134a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a92f405646fc58139cc173cbd5d4aff99"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a92f405646fc58139cc173cbd5d4aff99">velc</a> = 29.9792458</td></tr>
 <tr class="separator:a92f405646fc58139cc173cbd5d4aff99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,7 +175,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef HepGeom::Point3D&lt;double&gt; <a class="el" href="D0phi__3K3pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a></td>
+          <td class="memname">typedef HepGeom::Point3D&lt;double&gt; <a class="el" href="D0omega__K4pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -471,7 +471,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const double xmass[5] = {0.000511, 0.105658, 0.139570,0.493677, 0.938272}</td>
+          <td class="memname">const double xmass[5] = {0.000511, 0.105658, 0.139570, 0.493677, 0.938272}</td>
         </tr>
       </table>
 </div><div class="memdoc">

@@ -178,7 +178,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:abcad51b0cb5cc50d46d787b2cee555d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rvent number ID.  <a href="#abcad51b0cb5cc50d46d787b2cee555d6">More...</a><br /></td></tr>
 <tr class="separator:abcad51b0cb5cc50d46d787b2cee555d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e06fe785a1340ce40ef2c5e8f0acddc"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMctruthForTopoAna.html#a8e06fe785a1340ce40ef2c5e8f0acddc">m_nmcps</a></td></tr>
-<tr class="memdesc:a8e06fe785a1340ce40ef2c5e8f0acddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.  <a href="#a8e06fe785a1340ce40ef2c5e8f0acddc">More...</a><br /></td></tr>
+<tr class="memdesc:a8e06fe785a1340ce40ef2c5e8f0acddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event.  <a href="#a8e06fe785a1340ce40ef2c5e8f0acddc">More...</a><br /></td></tr>
 <tr class="separator:a8e06fe785a1340ce40ef2c5e8f0acddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f3962be75f9fc54ced0ea1dc1efb718"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMctruthForTopoAna.html#a5f3962be75f9fc54ced0ea1dc1efb718">m_pid</a></td></tr>
 <tr class="memdesc:a5f3962be75f9fc54ced0ea1dc1efb718"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDG code for the particle in this array.  <a href="#a5f3962be75f9fc54ced0ea1dc1efb718">More...</a><br /></td></tr>
@@ -224,7 +224,7 @@ Private Attributes</h2></td></tr>
 
 <p>Constructor for this class is emptry, but needs to be defined, because it inherits from <code>Algorithm</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00019">19</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00018">18</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -527,8 +527,7 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Set up counters and switches for the loop.</p>
-<ul>
+<p class="startli">Set up counters and switches for the loop. </p><ul>
 <li>
 <p class="startli">Reset the <code>m_nmcps</code> counter for the number of MC particles.</p>
 <p class="endli"></p>
@@ -552,7 +551,7 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">The <code>rootIndex</code> variable is used to skip particles like the <img class="formulaInl" alt="$Z$" src="form_106.png"/> boson in the decay chain after the <img class="formulaInl" alt="$e^+e^-$" src="form_42.png"/> collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the <code>incPdcy</code> boolean is for).</p>
+<p class="startli">The <code>rootIndex</code> variable is used to skip particles like the <img class="formulaInl" alt="$Z$" src="form_116.png"/> boson in the decay chain after the <img class="formulaInl" alt="$e^+e^-$" src="form_8.png"/> collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the <code>incPdcy</code> boolean is for).</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -576,7 +575,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00065">65</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00076">76</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -699,7 +698,7 @@ Private Attributes</h2></td></tr>
 
 <p>Print number of events. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00140">140</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00155">155</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -851,9 +850,7 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"Midx"</code> (array): track index of the mother particle (corrected with <code>rootIndex</code>).</p>
-<p class="endli"></p>
-</li>
+<code>"Midx"</code> (array): track index of the mother particle (corrected with <code>rootIndex</code>). </li>
 </ul>
 <p class="endli"></p>
 </li>
@@ -867,7 +864,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00030">30</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html#l00028">28</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2src_2MctruthForTopoAna_8cxx_source.html">MctruthForTopoAnaAlg-00-00-00/src/MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -894,7 +891,7 @@ Private Attributes</h2></td></tr>
 
 <p>Rvent number ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00035">35</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00036">36</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -920,7 +917,7 @@ Private Attributes</h2></td></tr>
 
 <p><b>Counter</b> for number of events (not the ID!) </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00033">33</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00034">34</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -946,7 +943,7 @@ Private Attributes</h2></td></tr>
 
 <p>Track index of the mother particle. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00038">38</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00041">41</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -970,9 +967,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays. </p>
+<p>Number of MC particles stored for this event. </p>
+<p>This one is necessary for loading following two items, because they are arrays. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00036">36</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00038">38</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -996,7 +994,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-05_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00019">19</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-05_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-05/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-05_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00020">20</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-05_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-05/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -1022,7 +1020,7 @@ Private Attributes</h2></td></tr>
 
 <p>PDG code for the particle in this array. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00037">37</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00040">40</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -1048,7 +1046,7 @@ Private Attributes</h2></td></tr>
 
 <p>Run number ID. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00034">34</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00035">35</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -1074,7 +1072,7 @@ Private Attributes</h2></td></tr>
 
 <p><code>NTuple</code> that will be the eventual <code>"MctruthForTopoAna"</code> tree. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00032">32</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html#l00033">33</a> of file <a class="el" href="MctruthForTopoAnaAlg-00-00-00_2MctruthForTopoAnaAlg_2MctruthForTopoAna_8h_source.html">MctruthForTopoAnaAlg-00-00-00/MctruthForTopoAnaAlg/MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>

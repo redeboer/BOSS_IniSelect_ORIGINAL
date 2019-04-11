@@ -146,7 +146,7 @@ StatusCode rhopi_pipigg::execute_rest()
     /// <li> Initialise PID and skip if it fails:
     /// <ul>
     if(!InitializePID(
-         /// <li> use <b>probability method</b>
+         /// <li> use **probability method**
          fPIDInstance->methodProbability(),
          /// <li> use \f$dE/dx\f$ and the three ToF detectors. Since BOSS 7.0.4,
          /// `ParticleID::useTofCorr` should be used for ToF instead of e.g. `useTof1`.
@@ -260,9 +260,7 @@ StatusCode rhopi_pipigg::execute_rest()
   /// </ol>
   ++fCutFlow_NPIDnumberOK;
 
-  /// <li> Create selection of MC truth particles by looping over the collection of MC particles
-  /// created in `TrackSelector::execute()`. See <a
-  /// href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.
+  /// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html) for a list of PDG codes.
   if(fEventHeader->runNumber() < 0 && fNTuple_fit_mc.DoWrite())
   {
     fMcPhotons.clear();

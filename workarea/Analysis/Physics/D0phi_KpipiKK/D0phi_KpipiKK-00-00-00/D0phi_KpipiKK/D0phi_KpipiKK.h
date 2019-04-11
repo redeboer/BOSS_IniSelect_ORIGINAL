@@ -93,9 +93,9 @@ protected:
   NTupleContainer fNTuple_dedx_K;     ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of kaons.
   NTupleContainer fNTuple_dedx_pi;    ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
   NTupleContainer fNTuple_fit4c_all;  ///< `NTuple::Tuple` container for the 4-constraint fit branch
-                                      ///< containing <i>all</i> combinations.
+                                      ///< containing *all* combinations.
   NTupleContainer fNTuple_fit4c_best; ///< `NTuple::Tuple` container for the 4-constraint fit branch
-                                      ///< containing only the <i>best</i> combination.
+                                      ///< containing only the *best* combination.
   NTupleContainer
                   fNTuple_fit_mc; ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
   NTupleContainer fNTuple_photon; ///< `NTuple::Tuple` container for the photon branch.
@@ -103,30 +103,30 @@ protected:
 
   /// @name Counters and cut objects
   ///@{
-  CutObject fCutFlow_NChargedOK; ///< <b>Cut flow counter</b>: total number of events that have
+  CutObject fCutFlow_NChargedOK; ///< **Cut flow counter**: total number of events that have
                                  ///< exactly the number of charged tracks we want.
-  CutObject fCutFlow_NFitOK; ///< <b>Cut flow counter</b>: total number of events where there is at
+  CutObject fCutFlow_NFitOK; ///< **Cut flow counter**: total number of events where there is at
                              ///< least one combination where the kinematic fit worked.
-  CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that
+  CutObject fCutFlow_NPIDnumberOK; ///< **Cut flow counter**: total number of events that that
                                    ///< has exactly the identified tracks that we want.
-  CutObject fCutFlow_NetChargeOK;  ///< <b>Cut flow counter</b>: total number of events where the
+  CutObject fCutFlow_NetChargeOK;  ///< **Cut flow counter**: total number of events where the
                                    ///< measured netto charge was \f$0\f$. This cut is used to
                                    ///< exclude events where some charged tracks were not detected
                                    ///< (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
-  CutObject fCutFlow_mD0_mphi; ///< <b>Cut flow counter</b>: number of events that passed the wide
+  CutObject fCutFlow_mD0_mphi; ///< **Cut flow counter**: number of events that passed the wide
                                ///< cut on both masses.
-  CutObject fCutFlow_mD0_mphi_3sig; ///< <b>Cut flow counter</b>: number of events that passed the
+  CutObject fCutFlow_mD0_mphi_3sig; ///< **Cut flow counter**: number of events that passed the
                                     ///< \f$3\sigma\f$ cut on both masses.
   CutObject fCut_mD0;               ///< Loose cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
   CutObject fCut_mD0_3sig;   ///< \f$3\sigma\f$ cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
   CutObject fCut_mphi;       ///< Loose cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
   CutObject fCut_mphi_3sig;  ///< \f$3\sigma\f$ cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
   CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track
-                             ///< <i>in degrees</i>.
+                             ///< *in degrees*.
   CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged
-                             ///< track <i>in radians</i>.
+                             ///< track *in radians*.
   CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest
-                             ///< charged track <i>in radians</i>.
+                             ///< charged track *in radians*.
   ///@}
 
 private:

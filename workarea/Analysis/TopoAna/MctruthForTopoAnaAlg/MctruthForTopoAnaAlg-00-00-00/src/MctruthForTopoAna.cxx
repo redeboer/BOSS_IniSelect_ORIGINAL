@@ -71,7 +71,7 @@ StatusCode MctruthForTopoAna::initialize()
   return StatusCode::SUCCESS;
 }
 
-/// Write MC truth properties <i>for each event</i>.
+/// Write MC truth properties *for each event*.
 int        ievt = 0;
 StatusCode MctruthForTopoAna::execute()
 {

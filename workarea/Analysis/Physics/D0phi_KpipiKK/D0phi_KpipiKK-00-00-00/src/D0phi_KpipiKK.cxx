@@ -171,7 +171,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
     /// <li> Initialise PID and skip if it fails:
     /// <ul>
     if(!InitializePID(
-         /// <li> use <b>probability method</b>
+         /// <li> use **probability method**
          fPIDInstance->methodProbability(),
          /// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with
          /// BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g.
@@ -458,7 +458,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
                 ++count;
               }
     /// </ol>
-    /// <li> **Write** results of the Kalman kitematic fit <i>of the best combination</i>
+    /// <li> **Write** results of the Kalman kitematic fit *of the best combination*
     /// (`"fit4c_best"` branches).
     WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 

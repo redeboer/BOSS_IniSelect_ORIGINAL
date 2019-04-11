@@ -253,10 +253,10 @@ NTuple handlers and members</h2></td></tr>
 <dl class="section remark"><dt>Remarks</dt><dd>This object can only be used within a derived class off the Gaudi <code>Algorithm</code> class because its <code>fTuple</code> requires to be booked by it (using e.g. <code><a class="el" href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92" title="Go over all instances of NTupleContainer and book them using BookNTuple. ">TrackSelector::BookNTuples</a></code>). </dd>
 <dd>
 To allow for the addition of different types of items (such as integers), there are several mappings of the items (see for instance <code>fItems_double</code> and <code>fItems_int</code>). If you add new types, make sure to add them to this list of <code>fItems_*</code>, where <code>*</code> should be the <code>typename</code> and to add a template specialisation for <code>GetItems</code>. The rest of the templates then don't require template specialisation, as they can be defined in terms of <code>GetItems</code>. However, not that you will have to add the new mappings to functions like <code>PrintTuplesAndItems</code>, as you can not loop over templates. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Think about a solution for indexed items. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Think about a solution for indexed items. </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) See <a href="https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures">this page</a> for the motivation. This function also automatically declares a corresponding <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> property. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00031">31</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00037">37</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aad4fcf64aac5b99f3980dde865f253a1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aad4fcf64aac5b99f3980dde865f253a1">&#9670;&nbsp;</a></span>NTupleContainer()</h2>
@@ -299,7 +299,7 @@ To allow for the addition of different types of items (such as integers), there 
 <li>Insert a key to the <code>instances</code> mapping. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00020">20</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00017">17</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -320,7 +320,7 @@ To allow for the addition of different types of items (such as integers), there 
 
 <p>The destructor removes this instances from the <code>instances</code> inventory. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00037">37</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00036">36</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -368,7 +368,7 @@ template&lt;typename TYPE &gt; </div>
 <li>Add the <code>NTuple::Array</code> that you created in the previous step to the <code>fTuple</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00189">189</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00218">218</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -405,7 +405,7 @@ template&lt;typename TYPE &gt; </div>
 <li>Add the <code>NTuple::Item&lt;TYPE&gt;</code> that you created in the previous step to the <code>fTuple</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00202">202</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00232">232</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -433,7 +433,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00074">74</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00078">78</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -486,7 +486,7 @@ template&lt;typename TYPE , typename RANGE &gt; </div>
 <li>Add the <code>NTuple::Item&lt;TYPE&gt;</code> that you created in the previous step to the <code>fTuple</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00214">214</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00243">243</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -534,7 +534,7 @@ template&lt;class TYPE &gt; </div>
 <li>Create an <code>NTuple::Item</code> using the <code>operator[]</code> of a <code>std::map</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00170">170</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00197">197</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -561,7 +561,7 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00083">83</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00090">90</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -589,7 +589,7 @@ template&lt;class TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00044">44</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00050">50</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -622,7 +622,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method. </p>
 <p>Call e.g. using <code>GetArray&lt;double&gt;("fit4c")</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00144">144</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00166">166</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -653,7 +653,7 @@ template&lt;&gt; </div>
 
 <p>Specialisation of <code>GetArrays</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00137">137</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00152">152</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -682,7 +682,7 @@ template&lt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00138">138</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00157">157</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -738,7 +738,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Read access to <code>fEntries</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00064">64</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00068">68</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -771,7 +771,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Method that is comparable to <code>std::map::at</code>, but allows to access the diffent types of maps (<code>fItems_double</code> etc) through a template call of this method. </p>
 <p>Call e.g. using <code>GetItem&lt;double&gt;("fit4c")</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00157">157</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00182">182</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -802,7 +802,7 @@ template&lt;&gt; </div>
 
 <p>Specialisation of <code>GetItems</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00132">132</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00140">140</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -831,7 +831,7 @@ template&lt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00133">133</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00145">145</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -889,7 +889,7 @@ template&lt;typename TYPE &gt; </div>
 <p>Private helper function that terminates and prints a message if <code>fTuple</code> is a <code>nullptr</code>. </p>
 <p>Has been added to avoid code duplication in <code>AddItem</code> and <code>AddIndexedItem</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00134">134</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00130">130</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -925,7 +925,7 @@ template&lt;typename TYPE &gt; </div>
 <li>Print a row for each <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> in <code>instances</code> with name and number of entries </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00062">62</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00057">57</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -956,7 +956,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Template helper for the <code>PrintTuplesAndItems</code> method. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00226">226</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00255">255</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1017,7 +1017,7 @@ template&lt;typename TYPE &gt; </div>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00098">98</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00094">94</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -1045,7 +1045,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00054">54</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00059">59</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1075,7 +1075,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Return <code>true</code> if <code>fTuple</code> pointer exists and if <code>fWrite</code> property has been set to <code>true</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00084">84</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00094">94</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1096,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Write <code>NTuple</code> if <code>"write_"</code> <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> has been set to <code>true</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00052">52</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8cxx_source.html#l00048">48</a> of file <a class="el" href="NTupleContainer_8cxx_source.html">NTupleContainer.cxx</a>.</p>
 
 </div>
 </div>
@@ -1123,7 +1123,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Inventory of added <code>double</code> arrays. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00110">110</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00121">121</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1149,7 +1149,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Inventory of added <code>int</code> arrays. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00111">111</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00122">122</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1173,7 +1173,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00102">102</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00112">112</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1199,7 +1199,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Inventory of added <code>double</code> items. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00108">108</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00118">118</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1225,7 +1225,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Inventory of added <code>int</code> items. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00109">109</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00119">119</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1251,7 +1251,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Pointer to the encapsulated <code>NTuple::Tuple</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00101">101</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00111">111</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1277,7 +1277,7 @@ template&lt;typename TYPE &gt; </div>
 
 <p>Boolean job property that determines whether or not to write data stored to this <code>NTuple</code> to a <code>TTree</code> (property name starts with <code>"write_"</code> by default). </p>
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00100">100</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00109">109</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>
@@ -1301,7 +1301,7 @@ template&lt;typename TYPE &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00043">43</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="NTupleContainer_8h_source.html#l00049">49</a> of file <a class="el" href="NTupleContainer_8h_source.html">NTupleContainer.h</a>.</p>
 
 </div>
 </div>

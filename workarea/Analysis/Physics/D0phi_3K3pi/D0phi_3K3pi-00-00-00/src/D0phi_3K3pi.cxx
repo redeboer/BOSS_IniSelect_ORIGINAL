@@ -101,8 +101,8 @@ StatusCode D0phi_3K3pi::execute_rest()
 {
   PrintFunctionName("D0phi_3K3pi", __func__);
   /// <ol type="A">
-  /// <li> <b>Charged track cut</b>: Apply a strict cut on the number of particles. Only <b>4
-  /// charged tracks in total</b>.
+  /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4
+  /// charged tracks in total**.
   if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
@@ -120,7 +120,7 @@ StatusCode D0phi_3K3pi::execute_rest()
     /// <li> Initialise PID and skip if it fails:
     /// <ul>
     if(!InitializePID(
-         /// <li> use <b>probability method</b>
+         /// <li> use **probability method**
          fPIDInstance->methodProbability(),
          /// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with
          /// BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g.
@@ -182,7 +182,7 @@ StatusCode D0phi_3K3pi::execute_rest()
     fNTuple_mult_sel.Write();
   }
 
-  /// <li> <b>PID cut</b>: apply a strict cut on the number of the selected particles. Only:
+  /// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only:
   /// <ol>
   if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
   if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
@@ -334,7 +334,7 @@ StatusCode D0phi_3K3pi::execute_rest()
                 ++count;
               }
     /// After loop over combintations:
-    /// @b Write results of the Kalman kitematic fit <i>of the best combination</i> (`"fit4c_best"`
+    /// @b Write results of the Kalman kitematic fit *of the best combination* (`"fit4c_best"`
     /// branches).
     WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
 
