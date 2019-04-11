@@ -128,6 +128,16 @@ StatusCode D0omega_K4pi::initialize_rest()
                                               /// candidate in the \f$J/\psi \to D^0\omega\f$.
                                               /// </ol>
 
+  fNTuple_topology.AddItem<double>("ppi0");
+  fNTuple_topology.AddItem<double>("pK-");
+  fNTuple_topology.AddItem<double>("ppi-");
+  fNTuple_topology.AddItem<double>("ppi+1");
+  fNTuple_topology.AddItem<double>("ppi+2");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi-pi+");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi-");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi+");
+  fNTuple_topology.AddItem<double>("fRelativePhotonAngle");
+
   /// </ol>
   return StatusCode::SUCCESS;
 }
@@ -468,6 +478,16 @@ StatusCode D0omega_K4pi::execute_rest()
       fNTuple_topology.GetItem<double>("momega") = bestKalmanFit.fM_omega;
       fNTuple_topology.GetItem<double>("pD0")    = bestKalmanFit.fP_D0;
       fNTuple_topology.GetItem<double>("pomega") = bestKalmanFit.fP_omega;
+
+      fNTuple_topology.GetItem<double>("ppi0")                 = bestKalmanFit.fP_pi0;
+      fNTuple_topology.GetItem<double>("pK-")                  = bestKalmanFit.fP_Km;
+      fNTuple_topology.GetItem<double>("ppi-")                 = bestKalmanFit.fP_pim;
+      fNTuple_topology.GetItem<double>("ppi+1")                = bestKalmanFit.fP_pip1;
+      fNTuple_topology.GetItem<double>("ppi+2")                = bestKalmanFit.fP_pip2;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi-pi+")  = bestKalmanFit.fDalitzOmega_pimpip;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi-")  = bestKalmanFit.fDalitzOmega_pi0pim;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi+")  = bestKalmanFit.fDalitzOmega_pi0pip;
+      fNTuple_topology.GetItem<double>("fRelativePhotonAngle") = bestKalmanFit.fRelativePhotonAngle;
       WriteMCTruthForTopoAna(fNTuple_topology);
     }
   }
@@ -561,4 +581,15 @@ void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   tuple.GetItem<double>("mpi0")   = fit->fM_pi0;
   tuple.GetItem<double>("pD0")    = fit->fP_D0;
   tuple.GetItem<double>("pomega") = fit->fP_omega;
+
+  tuple.GetItem<double>("ppi0")  = fit->fP_pi0;
+  tuple.GetItem<double>("pK-")   = fit->fP_Km;
+  tuple.GetItem<double>("ppi-")  = fit->fP_pim;
+  tuple.GetItem<double>("ppi+1") = fit->fP_pip1;
+  tuple.GetItem<double>("ppi+2") = fit->fP_pip2;
+
+  tuple.GetItem<double>("fDalitzOmega_pi-pi+")  = fit->fDalitzOmega_pimpip;
+  tuple.GetItem<double>("fDalitzOmega_pi0pi-")  = fit->fDalitzOmega_pi0pim;
+  tuple.GetItem<double>("fDalitzOmega_pi0pi+")  = fit->fDalitzOmega_pi0pip;
+  tuple.GetItem<double>("fRelativePhotonAngle") = fit->fRelativePhotonAngle;
 }

@@ -54,6 +54,8 @@ public:
   ///@}
 
 protected:
+  const double ThreeMomentum(const HepLorentzVector& vector) const;
+
   /// @name Boolean tests
   ///@{
   bool IsBetter(const double& value, double& bestvalue) const;

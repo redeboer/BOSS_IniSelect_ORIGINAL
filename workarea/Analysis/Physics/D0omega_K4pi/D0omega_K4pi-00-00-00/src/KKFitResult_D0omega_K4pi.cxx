@@ -85,11 +85,21 @@ void KKFitResult_D0omega_K4pi::SetValues(const HepLorentzVector& pKaonNeg,
   fM_D0    = pD0.m();    /// <li> `fM_D0`   = \f$M_{K^-\pi^+\pi^0}\f$
   fM_omega = pomega.m(); /// <li> `fM_omega`  = \f$M_{K^-K^+}\f$
   fM_Jpsi  = pJpsi.m();  /// <li> `fM_Jpsi` = \f$M_{D^0\omega}\f$
-  fP_D0    = std::sqrt(pD0.px() * pD0.px() + pD0.py() * pD0.py() +
-                    pD0.pz() * pD0.pz()); /// <li> `fP_D0`  = \f$|\vec{p}_{K^-\pi^+}|\f$
-  fP_omega = std::sqrt(pomega.px() * pomega.px() + pomega.py() * pomega.py() +
-                       pomega.pz() * pomega.pz()); /// <li> `fP_omega` = \f$|\vec{p}_{K^-K^+}|\f$
   /// </ul>
+  /// <li> Compute absolute 3-momenta of reconstructed and original particles:
+  fP_D0    = ThreeMomentum(pD0);
+  fP_omega = ThreeMomentum(pomega);
+  fP_pi0   = ThreeMomentum(ppi0);
+  fP_Km    = ThreeMomentum(pKaonNeg);
+  fP_pim   = ThreeMomentum(pPionNeg);
+  fP_pip1  = ThreeMomentum(pPionPos1);
+  fP_pip2  = ThreeMomentum(pPionPos2);
+  /// <li> Compute Dalitz variables for omega.
+  fDalitzOmega_pimpip = (pPionNeg + pPionPos2).m();
+  fDalitzOmega_pi0pim = (pPionNeg + ppi0).m();
+  fDalitzOmega_pi0pip = (pPionPos2 + ppi0).m();
+  /// <li> Info about the photons
+  fRelativePhotonAngle = pPhoton1.angle(pPhoton2);
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{\pi^-\pi^+\pi^0} - m_{\omega}\f$
   fFitMeasure = std::abs(fM_omega - gM_phi);
   /// <li> Set `fHasResults` to `true`.

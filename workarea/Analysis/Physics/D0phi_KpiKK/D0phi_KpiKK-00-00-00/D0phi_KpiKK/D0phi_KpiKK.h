@@ -85,14 +85,6 @@ protected:
                              ///< least one combination where the kinematic fit worked.
   CutObject fCutFlow_NPIDnumberOK; ///< <b>Cut flow counter</b>: total number of events that that
                                    ///< has exactly the identified tracks that we want.
-  CutObject fCutFlow_mD0_mphi; ///< <b>Cut flow counter</b>: number of events that passed the wide
-                               ///< cut on both masses.
-  CutObject fCutFlow_mD0_mphi_3sig; ///< <b>Cut flow counter</b>: number of events that passed the
-                                    ///< \f$3\sigma\f$ cut on both masses.
-  CutObject fCut_mD0;               ///< Loose cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
-  CutObject fCut_mD0_3sig;  ///< \f$3\sigma\f$ cut on \f$m_{D^0\to K^-\pi^+}\f$ invariant mass.
-  CutObject fCut_mphi;      ///< Loose cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
-  CutObject fCut_mphi_3sig; ///< \f$3\sigma\f$ cut on \f$m_{\phi\to K^+K^-}\f$ invariant mass.
   ///@}
 
 private:

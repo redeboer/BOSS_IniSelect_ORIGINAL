@@ -4,6 +4,7 @@
 
 #include "TrackSelector/KKFitResult.h"
 #include "CLHEP/Vector/LorentzVector.h"
+#include <cmath>
 using CLHEP::HepLorentzVector;
 
 // * =========================== * //
@@ -25,7 +26,7 @@ KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
 
 // * ========================= * //
 // * -------- SETTERS -------- * //
-// * ========================= * //
+// * =u======================== * //
 
 void KKFitResult::SetRunAndEventNumber(SmartDataPtr<Event::EventHeader> header)
 {
@@ -54,4 +55,10 @@ bool KKFitResult::IsBetter(const double& value, double& bestvalue) const
 bool KKFitResult::IsBetter() const
 {
   return KKFitResult::IsBetter(fFitMeasure, fBestCompareValue);
+}
+
+/// Compute length of 3-momentum of a Lorentz vector.
+const double KKFitResult::ThreeMomentum(const HepLorentzVector& vec) const
+{
+  return std::sqrt(vec.px() * vec.px() + vec.py() * vec.py() + vec.pz() * vec.pz());
 }

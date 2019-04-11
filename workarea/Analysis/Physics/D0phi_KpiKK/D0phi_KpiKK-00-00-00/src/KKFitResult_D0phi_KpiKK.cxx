@@ -76,11 +76,14 @@ void KKFitResult_D0phi_KpiKK::SetValues(const HepLorentzVector& pKaonNeg1,
   fM_D0   = pD0.m();   /// <li> `fM_D0`   = \f$M_{K^-\pi^+}\f$
   fM_phi  = pphi.m();  /// <li> `fM_phi`  = \f$M_{K^-K^+}\f$
   fM_Jpsi = pJpsi.m(); /// <li> `fM_Jpsi` = \f$M_{D^0\phi}\f$
-  fP_D0   = std::sqrt(pD0.px() * pD0.px() + pD0.py() * pD0.py() +
-                    pD0.pz() * pD0.pz()); /// <li> `fP_D0`  = \f$|\vec{p}_{K^-\pi^+}|\f$
-  fP_phi  = std::sqrt(pphi.px() * pphi.px() + pphi.py() * pphi.py() +
-                     pphi.pz() * pphi.pz()); /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
   /// </ul>
+  /// <li> Compute absolute 3-momenta of reconstructed and original particles:
+  fP_D0  = ThreeMomentum(pD0);
+  fP_phi = ThreeMomentum(pphi);
+  fP_Km1 = ThreeMomentum(pKaonNeg1);
+  fP_Km2 = ThreeMomentum(pKaonNeg2);
+  fP_Kp  = ThreeMomentum(pKaonPos);
+  fP_pip = ThreeMomentum(pPionPos);
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
   fFitMeasure = std::abs(fM_phi - gM_phi);
   /// <li> Set `fHasResults` to `true`.

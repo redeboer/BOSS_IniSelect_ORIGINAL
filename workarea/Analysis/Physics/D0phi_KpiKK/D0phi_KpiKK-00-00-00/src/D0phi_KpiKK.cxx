@@ -46,17 +46,7 @@ D0phi_KpiKK::D0phi_KpiKK(const std::string& name, ISvcLocator* pSvcLocator) :
   fCutFlow_NChargedOK("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
   fCutFlow_NFitOK("N_Fit_OK", "Number of combinations where where the kinematic fit worked"),
   fCutFlow_NPIDnumberOK("N_PID_OK",
-                        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-  fCutFlow_mD0_mphi("N_mD0_mphi",
-                    "Number of events that passed the wide cut on both invariant masses"),
-  fCutFlow_mD0_mphi_3sig("N_mD0_mphi_3sig",
-                         "Number of events that passed the 3sigma cut on both invariant masses"),
-  /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain
-  /// parameters.
-  fCut_mphi("mphi"),
-  fCut_mD0("mD0"),
-  fCut_mphi_3sig("mphi_3sig"),
-  fCut_mD0_3sig("mD0_3sig")
+                        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
 {
   PrintFunctionName("D0phi_KpiKK", __func__);
   PostConstructor();
@@ -103,6 +93,10 @@ StatusCode D0phi_KpiKK::initialize_rest()
   fNTuple_topology.AddItem<double>("pD0");
   fNTuple_topology.AddItem<double>("pphi");
 
+  fNTuple_topology.AddItem<double>("pK-1");
+  fNTuple_topology.AddItem<double>("pK-2");
+  fNTuple_topology.AddItem<double>("pK+");
+  fNTuple_topology.AddItem<double>("ppi+");
   /// </ol>
   return StatusCode::SUCCESS;
 }
@@ -158,9 +152,9 @@ StatusCode D0phi_KpiKK::execute_rest()
       // if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon))
       // continue; /// If, according to the likelihood method, the particle is still more likely to
       // be a kaon than a pion, the track is rejected.
-      if(fCut_PIDProb.FailsMin(fPIDInstance->probPion()))
-        continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at
-                  /// least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
+      if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue;
+      /// A cut is then applied on whether the probability to be a pion (or kaon) is at
+      /// least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
       RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the
                                                         /// `RecMdcKalTrack` object is set to pion
       if(fTrackKal->charge() > 0)
@@ -347,15 +341,12 @@ StatusCode D0phi_KpiKK::execute_rest()
       fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
       fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
       fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
-      WriteMCTruthForTopoAna(fNTuple_topology);
 
-      /// Set counters for mass cut flows
-      bool mD0_3sig_ok  = !fCut_mD0_3sig.FailsCut(bestKalmanFit.fM_D0);
-      bool mD0_ok       = !fCut_mD0.FailsCut(bestKalmanFit.fM_D0);
-      bool mphi_3sig_ok = !fCut_mphi_3sig.FailsCut(bestKalmanFit.fM_phi);
-      bool mphi_ok      = !fCut_mphi.FailsCut(bestKalmanFit.fM_phi);
-      if(mphi_ok && mD0_ok) ++fCutFlow_mD0_mphi;
-      if(mphi_3sig_ok && mD0_3sig_ok) ++fCutFlow_mD0_mphi_3sig;
+      fNTuple_topology.GetItem<double>("pK-1") = bestKalmanFit.fP_Km1;
+      fNTuple_topology.GetItem<double>("pK-2") = bestKalmanFit.fP_Km2;
+      fNTuple_topology.GetItem<double>("pK+")  = bestKalmanFit.fP_Kp;
+      fNTuple_topology.GetItem<double>("ppi+") = bestKalmanFit.fP_pip;
+      WriteMCTruthForTopoAna(fNTuple_topology);
     }
   }
 
@@ -388,6 +379,11 @@ void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer& tuple)
   tuple.AddItem<double>("pphi"); /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+ \f$
                                  /// (\f$\phi\f$ candidate).
   tuple.AddItem<double>("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+
+  tuple.AddItem<double>("pK-1");
+  tuple.AddItem<double>("pK-2");
+  tuple.AddItem<double>("pK+");
+  tuple.AddItem<double>("ppi+");
 }
 
 /// Specification of `TrackSelector::CreateMCTruthSelection`.
@@ -443,4 +439,9 @@ void D0phi_KpiKK::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   tuple.GetItem<double>("pD0")   = fit->fP_D0;
   tuple.GetItem<double>("pphi")  = fit->fP_phi;
   tuple.GetItem<double>("chisq") = fit->fChiSquared;
+
+  tuple.GetItem<double>("pK-1") = fit->fP_Km1;
+  tuple.GetItem<double>("pK-2") = fit->fP_Km2;
+  tuple.GetItem<double>("pK+")  = fit->fP_Kp;
+  tuple.GetItem<double>("ppi+") = fit->fP_pip;
 }

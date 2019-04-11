@@ -39,6 +39,15 @@ public:
   double fM_omega; ///< Current computed mass of the \f$\omega\f$ candidate.
   double fP_D0;    ///< Current computed 3-momentum of \f$D^0\f$ candidate.
   double fP_omega; ///< Current computed 3-momentum of \f$\omega\f$ candidate.
+  double fP_pi0;
+  double fP_Km;
+  double fP_pim;
+  double fP_pip1;
+  double fP_pip2;
+  double fDalitzOmega_pimpip;
+  double fDalitzOmega_pi0pim;
+  double fDalitzOmega_pi0pip;
+  double fRelativePhotonAngle;
   ///@}
 
 private:

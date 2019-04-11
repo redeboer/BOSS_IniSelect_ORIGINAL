@@ -37,6 +37,11 @@ public:
   double fM_phi;  ///< Current computed mass of the \f$\phi\f$ candidate.
   double fP_D0;   ///< Current computed 3-momentum of \f$D^0\f$ candidate.
   double fP_phi;  ///< Current computed 3-momentum of \f$D^0\f$ candidate.
+
+  double fP_Km1;
+  double fP_Km2;
+  double fP_Kp;
+  double fP_pip;
   ///@}
 
 private:
