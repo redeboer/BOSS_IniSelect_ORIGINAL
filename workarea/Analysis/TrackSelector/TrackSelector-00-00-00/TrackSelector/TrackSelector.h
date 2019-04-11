@@ -40,6 +40,7 @@
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
+#include "TrackSelector/Containers/ParticleTracks.h"
 #include "TrackSelector/KKFitResult.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
@@ -60,29 +61,27 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 /// classes of the `TrackSelector` base algorithm.
 namespace TSGlobals
 {
-const double gM_rho =
-  0.77526; ///< Mass of \f$\rho^{0\pm}\f$, see
-           ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf).
-const double gM_pi0 =
-  0.1349770; ///< Mass of \f$\pi^0\f$, see
-             ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf).
-const double gM_pi =
-  0.13957061; ///< Mass of \f$\pi^\pm\f$, see
-              ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf).
-const double gM_K  = 0.493677; ///< Mass of \f$K^\pm\f$.
-const double gM_D0 = 1.86483;  ///< Mass of \f$D^0\f$, see
-                               ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-const double gM_phi =
-  1.019461; ///< Mass of \f$\phi\f$, see
-            ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
-const double gM_omega =
-  0.78265; ///< Mass of \f$\omega\f$, see
-           ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-omega-782.pdf).
-const double gM_Jpsi =
-  3.0969; ///< Mass of \f$J/\psi\f$, see
-          ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf).
-const double           gEcms = 3.097; ///< Center-of-mass energy.
-const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
+  const double gM_rho = 0.77526;
+  ///< Mass of \f$\rho^{0\pm}\f$, see
+  ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf).
+  const double gM_pi0 = 0.1349770;
+  ///< Mass of \f$\pi^0\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf).
+  const double gM_pi = 0.13957061;
+  ///< Mass of \f$\pi^\pm\f$, see
+  ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf).
+  const double gM_K = 0.493677;
+  ///< Mass of \f$K^\pm\f$.
+  const double gM_D0 = 1.86483;
+  ///< Mass of \f$D^0\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
+  const double gM_phi = 1.019461;
+  ///< Mass of \f$\phi\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
+  const double gM_omega = 0.78265;
+  ///< Mass of \f$\omega\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-omega-782.pdf).
+  const double gM_Jpsi = 3.0969;
+  ///< Mass of \f$J/\psi\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf).
+  const double gEcms = 3.097;
+  ///< Center-of-mass energy.
+  const HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
 }; // namespace TSGlobals
 
 /// @}
@@ -119,64 +118,66 @@ public:
 protected:
   /// @name Derived Algorithm steps
   ///@{
-  virtual StatusCode
-  initialize_rest() = 0; ///< This function is executed at the end of `initialize`. It should be
-                         ///< further defined in derived subalgorithms.
-  virtual StatusCode execute_rest() = 0; ///< This function is executed at the end of `execute`. It
-                                         ///< should be further defined in derived subalgorithms.
-  virtual StatusCode
-  finalize_rest() = 0; ///< This function is executed at the end of `finalize`. It should be further
-                       ///< defined in derived subalgorithms.
+  virtual StatusCode initialize_rest() = 0;
+  ///< This function is executed at the end of `initialize`. It should be
+
+  ///< further defined in derived subalgorithms.
+  virtual StatusCode execute_rest() = 0;
+  ///< This function is executed at the end of `execute`. It
+
+  ///< should be further defined in derived subalgorithms.
+  virtual StatusCode finalize_rest() = 0;
+  ///< This function is executed at the end of `finalize`. It should be further
+
+  ///< defined in derived subalgorithms.
   void      PrintFunctionName(const char* class_name, const char* function_name);
-  MsgStream fLog; ///< Stream object for logging. It needs to be declared as a data member so that
-                  ///< it is accessible to all methods of this class.
+  MsgStream fLog;
+  ///< Stream object for logging. It needs to be declared as a data member so that
+
+  ///< it is accessible to all methods of this class.
   ///@}
 
   /// @name NTuple handlers
   ///@{
-  void AddNTupleItems_MCTruth(NTupleContainer& tuple);
-  void AddNTupleItems_Dedx(NTupleContainer& tuple);
-  void AddNTupleItems_Tof(NTupleContainer& tuple);
-  bool CreateMCTruthCollection();
-  virtual void
-  CreateMCTruthSelection() = 0; ///< Function that should be defined in the derived calss and called
-                                ///< after `CreateMCtruthCollection`. See
-                                ///< [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html)
-                                ///< for a list of PDG codes.
+  void         AddNTupleItems_MCTruth(NTupleContainer& tuple);
+  void         AddNTupleItems_Dedx(NTupleContainer& tuple);
+  void         AddNTupleItems_Tof(NTupleContainer& tuple);
+  bool         CreateMCTruthCollection();
+  virtual void CreateMCTruthSelection() = 0;
+  ///< Function that should be defined in the derived calss and called after
+  ///< `CreateMCtruthCollection`. See [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html)
+  ///< for a list of PDG codes.
   ///@}
 
   /// @name Write methods
   ///@{
-  void WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
-  void WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
-  void WritePIDInformation();
-  void WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk,
-                           NTupleContainer& tuple);
-  void WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
-  bool WriteMCTruthForTopoAna(NTupleContainer& tuple);
-  virtual void
-  SetFitNTuple(KKFitResult* fitresult,
-               NTupleContainer&
-                 tuple) = 0; ///< Virtual method that is executed in `WriteFitResults` and should be
-                             ///< further specified in the derived classes. @param fitresult This
-                             ///< parameter is a pointer to allow for `dynamic_cast` in the derived
-                             ///< specification of this `virtual` function. @param tuple The
-                             ///< `NTuple` to which you eventually want to write the results.
+  void         WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
+  void         WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
+  void         WritePIDInformation();
+  void         WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk,
+                                   NTupleContainer& tuple);
+  void         WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
+  bool         WriteMCTruthForTopoAna(NTupleContainer& tuple);
+  virtual void SetFitNTuple(KKFitResult* fitresult, NTupleContainer& tuple) = 0;
+  ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the
+  ///< derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in
+  ///< the derived specification of this `virtual` function. @param tuple The `NTuple` to which you
+  ///< eventually want to write the results.
   ///@}
 
   /// @name Access to the DST file
   ///@{
-  SmartDataPtr<Event::EventHeader> fEventHeader; ///< Data pointer for `"Event/EventHeader"` data.
-                                                 ///< It is set in `execute()` step in each event.
-  SmartDataPtr<Event::McParticleCol>
-    fMcParticleCol; ///< Data pointer for `"Event/MC/McParticleCol"` data. It is set in `execute()`
-                    ///< step in each event.
+  SmartDataPtr<Event::EventHeader> fEventHeader;
+  ///< Data pointer for `"Event/EventHeader"` data. It is set in `execute()` step in each event.
+  SmartDataPtr<Event::McParticleCol> fMcParticleCol;
+  ///< Data pointer for `"Event/MC/McParticleCol"` data. It is set in `execute()` step in each
+  ///< event.
   SmartDataPtr<EvtRecEvent> fEvtRecEvent; ///< Data pointer for `EventModel::EvtRec::EvtRecEvent`
                                           ///< which is set in `execute()` in each event.
   SmartDataPtr<EvtRecTrackCol>
     fEvtRecTrkCol; ///< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in
                    ///< `execute()` in each event.
-  ///@}
+                   ///@}
 
   /// @name Track collections and iterators
   ///@{

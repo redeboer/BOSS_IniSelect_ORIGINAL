@@ -32,8 +32,10 @@
 /// not loop over templates.
 /// @todo Think about a solution for indexed items.
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// See [this page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures) for the motivation. This function also automatically declares a corresponding
-/// `JobSwitch` property.
+/// See [this
+/// page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures)
+/// for the motivation. This function also automatically declares a corresponding `JobSwitch`
+/// property.
 class NTupleContainer : public Container_base
 {
 public:

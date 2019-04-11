@@ -155,11 +155,10 @@ StatusCode D0phi_KpiKK::execute_rest()
       if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue;
       /// A cut is then applied on whether the probability to be a pion (or kaon) is at
       /// least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the
-                                                        /// `RecMdcKalTrack` object is set to pion
-      if(fTrackKal->charge() > 0)
-        fPionPos.push_back(
-          *fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+      /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
+      if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIterator);
+      /// and the (positive) pion is added to the vector of pions.
     }
     else
     {
@@ -188,12 +187,10 @@ StatusCode D0phi_KpiKK::execute_rest()
     fNTuple_mult_sel.Write();
   }
 
-  /// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only:
-  /// <ol>
-  if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
-  if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
-  if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
-  /// </ol>
+  /// <li> **PID cut**: apply a strict cut on the number of the selected particles.
+  if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
+  if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
+  if(fPionPos.size() != 1) return StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
        << ", " << fEventHeader->eventNumber() << ")" << endmsg;

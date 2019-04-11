@@ -18,7 +18,8 @@
 
 /// Base class for a container that contains important fit results of the `KalmanKinematicFit`.
 /// This object is necessary, because `KalmanKinematicFit` allows only the existance of one instance
-/// (see for instance [here](http://bes3.to.infn.it/Boss/7.0.2/html/classKalmanKinematicFit.html#67eb34f5902be7b16ce75e60513a995a)
+/// (see for instance
+/// [here](http://bes3.to.infn.it/Boss/7.0.2/html/classKalmanKinematicFit.html#67eb34f5902be7b16ce75e60513a995a)
 /// and the fact that `operator=` of `KalmanKinematicFit` has been made `private`). For each derived
 /// algorithm of `TrackSelector`, you should create a derived class of `KKFitResult` where you
 /// define how to compute invariant masses and define the measure for the best fit.

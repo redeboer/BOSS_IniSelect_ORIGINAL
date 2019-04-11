@@ -92,10 +92,10 @@ protected:
                                    ///< measured netto charge was \f$0\f$. This cut is used to
                                    ///< exclude events where some charged tracks were not detected
                                    ///< (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
-  CutObject fCutFlow_TopoAnaOK; ///< **Cut flow counter**: total number of entries written to the
-                                ///< topoana branch.
-  CutObject fCut_GammaAngle;    ///< Cut on angle between the photon and the nearest charged track
-                                ///< *in degrees*.
+  CutObject fCutFlow_TopoAnaOK;    ///< **Cut flow counter**: total number of entries written to the
+                                   ///< topoana branch.
+  CutObject fCut_GammaAngle; ///< Cut on angle between the photon and the nearest charged track
+                             ///< *in degrees*.
   CutObject fCut_GammaPhi;   ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged
                              ///< track *in radians*.
   CutObject fCut_GammaTheta; ///< Cut on \f$\theta\f$ angle between the photon and the nearest

@@ -260,7 +260,9 @@ StatusCode rhopi_pipigg::execute_rest()
   /// </ol>
   ++fCutFlow_NPIDnumberOK;
 
-  /// <li> Create selection of MC truth particles by looping over the collection of MC particles created in `TrackSelector::execute()`. See [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html) for a list of PDG codes.
+  /// <li> Create selection of MC truth particles by looping over the collection of MC particles
+  /// created in `TrackSelector::execute()`. See
+  /// [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html) for a list of PDG codes.
   if(fEventHeader->runNumber() < 0 && fNTuple_fit_mc.DoWrite())
   {
     fMcPhotons.clear();
