@@ -125,7 +125,7 @@ StatusCode rhopi_pipigg::execute_rest()
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **2 charged
   /// tracks in total**.
-  if(fGoodChargedTracks.size() != 2) return StatusCode::SUCCESS;
+  if(fChargedTracks.size() != 2) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
   /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If
@@ -139,7 +139,7 @@ StatusCode rhopi_pipigg::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
+  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     /// <ol>
     /// <li> Initialise PID and skip if it fails:
@@ -179,7 +179,7 @@ StatusCode rhopi_pipigg::execute_rest()
 
   /// <li> Create selection **neutral** tracks (photons)
   fPhotons.clear();
-  for(fTrackIter = fGoodNeutralTracks.begin(); fTrackIter != fGoodNeutralTracks.end(); ++fTrackIter)
+  for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
 
     /// <ol>
@@ -191,8 +191,7 @@ StatusCode rhopi_pipigg::execute_rest()
     double smallestTheta = DBL_MAX; // start value for difference in theta
     double smallestPhi   = DBL_MAX; // start value for difference in phi
     double smallestAngle = DBL_MAX; // start value for difference in angle (?)
-    for(fPionNegIter = fGoodChargedTracks.begin(); fPionNegIter != fGoodChargedTracks.end();
-        ++fPionNegIter)
+    for(fPionNegIter = fChargedTracks.begin(); fPionNegIter != fChargedTracks.end(); ++fPionNegIter)
     {
       /// * Get the extension object from MDC to EMC.
       if(!(*fPionNegIter)->isExtTrackValid()) continue;

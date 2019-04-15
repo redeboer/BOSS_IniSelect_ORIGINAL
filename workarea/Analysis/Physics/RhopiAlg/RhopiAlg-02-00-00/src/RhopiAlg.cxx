@@ -111,7 +111,7 @@ StatusCode RhopiAlg::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
+  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
 
     // * STEP A.1: Initialise PID

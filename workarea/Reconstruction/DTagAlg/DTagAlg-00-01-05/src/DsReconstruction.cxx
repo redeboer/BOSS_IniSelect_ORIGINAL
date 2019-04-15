@@ -802,7 +802,9 @@ void DsReconstruction::pidtag(vector<int> kaonid, vector<int> pionid, CDChargedK
 
   for(CDChargedPionList::iterator pit = pionList.particle_begin(); pit != pionList.particle_end();
       pit++)
-  { recDTag->addPionId((*pit).particle().track()); } /*
+  {
+    recDTag->addPionId((*pit).particle().track());
+  } /*
     for(int i=0; i<kaonid.size(); i++){
     bool ithkaon=false;
     for (CDChargedKaonList::iterator kit = kaonList.particle_begin(); kit !=

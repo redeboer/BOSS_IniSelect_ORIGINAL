@@ -255,13 +255,10 @@ StatusCode TrackSelector::execute()
   /// <ol>
   /// <li> Load headers from the input file.
   /// <ul>
-  /// <li> [Namespace
-  /// `EventModel`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html)
+  /// <li> [Namespace `EventModel`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html)
   /// <li> [Class `EvtRecEvent`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html)
-  /// <li> [Type definition
-  /// `EvtRecTrackCol`](http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html)
-  /// <li> [Type definition
-  /// `Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed)
+  /// <li> [Type definition `EvtRecTrackCol`](http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html)
+  /// <li> [Type definition`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed)
   /// </ul>
   fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
   fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
@@ -301,10 +298,8 @@ StatusCode TrackSelector::execute()
     fNTuple_mult.GetItem<int>("Ntotal")   = fEvtRecEvent->totalTracks();
     fNTuple_mult.GetItem<int>("Ncharge")  = fEvtRecEvent->totalCharged();
     fNTuple_mult.GetItem<int>("Nneutral") = fEvtRecEvent->totalNeutral();
-    if(fCreateChargedCollection)
-      fNTuple_mult.GetItem<int>("NgoodCharged") = fGoodChargedTracks.size();
-    if(fCreateNeutralCollection)
-      fNTuple_mult.GetItem<int>("NgoodNeutral") = fGoodNeutralTracks.size();
+    if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
+    if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
     fNTuple_mult.Write();
   }
 
@@ -456,7 +451,7 @@ void TrackSelector::BookNTuples()
 }
 
 /// Create a preselection of charged tracks (without cuts).
-/// This method is used in `TrackSelector::execute` only. See `fGoodChargedTracks` for more
+/// This method is used in `TrackSelector::execute` only. See `fChargedTracks` for more
 /// information.
 void TrackSelector::CreateChargedCollection()
 {
@@ -465,8 +460,8 @@ void TrackSelector::CreateChargedCollection()
   /// derived class.
   if(!fCreateChargedCollection) return;
 
-  /// <li> Clear `fGoodChargedTracks` collection `vector` and initialize PID instance.
-  fGoodChargedTracks.clear();
+  /// <li> Clear `fChargedTracks` collection `vector` and initialize PID instance.
+  fChargedTracks.clear();
   fPIDInstance = ParticleID::instance();
 
   /// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
@@ -523,7 +518,7 @@ void TrackSelector::CreateChargedCollection()
     /// </ul>
 
     // * Add charged track to vector
-    fGoodChargedTracks.push_back(*fTrackIter);
+    fChargedTracks.push_back(*fTrackIter);
     fNetChargeMDC += fTrackMDC->charge();
 
     /// <li> @b Write charged track vertex position info ("charged" branch)
@@ -580,12 +575,12 @@ void TrackSelector::CreateChargedCollection()
     /// </ol>
   }
 
-  fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fGoodChargedTracks.size() << endmsg;
+  fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fChargedTracks.size() << endmsg;
   /// </ol>
 }
 
 /// Create a preselection of @b neutral tracks (without cuts).
-/// This method is used in `TrackSelector::execute` only. See `fGoodNeutralTracks` for more
+/// This method is used in `TrackSelector::execute` only. See `fNeutralTracks` for more
 /// information.
 void TrackSelector::CreateNeutralCollection()
 {
@@ -594,8 +589,8 @@ void TrackSelector::CreateNeutralCollection()
   /// derived class.
   if(!fCreateNeutralCollection) return;
 
-  /// <li> Clear `fGoodNeutralTracks` collection `vector`.
-  fGoodNeutralTracks.clear();
+  /// <li> Clear `fNeutralTracks` collection `vector`.
+  fNeutralTracks.clear();
 
   /// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
   if(!fEvtRecEvent->totalNeutral())
@@ -631,12 +626,12 @@ void TrackSelector::CreateNeutralCollection()
       fNTuple_neutral.Write();
     }
 
-    /// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
-    fGoodNeutralTracks.push_back(*fTrackIter);
+    /// <li> Add photon track to vector of neutral tracks (`fNeutralTracks`).
+    fNeutralTracks.push_back(*fTrackIter);
 
     /// </ol>
   }
-  fLog << MSG::DEBUG << "Number of 'good' photons: " << fGoodNeutralTracks.size() << endmsg;
+  fLog << MSG::DEBUG << "Number of 'good' photons: " << fNeutralTracks.size() << endmsg;
 
   /// </ol>
 }

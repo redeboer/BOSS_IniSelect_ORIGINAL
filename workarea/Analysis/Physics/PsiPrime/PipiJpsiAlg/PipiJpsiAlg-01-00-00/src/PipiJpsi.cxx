@@ -389,7 +389,7 @@ StatusCode PipiJpsi::initialize()
                                       ///< \f$J/\psi\f$ (sum of the two leptons)</td></tr>
       m_tuple8->addItem("recoil",
                         m_mass_recoil); ///< tr><td>`"recoil"`  </td><td>Invariant mass of the lab
-        ///< 4-momentum minus the 4-momenta of the two pions</td></tr>
+      ///< 4-momentum minus the 4-momenta of the two pions</td></tr>
       m_tuple8->addItem("invmass",
                         m_inv_mass); ///< tr><td>`"invmass"` </td><td>Invariant mass of the total
                                      ///< system (\f$J/\psi\f$ plus the two pions)</td></tr>

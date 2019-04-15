@@ -103,7 +103,7 @@ StatusCode D0phi_3K3pi::execute_rest()
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4
   /// charged tracks in total**.
-  if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
+  if(fChargedTracks.size() != 4) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
   /// <li> Create specific charged track selections
@@ -113,7 +113,7 @@ StatusCode D0phi_3K3pi::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
+  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     /// <ol>
     /// <li> Initialise PID and skip if it fails:

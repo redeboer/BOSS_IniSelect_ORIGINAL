@@ -149,7 +149,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4 charged
   /// tracks in total**.
-  if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
+  if(fChargedTracks.size() != 4) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
   /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If
@@ -164,7 +164,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
+  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     /// <ol>
     /// <li> Initialise PID and skip if it fails:
@@ -222,7 +222,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
 
   /// <li> Create selection **neutral** tracks (photons)
   fPhotons.clear();
-  for(fTrackIter = fGoodNeutralTracks.begin(); fTrackIter != fGoodNeutralTracks.end(); ++fTrackIter)
+  for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
 
     /// <ol>
@@ -235,8 +235,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
     double smallestPhi   = DBL_MAX; // start value for difference in phi
     double smallestAngle = DBL_MAX; // start value for difference in angle (?)
     // Note: `fPionPosIter` is just used as a dummy iterator and has nothing to do with pi+
-    for(fPionPosIter = fGoodChargedTracks.begin(); fPionPosIter != fGoodChargedTracks.end();
-        ++fPionPosIter)
+    for(fPionPosIter = fChargedTracks.begin(); fPionPosIter != fChargedTracks.end(); ++fPionPosIter)
     {
       /// * Get the extension object from MDC to EMC.
       if(!(*fPionPosIter)->isExtTrackValid()) continue;
