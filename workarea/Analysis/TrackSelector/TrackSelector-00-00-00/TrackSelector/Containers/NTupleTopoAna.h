@@ -33,8 +33,8 @@ public:
   {
     return (mcparticle->particleProperty() == 91 || mcparticle->particleProperty() == 92);
   } ///< Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG
-    ///< code of a string). This function is used to characterised the initial cluster, e.g.
-    ///< \f$J/\psi\f$
+  ///< code of a string). This function is used to characterised the initial cluster, e.g.
+  ///< \f$J/\psi\f$
   static bool IsJPsi(Event::McParticle* mcparticle)
   {
     return (mcparticle->particleProperty() == 443);
@@ -51,8 +51,8 @@ public:
   {
     return fTuple;
   } ///< Access to `fNTuple` (as opposed to `NTupleContainer`). @todo Develop template
-    ///< `NTupleContainer::AddItem` and `AddIndexedItem` procedure that removes the need to access
-    ///< `fTuple`.
+  ///< `NTupleContainer::AddItem` and `AddIndexedItem` procedure that removes the need to access
+  ///< `fTuple`.
   ///@}
 
   /// @name Specific NTuple::Items and NTuple::Arrays

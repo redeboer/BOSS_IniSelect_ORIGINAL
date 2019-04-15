@@ -139,8 +139,7 @@ StatusCode rhopi_pipigg::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end();
-      ++fTrackIterator)
+  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
   {
     /// <ol>
     /// <li> Initialise PID and skip if it fails:
@@ -163,7 +162,7 @@ StatusCode rhopi_pipigg::execute_rest()
     WritePIDInformation();
 
     /// <li> Identify type of charged particle and add to related vector: this package: only pions.
-    fTrackKal = (*fTrackIterator)->mdcKalTrack();
+    fTrackKal = (*fTrackIter)->mdcKalTrack();
     if(fCut_PIDProb.FailsMin(fPIDInstance->probPion()))
       continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at
                 /// least `fCut_PIDProb_min` (see eventual settings in `rhopi_pipigg.txt`).
@@ -171,22 +170,21 @@ StatusCode rhopi_pipigg::execute_rest()
                                                       /// `RecMdcKalTrack` object is set to pion
     if(fTrackKal->charge() > 0)
       fPionPos.push_back(
-        *fTrackIterator); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
+        *fTrackIter); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
     else
-      fPionNeg.push_back(*fTrackIterator);
+      fPionNeg.push_back(*fTrackIter);
 
     /// </ol>
   }
 
   /// <li> Create selection **neutral** tracks (photons)
   fPhotons.clear();
-  for(fTrackIterator = fGoodNeutralTracks.begin(); fTrackIterator != fGoodNeutralTracks.end();
-      ++fTrackIterator)
+  for(fTrackIter = fGoodNeutralTracks.begin(); fTrackIter != fGoodNeutralTracks.end(); ++fTrackIter)
   {
 
     /// <ol>
     /// <li> Get EM calorimeter info.
-    fTrackEMC         = (*fTrackIterator)->emcShower();
+    fTrackEMC         = (*fTrackIter)->emcShower();
     Hep3Vector emcpos = fTrackEMC->position();
 
     /// <li> Find angle differences with nearest charged pion.
@@ -247,7 +245,7 @@ StatusCode rhopi_pipigg::execute_rest()
     if(fCut_GammaAngle.FailsCut(fabs(smallestAngle))) continue;
 
     /// <li> Add photon track to vector for gammas
-    fPhotons.push_back(*fTrackIterator);
+    fPhotons.push_back(*fTrackIter);
 
     /// </ol>
   }

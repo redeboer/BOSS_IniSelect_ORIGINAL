@@ -49,7 +49,7 @@ public:
   }
 
   const TrackCollection<Event::McParticle*>& GetCollection() { return fTrackCollection; }
-  const TrackCollection<EvtRecTrack*>& GetCollectionMC() { return fTrackCollectionMC; }
+  const TrackCollection<EvtRecTrack*>&       GetCollectionMC() { return fTrackCollectionMC; }
 
   const TString& GetName() const { return fParticleName; }
   const TString& GetLaTeXName() const { return fParticleLaTeX; }

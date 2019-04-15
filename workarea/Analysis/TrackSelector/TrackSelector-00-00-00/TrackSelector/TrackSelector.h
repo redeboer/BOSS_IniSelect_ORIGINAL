@@ -194,7 +194,7 @@ protected:
   std::vector<EvtRecTrack*> fGoodNeutralTracks;
   ///< Vector that, in each event, will be filled by a selection of pointers to 'good' neutral
   ///< tracks (photons).
-  std::vector<EvtRecTrack*>::iterator fTrackIterator;
+  std::vector<EvtRecTrack*>::iterator fTrackIter;
   ///< Iterator for looping over the collection of charged and neutral tracks (`EvtRecTrackCol`).
   bool fCreateChargedCollection;
   ///< A switch that allows the derived algorithms to decide whether to create a collection of @b

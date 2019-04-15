@@ -111,8 +111,7 @@ StatusCode RhopiAlg::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end();
-      ++fTrackIterator)
+  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
   {
 
     // * STEP A.1: Initialise PID
@@ -123,7 +122,7 @@ StatusCode RhopiAlg::execute_rest()
     // pid->setMethod(pid->methodLikelihood());
     // pid->setMethod(pid->methodNeuronNetwork());
     pid->setChiMinCut(4);
-    pid->setRecTrack(*fTrackIterator);
+    pid->setRecTrack(*fTrackIter);
 
     // * Choose ID system and which particles to use
     pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() |
@@ -137,8 +136,7 @@ StatusCode RhopiAlg::execute_rest()
     // * STEP A.2: Identify type of charged particle and add to related vector (this package: kaon
     // and pion)
     RecMdcKalTrack* mdcKalTrk =
-      (*fTrackIterator)
-        ->mdcKalTrack(); // after ParticleID, use RecMdcKalTrack substitute RecMdcTrack
+      (*fTrackIter)->mdcKalTrack(); // after ParticleID, use RecMdcKalTrack substitute RecMdcTrack
     if(pid->probPion() > pid->probKaon())
     {                                       // NOTE: if more likely to be pion
       if(pid->probPion() < 0.001) continue; // check if indeed a pion
@@ -146,7 +144,7 @@ StatusCode RhopiAlg::execute_rest()
         continue; // for likelihood method (0=electron 1=muon 2=pion 3=kaon 4=proton)
       RecMdcKalTrack::setPidType(
         RecMdcKalTrack::pion); // PID can be set to electron, muon, pion (default), kaon and proton
-      if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIterator); // if positive pion
+      if(mdcKalTrk->charge() > 0) fPionPos.push_back(*fTrackIter); // if positive pion
     }
     else
     {                                       // NOTE: if more likely to be kaon (K+-)
@@ -156,9 +154,9 @@ StatusCode RhopiAlg::execute_rest()
       RecMdcKalTrack::setPidType(
         RecMdcKalTrack::kaon); // PID can be set to electron, muon, pion (default), kaon and proton
       if(mdcKalTrk->charge() < 0)
-        fKaonNeg.push_back(*fTrackIterator); // if negative kaon
+        fKaonNeg.push_back(*fTrackIter); // if negative kaon
       else
-        fKaonPos.push_back(*fTrackIterator); // if positive kaon
+        fKaonPos.push_back(*fTrackIter); // if positive kaon
     }
 
     // * STEP A.3: WRITE PID information

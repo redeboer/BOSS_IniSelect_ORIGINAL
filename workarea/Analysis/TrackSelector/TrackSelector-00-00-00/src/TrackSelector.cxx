@@ -483,10 +483,10 @@ void TrackSelector::CreateChargedCollection()
 
     // * Get track info from Main Drift Chamber
     fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
-    fTrackIterator = fEvtRecTrkCol->begin() + i;
-    if(!(*fTrackIterator)->isMdcTrackValid()) continue;
+    fTrackIter = fEvtRecTrkCol->begin() + i;
+    if(!(*fTrackIter)->isMdcTrackValid()) continue;
     ++fCounter_Nmdcvalid;
-    fTrackMDC = (*fTrackIterator)->mdcTrack();
+    fTrackMDC = (*fTrackIter)->mdcTrack();
 
     // * Get kinematics of track
     double phi = fTrackMDC->helix(1);
@@ -523,7 +523,7 @@ void TrackSelector::CreateChargedCollection()
     /// </ul>
 
     // * Add charged track to vector
-    fGoodChargedTracks.push_back(*fTrackIterator);
+    fGoodChargedTracks.push_back(*fTrackIter);
     fNetChargeMDC += fTrackMDC->charge();
 
     /// <li> @b Write charged track vertex position info ("charged" branch)
@@ -542,19 +542,19 @@ void TrackSelector::CreateChargedCollection()
     }
 
     /// <li> @b Write dE/dx PID information ("dedx" branch)
-    WriteDedxInfo(*fTrackIterator, fNTuple_dedx);
+    WriteDedxInfo(*fTrackIter, fNTuple_dedx);
 
     /// <li> @b Write Time-of-Flight PID information ("tof*" branch)
     if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite())
     {
       // * Check if MDC and TOF info for track are valid *
-      if(!(*fTrackIterator)->isMdcTrackValid()) continue;
-      if(!(*fTrackIterator)->isTofTrackValid()) continue;
+      if(!(*fTrackIter)->isMdcTrackValid()) continue;
+      if(!(*fTrackIter)->isTofTrackValid()) continue;
       // * Get momentum as determined by MDC *
-      fTrackMDC = (*fTrackIterator)->mdcTrack();
+      fTrackMDC = (*fTrackIter)->mdcTrack();
       double ptrk;
       if(fTrackMDC) ptrk = fTrackMDC->p();
-      SmartRefVector<RecTofTrack>           tofTrkCol = (*fTrackIterator)->tofTrack();
+      SmartRefVector<RecTofTrack>           tofTrkCol = (*fTrackIter)->tofTrack();
       SmartRefVector<RecTofTrack>::iterator iter_tof  = tofTrkCol.begin();
       for(; iter_tof != tofTrkCol.end(); ++iter_tof)
       {
@@ -610,9 +610,9 @@ void TrackSelector::CreateNeutralCollection()
     /// <li> Get EMC information
     fLog << MSG::DEBUG << "   neutral track " << i - fEvtRecEvent->totalCharged() << "/"
          << fEvtRecEvent->totalNeutral() << endmsg;
-    fTrackIterator = fEvtRecTrkCol->begin() + i;
-    if(!(*fTrackIterator)->isEmcShowerValid()) continue;
-    fTrackEMC = (*fTrackIterator)->emcShower();
+    fTrackIter = fEvtRecTrkCol->begin() + i;
+    if(!(*fTrackIter)->isEmcShowerValid()) continue;
+    fTrackEMC = (*fTrackIter)->emcShower();
     if(!fTrackEMC) continue;
 
     /// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
@@ -632,7 +632,7 @@ void TrackSelector::CreateNeutralCollection()
     }
 
     /// <li> Add photon track to vector of neutral tracks (`fGoodNeutralTracks`).
-    fGoodNeutralTracks.push_back(*fTrackIterator);
+    fGoodNeutralTracks.push_back(*fTrackIter);
 
     /// </ol>
   }
@@ -770,8 +770,8 @@ void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector,
 {
   if(!tuple.DoWrite()) return;
   fLog << MSG::DEBUG << "Writing \"" << tuple.Name() << "\" info" << endmsg;
-  for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator)
-    WriteDedxInfo(*fTrackIterator, tuple);
+  for(fTrackIter = vector.begin(); fTrackIter != vector.end(); ++fTrackIter)
+    WriteDedxInfo(*fTrackIter, tuple);
 }
 
 /// This `virtual` method has been declared in the base algorithm to standardise the writing of a
@@ -843,7 +843,7 @@ void TrackSelector::WritePIDInformation()
 
   /// -# Get PID info and set the `NTuple::Item`s.
   fLog << MSG::DEBUG << "Writing PID information" << endmsg;
-  fTrackMDC                               = (*fTrackIterator)->mdcTrack();
+  fTrackMDC                               = (*fTrackIter)->mdcTrack();
   fNTuple_PID.GetItem<double>("p")        = fTrackMDC->p();
   fNTuple_PID.GetItem<double>("cost")     = cos(fTrackMDC->theta());
   fNTuple_PID.GetItem<double>("chiToFEC") = fPIDInstance->chiTofE(2);
@@ -914,7 +914,7 @@ ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, con
   fPIDInstance->init();
   fPIDInstance->setMethod(method);
   fPIDInstance->setChiMinCut(chimin);
-  fPIDInstance->setRecTrack(*fTrackIterator);
+  fPIDInstance->setRecTrack(*fTrackIter);
 
   // * Choose ID system and which particles to use
   fPIDInstance->usePidSys(pidsys);

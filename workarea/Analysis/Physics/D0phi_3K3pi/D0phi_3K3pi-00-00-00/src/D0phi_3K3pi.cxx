@@ -113,8 +113,7 @@ StatusCode D0phi_3K3pi::execute_rest()
   fPionPos.clear();
 
   // * Loop over charged tracks *
-  for(fTrackIterator = fGoodChargedTracks.begin(); fTrackIterator != fGoodChargedTracks.end();
-      ++fTrackIterator)
+  for(fTrackIter = fGoodChargedTracks.begin(); fTrackIter != fGoodChargedTracks.end(); ++fTrackIter)
   {
     /// <ol>
     /// <li> Initialise PID and skip if it fails:
@@ -139,7 +138,7 @@ StatusCode D0phi_3K3pi::execute_rest()
 
     /// <li> Identify type of charged particle and add to related vector: (this package: kaon and
     /// pion).
-    fTrackKal = (*fTrackIterator)->mdcKalTrack();
+    fTrackKal = (*fTrackIter)->mdcKalTrack();
     if(fPIDInstance->probPion() > fPIDInstance->probKaon())
     { /// The particle identification first decides whether the track is more likely to have come
       /// from a pion or from a kaon.
@@ -153,7 +152,7 @@ StatusCode D0phi_3K3pi::execute_rest()
                                                         /// `RecMdcKalTrack` object is set to pion
       if(fTrackKal->charge() > 0)
         fPionPos.push_back(
-          *fTrackIterator); /// and the (positive) pion is added to the vector of pions.
+          *fTrackIter); /// and the (positive) pion is added to the vector of pions.
     }
     else
     {
@@ -162,9 +161,9 @@ StatusCode D0phi_3K3pi::execute_rest()
       if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
       RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
       if(fTrackKal->charge() < 0)
-        fKaonNeg.push_back(*fTrackIterator);
+        fKaonNeg.push_back(*fTrackIter);
       else
-        fKaonPos.push_back(*fTrackIterator);
+        fKaonPos.push_back(*fTrackIter);
     }
 
     /// </ol>
