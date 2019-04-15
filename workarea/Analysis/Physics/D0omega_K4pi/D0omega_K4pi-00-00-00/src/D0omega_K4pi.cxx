@@ -197,9 +197,6 @@ StatusCode D0omega_K4pi::execute_rest()
   {
     return result;
   }
-  /// </ol>
-
-  /// </ol>
   return StatusCode::SUCCESS;
 }
 
@@ -213,7 +210,7 @@ void D0omega_K4pi::CutNumberOfChargedParticles()
 /// **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
 void D0omega_K4pi::CutZeroNetCharge()
 {
-  if(fNetChargeMDC) return StatusCode::SUCCESS;
+  if(fNetChargeMDC) throw StatusCode::SUCCESS;
   ++fCutFlow_NetChargeOK;
 }
 
