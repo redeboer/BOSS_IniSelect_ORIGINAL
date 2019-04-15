@@ -8,7 +8,6 @@
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "VertexFit/KalmanKinematicFit.h"
-#include "VertexFit/VertexFit.h"
 #include <float.h> // for DBL_MAX
 #include <string>
 #include <utility>
@@ -268,7 +267,7 @@ void D0omega_K4pi::FindSmallestPhotonAngles()
 {
   ResetPhotonAngles();
   GetEmcPosition();
-  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
+  for(fTrackIter2 = fChargedTracks.begin(); fTrackIter2 != fChargedTracks.end(); ++fTrackIter2)
   {
     if(!GetExtendedEmcPosition()) continue;
     GetPhotonAngles();
@@ -291,8 +290,8 @@ void D0omega_K4pi::GetEmcPosition()
 
 bool D0omega_K4pi::GetExtendedEmcPosition()
 {
-  if(!(*fTrackIter)->isExtTrackValid()) return false;
-  fTrackExt = (*fTrackIter)->extTrack();
+  if(!(*fTrackIter2)->isExtTrackValid()) return false;
+  fTrackExt = (*fTrackIter2)->extTrack();
   if(fTrackExt->emcVolumeNumber() == -1) return false;
   fExtendedEmcPosition = fTrackExt->emcPosition();
   return true;

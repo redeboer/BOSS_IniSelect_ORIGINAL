@@ -7,6 +7,7 @@
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "TrackSelector/TrackSelector.h"
+#include "VertexFit/VertexFit.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
@@ -63,6 +64,7 @@ protected:
   ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^-\f$.
   std::vector<EvtRecTrack*> fPionPos;
   ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
+  std::vector<EvtRecTrack*>::iterator fTrackIter2;
   std::vector<EvtRecTrack*>::iterator fKaonNegIter;
   ///< Iterator for looping over the collection of negative kaons.
   std::vector<EvtRecTrack*>::iterator fPhoton1Iter;
