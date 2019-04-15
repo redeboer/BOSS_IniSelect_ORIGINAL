@@ -1,6 +1,8 @@
 # Ignore Windows files
 desktop.ini
 
+include
+
 # Ignore jobs
 jobs/**/sed*
 jobs/filenames/*
