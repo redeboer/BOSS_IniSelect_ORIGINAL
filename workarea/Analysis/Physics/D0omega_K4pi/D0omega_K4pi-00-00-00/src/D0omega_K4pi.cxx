@@ -113,14 +113,14 @@ StatusCode D0omega_K4pi::initialize_rest()
 
   /// <li> `"topology"`: Add @b extra mass branches to the MC truth branch for the `topoana` package
   /// <ol>
-  fNTuple_topology.AddItem<double>(
-    "chi2"); /// <li> `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
+  fNTuple_topology.AddItem<double>("chi2");
+  /// <li> `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
   fNTuple_topology.AddItem<double>("mpi0"); /// <li> `"mpi0"`: Invariant mass of the \f$\pi^0\f$
                                             /// candidate in \f$D^0 \to K^-\pi^+\pi^0\f$.
   fNTuple_topology.AddItem<double>("mD0");  /// <li> `"mD0"`:  Invariant mass of the \f$D^0\f$
                                             /// candidate in the \f$J/\psi \to D^0\omega\f$.
-  fNTuple_topology.AddItem<double>(
-    "momega"); /// <li> `"momega"`: Invariant mass of the \f$\omega\f$ candidate in the \f$J/\psi
+  fNTuple_topology.AddItem<double>("momega");
+  /// <li> `"momega"`: Invariant mass of the \f$\omega\f$ candidate in the \f$J/\psi
                /// \to D^0\omega\f$.
   fNTuple_topology.AddItem<double>("pD0"); /// <li> `"pD0"`:  Momentum of the \f$D^0\f$ candidate in
                                            /// the \f$J/\psi \to D^0\omega\f$.
@@ -326,39 +326,6 @@ std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNum
   WriteDedxInfoForVector(fPionNeg, fNTuple_dedx_pi);
   WriteDedxInfoForVector(fPionPos, fNTuple_dedx_pi);
 
-  /// <li> Loop over MC truth of final decay products.
-  for(fMcKaonNegIter = fMcKaonNeg.begin(); fMcKaonNegIter != fMcKaonNeg.end(); ++fMcKaonNegIter)
-    for(fMcPhoton1Iter = fMcPhotons.begin(); fMcPhoton1Iter != fMcPhotons.end(); ++fMcPhoton1Iter)
-      for(fMcPhoton2Iter = fMcPhotons.begin(); fMcPhoton2Iter != fMcPhotons.end(); ++fMcPhoton2Iter)
-        for(fMcPionNegIter = fMcPionNeg.begin(); fMcPionNegIter != fMcPionNeg.end();
-            ++fMcPionNegIter)
-          for(fMcPionPos1Iter = fMcPionPos.begin(); fMcPionPos1Iter != fMcPionPos.end();
-              ++fMcPionPos1Iter)
-            for(fMcPionPos2Iter = fMcPionPos.begin(); fMcPionPos2Iter != fMcPionPos.end();
-                ++fMcPionPos2Iter)
-            {
-              /// <ol>
-              /// <li> Only continue if the two kaons are different.
-              if(fMcPhoton1Iter == fMcPhoton2Iter) continue;
-              if(fMcPionPos1Iter == fMcPionPos2Iter) continue;
-              /// <li> Check topology: only consider that combination which comes from \f$J/\psi
-              /// \rightarrow D^0\omega \rightarrow K^-\pi^+ K^-K^+\f$.
-              if(!IsDecay(*fMcKaonNegIter, 421, -321)) continue; // D0    --> K-
-              if(!IsDecay(*fMcPhoton1Iter, 111, 22)) continue;   // pi0   --> gamma
-              if(!IsDecay(*fMcPhoton2Iter, 111, 22)) continue;   // pi0   --> gamma
-              if(!IsDecay(*fMcPionNegIter, 223, -221)) continue; // omega --> pi
-              if(!IsDecay(*fMcPionPos1Iter, 421, 211)) continue; // D0    --> pi+
-              if(!IsDecay(*fMcPionPos2Iter, 223, 211)) continue; // omega --> pi
-              /// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed
-              /// from MC truth.
-              KKFitResult_D0omega_K4pi fitresult(*fMcKaonNegIter, *fMcPhoton1Iter, *fMcPhoton2Iter,
-                                                 *fMcPionNegIter, *fMcPionPos1Iter,
-                                                 *fMcPionPos2Iter);
-              fitresult.SetRunAndEventNumber(fEventHeader);
-              WriteFitResults(&fitresult, fNTuple_fit_mc);
-              /// </ol>
-            }
-
   /// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the
   /// combinations that results in the 'best' result. The 'best' result is defined as the
   /// combination that has the smallest value of: \f$m_{K^-K^+}-m_{\omega}\f$ (that is the
@@ -366,146 +333,7 @@ std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNum
   /// See `D0omega_K4pi::MeasureForBestFit` for the definition of this measure. @todo Decide whether
   /// 4-constraints is indeed suitable. <ol>
   if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite())
-  {
-    /// <li> Reset best fit parameters (see `KKFitResult_D0omega_K4pi`).
-    KKFitResult_D0omega_K4pi bestKalmanFit;
-    bestKalmanFit.ResetBestCompareValue();
-    /// <li> Loop over all combinations of \f$\gamma\f$, \f$K^-\f$, \f$K^+\f$, and \f$\pi^+\f$.
-    /// <ol>
-    int  count = 0;
-    bool printfit{true};
-    for(fKaonNegIter = fKaonNeg.begin(); fKaonNegIter != fKaonNeg.end(); ++fKaonNegIter)
-      for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
-        for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
-          for(fPionNegIter = fPionNeg.begin(); fPionNegIter != fPionNeg.end(); ++fPionNegIter)
-            for(fPionPos1Iter = fPionPos.begin(); fPionPos1Iter != fPionPos.end(); ++fPionPos1Iter)
-              for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end();
-                  ++fPionPos2Iter)
-              {
-                /// <li> *For more information, see [the page on primary and secondary vertex fits
-                /// on the Offline Software
-                /// Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit)
-                /// (requires login).*
-
-                /// <li> Only continue if we are not dealing with the same kaon
-                /// and/or photon.
-                if(fPhoton1Iter == fPhoton2Iter) continue;
-                if(fPionPos1Iter == fPionPos2Iter) continue;
-std::cout << "  fitting combination " << count << "..." << std::endl;
-                fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
-                ++count;
-
-                /// <li> Get Kalman tracks reconstructed by the MDC.
-                RecMdcKalTrack* kalTrkKm   = (*fKaonNegIter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpim  = (*fPionNegIter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpip1 = (*fPionPos1Iter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
-
-                /// <li> Get W-tracks.
-                WTrackParameter wvKmTrk(gM_K, kalTrkKm->getZHelix(), kalTrkKm->getZError());
-                WTrackParameter wvpimTrk(gM_K, kalTrkpim->getZHelix(), kalTrkpim->getZError());
-                WTrackParameter wvpipTrk1(gM_K, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
-                WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
-
-                /// <li> Initiate vertex fit.
-                HepPoint3D   vx(0., 0., 0.);
-                HepSymMatrix Evx(3, 0);
-                double       bx = 1E+6;
-                double       by = 1E+6;
-                double       bz = 1E+6;
-                Evx[0][0]       = bx * bx;
-                Evx[1][1]       = by * by;
-                Evx[2][2]       = bz * bz;
-                VertexParameter vxpar;
-                vxpar.setVx(vx);
-                vxpar.setEvx(Evx);
-
-                /// <li> Test vertex fit.
-                VertexFit* vtxfit = VertexFit::instance();
-                vtxfit->init();
-                vtxfit->AddTrack(0, wvKmTrk);
-                vtxfit->AddTrack(1, wvpimTrk);
-                vtxfit->AddTrack(2, wvpipTrk1);
-                vtxfit->AddTrack(3, wvpipTrk2);
-                vtxfit->AddVertex(0, vxpar, 0, 1);
-                if(!vtxfit->Fit(0))
-                {
-                  fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-                  continue;
-                }
-                vtxfit->Swim(0);
-
-                /// <li> Get Kalman kinematic fit for this combination and store if better than
-                /// previous one.
-                KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
-                kkmfit->init();
-                kkmfit->AddTrack(0, vtxfit->wtrk(0));                  // K-
-                kkmfit->AddTrack(1, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
-                kkmfit->AddTrack(2, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
-                kkmfit->AddTrack(3, vtxfit->wtrk(1));                  // pi-
-                kkmfit->AddTrack(4, vtxfit->wtrk(2));                  // pi+ (1st occurrence)
-                kkmfit->AddTrack(5, vtxfit->wtrk(3));                  // pi+ (2nd occurrence)
-                kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-                // kkmfit->AddResonance(1, gM_pi0, 1, 2); /// @remark 5th constraint: \f$\pi^0\f$
-                // resonance
-                if(kkmfit->Fit())
-                {
-                  /// <ol>
-                  /// <li> Construct fit result object for this combintation.
-                  KKFitResult_D0omega_K4pi fitresult(kkmfit);
-                  fitresult.SetRunAndEventNumber(fEventHeader);
-                  /// <li> @b Write results of the Kalman kinematic fit (all combinations,
-                  /// `"fit4c_all"`).
-                  WriteFitResults(&fitresult, fNTuple_fit4c_all);
-                  /// <li> Decide if this fit is better than the previous.
-                  if(fitresult.IsBetter()) bestKalmanFit = fitresult;
-                  /// </ol>
-                }
-                else if(printfit)
-                {
-std::cout << "  fit failed: chisq = " << kkmfit->chisq() << std::endl;
-                  fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
-                  printfit = false;
-                }
-              }
-    /// </ol>
-    /// <li> **Write** results of the Kalman kitematic fit *of the best combination*
-    /// (`"fit4c_best"` branches).
-    WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
-
-    /// <li> If there is a fit result, **write** the MC truth topology for this event. Also
-    /// increment `fCutFlow_NFitOK` counter if fit worked.
-    if(bestKalmanFit.HasResults())
-    {
-      std::cout << "  Result Kalman fit for (run, event) = " << fEventHeader->runNumber() << ", "
-                << fEventHeader->eventNumber() << "):" << std::endl
-                << "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
-                << "    m_pi0  = " << bestKalmanFit.fM_pi0 << std::endl
-                << "    m_D0   = " << bestKalmanFit.fM_D0 << std::endl
-                << "    m_omega  = " << bestKalmanFit.fM_omega << std::endl
-                << "    p_D0   = " << bestKalmanFit.fP_D0 << std::endl
-                << "    p_omega  = " << bestKalmanFit.fP_omega << std::endl;
-      ++fCutFlow_NFitOK;
-      CreateMCTruthCollection();
-      fNTuple_topology.GetItem<double>("chi2")   = bestKalmanFit.fChiSquared;
-      fNTuple_topology.GetItem<double>("mpi0")   = bestKalmanFit.fM_pi0;
-      fNTuple_topology.GetItem<double>("mD0")    = bestKalmanFit.fM_D0;
-      fNTuple_topology.GetItem<double>("momega") = bestKalmanFit.fM_omega;
-      fNTuple_topology.GetItem<double>("pD0")    = bestKalmanFit.fP_D0;
-      fNTuple_topology.GetItem<double>("pomega") = bestKalmanFit.fP_omega;
-
-      fNTuple_topology.GetItem<double>("ppi0")                 = bestKalmanFit.fP_pi0;
-      fNTuple_topology.GetItem<double>("pK-")                  = bestKalmanFit.fP_Km;
-      fNTuple_topology.GetItem<double>("ppi-")                 = bestKalmanFit.fP_pim;
-      fNTuple_topology.GetItem<double>("ppi+1")                = bestKalmanFit.fP_pip1;
-      fNTuple_topology.GetItem<double>("ppi+2")                = bestKalmanFit.fP_pip2;
-      fNTuple_topology.GetItem<double>("fDalitzOmega_pi-pi+")  = bestKalmanFit.fDalitzOmega_pimpip;
-      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi-")  = bestKalmanFit.fDalitzOmega_pi0pim;
-      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi+")  = bestKalmanFit.fDalitzOmega_pi0pip;
-      fNTuple_topology.GetItem<double>("fRelativePhotonAngle") = bestKalmanFit.fRelativePhotonAngle;
-      WriteMCTruthForTopoAna(fNTuple_topology);
-    }
-  }
+    if(!ComputeBestKinematicFit()) return StatusCode::SUCCESS;
   /// </ol>
 
   /// </ol>
@@ -607,4 +435,133 @@ void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   tuple.GetItem<double>("fDalitzOmega_pi0pi-")  = fit->fDalitzOmega_pi0pim;
   tuple.GetItem<double>("fDalitzOmega_pi0pi+")  = fit->fDalitzOmega_pi0pip;
   tuple.GetItem<double>("fRelativePhotonAngle") = fit->fRelativePhotonAngle;
+}
+
+/// <li> *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
+void D0omega_K4pi::ComputeBestKinematicFit()
+{
+  fKaonNegIter = fKaonNeg.begin();
+  fPionNegIter = fPionNeg.begin();
+  fPionPos1Iter = fPionPos.begin();
+  fPionPos2Iter = fPionPos1Iter + 1;
+
+  int  count = 0;
+  for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
+    for(fPhoton2Iter = fPhoton1Iter + 1; fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
+    {
+      ++count;
+      std::cout << "  fitting combination " << count << "..." << std::endl;
+      fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
+
+      /// -# Get Kalman tracks reconstructed by the MDC.
+      RecMdcKalTrack* kalTrkKm   = (*fKaonNegIter)->mdcKalTrack();
+      RecMdcKalTrack* kalTrkpim  = (*fPionNegIter)->mdcKalTrack();
+      RecMdcKalTrack* kalTrkpip1 = (*fPionPos1Iter)->mdcKalTrack();
+      RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
+
+      /// -# Get W-tracks.
+      WTrackParameter wvKmTrk(gM_K, kalTrkKm->getZHelix(), kalTrkKm->getZError());
+      WTrackParameter wvpimTrk(gM_K, kalTrkpim->getZHelix(), kalTrkpim->getZError());
+      WTrackParameter wvpipTrk1(gM_K, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
+      WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
+
+      /// -# Initiate vertex fit.
+      HepPoint3D   vx(0., 0., 0.);
+      HepSymMatrix Evx(3, 0);
+      double       bx = 1E+6;
+      double       by = 1E+6;
+      double       bz = 1E+6;
+      Evx[0][0]       = bx * bx;
+      Evx[1][1]       = by * by;
+      Evx[2][2]       = bz * bz;
+      VertexParameter vxpar;
+      vxpar.setVx(vx);
+      vxpar.setEvx(Evx);
+
+      /// -# Test vertex fit.
+      VertexFit* vtxfit = VertexFit::instance();
+      vtxfit->init();
+      vtxfit->AddTrack(0, wvKmTrk);
+      vtxfit->AddTrack(1, wvpimTrk);
+      vtxfit->AddTrack(2, wvpipTrk1);
+      vtxfit->AddTrack(3, wvpipTrk2);
+      vtxfit->AddVertex(0, vxpar, 0, 1);
+      if(!vtxfit->Fit(0))
+      {
+        fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+        continue;
+      }
+      vtxfit->Swim(0);
+
+      /// -# Get Kalman kinematic fit for this combination and store if better than
+      /// previous one.
+      KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
+      kkmfit->init();
+      kkmfit->AddTrack(0, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+      kkmfit->AddTrack(1, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+      kkmfit->AddTrack(2, vtxfit->wtrk(0));                  // K-
+      kkmfit->AddTrack(3, vtxfit->wtrk(1));                  // pi-
+      kkmfit->AddTrack(4, vtxfit->wtrk(2));                  // pi+ (1st occurrence)
+      kkmfit->AddTrack(5, vtxfit->wtrk(3));                  // pi+ (2nd occurrence)
+      kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+      kkmfit->AddResonance(1, gM_pi0, 0, 1); /// @remark 5th constraint: \f$\pi^0\f$
+      resonance
+      if(kkmfit->Fit())
+      {
+        /// -# Construct fit result object for this combintation.
+        KKFitResult_D0omega_K4pi fitresult(kkmfit);
+        fitresult.SetRunAndEventNumber(fEventHeader);
+        /// -# @b Write results of the Kalman kinematic fit (all combinations,
+        /// `"fit4c_all"`).
+        WriteFitResults(&fitresult, fNTuple_fit4c_all);
+        /// -# Decide if this fit is better than the previous.
+        if(fitresult.IsBetter()) bestKalmanFit = fitresult;
+      }
+      else
+      {
+        std::cout << "  fit failed: chisq = " << kkmfit->chisq() << std::endl;
+        fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
+      }
+    }
+
+  /// -# Reset best fit parameters (see `KKFitResult_D0omega_K4pi`).
+  KKFitResult_D0omega_K4pi bestKalmanFit;
+  bestKalmanFit.ResetBestCompareValue();
+
+    /// -# **Write** results of the Kalman kitematic fit *of the best combination*
+    /// (`"fit4c_best"` branches).
+    WriteFitResults(&bestKalmanFit, fNTuple_fit4c_best);
+
+    /// -# If there is a fit result, **write** the MC truth topology for this event. Also
+    /// increment `fCutFlow_NFitOK` counter if fit worked.
+    if(bestKalmanFit.HasResults())
+    {
+      std::cout << "  Result Kalman fit for (run, event) = " << fEventHeader->runNumber() << ", "
+                << fEventHeader->eventNumber() << "):" << std::endl
+                << "    chi2   = " << bestKalmanFit.fChiSquared << std::endl
+                << "    m_pi0  = " << bestKalmanFit.fM_pi0 << std::endl
+                << "    m_D0   = " << bestKalmanFit.fM_D0 << std::endl
+                << "    m_omega  = " << bestKalmanFit.fM_omega << std::endl
+                << "    p_D0   = " << bestKalmanFit.fP_D0 << std::endl
+                << "    p_omega  = " << bestKalmanFit.fP_omega << std::endl;
+      ++fCutFlow_NFitOK;
+      CreateMCTruthCollection();
+      fNTuple_topology.GetItem<double>("chi2")   = bestKalmanFit.fChiSquared;
+      fNTuple_topology.GetItem<double>("mpi0")   = bestKalmanFit.fM_pi0;
+      fNTuple_topology.GetItem<double>("mD0")    = bestKalmanFit.fM_D0;
+      fNTuple_topology.GetItem<double>("momega") = bestKalmanFit.fM_omega;
+      fNTuple_topology.GetItem<double>("pD0")    = bestKalmanFit.fP_D0;
+      fNTuple_topology.GetItem<double>("pomega") = bestKalmanFit.fP_omega;
+
+      fNTuple_topology.GetItem<double>("ppi0")                 = bestKalmanFit.fP_pi0;
+      fNTuple_topology.GetItem<double>("pK-")                  = bestKalmanFit.fP_Km;
+      fNTuple_topology.GetItem<double>("ppi-")                 = bestKalmanFit.fP_pim;
+      fNTuple_topology.GetItem<double>("ppi+1")                = bestKalmanFit.fP_pip1;
+      fNTuple_topology.GetItem<double>("ppi+2")                = bestKalmanFit.fP_pip2;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi-pi+")  = bestKalmanFit.fDalitzOmega_pimpip;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi-")  = bestKalmanFit.fDalitzOmega_pi0pim;
+      fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi+")  = bestKalmanFit.fDalitzOmega_pi0pip;
+      fNTuple_topology.GetItem<double>("fRelativePhotonAngle") = bestKalmanFit.fRelativePhotonAngle;
+      WriteMCTruthForTopoAna(fNTuple_topology);
+    }
 }

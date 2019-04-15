@@ -115,6 +115,11 @@ private:
   void CreateMCTruthSelection();
   void SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple);
   ///@}
+
+  /// @name Fit methods
+  ///@{
+  void ComputeBestKinematicFit();
+  ///@}
 };
 
 /// @}
