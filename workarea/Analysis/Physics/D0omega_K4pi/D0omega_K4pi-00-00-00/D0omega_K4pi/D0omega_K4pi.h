@@ -127,6 +127,7 @@ private:
   bool CategorizeTrack(EvtRecTrack* track);
   void CreateNeutralTrackSelections();
   void WriteMultiplicities();
+  void PrintMultiplicities();
   void CutPID();
   void WriteDedx();
   void AddNTupleItems_Fit(NTupleContainer& tuple);

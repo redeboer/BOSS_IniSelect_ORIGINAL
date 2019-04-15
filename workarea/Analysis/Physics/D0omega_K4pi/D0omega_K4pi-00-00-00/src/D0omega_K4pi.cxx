@@ -215,8 +215,7 @@ void D0omega_K4pi::CreateChargedTrackSelections()
   }
 }
 
-/// Specialized initialise PID method for D0omega_K4pi.
-/// @see TrackSelector::InitializePID.
+/// Specialized initialise PID method for D0omega_K4pi. @see TrackSelector::InitializePID.
 bool D0omega_K4pi::InitializePID()
 {
   return TrackSelector::InitializePID(
@@ -258,26 +257,24 @@ void D0omega_K4pi::CreateNeutralTrackSelections()
   fPhotons.clear();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
-
-    /// <ol>
-    /// <li> Get EM calorimeter info.
+    /// -# Get EM calorimeter info.
     fTrackEMC         = (*fTrackIter)->emcShower();
     Hep3Vector emcpos = fTrackEMC->position();
 
-    /// <li> Find angle differences with nearest charged pion.
+    /// -# Find angle differences with nearest charged pion.
     double smallestTheta = DBL_MAX; // start value for difference in theta
     double smallestPhi   = DBL_MAX; // start value for difference in phi
     double smallestAngle = DBL_MAX; // start value for difference in angle (?)
     // Note: `fPionPosIter` is just used as a dummy iterator and has nothing to do with pi+
     for(fPionNegIter = fChargedTracks.begin(); fPionNegIter != fChargedTracks.end(); ++fPionNegIter)
     {
-      /// * Get the extension object from MDC to EMC.
+      // Get the extension object from MDC to EMC.
       if(!(*fPionNegIter)->isExtTrackValid()) continue;
       fTrackExt = (*fPionNegIter)->extTrack();
       if(fTrackExt->emcVolumeNumber() == -1) continue;
       Hep3Vector extpos(fTrackExt->emcPosition());
 
-      /// * Get angles in @b radians.
+      // Get angles in @b radians.
       double angle  = extpos.angle(emcpos);
       double dTheta = extpos.theta() - emcpos.theta();
       double dPhi   = extpos.deltaPhi(emcpos);
@@ -291,12 +288,12 @@ void D0omega_K4pi::CreateNeutralTrackSelections()
       }
     }
 
-    /// <li> Convert angles from radians to degrees.
+    /// -# Convert angles from radians to degrees.
     smallestTheta *= (180. / (CLHEP::pi));
     smallestPhi *= (180. / (CLHEP::pi));
     smallestAngle *= (180. / (CLHEP::pi));
 
-    /// <li> @b Write photon info (`"photon"` branch).
+    /// -# *Write* photon info (`"photon"` branch).
     if(fNTuple_photon.DoWrite())
     {
       double           eraw  = fTrackEMC->energy();
@@ -314,33 +311,35 @@ void D0omega_K4pi::CreateNeutralTrackSelections()
       fNTuple_photon.Write();
     }
 
-    /// <li> Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
+    /// -# Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
     if(fCut_GammaTheta.FailsCut(fabs(smallestTheta)) && fCut_GammaPhi.FailsCut(fabs(smallestPhi)))
       continue;
     if(fCut_GammaAngle.FailsCut(fabs(smallestAngle))) continue;
 
-    /// <li> Add photon track to vector for gammas
+    /// -# Add photon track to vector for gammas.
     fPhotons.push_back(*fTrackIter);
-
-    /// </ol>
   }
 }
 
 /// **Write** the multiplicities of the selected particles.
 void D0omega_K4pi::WriteMultiplicities()
 {
+  PrintMultiplicities();
+  if(!fNTuple_mult_sel.DoWrite()) return;
+  fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
+  fNTuple_mult_sel.GetItem<int>("NPhoton")  = fPhotons.size();
+  fNTuple_mult_sel.GetItem<int>("NPionNeg") = fPionNeg.size();
+  fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
+  fNTuple_mult_sel.Write();
+}
+
+/// Print multiplicities of the selected particles.
+void D0omega_K4pi::PrintMultiplicities()
+{
   fLog << MSG::INFO << "N_{K^-} = " << fKaonNeg.size() << ", "
        << "N_{\pi^+} = " << fPionPos.size() << ", "
        << "N_{\pi^-} = " << fPionNeg.size() << ", "
        << "N_{\gamma} = " << fPhotons.size() << endmsg;
-  if(fNTuple_mult_sel.DoWrite())
-  {
-    fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
-    fNTuple_mult_sel.GetItem<int>("NPhoton")  = fPhotons.size();
-    fNTuple_mult_sel.GetItem<int>("NPionNeg") = fPionNeg.size();
-    fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.size();
-    fNTuple_mult_sel.Write();
-  }
 }
 
 /// **PID cut**: apply a strict cut on the number of the selected particles.
