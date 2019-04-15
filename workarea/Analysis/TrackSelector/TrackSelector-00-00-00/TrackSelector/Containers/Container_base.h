@@ -13,10 +13,7 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// This class is the base class for objects requiring a name and a description. This can be useful
-/// for instance for defining derived containers containing properties and `NTuple`s. See [this
-/// page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures)
-/// for the motivation.
+/// This class is the base class for objects requiring a name and a description. This can be useful for instance for defining derived containers containing properties and `NTuple`s. See [this page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures) for the motivation.
 /// @todo Encapsulate in `namespace` structure.
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date   February 15th, 2019

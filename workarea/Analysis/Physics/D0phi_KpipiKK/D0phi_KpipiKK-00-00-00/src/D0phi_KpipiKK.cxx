@@ -354,12 +354,9 @@ StatusCode D0phi_KpipiKK::execute_rest()
               /// </ol>
             }
 
-  /// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the
-  /// combinations that results in the 'best' result. The 'best' result is defined as the
-  /// combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination
-  /// for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See
-  /// `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure. @todo Decide whether
-  /// 4-constraints is indeed suitable. <ol>
+  /// <li> Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See `D0phi_KpipiKK::MeasureForBestFit` for the definition of this measure.
+  /// @todo Decide whether 4-constraints is indeed suitable.
+  /// <ol>
   if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite())
   {
     /// <li> Reset best fit parameters (see `KKFitResult_D0phi_KpipiKK`).

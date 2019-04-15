@@ -19,23 +19,11 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// Container object that is to facilitate the booking procedure for `NTuple::Tuple`s and their
-/// `NTuple::Item`s.
-/// @remark This object can only be used within a derived class off the Gaudi `Algorithm` class
-/// because its `fTuple` requires to be booked by it (using e.g. `TrackSelector::BookNTuples`).
-/// @remark To allow for the addition of different types of items (such as integers), there are
-/// several mappings of the items (see for instance `fItems_double` and `fItems_int`). If you add
-/// new types, make sure to add them to this list of `fItems_*`, where `*` should be the `typename`
-/// and to add a template specialisation for `GetItems`. The rest of the templates then don't
-/// require template specialisation, as they can be defined in terms of `GetItems`. However, not
-/// that you will have to add the new mappings to functions like `PrintTuplesAndItems`, as you can
-/// not loop over templates.
-/// @todo Think about a solution for indexed items.
+/// Container object that is to facilitate the booking procedure for `NTuple::Tuple`s and their `NTuple::Item`s.
+/// @remark This object can only be used within a derived class off the Gaudi `Algorithm` class because its `fTuple` requires to be booked by it (using e.g. `TrackSelector::BookNTuples`).
+/// @remark To allow for the addition of different types of items (such as integers), there are several mappings of the items (see for instance `fItems_double` and `fItems_int`). If you add new types, make sure to add them to this list of `fItems_*`, where `*` should be the `typename` and to add a template specialisation for `GetItems`. The rest of the templates then don't require template specialisation, as they can be defined in terms of `GetItems`. However, not that you will have to add the new mappings to functions like `PrintTuplesAndItems`, as you can not loop over templates.
+/// @see See [this page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures) for the motivation. This function also automatically declares a corresponding `JobSwitch` property.
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// See [this
-/// page](https://besiii.gitbook.io/boss/the-boss-afterburner/initial/motivation#problems-with-booking-procedures)
-/// for the motivation. This function also automatically declares a corresponding `JobSwitch`
-/// property.
 class NTupleContainer : public Container_base
 {
 public:

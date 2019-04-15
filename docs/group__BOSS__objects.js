@@ -92,7 +92,6 @@ var group__BOSS__objects =
       [ "~Container_indexed", "classContainer__indexed.html#ad597183952e6a9724b19e99b20d04ff0", null ],
       [ "Insert", "classContainer__indexed.html#a4e6d1fa25fc9f96b4318be2691aabde6", null ],
       [ "Insert", "classContainer__indexed.html#af7737fdfdcf92a8473bd50f252a0c000", null ],
-      [ "Instances", "classContainer__indexed.html#a23c5f8ebfe876a33392fc4fb5dedcc50", null ],
       [ "KeyExists", "classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087", null ],
       [ "KeyExists", "classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423", null ],
       [ "SetName", "classContainer__indexed.html#a1e1ce1b750ba1ad8da3840b1b4577835", null ],
@@ -164,6 +163,43 @@ var group__BOSS__objects =
       [ "fWrite", "classNTupleContainer.html#a64e154efe2b1f65c95c4594c1ec2c818", null ],
       [ "instances", "classNTupleContainer.html#a7fb80270daa97703a4d60b16e716ed49", null ]
     ] ],
+    [ "ParticleTracks", "classParticleTracks.html", [
+      [ "ParticleTracks", "classParticleTracks.html#a4af94df225e88209e2aad82e964c84ad", null ],
+      [ "~ParticleTracks", "classParticleTracks.html#af702c92c1033fc5bfadb149cb31e07b8", null ],
+      [ "BuildNameForMultiplicityBranch", "classParticleTracks.html#aa4745861c62cb563f8d40b574f690180", null ],
+      [ "ClearAll", "classParticleTracks.html#a357d0afc7a79eb82d7e6af44ec3b1c34", null ],
+      [ "Get", "classParticleTracks.html#aeebc9604280b3de6f62e88c5d51f72ce", null ],
+      [ "GetCollection", "classParticleTracks.html#adc2c5048b6a4544d7a765c3c8ee2275a", null ],
+      [ "GetCollectionMC", "classParticleTracks.html#a80f791548af1d721093179efb9a990f2", null ],
+      [ "GetLaTeXName", "classParticleTracks.html#a49cdff4d8d4dc1ba64a04047a713d0c9", null ],
+      [ "GetName", "classParticleTracks.html#aaa94a749fa73d2a1a40a1e2b6084345e", null ],
+      [ "GetNParticles", "classParticleTracks.html#a50114dedcc0de44c96187ca59e7923ed", null ],
+      [ "HasEqualIterators", "classParticleTracks.html#a2fec25bd74e508c65411074a3b32043a", null ],
+      [ "Iter_Increase", "classParticleTracks.html#aba18c47c33c672878ef83dea46ed6b2d", null ],
+      [ "Iter_IsEnd", "classParticleTracks.html#ae2eb37704d2220769c965a2307bde727", null ],
+      [ "Next", "classParticleTracks.html#ad439f01eb5e427c41cde25063c0a918a", null ],
+      [ "Reset", "classParticleTracks.html#a98fba95a26dc4fd1a37c48e718d5fce9", null ],
+      [ "fInstances", "group__BOSS__objects.html#gaf185f8936d4f3937f75e48291999b244", null ],
+      [ "fIterator", "group__BOSS__objects.html#ga5b1300d5915aaefa20586e4bfa7c9a75", null ],
+      [ "fParticleLaTeX", "classParticleTracks.html#aa4ddef33b2dbab25b2316c1bc7fd0b21", null ],
+      [ "fParticleName", "classParticleTracks.html#a2a4ad4ef9f8262d3aae03071d596997c", null ],
+      [ "fTrackCollection", "classParticleTracks.html#a674b9df01236c5af7ce822134f27fc78", null ],
+      [ "fTrackCollectionMC", "classParticleTracks.html#ab8c52cb14c95eb17cf721cf1aabcdc1e", null ]
+    ] ],
+    [ "TrackCollection", "classTrackCollection.html", [
+      [ "TrackCollection", "classTrackCollection.html#affadc7295a75e4493a63cdcf640c6801", null ],
+      [ "ClearCollection", "classTrackCollection.html#a8c3f9ab68e206c04ff3e515ecd8c0f72", null ],
+      [ "GetIterator", "classTrackCollection.html#ade072001f58248dcabf5f16631c41c72", null ],
+      [ "GetIterator", "classTrackCollection.html#a130ed791239c7f2b1def3a85f58321a7", null ],
+      [ "GetNumberOfIterators", "classTrackCollection.html#a35e96f87f91ebc1c730b5a9edf8b096a", null ],
+      [ "HasEqualIterators", "classTrackCollection.html#ab00a5ff42ac9e5d1fdf99ad7a8c578fd", null ],
+      [ "ResetAllIterators", "classTrackCollection.html#a9b74a77e68c2333d5072e8cae6b48fde", null ],
+      [ "ResetIterator", "classTrackCollection.html#a0120a423266c1232034ae00023755f9a", null ],
+      [ "ResetIterator", "classTrackCollection.html#ae79d00e2d14bd89d622b0c19cde22a5c", null ],
+      [ "SetNumberOfIterators", "classTrackCollection.html#af5492c45021502e8bfeaa4b4241a8a57", null ],
+      [ "fIterators", "classTrackCollection.html#a60996946f2e442660df3bdb3e2ebe8c6", null ],
+      [ "fTrackCollection", "classTrackCollection.html#ac787a59cd6b2a732e6df4e6d773d5363", null ]
+    ] ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult", "classKKFitResult.html#a7cd27e315fc41838d21ece3055268742", null ],
       [ "HasResults", "classKKFitResult.html#af04b864ec284ddc1339d9d2809a18c3c", null ],
@@ -180,5 +216,7 @@ var group__BOSS__objects =
       [ "fFitMeasure", "classKKFitResult.html#a9134622717074a5c0c4721a95e0bc012", null ],
       [ "fHasResults", "classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6", null ],
       [ "fRunNumber", "classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433", null ]
-    ] ]
+    ] ],
+    [ "fInstances", "group__BOSS__objects.html#gaf185f8936d4f3937f75e48291999b244", null ],
+    [ "fIterator", "group__BOSS__objects.html#ga5b1300d5915aaefa20586e4bfa7c9a75", null ]
 ];

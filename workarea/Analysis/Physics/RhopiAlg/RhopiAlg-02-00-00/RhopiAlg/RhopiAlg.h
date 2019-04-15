@@ -31,22 +31,21 @@ public:
 
 private:
   // * Protected data members * //
-  double fSmallestChiSq;
-  std::vector<EvtRecTrack*>
-    fKaonNeg; ///< Vector that contains a selection of pointers to charged tracks identified as
-              ///< \f$K^-\f$. @todo Decide if this can be formulated in terms of `fEvtRecTrackMap`.
-  std::vector<EvtRecTrack*> fKaonPos; ///< Vector that contains a selection of pointers to charged
-                                      ///< tracks identified as \f$K^+\f$.
-  std::vector<EvtRecTrack*> fPionPos; ///< Vector that contains a selection of pointers to charged
-                                      ///< tracks identified as \f$\pi^+\f$.
-  std::vector<EvtRecTrack*>::iterator
-    fKaonNeg1Iter; ///< Iterator for looping over the collection of negative kaons (1st occurence).
-  std::vector<EvtRecTrack*>::iterator
-    fKaonNeg2Iter; ///< Iterator for looping over the collection of negative kaons (2st occurence).
-  std::vector<EvtRecTrack*>::iterator
-    fKaonPosIter; ///< Iterator for looping over the collection of positive kaons.
-  std::vector<EvtRecTrack*>::iterator
-    fPionPosIter; ///< Iterator for looping over the collection of positive pions.
+  double                    fSmallestChiSq;
+  std::vector<EvtRecTrack*> fKaonNeg;
+  ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$.
+  std::vector<EvtRecTrack*> fKaonPos;
+  ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
+  std::vector<EvtRecTrack*> fPionPos;
+  ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
+  std::vector<EvtRecTrack*>::iterator fKaonNeg1Iter;
+  ///< Iterator for looping over the collection of negative kaons (1st occurence).
+  std::vector<EvtRecTrack*>::iterator fKaonNeg2Iter;
+  ///< Iterator for looping over the collection of negative kaons (2st occurence).
+  std::vector<EvtRecTrack*>::iterator fKaonPosIter;
+  ///< Iterator for looping over the collection of positive kaons.
+  std::vector<EvtRecTrack*>::iterator fPionPosIter;
+  ///< Iterator for looping over the collection of positive pions.
 
   // ! Cut parameters ! //
   /// Here, you can define data members that you use to define cuts. The values for these cuts

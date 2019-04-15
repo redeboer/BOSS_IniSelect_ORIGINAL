@@ -49,8 +49,8 @@ protected:
   ///< Iterator for looping over the MC collection of positive pions.
 
   std::vector<EvtRecTrack*> fKaonNeg;
-  ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$. @todo
-  ///< Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
+  ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$.
+  ///< @todo Decide if this can be formulated in terms of some `fEvtRecTrackMap`.
   std::vector<EvtRecTrack*> fKaonPos;
   ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^+\f$.
   std::vector<EvtRecTrack*> fPionPos;

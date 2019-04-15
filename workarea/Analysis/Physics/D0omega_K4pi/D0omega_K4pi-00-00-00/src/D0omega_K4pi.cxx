@@ -217,14 +217,12 @@ void D0omega_K4pi::CutZeroNetCharge()
 /// Create selections of **charged** tracks: \f$K^-\f$, \f$\pi^+\f$, and \f$\pi^+\f$.
 void D0omega_K4pi::CreateChargedTrackSelections()
 {
-  /// -# Clear vectors of selected particles.
   fKaonNeg.clear();
   fPionPos.clear();
   fPionNeg.clear();
-
-  // * Loop over charged tracks *
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
+    /// <ol>
     /// <li> Initialise PID and skip if it fails:
     /// <ul>
     if(
@@ -241,7 +239,7 @@ void D0omega_K4pi::CreateChargedTrackSelections()
       continue;
     /// </ul>
 
-    /// <li> @b Write Particle Identification information of all tracks
+    /// <li> **Write** Particle Identification information of all tracks
     WritePIDInformation();
 
     /// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
@@ -264,6 +262,7 @@ void D0omega_K4pi::CreateChargedTrackSelections()
       RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
       if(fTrackKal->charge() < 0) fKaonNeg.push_back(*fTrackIter);
     }
+    /// </ol>
   }
 }
 
@@ -421,7 +420,8 @@ void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
 }
 
 /// Perform Kalman **4-constraint** Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result.
-/// The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\omega}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\omega\f$). See `D0omega_K4pi::MeasureForBestFit` for the definition of this measure. @todo Decide whether 4-constraints is indeed suitable. *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
+/// The 'best' result is defined as the combination that has the smallest value of: \f$m_{K^-K^+}-m_{\omega}\f$ (that is the combination for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\omega\f$). See `D0omega_K4pi::MeasureForBestFit` for the definition of this measure.
+/// @todo Decide whether 4-constraints is indeed suitable. *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
 void D0omega_K4pi::FindBestKinematicFit()
 {
   if(!fNTuple_fit4c_all.DoWrite() && !fNTuple_fit4c_best.DoWrite()) return;

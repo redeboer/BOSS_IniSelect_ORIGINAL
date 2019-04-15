@@ -59,7 +59,11 @@ var hierarchy =
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", null ]
     ] ],
     [ "m_trkInfo", "classm__trkInfo.html", null ],
+    [ "ParticleTracks", "classParticleTracks.html", null ],
     [ "ReadBeamInfFromDb", "classReadBeamInfFromDb.html", null ],
     [ "topoana", "classtopoana.html", null ],
+    [ "TrackCollection< T >", "classTrackCollection.html", null ],
+    [ "TrackCollection< Event::McParticle *>", "classTrackCollection.html", null ],
+    [ "TrackCollection< EvtRecTrack *>", "classTrackCollection.html", null ],
     [ "utility", "classutility.html", null ]
 ];

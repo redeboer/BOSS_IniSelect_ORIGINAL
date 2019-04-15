@@ -367,8 +367,8 @@ StatusCode RhopiAlg::execute_rest()
   return StatusCode::SUCCESS;
 }
 
-/// Currently does nothing. Cut flow could be printed in this step.
-/// @todo Add log output to `finalize` step.
+/// Currently does nothing.
+/// Cut flow could be printed in this step.
 StatusCode RhopiAlg::finalize_rest()
 {
   return StatusCode::SUCCESS;

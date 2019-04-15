@@ -36,12 +36,14 @@ var annotated_dup =
     [ "NeutralDSelector", "classNeutralDSelector.html", "classNeutralDSelector" ],
     [ "NTupleContainer", "classNTupleContainer.html", "classNTupleContainer" ],
     [ "NTupleTopoAna", "classNTupleTopoAna.html", "classNTupleTopoAna" ],
+    [ "ParticleTracks", "classParticleTracks.html", "classParticleTracks" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "ReadBeamInfFromDb", "classReadBeamInfFromDb.html", "classReadBeamInfFromDb" ],
     [ "Rhopi", "classRhopi.html", "classRhopi" ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ],
     [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
     [ "topoana", "classtopoana.html", "classtopoana" ],
+    [ "TrackCollection", "classTrackCollection.html", "classTrackCollection" ],
     [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ],
     [ "utility", "classutility.html", "classutility" ]
 ];

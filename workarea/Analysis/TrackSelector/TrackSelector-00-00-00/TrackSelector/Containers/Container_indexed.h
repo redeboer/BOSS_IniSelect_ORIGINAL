@@ -16,12 +16,8 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// This is an extension of the `Container_base` base class that in addition keeps track of all
-/// instanecs in a static mapping of all its instances.
-/// @todo Consider implementing [Curiously Recurring Template
-/// Pattern](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) for independent
-/// objects of `fInstances` in derived classes.
-///
+/// This is an extension of the `Container_base` base class that in addition keeps track of all instanecs in a static mapping of all its instances.
+/// @todo Consider implementing [Curiously Recurring Template Pattern](https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern) for independent objects of `fInstances` in derived classes.
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date   February 20th, 2019
 class Container_indexed : public Container_base
@@ -31,10 +27,7 @@ public:
   ~Container_indexed();
   void SetName(const std::string& name);
   void SetName(const std::string& name, const std::string& desc);
-  static const std::map<std::string, Container_indexed*>& Instances()
-  {
-    return fInstances;
-  } /// Read access to `fInstances` mapping. @todo `Instances` function necessary?
+
 protected:
   template <class TYPE>
   inline bool KeyExists(const std::map<std::string, TYPE*> mapping, const std::string& key) const;
@@ -55,8 +48,7 @@ private:
 // * ------- PROTECTED METHODS ------- * //
 // * ================================= * //
 
-/// Helper method that allows you to to check whether a key already exists in . This method uses a
-/// `template` and has been made `protected` as to share its functionality for derived classes.
+/// Helper method that allows you to to check whether a key already exists in . This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
 /// @todo Use error handling for existing keys, not `terminate`.
 /// @return Currently redudant, because of the `terminate`, but returns `false` at the end.
 template <class TYPE>

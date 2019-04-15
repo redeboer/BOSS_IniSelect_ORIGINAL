@@ -171,8 +171,8 @@ StatusCode TrackSelector::initialize()
   fNTuple_charged.AddItem<double>("rvz");
   /// <li> `"rvz"`:   Nearest distance to interaction point in \f$z\f$ direction.
   fNTuple_charged.AddItem<double>("rvphi");
-  /// <li> `"rvphi"`: Angle in the \f$xy\f$plane. @todo Get explanation of geometry (angle)
-  /// definitions in an event.
+  /// <li> `"rvphi"`: Angle in the \f$xy\f$plane.
+  /// @todo Get explanation of geometry (angle) definitions in an event.
   fNTuple_charged.AddItem<double>("phi");
   /// <li> `"phi"`:   Helix angle of the particle.
   fNTuple_charged.AddItem<double>("p");
@@ -194,8 +194,8 @@ StatusCode TrackSelector::initialize()
   fNTuple_neutral.AddItem<double>("theta");
   /// <li> `"theta"`: \f$\theta\f$-angle of the neutral track according to the EMC.
   fNTuple_neutral.AddItem<double>("time");
-  /// <li> `"time"`: Time of the neutral track according to the EMC. @todo Investigate what this
-  /// parameter precisely means.
+  /// <li> `"time"`: Time of the neutral track according to the EMC.
+  /// @todo Investigate what this parameter precisely means.
   /// </ol>
 
   /// <li> `"dedx"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx`
@@ -493,8 +493,8 @@ void TrackSelector::CreateChargedCollection()
     HepSymMatrix Ea = fTrackMDC->err();
     HepPoint3D   point0(0., 0., 0.); // initial point for MDC reconstruction
     VFHelix      helixip(point0, a, Ea);
-    helixip.pivot(
-      fVertexPoint); /// @todo Check if `helixip.pivot(fVertexPoint)` doesn't affect `fVertexPoint`.
+    helixip.pivot(fVertexPoint);
+    /// @todo Check if `helixip.pivot(fVertexPoint)` doesn't affect `fVertexPoint`.
     HepVector vecipa = helixip.a();
     double    rvxy   = fabs(vecipa[0]); // nearest distance to IP in xy plane
     double    rvz    = vecipa[3];       // nearest distance to IP in z direction
@@ -899,8 +899,6 @@ void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator it
 /// Method that standardizes the initialisation of the particle identification system.
 /// Define here *as general as possible*, but use in the derived subalgorithms. See
 /// http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
-/// @todo Since BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g.
-/// `useTof1`. See talk by Liu Huanhuan on 2019/01/10.
 ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase,
                                          const double chimin)
 {

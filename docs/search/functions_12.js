@@ -1,7 +1,6 @@
 var searchData=
 [
   ['threemomentum',['ThreeMomentum',['../classKKFitResult.html#aad7fbcc9c66124cb225ef4c931a8492c',1,'KKFitResult']]],
-  ['topoana',['topoana',['../classtopoana.html#af139b4dd8a5013093a463fe192c668dd',1,'topoana']]],
-  ['trackselector',['TrackSelector',['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector']]],
-  ['trim',['trim',['../classtopoana.html#a583ae5bddb14229629baa4b1dcac1f7a',1,'topoana']]]
+  ['trackcollection',['TrackCollection',['../classTrackCollection.html#affadc7295a75e4493a63cdcf640c6801',1,'TrackCollection']]],
+  ['trackselector',['TrackSelector',['../classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1',1,'TrackSelector']]]
 ];
