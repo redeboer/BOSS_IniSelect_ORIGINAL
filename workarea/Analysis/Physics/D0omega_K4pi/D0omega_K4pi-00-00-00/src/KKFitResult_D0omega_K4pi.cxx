@@ -18,7 +18,10 @@ using namespace TSGlobals;
 /// object.
 KKFitResult_D0omega_K4pi::KKFitResult_D0omega_K4pi(KalmanKinematicFit* kkmfit) : KKFitResult(kkmfit)
 {
-  if(!fFit) return;
+  if(!fFit) {
+std::cout << std::endl << "empty fit!" << std::endl << std::endl;
+    return;
+  }
   /// Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
   SetValues(kkmfit->pfit(0), /// -# \f$K^-\f$
             kkmfit->pfit(1), /// -# \f$\gamma\f$ (first occurrence)
@@ -98,6 +101,17 @@ void KKFitResult_D0omega_K4pi::SetValues(const HepLorentzVector& pKaonNeg,
   fDalitzOmega_pimpip = (pPionNeg + pPionPos2).m();
   fDalitzOmega_pi0pim = (pPionNeg + ppi0).m();
   fDalitzOmega_pi0pip = (pPionPos2 + ppi0).m();
+std::cout << "fM_pi0   = " << fM_pi0   << std::endl;
+std::cout << "fM_D0    = " << fM_D0    << std::endl;
+std::cout << "fM_omega = " << fM_omega << std::endl;
+std::cout << "fM_Jpsi  = " << fM_Jpsi  << std::endl;
+std::cout << "fP_D0    = " << fP_D0    << std::endl;
+std::cout << "fP_omega = " << fP_omega << std::endl;
+std::cout << "fP_pi0   = " << fP_pi0   << std::endl;
+std::cout << "fP_Km    = " << fP_Km    << std::endl;
+std::cout << "fP_pim   = " << fP_pim   << std::endl;
+std::cout << "fP_pip1  = " << fP_pip1  << std::endl;
+std::cout << "fP_pip2  = " << fP_pip2  << std::endl;
   /// <li> Info about the photons
   fRelativePhotonAngle = pPhoton1.angle(pPhoton2);
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{\pi^-\pi^+\pi^0} - m_{\omega}\f$

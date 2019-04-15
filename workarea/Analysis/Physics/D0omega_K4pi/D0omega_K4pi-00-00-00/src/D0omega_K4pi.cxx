@@ -153,8 +153,8 @@ StatusCode D0omega_K4pi::execute_rest()
   if(fGoodChargedTracks.size() != 4) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
-  /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If
-  /// this charge is not \f$0\f$, this means some charged tracks have not been detected.
+  // /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If
+  // /// this charge is not \f$0\f$, this means some charged tracks have not been detected.
   // if(fNetChargeMDC) return StatusCode::SUCCESS;
   // ++fCutFlow_NetChargeOK;
 
@@ -204,7 +204,7 @@ StatusCode D0omega_K4pi::execute_rest()
         fPionPos.push_back(
           *fTrackIterator); /// and the (positive) pion is added to the vector of pions.
       else
-        fPionPos.push_back(*fTrackIterator);
+        fPionNeg.push_back(*fTrackIterator);
     }
     else
     {
@@ -291,9 +291,10 @@ StatusCode D0omega_K4pi::execute_rest()
   }
 
   /// <li> **Write** the multiplicities of the selected particles.
-  fLog << MSG::DEBUG << "N_{K^-} = " << fKaonNeg.size() << ", "
+  fLog << MSG::INFO << "N_{K^-} = " << fKaonNeg.size() << ", "
        << "N_{\pi^+} = " << fPionPos.size() << ", "
-       << "N_{\pi^-} = " << fPionNeg.size() << endmsg;
+       << "N_{\pi^-} = " << fPionNeg.size() << ", "
+       << "N_{\gamma} = " << fPhotons.size() << endmsg;
   if(fNTuple_mult_sel.DoWrite())
   {
     fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.size();
@@ -308,9 +309,15 @@ StatusCode D0omega_K4pi::execute_rest()
   if(fKaonNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative kaons
   if(fPhotons.size() < 2) return StatusCode::SUCCESS;  /// <li> at least 2 photons (\f$\gamma\f$'s)
   if(fPionNeg.size() != 1) return StatusCode::SUCCESS; /// <li> 1 negative pion
-  if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 2 positive pions
+  if(fPionPos.size() != 2) return StatusCode::SUCCESS; /// <li> 2 positive pions
   /// </ol>
   ++fCutFlow_NPIDnumberOK;
+std::cout
+<< "N_{K^-} = " << fKaonNeg.size() << ", "
+<< "N_{\pi^+} = " << fPionPos.size() << ", "
+<< "N_{\pi^-} = " << fPionNeg.size() << ", "
+<< "N_{\gamma} = " << fPhotons.size() << std::endl;
+std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNumber() << ", " << fEventHeader->eventNumber() << ")" << std::endl;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
        << ", " << fEventHeader->eventNumber() << ")" << endmsg;
 
@@ -365,8 +372,7 @@ StatusCode D0omega_K4pi::execute_rest()
     bestKalmanFit.ResetBestCompareValue();
     /// <li> Loop over all combinations of \f$\gamma\f$, \f$K^-\f$, \f$K^+\f$, and \f$\pi^+\f$.
     /// <ol>
-    bool printfit{true};
-    int  count = 0;
+    int count = 0;
     for(fKaonNegIter = fKaonNeg.begin(); fKaonNegIter != fKaonNeg.end(); ++fKaonNegIter)
       for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
         for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
@@ -375,10 +381,13 @@ StatusCode D0omega_K4pi::execute_rest()
               for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end();
                   ++fPionPos2Iter)
               {
+                /// <li> *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
                 /// <li> Only continue if we are not dealing with the same kaon and/or photon.
                 if(fPhoton1Iter == fPhoton2Iter) continue;
                 if(fPionPos1Iter == fPionPos2Iter) continue;
+std::cout << "  fitting combination " << count << "..." << std::endl;
                 fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
+                ++count;
 
                 /// <li> Get Kalman tracks reconstructed by the MDC.
                 RecMdcKalTrack* kalTrkKm   = (*fKaonNegIter)->mdcKalTrack();
@@ -392,9 +401,62 @@ StatusCode D0omega_K4pi::execute_rest()
                 WTrackParameter wvpipTrk1(gM_K, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
                 WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
 
-                /// <li> Initiate vertex fit.
-                HepPoint3D   vx(0., 0., 0.);
-                HepSymMatrix Evx(3, 0);
+                /// <li> Get information of average interaction point (IP) in each run
+ IVertexDbSvc* vtxsvc;
+ Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
+ if (vtxsvc->isVertexValid())
+ {
+   double* dbv = vtxsvc->PrimaryVertex();
+   double* vv  = vtxsvc->SigmaPrimaryVertex();
+   ip.setX(dbv[0]);
+   ip.setY(dbv[1]);
+   ip.setZ(dbv[2]);
+   ipEx[0][0] = vv[0] * vv[0];
+   ipEx[1][1] = vv[1] * vv[1];
+   ipEx[2][2] = vv[2] * vv[2];
+ }
+ else  // if cannot load vertex information, will go to another event
+   return StatusCode::SUCCESS;
+ VertexParameter bs;
+ bs.setVx(ip);
+ bs.setEvx(ipEx);
+ /// <li> Set a common vertex with huge error.
+ HepPoint3D    vx(0., 0., 0.);
+ HepSymMatrix  Evx(3, 0);
+ double bx = 1E+6;
+ double by = 1E+6;
+ double bz = 1E+6;
+ Evx[0][0] = bx * bx;
+ Evx[1][1] = by * by;
+ Evx[2][2] = bz * bz;
+ VertexParameter vxpar;
+ vxpar.setVx(vx);
+ vxpar.setEvx(Evx);
+ /// <li> Do primary vertex fit.
+ VertexFit *vtxfit = VertexFit::instance();
+ vtxfit->init();
+ vtxfit->AddTrack(0, wpitrk1);
+ vtxfit->AddTrack(1, wpitrk2);
+ vtxfit->AddVertex(0, vxpar, 0, 1);
+ if (!(vtxfit->Fit(0))) continue;
+ vtxfit->Swim(0);
+ vtxfit->BuildVirtualParticle(0);
+ double vtx_chisq = vtxfit->chisq(0);
+ /// <li> Do second vertex fit.
+ SecondVertexFit *svtxfit = SecondVertexFit::instance();
+ svtxfit->init();
+ svtxfit->setPrimaryVertex(bs);
+ svtxfit->AddTrack(0, vtxfit->wVirtualTrack(0));
+ svtxfit->setVpar(vtxfit->vpar(0));
+ if (!svtxfit->Fit()) continue;
+ double svtx_chisq = svtxfit->chisq();
+ wpitrk1 = vtxfit->wtrk(0);
+ wpitrk2 = vtxfit->wtrk(1);
+ HepLorentzVector pKs = svtxfit->p4par();
+ HepVector vtxKs = svtxfit->vpar().Vx();
+ double ctau = svtxfit->ctau();
+ double len = svtxfit->decayLength();
+ double lenerr = svtxfit->decayLengthError();
                 double       bx = 1E+6;
                 double       by = 1E+6;
                 double       bz = 1E+6;
@@ -425,13 +487,13 @@ StatusCode D0omega_K4pi::execute_rest()
                 KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
                 kkmfit->init();
                 kkmfit->AddTrack(0, vtxfit->wtrk(0));                  // K-
-                kkmfit->AddTrack(1, vtxfit->wtrk(1));                  // pi-
-                kkmfit->AddTrack(2, vtxfit->wtrk(2));                  // pi+ (1st occurrence)
-                kkmfit->AddTrack(3, vtxfit->wtrk(3));                  // pi+ (2nd occurrence)
-                kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
-                kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+                kkmfit->AddTrack(1, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
+                kkmfit->AddTrack(2, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
+                kkmfit->AddTrack(3, vtxfit->wtrk(1));                  // pi-
+                kkmfit->AddTrack(4, vtxfit->wtrk(2));                  // pi+ (1st occurrence)
+                kkmfit->AddTrack(5, vtxfit->wtrk(3));                  // pi+ (2nd occurrence)
                 kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-                // kkmfit->AddResonance(1, gM_pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$
+                // kkmfit->AddResonance(1, gM_pi0, 1, 2); /// @remark 5th constraint: \f$\pi^0\f$
                 // resonance
                 if(kkmfit->Fit())
                 {
@@ -446,13 +508,13 @@ StatusCode D0omega_K4pi::execute_rest()
                   if(fitresult.IsBetter()) bestKalmanFit = fitresult;
                   /// </ol>
                 }
-                else if(printfit)
+                else
                 {
+std::cout << "  fit failed: chisq = " << kkmfit->chisq() << std::endl;
                   fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
-                  printfit = false;
                 }
-                ++count;
               }
+
     /// </ol>
     /// <li> **Write** results of the Kalman kitematic fit *of the best combination*
     /// (`"fit4c_best"` branches).
