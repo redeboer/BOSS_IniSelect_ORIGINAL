@@ -122,7 +122,8 @@ protected:
 
   /// @name Helper methods for execute
   ///@{
-  void CutZeroNetCharge();
+  void            CutZeroNetCharge();
+  WTrackParameter BuildWTrackParameter(EvtRecTrack* track, const double mass) const;
   ///@}
 
   /// @name NTuple handlers

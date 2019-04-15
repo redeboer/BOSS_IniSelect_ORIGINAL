@@ -109,6 +109,27 @@ protected:
   ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track *in radians*.
   ///@}
 
+  /// @name Fit objects
+  ///@{
+  VertexParameter          fVertexParameter;
+  VertexFit*               fVertexFit;
+  KalmanKinematicFit*      fKalmanKinematicFit;
+  KKFitResult_D0omega_K4pi fBestKalmanFit;
+  KKFitResult_D0omega_K4pi fCurrentKalmanFit;
+  ///@}
+
+  /// @name Photon kinematics
+  ///@{
+  double fTheta;
+  double fPhi;
+  double fAngle;
+  double fSmallestTheta;
+  double fSmallestPhi;
+  double fSmallestAngle;
+  Hep3Vector fEmcPosition;
+  Hep3Vector fExtendedEmcPosition;
+  ///@}
+
 private:
   /// @name Helper methods for initialize
   ///@{
@@ -116,7 +137,7 @@ private:
   void AddNTuples_dedx();
   void AddNTuples_fit();
   void AddNTuples_photon();
-  void AddNTuples_topology();
+  void AddAdditionalNTuples_topology();
   ///@}
 
   /// @name Helper methods for execute
@@ -125,15 +146,44 @@ private:
   void CreateChargedTrackSelections();
   bool InitializePID();
   bool CategorizeTrack(EvtRecTrack* track);
+
   void CreateNeutralTrackSelections();
+  void FindSmallestPhotonAngles();
+  void ResetPhotonAngles();
+  void GetEmcPosition();
+  bool GetExtendedEmcPosition();
+  void GetPhotonAngles();
+  void SetSmallestPhotonAngles();
+  void ConvertSmallestAnglesToDegrees();
+  void WritePhotonKinematics();
+  bool CutPhotonAngles();
+
   void WriteMultiplicities();
   void PrintMultiplicities();
   void CutPID();
-  void WriteDedx();
+  void WriteDedxOfSelectedParticles();
   void AddNTupleItems_Fit(NTupleContainer& tuple);
   void SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple);
   void FindBestKinematicFit();
+  void ResetBestKalmanFit();
+  void DoKinematicFitForAllCombinations();
+  void BuildVertexParameter();
+
+  void DoVertexFit();
+  void InitializeVertexFit();
+  void AddTracksToVertexFit();
+  void AddVertexToVertexFit();
+
+  void DoKinematicFit();
+  void InitializeKinematicFit();
+  void AddTracksToKinematicFit();
+  void AddConstraintsToKinematicFit();
+  void ExtractFitResults();
+
+  void WriteBestFitWithMcTruth();
+  void SetAdditionalNtupleItems_topology();
   void CreateMCTruthSelection();
+  void PutParticleInCorrectVector(Event::McParticle* mcParticle);
   ///@}
 };
 

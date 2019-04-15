@@ -338,6 +338,12 @@ void TrackSelector::CutZeroNetCharge()
   ++fCutFlow_NetChargeOK;
 }
 
+WTrackParameter TrackSelector::BuildWTrackParameter(EvtRecTrack* track, const double mass) const
+{
+  RecMdcKalTrack* kalTrack = track->mdcKalTrack();
+  return WTrackParameter(mass, kalTrack->getZHelix(), kalTrack->getZError());
+}
+
 // * ================================ * //
 // * -------- NTUPLE METHODS -------- * //
 // * ================================ * //
