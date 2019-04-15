@@ -8,7 +8,9 @@ var searchData=
   ['reset',['Reset',['../classParticleTracks.html#a98fba95a26dc4fd1a37c48e718d5fce9',1,'ParticleTracks']]],
   ['resetalliterators',['ResetAllIterators',['../classTrackCollection.html#a9b74a77e68c2333d5072e8cae6b48fde',1,'TrackCollection']]],
   ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
+  ['resetbestkalmanfit',['ResetBestKalmanFit',['../classD0omega__K4pi.html#a61d18479a52d58f15d5f3e7648eaded0',1,'D0omega_K4pi']]],
   ['resetiterator',['ResetIterator',['../classTrackCollection.html#a0120a423266c1232034ae00023755f9a',1,'TrackCollection::ResetIterator()'],['../classTrackCollection.html#ae79d00e2d14bd89d622b0c19cde22a5c',1,'TrackCollection::ResetIterator(const size_t i)']]],
+  ['resetphotonangles',['ResetPhotonAngles',['../classD0omega__K4pi.html#ad5f298d9771ed2637d6ee2ac0dec8d6e',1,'D0omega_K4pi']]],
   ['rhopi',['Rhopi',['../classRhopi.html#ab871fad73488bb6fa152c421b5f4bdd3',1,'Rhopi']]],
   ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg']]],
   ['rhopialg',['RhopiAlg',['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg::RhopiAlg(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classRhopiAlg.html#a7f0176ebbd3cceef08cf5a8005ff2bdb',1,'RhopiAlg::RhopiAlg(const std::string &amp;name, ISvcLocator *pSvcLocator)']]]

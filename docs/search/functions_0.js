@@ -1,6 +1,8 @@
 var searchData=
 [
+  ['addadditionalntuples_5ftopology',['AddAdditionalNTuples_topology',['../classD0omega__K4pi.html#ad423e25161f34c9d9043ab23006f013d',1,'D0omega_K4pi']]],
   ['addandwritecuts',['AddAndWriteCuts',['../classTrackSelector.html#a71be8816dc906b046937c13113a33268',1,'TrackSelector']]],
+  ['addconstraintstokinematicfit',['AddConstraintsToKinematicFit',['../classD0omega__K4pi.html#aeb64440f2932a3dcdbbbf83e8da6654e',1,'D0omega_K4pi']]],
   ['addindexeditem',['AddIndexedItem',['../classNTupleContainer.html#aa83866791ff3e746b57483ad434329c7',1,'NTupleContainer']]],
   ['additem',['AddItem',['../classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a87da57e80b9369b5003482020cd5e7e8',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a20761f944a68daa27fa6c15b3a245bfc',1,'NTupleContainer::AddItem(const std::string &amp;item_name, const RANGE low, const RANGE high)']]],
   ['addntupleitems_5fdedx',['AddNTupleItems_Dedx',['../classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981',1,'TrackSelector']]],
@@ -11,6 +13,8 @@ var searchData=
   ['addntuples_5ffit',['AddNTuples_fit',['../classD0omega__K4pi.html#a01655744302f136ab5857b1bb6386563',1,'D0omega_K4pi']]],
   ['addntuples_5fmult_5fsel',['AddNTuples_mult_sel',['../classD0omega__K4pi.html#a1f3535b936fce5ad9f4c4d939460a9e6',1,'D0omega_K4pi']]],
   ['addntuples_5fphoton',['AddNTuples_photon',['../classD0omega__K4pi.html#afa2ce1c85e15db67f9d108584c8722de',1,'D0omega_K4pi']]],
-  ['addntuples_5ftopology',['AddNTuples_topology',['../classD0omega__K4pi.html#a26b688b2f73cddbb46b338858ccb5e91',1,'D0omega_K4pi']]],
-  ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]]
+  ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
+  ['addtrackstokinematicfit',['AddTracksToKinematicFit',['../classD0omega__K4pi.html#a30e3a6e079bb428f0589993b3e8ded05',1,'D0omega_K4pi']]],
+  ['addtrackstovertexfit',['AddTracksToVertexFit',['../classD0omega__K4pi.html#a9abba163226ae90ef95f0179a4c18f42',1,'D0omega_K4pi']]],
+  ['addvertextovertexfit',['AddVertexToVertexFit',['../classD0omega__K4pi.html#aa4d0095260ba76f789a3faa5a9e0dfdb',1,'D0omega_K4pi']]]
 ];

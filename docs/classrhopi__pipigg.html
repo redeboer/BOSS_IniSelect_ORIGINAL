@@ -130,7 +130,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm.  <a href="classTrackSelector.html#a49dc31c983813eee609c9a0da0bca9b1">More...</a><br /></td></tr>
 <tr class="separator:a49dc31c983813eee609c9a0da0bca9b1 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">PostConstructor</a> ()</td></tr>
-<tr class="memdesc:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>.  <a href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">More...</a><br /></td></tr>
+<tr class="memdesc:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>. The reason for that this method is necessary is that a Gaudi <code>Algorithm</code> requires properties to have been declared by the time the <code>Algorithm</code> has been constructed.  <a href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">More...</a><br /></td></tr>
 <tr class="separator:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
@@ -211,7 +211,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:ad66954b9a90bf677c04fe1939cadd5e4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want.  <a href="#ad66954b9a90bf677c04fe1939cadd5e4">More...</a><br /></td></tr>
 <tr class="separator:ad66954b9a90bf677c04fe1939cadd5e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c5465b12782ff0e468c2b698ac1e2b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a7c5465b12782ff0e468c2b698ac1e2b5">fCutFlow_NetChargeOK</a></td></tr>
-<tr class="memdesc:a7c5465b12782ff0e468c2b698ac1e2b5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_7.png"/>.  <a href="#a7c5465b12782ff0e468c2b698ac1e2b5">More...</a><br /></td></tr>
+<tr class="memdesc:a7c5465b12782ff0e468c2b698ac1e2b5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_55.png"/>.  <a href="#a7c5465b12782ff0e468c2b698ac1e2b5">More...</a><br /></td></tr>
 <tr class="separator:a7c5465b12782ff0e468c2b698ac1e2b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adea65ef4146afbf4a386679a4d7c17c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#adea65ef4146afbf4a386679a4d7c17c7">fCutFlow_TopoAnaOK</a></td></tr>
 <tr class="memdesc:adea65ef4146afbf4a386679a4d7c17c7"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of entries written to the topoana branch.  <a href="#adea65ef4146afbf4a386679a4d7c17c7">More...</a><br /></td></tr>
@@ -220,10 +220,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:aca8b3d281938b962ccec566775de56ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on angle between the photon and the nearest charged track <em>in degrees</em>.  <a href="#aca8b3d281938b962ccec566775de56ec">More...</a><br /></td></tr>
 <tr class="separator:aca8b3d281938b962ccec566775de56ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c00ed4d66ee84091485338145cb987a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a4c00ed4d66ee84091485338145cb987a">fCut_GammaPhi</a></td></tr>
-<tr class="memdesc:a4c00ed4d66ee84091485338145cb987a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\phi$" src="form_9.png"/> angle between the photon and the nearest charged track <em>in radians</em>.  <a href="#a4c00ed4d66ee84091485338145cb987a">More...</a><br /></td></tr>
+<tr class="memdesc:a4c00ed4d66ee84091485338145cb987a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photon and the nearest charged track <em>in radians</em>.  <a href="#a4c00ed4d66ee84091485338145cb987a">More...</a><br /></td></tr>
 <tr class="separator:a4c00ed4d66ee84091485338145cb987a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a578882a88bb04649bca9613f8e4a3fec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrhopi__pipigg.html#a578882a88bb04649bca9613f8e4a3fec">fCut_GammaTheta</a></td></tr>
-<tr class="memdesc:a578882a88bb04649bca9613f8e4a3fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\theta$" src="form_10.png"/> angle between the photon and the nearest charged track <em>in radians</em>.  <a href="#a578882a88bb04649bca9613f8e4a3fec">More...</a><br /></td></tr>
+<tr class="memdesc:a578882a88bb04649bca9613f8e4a3fec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\theta$" src="form_8.png"/> angle between the photon and the nearest charged track <em>in radians</em>.  <a href="#a578882a88bb04649bca9613f8e4a3fec">More...</a><br /></td></tr>
 <tr class="separator:a578882a88bb04649bca9613f8e4a3fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
 <tr class="memitem:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">fEventHeader</a></td></tr>
@@ -330,14 +330,17 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a719872be4e6f96c70b794dfa8031863e">fCutFlow_Nevents</a></td></tr>
 <tr class="memdesc:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events.  <a href="classTrackSelector.html#a719872be4e6f96c70b794dfa8031863e">More...</a><br /></td></tr>
 <tr class="separator:a719872be4e6f96c70b794dfa8031863e inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c812c3882fdb63557715e02817a300 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad8c812c3882fdb63557715e02817a300">fCutFlow_NetChargeOK</a></td></tr>
+<tr class="memdesc:ad8c812c3882fdb63557715e02817a300 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_55.png"/>. This cut is used to exclude events where some charged tracks were not detected (an <img class="formulaInl" alt="$e^+e^-$" src="form_56.png"/> collision has <img class="formulaInl" alt="$0$" src="form_55.png"/> net charge).  <a href="classTrackSelector.html#ad8c812c3882fdb63557715e02817a300">More...</a><br /></td></tr>
+<tr class="separator:ad8c812c3882fdb63557715e02817a300 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">fCut_Vxy</a></td></tr>
 <tr class="memdesc:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the radius <img class="formulaInl" alt="$r$" src="form_77.png"/> of the primary vertex.  <a href="classTrackSelector.html#a7c32957ceff7dadd751f585fff889280">More...</a><br /></td></tr>
 <tr class="separator:a7c32957ceff7dadd751f585fff889280 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af432821cbafda619d271cd70784c5fea inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af432821cbafda619d271cd70784c5fea">fCut_Vz</a></td></tr>
-<tr class="memdesc:af432821cbafda619d271cd70784c5fea inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$z$" src="form_17.png"/> coordinate of the primary vertex.  <a href="classTrackSelector.html#af432821cbafda619d271cd70784c5fea">More...</a><br /></td></tr>
+<tr class="memdesc:af432821cbafda619d271cd70784c5fea inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the <img class="formulaInl" alt="$z$" src="form_15.png"/> coordinate of the primary vertex.  <a href="classTrackSelector.html#af432821cbafda619d271cd70784c5fea">More...</a><br /></td></tr>
 <tr class="separator:af432821cbafda619d271cd70784c5fea inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f793884f75196fdc92a1fab33e30f1 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a33f793884f75196fdc92a1fab33e30f1">fCut_Rxy</a></td></tr>
-<tr class="memdesc:a33f793884f75196fdc92a1fab33e30f1 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_17.png"/> direction between the primary vertex and the vertex of the charged track.  <a href="classTrackSelector.html#a33f793884f75196fdc92a1fab33e30f1">More...</a><br /></td></tr>
+<tr class="memdesc:a33f793884f75196fdc92a1fab33e30f1 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_15.png"/> direction between the primary vertex and the vertex of the charged track.  <a href="classTrackSelector.html#a33f793884f75196fdc92a1fab33e30f1">More...</a><br /></td></tr>
 <tr class="separator:a33f793884f75196fdc92a1fab33e30f1 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b4bb6fef6929c8dcd7d2a293d652ca1 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9b4bb6fef6929c8dcd7d2a293d652ca1">fCut_Rz</a></td></tr>
 <tr class="memdesc:a9b4bb6fef6929c8dcd7d2a293d652ca1 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_64.png"/> plane between the primary vertex and the vertex of the charged track.  <a href="classTrackSelector.html#a9b4bb6fef6929c8dcd7d2a293d652ca1">More...</a><br /></td></tr>
@@ -383,6 +386,11 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
+<tr class="memitem:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">CutZeroNetCharge</a> ()</td></tr>
+<tr class="memdesc:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_55.png"/>, this means some charged tracks have not been detected.  <a href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">More...</a><br /></td></tr>
+<tr class="separator:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">WTrackParameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4d992eb5d152781cf0d672f31e771944">BuildWTrackParameter</a> (EvtRecTrack *track, const double mass) const</td></tr>
+<tr class="separator:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss information <em>for one track</em>.  <a href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">More...</a><br /></td></tr>
 <tr class="separator:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -500,7 +508,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"mJpsi_rho0"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^0\pi^0$" src="form_97.png"/> candidate.</li>
 <li><code>"mJpsi_rho-"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^-\pi^+$" src="form_98.png"/> candidate.</li>
 <li><code>"mJpsi_rho+"</code>: Invariant mass for <img class="formulaInl" alt="$J/\psi \to \rho^+\pi^-$" src="form_99.png"/> candidate.</li>
-<li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_18.png"/> of the Kalman kinematic fit. </li>
+<li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of the Kalman kinematic fit. </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8cxx_source.html#l00508">508</a> of file <a class="el" href="rhopi__pipigg_8cxx_source.html">rhopi_pipigg.cxx</a>.</p>
@@ -575,7 +583,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_7.png"/>, this means some charged tracks have not been detected.</p>
+<p class="startli"><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_55.png"/>, this means some charged tracks have not been detected.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -596,7 +604,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">use <img class="formulaInl" alt="$\chi^2 &gt; 4.0$" src="form_27.png"/></p>
+<p class="startli">use <img class="formulaInl" alt="$\chi^2 &gt; 4.0$" src="form_25.png"/></p>
 <p class="endli"></p>
 </li>
 </ul>
@@ -704,7 +712,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Loop over all combinations of <img class="formulaInl" alt="$\gamma$" src="form_3.png"/>, <img class="formulaInl" alt="$K^-$" src="form_2.png"/>, <img class="formulaInl" alt="$K^+$" src="form_14.png"/>, and <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>. </p><ol>
+<p class="startli">Loop over all combinations of <img class="formulaInl" alt="$\gamma$" src="form_3.png"/>, <img class="formulaInl" alt="$K^-$" src="form_2.png"/>, <img class="formulaInl" alt="$K^+$" src="form_12.png"/>, and <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>. </p><ol>
 <li>
 <p class="startli">Only continue if we are not dealing with the same kaon.</p>
 <p class="endli"></p>
@@ -729,7 +737,7 @@ Additional Inherited Members</h2></td></tr>
 <p class="startli">Get Kalman kinematic fit for this combination and store if better than previous one.</p>
 <ol>
 <li>
-<p class="startli">Apply max. <img class="formulaInl" alt="$\chi^2$" src="form_18.png"/> cut (determined by <code>fCut_PIDChiSq_max</code>).</p>
+<p class="startli">Apply max. <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> cut (determined by <code>fCut_PIDChiSq_max</code>).</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -783,10 +791,10 @@ Additional Inherited Members</h2></td></tr>
 </li>
 <li>
 <p class="startli">Get Kalman kinematic fit for this combination and store if better than previous one.</p>
-<dl class="section remark"><dt>Remarks</dt><dd>5th constraint: <img class="formulaInl" alt="$\pi^0$" src="form_11.png"/> resonance</dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>5th constraint: <img class="formulaInl" alt="$\pi^0$" src="form_9.png"/> resonance</dd></dl>
 <ol>
 <li>
-<p class="startli">Apply max. <img class="formulaInl" alt="$\chi^2$" src="form_18.png"/> cut (determined by <code>fCut_PIDChiSq_max</code>).</p>
+<p class="startli">Apply max. <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> cut (determined by <code>fCut_PIDChiSq_max</code>).</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -904,23 +912,23 @@ Additional Inherited Members</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"px"</code>: <img class="formulaInl" alt="$x$" src="form_15.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
+<p class="startli"><code>"px"</code>: <img class="formulaInl" alt="$x$" src="form_13.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"py"</code>: <img class="formulaInl" alt="$y$" src="form_16.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
+<p class="startli"><code>"py"</code>: <img class="formulaInl" alt="$y$" src="form_14.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"pz"</code>: <img class="formulaInl" alt="$z$" src="form_17.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
+<p class="startli"><code>"pz"</code>: <img class="formulaInl" alt="$z$" src="form_15.png"/> component of the 4-momentum of the photon (computed from the detected angles).</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"phi"</code>: Smallest <img class="formulaInl" alt="$\phi$" src="form_9.png"/> angle between the photon and the nearest charged pion.</p>
+<p class="startli"><code>"phi"</code>: Smallest <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photon and the nearest charged pion.</p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>"theta"</code>: Smallest <img class="formulaInl" alt="$\theta$" src="form_10.png"/> angle between the photon and the nearest charged pion.</p>
+<p class="startli"><code>"theta"</code>: Smallest <img class="formulaInl" alt="$\theta$" src="form_8.png"/> angle between the photon and the nearest charged pion.</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -1033,7 +1041,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Cut on <img class="formulaInl" alt="$\phi$" src="form_9.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
+<p>Cut on <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
 <p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00099">99</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
@@ -1059,7 +1067,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Cut on <img class="formulaInl" alt="$\theta$" src="form_10.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
+<p>Cut on <img class="formulaInl" alt="$\theta$" src="form_8.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
 <p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00101">101</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
@@ -1111,8 +1119,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_7.png"/>. </p>
-<p>This cut is used to exclude events where some charged tracks were not detected (an <img class="formulaInl" alt="$e^+e^-$" src="form_8.png"/> collision has <img class="formulaInl" alt="$0$" src="form_7.png"/> net charge). </p>
+<p><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_55.png"/>. </p>
+<p>This cut is used to exclude events where some charged tracks were not detected (an <img class="formulaInl" alt="$e^+e^-$" src="form_56.png"/> collision has <img class="formulaInl" alt="$0$" src="form_55.png"/> net charge). </p>
 
 <p class="definition">Definition at line <a class="el" href="rhopi__pipigg_8h_source.html#l00091">91</a> of file <a class="el" href="rhopi__pipigg_8h_source.html">rhopi_pipigg.h</a>.</p>
 
