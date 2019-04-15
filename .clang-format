@@ -58,7 +58,7 @@ BreakConstructorInitializers: AfterColon
 BreakStringLiterals: true
 
 CommentPragmas:  '^ IWYU pragma:'
-CompactNamespaces: true
+CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
 ConstructorInitializerIndentWidth: 2
 ContinuationIndentWidth: 2
@@ -68,7 +68,7 @@ ExperimentalAutoDetectBinPacking: false
 ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH ]
 IndentCaseLabels: true
 FixNamespaceComments: true
-IndentWrappedFunctionNames: false
+IndentWrappedFunctionNames: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 MacroBlockBegin: ''
 MacroBlockEnd:   ''
