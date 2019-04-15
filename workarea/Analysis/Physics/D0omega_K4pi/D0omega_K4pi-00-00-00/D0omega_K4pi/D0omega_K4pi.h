@@ -101,8 +101,6 @@ protected:
   ///< **Cut flow counter**: total number of events where there is at least one combination where the kinematic fit worked.
   CutObject fCutFlow_NPIDnumberOK;
   ///< **Cut flow counter**: total number of events that that has exactly the identified tracks that we want.
-  CutObject fCutFlow_NetChargeOK;
-  ///< **Cut flow counter**: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
   CutObject fCut_GammaAngle;
   ///< Cut on angle between the photon and the nearest charged track *in degrees*.
   CutObject fCut_GammaPhi;
@@ -124,7 +122,6 @@ private:
   /// @name Helper methods for execute
   ///@{
   void CutNumberOfChargedParticles();
-  void CutZeroNetCharge();
   void CreateChargedTrackSelections();
   void CreateNeutralTrackSelections();
   void WriteMultiplicities();

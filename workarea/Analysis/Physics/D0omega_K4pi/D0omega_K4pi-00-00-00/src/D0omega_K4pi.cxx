@@ -45,8 +45,6 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   fCutFlow_NFitOK("N_Fit_OK", "Number of combinations where where the kinematic fit worked"),
   fCutFlow_NPIDnumberOK("N_PID_OK",
                         "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-  fCutFlow_NetChargeOK("N_netcharge_OK",
-                       "Number of events where the total charge detected in the detectors was 0"),
   /// * Construct additional `CutObject`s that are specific for the `rhopi_pipig` package.
   fCut_GammaAngle("gamma_angle"),
   fCut_GammaPhi("gamma_phi"),
@@ -76,10 +74,7 @@ StatusCode D0omega_K4pi::initialize_rest()
     AddNTuples_photon();
     AddNTuples_topology();
   }
-  catch(const StatusCode& result)
-  {
-    return result;
-  }
+  catch(...) {} /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
   return StatusCode::SUCCESS;
 }
 
@@ -185,7 +180,6 @@ StatusCode D0omega_K4pi::execute_rest()
   try
   {
     CutNumberOfChargedParticles();
-    // CutZeroNetCharge();
     CreateChargedTrackSelections();
     CreateNeutralTrackSelections();
     WriteMultiplicities();
@@ -193,10 +187,7 @@ StatusCode D0omega_K4pi::execute_rest()
     WriteDedx();
     FindBestKinematicFit();
   }
-  catch(const StatusCode& result)
-  {
-    return result;
-  }
+  catch(...) {}
   return StatusCode::SUCCESS;
 }
 
@@ -205,13 +196,6 @@ void D0omega_K4pi::CutNumberOfChargedParticles()
 {
   if(fChargedTracks.size() != 4) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
-}
-
-/// **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
-void D0omega_K4pi::CutZeroNetCharge()
-{
-  if(fNetChargeMDC) throw StatusCode::SUCCESS;
-  ++fCutFlow_NetChargeOK;
 }
 
 /// Create selections of **charged** tracks: \f$K^-\f$, \f$\pi^+\f$, and \f$\pi^+\f$.
