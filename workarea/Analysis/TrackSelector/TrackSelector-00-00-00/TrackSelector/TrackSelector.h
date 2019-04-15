@@ -6,16 +6,13 @@
 // * ========================================= * //
 
 /// @defgroup BOSS_packages Event selection
-/// Event selection __packages__ for the BOSS framework. The core of these packages is the
-/// `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`.
+/// Event selection **packages** for the BOSS framework. The core of these packages is the `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`.
 
 /// @defgroup BOSS_objects Helper objects
-/// Helper __classes__ for the event selection packages. An example would be the `CutObject`, which
-/// is can be used in all packages for applying cuts and storing their paramters in the final ROOT
-/// output file.
+/// Helper **classes** for the event selection packages. An example would be the `CutObject`, which is can be used in all packages for applying cuts and storing their paramters in the final ROOT output file.
 
 /// @defgroup BOSS_globals Globals
-/// Global __parameters__ encapsulated in namespaces.
+/// Global **parameters** encapsulated in namespaces.
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -121,6 +118,11 @@ protected:
   void      PrintFunctionName(const char* class_name, const char* function_name);
   MsgStream fLog;
   ///< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
+  ///@}
+
+  /// @name Helper methods for execute
+  ///@{
+  void CutZeroNetCharge();
   ///@}
 
   /// @name NTuple handlers
@@ -232,6 +234,8 @@ protected:
   ///< Cummulative total number of neutral tracks.
   CutObject fCutFlow_Nevents;
   ///< **Cut flow counter**: total number of events.
+  CutObject fCutFlow_NetChargeOK;
+  ///< **Cut flow counter**: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
   CutObject fCut_Vxy;
   ///< Cut on the radius \f$r\f$ of the primary vertex.
   CutObject fCut_Vz;

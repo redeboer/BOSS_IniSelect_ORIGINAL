@@ -41,13 +41,7 @@ const int    gNMasses      = sizeof(gMasses) / sizeof(*gMasses);
 // * =========================== * //
 
 /// Constructor for the `TrackSelector` base algorithm.
-/// Here, you should declare properties: give them a name, assign a parameter (data member of
-/// `TrackSelector`), and if required a documentation string. Note that you should define the
-/// paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign
-/// the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's
-/// `Algorithm` class. See class `GaudiKernel`s
-/// [`Algorithm`][https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html] for more
-/// details.
+/// Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See class `GaudiKernel`s [`Algorithm`][https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html] for more details.
 TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) :
   /// * Construct `Algorithm` objects.
   Algorithm(name, pSvcLocator),
@@ -74,12 +68,13 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fNTuple_topology("topology", "Monte Carlo truth for TopoAna package"),
   /// * Construct counters (in essence a `CutObject` without cuts).
   fCutFlow_Nevents("N_events"),
+  fCutFlow_NetChargeOK("N_netcharge_OK",
+                       "Number of events where the total charge detected in the detectors was 0"),
   fCounter_Ntracks("N_tracks"),
   fCounter_Ncharged("N_charged"),
   fCounter_Nneutral("N_neutral"),
   fCounter_Nmdcvalid("N_MDCvalid"),
-  /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain
-  /// parameters.
+  /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
   fCut_Vxy("vertex_xy"),
   fCut_Vz("vertex_z"),
   fCut_Rxy("declen_xy"),
@@ -88,8 +83,7 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fCut_PhotonEnergy("PhotonEnergy"),
   fCut_PIDChiSq("PIDChiSq"),
   fCut_PIDProb("PIDProb"),
-  /// * Set default values for create switches (`fCreateChargedCollection` and
-  /// `fCreateNeutralCollection`)
+  /// * Set default values for create switches (`fCreateChargedCollection` and `fCreateNeutralCollection`)
   fCreateChargedCollection(false),
   fCreateNeutralCollection(false),
   fPostConstructed(false)
@@ -97,10 +91,7 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   PrintFunctionName("TrackSelector", __func__);
 }
 
-/// Rather dubious construction, but this method is required and **has to be called at the end of
-/// each derived constructor**. The reason for that this method is necessary is that a Gaudi
-/// `Algorithm` requires properties to have been declared by the time the `Algorithm` has been
-/// constructed.
+/// Rather dubious construction, but this method is required and **has to be called at the end of each derived constructor**. The reason for that this method is necessary is that a Gaudi `Algorithm` requires properties to have been declared by the time the `Algorithm` has been constructed.
 void TrackSelector::PostConstructor()
 {
   DeclareSwitches();
@@ -113,9 +104,7 @@ void TrackSelector::PostConstructor()
 // * =============================== * //
 
 /// (Inherited) `initialize` step of `Algorithm`.
-/// This function is called once in the beginning *of each run*. Define and load NTuples here.
-/// The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will
-/// be the branches of those trees.
+/// This function is called once in the beginning *of each run*. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 StatusCode TrackSelector::initialize()
 {
   PrintFunctionName("TrackSelector", __func__);
@@ -340,6 +329,13 @@ void TrackSelector::PrintFunctionName(const char* class_name, const char* functi
 {
   fLog << MSG::DEBUG << "\n\n\n\n===>> " << class_name << "::" << function_name << " <<===\n"
        << endmsg;
+}
+
+/// **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
+void TrackSelector::CutZeroNetCharge()
+{
+  if(fNetChargeMDC) throw StatusCode::SUCCESS;
+  ++fCutFlow_NetChargeOK;
 }
 
 // * ================================ * //
