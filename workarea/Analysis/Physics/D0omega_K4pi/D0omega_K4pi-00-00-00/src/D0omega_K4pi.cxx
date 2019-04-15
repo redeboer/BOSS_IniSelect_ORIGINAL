@@ -553,6 +553,35 @@ void D0omega_K4pi::FindBestKinematicFit()
   }
 }
 
+/// Specification of `TrackSelector::CreateMCTruthSelection`.
+/// Create selection of MC truth particles by looping over the collection of MC particles created by `TrackSelector::CreateMCTruthCollection()`.
+void D0omega_K4pi::CreateMCTruthSelection()
+{
+  /// -# @b Abort if input file is not from a Monte Carlo simulation (that is, if the run number is
+  /// not negative).
+  if(fEventHeader->runNumber() >= 0) return;
+  /// -# @b Abort if `"write_fit_mc"`, has been set to `false`.
+  if(!fNTuple_fit_mc.DoWrite()) return;
+  /// -# Clear MC truth particle selections.
+  fMcKaonNeg.clear();
+  fMcPionNeg.clear();
+  fMcPionPos.clear();
+  /// -# Loop over `fMcParticles` collection of MC truth particles and fill the selections.
+  std::vector<Event::McParticle*>::iterator it;
+  for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it)
+  {
+    switch((*it)->particleProperty())
+    {
+      case -321: fMcKaonNeg.push_back(*it); break;
+      case -211: fMcPionNeg.push_back(*it); break;
+      case 211: fMcPionPos.push_back(*it); break;
+      default:
+        fLog << MSG::DEBUG << "No switch case defined for McParticle " << (*it)->particleProperty()
+             << endmsg;
+    }
+  }
+}
+
 // * ============================= * //
 // * ------- FINALIZE STEP ------- * //
 // * ============================= * //

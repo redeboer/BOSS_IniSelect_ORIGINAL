@@ -133,6 +133,7 @@ private:
   void AddNTupleItems_Fit(NTupleContainer& tuple);
   void SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple);
   void FindBestKinematicFit();
+  void CreateMCTruthSelection();
   ///@}
 };
 
