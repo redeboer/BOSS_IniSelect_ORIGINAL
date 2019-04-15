@@ -74,7 +74,9 @@ StatusCode D0omega_K4pi::initialize_rest()
     AddNTuples_photon();
     AddNTuples_topology();
   }
-  catch(...) {} /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
+  catch(...)
+  {
+  } /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
   return StatusCode::SUCCESS;
 }
 
@@ -187,7 +189,8 @@ StatusCode D0omega_K4pi::execute_rest()
     WriteDedx();
     FindBestKinematicFit();
   }
-  catch(...) {}
+  catch(...)
+  {}
   return StatusCode::SUCCESS;
 }
 
@@ -206,47 +209,46 @@ void D0omega_K4pi::CreateChargedTrackSelections()
   fPionNeg.clear();
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
-    /// <ol>
-    /// <li> Initialise PID and skip if it fails:
-    /// <ul>
-    if(
-      !InitializePID(
-        /// <li> use **probability method**
-        fPIDInstance->methodProbability(),
-        /// <li> use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
-        fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() |
-          fPIDInstance->useTofE(),
-        /// <li> identify only pions and kaons
-        fPIDInstance->onlyPion() | fPIDInstance->onlyKaon(),
-        /// <li> use \f$\chi^2 > 4.0\f$
-        4.0))
-      continue;
-    /// </ul>
-
-    /// <li> **Write** Particle Identification information of all tracks
+    if(!InitializePID()) continue;
     WritePIDInformation();
+    CategorizeTrack(*fTrackIter);
+  }
+}
 
-    /// <li> Identify type of charged particle and add to related vector: (this package: kaon and pion).
-    fTrackKal = (*fTrackIter)->mdcKalTrack();
-    if(fPIDInstance->probPion() > fPIDInstance->probKaon())
-    {
-      /// The particle identification first decides whether the track is more likely to have come from a pion or from a kaon.
-      if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue;
-      /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `D0omega_K4pi.txt`).
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
-      /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
-      if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIter);
-      /// and the (positive) pion is added to the vector of pions.
-      else
-        fPionNeg.push_back(*fTrackIter);
-    }
+/// Specialized initialise PID method for D0omega_K4pi.
+/// @see TrackSelector::InitializePID.
+bool D0omega_K4pi::InitializePID()
+{
+  return TrackSelector::InitializePID(
+    /// * Use **probability method**.
+    fPIDInstance->methodProbability(),
+    /// * Use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
+    fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() |
+      fPIDInstance->useTofE(),
+    /// * Identify only pions and kaons.
+    fPIDInstance->onlyPion() | fPIDInstance->onlyKaon(),
+    /// * Use \f$\chi^2 > 4.0\f$.
+    4.0);
+}
+
+/// Identify type of charged particle and add to related vector.
+bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
+{
+  fTrackKal = track->mdcKalTrack();
+  if(fPIDInstance->probPion() > fPIDInstance->probKaon())
+  {
+    if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) return false;
+    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+    if(fTrackKal->charge() > 0)
+      fPionPos.push_back(track);
     else
-    {
-      if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) continue;
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-      if(fTrackKal->charge() < 0) fKaonNeg.push_back(*fTrackIter);
-    }
-    /// </ol>
+      fPionNeg.push_back(track);
+  }
+  else
+  {
+    if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) return false;
+    RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+    if(fTrackKal->charge() < 0) fKaonNeg.push_back(track);
   }
 }
 
@@ -521,11 +523,12 @@ void D0omega_K4pi::FindBestKinematicFit()
     fNTuple_topology.GetItem<double>("pD0")    = bestKalmanFit.fP_D0;
     fNTuple_topology.GetItem<double>("pomega") = bestKalmanFit.fP_omega;
 
-    fNTuple_topology.GetItem<double>("ppi0")                 = bestKalmanFit.fP_pi0;
-    fNTuple_topology.GetItem<double>("pK-")                  = bestKalmanFit.fP_Km;
-    fNTuple_topology.GetItem<double>("ppi-")                 = bestKalmanFit.fP_pim;
-    fNTuple_topology.GetItem<double>("ppi+1")                = bestKalmanFit.fP_pip1;
-    fNTuple_topology.GetItem<double>("ppi+2")                = bestKalmanFit.fP_pip2;
+    fNTuple_topology.GetItem<double>("ppi0")  = bestKalmanFit.fP_pi0;
+    fNTuple_topology.GetItem<double>("pK-")   = bestKalmanFit.fP_Km;
+    fNTuple_topology.GetItem<double>("ppi-")  = bestKalmanFit.fP_pim;
+    fNTuple_topology.GetItem<double>("ppi+1") = bestKalmanFit.fP_pip1;
+    fNTuple_topology.GetItem<double>("ppi+2") = bestKalmanFit.fP_pip2;
+
     fNTuple_topology.GetItem<double>("fDalitzOmega_pi-pi+")  = bestKalmanFit.fDalitzOmega_pimpip;
     fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi-")  = bestKalmanFit.fDalitzOmega_pi0pim;
     fNTuple_topology.GetItem<double>("fDalitzOmega_pi0pi+")  = bestKalmanFit.fDalitzOmega_pi0pip;
