@@ -372,7 +372,8 @@ std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNum
     bestKalmanFit.ResetBestCompareValue();
     /// <li> Loop over all combinations of \f$\gamma\f$, \f$K^-\f$, \f$K^+\f$, and \f$\pi^+\f$.
     /// <ol>
-    int count = 0;
+    int  count = 0;
+    bool printfit{true};
     for(fKaonNegIter = fKaonNeg.begin(); fKaonNegIter != fKaonNeg.end(); ++fKaonNegIter)
       for(fPhoton1Iter = fPhotons.begin(); fPhoton1Iter != fPhotons.end(); ++fPhoton1Iter)
         for(fPhoton2Iter = fPhotons.begin(); fPhoton2Iter != fPhotons.end(); ++fPhoton2Iter)
@@ -381,8 +382,13 @@ std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNum
               for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end();
                   ++fPionPos2Iter)
               {
-                /// <li> *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
-                /// <li> Only continue if we are not dealing with the same kaon and/or photon.
+                /// <li> *For more information, see [the page on primary and secondary vertex fits
+                /// on the Offline Software
+                /// Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit)
+                /// (requires login).*
+
+                /// <li> Only continue if we are not dealing with the same kaon
+                /// and/or photon.
                 if(fPhoton1Iter == fPhoton2Iter) continue;
                 if(fPionPos1Iter == fPionPos2Iter) continue;
 std::cout << "  fitting combination " << count << "..." << std::endl;
@@ -401,62 +407,9 @@ std::cout << "  fitting combination " << count << "..." << std::endl;
                 WTrackParameter wvpipTrk1(gM_K, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
                 WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
 
-                /// <li> Get information of average interaction point (IP) in each run
- IVertexDbSvc* vtxsvc;
- Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
- if (vtxsvc->isVertexValid())
- {
-   double* dbv = vtxsvc->PrimaryVertex();
-   double* vv  = vtxsvc->SigmaPrimaryVertex();
-   ip.setX(dbv[0]);
-   ip.setY(dbv[1]);
-   ip.setZ(dbv[2]);
-   ipEx[0][0] = vv[0] * vv[0];
-   ipEx[1][1] = vv[1] * vv[1];
-   ipEx[2][2] = vv[2] * vv[2];
- }
- else  // if cannot load vertex information, will go to another event
-   return StatusCode::SUCCESS;
- VertexParameter bs;
- bs.setVx(ip);
- bs.setEvx(ipEx);
- /// <li> Set a common vertex with huge error.
- HepPoint3D    vx(0., 0., 0.);
- HepSymMatrix  Evx(3, 0);
- double bx = 1E+6;
- double by = 1E+6;
- double bz = 1E+6;
- Evx[0][0] = bx * bx;
- Evx[1][1] = by * by;
- Evx[2][2] = bz * bz;
- VertexParameter vxpar;
- vxpar.setVx(vx);
- vxpar.setEvx(Evx);
- /// <li> Do primary vertex fit.
- VertexFit *vtxfit = VertexFit::instance();
- vtxfit->init();
- vtxfit->AddTrack(0, wpitrk1);
- vtxfit->AddTrack(1, wpitrk2);
- vtxfit->AddVertex(0, vxpar, 0, 1);
- if (!(vtxfit->Fit(0))) continue;
- vtxfit->Swim(0);
- vtxfit->BuildVirtualParticle(0);
- double vtx_chisq = vtxfit->chisq(0);
- /// <li> Do second vertex fit.
- SecondVertexFit *svtxfit = SecondVertexFit::instance();
- svtxfit->init();
- svtxfit->setPrimaryVertex(bs);
- svtxfit->AddTrack(0, vtxfit->wVirtualTrack(0));
- svtxfit->setVpar(vtxfit->vpar(0));
- if (!svtxfit->Fit()) continue;
- double svtx_chisq = svtxfit->chisq();
- wpitrk1 = vtxfit->wtrk(0);
- wpitrk2 = vtxfit->wtrk(1);
- HepLorentzVector pKs = svtxfit->p4par();
- HepVector vtxKs = svtxfit->vpar().Vx();
- double ctau = svtxfit->ctau();
- double len = svtxfit->decayLength();
- double lenerr = svtxfit->decayLengthError();
+                /// <li> Initiate vertex fit.
+                HepPoint3D   vx(0., 0., 0.);
+                HepSymMatrix Evx(3, 0);
                 double       bx = 1E+6;
                 double       by = 1E+6;
                 double       bz = 1E+6;
@@ -508,13 +461,13 @@ std::cout << "  fitting combination " << count << "..." << std::endl;
                   if(fitresult.IsBetter()) bestKalmanFit = fitresult;
                   /// </ol>
                 }
-                else
+                else if(printfit)
                 {
 std::cout << "  fit failed: chisq = " << kkmfit->chisq() << std::endl;
                   fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
+                  printfit = false;
                 }
               }
-
     /// </ol>
     /// <li> **Write** results of the Kalman kitematic fit *of the best combination*
     /// (`"fit4c_best"` branches).
