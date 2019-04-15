@@ -768,10 +768,7 @@ void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tup
 void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector,
                                            NTupleContainer&           tuple)
 {
-  /// -# Abort if the 'write `JobSwitch`' has been set to `false`.
   if(!tuple.DoWrite()) return;
-
-  /// -# Loop over the vector of `EvtRecTrack` you fed and perform `WriteDedxInfo`.
   fLog << MSG::DEBUG << "Writing \"" << tuple.Name() << "\" info" << endmsg;
   for(fTrackIterator = vector.begin(); fTrackIterator != vector.end(); ++fTrackIterator)
     WriteDedxInfo(*fTrackIterator, tuple);
@@ -783,18 +780,10 @@ void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector,
 /// specify what should be stored to this fit `NTuple`.
 void TrackSelector::WriteFitResults(KKFitResult* fitresults, NTupleContainer& tuple)
 {
-  /// -# @b Abort if `"write_" `JobSwitch` option has been set to `false`.
   if(!tuple.DoWrite()) return;
-
-  /// -# @b Abort if `fitresults` pointer is a `nullptr` and not a `KKFitResult` object.
   if(!fitresults) return;
-
-  /// -# @b Abort if `fitresults` does not have fit results.
   if(!fitresults->HasResults()) return;
-  /// -# Performed derived version of the `virtual` `SetFitNTuple` method.
   SetFitNTuple(fitresults, tuple);
-
-  /// -# @b Write \f$dE/dx\f$ info.
   tuple.Write();
   fLog << MSG::DEBUG << "Writing fit results \"" << tuple.Name() << "\"" << endmsg;
 }
@@ -805,16 +794,10 @@ void TrackSelector::WriteFitResults(KKFitResult* fitresults, NTupleContainer& tu
 /// @see `CreateMCTruthCollection`
 bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
 {
-  /// -# @b Abort if input file is not MC generated (that is, if the run number is not negative).
   if(fEventHeader->runNumber() >= 0) return false;
-
-  /// -# @b Abort if `"write_"` `JobSwitch` has been set to `false`.
   if(!tuple.DoWrite()) return false;
-
-  /// -# @b Abort if `fMcParticles` has not been filled.
   if(!fMcParticles.size()) return false;
 
-  /// -# @b Import run number and event number to `tuple`.
   fLog << MSG::DEBUG << "Writing TopoAna NTuple \"" << tuple.Name() << "\" with "
        << fMcParticles.size() << " particles" << endmsg;
   tuple.GetItem<int>("runID") = fEventHeader->runNumber();
@@ -827,7 +810,7 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
   std::vector<Event::McParticle*>::iterator it = fMcParticles.begin();
   int                                       indexOffset((*it)->trackIndex());
 
-  /// -# Loop over tthe remainder of `fMcParticles` and store the daughters
+  /// -# Loop over the remainder of `fMcParticles` and store the daughters
   NTuple::Item<int>&  index    = tuple.GetItem<int>("index");
   NTuple::Array<int>& particle = tuple.GetArray<int>("particle");
   NTuple::Array<int>& mother   = tuple.GetArray<int>("mother");
@@ -838,10 +821,7 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
     if(!NTupleTopoAna::IsFromJPsi(*it)) --mother[index];
     if(NTupleTopoAna::IsJPsi(*it)) mother[index] = 0;
     ++index;
-    // std::cout << std::setw(3) << tuple.index << std::setw(7) << tuple.particle[tuple.index]
-    //           << std::setw(4) << tuple.mother[tuple.index] << std::endl;
   }
-  // std::cout << std::endl;
 
   /// -# @b Write `NTuple` if `write` has been set to `true`.
   tuple.Write();
