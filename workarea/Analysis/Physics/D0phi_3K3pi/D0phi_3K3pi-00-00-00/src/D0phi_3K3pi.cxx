@@ -7,6 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include <float.h> // for DBL_MAX
@@ -264,12 +265,14 @@ StatusCode D0phi_3K3pi::execute_rest()
                 RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
 
                 // * Get W-tracks
-                WTrackParameter wvKmTrk1(gM_K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-                WTrackParameter wvKmTrk2(gM_K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-                WTrackParameter wvKpTrk(gM_K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
-                WTrackParameter wvpimTrk(gM_pi, kalTrkpim->getZHelix(), kalTrkpim->getZError());
-                WTrackParameter wvpipTrk1(gM_pi, kalTrkpip1->getZHelix(), kalTrkpip1->getZError());
-                WTrackParameter wvpipTrk2(gM_pi, kalTrkpip2->getZHelix(), kalTrkpip2->getZError());
+                WTrackParameter wvKmTrk1(Mass::K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
+                WTrackParameter wvKmTrk2(Mass::K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
+                WTrackParameter wvKpTrk(Mass::K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
+                WTrackParameter wvpimTrk(Mass::pi, kalTrkpim->getZHelix(), kalTrkpim->getZError());
+                WTrackParameter wvpipTrk1(Mass::pi, kalTrkpip1->getZHelix(),
+                                          kalTrkpip1->getZError());
+                WTrackParameter wvpipTrk2(Mass::pi, kalTrkpip2->getZHelix(),
+                                          kalTrkpip2->getZError());
 
                 // * Initiate vertex fit * //
                 HepPoint3D   vx(0., 0., 0.);

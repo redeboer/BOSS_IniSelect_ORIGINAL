@@ -4,6 +4,7 @@
 
 #include "D0phi_KpipiKK/KKFitResult_D0phi_KpipiKK.h"
 #include "CLHEP/Vector/LorentzVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "TrackSelector/TrackSelector.h"
 #include <cmath>
 
@@ -90,7 +91,7 @@ void KKFitResult_D0phi_KpipiKK::SetValues(const HepLorentzVector& pKaonNeg1,
                      pphi.pz() * pphi.pz()); /// <li> `fP_phi` = \f$|\vec{p}_{K^-K^+}|\f$
   /// </ul>
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{K^-K^+} - m_{\phi}\f$
-  fFitMeasure = std::abs(fM_phi - gM_phi);
+  fFitMeasure = std::abs(fM_phi - Mass::phi);
   /// <li> Set `fHasResults` to `true`.
   fHasResults = true;
   /// </ol>

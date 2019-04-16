@@ -4,6 +4,7 @@
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "CLHEP/Vector/LorentzVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "TrackSelector/TrackSelector.h"
 #include <cmath>
 
@@ -116,7 +117,7 @@ void KKFitResult_D0omega_K4pi::SetValues(const HepLorentzVector& pKaonNeg,
   /// <li> Info about the photons
   fRelativePhotonAngle = pPhoton1.angle(pPhoton2);
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{\pi^-\pi^+\pi^0} - m_{\omega}\f$
-  fFitMeasure = std::abs(fM_omega - gM_phi);
+  fFitMeasure = std::abs(fM_omega - Mass::phi);
   /// <li> Set `fHasResults` to `true`.
   fHasResults = true;
   /// </ol>

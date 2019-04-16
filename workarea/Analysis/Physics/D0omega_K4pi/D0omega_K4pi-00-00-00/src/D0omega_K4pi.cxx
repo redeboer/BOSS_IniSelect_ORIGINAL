@@ -7,6 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <string>
 #include <utility>
@@ -478,10 +479,10 @@ void D0omega_K4pi::InitializeVertexFit()
 
 void D0omega_K4pi::AddTracksToVertexFit()
 {
-  fVertexFit->AddTrack(0, BuildWTrackParameter(*fKaonNegIter, gM_K));
-  fVertexFit->AddTrack(1, BuildWTrackParameter(*fPionNegIter, gM_pi));
-  fVertexFit->AddTrack(2, BuildWTrackParameter(*fPionPos1Iter, gM_pi));
-  fVertexFit->AddTrack(3, BuildWTrackParameter(*fPionPos2Iter, gM_pi));
+  fVertexFit->AddTrack(0, BuildWTrackParameter(*fKaonNegIter, Mass::K));
+  fVertexFit->AddTrack(1, BuildWTrackParameter(*fPionNegIter, Mass::pi));
+  fVertexFit->AddTrack(2, BuildWTrackParameter(*fPionPos1Iter, Mass::pi));
+  fVertexFit->AddTrack(3, BuildWTrackParameter(*fPionPos2Iter, Mass::pi));
 }
 
 void D0omega_K4pi::AddVertexToVertexFit()
@@ -521,8 +522,8 @@ void D0omega_K4pi::AddTracksToKinematicFit()
 
 void D0omega_K4pi::AddConstraintsToKinematicFit()
 {
-  fKalmanKinematicFit->AddFourMomentum(0, gEcmsVec);  /// 4C: CMS energy and 3-momentum
-  fKalmanKinematicFit->AddResonance(1, gM_pi0, 0, 1); /// 1C: \f$\pi^0\f$ resonance
+  fKalmanKinematicFit->AddFourMomentum(0, gEcmsVec);     /// 4C: CMS energy and 3-momentum
+  fKalmanKinematicFit->AddResonance(1, Mass::pi0, 0, 1); /// 1C: \f$\pi^0\f$ resonance
 }
 
 void D0omega_K4pi::ExtractFitResults()

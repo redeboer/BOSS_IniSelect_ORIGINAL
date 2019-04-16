@@ -7,6 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include <float.h> // for DBL_MAX
@@ -385,10 +386,10 @@ StatusCode D0phi_KpipiKK::execute_rest()
                 RecMdcKalTrack* kalTrkpip = (*fPionPosIter)->mdcKalTrack();
 
                 /// <li> Get W-tracks.
-                WTrackParameter wvKmTrk1(gM_K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-                WTrackParameter wvKmTrk2(gM_K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-                WTrackParameter wvKpTrk(gM_K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
-                WTrackParameter wvpipTrk(gM_pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
+                WTrackParameter wvKmTrk1(Mass::K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
+                WTrackParameter wvKmTrk2(Mass::K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
+                WTrackParameter wvKpTrk(Mass::K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
+                WTrackParameter wvpipTrk(Mass::pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
 
                 /// <li> Initiate vertex fit.
                 HepPoint3D   vx(0., 0., 0.);
@@ -429,7 +430,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
                 kkmfit->AddTrack(4, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
                 kkmfit->AddTrack(5, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
                 kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-                // kkmfit->AddResonance(1, gM_pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$
+                // kkmfit->AddResonance(1, Mass::pi0, 4, 5); /// @remark 5th constraint: \f$\pi^0\f$
                 // resonance
                 if(kkmfit->Fit())
                 {

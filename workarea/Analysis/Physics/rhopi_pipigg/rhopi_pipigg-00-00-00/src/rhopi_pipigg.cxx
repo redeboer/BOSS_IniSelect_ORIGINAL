@@ -7,6 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "TrackSelector/TSGlobals.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
 #include <float.h> // for DBL_MAX
@@ -351,8 +352,8 @@ StatusCode rhopi_pipigg::execute_rest()
             RecMdcKalTrack* pipTrk = (*fPionPosIter)->mdcKalTrack();
 
             /// <li> Get W-tracks.
-            WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
-            WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+            WTrackParameter wvpimTrk(Mass::pi, pimTrk->getZHelix(), pimTrk->getZError());
+            WTrackParameter wvpipTrk(Mass::pi, pipTrk->getZHelix(), pipTrk->getZError());
 
             /// <li> Initiate vertex fit.
             HepPoint3D   vx(0., 0., 0.);
@@ -432,8 +433,8 @@ StatusCode rhopi_pipigg::execute_rest()
             RecMdcKalTrack* pipTrk = (*fPionPosIter)->mdcKalTrack();
 
             /// <li> Get W-tracks.
-            WTrackParameter wvpimTrk(gM_pi, pimTrk->getZHelix(), pimTrk->getZError());
-            WTrackParameter wvpipTrk(gM_pi, pipTrk->getZHelix(), pipTrk->getZError());
+            WTrackParameter wvpimTrk(Mass::pi, pimTrk->getZHelix(), pimTrk->getZError());
+            WTrackParameter wvpipTrk(Mass::pi, pipTrk->getZHelix(), pipTrk->getZError());
 
             /// <li> Initiate vertex fit.
             HepPoint3D   vx(0., 0., 0.);
@@ -469,8 +470,9 @@ StatusCode rhopi_pipigg::execute_rest()
             kkmfit->AddTrack(1, vtxfit->wtrk(1));                  // pi+
             kkmfit->AddTrack(2, 0., (*fPhoton1Iter)->emcShower()); // gamma (1st occurrence)
             kkmfit->AddTrack(3, 0., (*fPhoton2Iter)->emcShower()); // gamma (2nd occurence)
-            kkmfit->AddResonance(0, gM_pi0, 2, 3); /// @remark 5th constraint: \f$\pi^0\f$ resonance
-            kkmfit->AddFourMomentum(1, gEcmsVec);  // 4 constraints: CMS energy and momentum
+            kkmfit->AddResonance(0, Mass::pi0, 2,
+                                 3);              /// @remark 5th constraint: \f$\pi^0\f$ resonance
+            kkmfit->AddFourMomentum(1, gEcmsVec); // 4 constraints: CMS energy and momentum
             if(kkmfit->Fit())
             {
               /// <ol>
