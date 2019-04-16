@@ -14,10 +14,10 @@ class AngleDifferences
 {
 public:
   AngleDifferences() : fIsRadians{true} { SetToMax(); }
-  AngleDifferences(const Hep3Vector& vec1, const Hep3Vector& vec2);
+  AngleDifferences(const CLHEP::Hep3Vector& vec1, const CLHEP::Hep3Vector& vec2);
 
   void SetToMax();
-  void SetAngleDifferences(const Hep3Vector& vec1, const Hep3Vector& vec2);
+  void SetAngleDifferences(const CLHEP::Hep3Vector& vec1, const CLHEP::Hep3Vector& vec2);
   void ConvertToDegrees();
   void ConvertToRadians();
 

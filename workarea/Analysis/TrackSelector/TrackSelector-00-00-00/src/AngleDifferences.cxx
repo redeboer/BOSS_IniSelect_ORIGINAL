@@ -1,7 +1,8 @@
 #include "TrackSelector/Containers/AngleDifferences.h"
-#include "CLHEP/Units/SystemOfUnits.h"
+#include "TrackSelector/TrackSelector.h"
 #include <float.h> // for DBL_MAX
-using namespace CLHEP;
+
+using CLHEP::Hep3Vector;
 
 const double gRadToDegree = 180. / (CLHEP::pi);
 
@@ -23,8 +24,8 @@ void AngleDifferences::SetAngleDifferences(const Hep3Vector& vec1, const Hep3Vec
   fAngle = vec1.angle(vec2);
   fTheta = vec1.theta() - vec2.theta();
   fPhi   = vec1.deltaPhi(vec2);
-  fTheta = fmod(5 * pi + fTheta, twopi) - pi;
-  fPhi   = fmod(5 * pi + fPhi, twopi) - pi;
+  fTheta = fmod(5 * CLHEP::pi + fTheta, CLHEP::twopi) - CLHEP::pi;
+  fPhi   = fmod(5 * CLHEP::pi + fPhi, CLHEP::twopi) - CLHEP::pi;
 }
 
 void AngleDifferences::ConvertToDegrees()
