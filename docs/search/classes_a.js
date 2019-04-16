@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['utility',['utility',['../classutility.html',1,'']]]
+  ['secondaryvertexgeometry',['SecondaryVertexGeometry',['../classSecondaryVertexGeometry.html',1,'']]]
 ];

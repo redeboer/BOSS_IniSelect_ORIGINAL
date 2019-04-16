@@ -25,6 +25,7 @@ var hierarchy =
         [ "RhopiAlg", "classRhopiAlg.html", null ]
       ] ]
     ] ],
+    [ "AngleDifferences", "classAngleDifferences.html", null ],
     [ "BesDCSelector", null, [
       [ "LocalPhotonSelector", "classLocalPhotonSelector.html", null ]
     ] ],
@@ -61,6 +62,10 @@ var hierarchy =
     [ "m_trkInfo", "classm__trkInfo.html", null ],
     [ "ParticleTracks", "classParticleTracks.html", null ],
     [ "ReadBeamInfFromDb", "classReadBeamInfFromDb.html", null ],
+    [ "RecTrackPointers", "classRecTrackPointers.html", [
+      [ "TrackSelector", "classTrackSelector.html", null ]
+    ] ],
+    [ "SecondaryVertexGeometry", "classSecondaryVertexGeometry.html", null ],
     [ "topoana", "classtopoana.html", null ],
     [ "TrackCollection< T >", "classTrackCollection.html", null ],
     [ "TrackCollection< Event::McParticle *>", "classTrackCollection.html", null ],

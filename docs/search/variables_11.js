@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xmass',['xmass',['../PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;PipiJpsi.cxx'],['../PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;PipiJpsi.cxx'],['../Rhopi_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;Rhopi.cxx'],['../RhopiAlg-01-00-00_2src_2RhopiAlg_8cxx.html#a850891ce5a4a85d92f96c37288dc134a',1,'xmass():&#160;RhopiAlg.cxx']]]
+  ['usecolors',['useColors',['../analysis_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;analysis.txt'],['../reconstruction_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;reconstruction.txt'],['../simulation_8txt.html#aad359ccde0d597e33011226baaf594dc',1,'useColors():&#160;simulation.txt']]],
+  ['userdecaytablename',['userDecayTableName',['../simulation_8txt.html#a55256d81eaf9866510e6e879b6b1e120',1,'simulation.txt']]]
 ];

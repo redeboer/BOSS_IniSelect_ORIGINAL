@@ -462,7 +462,7 @@ void TrackSelector::CreateChargedCollection()
   fChargedTracks.clear();
   if(!fEvtRecEvent->totalCharged()) return;
   fPIDInstance = ParticleID::instance();
-  /// <li> Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
+  /// -# Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
   fNetChargeMDC = 0;
   fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
   for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i)
@@ -478,10 +478,10 @@ void TrackSelector::CreateChargedCollection()
     fNetChargeMDC += fTrackMDC->charge();
     WriteChargedTrackVertex();
 
-    /// <li> @b Write dE/dx PID information ("dedx" branch)
+    /// -# **Write** dE/dx PID information ("dedx" branch)
     WriteDedxInfo(*fTrackIter, fNTuple_dedx);
 
-    /// <li> @b Write Time-of-Flight PID information ("tof*" branch)
+    /// -# **Write** Time-of-Flight PID information ("tof*" branch)
     if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite())
     {
       // * Check if MDC and TOF info for track are valid *
@@ -509,12 +509,9 @@ void TrackSelector::CreateChargedCollection()
           WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofEC);
       }
     }
-
-    /// </ol>
   }
 
   fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fChargedTracks.size() << endmsg;
-  /// </ol>
 }
 
 void TrackSelector::SetTrackIter(const int& i)

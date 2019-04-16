@@ -1,5 +1,7 @@
 var files =
 [
+    [ "AngleDifferences.cxx", "AngleDifferences_8cxx.html", "AngleDifferences_8cxx" ],
+    [ "AngleDifferences.h", "AngleDifferences_8h.html", null ],
     [ "ChargedDReconstruction.cxx", "ChargedDReconstruction_8cxx.html", null ],
     [ "ChargedDReconstruction.h", "ChargedDReconstruction_8h.html", [
       [ "ChargedDReconstruction", "classChargedDReconstruction.html", "classChargedDReconstruction" ]
@@ -100,6 +102,7 @@ var files =
     [ "ReadBeamInfFromDb.h", "ReadBeamInfFromDb_8h.html", [
       [ "ReadBeamInfFromDb", "classReadBeamInfFromDb.html", "classReadBeamInfFromDb" ]
     ] ],
+    [ "RecTrackPointers.h", "RecTrackPointers_8h.html", null ],
     [ "Rhopi.cxx", "Rhopi_8cxx.html", "Rhopi_8cxx" ],
     [ "Rhopi.h", "Rhopi_8h.html", [
       [ "Rhopi", "classRhopi.html", "classRhopi" ]
@@ -110,6 +113,8 @@ var files =
     [ "RhopiAlg-02-00-00/src/RhopiAlg.cxx", "RhopiAlg-02-00-00_2src_2RhopiAlg_8cxx.html", "RhopiAlg-02-00-00_2src_2RhopiAlg_8cxx" ],
     [ "RhopiAlg-01-00-00/RhopiAlg/RhopiAlg.h", "RhopiAlg-01-00-00_2RhopiAlg_2RhopiAlg_8h.html", null ],
     [ "RhopiAlg-02-00-00/RhopiAlg/RhopiAlg.h", "RhopiAlg-02-00-00_2RhopiAlg_2RhopiAlg_8h.html", null ],
+    [ "SecondaryVertexGeometry.cxx", "SecondaryVertexGeometry_8cxx.html", null ],
+    [ "SecondaryVertexGeometry.h", "SecondaryVertexGeometry_8h.html", "SecondaryVertexGeometry_8h" ],
     [ "temp/topoana/topoana.h", "temp_2topoana_2topoana_8h.html", [
       [ "topoana", "classtopoana.html", "classtopoana" ]
     ] ],
@@ -117,10 +122,11 @@ var files =
       [ "topoana", "classtopoana.html", "classtopoana" ]
     ] ],
     [ "TrackCollection.h", "TrackCollection_8h.html", null ],
-    [ "TrackSelector.cxx", "TrackSelector_8cxx.html", "TrackSelector_8cxx" ],
+    [ "TrackSelector.cxx", "TrackSelector_8cxx.html", null ],
     [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ],
     [ "PipiJpsiAlg-00-00-03/PipiJpsiAlg/trkInfo.h", "PipiJpsiAlg-00-00-03_2PipiJpsiAlg_2trkInfo_8h.html", "PipiJpsiAlg-00-00-03_2PipiJpsiAlg_2trkInfo_8h" ],
     [ "PipiJpsiAlg-01-00-00/PipiJpsiAlg/trkInfo.h", "PipiJpsiAlg-01-00-00_2PipiJpsiAlg_2trkInfo_8h.html", "PipiJpsiAlg-01-00-00_2PipiJpsiAlg_2trkInfo_8h" ],
+    [ "TSGlobals.h", "TSGlobals_8h.html", "TSGlobals_8h" ],
     [ "utility.cxx", "utility_8cxx.html", null ],
     [ "utility.h", "utility_8h.html", [
       [ "utility", "classutility.html", "classutility" ]

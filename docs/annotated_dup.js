@@ -1,5 +1,7 @@
 var annotated_dup =
 [
+    [ "TSGlobals", "namespaceTSGlobals.html", null ],
+    [ "AngleDifferences", "classAngleDifferences.html", "classAngleDifferences" ],
     [ "ChargedDReconstruction", "classChargedDReconstruction.html", "classChargedDReconstruction" ],
     [ "ChargedDSelector", "classChargedDSelector.html", "classChargedDSelector" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],
@@ -39,9 +41,11 @@ var annotated_dup =
     [ "ParticleTracks", "classParticleTracks.html", "classParticleTracks" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "ReadBeamInfFromDb", "classReadBeamInfFromDb.html", "classReadBeamInfFromDb" ],
+    [ "RecTrackPointers", "classRecTrackPointers.html", "classRecTrackPointers" ],
     [ "Rhopi", "classRhopi.html", "classRhopi" ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ],
     [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
+    [ "SecondaryVertexGeometry", "classSecondaryVertexGeometry.html", "classSecondaryVertexGeometry" ],
     [ "topoana", "classtopoana.html", "classtopoana" ],
     [ "TrackCollection", "classTrackCollection.html", "classTrackCollection" ],
     [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ],

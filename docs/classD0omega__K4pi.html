@@ -96,7 +96,8 @@ Inheritance diagram for D0omega_K4pi:</div>
  <div class="center">
   <img src="classD0omega__K4pi.png" usemap="#D0omega_5FK4pi_map" alt=""/>
   <map id="D0omega_5FK4pi_map" name="D0omega_5FK4pi_map">
-<area href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. " alt="TrackSelector" shape="rect" coords="0,56,97,80"/>
+<area href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. " alt="TrackSelector" shape="rect" coords="61,56,173,80"/>
+<area href="classRecTrackPointers.html" alt="RecTrackPointers" shape="rect" coords="122,0,234,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -132,6 +133,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">PostConstructor</a> ()</td></tr>
 <tr class="memdesc:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>. The reason for that this method is necessary is that a Gaudi <code>Algorithm</code> requires properties to have been declared by the time the <code>Algorithm</code> has been constructed.  <a href="classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3">More...</a><br /></td></tr>
 <tr class="separator:a1208e2cca3e227978fea89f86116bfa3 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e910b15aef461531eabc99faa56057e inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9e910b15aef461531eabc99faa56057e">DeclareSwitches</a> ()</td></tr>
+<tr class="memdesc:a9e910b15aef461531eabc99faa56057e inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declare properties for each <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>.  <a href="classTrackSelector.html#a9e910b15aef461531eabc99faa56057e">More...</a><br /></td></tr>
+<tr class="separator:a9e910b15aef461531eabc99faa56057e inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07b15e1875115d75d60c6a98f77e62b4 inherit pub_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a07b15e1875115d75d60c6a98f77e62b4">DeclareCuts</a> ()</td></tr>
+<tr class="memdesc:a07b15e1875115d75d60c6a98f77e62b4 inherit pub_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declare corresponding job properties for each <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code>.  <a href="classTrackSelector.html#a07b15e1875115d75d60c6a98f77e62b4">More...</a><br /></td></tr>
+<tr class="separator:a07b15e1875115d75d60c6a98f77e62b4 inherit pub_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -248,23 +255,16 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a45dfe8f41ddc7821a1de22564cc92c21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKKFitResult__D0omega__K4pi.html">KKFitResult_D0omega_K4pi</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a45dfe8f41ddc7821a1de22564cc92c21">fCurrentKalmanFit</a></td></tr>
 <tr class="separator:a45dfe8f41ddc7821a1de22564cc92c21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Photon kinematics</div></td></tr>
-<tr class="memitem:a1c3cbb13e8324836893c3a2dac0f7b49"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a1c3cbb13e8324836893c3a2dac0f7b49">fTheta</a></td></tr>
-<tr class="separator:a1c3cbb13e8324836893c3a2dac0f7b49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b50a614868eeab04c7e337ed9a7b4ab"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a8b50a614868eeab04c7e337ed9a7b4ab">fPhi</a></td></tr>
-<tr class="separator:a8b50a614868eeab04c7e337ed9a7b4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d05574efc575aafdb520c4a28c1058c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a7d05574efc575aafdb520c4a28c1058c">fAngle</a></td></tr>
-<tr class="separator:a7d05574efc575aafdb520c4a28c1058c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b71599b68e3dbf95bae5da67a965c12"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a9b71599b68e3dbf95bae5da67a965c12">fSmallestTheta</a></td></tr>
-<tr class="separator:a9b71599b68e3dbf95bae5da67a965c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fcf4e2e1fe0e8e716926cb10ac970d1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a2fcf4e2e1fe0e8e716926cb10ac970d1">fSmallestPhi</a></td></tr>
-<tr class="separator:a2fcf4e2e1fe0e8e716926cb10ac970d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c232abfaf000b5f1d3b138a5adf864d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a0c232abfaf000b5f1d3b138a5adf864d">fSmallestAngle</a></td></tr>
-<tr class="separator:a0c232abfaf000b5f1d3b138a5adf864d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7601667261297624a30b7a03b1300772"><td class="memItemLeft" align="right" valign="top">Hep3Vector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a7601667261297624a30b7a03b1300772">fEmcPosition</a></td></tr>
 <tr class="separator:a7601667261297624a30b7a03b1300772"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8708ce0991518b7af1faf5a36367421b"><td class="memItemLeft" align="right" valign="top">Hep3Vector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a8708ce0991518b7af1faf5a36367421b">fExtendedEmcPosition</a></td></tr>
 <tr class="separator:a8708ce0991518b7af1faf5a36367421b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
+<tr class="memitem:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">fLog</a></td></tr>
+<tr class="memdesc:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">More...</a><br /></td></tr>
+<tr class="separator:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a736c6519e8ca9b1cc87115db93b0be38 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSecondaryVertexGeometry.html">SecondaryVertexGeometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a736c6519e8ca9b1cc87115db93b0be38">fSecondaryVtx</a></td></tr>
+<tr class="separator:a736c6519e8ca9b1cc87115db93b0be38 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">SmartDataPtr&lt; Event::EventHeader &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">fEventHeader</a></td></tr>
 <tr class="memdesc:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data pointer for <code>"Event/EventHeader"</code> data. It is set in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">execute()</a></code> step in each event.  <a href="classTrackSelector.html#a660f30908144b2029444c891c79c4196">More...</a><br /></td></tr>
 <tr class="separator:a660f30908144b2029444c891c79c4196 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -295,27 +295,6 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ace9d29c1fb7df1c2d1da5b86619745c5 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ace9d29c1fb7df1c2d1da5b86619745c5">fCreateNeutralCollection</a></td></tr>
 <tr class="memdesc:ace9d29c1fb7df1c2d1da5b86619745c5 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">A switch that allows the derived algorithms to decide whether to create a collection of <b>neutral</b> tracks in the <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection.  <a href="classTrackSelector.html#ace9d29c1fb7df1c2d1da5b86619745c5">More...</a><br /></td></tr>
 <tr class="separator:ace9d29c1fb7df1c2d1da5b86619745c5 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeba5c3a6ede9d6dfa5fc50beac17402c inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecEmcShower *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aeba5c3a6ede9d6dfa5fc50beac17402c">fTrackEMC</a></td></tr>
-<tr class="memdesc:aeba5c3a6ede9d6dfa5fc50beac17402c inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the EMC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html"><code>RecEmcShower</code></a>.  <a href="classTrackSelector.html#aeba5c3a6ede9d6dfa5fc50beac17402c">More...</a><br /></td></tr>
-<tr class="separator:aeba5c3a6ede9d6dfa5fc50beac17402c inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab81b438182bfd30ae3de4526ec3e3751 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecExtTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab81b438182bfd30ae3de4526ec3e3751">fTrackExt</a></td></tr>
-<tr class="memdesc:ab81b438182bfd30ae3de4526ec3e3751 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the extension through all detectors. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecExtTrack.html"><code>RecExtTrack</code></a>.  <a href="classTrackSelector.html#ab81b438182bfd30ae3de4526ec3e3751">More...</a><br /></td></tr>
-<tr class="separator:ab81b438182bfd30ae3de4526ec3e3751 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5d79e3f40c41fc90bdb1752befc3829 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecMdcDedx *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad5d79e3f40c41fc90bdb1752befc3829">fTrackDedx</a></td></tr>
-<tr class="memdesc:ad5d79e3f40c41fc90bdb1752befc3829 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html"><code>RecMdcDedx</code></a>.  <a href="classTrackSelector.html#ad5d79e3f40c41fc90bdb1752befc3829">More...</a><br /></td></tr>
-<tr class="separator:ad5d79e3f40c41fc90bdb1752befc3829 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1246945b0ec81e5059aa3bda2877787 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecMdcKalTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac1246945b0ec81e5059aa3bda2877787">fTrackKal</a></td></tr>
-<tr class="memdesc:ac1246945b0ec81e5059aa3bda2877787 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed Kalman fit data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcKalTrack.html"><code>RecMdcKalTrack</code></a>.  <a href="classTrackSelector.html#ac1246945b0ec81e5059aa3bda2877787">More...</a><br /></td></tr>
-<tr class="separator:ac1246945b0ec81e5059aa3bda2877787 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed5df19dcb2673d959a160401682189c inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecMdcTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aed5df19dcb2673d959a160401682189c">fTrackMDC</a></td></tr>
-<tr class="memdesc:aed5df19dcb2673d959a160401682189c inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed track data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html"><code>RecMdcTrack</code></a>.  <a href="classTrackSelector.html#aed5df19dcb2673d959a160401682189c">More...</a><br /></td></tr>
-<tr class="separator:aed5df19dcb2673d959a160401682189c inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a2693986b9e73b65de3f739789a999 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecMucTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a45a2693986b9e73b65de3f739789a999">fTrackMUC</a></td></tr>
-<tr class="memdesc:a45a2693986b9e73b65de3f739789a999 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the MUC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMucTrack.html"><code>RecMucTrack</code></a>.  <a href="classTrackSelector.html#a45a2693986b9e73b65de3f739789a999">More...</a><br /></td></tr>
-<tr class="separator:a45a2693986b9e73b65de3f739789a999 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a651c6ff68c30a44fe8d95485c20dd0ca inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">RecTofTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a651c6ff68c30a44fe8d95485c20dd0ca">fTrackTOF</a></td></tr>
-<tr class="memdesc:a651c6ff68c30a44fe8d95485c20dd0ca inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the TOF. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecTofTrack.html"><code>RecTofTrack</code></a>.  <a href="classTrackSelector.html#a651c6ff68c30a44fe8d95485c20dd0ca">More...</a><br /></td></tr>
-<tr class="separator:a651c6ff68c30a44fe8d95485c20dd0ca inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7bbc529b932aaa34f0ee0e80d0c7723f inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleContainer.html">NTupleContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7bbc529b932aaa34f0ee0e80d0c7723f">fNTuple_cuts</a></td></tr>
 <tr class="memdesc:a7bbc529b932aaa34f0ee0e80d0c7723f inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>NTuple::Tuple</code> container for the cut parameters.  <a href="classTrackSelector.html#a7bbc529b932aaa34f0ee0e80d0c7723f">More...</a><br /></td></tr>
 <tr class="separator:a7bbc529b932aaa34f0ee0e80d0c7723f inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -396,34 +375,53 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">fCut_PIDProb</a></td></tr>
 <tr class="memdesc:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>.  <a href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">More...</a><br /></td></tr>
 <tr class="separator:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">fPIDInstance</a></td></tr>
+<tr class="memdesc:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to instance of particle identification (PID). Only used in <em>derived subalgorithms</em>.  <a href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">More...</a><br /></td></tr>
+<tr class="separator:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="D0omega__K4pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">fVertexPoint</a></td></tr>
 <tr class="memdesc:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coordinates of the interaction point (primary vertex). Set in each event in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code>.  <a href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">More...</a><br /></td></tr>
 <tr class="separator:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1438702d17070d27437f08600daf102">fNetChargeMDC</a></td></tr>
 <tr class="memdesc:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example.  <a href="classTrackSelector.html#ae1438702d17070d27437f08600daf102">More...</a><br /></td></tr>
 <tr class="separator:ae1438702d17070d27437f08600daf102 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">MsgStream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">fLog</a></td></tr>
-<tr class="memdesc:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.  <a href="classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af">More...</a><br /></td></tr>
-<tr class="separator:a94dfa3d4153e1798e155e5a0e5d733af inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">fPIDInstance</a></td></tr>
-<tr class="memdesc:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to instance of particle identification (PID). Only used in <em>derived subalgorithms</em>.  <a href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">More...</a><br /></td></tr>
-<tr class="separator:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classRecTrackPointers"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classRecTrackPointers')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classRecTrackPointers.html">RecTrackPointers</a></td></tr>
+<tr class="memitem:aad004a352273aad922753712a6094e09 inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecEmcShower *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#aad004a352273aad922753712a6094e09">fTrackEMC</a></td></tr>
+<tr class="memdesc:aad004a352273aad922753712a6094e09 inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the EMC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html"><code>RecEmcShower</code></a>.  <a href="classRecTrackPointers.html#aad004a352273aad922753712a6094e09">More...</a><br /></td></tr>
+<tr class="separator:aad004a352273aad922753712a6094e09 inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac261c996e284b0d47bd7daa183ca257f inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecExtTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#ac261c996e284b0d47bd7daa183ca257f">fTrackExt</a></td></tr>
+<tr class="memdesc:ac261c996e284b0d47bd7daa183ca257f inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the extension through all detectors. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecExtTrack.html"><code>RecExtTrack</code></a>.  <a href="classRecTrackPointers.html#ac261c996e284b0d47bd7daa183ca257f">More...</a><br /></td></tr>
+<tr class="separator:ac261c996e284b0d47bd7daa183ca257f inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ca5763d4c8b8d1f029d780231d8602 inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecMdcDedx *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#aa8ca5763d4c8b8d1f029d780231d8602">fTrackDedx</a></td></tr>
+<tr class="memdesc:aa8ca5763d4c8b8d1f029d780231d8602 inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html"><code>RecMdcDedx</code></a>.  <a href="classRecTrackPointers.html#aa8ca5763d4c8b8d1f029d780231d8602">More...</a><br /></td></tr>
+<tr class="separator:aa8ca5763d4c8b8d1f029d780231d8602 inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a111ccbe20d3a7a50130fdd2851286068 inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecMdcKalTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#a111ccbe20d3a7a50130fdd2851286068">fTrackKal</a></td></tr>
+<tr class="memdesc:a111ccbe20d3a7a50130fdd2851286068 inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed Kalman fit data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcKalTrack.html"><code>RecMdcKalTrack</code></a>.  <a href="classRecTrackPointers.html#a111ccbe20d3a7a50130fdd2851286068">More...</a><br /></td></tr>
+<tr class="separator:a111ccbe20d3a7a50130fdd2851286068 inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44bf3b0280ed67946d21572f1b596d2c inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecMdcTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#a44bf3b0280ed67946d21572f1b596d2c">fTrackMDC</a></td></tr>
+<tr class="memdesc:a44bf3b0280ed67946d21572f1b596d2c inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed track data from the MDC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html"><code>RecMdcTrack</code></a>.  <a href="classRecTrackPointers.html#a44bf3b0280ed67946d21572f1b596d2c">More...</a><br /></td></tr>
+<tr class="separator:a44bf3b0280ed67946d21572f1b596d2c inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a55928df5b052472a3a2b99d63c6254 inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecMucTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#a3a55928df5b052472a3a2b99d63c6254">fTrackMUC</a></td></tr>
+<tr class="memdesc:a3a55928df5b052472a3a2b99d63c6254 inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the MUC. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecMucTrack.html"><code>RecMucTrack</code></a>.  <a href="classRecTrackPointers.html#a3a55928df5b052472a3a2b99d63c6254">More...</a><br /></td></tr>
+<tr class="separator:a3a55928df5b052472a3a2b99d63c6254 inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bc5634805917750cfb4ba8534f9288c inherit pro_attribs_classRecTrackPointers"><td class="memItemLeft" align="right" valign="top">RecTofTrack *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRecTrackPointers.html#a6bc5634805917750cfb4ba8534f9288c">fTrackTOF</a></td></tr>
+<tr class="memdesc:a6bc5634805917750cfb4ba8534f9288c inherit pro_attribs_classRecTrackPointers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to reconstructed data from the TOF. See more info in <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classRecTofTrack.html"><code>RecTofTrack</code></a>.  <a href="classRecTrackPointers.html#a6bc5634805917750cfb4ba8534f9288c">More...</a><br /></td></tr>
+<tr class="separator:a6bc5634805917750cfb4ba8534f9288c inherit pro_attribs_classRecTrackPointers"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Helper methods for initialize</div></td></tr>
-<tr class="memitem:a1f3535b936fce5ad9f4c4d939460a9e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a1f3535b936fce5ad9f4c4d939460a9e6">AddNTuples_mult_sel</a> ()</td></tr>
-<tr class="memdesc:a1f3535b936fce5ad9f4c4d939460a9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"mult_select"</code>: Multiplicities of selected particles.  <a href="#a1f3535b936fce5ad9f4c4d939460a9e6">More...</a><br /></td></tr>
-<tr class="separator:a1f3535b936fce5ad9f4c4d939460a9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3687abe59e621afa7bda82a95b3f86d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a3687abe59e621afa7bda82a95b3f86d2">AddNTuples_dedx</a> ()</td></tr>
-<tr class="memdesc:a3687abe59e621afa7bda82a95b3f86d2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::AddNTupleItems_Dedx</a></code> for more info.  <a href="#a3687abe59e621afa7bda82a95b3f86d2">More...</a><br /></td></tr>
-<tr class="separator:a3687abe59e621afa7bda82a95b3f86d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01655744302f136ab5857b1bb6386563"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a01655744302f136ab5857b1bb6386563">AddNTuples_fit</a> ()</td></tr>
-<tr class="memdesc:a01655744302f136ab5857b1bb6386563"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"fit4c_*"</code>: Kinematic fit results. See <code>TrackSelector::AddNTupleItems_Fit</code> for more info.  <a href="#a01655744302f136ab5857b1bb6386563">More...</a><br /></td></tr>
-<tr class="separator:a01655744302f136ab5857b1bb6386563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa2ce1c85e15db67f9d108584c8722de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#afa2ce1c85e15db67f9d108584c8722de">AddNTuples_photon</a> ()</td></tr>
-<tr class="memdesc:afa2ce1c85e15db67f9d108584c8722de"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"photon"</code>: Information of the selected photons  <a href="#afa2ce1c85e15db67f9d108584c8722de">More...</a><br /></td></tr>
-<tr class="separator:afa2ce1c85e15db67f9d108584c8722de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c53fe80fdfdbd9e8368e99d6146b9c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a8c53fe80fdfdbd9e8368e99d6146b9c4">AddNTupleItems_mult_sel</a> ()</td></tr>
+<tr class="memdesc:a8c53fe80fdfdbd9e8368e99d6146b9c4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"mult_select"</code>: Multiplicities of selected particles.  <a href="#a8c53fe80fdfdbd9e8368e99d6146b9c4">More...</a><br /></td></tr>
+<tr class="separator:a8c53fe80fdfdbd9e8368e99d6146b9c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd8caaabc05d156b7fa12625d13884d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#abd8caaabc05d156b7fa12625d13884d1">AddNTupleItems_dedx</a> ()</td></tr>
+<tr class="memdesc:abd8caaabc05d156b7fa12625d13884d1"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). This method allows you to perform the same booking method for different types of charged particles (for instance &#39;all charged particles&#39;, kaons, and pions). ">TrackSelector::AddNTupleItems_dedx</a></code> for more info.  <a href="#abd8caaabc05d156b7fa12625d13884d1">More...</a><br /></td></tr>
+<tr class="separator:abd8caaabc05d156b7fa12625d13884d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04f3700045e9ddb99912622faea8aaf5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a04f3700045e9ddb99912622faea8aaf5">AddNTupleItems_fit</a> ()</td></tr>
+<tr class="memdesc:a04f3700045e9ddb99912622faea8aaf5"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"fit4c_*"</code>: Kinematic fit results. See <code>TrackSelector::AddNTupleItems_Fit</code> for more info.  <a href="#a04f3700045e9ddb99912622faea8aaf5">More...</a><br /></td></tr>
+<tr class="separator:a04f3700045e9ddb99912622faea8aaf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d77f7adc1f9175e68c8fe09f12f9f92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a7d77f7adc1f9175e68c8fe09f12f9f92">AddNTupleItems_photon</a> ()</td></tr>
+<tr class="memdesc:a7d77f7adc1f9175e68c8fe09f12f9f92"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"photon"</code>: Information of the selected photons  <a href="#a7d77f7adc1f9175e68c8fe09f12f9f92">More...</a><br /></td></tr>
+<tr class="separator:a7d77f7adc1f9175e68c8fe09f12f9f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad423e25161f34c9d9043ab23006f013d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#ad423e25161f34c9d9043ab23006f013d">AddAdditionalNTuples_topology</a> ()</td></tr>
 <tr class="memdesc:ad423e25161f34c9d9043ab23006f013d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"topology"</code>: Add <em>additional</em> mass branches to the MC truth branch for the <code>topoana</code> package  <a href="#ad423e25161f34c9d9043ab23006f013d">More...</a><br /></td></tr>
 <tr class="separator:ad423e25161f34c9d9043ab23006f013d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -443,27 +441,19 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a040285dc9fd85b5a8deca9b9f213b490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a040285dc9fd85b5a8deca9b9f213b490">CreateNeutralTrackSelections</a> ()</td></tr>
 <tr class="memdesc:a040285dc9fd85b5a8deca9b9f213b490"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create selection <b>neutral</b> tracks (photons).  <a href="#a040285dc9fd85b5a8deca9b9f213b490">More...</a><br /></td></tr>
 <tr class="separator:a040285dc9fd85b5a8deca9b9f213b490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156282fec1909c3775d9e80786c5da3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a156282fec1909c3775d9e80786c5da3b">FindSmallestPhotonAngles</a> ()</td></tr>
-<tr class="memdesc:a156282fec1909c3775d9e80786c5da3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find angle differences with nearest charged track.  <a href="#a156282fec1909c3775d9e80786c5da3b">More...</a><br /></td></tr>
-<tr class="separator:a156282fec1909c3775d9e80786c5da3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f298d9771ed2637d6ee2ac0dec8d6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#ad5f298d9771ed2637d6ee2ac0dec8d6e">ResetPhotonAngles</a> ()</td></tr>
-<tr class="separator:ad5f298d9771ed2637d6ee2ac0dec8d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6bc4a01d37760be455b75e310b51ed5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#ae6bc4a01d37760be455b75e310b51ed5">GetEmcPosition</a> ()</td></tr>
 <tr class="separator:ae6bc4a01d37760be455b75e310b51ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e1ce033622c2244feb298ca35f73422"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a6e1ce033622c2244feb298ca35f73422">GetExtendedEmcPosition</a> ()</td></tr>
 <tr class="separator:a6e1ce033622c2244feb298ca35f73422"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2d5a06086cf817a41ed7d7e66358a00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#af2d5a06086cf817a41ed7d7e66358a00">GetPhotonAngles</a> ()</td></tr>
-<tr class="separator:af2d5a06086cf817a41ed7d7e66358a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454b5bc22f3cb95a03e27b4eeb446da4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a454b5bc22f3cb95a03e27b4eeb446da4">SetSmallestPhotonAngles</a> ()</td></tr>
-<tr class="separator:a454b5bc22f3cb95a03e27b4eeb446da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc722b37b8b234f4121b87adbada4be5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#acc722b37b8b234f4121b87adbada4be5">ConvertSmallestAnglesToDegrees</a> ()</td></tr>
-<tr class="separator:acc722b37b8b234f4121b87adbada4be5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affd008f2e9407c5373ae1c5336aecefd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#affd008f2e9407c5373ae1c5336aecefd">WritePhotonKinematics</a> ()</td></tr>
-<tr class="memdesc:affd008f2e9407c5373ae1c5336aecefd"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>Write</em> photon info (<code>"photon"</code> branch).  <a href="#affd008f2e9407c5373ae1c5336aecefd">More...</a><br /></td></tr>
-<tr class="separator:affd008f2e9407c5373ae1c5336aecefd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a452212a18c7c58ee4f0b55cfbf1f8ad7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a452212a18c7c58ee4f0b55cfbf1f8ad7">CutPhotonAngles</a> ()</td></tr>
-<tr class="memdesc:a452212a18c7c58ee4f0b55cfbf1f8ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.  <a href="#a452212a18c7c58ee4f0b55cfbf1f8ad7">More...</a><br /></td></tr>
-<tr class="separator:a452212a18c7c58ee4f0b55cfbf1f8ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116363ef4a2aeb8de8acc07e22dcbc06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAngleDifferences.html">AngleDifferences</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a116363ef4a2aeb8de8acc07e22dcbc06">FindSmallestPhotonAngles</a> ()</td></tr>
+<tr class="memdesc:a116363ef4a2aeb8de8acc07e22dcbc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find angle differences with nearest charged track.  <a href="#a116363ef4a2aeb8de8acc07e22dcbc06">More...</a><br /></td></tr>
+<tr class="separator:a116363ef4a2aeb8de8acc07e22dcbc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a900b25c8e03095b72b91003d98f011ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a900b25c8e03095b72b91003d98f011ef">WritePhotonKinematics</a> (const <a class="el" href="classAngleDifferences.html">AngleDifferences</a> &amp;angles)</td></tr>
+<tr class="memdesc:a900b25c8e03095b72b91003d98f011ef"><td class="mdescLeft">&#160;</td><td class="mdescRight"><em>Write</em> photon info (<code>"photon"</code> branch).  <a href="#a900b25c8e03095b72b91003d98f011ef">More...</a><br /></td></tr>
+<tr class="separator:a900b25c8e03095b72b91003d98f011ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1d3b0e1afe82513d51ac6cf08d4a86f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#af1d3b0e1afe82513d51ac6cf08d4a86f">CutPhotonAngles</a> (const <a class="el" href="classAngleDifferences.html">AngleDifferences</a> &amp;angles)</td></tr>
+<tr class="memdesc:af1d3b0e1afe82513d51ac6cf08d4a86f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.  <a href="#af1d3b0e1afe82513d51ac6cf08d4a86f">More...</a><br /></td></tr>
+<tr class="separator:af1d3b0e1afe82513d51ac6cf08d4a86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14fadb8f2ebec573e372e0d0b55ccaf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a14fadb8f2ebec573e372e0d0b55ccaf2">WriteMultiplicities</a> ()</td></tr>
 <tr class="memdesc:a14fadb8f2ebec573e372e0d0b55ccaf2"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Write</b> the multiplicities of the selected particles.  <a href="#a14fadb8f2ebec573e372e0d0b55ccaf2">More...</a><br /></td></tr>
 <tr class="separator:a14fadb8f2ebec573e372e0d0b55ccaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -514,7 +504,6 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:a83b3c5e08fdba76ad13c73803596263d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a83b3c5e08fdba76ad13c73803596263d">SetAdditionalNtupleItems_topology</a> ()</td></tr>
 <tr class="separator:a83b3c5e08fdba76ad13c73803596263d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd9a9b637ccc828c76e137f5d39acea4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#acd9a9b637ccc828c76e137f5d39acea4">CreateMCTruthSelection</a> ()</td></tr>
-<tr class="memdesc:acd9a9b637ccc828c76e137f5d39acea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that should be defined in the derived calss and called after <code>CreateMCtruthCollection</code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes.  <a href="#acd9a9b637ccc828c76e137f5d39acea4">More...</a><br /></td></tr>
 <tr class="separator:acd9a9b637ccc828c76e137f5d39acea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf5f790141ee3fcaf4032d651a34e7a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#aaf5f790141ee3fcaf4032d651a34e7a0">PutParticleInCorrectVector</a> (Event::McParticle *mcParticle)</td></tr>
 <tr class="separator:aaf5f790141ee3fcaf4032d651a34e7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -522,60 +511,123 @@ Private Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classTrackSelector"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classTrackSelector')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classTrackSelector.html">TrackSelector</a></td></tr>
-<tr class="memitem:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">CutZeroNetCharge</a> ()</td></tr>
-<tr class="memdesc:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_55.png"/>, this means some charged tracks have not been detected.  <a href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">More...</a><br /></td></tr>
-<tr class="separator:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">WTrackParameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4d992eb5d152781cf0d672f31e771944">BuildWTrackParameter</a> (EvtRecTrack *track, const double mass) const</td></tr>
-<tr class="separator:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss information <em>for one track</em>.  <a href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">More...</a><br /></td></tr>
-<tr class="separator:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss information.  <a href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
-<tr class="separator:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">WritePIDInformation</a> ()</td></tr>
-<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
-<tr class="separator:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">WriteTofInformation</a> (SmartRefVector&lt; RecTofTrack &gt;::iterator iter_tof, double ptrk, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information.  <a href="classTrackSelector.html#a3fdd643f60264de76256418ab6d0edae">More...</a><br /></td></tr>
-<tr class="separator:a3fdd643f60264de76256418ab6d0edae inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">WriteFitResults</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresult, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <code>virtual</code> method has been declared in the base algorithm to standardise the writing of a fit tuple.  <a href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">More...</a><br /></td></tr>
-<tr class="separator:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1">WriteMCTruthForTopoAna</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an <code>NTuple</code> containing branches that are required for the <code>TopoAna</code> method.  <a href="classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1">More...</a><br /></td></tr>
-<tr class="separator:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">PrintFunctionName</a> (const char *class_name, const char *function_name)</td></tr>
 <tr class="memdesc:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print function for debugging purposes.  <a href="classTrackSelector.html#a5a02ff35ff9eec0b32ef179cd724d1c0">More...</a><br /></td></tr>
 <tr class="separator:a5a02ff35ff9eec0b32ef179cd724d1c0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
-<tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
-<tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf66c40a572bf69d485310545c813613 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abf66c40a572bf69d485310545c813613">AssertPostConstructed</a> () const</td></tr>
+<tr class="memdesc:abf66c40a572bf69d485310545c813613 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that has to be called before anything can be done in the <code>initialize</code> step.  <a href="classTrackSelector.html#abf66c40a572bf69d485310545c813613">More...</a><br /></td></tr>
+<tr class="separator:abf66c40a572bf69d485310545c813613 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1960294cbc18ddc33805037390ce8e7 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7">BookNTuple</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:ae1960294cbc18ddc33805037390ce8e7 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to relate the <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> argument <code>tuple</code> to the output file (i.e. to 'book' it).  <a href="classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7">More...</a><br /></td></tr>
+<tr class="separator:ae1960294cbc18ddc33805037390ce8e7 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb7c5a3cb217d8a806e4ebf3aeb2a92 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92">BookNTuples</a> ()</td></tr>
+<tr class="memdesc:a8cb7c5a3cb217d8a806e4ebf3aeb2a92 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go over all instances of <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> and book them using <code>BookNTuple</code>.  <a href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92">More...</a><br /></td></tr>
+<tr class="separator:a8cb7c5a3cb217d8a806e4ebf3aeb2a92 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1ecbf72391f836d4891b39478f86f4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1f1ecbf72391f836d4891b39478f86f4">OverwriteCreateBits</a> ()</td></tr>
+<tr class="separator:a1f1ecbf72391f836d4891b39478f86f4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f3590ad49e0e1c6ef4f017d76e74b24 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6f3590ad49e0e1c6ef4f017d76e74b24">AddNTupleItems_mult</a> ()</td></tr>
+<tr class="memdesc:a6f3590ad49e0e1c6ef4f017d76e74b24 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"mult"</code>: Multiplicities of the total event  <a href="classTrackSelector.html#a6f3590ad49e0e1c6ef4f017d76e74b24">More...</a><br /></td></tr>
+<tr class="separator:a6f3590ad49e0e1c6ef4f017d76e74b24 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c22f3459324ff1a8cce8d969fe896f inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a18c22f3459324ff1a8cce8d969fe896f">AddNTupleItems_vertex</a> ()</td></tr>
+<tr class="memdesc:a18c22f3459324ff1a8cce8d969fe896f inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"vertex"</code>: Primary vertex info (interaction point)  <a href="classTrackSelector.html#a18c22f3459324ff1a8cce8d969fe896f">More...</a><br /></td></tr>
+<tr class="separator:a18c22f3459324ff1a8cce8d969fe896f inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00bb5f12e95b512b7eedb704263f0be2 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2">AddNTupleItems_charged</a> ()</td></tr>
+<tr class="memdesc:a00bb5f12e95b512b7eedb704263f0be2 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"charged"</code>: Charged track info: secondary vertact and distance to IP.  <a href="classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2">More...</a><br /></td></tr>
+<tr class="separator:a00bb5f12e95b512b7eedb704263f0be2 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7e84912a32eb54aac831b4224df3d93 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93">AddNTupleItems_neutral</a> ()</td></tr>
+<tr class="memdesc:ac7e84912a32eb54aac831b4224df3d93 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"neutral"</code>: Neutral track info.  <a href="classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93">More...</a><br /></td></tr>
+<tr class="separator:ac7e84912a32eb54aac831b4224df3d93 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bfa2b3f94ef19594086b09bc9617fe5 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5bfa2b3f94ef19594086b09bc9617fe5">AddNTupleItems_Tof</a> ()</td></tr>
+<tr class="separator:a5bfa2b3f94ef19594086b09bc9617fe5 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">AddNTupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="separator:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d10ffb29ea6c5b82113488cb6216c7c inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c">AddNTupleItems_dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a8d10ffb29ea6c5b82113488cb6216c7c inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss branch (<code>"dedx"</code>). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).  <a href="classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c">More...</a><br /></td></tr>
+<tr class="separator:a8d10ffb29ea6c5b82113488cb6216c7c inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1127b90eded632298e2109e8dfd8bd0">AddNTupleItems_MCTruth</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches for the TopoAna package. Have a look at <a href="https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection">this page</a> as for why these fields are required.  <a href="classTrackSelector.html#ae1127b90eded632298e2109e8dfd8bd0">More...</a><br /></td></tr>
+<tr class="separator:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae143ea3bdbc678932b0c0e7223e437c1 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae143ea3bdbc678932b0c0e7223e437c1">AddNTupleItems_PID</a> ()</td></tr>
+<tr class="memdesc:ae143ea3bdbc678932b0c0e7223e437c1 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>"PID"</code>: Track PID information.  <a href="classTrackSelector.html#ae143ea3bdbc678932b0c0e7223e437c1">More...</a><br /></td></tr>
+<tr class="separator:ae143ea3bdbc678932b0c0e7223e437c1 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae797542a9a062267a286015aee14f8bb inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae797542a9a062267a286015aee14f8bb">LoadDstFile</a> ()</td></tr>
+<tr class="separator:ae797542a9a062267a286015aee14f8bb inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9832ebddd349748cb21c9f3cb8a3e6ba inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9832ebddd349748cb21c9f3cb8a3e6ba">LoadDstHeaders</a> ()</td></tr>
+<tr class="separator:a9832ebddd349748cb21c9f3cb8a3e6ba inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e8303c4afd60468a5c74ec4d2a7174f inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3e8303c4afd60468a5c74ec4d2a7174f">PrintEventInfo</a> ()</td></tr>
+<tr class="separator:a3e8303c4afd60468a5c74ec4d2a7174f inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39f0cdd3d0065f21fcabae6f108da194 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a39f0cdd3d0065f21fcabae6f108da194">IncrementCounters</a> ()</td></tr>
+<tr class="separator:a39f0cdd3d0065f21fcabae6f108da194 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a780a37af55014da54537e3ae14df4302 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a780a37af55014da54537e3ae14df4302">SetVertexOrigin</a> ()</td></tr>
+<tr class="separator:a780a37af55014da54537e3ae14df4302 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3461bb78f407bbcf8cfa33f056732f1a inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a3461bb78f407bbcf8cfa33f056732f1a">CreateCollections</a> ()</td></tr>
+<tr class="separator:a3461bb78f407bbcf8cfa33f056732f1a inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9a4a9a0e79824ac11ab4f77e8f18a96 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad9a4a9a0e79824ac11ab4f77e8f18a96">CreateChargedCollection</a> ()</td></tr>
+<tr class="memdesc:ad9a4a9a0e79824ac11ab4f77e8f18a96 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of charged tracks (without cuts).  <a href="classTrackSelector.html#ad9a4a9a0e79824ac11ab4f77e8f18a96">More...</a><br /></td></tr>
+<tr class="separator:ad9a4a9a0e79824ac11ab4f77e8f18a96 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6259d499cba917d8727afd7a582f0b43 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a6259d499cba917d8727afd7a582f0b43">SetTrackIter</a> (const int &amp;i)</td></tr>
+<tr class="separator:a6259d499cba917d8727afd7a582f0b43 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09fa22d90031d9c2615193ea49a1fccc inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a09fa22d90031d9c2615193ea49a1fccc">IsMdcTrackValid</a> ()</td></tr>
+<tr class="separator:a09fa22d90031d9c2615193ea49a1fccc inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad01c3b86ccbfef96fd88b0d3fae0ad19 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad01c3b86ccbfef96fd88b0d3fae0ad19">CutSecondaryVertex</a> ()</td></tr>
+<tr class="separator:ad01c3b86ccbfef96fd88b0d3fae0ad19 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17b44920b0898d4323eeeed38d8bd0d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae17b44920b0898d4323eeeed38d8bd0d">WriteChargedTrackVertex</a> ()</td></tr>
+<tr class="separator:ae17b44920b0898d4323eeeed38d8bd0d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">WriteDedxInfo</a> (EvtRecTrack *evtRecTrack, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss information <em>for one track</em>. Here, you should use <code>map::at</code> to access the <code>NTuple::Item</code>s and <code>NTuplePtr</code>, because you want your package to throw an exception if the element does not exist. See <a href="http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115">http://bes3.to.infn.it/Boss/7.0.2/html/TRecMdcDedx_8h-source.html#l00115</a> for available data members of <code>RecMdcDedx</code>  <a href="classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b">More...</a><br /></td></tr>
+<tr class="separator:a153ed7c278b89accd5fc1f95ac06501b inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cc3e288601bc92fae97ab88eff0b47e inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cc3e288601bc92fae97ab88eff0b47e">WriteTofInformation</a> (RecTofTrack *tofTrack, double ptrk, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a8cc3e288601bc92fae97ab88eff0b47e inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper method for writing Time-of-Flight information.  <a href="classTrackSelector.html#a8cc3e288601bc92fae97ab88eff0b47e">More...</a><br /></td></tr>
+<tr class="separator:a8cc3e288601bc92fae97ab88eff0b47e inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50338f3dca1f6a942971811f31aecab5 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a50338f3dca1f6a942971811f31aecab5">CreateNeutralCollection</a> ()</td></tr>
+<tr class="memdesc:a50338f3dca1f6a942971811f31aecab5 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of <b>neutral</b> tracks (without cuts).  <a href="classTrackSelector.html#a50338f3dca1f6a942971811f31aecab5">More...</a><br /></td></tr>
+<tr class="separator:a50338f3dca1f6a942971811f31aecab5 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9c3597b2eaf9399eb8cf13e8e3df3df inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac9c3597b2eaf9399eb8cf13e8e3df3df">WriteMultiplicities</a> ()</td></tr>
+<tr class="separator:ac9c3597b2eaf9399eb8cf13e8e3df3df inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a3488989ade96f51860691d5e9c524 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a62a3488989ade96f51860691d5e9c524">WriteVertexInfo</a> ()</td></tr>
+<tr class="separator:a62a3488989ade96f51860691d5e9c524 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71be8816dc906b046937c13113a33268 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a71be8816dc906b046937c13113a33268">AddAndWriteCuts</a> ()</td></tr>
+<tr class="memdesc:a71be8816dc906b046937c13113a33268 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write all cuts to a branch called "_cutvalues".  <a href="classTrackSelector.html#a71be8816dc906b046937c13113a33268">More...</a><br /></td></tr>
+<tr class="separator:a71be8816dc906b046937c13113a33268 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">WTrackParameter&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a4d992eb5d152781cf0d672f31e771944">BuildWTrackParameter</a> (EvtRecTrack *track, const double mass) const</td></tr>
+<tr class="separator:a4d992eb5d152781cf0d672f31e771944 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">CutZeroNetCharge</a> ()</td></tr>
+<tr class="memdesc:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight"><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_55.png"/>, this means some charged tracks have not been detected.  <a href="classTrackSelector.html#a8cb32747bca6e5b5fc033e0249def84d">More...</a><br /></td></tr>
+<tr class="separator:a8cb32747bca6e5b5fc033e0249def84d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">WriteDedxInfoForVector</a> (std::vector&lt; EvtRecTrack *&gt; &amp;vector, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss information.  <a href="classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508">More...</a><br /></td></tr>
+<tr class="separator:ac5d2cc51628faafc21bd4fa6b4489508 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f7752796a910376b189c0834c316a10 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5f7752796a910376b189c0834c316a10">IsDecay</a> (Event::McParticle *particle, const int mother) const</td></tr>
 <tr class="memdesc:a5f7752796a910376b189c0834c316a10 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a decayed MC truth particle comes from a particle with PDG code <code>mother</code>.  <a href="classTrackSelector.html#a5f7752796a910376b189c0834c316a10">More...</a><br /></td></tr>
 <tr class="separator:a5f7752796a910376b189c0834c316a10 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a809659b39e662c530578880f42eb67b4">IsDecay</a> (Event::McParticle *particle, const int mother, const int pdg) const</td></tr>
 <tr class="memdesc:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether a decayed MC truth particle has PDG code <code>pdg</code> and comes from a particle with PDG code <code>mother</code>.  <a href="classTrackSelector.html#a809659b39e662c530578880f42eb67b4">More...</a><br /></td></tr>
 <tr class="separator:a809659b39e662c530578880f42eb67b4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1127b90eded632298e2109e8dfd8bd0">AddNTupleItems_MCTruth</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the MC truth branches for the TopoAna package.  <a href="classTrackSelector.html#ae1127b90eded632298e2109e8dfd8bd0">More...</a><br /></td></tr>
-<tr class="separator:ae1127b90eded632298e2109e8dfd8bd0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981">AddNTupleItems_Dedx</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> energy loss branch (<code>"dedx"</code>).  <a href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981">More...</a><br /></td></tr>
-<tr class="separator:abe76ee61ca26468ccc0a460975caa981 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">AddNTupleItems_Tof</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function encapsulates the <code>addItem</code> procedure for the ToF branch.  <a href="classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4">More...</a><br /></td></tr>
-<tr class="separator:a701d237f6c62d93597247263e89b6ae4 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">WriteFitResults</a> (<a class="el" href="classKKFitResult.html">KKFitResult</a> *fitresult, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">This <code>virtual</code> method has been declared in the base algorithm to standardise the writing of a fit tuple.  <a href="classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d">More...</a><br /></td></tr>
+<tr class="separator:a88a6ebf60ff6fbb72724ac1f9e88853d inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1">WriteMCTruthForTopoAna</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
+<tr class="memdesc:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write an <code>NTuple</code> containing branches that are required for the <code>TopoAna</code> method.  <a href="classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1">More...</a><br /></td></tr>
+<tr class="separator:a9d2c8cbb1a694ba409e3b2aa86c543c1 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">WritePIDInformation</a> ()</td></tr>
+<tr class="memdesc:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the proces of writing PID info.  <a href="classTrackSelector.html#a5ab32d87b4cc2d7e35883e76028107bf">More...</a><br /></td></tr>
+<tr class="separator:a5ab32d87b4cc2d7e35883e76028107bf inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3">CreateMCTruthCollection</a> ()</td></tr>
 <tr class="memdesc:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of <b>Monte Carlo truth</b> tracks.  <a href="classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3">More...</a><br /></td></tr>
 <tr class="separator:a7fcf071193ce54e8ce65293133c7dbe3 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">ComputeMomentum</a> (EvtRecTrack *track)</td></tr>
+<tr class="memdesc:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a 'momentum' for a neutral track.  <a href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">More...</a><br /></td></tr>
+<tr class="separator:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
+<tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
+<tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0\omega \rightarrow K^-\pi^+\pi^0 \pi^-\pi^+ $" src="form_1.png"/> events. </p>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>April 10th, 2019 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00021">21</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00022">22</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adc315c8c5f26c0c155339bc4ea09186e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc315c8c5f26c0c155339bc4ea09186e">&#9670;&nbsp;</a></span>D0omega_K4pi()</h2>
@@ -644,7 +696,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"pomega"</code>: Momentum of the <img class="formulaInl" alt="$\omega$" src="form_11.png"/> candidate in the <img class="formulaInl" alt="$J/\psi \to D^0\omega$" src="form_18.png"/>. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00126">126</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00120">120</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -673,7 +725,65 @@ Additional Inherited Members</h2></td></tr>
 <p>4C: CMS energy and 3-momentum</p>
 <p>1C: <img class="formulaInl" alt="$\pi^0$" src="form_9.png"/> resonance </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00555">555</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00512">512</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="abd8caaabc05d156b7fa12625d13884d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd8caaabc05d156b7fa12625d13884d1">&#9670;&nbsp;</a></span>AddNTupleItems_dedx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void D0omega_K4pi::AddNTupleItems_dedx </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). This method allows you to perform the same booking method for different types of charged particles (for instance &#39;all charged particles&#39;, kaons, and pions). ">TrackSelector::AddNTupleItems_dedx</a></code> for more info. </p>
+
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00086">86</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a04f3700045e9ddb99912622faea8aaf5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04f3700045e9ddb99912622faea8aaf5">&#9670;&nbsp;</a></span>AddNTupleItems_fit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void D0omega_K4pi::AddNTupleItems_fit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><code>"fit4c_*"</code>: Kinematic fit results. See <code>TrackSelector::AddNTupleItems_Fit</code> for more info. </p>
+
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00093">93</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -712,12 +822,12 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of the Kalman kinematic fit. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00152">152</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00146">146</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a3687abe59e621afa7bda82a95b3f86d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3687abe59e621afa7bda82a95b3f86d2">&#9670;&nbsp;</a></span>AddNTuples_dedx()</h2>
+<a id="a8c53fe80fdfdbd9e8368e99d6146b9c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c53fe80fdfdbd9e8368e99d6146b9c4">&#9670;&nbsp;</a></span>AddNTupleItems_mult_sel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -726,65 +836,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void D0omega_K4pi::AddNTuples_dedx </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#abe76ee61ca26468ccc0a460975caa981" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). ">TrackSelector::AddNTupleItems_Dedx</a></code> for more info. </p>
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00092">92</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a01655744302f136ab5857b1bb6386563"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01655744302f136ab5857b1bb6386563">&#9670;&nbsp;</a></span>AddNTuples_fit()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::AddNTuples_fit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p><code>"fit4c_*"</code>: Kinematic fit results. See <code>TrackSelector::AddNTupleItems_Fit</code> for more info. </p>
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00099">99</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a1f3535b936fce5ad9f4c4d939460a9e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f3535b936fce5ad9f4c4d939460a9e6">&#9670;&nbsp;</a></span>AddNTuples_mult_sel()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::AddNTuples_mult_sel </td>
+          <td class="memname">void D0omega_K4pi::AddNTupleItems_mult_sel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -805,12 +857,12 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"NPionPos"</code>: Number of <img class="formulaInl" alt="$\pi^-$" src="form_4.png"/>. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00083">83</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00077">77</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="afa2ce1c85e15db67f9d108584c8722de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa2ce1c85e15db67f9d108584c8722de">&#9670;&nbsp;</a></span>AddNTuples_photon()</h2>
+<a id="a7d77f7adc1f9175e68c8fe09f12f9f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d77f7adc1f9175e68c8fe09f12f9f92">&#9670;&nbsp;</a></span>AddNTupleItems_photon()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,7 +871,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void D0omega_K4pi::AddNTuples_photon </td>
+          <td class="memname">void D0omega_K4pi::AddNTupleItems_photon </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -843,7 +895,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"angle"</code>: Smallest angle between the photon and the nearest charged pion. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00107">107</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00101">101</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -870,7 +922,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00545">545</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00502">502</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -897,7 +949,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00512">512</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00469">469</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -924,7 +976,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00520">520</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00477">477</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -951,7 +1003,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00478">478</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00435">435</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -981,34 +1033,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Identify type of charged particle and add to related vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00231">231</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="acc722b37b8b234f4121b87adbada4be5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc722b37b8b234f4121b87adbada4be5">&#9670;&nbsp;</a></span>ConvertSmallestAnglesToDegrees()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::ConvertSmallestAnglesToDegrees </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00319">319</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00220">220</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1037,7 +1062,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Create selections of <b>charged</b> tracks: <img class="formulaInl" alt="$K^-$" src="form_2.png"/>, <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>, and <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00202">202</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00191">191</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1064,11 +1089,9 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Function that should be defined in the derived calss and called after <code>CreateMCtruthCollection</code>. See <a href="http://home.fnal.gov/~mrenna/lutp0613man2/node44.html">here</a> for a list of PDG codes. </p>
-
 <p>Implements <a class="el" href="classTrackSelector.html#a129b0c7acd91d7c29d0f61233c7b6416">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00604">604</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00561">561</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1097,7 +1120,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Create selection <b>neutral</b> tracks (photons). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00252">252</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00241">241</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1126,12 +1149,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p><b>Charged track cut</b>: Apply a strict cut on the number of particles &ndash; only <b>4 charged tracks in total</b>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00195">195</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00184">184</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a452212a18c7c58ee4f0b55cfbf1f8ad7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a452212a18c7c58ee4f0b55cfbf1f8ad7">&#9670;&nbsp;</a></span>CutPhotonAngles()</h2>
+<a id="af1d3b0e1afe82513d51ac6cf08d4a86f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1d3b0e1afe82513d51ac6cf08d4a86f">&#9670;&nbsp;</a></span>CutPhotonAngles()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1142,7 +1165,8 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">bool D0omega_K4pi::CutPhotonAngles </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classAngleDifferences.html">AngleDifferences</a> &amp;&#160;</td>
+          <td class="paramname"><em>angles</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1155,7 +1179,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00347">347</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00304">304</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1192,7 +1216,7 @@ Additional Inherited Members</h2></td></tr>
 </ul>
 <p>Then increase cut flow counter for PID. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00377">377</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00334">334</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1219,7 +1243,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00525">525</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00482">482</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1246,7 +1270,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00456">456</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00413">413</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1273,7 +1297,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00493">493</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00450">450</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1304,7 +1328,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00176">176</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00170">170</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1331,7 +1355,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00561">561</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00518">518</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1387,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00634">634</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00591">591</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1391,14 +1415,14 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Perform a Kalman <b>4-constraint</b> Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. </p>
-<p>The 'best' result is defined as the combination that has the smallest value of: <img class="formulaInl" alt="$m_{K^-K^+}-m_{\omega}$" src="form_26.png"/> (that is the combination for which the invariant mass of the <img class="formulaInl" alt="$K^-\pi^+$" src="form_20.png"/> is closest to <img class="formulaInl" alt="$\omega$" src="form_11.png"/>). See <code>D0omega_K4pi::MeasureForBestFit</code> for the definition of this measure. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Decide whether 4-constraints is indeed suitable. <em>For more information, see <a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit">the page on primary and secondary vertex fits on the Offline Software Pages</a> (requires login).</em> </dd></dl>
+<p>The 'best' result is defined as the combination that has the smallest value of: <img class="formulaInl" alt="$m_{K^-K^+}-m_{\omega}$" src="form_26.png"/> (that is the combination for which the invariant mass of the <img class="formulaInl" alt="$K^-\pi^+$" src="form_20.png"/> is closest to <img class="formulaInl" alt="$\omega$" src="form_11.png"/>). See <code>D0omega_K4pi::MeasureForBestFit</code> for the definition of this measure. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Decide whether 4-constraints is indeed suitable. <em>For more information, see <a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit">the page on primary and secondary vertex fits on the Offline Software Pages</a> (requires login).</em> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00439">439</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00396">396</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a156282fec1909c3775d9e80786c5da3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156282fec1909c3775d9e80786c5da3b">&#9670;&nbsp;</a></span>FindSmallestPhotonAngles()</h2>
+<a id="a116363ef4a2aeb8de8acc07e22dcbc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a116363ef4a2aeb8de8acc07e22dcbc06">&#9670;&nbsp;</a></span>FindSmallestPhotonAngles()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1407,7 +1431,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void D0omega_K4pi::FindSmallestPhotonAngles </td>
+          <td class="memname"><a class="el" href="classAngleDifferences.html">AngleDifferences</a> D0omega_K4pi::FindSmallestPhotonAngles </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1422,7 +1446,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Find angle differences with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00266">266</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00255">255</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +1473,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00285">285</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00268">268</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1476,34 +1500,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00291">291</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="af2d5a06086cf817a41ed7d7e66358a00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2d5a06086cf817a41ed7d7e66358a00">&#9670;&nbsp;</a></span>GetPhotonAngles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::GetPhotonAngles </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00300">300</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00274">274</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1532,7 +1529,6 @@ Additional Inherited Members</h2></td></tr>
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
 <p>This function is called only once, when the algorithm is initialised. </p><dl class="section remark"><dt>Remarks</dt><dd>Define and load <code>NTuple</code>s here. Other <code>NTuple</code>s have already been defined in the TrackSelector::initilize` step prior to this this method. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Try to catch the <code>StatusCode</code>. Note that this is problematic, because you actually want to catch the <code>enum</code> within the class <code>StatusCode</code>... </dd></dl>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6">TrackSelector</a>.</p>
 
@@ -1563,7 +1559,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00539">539</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00496">496</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1599,7 +1595,7 @@ Additional Inherited Members</h2></td></tr>
 <li>Use <img class="formulaInl" alt="$\chi^2 &gt; 4.0$" src="form_25.png"/>. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00216">216</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00205">205</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1626,7 +1622,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00506">506</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00463">463</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1651,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Print multiplicities of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00368">368</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00325">325</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1683,7 +1679,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00615">615</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00572">572</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1710,34 +1706,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00450">450</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="ad5f298d9771ed2637d6ee2ac0dec8d6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad5f298d9771ed2637d6ee2ac0dec8d6e">&#9670;&nbsp;</a></span>ResetPhotonAngles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::ResetPhotonAngles </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00278">278</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00407">407</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1764,7 +1733,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00583">583</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00540">540</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1817,34 +1786,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Implements <a class="el" href="classTrackSelector.html#ac29ffb6542a27402d12c001d1a2d5809">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00402">402</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a454b5bc22f3cb95a03e27b4eeb446da4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a454b5bc22f3cb95a03e27b4eeb446da4">&#9670;&nbsp;</a></span>SetSmallestPhotonAngles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void D0omega_K4pi::SetSmallestPhotonAngles </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00309">309</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00359">359</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1871,7 +1813,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00567">567</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00524">524</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1900,7 +1842,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> PID information (<code>"dedx_*"</code> branchs). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00394">394</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00351">351</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1929,12 +1871,12 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Write</b> the multiplicities of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00356">356</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00313">313</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
-<a id="affd008f2e9407c5373ae1c5336aecefd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affd008f2e9407c5373ae1c5336aecefd">&#9670;&nbsp;</a></span>WritePhotonKinematics()</h2>
+<a id="a900b25c8e03095b72b91003d98f011ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a900b25c8e03095b72b91003d98f011ef">&#9670;&nbsp;</a></span>WritePhotonKinematics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1945,7 +1887,8 @@ This cast is required and cannot be solved using virtual methods, because of the
         <tr>
           <td class="memname">void D0omega_K4pi::WritePhotonKinematics </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classAngleDifferences.html">AngleDifferences</a> &amp;&#160;</td>
+          <td class="paramname"><em>angles</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -1958,35 +1901,11 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><em>Write</em> photon info (<code>"photon"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00327">327</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00284">284</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a7d05574efc575aafdb520c4a28c1058c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d05574efc575aafdb520c4a28c1058c">&#9670;&nbsp;</a></span>fAngle</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fAngle</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00127">127</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
 <a id="a47a85c7f8b23aa60967add53d0b8c409"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a47a85c7f8b23aa60967add53d0b8c409">&#9670;&nbsp;</a></span>fBestKalmanFit</h2>
 
@@ -2007,7 +1926,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00119">119</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00120">120</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2031,7 +1950,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00120">120</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00121">121</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2057,7 +1976,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Cut on angle between the photon and the nearest charged track <em>in degrees</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00106">106</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00107">107</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2083,7 +2002,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Cut on <img class="formulaInl" alt="$\phi$" src="form_7.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00108">108</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00109">109</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2109,7 +2028,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Cut on <img class="formulaInl" alt="$\theta$" src="form_8.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00110">110</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00111">111</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2135,7 +2054,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00100">100</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00101">101</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2161,7 +2080,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00102">102</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00103">103</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2187,7 +2106,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00104">104</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00105">105</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2211,7 +2130,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00131">131</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00126">126</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2235,7 +2154,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00132">132</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00127">127</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2259,7 +2178,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00118">118</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00119">119</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2285,7 +2204,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$K^-$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00059">59</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00060">60</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2311,7 +2230,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of negative kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00068">68</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00069">69</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2337,7 +2256,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector containing true <img class="formulaInl" alt="$K^-$" src="form_2.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00039">39</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00040">40</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2363,7 +2282,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of negative kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00047">47</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00048">48</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2389,7 +2308,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of photons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00049">49</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00050">50</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2415,7 +2334,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of photons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00051">51</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00052">52</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2441,7 +2360,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector containing true <img class="formulaInl" alt="$\gamma$" src="form_3.png"/>'s. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00041">41</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00042">42</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2467,7 +2386,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^-$" src="form_4.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00043">43</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00044">44</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2493,7 +2412,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of positive pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00053">53</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00054">54</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2519,7 +2438,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector containing true <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00045">45</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00046">46</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2545,7 +2464,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of positive pions (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00055">55</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00056">56</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2571,7 +2490,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the MC collection of positive pions (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00057">57</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00058">58</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2597,7 +2516,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> of kaons. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00084">84</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00085">85</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2623,7 +2542,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the <img class="formulaInl" alt="$dE/dx$" src="form_6.png"/> of pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00086">86</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00087">87</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2649,7 +2568,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing <em>all</em> combinations. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00088">88</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00089">89</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2675,7 +2594,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the 4-constraint fit branch containing only the <em>best</em> combination. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00090">90</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00091">91</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2701,7 +2620,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the 4-constraint fit of MC truth. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00092">92</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00093">93</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2727,31 +2646,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><code>NTuple::Tuple</code> container for the photon branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00094">94</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
-<a id="a8b50a614868eeab04c7e337ed9a7b4ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b50a614868eeab04c7e337ed9a7b4ab">&#9670;&nbsp;</a></span>fPhi</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fPhi</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00126">126</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00095">95</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2777,7 +2672,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of photons (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00070">70</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00071">71</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2803,7 +2698,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of photons (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00072">72</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00073">73</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2829,7 +2724,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector that contains a selection of pointers to neutral tracks identified as <img class="formulaInl" alt="$\gamma$" src="form_3.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00061">61</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00062">62</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2855,7 +2750,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^-$" src="form_4.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00063">63</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00064">64</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2881,7 +2776,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of negative pions. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00074">74</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00075">75</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2907,7 +2802,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Vector that contains a selection of pointers to charged tracks identified as <img class="formulaInl" alt="$\pi^+$" src="form_5.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00065">65</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00066">66</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2933,7 +2828,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of positive pions (1st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00076">76</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00077">77</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -2959,103 +2854,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Iterator for looping over the collection of positive pions (2st occurence). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00078">78</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
-<a id="a0c232abfaf000b5f1d3b138a5adf864d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c232abfaf000b5f1d3b138a5adf864d">&#9670;&nbsp;</a></span>fSmallestAngle</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fSmallestAngle</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00130">130</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
-<a id="a2fcf4e2e1fe0e8e716926cb10ac970d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fcf4e2e1fe0e8e716926cb10ac970d1">&#9670;&nbsp;</a></span>fSmallestPhi</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fSmallestPhi</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00129">129</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
-<a id="a9b71599b68e3dbf95bae5da67a965c12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b71599b68e3dbf95bae5da67a965c12">&#9670;&nbsp;</a></span>fSmallestTheta</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fSmallestTheta</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00128">128</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
-
-</div>
-</div>
-<a id="a1c3cbb13e8324836893c3a2dac0f7b49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c3cbb13e8324836893c3a2dac0f7b49">&#9670;&nbsp;</a></span>fTheta</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double D0omega_K4pi::fTheta</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00125">125</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00079">79</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -3079,7 +2878,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00067">67</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00068">68</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -3103,7 +2902,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00117">117</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00118">118</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
@@ -3127,7 +2926,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00116">116</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8h_source.html#l00117">117</a> of file <a class="el" href="D0omega__K4pi_8h_source.html">D0omega_K4pi.h</a>.</p>
 
 </div>
 </div>
