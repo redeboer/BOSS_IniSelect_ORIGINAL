@@ -122,7 +122,7 @@ protected:
   WTrackParameter BuildWTrackParameter(EvtRecTrack* track, const double mass) const;
 
   void CutZeroNetCharge();
-  void WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
+  void WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
   bool IsDecay(Event::McParticle* particle, const int mother) const;
   bool IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
   void WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);

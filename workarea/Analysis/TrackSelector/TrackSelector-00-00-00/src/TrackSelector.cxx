@@ -812,13 +812,12 @@ bool TrackSelector::CreateMCTruthCollection()
 
 /// Encapsulates a `for` loop of the writing procedure for \f$dE/dx\f$ energy loss information.
 /// This method allows you to write \f$dE/dx\f$ information for any selection of charged tracks. Just feed it a vector that contains such a collection of `EvtRecTrack` pointers.
-void TrackSelector::WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector,
-                                           NTupleContainer&           tuple)
+void TrackSelector::WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector,
+                                           NTupleContainer&                 tuple)
 {
   if(!tuple.DoWrite()) return;
   fLog << MSG::DEBUG << "Writing \"" << tuple.Name() << "\" info" << endmsg;
-  for(fTrackIter = vector.begin(); fTrackIter != vector.end(); ++fTrackIter)
-    WriteDedxInfo(*fTrackIter, tuple);
+  for(EvtRecTrackIterator it = vector.begin(); it != vector.end(); ++it) WriteDedxInfo(*it, tuple);
 }
 
 /// This `virtual` method has been declared in the base algorithm to standardise the writing of a fit tuple.

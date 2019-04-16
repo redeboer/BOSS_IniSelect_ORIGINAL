@@ -1,77 +1,89 @@
 #ifndef Analysis_TrackCollection_H
 #define Analysis_TrackCollection_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "TString.h"
-#include <list>
 #include <vector>
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 
-/// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// @date   April 11th, 2019
+/// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
+/// @date     April 16th, 2018
 template <typename T>
 class TrackCollection
 {
 public:
-  TrackCollection(const size_t nparticles = 1);
+  TrackCollection(const TString& name, const size_t nparticles = 1) :
+    fName(name),
+    fIterators(nparticles)
+  {}
 
-  void ClearCollection() { fTrackCollection.clear(); }
+  void Clear() { fCollection.clear(); }
+  void AddTrack(const T* track) { fCollection.push_back(track); }
+  bool HasCorrectNTracks() const { return GetNTracks() == GetNParticles(); }
+  bool HasAtLeastNTracks() const { return GetNTracks() >= GetNParticles(); }
 
-  void         SetNumberOfIterators(size_t nparticles);
-  const size_t GetNumberOfIterators() const { return fIterators.size(); }
+  const std::vector<T*> GetCollection() const { return fCollection; }
 
-  std::vector<T*>::iterator& GetIterator() { return fIterators.front(); }
-  std::vector<T*>::iterator& GetIterator(const size_t i) { return fIterators.at(i); }
+  const size_t& GetNTracks() const { return fCollection.size(); }
+  const size_t& GetNParticles() const { return fIterators.size(); }
+  const char*   GetName() { return fName.Data(); }
 
-  void ResetIterator() { fIterators.front() = fTrackCollection.begin(); }
-  void ResetIterator(const size_t i) { fIterators[i] = fTrackCollection.begin(); }
-  void ResetAllIterators();
+  T* UnpackIter(const size_t i = 0) const;
+  T* Next(const size_t i = 0);
 
-  const bool HasEqualIterators() const;
+  void ResetIterators();
+  void LineUpIterators();
+
+  enum OutOfRange
+  {
+    NumberOfIterators
+  };
 
 private:
-  std::vector<T*>                        fTrackCollection;
+  TString fName;
+
+  std::vector<T*>                        fCollection;
   std::vector<std::vector<T*>::iterator> fIterators;
+
+  typename std::vector<T*>::iterator& Iter(const size_t& i);
 };
 
 /// @}
 
 template <typename T>
-TrackCollection<T>::TrackCollection(const size_t nparticles = 1) : fIterators(nparticles)
+T* TrackCollection<T>::UnpackIter(const size_t i) const
 {
-  SetNumberOfIterators(nparticles);
+  return *Iter(i);
 }
 
 template <typename T>
-void TrackCollection<T>::SetNumberOfIterators(size_t nparticles)
+typename std::vector<T*>::iterator& TrackCollection<T>::Iter(const size_t& i)
 {
-  fIterators.resize(nparticles);
-  ResetAllIterators();
+  if(i >= GetNParticles()) throw OutOfRange::NumberOfIterators;
+  return fIterators.at(i);
 }
 
 template <typename T>
-void TrackCollection<T>::ResetAllIterators()
+T* TrackCollection<T>::Next(const size_t i)
 {
-  std::list<std::vector<T*>::iterator>::iterator it = fIterators.begin();
-  for(; it != fIterators.end(); ++it) (*it) = fTrackCollection.begin();
+  if(Iter(i) == Iter(i).end()) return nullptr;
+  ++Inter(i);
 }
 
 template <typename T>
-const bool TrackCollection<T>::HasEqualIterators() const
+void TrackCollection<T>::ResetIterators()
 {
-  std::list<std::vector<T*>::iterator>::iterator i, j;
-  for(i = fIterators.begin(); i != fIterators.end(); ++i)
-    for(j = i + 1; j != fIterators.end(); ++j)
-      if(*i == *j) return true;
-  return false;
+  std::vector<std::vector<T*>::iterator>::iterators it;
+  for(it = fIterators.begin(); it != fIterators.end(); ++it) *it = fCollection.begin();
+  void ResetIterators();
+}
+
+template <typename T>
+void TrackCollection<T>::LineUpIterators()
+{
+  Iter(0) = fCollection.begin();
+  for(size_t i = 1; i < fIterators.size(); ++i) Iter(i) = Iter(i - 1) + 1;
 }
 
 #endif

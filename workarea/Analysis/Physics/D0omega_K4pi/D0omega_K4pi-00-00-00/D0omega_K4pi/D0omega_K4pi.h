@@ -8,6 +8,7 @@
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "TrackSelector/Containers/AngleDifferences.h"
 #include "TrackSelector/TrackSelector.h"
+#include "TrackSelector/TrackCollections/TrackCollection.h"
 #include "VertexFit/VertexFit.h"
 
 // * ================================ * //
@@ -37,47 +38,14 @@ public:
 protected:
   /// @name Track collections and iterators
   ///@{
-  std::vector<Event::McParticle*> fMcKaonNeg;
-  ///< Vector containing true \f$K^-\f$.
-  std::vector<Event::McParticle*> fMcPhotons;
-  ///< Vector containing true \f$\gamma\f$'s.
-  std::vector<Event::McParticle*> fMcPionNeg;
-  ///< Vector containing true \f$\pi^-\f$.
-  std::vector<Event::McParticle*> fMcPionPos;
-  ///< Vector containing true \f$\pi^+\f$.
-  std::vector<Event::McParticle*>::iterator fMcKaonNegIter;
-  ///< Iterator for looping over the MC collection of negative kaons.
-  std::vector<Event::McParticle*>::iterator fMcPhoton1Iter;
-  ///< Iterator for looping over the MC collection of photons (1st occurence).
-  std::vector<Event::McParticle*>::iterator fMcPhoton2Iter;
-  ///< Iterator for looping over the MC collection of photons (2st occurence).
-  std::vector<Event::McParticle*>::iterator fMcPionNegIter;
-  ///< Iterator for looping over the MC collection of positive pions.
-  std::vector<Event::McParticle*>::iterator fMcPionPos1Iter;
-  ///< Iterator for looping over the MC collection of positive pions (1st occurence).
-  std::vector<Event::McParticle*>::iterator fMcPionPos2Iter;
-  ///< Iterator for looping over the MC collection of positive pions (2st occurence).
-  std::vector<EvtRecTrack*> fKaonNeg;
-  ///< Vector that contains a selection of pointers to charged tracks identified as \f$K^-\f$.
-  std::vector<EvtRecTrack*> fPhotons;
-  ///< Vector that contains a selection of pointers to neutral tracks identified as \f$\gamma\f$.
-  std::vector<EvtRecTrack*> fPionNeg;
-  ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^-\f$.
-  std::vector<EvtRecTrack*> fPionPos;
-  ///< Vector that contains a selection of pointers to charged tracks identified as \f$\pi^+\f$.
-  std::vector<EvtRecTrack*>::iterator fTrackIter2;
-  std::vector<EvtRecTrack*>::iterator fKaonNegIter;
-  ///< Iterator for looping over the collection of negative kaons.
-  std::vector<EvtRecTrack*>::iterator fPhoton1Iter;
-  ///< Iterator for looping over the collection of photons (1st occurence).
-  std::vector<EvtRecTrack*>::iterator fPhoton2Iter;
-  ///< Iterator for looping over the collection of photons (2st occurence).
-  std::vector<EvtRecTrack*>::iterator fPionNegIter;
-  ///< Iterator for looping over the collection of negative pions.
-  std::vector<EvtRecTrack*>::iterator fPionPos1Iter;
-  ///< Iterator for looping over the collection of positive pions (1st occurence).
-  std::vector<EvtRecTrack*>::iterator fPionPos2Iter;
-  ///< Iterator for looping over the collection of positive pions (2st occurence).
+  TrackCollection<Event::McParticle> fMcKaonNeg;
+  TrackCollection<Event::McParticle> fMcPhotons;
+  TrackCollection<Event::McParticle> fMcPionNeg;
+  TrackCollection<Event::McParticle> fMcPionPos;
+  TrackCollection<EvtRecTrack> fKaonNeg;
+  TrackCollection<EvtRecTrack> fGammas;
+  TrackCollection<EvtRecTrack> fPionNeg;
+  TrackCollection<EvtRecTrack> fPionPos;
   ///@}
 
   /// @name NTuples (eventual TTrees)
@@ -146,7 +114,7 @@ private:
 
   void CreateNeutralTrackSelections();
   void GetEmcPosition();
-  bool GetExtendedEmcPosition();
+  bool GetExtendedEmcPosition(EvtRecTrack* track);
 
   AngleDifferences FindSmallestPhotonAngles();
   void             WritePhotonKinematics(const AngleDifferences& angles);
