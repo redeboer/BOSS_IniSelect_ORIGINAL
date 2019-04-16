@@ -26,7 +26,7 @@ void SecondaryVertexGeometry::SetValues(RecMdcTrack* mdcTrack, const HepPoint3D&
   helixip.pivot(vtxPoint);
   HepVector vecipa = helixip.a();
 
-  fRvxy  = fabs(vecipa[0]);
-  fRvz   = vecipa[3];
-  fRvphi = vecipa[1];
+  fRxy  = fabs(vecipa[0]);
+  fRz   = vecipa[3];
+  fRphi = vecipa[1];
 }

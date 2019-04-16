@@ -18,7 +18,7 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 class SecondaryVertexGeometry
 {
 public:
-  SecondaryVertexGeometry();
+  SecondaryVertexGeometry() {}
   SecondaryVertexGeometry(RecMdcTrack* mdcTrack, const HepPoint3D& vertexPoint);
 
   void SetValues(RecMdcTrack* mdcTrack, const HepPoint3D& vertexPoint);

@@ -144,7 +144,8 @@ StatusCode TrackSelector::initialize()
     initialize_rest();
   }
   catch(...)
-  {}
+  {
+  } /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
   return StatusCode::SUCCESS;
 }
 
@@ -394,7 +395,6 @@ StatusCode TrackSelector::execute()
   }
   catch(...)
   {}
-  if(fPIDInstance) delete fPIDInstance;
   return StatusCode::SUCCESS;
 }
 
@@ -500,14 +500,10 @@ void TrackSelector::CreateChargedCollection()
         if(!hitStatus.is_counter()) continue;
         if(hitStatus.is_barrel())
         {
-          if(hitStatus.layer() == 1)
-          { // inner barrel
+          if(hitStatus.layer() == 1) // inner barrel
             WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofIB);
-          }
-          else if(hitStatus.layer() == 2)
-          { // outer barrel
+          else if(hitStatus.layer() == 2) // outer barrel
             WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofOB);
-          }
         }
         else if(hitStatus.layer() == 0) // end cap
           WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofEC);

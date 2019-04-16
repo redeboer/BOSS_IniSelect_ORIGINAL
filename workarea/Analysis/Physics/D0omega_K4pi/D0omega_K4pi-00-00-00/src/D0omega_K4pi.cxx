@@ -65,17 +65,11 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 StatusCode D0omega_K4pi::initialize_rest()
 {
   PrintFunctionName("D0omega_K4pi", __func__);
-  try
-  {
-    AddNTupleItems_mult_sel();
-    AddNTupleItems_dedx();
-    AddNTupleItems_fit();
-    AddNTupleItems_photon();
-    AddAdditionalNTuples_topology();
-  }
-  catch(...)
-  {
-  } /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
+  AddNTupleItems_mult_sel();
+  AddNTupleItems_dedx();
+  AddNTupleItems_fit();
+  AddNTupleItems_photon();
+  AddAdditionalNTuples_topology();
   return StatusCode::SUCCESS;
 }
 
@@ -91,8 +85,8 @@ void D0omega_K4pi::AddNTupleItems_mult_sel()
 /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
 void D0omega_K4pi::AddNTupleItems_dedx()
 {
-  AddNTupleItems_dedx(fNTuple_dedx_K);
-  AddNTupleItems_dedx(fNTuple_dedx_pi);
+  TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_K);
+  TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_pi);
 }
 
 /// `"fit4c_*"`: Kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
@@ -104,7 +98,7 @@ void D0omega_K4pi::AddNTupleItems_fit()
 }
 
 /// `"photon"`: Information of the selected photons
-void D0omega_K4pi::AddNTuples_photon()
+void D0omega_K4pi::AddNTupleItems_photon()
 {
   /// * `"E"`: Energy of the photon.
   /// * `"py"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
@@ -176,18 +170,13 @@ void D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer& tuple)
 StatusCode D0omega_K4pi::execute_rest()
 {
   PrintFunctionName("D0omega_K4pi", __func__);
-  try
-  {
-    CutNumberOfChargedParticles();
-    CreateChargedTrackSelections();
-    CreateNeutralTrackSelections();
-    WriteMultiplicities();
-    CutPID();
-    WriteDedxOfSelectedParticles();
-    FindBestKinematicFit();
-  }
-  catch(...)
-  {}
+  CutNumberOfChargedParticles();
+  CreateChargedTrackSelections();
+  CreateNeutralTrackSelections();
+  WriteMultiplicities();
+  CutPID();
+  WriteDedxOfSelectedParticles();
+  FindBestKinematicFit();
   return StatusCode::SUCCESS;
 }
 
