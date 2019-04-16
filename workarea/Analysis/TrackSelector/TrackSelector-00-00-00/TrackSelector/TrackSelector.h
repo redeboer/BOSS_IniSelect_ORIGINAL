@@ -24,6 +24,7 @@
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
+#include "TrackSelector/Containers/SecondaryVertexGeometry.h"
 #include "TrackSelector/KKFitResult.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
@@ -51,6 +52,8 @@ public:
   ///@{
   TrackSelector(const std::string& name, ISvcLocator* pSvcLocator);
   void PostConstructor();
+  void DeclareSwitches();
+  void DeclareCuts();
   ///@}
 
   /// @name Gaudi Algorithm steps
@@ -61,47 +64,80 @@ public:
   ///@}
 
 protected:
-  /// @name Derived Algorithm steps
+  /// @name Helper methods for initialize step
   ///@{
+  void PrintFunctionName(const char* class_name, const char* function_name);
+  void AssertPostConstructed() const;
+  void BookNTuple(NTupleContainer& tuple);
+  void BookNTuples();
+  void OverwriteCreateBits();
+  void AddNTupleItems_mult();
+  void AddNTupleItems_vertex();
+  void AddNTupleItems_charged();
+  void AddNTupleItems_neutral();
+  void AddNTupleItems_Tof();
+  void AddNTupleItems_Tof(NTupleContainer& tuple);
+  void AddNTupleItems_dedx(NTupleContainer& tuple);
+  void AddNTupleItems_MCTruth(NTupleContainer& tuple);
+  void AddNTupleItems_PID();
+
   virtual StatusCode initialize_rest() = 0;
-  ///< This function is executed at the end of `initialize`. It should be further defined in derived subalgorithms.
+  ///@}
+
+  /// @name Helper methods for execute step
+  ///@{
+  void LoadDstFile();
+  void LoadDstHeaders();
+  void PrintEventInfo();
+  void IncrementCounters();
+  void SetVertexOrigin();
+  void CreateCollections();
+  void CreateChargedCollection();
+  void SetTrackIter(const int& i);
+  bool IsMdcTrackValid();
+  bool CutSecondaryVertex();
+  void WriteChargedTrackVertex();
+  void WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
+  void WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
+  void CreateNeutralCollection();
+  void WriteMultiplicities();
+  void WriteVertexInfo();
+
   virtual StatusCode execute_rest() = 0;
-  ///< This function is executed at the end of `execute`. It should be further defined in derived subalgorithms.
+  ///@}
+
+  /// @name Helper methods for finalize step
+  ///@{
+  void AddAndWriteCuts();
+
   virtual StatusCode finalize_rest() = 0;
-  ///< This function is executed at the end of `finalize`. It should be further defined in derived subalgorithms.
-  void      PrintFunctionName(const char* class_name, const char* function_name);
+  ///@}
+
   MsgStream fLog;
   ///< Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class.
-  ///@}
 
-  /// @name Helper methods for execute
+  /// @name Helper methods for derived classes
   ///@{
-  void            CutZeroNetCharge();
   WTrackParameter BuildWTrackParameter(EvtRecTrack* track, const double mass) const;
-  ///@}
 
-  /// @name NTuple handlers
-  ///@{
-  void         AddNTupleItems_MCTruth(NTupleContainer& tuple);
-  void         AddNTupleItems_Dedx(NTupleContainer& tuple);
-  void         AddNTupleItems_Tof(NTupleContainer& tuple);
-  bool         CreateMCTruthCollection();
-  virtual void CreateMCTruthSelection() = 0;
-  ///< Function that should be defined in the derived calss and called after `CreateMCtruthCollection`. See [here](http://home.fnal.gov/~mrenna/lutp0613man2/node44.html) for a list of PDG codes.
-  ///@}
+  void CutZeroNetCharge();
+  void WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
+  bool IsDecay(Event::McParticle* particle, const int mother) const;
+  bool IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
+  void WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
+  bool WriteMCTruthForTopoAna(NTupleContainer& tuple);
+  void WritePIDInformation();
+  bool CreateMCTruthCollection();
 
-  /// @name Write methods
-  ///@{
-  void         WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
-  void         WriteDedxInfoForVector(std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
-  void         WritePIDInformation();
-  void         WriteTofInformation(SmartRefVector<RecTofTrack>::iterator iter_tof, double ptrk,
-                                   NTupleContainer& tuple);
-  void         WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
-  bool         WriteMCTruthForTopoAna(NTupleContainer& tuple);
+  HepLorentzVector ComputeMomentum(EvtRecTrack* track);
+  ParticleID*      InitializePID(const int method, const int pidsys, const int pidcase,
+                                 const double chimin = 4.);
+
+  virtual void CreateMCTruthSelection()                                     = 0;
   virtual void SetFitNTuple(KKFitResult* fitresult, NTupleContainer& tuple) = 0;
-  ///< Virtual method that is executed in `WriteFitResults` and should be further specified in the derived classes. @param fitresult This parameter is a pointer to allow for `dynamic_cast` in the derived specification of this `virtual` function. @param tuple The `NTuple` to which you eventually want to write the results.
   ///@}
+
+  SecondaryVertexGeometry fSecondaryVtx;
 
   /// @name Access to the DST file
   ///@{
@@ -211,10 +247,6 @@ protected:
   ///@{
   ParticleID* fPIDInstance;
   ///< Pointer to instance of particle identification (PID). Only used in *derived subalgorithms*.
-  ParticleID* InitializePID(const int method, const int pidsys, const int pidcase,
-                            const double chimin = 4.);
-  bool        IsDecay(Event::McParticle* particle, const int mother) const;
-  bool        IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
   ///@}
 
   /// @name Other stored values
@@ -226,26 +258,6 @@ protected:
   ///@}
 
 private:
-  /// @name NTuple handlers
-  ///@{
-  void BookNTuple(NTupleContainer& tuple);
-  void BookNTuples();
-  void DeclareSwitches();
-  void CreateChargedCollection();
-  void CreateNeutralCollection();
-  ///@}
-
-  /// @name Cut handlers
-  ///@{
-  void AddAndWriteCuts();
-  void DeclareCuts();
-  ///@}
-
-  /// @name Computational
-  ///@{
-  HepLorentzVector ComputeMomentum(EvtRecTrack* track);
-  ///@}
-
   /// @name Constructors
   ///@{
   bool fPostConstructed;

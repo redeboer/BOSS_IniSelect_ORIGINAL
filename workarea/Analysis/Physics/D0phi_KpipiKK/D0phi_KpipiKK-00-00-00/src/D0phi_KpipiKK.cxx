@@ -93,9 +93,9 @@ StatusCode D0phi_KpipiKK::initialize_rest()
   /// </ol>
 
   /// <li> `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See
-  /// `TrackSelector::AddNTupleItems_Dedx` for more info.
-  AddNTupleItems_Dedx(fNTuple_dedx_K);
-  AddNTupleItems_Dedx(fNTuple_dedx_pi);
+  /// `TrackSelector::AddNTupleItems_dedx` for more info.
+  AddNTupleItems_dedx(fNTuple_dedx_K);
+  AddNTupleItems_dedx(fNTuple_dedx_pi);
 
   /// <li> `"fit4c_*"`: results of the Kalman kinematic fit results. See
   /// `TrackSelector::AddNTupleItems_Fit` for more info.

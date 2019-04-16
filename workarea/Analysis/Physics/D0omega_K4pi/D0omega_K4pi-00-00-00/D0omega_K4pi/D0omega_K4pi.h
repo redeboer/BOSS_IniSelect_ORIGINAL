@@ -130,10 +130,10 @@ protected:
 private:
   /// @name Helper methods for initialize
   ///@{
-  void AddNTuples_mult_sel();
-  void AddNTuples_dedx();
-  void AddNTuples_fit();
-  void AddNTuples_photon();
+  void AddNTupleItems_mult_sel();
+  void AddNTupleItems_dedx();
+  void AddNTupleItems_fit();
+  void AddNTupleItems_photon();
   void AddAdditionalNTuples_topology();
   ///@}
 

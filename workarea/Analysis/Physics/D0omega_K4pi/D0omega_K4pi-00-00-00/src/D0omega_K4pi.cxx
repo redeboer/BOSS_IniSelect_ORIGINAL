@@ -67,10 +67,10 @@ StatusCode D0omega_K4pi::initialize_rest()
   PrintFunctionName("D0omega_K4pi", __func__);
   try
   {
-    AddNTuples_mult_sel();
-    AddNTuples_dedx();
-    AddNTuples_fit();
-    AddNTuples_photon();
+    AddNTupleItems_mult_sel();
+    AddNTupleItems_dedx();
+    AddNTupleItems_fit();
+    AddNTupleItems_photon();
     AddAdditionalNTuples_topology();
   }
   catch(...)
@@ -80,7 +80,7 @@ StatusCode D0omega_K4pi::initialize_rest()
 }
 
 /// `"mult_select"`: Multiplicities of selected particles.
-void D0omega_K4pi::AddNTuples_mult_sel()
+void D0omega_K4pi::AddNTupleItems_mult_sel()
 {
   fNTuple_mult_sel.AddItem<int>("NPhotons"); /// * `"NPhotons"`: Number of \f$\gamma\f$.
   fNTuple_mult_sel.AddItem<int>("NKaonPos"); /// * `"NKaonPos"`: Number of \f$K^+\f$.
@@ -88,15 +88,15 @@ void D0omega_K4pi::AddNTuples_mult_sel()
   fNTuple_mult_sel.AddItem<int>("NPionPos"); /// * `"NPionPos"`: Number of \f$\pi^-\f$.
 }
 
-/// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx` for more info.
-void D0omega_K4pi::AddNTuples_dedx()
+/// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
+void D0omega_K4pi::AddNTupleItems_dedx()
 {
-  AddNTupleItems_Dedx(fNTuple_dedx_K);
-  AddNTupleItems_Dedx(fNTuple_dedx_pi);
+  AddNTupleItems_dedx(fNTuple_dedx_K);
+  AddNTupleItems_dedx(fNTuple_dedx_pi);
 }
 
 /// `"fit4c_*"`: Kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
-void D0omega_K4pi::AddNTuples_fit()
+void D0omega_K4pi::AddNTupleItems_fit()
 {
   AddNTupleItems_Fit(fNTuple_fit4c_all);
   AddNTupleItems_Fit(fNTuple_fit4c_best);

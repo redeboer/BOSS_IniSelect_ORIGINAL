@@ -86,7 +86,7 @@ StatusCode rhopi_pipigg::initialize_rest()
   fNTuple_mult_sel.AddItem<int>("NPionPos"); /// <li> `"NPionPos"`: Number of \f$\pi^+\f$.
   /// </ol>
 
-  /// <li> `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_Dedx`
+  /// <li> `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx`
   /// for more info.
   AddNTupleItems_Dedx(fNTuple_dedx_pi);
 
