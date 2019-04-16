@@ -1,18 +1,11 @@
 #ifndef Analysis_Container_indexed_H
 #define Analysis_Container_indexed_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "TrackSelector/Containers/Container_base.h"
 #include <iostream>
 #include <map>
 #include <string>
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 
@@ -43,10 +36,6 @@ private:
 };
 
 /// @}
-
-// * ================================= * //
-// * ------- PROTECTED METHODS ------- * //
-// * ================================= * //
 
 /// Helper method that allows you to to check whether a key already exists in . This method uses a `template` and has been made `protected` as to share its functionality for derived classes.
 /// @todo Use error handling for existing keys, not `terminate`.

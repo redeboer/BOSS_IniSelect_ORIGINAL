@@ -1,15 +1,8 @@
 #ifndef Analysis_Container_base_H
 #define Analysis_Container_base_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include <string>
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 

@@ -1,18 +1,11 @@
 #ifndef Analysis_JobSwitch_H
 #define Analysis_JobSwitch_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "TString.h"
 #include "TrackSelector/Containers/Container_base.h"
 #include <list>
 #include <string>
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 

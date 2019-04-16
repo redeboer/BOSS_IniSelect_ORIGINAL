@@ -12,7 +12,7 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-/// @addtogroup BOSS_packages
+/// @addtogroup BOSS_objects
 /// @{
 
 /// @b OUTDATED Extension of `NTupleContainer` that represents the `NTuple` containing MC truth

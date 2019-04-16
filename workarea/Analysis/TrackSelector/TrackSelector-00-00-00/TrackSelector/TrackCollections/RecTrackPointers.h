@@ -9,7 +9,7 @@
 #include "MucRecEvent/RecMucTrack.h"
 #include "TofRecEvent/RecTofTrack.h"
 
-/// @addtogroup BOSS_packages
+/// @addtogroup BOSS_objects
 /// @{
 
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)

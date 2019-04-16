@@ -1,18 +1,11 @@
 #ifndef Analysis_CutObject_H
 #define Analysis_CutObject_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "TString.h"
 #include "TrackSelector/Containers/Container_base.h"
 #include <list>
 #include <string>
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 
@@ -27,10 +20,12 @@ public:
   CutObject(const std::string& name, const std::string& description = "");
   ~CutObject();
   static std::list<CutObject*> gCutObjects;
-  bool                         FailsCut(const double& value);
-  bool                         FailsMax(const double& value);
-  bool                         FailsMin(const double& value);
-  bool                         operator<(const double& value) const { return value < max; }
+
+  bool FailsCut(const double& value);
+  bool FailsMax(const double& value);
+  bool FailsMin(const double& value);
+
+  bool operator<(const double& value) const { return value < max; }
   bool operator==(const double& value) const { return value < max && value > min; }
   bool operator>(const double& value) const { return value > min; }
   void operator++() { ++counter; }

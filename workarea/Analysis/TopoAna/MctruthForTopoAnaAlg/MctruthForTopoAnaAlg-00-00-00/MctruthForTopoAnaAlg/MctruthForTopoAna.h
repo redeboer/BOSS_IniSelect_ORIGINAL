@@ -11,15 +11,12 @@
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
-/// @addtogroup BOSS_packages
+/// @addtogroup BOSS_objects
 /// @{
 
 /// Helper class for the `topoana` package.
-/// It is essential to run load this algorithm along with your own algorithm if you want to run
-/// `topoana.exe` over the output of your initial event selection. This algorithm
-/// (`MctruthForTopoAna`) will store the relevant 'Monte Carlo truth' information.
-/// @remark January 21st, 2019: **This procedure has been implemented in the `TrackSelector` and
-/// does not have to be loaded anymore.**
+/// It is essential to run load this algorithm along with your own algorithm if you want to run `topoana.exe` over the output of your initial event selection. This algorithm (`MctruthForTopoAna`) will store the relevant 'Monte Carlo truth' information.
+/// @remark January 21st, 2019: **This procedure has been implemented in the `TrackSelector` and does not have to be loaded anymore.**
 /// @author Zhou Xingyu 周兴玉
 class MctruthForTopoAna : public Algorithm
 {

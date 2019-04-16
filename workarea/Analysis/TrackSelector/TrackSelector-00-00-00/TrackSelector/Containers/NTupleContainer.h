@@ -1,21 +1,13 @@
 #ifndef Analysis_NTupleContainer_H
 #define Analysis_NTupleContainer_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "GaudiKernel/NTuple.h"
 #include "TrackSelector/Containers/Container_base.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include <iostream>
 #include <map>
 #include <string>
-// #include <typeinfo>	// for getting typename of a variable
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
 
@@ -122,8 +114,6 @@ private:
 };
 
 /// @}
-// * ================================ * //
-// * ================================ * //
 
 /// Specialisation of `GetItems`.
 template <>
