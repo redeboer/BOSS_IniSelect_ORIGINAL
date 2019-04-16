@@ -21,6 +21,7 @@
 #include "TH1D.h"
 #include "THStack.h"
 #include "TofRecEvent/RecTofTrack.h"
+#include "TrackSelector/TrackCollections/RecTrackPointers.h"
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
@@ -45,7 +46,7 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 /// @todo The design of using `map`s of `NTuple::Items`s is not ideal, as it does not (yet) allow enough flexibility.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     December 14th, 2018
-class TrackSelector : public Algorithm
+class TrackSelector : public Algorithm, public RecTrackPointers
 {
 public:
   /// @name Constructors
@@ -165,24 +166,6 @@ protected:
   ///< A switch that allows the derived algorithms to decide whether to create a collection of @b charged tracks in the `TrackSelector::execute` step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection.
   bool fCreateNeutralCollection;
   ///< A switch that allows the derived algorithms to decide whether to create a collection of @b neutral tracks in the `TrackSelector::execute` step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection.
-  ///@}
-
-  /// @name Reconstructed track data
-  ///@{
-  RecEmcShower* fTrackEMC;
-  ///< Pointer to reconstructed data from the EMC. See more info in [`RecEmcShower`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecEmcShower.html).
-  RecExtTrack* fTrackExt;
-  ///< Pointer to reconstructed data from the extension through all detectors. See more info in [`RecExtTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecExtTrack.html).
-  RecMdcDedx* fTrackDedx;
-  ///< Pointer to reconstructed \f$dE/dx\f$ data from the MDC. See more info in [`RecMdcDedx`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcDedx.html).
-  RecMdcKalTrack* fTrackKal;
-  ///< Pointer to reconstructed Kalman fit data from the MDC. See more info in [`RecMdcKalTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcKalTrack.html).
-  RecMdcTrack* fTrackMDC;
-  ///< Pointer to reconstructed track data from the MDC. See more info in [`RecMdcTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMdcTrack.html).
-  RecMucTrack* fTrackMUC;
-  ///< Pointer to reconstructed data from the MUC. See more info in [`RecMucTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecMucTrack.html).
-  RecTofTrack* fTrackTOF;
-  ///< Pointer to reconstructed data from the TOF. See more info in [`RecTofTrack`](http://bes3.to.infn.it/Boss/7.0.2/html/classRecTofTrack.html).
   ///@}
 
   /// @name NTuples (eventual TTrees)
