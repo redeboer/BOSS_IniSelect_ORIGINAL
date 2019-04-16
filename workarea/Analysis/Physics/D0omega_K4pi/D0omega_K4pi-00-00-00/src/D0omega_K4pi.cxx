@@ -8,7 +8,6 @@
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "VertexFit/KalmanKinematicFit.h"
-#include <float.h> // for DBL_MAX
 #include <string>
 #include <utility>
 
@@ -254,32 +253,26 @@ void D0omega_K4pi::CreateNeutralTrackSelections()
   fPhotons.clear();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
-    FindSmallestPhotonAngles();
-    ConvertSmallestAnglesToDegrees();
-    WritePhotonKinematics();
-    if(CutPhotonAngles()) continue;
+    AngleDifferences smallestAngles = FindSmallestPhotonAngles();
+    smallestAngles.ConvertToDegrees();
+    WritePhotonKinematics(smallestAngles);
+    if(CutPhotonAngles(smallestAngles)) continue;
     fPhotons.push_back(*fTrackIter);
   }
 }
 
 /// Find angle differences with nearest charged track.
-void D0omega_K4pi::FindSmallestPhotonAngles()
+AngleDifferences D0omega_K4pi::FindSmallestPhotonAngles()
 {
-  ResetPhotonAngles();
   GetEmcPosition();
+  AngleDifferences smallestAngles;
   for(fTrackIter2 = fChargedTracks.begin(); fTrackIter2 != fChargedTracks.end(); ++fTrackIter2)
   {
     if(!GetExtendedEmcPosition()) continue;
-    GetPhotonAngles();
-    SetSmallestPhotonAngles();
+    AngleDifferences angles(fExtendedEmcPosition, fEmcPosition);
+    if(angles.IsSmaller(smallestAngles)) smallestAngles = angles;
   }
-}
-
-void D0omega_K4pi::ResetPhotonAngles()
-{
-  fSmallestTheta = DBL_MAX; // start value for difference in theta
-  fSmallestPhi   = DBL_MAX; // start value for difference in phi
-  fSmallestAngle = DBL_MAX; // start value for difference in angle (?)
+  return smallestAngles;
 }
 
 void D0omega_K4pi::GetEmcPosition()
@@ -297,34 +290,8 @@ bool D0omega_K4pi::GetExtendedEmcPosition()
   return true;
 }
 
-void D0omega_K4pi::GetPhotonAngles()
-{
-  fAngle = fExtendedEmcPosition.angle(fEmcPosition);
-  fTheta = fExtendedEmcPosition.theta() - fEmcPosition.theta();
-  fPhi   = fExtendedEmcPosition.deltaPhi(fEmcPosition);
-  fTheta = fmod(fTheta + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
-  fPhi   = fmod(fPhi + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
-}
-
-void D0omega_K4pi::SetSmallestPhotonAngles()
-{
-  if(fAngle < fSmallestAngle)
-  {
-    fSmallestAngle = fAngle;
-    fSmallestTheta = fTheta;
-    fSmallestPhi   = fPhi;
-  }
-}
-
-void D0omega_K4pi::ConvertSmallestAnglesToDegrees()
-{
-  fSmallestTheta *= (180. / (CLHEP::pi));
-  fSmallestPhi *= (180. / (CLHEP::pi));
-  fSmallestAngle *= (180. / (CLHEP::pi));
-}
-
 /// *Write* photon info (`"photon"` branch).
-void D0omega_K4pi::WritePhotonKinematics()
+void D0omega_K4pi::WritePhotonKinematics(const AngleDifferences& angles)
 {
   if(!fNTuple_photon.DoWrite()) return;
   double eraw  = fTrackEMC->energy();
@@ -337,18 +304,18 @@ void D0omega_K4pi::WritePhotonKinematics()
   fNTuple_photon.GetItem<double>("px")             = four_mom.px();
   fNTuple_photon.GetItem<double>("py")             = four_mom.py();
   fNTuple_photon.GetItem<double>("pz")             = four_mom.pz();
-  fNTuple_photon.GetItem<double>("smallest_phi")   = fSmallestTheta;
-  fNTuple_photon.GetItem<double>("smallest_theta") = fSmallestPhi;
-  fNTuple_photon.GetItem<double>("smallest_angle") = fSmallestAngle;
+  fNTuple_photon.GetItem<double>("smallest_phi")   = angles.GetTheta();
+  fNTuple_photon.GetItem<double>("smallest_theta") = angles.GetPhi();
+  fNTuple_photon.GetItem<double>("smallest_angle") = angles.GetAngle();
   fNTuple_photon.Write();
 }
 
 /// Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
-bool D0omega_K4pi::CutPhotonAngles()
+bool D0omega_K4pi::CutPhotonAngles(const AngleDifferences& angles)
 {
-  if(!fCut_GammaTheta.FailsCut(fabs(fSmallestTheta))) return false;
-  if(!fCut_GammaPhi.FailsCut(fabs(fSmallestPhi))) return false;
-  if(!fCut_GammaAngle.FailsCut(fabs(fSmallestAngle))) return false;
+  if(!fCut_GammaAngle.FailsCut(angles.GetAbsoluteAngle())) return false;
+  if(!fCut_GammaPhi.FailsCut(angles.GetAbsolutePhi())) return false;
+  if(!fCut_GammaTheta.FailsCut(angles.GetAbsoluteTheta())) return false;
   return true;
 }
 
@@ -381,7 +348,7 @@ void D0omega_K4pi::CutPID()
   if(fPhotons.size() < 2) throw StatusCode::SUCCESS;  /// * at least 2 photons (\f$\gamma\f$'s)
   if(fPionNeg.size() != 1) throw StatusCode::SUCCESS; /// * 1 negative pion
   if(fPionPos.size() != 2) throw StatusCode::SUCCESS; /// * 2 positive pions
-  ++fCutFlow_NPIDnumberOK; /// Then increase cut flow counter for PID.
+  ++fCutFlow_NPIDnumberOK;                            /// Then increase cut flow counter for PID.
   std::cout << "N_{K^-} = " << fKaonNeg.size() << ", "
             << "N_{\pi^+} = " << fPionPos.size() << ", "
             << "N_{\pi^-} = " << fPionNeg.size() << ", "

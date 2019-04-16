@@ -6,6 +6,7 @@
 // * ========================= * //
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
+#include "TrackSelector/Containers/AngleDifferences.h"
 #include "TrackSelector/TrackSelector.h"
 #include "VertexFit/VertexFit.h"
 
@@ -122,12 +123,6 @@ protected:
 
   /// @name Photon kinematics
   ///@{
-  double fTheta;
-  double fPhi;
-  double fAngle;
-  double fSmallestTheta;
-  double fSmallestPhi;
-  double fSmallestAngle;
   Hep3Vector fEmcPosition;
   Hep3Vector fExtendedEmcPosition;
   ///@}
@@ -150,15 +145,12 @@ private:
   bool CategorizeTrack(EvtRecTrack* track);
 
   void CreateNeutralTrackSelections();
-  void FindSmallestPhotonAngles();
-  void ResetPhotonAngles();
   void GetEmcPosition();
   bool GetExtendedEmcPosition();
-  void GetPhotonAngles();
-  void SetSmallestPhotonAngles();
-  void ConvertSmallestAnglesToDegrees();
-  void WritePhotonKinematics();
-  bool CutPhotonAngles();
+
+  AngleDifferences FindSmallestPhotonAngles();
+  void             WritePhotonKinematics(const AngleDifferences& angles);
+  bool             CutPhotonAngles(const AngleDifferences& angles);
 
   void WriteMultiplicities();
   void PrintMultiplicities();
