@@ -11,6 +11,7 @@
 /// Global **parameters** encapsulated in namespaces.
 
 #include "CLHEP/Vector/LorentzVector.h"
+#include <vector>
 
 /// @addtogroup BOSS_globals
 /// @{
@@ -21,27 +22,24 @@ namespace TSGlobals
   static const double gEcms = 3.097;
   ///< Center-of-mass energy.
   static const CLHEP::HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
+  ///< Center-of-mass 4-momentum.
+  static const double gSpeedOfLight = 299.792458; // tof path unit in mm
   namespace Mass
   {
-    static const double rho = 0.77526;
-    ///< Mass of \f$\rho^{0\pm}\f$, see
-    ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-rho-770.pdf).
-    static const double pi0 = 0.1349770;
-    ///< Mass of \f$\pi^0\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-zero.pdf).
-    static const double pi = 0.13957061;
-    ///< Mass of \f$\pi^\pm\f$, see
-    ///< [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-pi-plus-minus.pdf).
-    static const double K = 0.493677;
-    ///< Mass of \f$K^\pm\f$.
-    static const double D0 = 1.86483;
-    ///< Mass of \f$D^0\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-D-zero.pdf).
-    static const double phi = 1.019461;
-    ///< Mass of \f$\phi\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-phi-1020.pdf).
+    static const double D0    = 1.86483;
+    static const double Jpsi  = 3.0969;
+    static const double K     = 0.493677;
+    static const double e     = 0.000511;
+    static const double mu    = 0.105658;
     static const double omega = 0.78265;
-    ///< Mass of \f$\omega\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-omega-782.pdf).
-    static const double Jpsi = 3.0969;
-    ///< Mass of \f$J/\psi\f$, see [PDG](http://pdg.lbl.gov/2018/listings/rpp2018-list-J-psi-1S.pdf).
-  } // namespace Masses
+    static const double p     = 0.938272;
+    static const double phi   = 1.019461;
+    static const double pi    = 0.13957061;
+    static const double pi0   = 0.1349770;
+    static const double rho   = 0.77526;
+
+    static const std::vector<double> TOF{e, mu, pi, K, p};
+  } // namespace Mass
 };  // namespace TSGlobals
 
 /// @}

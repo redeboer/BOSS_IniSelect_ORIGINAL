@@ -23,20 +23,6 @@ using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
 using namespace TSGlobals;
 
-// * ==================================== * //
-// * ------- GLOBALS AND TYPEDEFS ------- * //
-// * ==================================== * //
-
-const double gMasses[]{
-  0.000511, // electron
-  0.105658, // muon
-  0.139570, // charged pion
-  0.493677, // charged kaon
-  0.938272  // proton
-};
-const double gSpeedOfLight = 299.792458; // tof path unit in mm
-const int    gNMasses      = sizeof(gMasses) / sizeof(*gMasses);
-
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
@@ -869,10 +855,10 @@ void TrackSelector::WriteTofInformation(SmartRefVector<RecTofTrack>::iterator it
 
   /// -# Compute ToF for each particle hypothesis
   double              path = (*iter_tof)->path();
-  std::vector<double> texp(gNMasses);
+  std::vector<double> texp(Mass::TOF.size());
   for(size_t j = 0; j < texp.size(); ++j)
   {
-    double gb   = ptrk / gMasses[j]; // v = p/m (non-relativistic velocity)
+    double gb   = ptrk / Mass::TOF.at(j); // v = p/m (non-relativistic velocity)
     double beta = gb / sqrt(1 + gb * gb);
     texp[j]     = 10 * path / beta / gSpeedOfLight; // hypothesis ToF
   }
