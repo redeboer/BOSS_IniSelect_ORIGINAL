@@ -34,11 +34,6 @@ public:
 
   bool NextCombination();
 
-  enum OutOfRange
-  {
-    NumberOfIterators
-  };
-
 private:
   const TString   fParticleName;
   const size_t    fNParticles;

@@ -38,10 +38,17 @@ namespace TSGlobals
     static const double pi0   = 0.1349770;
     static const double rho   = 0.77526;
 
-    const double arr[] = {e, mu, pi, K, p};
+    const double                     arr[] = {e, mu, pi, K, p};
     static const std::vector<double> TOF(arr, arr + sizeof(arr) / sizeof(*arr));
   } // namespace Mass
-};  // namespace TSGlobals
+  namespace Error
+  {
+    enum Exception
+    {
+      OutOfRange
+    };
+  }
+}; // namespace TSGlobals
 
 /// @}
 #endif
