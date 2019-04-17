@@ -135,6 +135,7 @@ private:
   void InitializeVertexFit();
   void AddTracksToVertexFit();
   void AddVertexToVertexFit();
+  void FitVertexAndSwim();
 
   void DoKinematicFit();
   void InitializeKinematicFit();

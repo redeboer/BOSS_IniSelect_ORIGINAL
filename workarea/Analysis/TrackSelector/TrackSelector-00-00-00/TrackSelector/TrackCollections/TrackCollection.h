@@ -15,28 +15,24 @@ class TrackCollection
 {
 public:
   TrackCollection(const TString& name, const size_t nparticles = 1) :
-    fName(name),
-    fIterators(nparticles)
-  {}
+    fParticleName(name), fNParticles(nparticles)
+  {
+  }
 
-  void Clear() { fCollection.clear(); }
-  void AddTrack(T* track) { fCollection.push_back(track); }
-  bool HasCorrectNTracks() const { return fCollection.size() == fIterators.size(); }
-  bool HasAtLeastNTracks() const { return fCollection.size() >= fIterators.size(); }
-  bool HasIdenticalIters();
+  void Clear() { fTrackColl.clear(); }
+  void AddTrack(T* track) { fTrackColl.push_back(track); }
 
-  const std::vector<T*> GetCollection() const { return fCollection; }
+  bool FailsNumberOfParticles() const { return fTrackColl.size() != fNParticles; }
+  bool FailsMinimumNumberOfParticles() const { return fTrackColl.size() < fNParticles; }
+  bool FailsMaximumNumberOfParticles() const { return fTrackColl.size() > fNParticles; }
 
-  const size_t GetNTracks() const { return fCollection.size(); }
-  const size_t GetNParticles() const { return fIterators.size(); }
-  const char*  GetName() { return fName.Data(); }
+  const std::vector<T*>& GetCollection() const { return fTrackColl; }
 
-  T* UnpackIter(const size_t i = 0);
-  T* Next(const size_t i = 0);
-  bool Next();
+  const size_t GetNTracks() const { return fTrackColl.size(); }
+  const char*  GetName() const { return fParticleName.Data(); }
+  T*           GetParticle(const size_t i = 0) const;
 
-  void ResetIterators();
-  void LineUpIterators();
+  bool NextCombination();
 
   enum OutOfRange
   {
@@ -44,65 +40,24 @@ public:
   };
 
 private:
-  TString fName;
-
-  std::vector<T*> fCollection;
-
-  std::vector<typename std::vector<T*>::iterator> fIterators;
-
-  typename std::vector<T*>::iterator& Iter(const size_t& i);
+  const TString   fParticleName;
+  const size_t    fNParticles;
+  std::vector<T*> fTrackColl;
 };
 
 /// @}
 
 template <typename T>
-T* TrackCollection<T>::UnpackIter(const size_t i)
+T* TrackCollection<T>::GetParticle(const size_t i) const
 {
-  return *Iter(i);
+  if(i < fTrackColl.size()) return fTrackColl.at(i);
+  return nullptr;
 }
 
 template <typename T>
-typename std::vector<T*>::iterator& TrackCollection<T>::Iter(const size_t& i)
+bool TrackCollection<T>::NextCombination()
 {
-  if(i >= fIterators.size()) throw NumberOfIterators;
-  return fIterators.at(i);
-}
-
-template <typename T>
-T* TrackCollection<T>::Next(const size_t i)
-{
-  if(Iter(i) == fCollection.end()) return nullptr;
-  ++Iter(i);
-}
-
-template <typename T>
-void TrackCollection<T>::ResetIterators()
-{
-  typename std::vector<typename std::vector<T*>::iterator>::iterator it;
-  for(it = fIterators.begin(); it != fIterators.end(); ++it) *it = fCollection.begin();
-  void ResetIterators();
-}
-
-template <typename T>
-void TrackCollection<T>::LineUpIterators()
-{
-  Iter(0) = fCollection.begin();
-  for(size_t i = 1; i < fIterators.size(); ++i) Iter(i) = Iter(i - 1) + 1;
-}
-
-template <typename T>
-bool TrackCollection<T>::HasIdenticalIters()
-{
-  for(size_t i = 0; i < fIterators.size(); ++i)
-    for(size_t j = i + 1; j < fIterators.size(); ++j)
-      if(Iter(i) == Iter(j)) return true;
-  return false;
-}
-
-template <typename T>
-bool TrackCollection<T>::Next()
-{
-  return TSGlobals::CombinationShuffler::NextCombination(fCombinations, fIterators.size());
+  return TSGlobals::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
 }
 
 #endif

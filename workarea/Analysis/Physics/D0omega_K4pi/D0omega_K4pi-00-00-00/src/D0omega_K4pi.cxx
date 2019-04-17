@@ -343,10 +343,10 @@ void D0omega_K4pi::PrintMultiplicities()
 /// **PID cut**: apply a strict cut on the number of the selected particles.
 void D0omega_K4pi::CutPID()
 {
-  if(!fKaonNeg.HasCorrectNTracks()) throw StatusCode::SUCCESS;
-  if(!fGammas.HasAtLeastNTracks()) throw StatusCode::SUCCESS;
-  if(!fPionNeg.HasCorrectNTracks()) throw StatusCode::SUCCESS;
-  if(!fPionPos.HasCorrectNTracks()) throw StatusCode::SUCCESS;
+  if(fGammas.FailsMinimumNumberOfParticles()) throw StatusCode::SUCCESS;
+  if(fKaonNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
+  if(fPionNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
+  if(fPionPos.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
   std::cout << "N_{K^-} = " << fKaonNeg.GetNTracks() << ", "
             << "N_{\pi^+} = " << fPionPos.GetNTracks() << ", "
@@ -421,26 +421,18 @@ void D0omega_K4pi::ResetBestKalmanFit()
 
 void D0omega_K4pi::DoKinematicFitForAllCombinations()
 {
-  fKaonNeg.LineUpIterators();
-  fPionNeg.LineUpIterators();
-  fPionPos.LineUpIterators();
-  fGammas.LineUpIterators();
-
   int count = 0;
-  for(size_t i = 0; i < fGammas.GetNParticles(); ++i)
+  do
   {
-    do
-    {
-      ++count;
-      std::cout << "  fitting combination " << count << "... (" << i << ", " << fGammas.HasIdenticalIters() << ")" << std::endl;
-      BuildVertexParameter();
-      DoVertexFit();
-      DoKinematicFit();
-      WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
-      if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
-    }
-    while(fGammas.Next(i));
+    ++count;
+    std::cout << "  fitting combination " << count << "..." << std::endl;
+    BuildVertexParameter();
+    DoVertexFit();
+    DoKinematicFit();
+    WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
+    if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
   }
+  while(fGammas.NextCombination());
 }
 
 void D0omega_K4pi::BuildVertexParameter()
@@ -463,12 +455,7 @@ void D0omega_K4pi::DoVertexFit()
   InitializeVertexFit();
   AddTracksToVertexFit();
   AddVertexToVertexFit();
-  if(!fVertexFit->Fit(0))
-  {
-    fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-    return;
-  }
-  fVertexFit->Swim(0);
+  FitVertexAndSwim();
 }
 
 void D0omega_K4pi::InitializeVertexFit()
@@ -479,15 +466,25 @@ void D0omega_K4pi::InitializeVertexFit()
 
 void D0omega_K4pi::AddTracksToVertexFit()
 {
-  fVertexFit->AddTrack(0, BuildWTrackParameter(fKaonNeg.UnpackIter(0), Mass::K));
-  fVertexFit->AddTrack(1, BuildWTrackParameter(fPionNeg.UnpackIter(0), Mass::pi));
-  fVertexFit->AddTrack(2, BuildWTrackParameter(fPionPos.UnpackIter(0), Mass::pi));
-  fVertexFit->AddTrack(3, BuildWTrackParameter(fPionPos.UnpackIter(1), Mass::pi));
+  fVertexFit->AddTrack(0, BuildWTrackParameter(fKaonNeg.GetParticle(), Mass::K));
+  fVertexFit->AddTrack(1, BuildWTrackParameter(fPionNeg.GetParticle(), Mass::pi));
+  fVertexFit->AddTrack(2, BuildWTrackParameter(fPionPos.GetParticle(0), Mass::pi));
+  fVertexFit->AddTrack(3, BuildWTrackParameter(fPionPos.GetParticle(1), Mass::pi));
 }
 
 void D0omega_K4pi::AddVertexToVertexFit()
 {
   fVertexFit->AddVertex(0, fVertexParameter, 0, 1);
+}
+
+void D0omega_K4pi::FitVertexAndSwim()
+{
+  if(!fVertexFit->Fit(0))
+  {
+    fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+    return;
+  }
+  fVertexFit->Swim(0);
 }
 
 void D0omega_K4pi::DoKinematicFit()
@@ -512,8 +509,8 @@ void D0omega_K4pi::InitializeKinematicFit()
 
 void D0omega_K4pi::AddTracksToKinematicFit()
 {
-  fKalmanKinematicFit->AddTrack(0, 0., fGammas.UnpackIter(0)->emcShower());
-  fKalmanKinematicFit->AddTrack(1, 0., fGammas.UnpackIter(1)->emcShower());
+  fKalmanKinematicFit->AddTrack(0, 0., fGammas.GetParticle(0)->emcShower());
+  fKalmanKinematicFit->AddTrack(1, 0., fGammas.GetParticle(1)->emcShower());
   fKalmanKinematicFit->AddTrack(2, fVertexFit->wtrk(0)); // K-
   fKalmanKinematicFit->AddTrack(3, fVertexFit->wtrk(1)); // pi-
   fKalmanKinematicFit->AddTrack(4, fVertexFit->wtrk(2)); // pi+ (1st occurrence)
