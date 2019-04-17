@@ -432,7 +432,6 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   {
     ++count;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
-    BuildVertexParameter();
     DoVertexFit();
     DoKinematicFit();
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
@@ -441,61 +440,20 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   while(fGammas.NextCombination());
 }
 
-void D0omega_K4pi::BuildVertexParameter()
-{
-  HepPoint3D   vx(0., 0., 0.);
-  HepSymMatrix Evx(3, 0);
-  double       bx  = 1E+6;
-  double       by  = 1E+6;
-  double       bz  = 1E+6;
-  Evx[0][0]        = bx * bx;
-  Evx[1][1]        = by * by;
-  Evx[2][2]        = bz * bz;
-  fVertexParameter = VertexParameter();
-  fVertexParameter.setVx(vx);
-  fVertexParameter.setEvx(Evx);
-}
-
 void D0omega_K4pi::DoVertexFit()
 {
-  InitializeVertexFit();
-  AddTracksToVertexFit();
-  AddVertexToVertexFit();
-  FitVertexAndSwim();
-}
-
-void D0omega_K4pi::InitializeVertexFit()
-{
-  fVertexFit = VertexFit::instance();
-  fVertexFit->init();
-}
-
-void D0omega_K4pi::AddTracksToVertexFit()
-{
-  fVertexFit->AddTrack(0, BuildWTrackParameter(fKaonNeg.GetParticle(), Mass::K));
-  fVertexFit->AddTrack(1, BuildWTrackParameter(fPionNeg.GetParticle(), Mass::pi));
-  fVertexFit->AddTrack(2, BuildWTrackParameter(fPionPos.GetParticle(0), Mass::pi));
-  fVertexFit->AddTrack(3, BuildWTrackParameter(fPionPos.GetParticle(1), Mass::pi));
-}
-
-void D0omega_K4pi::AddVertexToVertexFit()
-{
-  fVertexFit->AddVertex(0, fVertexParameter, 0, 1);
-}
-
-void D0omega_K4pi::FitVertexAndSwim()
-{
-  if(!fVertexFit->Fit(0))
-  {
-    fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-    return;
-  }
-  fVertexFit->Swim(0);
+  fVertexFitter.Initialize();
+  fVertexFitter.AddTrack(fKaonNeg.GetParticle(), Mass::K);
+  fVertexFitter.AddTrack(fPionNeg.GetParticle(), Mass::pi);
+  fVertexFitter.AddTrack(fPionPos.GetParticle(0), Mass::pi);
+  fVertexFitter.AddTrack(fPionPos.GetParticle(1), Mass::pi);
+  fVertexFitter.AddCleanVertex();
+  fVertexFitter.FitAndSwim();
 }
 
 void D0omega_K4pi::DoKinematicFit()
 {
-  if(!fVertexFit) return;
+  if(!fVertexFitter.IsSuccessful()) return;
   InitializeKinematicFit();
   AddTracksToKinematicFit();
   AddConstraintsToKinematicFit();
@@ -517,10 +475,10 @@ void D0omega_K4pi::AddTracksToKinematicFit()
 {
   fKalmanKinematicFit->AddTrack(0, 0., fGammas.GetParticle(0)->emcShower());
   fKalmanKinematicFit->AddTrack(1, 0., fGammas.GetParticle(1)->emcShower());
-  fKalmanKinematicFit->AddTrack(2, fVertexFit->wtrk(0)); // K-
-  fKalmanKinematicFit->AddTrack(3, fVertexFit->wtrk(1)); // pi-
-  fKalmanKinematicFit->AddTrack(4, fVertexFit->wtrk(2)); // pi+ (1st occurrence)
-  fKalmanKinematicFit->AddTrack(5, fVertexFit->wtrk(3)); // pi+ (2nd occurrence)
+  fKalmanKinematicFit->AddTrack(2, fVertexFitter.GetTrack(0)); // K-
+  fKalmanKinematicFit->AddTrack(3, fVertexFitter.GetTrack(1)); // pi-
+  fKalmanKinematicFit->AddTrack(4, fVertexFitter.GetTrack(2)); // pi+ (1st occurrence)
+  fKalmanKinematicFit->AddTrack(5, fVertexFitter.GetTrack(3)); // pi+ (2nd occurrence)
 }
 
 void D0omega_K4pi::AddConstraintsToKinematicFit()

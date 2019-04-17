@@ -9,7 +9,6 @@
 #include "TrackSelector/Containers/AngleDifferences.h"
 #include "TrackSelector/TrackSelector.h"
 #include "TrackSelector/TrackCollections/TrackCollection.h"
-#include "VertexFit/VertexFit.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
@@ -82,8 +81,6 @@ protected:
 
   /// @name Fit objects
   ///@{
-  VertexParameter          fVertexParameter;
-  VertexFit*               fVertexFit;
   KalmanKinematicFit*      fKalmanKinematicFit;
   KKFitResult_D0omega_K4pi fBestKalmanFit;
   KKFitResult_D0omega_K4pi fCurrentKalmanFit;
@@ -129,14 +126,7 @@ private:
   void FindBestKinematicFit();
   void ResetBestKalmanFit();
   void DoKinematicFitForAllCombinations();
-  void BuildVertexParameter();
-
   void DoVertexFit();
-  void InitializeVertexFit();
-  void AddTracksToVertexFit();
-  void AddVertexToVertexFit();
-  void FitVertexAndSwim();
-
   void DoKinematicFit();
   void InitializeKinematicFit();
   void AddTracksToKinematicFit();

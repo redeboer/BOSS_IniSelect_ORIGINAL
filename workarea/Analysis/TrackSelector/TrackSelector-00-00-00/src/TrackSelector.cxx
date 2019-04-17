@@ -747,12 +747,6 @@ void TrackSelector::CutZeroNetCharge()
   ++fCutFlow_NetChargeOK;
 }
 
-WTrackParameter TrackSelector::BuildWTrackParameter(EvtRecTrack* track, const double mass) const
-{
-  RecMdcKalTrack* kalTrack = track->mdcKalTrack();
-  return WTrackParameter(mass, kalTrack->getZHelix(), kalTrack->getZError());
-}
-
 /// Create a preselection of **Monte Carlo truth** tracks.
 /// This method is used in `TrackSelector::execute` only. It is used to fill the `fMcParticles` `vector` with a selection of `McParticle` pointers. This collection starts with the initial cluster (e.g. \f$J/\psi\f$) and continues with the rest of the decay chain. Only then is it possible to use `CreateMCTruthSelection`, so it is called at the end.
 /// @see `fMcParticles`

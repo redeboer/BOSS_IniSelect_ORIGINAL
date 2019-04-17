@@ -21,12 +21,13 @@
 #include "TH1D.h"
 #include "THStack.h"
 #include "TofRecEvent/RecTofTrack.h"
-#include "TrackSelector/TrackCollections/RecTrackPointers.h"
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
 #include "TrackSelector/Containers/SecondaryVertexGeometry.h"
 #include "TrackSelector/KKFitResult.h"
+#include "TrackSelector/TrackCollections/RecTrackPointers.h"
+#include "TrackSelector/VertexFitter.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
@@ -119,8 +120,6 @@ protected:
 
   /// @name Helper methods for derived classes
   ///@{
-  WTrackParameter BuildWTrackParameter(EvtRecTrack* track, const double mass) const;
-
   void CutZeroNetCharge();
   void WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
   bool IsDecay(Event::McParticle* particle, const int mother) const;
@@ -137,8 +136,6 @@ protected:
   virtual void CreateMCTruthSelection()                                     = 0;
   virtual void SetFitNTuple(KKFitResult* fitresult, NTupleContainer& tuple) = 0;
   ///@}
-
-  SecondaryVertexGeometry fSecondaryVtx;
 
   /// @name Access to the DST file
   ///@{
@@ -234,7 +231,9 @@ protected:
 
   /// @name Other stored values
   ///@{
-  HepPoint3D fVertexPoint;
+  SecondaryVertexGeometry fSecondaryVtx;
+  VertexFitter            fVertexFitter;
+  HepPoint3D              fVertexPoint;
   ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
   Int_t fNetChargeMDC;
   ///< Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the `RhopiAlg` example.
