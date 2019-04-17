@@ -475,7 +475,7 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::ExtractFitResults()
 {
-  fCurrentKalmanFit = KKFitResult_D0omega_K4pi(fKalmanKinematicFit);
+  fCurrentKalmanFit = KKFitResult_D0omega_K4pi(fKinematicFitter.GetFit());
   fCurrentKalmanFit.SetRunAndEventNumber(fEventHeader);
 }
 

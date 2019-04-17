@@ -81,7 +81,6 @@ protected:
 
   /// @name Fit objects
   ///@{
-  KalmanKinematicFit*      fKalmanKinematicFit;
   KKFitResult_D0omega_K4pi fBestKalmanFit;
   KKFitResult_D0omega_K4pi fCurrentKalmanFit;
   ///@}

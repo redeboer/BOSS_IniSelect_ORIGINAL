@@ -18,9 +18,11 @@ public:
   void AddResonance(const double& mass, int track1, int track2);
   void Fit();
 
-  const bool&      IsSuccessful() const { return fIsSuccessful; };
-  const int&       GetNContstraints() const { return fNConstraints; }
-  HepLorentzVector GetTrack(int i) const;
+  const bool&         IsSuccessful() const { return fIsSuccessful; };
+  const int&          GetNContstraints() const { return fNConstraints; }
+  HepLorentzVector    GetTrack(int i) const;
+  KalmanKinematicFit* GetFit() { return fKinematicFit; }
+  ///< @todo `fKinematicFit` should somehow be protected, but this is not yet possible as long as KKFitResult does not accept `const KalmanKinematicFit*`.
 
 private:
   int  fNTracks;
