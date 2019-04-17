@@ -8,6 +8,7 @@
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSException.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include <string>
 #include <utility>
@@ -439,6 +440,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     }
     catch(const Error::Exception& e)
     {
+      std::cout << e.GetMessage() << std::endl;
       return;
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);

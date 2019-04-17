@@ -41,14 +41,6 @@ namespace TSGlobals
     const double                     arr[] = {e, mu, pi, K, p};
     static const std::vector<double> TOF(arr, arr + sizeof(arr) / sizeof(*arr));
   } // namespace Mass
-  namespace Error
-  {
-    enum Exception
-    {
-      OutOfRange,
-      FitFailed
-    };
-  }
 }; // namespace TSGlobals
 
 /// @}

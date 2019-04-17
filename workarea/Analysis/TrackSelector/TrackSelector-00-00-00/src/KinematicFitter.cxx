@@ -1,6 +1,8 @@
 #include "TrackSelector/KinematicFitter.h"
+#include "TrackSelector/TSGlobals/TSException.h"
 #include "TrackSelector/TSGlobals.h"
 using namespace TSGlobals;
+using namespace TSGlobals::Error;
 
 KinematicFitter::KinematicFitter() :
   fNTracks(0),
@@ -44,25 +46,21 @@ void KinematicFitter::AddConstraintCMS()
 
 void KinematicFitter::AddResonance(const double& mass, int track1, int track2)
 {
-  fKinematicFit->AddResonance(fConstraintCount, Mass::pi0, track1, track2);
+  fKinematicFit->AddResonance(fConstraintCount, mass, track1, track2);
   ++fConstraintCount;
   ++fNConstraints;
 }
 
 void KinematicFitter::Fit()
 {
-  if(fKinematicFit->Fit())
-  {
-    fIsSuccessful = true;
-    return;
-  }
-  std::cout << "    fit failed: chisq = " << fKinematicFit->chisq() << std::endl;
-  throw Error::FitFailed;
+  if(!fKinematicFit->Fit())
+    throw Exception(Form("Kinematic fit failed: chisq = %g", fKinematicFit->chisq()));
+  fIsSuccessful = true;
 }
 
 HepLorentzVector KinematicFitter::GetTrack(int i) const
 {
-  if(!fKinematicFit) throw Error::FitFailed;
+  if(!fKinematicFit) throw Exception("KinematicFitter has empty pointer!");
   if(i < fNTracks) return fKinematicFit->pfit(i);
-  throw Error::OutOfRange;
+  throw OutOfRange("KinematicFitter::GetTrack", i, fNTracks);
 }

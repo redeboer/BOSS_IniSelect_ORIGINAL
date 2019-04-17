@@ -1,6 +1,6 @@
 #include "TrackSelector/VertexFitter.h"
-#include "TrackSelector/TSGlobals.h"
-using namespace TSGlobals;
+#include "TrackSelector/TSGlobals/TSException.h"
+using namespace TSGlobals::Error;
 
 VertexFitter::VertexFitter() : fNTracks(0), fIsSuccessful(false)
 {
@@ -31,11 +31,7 @@ void VertexFitter::AddCleanVertex()
 
 void VertexFitter::FitAndSwim()
 {
-  if(!fVertexFit->Fit(0))
-  {
-    std::cout << "---> WARNING: Vertex fit failed" << endmsg;
-    throw Error::FitFailed;
-  }
+  if(!fVertexFit->Fit(0)) throw Exception("Vertex fit failed");
   fVertexFit->Swim(0);
   fIsSuccessful = true;
 }
@@ -44,12 +40,12 @@ VertexParameter VertexFitter::BuildVertexParameter() const
 {
   HepPoint3D   vx(0., 0., 0.);
   HepSymMatrix Evx(3, 0);
-  double       bx  = 1E+6;
-  double       by  = 1E+6;
-  double       bz  = 1E+6;
-  Evx[0][0]        = bx * bx;
-  Evx[1][1]        = by * by;
-  Evx[2][2]        = bz * bz;
+  double       bx = 1E+6;
+  double       by = 1E+6;
+  double       bz = 1E+6;
+  Evx[0][0]       = bx * bx;
+  Evx[1][1]       = by * by;
+  Evx[2][2]       = bz * bz;
   VertexParameter vtxPar;
   vtxPar.setVx(vx);
   vtxPar.setEvx(Evx);
@@ -59,5 +55,5 @@ VertexParameter VertexFitter::BuildVertexParameter() const
 WTrackParameter VertexFitter::GetTrack(int i) const
 {
   if(i < fNTracks) return fVertexFit->wtrk(i);
-  throw Error::OutOfRange;
+  throw OutOfRange("VertexFitter::GetTrack", i, fNTracks);
 }
