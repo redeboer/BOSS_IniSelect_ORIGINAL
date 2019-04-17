@@ -358,8 +358,8 @@ void D0omega_K4pi::CutPID()
   if(fPionNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
   if(fPionPos.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
-  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber() << ", "
-            << fEventHeader->eventNumber() << ")" << endmsg;
+  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
+       << ", " << fEventHeader->eventNumber() << ")" << endmsg;
 }
 
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
@@ -432,12 +432,18 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   {
     ++count;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
-    DoVertexFit();
-    DoKinematicFit();
+    try
+    {
+      DoVertexFit();
+      DoKinematicFit();
+    }
+    catch(const Error::Exception& e)
+    {
+      return;
+    }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
     if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
-  }
-  while(fGammas.NextCombination());
+  } while(fGammas.NextCombination());
 }
 
 void D0omega_K4pi::DoVertexFit()
@@ -454,37 +460,17 @@ void D0omega_K4pi::DoVertexFit()
 void D0omega_K4pi::DoKinematicFit()
 {
   if(!fVertexFitter.IsSuccessful()) return;
-  InitializeKinematicFit();
-  AddTracksToKinematicFit();
-  AddConstraintsToKinematicFit();
-  if(!fKalmanKinematicFit->Fit())
-  {
-    fLog << MSG::INFO << "    fit failed: chisq = " << fKalmanKinematicFit->chisq() << endmsg;
-    return;
-  }
+  fKinematicFitter.Initialize();
+  fKinematicFitter.AddTrack(fGammas.GetParticle(0)->emcShower());
+  fKinematicFitter.AddTrack(fGammas.GetParticle(1)->emcShower());
+  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(0)); // K-
+  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(1)); // pi-
+  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(2)); // pi+ (1st occurrence)
+  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(3)); // pi+ (2nd occurrence)
+  fKinematicFitter.AddConstraintCMS();
+  fKinematicFitter.AddResonance(Mass::pi0, 0, 1);
+  fKinematicFitter.Fit();
   ExtractFitResults();
-}
-
-void D0omega_K4pi::InitializeKinematicFit()
-{
-  fKalmanKinematicFit = KalmanKinematicFit::instance();
-  fKalmanKinematicFit->init();
-}
-
-void D0omega_K4pi::AddTracksToKinematicFit()
-{
-  fKalmanKinematicFit->AddTrack(0, 0., fGammas.GetParticle(0)->emcShower());
-  fKalmanKinematicFit->AddTrack(1, 0., fGammas.GetParticle(1)->emcShower());
-  fKalmanKinematicFit->AddTrack(2, fVertexFitter.GetTrack(0)); // K-
-  fKalmanKinematicFit->AddTrack(3, fVertexFitter.GetTrack(1)); // pi-
-  fKalmanKinematicFit->AddTrack(4, fVertexFitter.GetTrack(2)); // pi+ (1st occurrence)
-  fKalmanKinematicFit->AddTrack(5, fVertexFitter.GetTrack(3)); // pi+ (2nd occurrence)
-}
-
-void D0omega_K4pi::AddConstraintsToKinematicFit()
-{
-  fKalmanKinematicFit->AddFourMomentum(0, gEcmsVec);     /// 4C: CMS energy and 3-momentum
-  fKalmanKinematicFit->AddResonance(1, Mass::pi0, 0, 1); /// 1C: \f$\pi^0\f$ resonance
 }
 
 void D0omega_K4pi::ExtractFitResults()

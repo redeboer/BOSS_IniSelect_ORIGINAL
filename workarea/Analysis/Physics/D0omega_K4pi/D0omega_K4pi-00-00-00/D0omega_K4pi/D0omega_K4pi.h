@@ -128,9 +128,6 @@ private:
   void DoKinematicFitForAllCombinations();
   void DoVertexFit();
   void DoKinematicFit();
-  void InitializeKinematicFit();
-  void AddTracksToKinematicFit();
-  void AddConstraintsToKinematicFit();
   void ExtractFitResults();
 
   void WriteBestFitWithMcTruth();

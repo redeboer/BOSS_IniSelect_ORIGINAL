@@ -20,8 +20,9 @@ public:
   WTrackParameter GetTrack(int i) const;
 
 private:
-  int               fNTracks;
-  bool              fIsSuccessful;
+  int  fNTracks;
+  bool fIsSuccessful;
+
   static VertexFit* fVertexFit;
 
   VertexParameter BuildVertexParameter() const;

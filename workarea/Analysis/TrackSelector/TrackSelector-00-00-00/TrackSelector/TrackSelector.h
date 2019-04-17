@@ -26,9 +26,9 @@
 #include "TrackSelector/Containers/NTupleContainer.h"
 #include "TrackSelector/Containers/SecondaryVertexGeometry.h"
 #include "TrackSelector/KKFitResult.h"
+#include "TrackSelector/KinematicFitter.h"
 #include "TrackSelector/TrackCollections/RecTrackPointers.h"
 #include "TrackSelector/VertexFitter.h"
-#include "VertexFit/KalmanKinematicFit.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
 #include <vector>
@@ -232,8 +232,9 @@ protected:
   /// @name Other stored values
   ///@{
   SecondaryVertexGeometry fSecondaryVtx;
-  VertexFitter            fVertexFitter;
   HepPoint3D              fVertexPoint;
+  VertexFitter            fVertexFitter;
+  KinematicFitter         fKinematicFitter;
   ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
   Int_t fNetChargeMDC;
   ///< Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the `RhopiAlg` example.
