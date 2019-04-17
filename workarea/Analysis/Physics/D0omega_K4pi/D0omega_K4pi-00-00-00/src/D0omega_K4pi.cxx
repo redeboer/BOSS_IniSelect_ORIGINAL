@@ -169,6 +169,15 @@ void D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer& tuple)
   tuple.AddItem<double>("pD0");
   tuple.AddItem<double>("pomega");
   tuple.AddItem<double>("chisq");
+  tuple.AddItem<double>("ppi0");
+  tuple.AddItem<double>("pK-");
+  tuple.AddItem<double>("ppi-");
+  tuple.AddItem<double>("ppi+1");
+  tuple.AddItem<double>("ppi+2");
+  tuple.AddItem<double>("fDalitzOmega_pi-pi+");
+  tuple.AddItem<double>("fDalitzOmega_pi0pi-");
+  tuple.AddItem<double>("fDalitzOmega_pi0pi+");
+  tuple.AddItem<double>("fRelativePhotonAngle");
 }
 
 // * ============================ * //
@@ -334,7 +343,8 @@ void D0omega_K4pi::WriteMultiplicities()
 /// Print multiplicities of the selected particles.
 void D0omega_K4pi::PrintMultiplicities()
 {
-  fLog << MSG::INFO << "N_{K^-} = " << fKaonNeg.GetNTracks() << ", "
+  fLog << MSG::INFO;
+  fLog << "N_{K^-} = " << fKaonNeg.GetNTracks() << ", "
        << "N_{\pi^+} = " << fPionPos.GetNTracks() << ", "
        << "N_{\pi^-} = " << fPionNeg.GetNTracks() << ", "
        << "N_{\gamma} = " << fGammas.GetNTracks() << endmsg;
@@ -348,12 +358,8 @@ void D0omega_K4pi::CutPID()
   if(fPionNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
   if(fPionPos.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
-  std::cout << "N_{K^-} = " << fKaonNeg.GetNTracks() << ", "
-            << "N_{\pi^+} = " << fPionPos.GetNTracks() << ", "
-            << "N_{\pi^-} = " << fPionNeg.GetNTracks() << ", "
-            << "N_{\gamma} = " << fGammas.GetNTracks() << std::endl;
-  std::cout << "PID selection passed for (run, event) = (" << fEventHeader->runNumber() << ", "
-            << fEventHeader->eventNumber() << ")" << std::endl;
+  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber() << ", "
+            << fEventHeader->eventNumber() << ")" << endmsg;
 }
 
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
@@ -425,7 +431,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   do
   {
     ++count;
-    std::cout << "  fitting combination " << count << "..." << std::endl;
+    fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     BuildVertexParameter();
     DoVertexFit();
     DoKinematicFit();
@@ -489,13 +495,13 @@ void D0omega_K4pi::FitVertexAndSwim()
 
 void D0omega_K4pi::DoKinematicFit()
 {
-  if(fVertexFit) return;
+  if(!fVertexFit) return;
   InitializeKinematicFit();
   AddTracksToKinematicFit();
   AddConstraintsToKinematicFit();
   if(!fKalmanKinematicFit->Fit())
   {
-    std::cout << "  fit failed: chisq = " << fKalmanKinematicFit->chisq() << std::endl;
+    fLog << MSG::INFO << "    fit failed: chisq = " << fKalmanKinematicFit->chisq() << endmsg;
     return;
   }
   ExtractFitResults();
@@ -539,7 +545,7 @@ void D0omega_K4pi::WriteBestFitWithMcTruth()
             << "    m_D0     = " << fBestKalmanFit.fM_D0 << std::endl
             << "    m_omega  = " << fBestKalmanFit.fM_omega << std::endl
             << "    p_D0     = " << fBestKalmanFit.fP_D0 << std::endl
-            << "    p_omega  = " << fBestKalmanFit.fP_omega << std::endl;
+            << "    p_pi0    = " << fBestKalmanFit.fP_pi0 << std::endl;
   CreateMCTruthCollection();
   SetAdditionalNtupleItems_topology();
   WriteMCTruthForTopoAna(fNTuple_topology);

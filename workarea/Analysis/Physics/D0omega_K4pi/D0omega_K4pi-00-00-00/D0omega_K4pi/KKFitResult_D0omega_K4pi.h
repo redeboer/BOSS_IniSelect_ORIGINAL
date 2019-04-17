@@ -48,6 +48,7 @@ public:
   double fDalitzOmega_pi0pim;
   double fDalitzOmega_pi0pip;
   double fRelativePhotonAngle;
+  double fRelativeGammaAngle;
   ///@}
 
 private:
