@@ -1,3 +1,6 @@
+#ifndef Analysis_TSGlobals_CombinationShuffler_H
+#define Analysis_TSGlobals_CombinationShuffler_H
+
 #include <algorithm>
 #include <vector>
 
@@ -7,6 +10,9 @@
 /// @author Remco de Boer 雷穆克 (remco.de.boer@ihep.ac.cn or r.e.deboer@students.uu.nl)
 /// @author Credits: Mark Nelson http://marknelson.us
 /// @date April 17th, 2019
+
+/// @addtogroup BOSS_globals
+/// @{
 
 namespace TSGlobals
 {
@@ -61,3 +67,6 @@ namespace TSGlobals
     }
   } // namespace CombinationShuffler
 } // namespace TSGlobals
+
+/// @}
+#endif
