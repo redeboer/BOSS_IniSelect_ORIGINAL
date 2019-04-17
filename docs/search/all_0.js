@@ -17,6 +17,7 @@ var searchData=
   ['addntupleitems_5ftof',['AddNTupleItems_Tof',['../classTrackSelector.html#a5bfa2b3f94ef19594086b09bc9617fe5',1,'TrackSelector::AddNTupleItems_Tof()'],['../classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4',1,'TrackSelector::AddNTupleItems_Tof(NTupleContainer &amp;tuple)']]],
   ['addntupleitems_5fvertex',['AddNTupleItems_vertex',['../classTrackSelector.html#a18c22f3459324ff1a8cce8d969fe896f',1,'TrackSelector']]],
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
+  ['addtrack',['AddTrack',['../classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6',1,'TrackCollection']]],
   ['addtrackstokinematicfit',['AddTracksToKinematicFit',['../classD0omega__K4pi.html#a30e3a6e079bb428f0589993b3e8ded05',1,'D0omega_K4pi']]],
   ['addtrackstovertexfit',['AddTracksToVertexFit',['../classD0omega__K4pi.html#a9abba163226ae90ef95f0179a4c18f42',1,'D0omega_K4pi']]],
   ['addvertextovertexfit',['AddVertexToVertexFit',['../classD0omega__K4pi.html#aa4d0095260ba76f789a3faa5a9e0dfdb',1,'D0omega_K4pi']]],

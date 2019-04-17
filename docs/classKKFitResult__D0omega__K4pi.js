@@ -19,5 +19,6 @@ var classKKFitResult__D0omega__K4pi =
     [ "fP_pim", "classKKFitResult__D0omega__K4pi.html#a2a8e8127292e3183334a5c739b567edf", null ],
     [ "fP_pip1", "classKKFitResult__D0omega__K4pi.html#a8de5e7398bf262759b51d382dababa42", null ],
     [ "fP_pip2", "classKKFitResult__D0omega__K4pi.html#aa08802295ace984942c65618c2165c4a", null ],
+    [ "fRelativeGammaAngle", "classKKFitResult__D0omega__K4pi.html#ae950317dc8ce1cff1d35ab522faa9a25", null ],
     [ "fRelativePhotonAngle", "classKKFitResult__D0omega__K4pi.html#a5990ae1c96bf6534b166d65a4962eded", null ]
 ];

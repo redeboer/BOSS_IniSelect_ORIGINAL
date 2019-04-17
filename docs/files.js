@@ -8,6 +8,7 @@ var files =
     ] ],
     [ "ChargedDSelector.cxx", "ChargedDSelector_8cxx.html", "ChargedDSelector_8cxx" ],
     [ "ChargedDSelector.h", "ChargedDSelector_8h.html", "ChargedDSelector_8h" ],
+    [ "CombinationShuffler.h", "CombinationShuffler_8h.html", "CombinationShuffler_8h" ],
     [ "Container_base.cxx", "Container__base_8cxx.html", null ],
     [ "Container_base.h", "Container__base_8h.html", null ],
     [ "Container_indexed.cxx", "Container__indexed_8cxx.html", null ],

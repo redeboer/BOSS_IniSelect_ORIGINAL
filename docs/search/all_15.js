@@ -4,7 +4,7 @@ var searchData=
   ['writebestfitwithmctruth',['WriteBestFitWithMcTruth',['../classD0omega__K4pi.html#a546e9029d140b3a44fc5171c560d71c7',1,'D0omega_K4pi']]],
   ['writechargedtrackvertex',['WriteChargedTrackVertex',['../classTrackSelector.html#ae17b44920b0898d4323eeeed38d8bd0d',1,'TrackSelector']]],
   ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b',1,'TrackSelector']]],
-  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508',1,'TrackSelector']]],
+  ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#a427dfe46514712f2f0a6b2152f683d7d',1,'TrackSelector']]],
   ['writededxofselectedparticles',['WriteDedxOfSelectedParticles',['../classD0omega__K4pi.html#afd5eee6e15a279ca5906bfd62078c135',1,'D0omega_K4pi']]],
   ['writefitresults',['WriteFitResults',['../classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d',1,'TrackSelector']]],
   ['writemctruthfortopoana',['WriteMCTruthForTopoAna',['../classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1',1,'TrackSelector']]],

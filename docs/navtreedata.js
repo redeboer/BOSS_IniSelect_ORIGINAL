@@ -19,7 +19,9 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ]
+        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -37,12 +39,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AngleDifferences_8cxx.html",
-"PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html#a5ebd99ebcbc11b1c47d4fc04ff209251",
-"classD0omega__K4pi.html#a9abba163226ae90ef95f0179a4c18f42",
-"classKKFitResult__D0omega__K4pi.html#ae5ce01da3797729461b5d2d71ca8914d",
-"classNTupleContainer.html#aee15cc4f0569ca47ae90af3d1e269222",
-"classRhopi.html#a64c7661036cd45bd10bfa85f21f24374",
-"classTrackSelector.html#a6aedde29adfa7b5abca1f64898c9babe",
+"PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html",
+"classD0omega__K4pi.html#aaffc5bf2da95c9435bcbe6dbc1d2a62a",
+"classKKFitResult__D0phi__3K3pi.html#a5767ee147671d0ea229862143b8feba2",
+"classNTupleTopoAna.html#a187f137903a4f73761fad0cc9c76b2bf",
+"classRhopi.html#a705d47dc7c22108b1ebf14f0fcc520a5",
+"classTrackSelector.html#a6f3590ad49e0e1c6ef4f017d76e74b24",
 "namespaceTSGlobals.html"
 ];
 

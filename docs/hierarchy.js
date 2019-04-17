@@ -69,6 +69,8 @@ var hierarchy =
     [ "topoana", "classtopoana.html", null ],
     [ "TrackCollection< T >", "classTrackCollection.html", null ],
     [ "TrackCollection< Event::McParticle *>", "classTrackCollection.html", null ],
+    [ "TrackCollection< Event::McParticle >", "classTrackCollection.html", null ],
     [ "TrackCollection< EvtRecTrack *>", "classTrackCollection.html", null ],
+    [ "TrackCollection< EvtRecTrack >", "classTrackCollection.html", null ],
     [ "utility", "classutility.html", null ]
 ];

@@ -47,7 +47,7 @@ var classTrackSelector =
     [ "SetVertexOrigin", "classTrackSelector.html#a780a37af55014da54537e3ae14df4302", null ],
     [ "WriteChargedTrackVertex", "classTrackSelector.html#ae17b44920b0898d4323eeeed38d8bd0d", null ],
     [ "WriteDedxInfo", "classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b", null ],
-    [ "WriteDedxInfoForVector", "classTrackSelector.html#ac5d2cc51628faafc21bd4fa6b4489508", null ],
+    [ "WriteDedxInfoForVector", "classTrackSelector.html#a427dfe46514712f2f0a6b2152f683d7d", null ],
     [ "WriteFitResults", "classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d", null ],
     [ "WriteMCTruthForTopoAna", "classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1", null ],
     [ "WriteMultiplicities", "classTrackSelector.html#ac9c3597b2eaf9399eb8cf13e8e3df3df", null ],

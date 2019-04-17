@@ -17,10 +17,12 @@ var searchData=
   ['neutraldselector_2ecxx',['NeutralDSelector.cxx',['../NeutralDSelector_8cxx.html',1,'']]],
   ['neutraldselector_2eh',['NeutralDSelector.h',['../NeutralDSelector_8h.html',1,'']]],
   ['next',['Next',['../classParticleTracks.html#ad439f01eb5e427c41cde25063c0a918a',1,'ParticleTracks']]],
+  ['nextcombination',['NextCombination',['../classTrackCollection.html#a028af2779848df88c9c9946090d3b10e',1,'TrackCollection::NextCombination()'],['../namespaceTSGlobals_1_1CombinationShuffler.html#a32acf137c7fba1d37da91b67fb3b7a8a',1,'TSGlobals::CombinationShuffler::NextCombination(const Iter_t first, Iter_t k, const Iter_t last)'],['../namespaceTSGlobals_1_1CombinationShuffler.html#a4d71c8c2f10d9f911e78ed6cd7b0a70b',1,'TSGlobals::CombinationShuffler::NextCombination(const Iter_t first, const Iter_t last, const std::size_t &amp;nCombinations)'],['../namespaceTSGlobals_1_1CombinationShuffler.html#a8fbd6c44f699cea5fdbe9e4ce59a230e',1,'TSGlobals::CombinationShuffler::NextCombination(std::vector&lt; T &gt; &amp;vec, const std::size_t &amp;nCombinations)']]],
   ['ntuplecontainer',['NTupleContainer',['../classNTupleContainer.html',1,'NTupleContainer'],['../classNTupleContainer.html#aad4fcf64aac5b99f3980dde865f253a1',1,'NTupleContainer::NTupleContainer()']]],
   ['ntuplecontainer_2ecxx',['NTupleContainer.cxx',['../NTupleContainer_8cxx.html',1,'']]],
   ['ntuplecontainer_2eh',['NTupleContainer.h',['../NTupleContainer_8h.html',1,'']]],
   ['ntupletopoana',['NTupleTopoAna',['../classNTupleTopoAna.html',1,'NTupleTopoAna'],['../classNTupleTopoAna.html#af162e16e823b754c52e72829daa7b750',1,'NTupleTopoAna::NTupleTopoAna()']]],
   ['ntupletopoana_2eh',['NTupleTopoAna.h',['../NTupleTopoAna_8h.html',1,'']]],
-  ['numberofeventprinted',['NumberOfEventPrinted',['../simulation_8txt.html#a2de7f398b6bc94d1bff9b158a6f06631',1,'simulation.txt']]]
+  ['numberofeventprinted',['NumberOfEventPrinted',['../simulation_8txt.html#a2de7f398b6bc94d1bff9b158a6f06631',1,'simulation.txt']]],
+  ['numberofiterators',['NumberOfIterators',['../classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34dac02a5dcd43649462b80a36225e342db5',1,'TrackCollection']]]
 ];

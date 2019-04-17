@@ -20,6 +20,7 @@ var group__BOSS__objects =
       [ "fP_pim", "classKKFitResult__D0omega__K4pi.html#a2a8e8127292e3183334a5c739b567edf", null ],
       [ "fP_pip1", "classKKFitResult__D0omega__K4pi.html#a8de5e7398bf262759b51d382dababa42", null ],
       [ "fP_pip2", "classKKFitResult__D0omega__K4pi.html#aa08802295ace984942c65618c2165c4a", null ],
+      [ "fRelativeGammaAngle", "classKKFitResult__D0omega__K4pi.html#ae950317dc8ce1cff1d35ab522faa9a25", null ],
       [ "fRelativePhotonAngle", "classKKFitResult__D0omega__K4pi.html#a5990ae1c96bf6534b166d65a4962eded", null ]
     ] ],
     [ "KKFitResult_D0phi_3K3pi", "classKKFitResult__D0phi__3K3pi.html", [
@@ -300,18 +301,23 @@ var group__BOSS__objects =
       [ "fTrackTOF", "classRecTrackPointers.html#a6bc5634805917750cfb4ba8534f9288c", null ]
     ] ],
     [ "TrackCollection", "classTrackCollection.html", [
-      [ "TrackCollection", "classTrackCollection.html#affadc7295a75e4493a63cdcf640c6801", null ],
-      [ "ClearCollection", "classTrackCollection.html#a8c3f9ab68e206c04ff3e515ecd8c0f72", null ],
-      [ "GetIterator", "classTrackCollection.html#ade072001f58248dcabf5f16631c41c72", null ],
-      [ "GetIterator", "classTrackCollection.html#a130ed791239c7f2b1def3a85f58321a7", null ],
-      [ "GetNumberOfIterators", "classTrackCollection.html#a35e96f87f91ebc1c730b5a9edf8b096a", null ],
-      [ "HasEqualIterators", "classTrackCollection.html#ab00a5ff42ac9e5d1fdf99ad7a8c578fd", null ],
-      [ "ResetAllIterators", "classTrackCollection.html#a9b74a77e68c2333d5072e8cae6b48fde", null ],
-      [ "ResetIterator", "classTrackCollection.html#a0120a423266c1232034ae00023755f9a", null ],
-      [ "ResetIterator", "classTrackCollection.html#ae79d00e2d14bd89d622b0c19cde22a5c", null ],
-      [ "SetNumberOfIterators", "classTrackCollection.html#af5492c45021502e8bfeaa4b4241a8a57", null ],
-      [ "fIterators", "classTrackCollection.html#a60996946f2e442660df3bdb3e2ebe8c6", null ],
-      [ "fTrackCollection", "classTrackCollection.html#ac787a59cd6b2a732e6df4e6d773d5363", null ]
+      [ "OutOfRange", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34d", [
+        [ "NumberOfIterators", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34dac02a5dcd43649462b80a36225e342db5", null ]
+      ] ],
+      [ "TrackCollection", "classTrackCollection.html#a86dfe4ea76f2ed1ce17430e6f7a5a45f", null ],
+      [ "AddTrack", "classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6", null ],
+      [ "Clear", "classTrackCollection.html#a770e36cbc659694580fd539b840fe947", null ],
+      [ "FailsMaximumNumberOfParticles", "classTrackCollection.html#a39f7af46517a6083860bcb448b4fb645", null ],
+      [ "FailsMinimumNumberOfParticles", "classTrackCollection.html#a567cc054e68f104b6145d92bca72a4af", null ],
+      [ "FailsNumberOfParticles", "classTrackCollection.html#a9a8793d1606ab1e1e5d0ad2151720d92", null ],
+      [ "GetCollection", "classTrackCollection.html#ad69ec632e2469e510c31ab2270fa6a75", null ],
+      [ "GetName", "classTrackCollection.html#a5e5cce3baaf3e595ba21804736cee482", null ],
+      [ "GetNTracks", "classTrackCollection.html#af7ac89fde8697e0a77761d364a56e54a", null ],
+      [ "GetParticle", "classTrackCollection.html#acc239b27f3697b16c9a20c53099306dd", null ],
+      [ "NextCombination", "classTrackCollection.html#a028af2779848df88c9c9946090d3b10e", null ],
+      [ "fNParticles", "classTrackCollection.html#aa65509ab34dee80a09f09dc52b0ca60b", null ],
+      [ "fParticleName", "classTrackCollection.html#a573f7eea084017fb04edfe019403490c", null ],
+      [ "fTrackColl", "classTrackCollection.html#ad1509e961864078e4c01ddeb0e0b9315", null ]
     ] ],
     [ "fInstances", "group__BOSS__objects.html#gaf185f8936d4f3937f75e48291999b244", null ],
     [ "fIterator", "group__BOSS__objects.html#ga5b1300d5915aaefa20586e4bfa7c9a75", null ]
