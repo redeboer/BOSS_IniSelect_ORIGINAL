@@ -20,14 +20,15 @@ public:
 
   void Clear() { fCollection.clear(); }
   void AddTrack(T* track) { fCollection.push_back(track); }
-  bool HasCorrectNTracks() const { return GetNTracks() == GetNParticles(); }
-  bool HasAtLeastNTracks() const { return GetNTracks() >= GetNParticles(); }
+  bool HasCorrectNTracks() const { return fCollection.size() == fIterators.size(); }
+  bool HasAtLeastNTracks() const { return fCollection.size() >= fIterators.size(); }
+  bool HasIdenticalIters();
 
   const std::vector<T*> GetCollection() const { return fCollection; }
 
-  const size_t& GetNTracks() const { return fCollection.size(); }
-  const size_t& GetNParticles() const { return fIterators.size(); }
-  const char*   GetName() { return fName.Data(); }
+  const size_t GetNTracks() const { return fCollection.size(); }
+  const size_t GetNParticles() const { return fIterators.size(); }
+  const char*  GetName() { return fName.Data(); }
 
   T* UnpackIter(const size_t i = 0);
   T* Next(const size_t i = 0);
@@ -61,7 +62,7 @@ T* TrackCollection<T>::UnpackIter(const size_t i)
 template <typename T>
 typename std::vector<T*>::iterator& TrackCollection<T>::Iter(const size_t& i)
 {
-  if(i >= GetNParticles()) throw NumberOfIterators;
+  if(i >= fIterators.size()) throw NumberOfIterators;
   return fIterators.at(i);
 }
 
@@ -85,6 +86,15 @@ void TrackCollection<T>::LineUpIterators()
 {
   Iter(0) = fCollection.begin();
   for(size_t i = 1; i < fIterators.size(); ++i) Iter(i) = Iter(i - 1) + 1;
+}
+
+template <typename T>
+bool TrackCollection<T>::HasIdenticalIters()
+{
+  for(size_t i = 0; i < fIterators.size(); ++i)
+    for(size_t j = i+1; j < fIterators.size(); ++j)
+      if(Iter(i) == Iter(j)) return true;
+  return false;
 }
 
 #endif

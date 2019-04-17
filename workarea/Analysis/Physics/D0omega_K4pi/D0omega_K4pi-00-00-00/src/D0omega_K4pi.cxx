@@ -429,16 +429,17 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   int count = 0;
   for(size_t i = 0; i < fGammas.GetNParticles(); ++i)
   {
-    while(fGammas.Next(i))
+    do
     {
       ++count;
-      std::cout << "  fitting combination " << count << "..." << std::endl;
+      std::cout << "  fitting combination " << count << "... (" << i << ", " << fGammas.HasIdenticalIters() << ")" << std::endl;
       BuildVertexParameter();
       DoVertexFit();
       DoKinematicFit();
       WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
       if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
     }
+    while(fGammas.Next(i));
   }
 }
 
