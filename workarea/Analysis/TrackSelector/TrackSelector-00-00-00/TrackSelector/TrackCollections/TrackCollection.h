@@ -1,6 +1,7 @@
 #ifndef Analysis_TrackCollection_H
 #define Analysis_TrackCollection_H
 
+#include "TrackSelector/TSGlobals/CombinationShuffler.h"
 #include "TString.h"
 #include <vector>
 
@@ -32,6 +33,7 @@ public:
 
   T* UnpackIter(const size_t i = 0);
   T* Next(const size_t i = 0);
+  bool Next();
 
   void ResetIterators();
   void LineUpIterators();
@@ -44,7 +46,7 @@ public:
 private:
   TString fName;
 
-  std::vector<T*>                        fCollection;
+  std::vector<T*> fCollection;
 
   std::vector<typename std::vector<T*>::iterator> fIterators;
 
@@ -92,9 +94,15 @@ template <typename T>
 bool TrackCollection<T>::HasIdenticalIters()
 {
   for(size_t i = 0; i < fIterators.size(); ++i)
-    for(size_t j = i+1; j < fIterators.size(); ++j)
+    for(size_t j = i + 1; j < fIterators.size(); ++j)
       if(Iter(i) == Iter(j)) return true;
   return false;
+}
+
+template <typename T>
+bool TrackCollection<T>::Next()
+{
+  return TSGlobals::CombinationShuffler::NextCombination(fCombinations, fIterators.size());
 }
 
 #endif
