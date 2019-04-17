@@ -34,7 +34,7 @@ void VertexFitter::FitAndSwim()
   if(!fVertexFit->Fit(0))
   {
     std::cout << "---> WARNING: Vertex fit failed" << endmsg;
-    return;
+    throw Error::FitFailed;
   }
   fVertexFit->Swim(0);
   fIsSuccessful = true;

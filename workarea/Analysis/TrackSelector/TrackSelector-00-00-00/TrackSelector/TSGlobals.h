@@ -45,7 +45,8 @@ namespace TSGlobals
   {
     enum Exception
     {
-      OutOfRange
+      OutOfRange,
+      FitFailed
     };
   }
 }; // namespace TSGlobals

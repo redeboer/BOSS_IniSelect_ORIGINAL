@@ -4,7 +4,7 @@
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "VertexFit/VertexFit.h"
 
-/// @addtogroup BOSS_pobjects
+/// @addtogroup BOSS_objects
 /// @{
 class VertexFitter
 {
