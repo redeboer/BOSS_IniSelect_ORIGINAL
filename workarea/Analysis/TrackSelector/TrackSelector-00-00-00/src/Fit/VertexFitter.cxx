@@ -1,4 +1,4 @@
-#include "TrackSelector/VertexFitter.h"
+#include "TrackSelector/Fit/VertexFitter.h"
 #include "TrackSelector/TSGlobals/TSException.h"
 using namespace TSGlobals::Error;
 

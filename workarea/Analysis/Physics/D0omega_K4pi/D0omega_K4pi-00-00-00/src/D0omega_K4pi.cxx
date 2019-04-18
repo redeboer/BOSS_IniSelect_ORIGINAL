@@ -9,9 +9,10 @@
 #include "CLHEP/Vector/TwoVector.h"
 #include "TrackSelector/TSGlobals.h"
 #include "TrackSelector/TSGlobals/TSException.h"
-#include "VertexFit/KalmanKinematicFit.h"
 #include <string>
 #include <utility>
+
+#include "TrackSelector/Particle/Particle.h"
 
 #ifndef ENABLE_BACKWARDS_COMPATIBILITY
 typedef HepGeom::Point3D<double> HepPoint3D;

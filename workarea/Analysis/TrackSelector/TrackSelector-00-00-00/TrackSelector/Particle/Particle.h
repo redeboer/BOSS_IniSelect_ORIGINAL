@@ -13,18 +13,20 @@
 class Particle
 {
 public:
-  Particle(const TString& name) { Set(name); }
+  Particle(const TString& pdtName) { Set(pdtName); }
   Particle(const Int_t pdgCode) { Set(pdgCode); }
 
-  void Set(const TString& name);
+  void Set(const TString& pdtName);
   void Set(const Int_t pdgCode);
 
-  const TString& GetName() const { return fName; }
+  const TString& GetPdtName() const { return fName; }
   const Int_t&   GetPdgCode() const { return fPdgCode; }
   const Float_t& GetMass() const { return fMass; }
   const Float_t& GetLifetime() const { return fLifetime; }
   const Float_t& GetCharge() const { return fCharge; }
   const Float_t& GetSpin() const { return fSpin; }
+
+  void Print() const;
 
 private:
   TString fName;

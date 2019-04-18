@@ -9,14 +9,14 @@ use EventModel  EventModel-*  Event
 use McTruth     McTruth-*     Event
 use EvtRecEvent EvtRecEvent-* Event
 
-use VertexFit    VertexFit-*   Analysis 
+use VertexFit    VertexFit-*   Analysis
 use ParticleID   ParticleID-*  Analysis
 
-use BesROOT      BesROOT-00-*     External
+use BesROOT      BesROOT-00-*   External
 
 use MdcRecoUtil  MdcRecoUtil-*  Reconstruction/MdcPatRec
 
-apply_pattern component_library 
-library TrackSelector  *.cxx  components/*.cxx  Particle/*.cxx
+apply_pattern component_library
+library TrackSelector  *.cxx  Containers/*.cxx  Fit/*.cxx  Particle/*.cxx
 
 apply_pattern declare_runtime files=*.txt

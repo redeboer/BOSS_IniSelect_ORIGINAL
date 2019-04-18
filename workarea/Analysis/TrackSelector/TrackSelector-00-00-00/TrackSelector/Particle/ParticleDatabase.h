@@ -2,6 +2,9 @@
 #define Analysis_TrackSelector_ParticleDatabase_H
 
 #include "MdcRecoUtil/PdtEntry.h"
+#include "TrackSelector/TSGlobals/TSException.h"
+#include <iostream>
+#include <sstream>
 #include <string>
 
 /// Singleton access class to external database of particles.
@@ -17,8 +20,8 @@ class ParticleDatabase
 public:
   static const ParticleDatabase* Instance();
 
-  static PdtEntry* GetParticle(const std::string& name);
-  static PdtEntry* GetParticle(const Int_t name);
+  static PdtEntry* GetParticle(const std::string& pdtName);
+  static PdtEntry* GetParticle(const int pdgCode);
 
 private:
   static const ParticleDatabase* fUniqueInstance;
@@ -27,8 +30,21 @@ private:
   ParticleDatabase(const ParticleDatabase&){};
   ParticleDatabase& operator=(const ParticleDatabase&){};
 
-  bool        PdtPathExists() const;
-  static void ThrowNoParticleException();
+  bool PdtPathExists() const;
+
+  template<typename T> inline
+  static void ThrowNoParticleException(const T& info);
 };
 /// @}
+
+template<typename T> inline
+void ParticleDatabase::ThrowNoParticleException(const T& info)
+{
+  std::stringstream ss;
+  ss << "Particle \"" << info << "\" does not exist in database" << std::endl;
+  TSGlobals::Error::Exception message(ss.str());
+  std::cout << message.GetMessage() << std::endl;
+  throw message;
+}
+
 #endif

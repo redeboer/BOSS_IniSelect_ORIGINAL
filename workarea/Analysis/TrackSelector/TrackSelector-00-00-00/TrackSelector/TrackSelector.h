@@ -25,10 +25,10 @@
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
 #include "TrackSelector/Containers/SecondaryVertexGeometry.h"
-#include "TrackSelector/KKFitResult.h"
-#include "TrackSelector/KinematicFitter.h"
+#include "TrackSelector/Fit/KKFitResult.h"
+#include "TrackSelector/Fit/KinematicFitter.h"
+#include "TrackSelector/Fit/VertexFitter.h"
 #include "TrackSelector/TrackCollections/RecTrackPointers.h"
-#include "TrackSelector/VertexFitter.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
 #include <vector>

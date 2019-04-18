@@ -1,4 +1,4 @@
-#include "TrackSelector/KinematicFitter.h"
+#include "TrackSelector/Fit/KinematicFitter.h"
 #include "TrackSelector/TSGlobals/TSException.h"
 #include "TrackSelector/TSGlobals.h"
 using namespace TSGlobals;

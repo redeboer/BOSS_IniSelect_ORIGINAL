@@ -44,9 +44,7 @@ namespace TSGlobals
   } // namespace Mass
   namespace Paths
   {
-    static const std::string boss = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4";
-    static const std::string bossVersion = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4";
-    static const std::string pdtTable = boss + "/" + bossVersion + "/InstallArea/share/pdt.table";
+    static const char* pdtTable = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
 }; // namespace TSGlobals
 
