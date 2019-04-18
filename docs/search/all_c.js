@@ -139,6 +139,5 @@ var searchData=
   ['mproton',['mproton',['../PipiJpsi_8cxx.html#a3f4ab3a0a9ae0307a81f83ccf144d8c2',1,'PipiJpsi.cxx']]],
   ['mpsip',['mpsip',['../PipiJpsi_8cxx.html#a20d4b52936fc600c5182beb40bda7a95',1,'PipiJpsi.cxx']]],
   ['mrho0',['mrho0',['../RhopiAlg_8cxx.html#a359fc7286cb3fe45739029aab90fef22',1,'RhopiAlg.cxx']]],
-  ['mu',['mu',['../namespaceTSGlobals_1_1Mass.html#adf1dbaa415c9c616e722184eaeb2dd4e',1,'TSGlobals::Mass']]],
-  ['muon',['Muon',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa996168e1ebf7338abe28aec0c07b386f',1,'Particle']]]
+  ['mu',['mu',['../namespaceTSGlobals_1_1Mass.html#adf1dbaa415c9c616e722184eaeb2dd4e',1,'TSGlobals::Mass']]]
 ];

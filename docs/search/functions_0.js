@@ -19,7 +19,8 @@ var searchData=
   ['addntupleitems_5fvertex',['AddNTupleItems_vertex',['../classTrackSelector.html#a18c22f3459324ff1a8cce8d969fe896f',1,'TrackSelector']]],
   ['addresonance',['AddResonance',['../classKinematicFitter.html#a971affc56fb6c2ecacc4a0fe568b312f',1,'KinematicFitter']]],
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
-  ['addtrack',['AddTrack',['../classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c',1,'KinematicFitter::AddTrack(RecEmcShower *track)'],['../classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6',1,'KinematicFitter::AddTrack(WTrackParameter track)'],['../classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6',1,'TrackCollection::AddTrack()'],['../classVertexFitter.html#a63f1ef7436ffafe823f09dcda8d06adf',1,'VertexFitter::AddTrack()']]],
+  ['addtrack',['AddTrack',['../classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c',1,'KinematicFitter::AddTrack(RecEmcShower *track)'],['../classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6',1,'KinematicFitter::AddTrack(WTrackParameter track)'],['../classVertexFitter.html#a63f1ef7436ffafe823f09dcda8d06adf',1,'VertexFitter::AddTrack()'],['../classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6',1,'TrackCollection::AddTrack()']]],
+  ['addtrackstokinematicfitter',['AddTracksToKinematicFitter',['../classD0omega__K4pi.html#a19d9f30e1d5f38f9dbd005376590e2d6',1,'D0omega_K4pi']]],
   ['angledifferences',['AngleDifferences',['../classAngleDifferences.html#a5eca4d4bf36f0bc2bd3175f5e4521ef6',1,'AngleDifferences::AngleDifferences()'],['../classAngleDifferences.html#afd1128339478126cfd0bef18c9a669fd',1,'AngleDifferences::AngleDifferences(const CLHEP::Hep3Vector &amp;vec1, const CLHEP::Hep3Vector &amp;vec2)']]],
   ['assertpostconstructed',['AssertPostConstructed',['../classTrackSelector.html#abf66c40a572bf69d485310545c813613',1,'TrackSelector']]]
 ];

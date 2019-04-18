@@ -92,6 +92,7 @@ var classTrackSelector =
     [ "fNTuple_TofOB", "classTrackSelector.html#aa60bae0909be3c83b0154eda59bc9d52", null ],
     [ "fNTuple_topology", "classTrackSelector.html#aac49bce955deaa4b978829b025386d8a", null ],
     [ "fNTuple_vertex", "classTrackSelector.html#a54a6df6c7c89664d90764ddaa47e236d", null ],
+    [ "fParticleSel", "classTrackSelector.html#a1cfbb6c304fe4005f0f0fa87a6221286", null ],
     [ "fPIDInstance", "classTrackSelector.html#a8611bb6308f03110601aa7787c38a304", null ],
     [ "fPostConstructed", "classTrackSelector.html#ab32cedbfaa07339347ff36556373c390", null ],
     [ "fSecondaryVtx", "classTrackSelector.html#a736c6519e8ca9b1cc87115db93b0be38", null ],

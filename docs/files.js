@@ -38,6 +38,12 @@ var files =
     [ "NTupleContainer.cxx", "NTupleContainer_8cxx.html", null ],
     [ "NTupleContainer.h", "NTupleContainer_8h.html", null ],
     [ "NTupleTopoAna.h", "NTupleTopoAna_8h.html", null ],
+    [ "Particle.cxx", "Particle_8cxx.html", "Particle_8cxx" ],
+    [ "Particle.h", "Particle_8h.html", null ],
+    [ "ParticleDatabase.cxx", "ParticleDatabase_8cxx.html", null ],
+    [ "ParticleDatabase.h", "ParticleDatabase_8h.html", null ],
+    [ "ParticleSelection.cxx", "ParticleSelection_8cxx.html", null ],
+    [ "ParticleSelection.h", "ParticleSelection_8h.html", null ],
     [ "ParticleTracks.h", "ParticleTracks_8h.html", null ],
     [ "PipiJpsi.cxx", "PipiJpsi_8cxx.html", "PipiJpsi_8cxx" ],
     [ "PipiJpsi.h", "PipiJpsi_8h.html", null ],
@@ -57,8 +63,6 @@ var files =
       [ "OutOfRange", "classTSGlobals_1_1Error_1_1OutOfRange.html", "classTSGlobals_1_1Error_1_1OutOfRange" ]
     ] ],
     [ "TSGlobals.h", "TSGlobals_8h.html", "TSGlobals_8h" ],
-    [ "TSParticle.cxx", "TSParticle_8cxx.html", null ],
-    [ "TSParticle.h", "TSParticle_8h.html", null ],
     [ "VertexFitter.cxx", "VertexFitter_8cxx.html", null ],
     [ "VertexFitter.h", "VertexFitter_8h.html", null ]
 ];

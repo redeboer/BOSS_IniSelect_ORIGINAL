@@ -1,8 +1,6 @@
 var searchData=
 [
   ['k',['K',['../namespaceTSGlobals_1_1Mass.html#a8925c6a04e92a9eef1485222cf54b757',1,'TSGlobals::Mass']]],
-  ['kaonneg',['KaonNeg',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa6eaf5d16721b55a439971c19b22b5046',1,'Particle']]],
-  ['kaonpos',['KaonPos',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa8d5688e416482cba16aed6b948cdff09',1,'Particle']]],
   ['keyexists',['KeyExists',['../classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087',1,'Container_indexed::KeyExists(const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const'],['../classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423',1,'Container_indexed::KeyExists(const std::string &amp;key) const']]],
   ['kinematicfitter',['KinematicFitter',['../classKinematicFitter.html',1,'KinematicFitter'],['../classKinematicFitter.html#a8810c72ed80461cd8c8b4db41f02de13',1,'KinematicFitter::KinematicFitter()']]],
   ['kinematicfitter_2ecxx',['KinematicFitter.cxx',['../KinematicFitter_8cxx.html',1,'']]],

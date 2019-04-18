@@ -22,6 +22,8 @@ var annotated_dup =
     [ "NTupleContainer", "classNTupleContainer.html", "classNTupleContainer" ],
     [ "NTupleTopoAna", "classNTupleTopoAna.html", "classNTupleTopoAna" ],
     [ "Particle", "classParticle.html", "classParticle" ],
+    [ "ParticleDatabase", "classParticleDatabase.html", "classParticleDatabase" ],
+    [ "ParticleSelection", "classParticleSelection.html", "classParticleSelection" ],
     [ "ParticleTracks", "classParticleTracks.html", "classParticleTracks" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "RecTrackPointers", "classRecTrackPointers.html", "classRecTrackPointers" ],

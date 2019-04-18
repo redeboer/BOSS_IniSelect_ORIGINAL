@@ -7,6 +7,7 @@ var classD0omega__K4pi =
     [ "AddNTupleItems_Fit", "classD0omega__K4pi.html#a60789665097ecc3834bbb8259308202b", null ],
     [ "AddNTupleItems_mult_sel", "classD0omega__K4pi.html#a8c53fe80fdfdbd9e8368e99d6146b9c4", null ],
     [ "AddNTupleItems_photon", "classD0omega__K4pi.html#a7d77f7adc1f9175e68c8fe09f12f9f92", null ],
+    [ "AddTracksToKinematicFitter", "classD0omega__K4pi.html#a19d9f30e1d5f38f9dbd005376590e2d6", null ],
     [ "CategorizeTrack", "classD0omega__K4pi.html#adccf50d0dd39dd8839e9311f398b7a43", null ],
     [ "CreateChargedTrackSelections", "classD0omega__K4pi.html#af74250526bb3431cfdc5d42f042944e6", null ],
     [ "CreateMCTruthSelection", "classD0omega__K4pi.html#acd9a9b637ccc828c76e137f5d39acea4", null ],
@@ -45,18 +46,10 @@ var classD0omega__K4pi =
     [ "fCutFlow_NPIDnumberOK", "classD0omega__K4pi.html#a1665842a2acf7e78de0aaba2709d6bf1", null ],
     [ "fEmcPosition", "classD0omega__K4pi.html#a7601667261297624a30b7a03b1300772", null ],
     [ "fExtendedEmcPosition", "classD0omega__K4pi.html#a8708ce0991518b7af1faf5a36367421b", null ],
-    [ "fGammas", "classD0omega__K4pi.html#af017d4a133727ba52c858a27b5e12e16", null ],
-    [ "fKaonNeg", "classD0omega__K4pi.html#a00cf0d36b5a9386a173d6284394b0fa6", null ],
-    [ "fMcKaonNeg", "classD0omega__K4pi.html#a2d94cc4343a3eda0f8337d1af8fce010", null ],
-    [ "fMcPhotons", "classD0omega__K4pi.html#a7e145ab8516bc4adf823320c00561cdf", null ],
-    [ "fMcPionNeg", "classD0omega__K4pi.html#a6d4079fb308eb23e3116a7272fa45012", null ],
-    [ "fMcPionPos", "classD0omega__K4pi.html#a70ffda057c95e359b53d9f87ce6abc98", null ],
     [ "fNTuple_dedx_K", "classD0omega__K4pi.html#abd8499fc7271aa1f3a1e241e2599a7f2", null ],
     [ "fNTuple_dedx_pi", "classD0omega__K4pi.html#a55a4f75f86eab0901e422f76ab1b9cbb", null ],
     [ "fNTuple_fit4c_all", "classD0omega__K4pi.html#a45c9ce14685825b4d358a61d7d5afcf5", null ],
     [ "fNTuple_fit4c_best", "classD0omega__K4pi.html#a5f23489df0823382e2a4f50a755cffc8", null ],
     [ "fNTuple_fit_mc", "classD0omega__K4pi.html#a23b3401a007a2cd4c09de4db7f00894e", null ],
-    [ "fNTuple_photon", "classD0omega__K4pi.html#a616ad8d80129f54427c43942c9f1109f", null ],
-    [ "fPionNeg", "classD0omega__K4pi.html#ac244d9aac4f53372e881c46b323cf1d6", null ],
-    [ "fPionPos", "classD0omega__K4pi.html#ad06e3d2c39ba48cff6a9e287e42c47a6", null ]
+    [ "fNTuple_photon", "classD0omega__K4pi.html#a616ad8d80129f54427c43942c9f1109f", null ]
 ];

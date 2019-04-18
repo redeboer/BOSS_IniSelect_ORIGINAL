@@ -5,6 +5,7 @@ var searchData=
   ['operator_2b_2b',['operator++',['../classCutObject.html#afd8a71305dfc11c83e35579619fdf668',1,'CutObject']]],
   ['operator_2b_3d',['operator+=',['../classCutObject.html#a56ea49c06134a77b2deeaf4233742814',1,'CutObject']]],
   ['operator_3c',['operator&lt;',['../classCutObject.html#ab0bfa285dfdc6af25794d40c92498f4b',1,'CutObject']]],
+  ['operator_3d',['operator=',['../classParticleDatabase.html#ac72f963feecdc47678fd3673c0b8064c',1,'ParticleDatabase']]],
   ['operator_3d_3d',['operator==',['../classCutObject.html#a8b77c6026c87ff9307130871126433dd',1,'CutObject']]],
   ['operator_3e',['operator&gt;',['../classCutObject.html#a7f8394198213950c839cb939e155c8c0',1,'CutObject']]],
   ['outofrange',['OutOfRange',['../classTSGlobals_1_1Error_1_1OutOfRange.html',1,'TSGlobals::Error::OutOfRange'],['../classTSGlobals_1_1Error_1_1OutOfRange.html#ac7e22b77622ffad3109f7389950d3626',1,'TSGlobals::Error::OutOfRange::OutOfRange()']]],

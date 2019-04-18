@@ -33,6 +33,8 @@ var hierarchy =
     [ "m_trkInfo", "classm__trkInfo.html", null ],
     [ "TSGlobals::Error::OutOfRange", "classTSGlobals_1_1Error_1_1OutOfRange.html", null ],
     [ "Particle", "classParticle.html", null ],
+    [ "ParticleDatabase", "classParticleDatabase.html", null ],
+    [ "ParticleSelection", "classParticleSelection.html", null ],
     [ "ParticleTracks", "classParticleTracks.html", null ],
     [ "RecTrackPointers", "classRecTrackPointers.html", [
       [ "TrackSelector", "classTrackSelector.html", null ]
@@ -40,8 +42,6 @@ var hierarchy =
     [ "SecondaryVertexGeometry", "classSecondaryVertexGeometry.html", null ],
     [ "TrackCollection< T >", "classTrackCollection.html", null ],
     [ "TrackCollection< Event::McParticle *>", "classTrackCollection.html", null ],
-    [ "TrackCollection< Event::McParticle >", "classTrackCollection.html", null ],
     [ "TrackCollection< EvtRecTrack *>", "classTrackCollection.html", null ],
-    [ "TrackCollection< EvtRecTrack >", "classTrackCollection.html", null ],
     [ "VertexFitter", "classVertexFitter.html", null ]
 ];
