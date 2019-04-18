@@ -1,6 +1,19 @@
 # Author: Remco de Boer
 # Date: November 5th, 2018
 
+# * Check if in administrator mode * #
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root. To do so, use sudo."
+  exit
+fi
+
+# * Install prerequisites * #
+{ apt-get install git dpkg-dev cmake g++ gcc binutils libx11-dev libxpm-dev libxft-dev libxext-dev; } \
+&> /dev/null
+# * Optional packages * #
+{ apt-get install gfortran libssl-dev libpcre3-dev xlibmesa-glu-dev libglew1.5-dev libftgl-dev libmysqlclient-dev libfftw3-dev libcfitsio-dev graphviz-dev libavahi-compat-libdnssd-dev libldap2-dev python-dev libxml2-dev libkrb5-dev libgsl0-dev libqt4-dev; } \
+&> /dev/null
+
 # * Check number of input parameters * #
   if [[ $# -lt 1 ]]; then
     echo "ERROR: This script needs one parameter"
@@ -39,7 +52,7 @@
   fi
 
 # * Parameter names * #
-  outputPath="include"
+  outputPath="extLibs"
   buildDir="compile"
 
 # * Get repository name * #
@@ -67,6 +80,7 @@
     echo "Pulling latest version from \"${repoURL}\""...
   fi
   cd "${repoName}"
+  echo "Switching to master..."
   git checkout master
   git pull
   if [[ $? != 0 ]]; then
@@ -120,7 +134,9 @@
     fi
     echo
   fi
-  cmake ${cmakeOptions} ..
+  cmake ${cmakeOptions} .. && \
+  make -j$(nproc) && \
+  make install
 
   if [[ $? -ne 0 ]]; then
     echo
