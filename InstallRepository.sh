@@ -12,7 +12,7 @@
   elif [ "${repoChoice}" == "gaudi" ]; then
     repoURL="https://gitlab.cern.ch/gaudi/Gaudi.git"
   elif [ "${repoChoice}" == "geant4" ]; then
-    repoURL="https://gitlab.cern.ch/geant4/geant4"
+    repoURL="https://gitlab.cern.ch/geant4/geant4.git"
   elif [ "${repoChoice}" == "root" ]; then
     repoURL="http://github.com/root-project/root.git"
     repoVersion="6-16-00"
@@ -35,7 +35,7 @@
 
 # * Get repository name * #
   repoName="${repoURL/*\/}"
-  repoName="${repoName/.git}"
+  repoName="${repoName/.git*}"
 
 # * Ask confirmation from user * #
   echo "This script will clone or pull repository"
@@ -76,13 +76,14 @@
   echo
   read -p "Compile source code for repository \"${repoName}\"? (y/n) " -n 1 -r
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo
     exit 1
   fi
 
 # * Compile * #
   mkdir -p "${buildDir}"
   cd "${buildDir}"
-  if [ "${ls | wc -l}" != "0" ]; fi
+  if [[ "$(ls | wc -l)" != "0" ]]; then
     echo "Build directory \"${outputPath}/${buildDir}\" is not empty"
     read -p "--> Remove files? (y/n) " -n 1 -r
     if [[ $REPLY =~ ^[Yy]$ ]]; then
