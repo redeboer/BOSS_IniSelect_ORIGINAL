@@ -22,7 +22,7 @@
 # * Check input and output paths * #
   HeaderSubPath="InstallArea/include"
   inputPath="${BossPath}/${BossVersion}/${HeaderSubPath}"
-  outputPath="include/BOSS"
+  outputPath="extLibs/BOSS"
   # outputPath="/scratchfs/bes/${USER}/BOSS/include"
   if [ ! -d "${inputPath}" ]; then
     echo "ERROR: Folder"
@@ -43,6 +43,7 @@
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
   fi
+  echo
 
 # * Perform COPY and OVERWRITE task * #
   echo "Copying files..."
@@ -60,3 +61,11 @@
     echo "Removing files \"${i}\""
     rm -rf $(find -iname "${i}")
   done
+
+# * Put headers one folder up and then into an include folder * #
+  echo "Moving all files one folder up..."
+  for i in $(ls); do
+    mv $i/$i/* $i/
+  done
+  mkdir -p "include"
+  mv * "include/"
