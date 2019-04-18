@@ -11,6 +11,7 @@
 /// Global **parameters** encapsulated in namespaces.
 
 #include "CLHEP/Vector/LorentzVector.h"
+#include <string>
 #include <vector>
 
 /// @addtogroup BOSS_globals
@@ -41,6 +42,12 @@ namespace TSGlobals
     const double                     arr[] = {e, mu, pi, K, p};
     static const std::vector<double> TOF(arr, arr + sizeof(arr) / sizeof(*arr));
   } // namespace Mass
+  namespace Paths
+  {
+    static const std::string boss = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4";
+    static const std::string bossVersion = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4";
+    static const std::string pdtTable = boss + "/" + bossVersion + "/InstallArea/share/pdt.table";
+  } // namespace Paths
 }; // namespace TSGlobals
 
 /// @}
