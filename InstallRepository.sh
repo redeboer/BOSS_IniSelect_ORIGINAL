@@ -40,7 +40,7 @@
 
 # * Parameter names * #
   outputPath="include"
-  buildDir="build"
+  buildDir="compile"
 
 # * Get repository name * #
   repoName="${repoURL/*\/}"
@@ -122,9 +122,40 @@
   fi
   cmake ${cmakeOptions} ..
 
-  if [[ $? != 0 ]]; then
+  if [[ $? -ne 0 ]]; then
     echo
     echo "ERROR: Failed to run cmake"
     echo "Perhaps you miss some dependencies?"
     echo "Read the above output..."
+  else
+    echo "SUCCESSFULLY build ${repoName}"
+    read -p "--> Remove build files? (y/n) " -n 1 -r
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      cd - > /dev/null
+      rm -rf "${buildDir}"
+    fi
+
   fi
+
+# * Install ROOT: tell Ubuntu how to run ROOT * #
+  if [ "${repoChoice}" == "root" ]; then
+    cd /usr/local/root
+    if [[ $? -ne 0 ]]; then
+      exit 1
+    fi
+    . bin/thisroot.sh
+    source bin/thisroot.sh
+
+    # * Information about adding ROOT to your bash.
+    # ! BE CAREFUL IF YOU COPY FROM THIS FILE: replace \$ by $
+    read -p "
+    Installation of ROOT completed! Upon pressing ENTER, the path variables for ROOT will be set in your .bashrc file. Gedit will be opened so you can check the result."
+    echo "
+    # CERN ROOT
+    export ROOTSYS=/usr/local/root
+    export PATH=\$ROOTSYS/bin:\$PATH
+    export PYTHONDIR=\$ROOTSYS
+    export LD_LIBRARY_PATH=\$ROOTSYS/lib:\$PYTHONDIR/lib:\$ROOTSYS/bindings/pyroot:\$LD_LIBRARY_PATH
+    export PYTHONPATH=\$ROOTSYS/lib:\$PYTHONPATH:\$ROOTSYS/bindings/pyroot" >> ~/.bashrc
+    gedit ~/.bashrc
+  else
