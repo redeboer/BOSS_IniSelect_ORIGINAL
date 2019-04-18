@@ -17,6 +17,6 @@ use BesROOT      BesROOT-00-*   External
 use MdcRecoUtil  MdcRecoUtil-*  Reconstruction/MdcPatRec
 
 apply_pattern component_library
-library TrackSelector  *.cxx  Containers/*.cxx  Fit/*.cxx  Particle/*.cxx
+library TrackSelector  *.cxx  Containers/*.cxx  Fit/*.cxx  Particle/*.cxx  TrackCollections/*.cxx
 
 apply_pattern declare_runtime files=*.txt

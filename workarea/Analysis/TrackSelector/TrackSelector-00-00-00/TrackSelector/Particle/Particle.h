@@ -13,6 +13,7 @@
 class Particle
 {
 public:
+  Particle() {}
   Particle(const TString& pdtName) { Set(pdtName); }
   Particle(const Int_t pdgCode) { Set(pdgCode); }
 

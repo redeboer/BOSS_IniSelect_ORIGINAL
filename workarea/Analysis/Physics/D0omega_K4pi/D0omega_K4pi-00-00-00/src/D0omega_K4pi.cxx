@@ -84,7 +84,7 @@ void D0omega_K4pi::AddNTupleItems_mult_sel()
 {
   TrackCollection<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
-    fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetName()));
+    fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetPdtName()));
 }
 
 /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
@@ -329,7 +329,7 @@ void D0omega_K4pi::WriteMultiplicities()
   if(!fNTuple_mult_sel.DoWrite()) return;
   TrackCollection<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
-    fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetName())) = coll->GetNTracks();
+    fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
   fNTuple_mult_sel.Write();
 }
 
@@ -342,7 +342,7 @@ void D0omega_K4pi::PrintMultiplicities()
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
   {
     if(i) fLog << ", ";
-    fLog << Form("N_%s = ", coll->GetName(), coll->GetNTracks());
+    fLog << Form("N_%s = ", coll->GetPdtName(), coll->GetNTracks());
     ++i;
   }
   fLog << endmsg;

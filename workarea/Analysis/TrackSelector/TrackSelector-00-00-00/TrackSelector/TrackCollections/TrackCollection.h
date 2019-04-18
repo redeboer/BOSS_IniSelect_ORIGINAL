@@ -1,5 +1,5 @@
-#ifndef Analysis_TrackCollection_H
-#define Analysis_TrackCollection_H
+#ifndef Analysis_TrackSelector_TrackCollection_H
+#define Analysis_TrackSelector_TrackCollection_H
 
 #include "TString.h"
 #include "TrackSelector/Particle/Particle.h"
@@ -15,6 +15,7 @@ template <typename T>
 class TrackCollection
 {
 public:
+  TrackCollection() {}
   TrackCollection(const TString& pdtName, const size_t nparticles = 1) :
     fParticle(pdtName),
     fNParticles(nparticles)
@@ -25,15 +26,16 @@ public:
   void SetNParticles(const size_t nparticles) { fNParticles = nparticles; }
   void SetParticle(const TString& pdtName) { fParticle = Particle(pdtName); }
 
-  void SetMultCut_exact(){};
-  void SetMultCut_atleast();
+  void SetMultCut_EqualTo() { fMultiplicityCut = EqualTo; }
+  void SetMultCut_AtLeast() { fMultiplicityCut = AtLeast; };
+  void SetMultCut_AtMost() { fMultiplicityCut = AtMost; };
 
   bool FailsMultiplicityCut() const;
 
   const std::vector<T*>& GetCollection() const { return fTrackColl; }
 
   const size_t   GetNTracks() const { return fTrackColl.size(); }
-  const char*    GetName() const { return fParticle.GetName(); }
+  const char*    GetPdtName() const { return fParticle.GetPdtName(); }
   const Float_t& GetMass() const { return fParticle.GetMass(); }
   T*             GetParticle(const size_t i = 0) const;
 
@@ -49,8 +51,10 @@ private:
     AtLeast,
     AtMost
   };
-  Particle         fParticle;
-  const size_t     fNParticles;
+
+  Particle fParticle;
+  size_t   fNParticles;
+
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;
 };
