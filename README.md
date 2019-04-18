@@ -15,11 +15,19 @@ Originally, this repository was contained within the [BOSS Afterburner](https://
 
 * An `NTupleContainer` faciliates the booking procedure for `NTuple`s.
 
-* A `CutObject` that helps in recording cut flow. The cut names are defined automatically as corresponding job properties and can be set at run time through the job options file.
+* Selections of identified tracks are assembled two [`TrackCollection`](`https://redeboer.github.io/BOSS_IniSelect/classTrackCollection.html`) objects in algorithms you derive of `TrackSelector`. Other objects that are of help at this level too are:
 
-* A `JobSwitch` object. If this object is declared in the header and constructor of the `TrackSelector` or a derived algorithm, it allows one to set it through the job options.
+    * Kalman kinematic fit and vertex fit procedure is contained within objects [`KinematicFitter`](https://redeboer.github.io/BOSS_IniSelect/classKinematicFitter.html) and [`VertexFitter`](https://redeboer.github.io/BOSS_IniSelect/classVertexFitter.html).
 
-* `KKFitResults`, an abstract container for storing fit results from the Kalman kinematic fit procedure. It also allows one to compare different fit results and to write the one which is best.
+    * [`CutObject`](https://redeboer.github.io/BOSS_IniSelect/classCutObject.html) helps recording cut flow. The cut names are defined automatically as corresponding job properties and can be set at run time through the job options file.
+
+    * [`JobSwitch`](https://redeboer.github.io/BOSS_IniSelect/classJobSwitch.html) object: if this object is declared in the header and constructor of the `TrackSelector` or a derived algorithm, it allows one to set its corresponding switch (`true`/`false`) through the job options.
+
+    * [`KKFitResults`](https://redeboer.github.io/BOSS_IniSelect/classKKFitResult.html), an abstract container for storing fit results from the Kalman kinematic fit procedure. It also allows one to compare different fit results and to write the one which is best.
+
+* Beginnings of exception handling (`try`-`throw`-`catch`) through the objects in `namespace` [`Error`](https://redeboer.github.io/BOSS_IniSelect/namespaceTSGlobals_1_1Error.html) instead of status codes.
+
+* A [handy `bash` script](https://github.com/redeboer/BOSS_IniSelect/blob/master/InstallRepository.sh) for *downloading and installing* the latest versions of HEP frameworks like ROOT, CLHEP and Gaudi.
 
 
 ## How to get it and contribute?
