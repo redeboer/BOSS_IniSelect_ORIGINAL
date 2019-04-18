@@ -7,6 +7,7 @@ ExtensionsToFormat=(
 
 cd $(pwd)
 for ext in ${ExtensionsToFormat[@]}; do
-  clang-format -i $(find . -type f -iname "*.${ext}")
+  echo "Applying clang-format to \"${ext}\" files..."
+  { clang-format -i $(find . -type f -iname "*.${ext}" | grep -ve "^./extLibs"); } &> /dev/null
 done
 cd - > /dev/null
