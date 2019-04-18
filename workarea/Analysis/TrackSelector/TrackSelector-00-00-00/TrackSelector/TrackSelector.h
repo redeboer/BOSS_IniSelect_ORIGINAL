@@ -29,6 +29,7 @@
 #include "TrackSelector/Fit/KinematicFitter.h"
 #include "TrackSelector/Fit/VertexFitter.h"
 #include "TrackSelector/TrackCollections/RecTrackPointers.h"
+#include "TrackSelector/TrackCollections/ParticleSelection.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
 #include <vector>
@@ -231,6 +232,7 @@ protected:
 
   /// @name Other stored values
   ///@{
+  ParticleSelection       fParticleSel;
   SecondaryVertexGeometry fSecondaryVtx;
   HepPoint3D              fVertexPoint;
   VertexFitter            fVertexFitter;

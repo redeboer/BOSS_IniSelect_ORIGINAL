@@ -32,15 +32,6 @@ using namespace TSGlobals;
 D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   /// * Construct base algorithm `TrackSelector`.
   TrackSelector(name, pSvcLocator),
-  /// * Construct `TrackCollection`s.
-  fMcKaonNeg("K-"),
-  fMcPionNeg("pi-"),
-  fMcPionPos("pi+", 2),
-  fMcPhotons("g", 2),
-  fKaonNeg("K-"),
-  fPionNeg("pi-"),
-  fPionPos("pi+", 2),
-  fGammas("g", 2),
   /// * Construct `NTuple::Tuple` containers used in derived classes.
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
@@ -76,6 +67,10 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 StatusCode D0omega_K4pi::initialize_rest()
 {
   PrintFunctionName("D0omega_K4pi", __func__);
+  fParticleSel.SetN_KaonMin(1);  /// * `"NPhotons"`: Number of \f$\gamma\f$.
+  fParticleSel.SetN_PionMin(1);  /// * `"NKaonPos"`: Number of \f$K^+\f$.
+  fParticleSel.SetN_PionPlus(2); /// * `"NKaonNeg"`: Number of \f$K^-\f$.
+  fParticleSel.SetN_Photons(2);  /// * `"NPionPos"`: Number of \f$\pi^-\f$.
   AddNTupleItems_mult_sel();
   AddNTupleItems_dedx();
   AddNTupleItems_fit();
@@ -87,10 +82,9 @@ StatusCode D0omega_K4pi::initialize_rest()
 /// `"mult_select"`: Multiplicities of selected particles.
 void D0omega_K4pi::AddNTupleItems_mult_sel()
 {
-  fNTuple_mult_sel.AddItem<int>("NPhotons"); /// * `"NPhotons"`: Number of \f$\gamma\f$.
-  fNTuple_mult_sel.AddItem<int>("NKaonPos"); /// * `"NKaonPos"`: Number of \f$K^+\f$.
-  fNTuple_mult_sel.AddItem<int>("NKaonNeg"); /// * `"NKaonNeg"`: Number of \f$K^-\f$.
-  fNTuple_mult_sel.AddItem<int>("NPionPos"); /// * `"NPionPos"`: Number of \f$\pi^-\f$.
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+    fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetName()));
 }
 
 /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
@@ -210,9 +204,7 @@ void D0omega_K4pi::CutNumberOfChargedParticles()
 /// Create selections of **charged** tracks: \f$K^-\f$, \f$\pi^+\f$, and \f$\pi^+\f$.
 void D0omega_K4pi::CreateChargedTrackSelections()
 {
-  fKaonNeg.Clear();
-  fPionPos.Clear();
-  fPionNeg.Clear();
+  fParticleSel.ClearCharged();
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     if(!InitializePID()) continue;
@@ -245,29 +237,29 @@ bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
     if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
     if(fTrackKal->charge() > 0)
-      fPionPos.AddTrack(track);
+      fParticleSel.GetCollection("pi+").AddTrack(track);
     else
-      fPionNeg.AddTrack(track);
+      fParticleSel.GetCollection("pi-").AddTrack(track);
   }
   else
   {
     if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-    if(fTrackKal->charge() < 0) fKaonNeg.AddTrack(track);
+    if(fTrackKal->charge() < 0) fParticleSel.GetCollection("K-").AddTrack(track);
   }
 }
 
 /// Create selection **neutral** tracks (photons).
 void D0omega_K4pi::CreateNeutralTrackSelections()
 {
-  fGammas.Clear();
+  fParticleSel.ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
     AngleDifferences smallestAngles = FindSmallestPhotonAngles();
     smallestAngles.ConvertToDegrees();
     WritePhotonKinematics(smallestAngles);
     if(CutPhotonAngles(smallestAngles)) continue;
-    fGammas.AddTrack(*fTrackIter);
+    fParticleSel.GetPhotons().AddTrack(*fTrackIter);
   }
 }
 
@@ -335,10 +327,9 @@ void D0omega_K4pi::WriteMultiplicities()
 {
   PrintMultiplicities();
   if(!fNTuple_mult_sel.DoWrite()) return;
-  fNTuple_mult_sel.GetItem<int>("NKaonNeg") = fKaonNeg.GetNTracks();
-  fNTuple_mult_sel.GetItem<int>("NPhoton")  = fGammas.GetNTracks();
-  fNTuple_mult_sel.GetItem<int>("NPionNeg") = fPionNeg.GetNTracks();
-  fNTuple_mult_sel.GetItem<int>("NPionPos") = fPionPos.GetNTracks();
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+    fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetName())) = coll->GetNTracks();
   fNTuple_mult_sel.Write();
 }
 
@@ -346,19 +337,23 @@ void D0omega_K4pi::WriteMultiplicities()
 void D0omega_K4pi::PrintMultiplicities()
 {
   fLog << MSG::INFO;
-  fLog << "N_{K^-} = " << fKaonNeg.GetNTracks() << ", "
-       << "N_{\pi^+} = " << fPionPos.GetNTracks() << ", "
-       << "N_{\pi^-} = " << fPionNeg.GetNTracks() << ", "
-       << "N_{\gamma} = " << fGammas.GetNTracks() << endmsg;
+  Int_t i = 0;
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  {
+    if(i) fLog << ", ";
+    fLog << Form("N_%s = ", coll->GetName(), coll->GetNTracks());
+    ++i;
+  }
+  fLog << endmsg;
 }
 
 /// **PID cut**: apply a strict cut on the number of the selected particles.
 void D0omega_K4pi::CutPID()
 {
-  if(fGammas.FailsMinimumNumberOfParticles()) throw StatusCode::SUCCESS;
-  if(fKaonNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
-  if(fPionNeg.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
-  if(fPionPos.FailsNumberOfParticles()) throw StatusCode::SUCCESS;
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+    if(coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
        << ", " << fEventHeader->eventNumber() << ")" << endmsg;
@@ -367,9 +362,9 @@ void D0omega_K4pi::CutPID()
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
 void D0omega_K4pi::WriteDedxOfSelectedParticles()
 {
-  WriteDedxInfoForVector(fKaonNeg.GetCollection(), fNTuple_dedx_K);
-  WriteDedxInfoForVector(fPionNeg.GetCollection(), fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fPionPos.GetCollection(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fParticleSel.GetCollection("K-").GetCollection(), fNTuple_dedx_K);
+  WriteDedxInfoForVector(fParticleSel.GetCollection("pi-").GetCollection(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fParticleSel.GetCollection("pi+").GetCollection(), fNTuple_dedx_pi);
 }
 
 /// Specification of what should be written to the fit `NTuple`.
@@ -446,34 +441,42 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
     if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
-  } while(fGammas.NextCombination());
+  } while(fParticleSel.NextPhotonCombination());
 }
 
 void D0omega_K4pi::DoVertexFit()
 {
   fVertexFitter.Initialize();
-  fVertexFitter.AddTrack(fKaonNeg.GetParticle(), Mass::K);
-  fVertexFitter.AddTrack(fPionNeg.GetParticle(), Mass::pi);
-  fVertexFitter.AddTrack(fPionPos.GetParticle(0), Mass::pi);
-  fVertexFitter.AddTrack(fPionPos.GetParticle(1), Mass::pi);
-  fVertexFitter.AddCleanVertex();
-  fVertexFitter.FitAndSwim();
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.NextCharged();)
+    for(int i = 0; i < coll->GetNTracks(); ++i)
+      fVertexFitter.AddTrack(coll->GetParticle(i), coll->GetMass());
 }
 
 void D0omega_K4pi::DoKinematicFit()
 {
   if(!fVertexFitter.IsSuccessful()) return;
   fKinematicFitter.Initialize();
-  fKinematicFitter.AddTrack(fGammas.GetParticle(0)->emcShower());
-  fKinematicFitter.AddTrack(fGammas.GetParticle(1)->emcShower());
-  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(0)); // K-
-  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(1)); // pi-
-  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(2)); // pi+ (1st occurrence)
-  fKinematicFitter.AddTrack(fVertexFitter.GetTrack(3)); // pi+ (2nd occurrence)
+  AddTracksToKinematicFitter();
   fKinematicFitter.AddConstraintCMS();
   fKinematicFitter.AddResonance(Mass::pi0, 0, 1);
   fKinematicFitter.Fit();
   ExtractFitResults();
+}
+
+void D0omega_K4pi::AddTracksToKinematicFitter()
+{
+  TrackCollection<EvtRecTrack>* coll;
+  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  {
+    for(int i = 0; i < coll->GetNTracks(); ++i)
+    {
+      if(coll->IsCharged())
+        fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
+      else
+        fKinematicFitter.AddTrack(coll->GetParticle(i)->emcShower());
+    }
+  }
 }
 
 void D0omega_K4pi::ExtractFitResults()

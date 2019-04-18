@@ -1,8 +1,9 @@
 #ifndef Analysis_TrackCollection_H
 #define Analysis_TrackCollection_H
 
-#include "TrackSelector/TSGlobals/CombinationShuffler.h"
 #include "TString.h"
+#include "TrackSelector/Particle/Particle.h"
+#include "TrackSelector/TSGlobals/CombinationShuffler.h"
 #include <vector>
 
 /// @addtogroup BOSS_objects
@@ -14,30 +15,44 @@ template <typename T>
 class TrackCollection
 {
 public:
-  TrackCollection(const TString& name, const size_t nparticles = 1) :
-    fParticleName(name), fNParticles(nparticles)
-  {
-  }
+  TrackCollection(const TString& pdtName, const size_t nparticles = 1) :
+    fParticle(pdtName),
+    fNParticles(nparticles)
+  {}
 
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
+  void SetNParticles(const size_t nparticles) { fNParticles = nparticles; }
+  void SetParticle(const TString& pdtName) { fParticle = Particle(pdtName); }
 
-  bool FailsNumberOfParticles() const { return fTrackColl.size() != fNParticles; }
-  bool FailsMinimumNumberOfParticles() const { return fTrackColl.size() < fNParticles; }
-  bool FailsMaximumNumberOfParticles() const { return fTrackColl.size() > fNParticles; }
+  void SetMultCut_exact(){};
+  void SetMultCut_atleast();
+
+  bool FailsMultiplicityCut() const;
 
   const std::vector<T*>& GetCollection() const { return fTrackColl; }
 
-  const size_t GetNTracks() const { return fTrackColl.size(); }
-  const char*  GetName() const { return fParticleName.Data(); }
-  T*           GetParticle(const size_t i = 0) const;
+  const size_t   GetNTracks() const { return fTrackColl.size(); }
+  const char*    GetName() const { return fParticle.GetName(); }
+  const Float_t& GetMass() const { return fParticle.GetMass(); }
+  T*             GetParticle(const size_t i = 0) const;
+
+  bool IsCharged() const { fParticle.GetCharge(); }
 
   bool NextCombination();
 
 private:
-  const TString   fParticleName;
-  const size_t    fNParticles;
-  std::vector<T*> fTrackColl;
+  enum EMultiplicityCut
+  {
+    NoCut,
+    EqualTo,
+    AtLeast,
+    AtMost
+  };
+  Particle         fParticle;
+  const size_t     fNParticles;
+  std::vector<T*>  fTrackColl;
+  EMultiplicityCut fMultiplicityCut;
 };
 
 /// @}
@@ -53,6 +68,18 @@ template <typename T>
 bool TrackCollection<T>::NextCombination()
 {
   return TSGlobals::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
+}
+
+template <typename T>
+bool TrackCollection<T>::FailsMultiplicityCut() const
+{
+  switch(fMultiplicityCut)
+  {
+    case EqualTo: return fTrackColl.size() != fNParticles;
+    case AtLeast: return fTrackColl.size() < fNParticles;
+    case AtMost: return fTrackColl.size() > fNParticles;
+    default: return false;
+  }
 }
 
 #endif

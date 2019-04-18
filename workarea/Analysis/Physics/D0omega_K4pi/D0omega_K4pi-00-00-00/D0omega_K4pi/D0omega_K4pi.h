@@ -35,18 +35,6 @@ public:
   ///@}
 
 protected:
-  /// @name Track collections and iterators
-  ///@{
-  TrackCollection<Event::McParticle> fMcKaonNeg;
-  TrackCollection<Event::McParticle> fMcPhotons;
-  TrackCollection<Event::McParticle> fMcPionNeg;
-  TrackCollection<Event::McParticle> fMcPionPos;
-  TrackCollection<EvtRecTrack>       fKaonNeg;
-  TrackCollection<EvtRecTrack>       fGammas;
-  TrackCollection<EvtRecTrack>       fPionNeg;
-  TrackCollection<EvtRecTrack>       fPionPos;
-  ///@}
-
   /// @name NTuples (eventual TTrees)
   ///@{
   NTupleContainer fNTuple_dedx_K;
@@ -127,6 +115,7 @@ private:
   void DoKinematicFitForAllCombinations();
   void DoVertexFit();
   void DoKinematicFit();
+  void AddTracksToKinematicFitter();
   void ExtractFitResults();
 
   void WriteBestFitWithMcTruth();

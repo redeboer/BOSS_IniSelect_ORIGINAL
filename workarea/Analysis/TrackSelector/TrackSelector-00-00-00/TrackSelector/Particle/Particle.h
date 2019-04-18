@@ -19,7 +19,7 @@ public:
   void Set(const TString& pdtName);
   void Set(const Int_t pdgCode);
 
-  const TString& GetPdtName() const { return fName; }
+  const char*    GetPdtName() const { return fName.Data(); }
   const Int_t&   GetPdgCode() const { return fPdgCode; }
   const Float_t& GetMass() const { return fMass; }
   const Float_t& GetLifetime() const { return fLifetime; }
