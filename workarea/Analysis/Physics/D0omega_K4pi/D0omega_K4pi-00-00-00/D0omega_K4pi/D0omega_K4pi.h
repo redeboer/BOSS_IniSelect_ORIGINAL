@@ -7,8 +7,8 @@
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "TrackSelector/Containers/AngleDifferences.h"
-#include "TrackSelector/TrackSelector.h"
 #include "TrackSelector/TrackCollections/TrackCollection.h"
+#include "TrackSelector/TrackSelector.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
@@ -41,10 +41,10 @@ protected:
   TrackCollection<Event::McParticle> fMcPhotons;
   TrackCollection<Event::McParticle> fMcPionNeg;
   TrackCollection<Event::McParticle> fMcPionPos;
-  TrackCollection<EvtRecTrack> fKaonNeg;
-  TrackCollection<EvtRecTrack> fGammas;
-  TrackCollection<EvtRecTrack> fPionNeg;
-  TrackCollection<EvtRecTrack> fPionPos;
+  TrackCollection<EvtRecTrack>       fKaonNeg;
+  TrackCollection<EvtRecTrack>       fGammas;
+  TrackCollection<EvtRecTrack>       fPionNeg;
+  TrackCollection<EvtRecTrack>       fPionPos;
   ///@}
 
   /// @name NTuples (eventual TTrees)

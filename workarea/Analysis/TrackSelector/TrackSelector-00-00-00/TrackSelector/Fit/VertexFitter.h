@@ -16,7 +16,7 @@ public:
   void AddCleanVertex();
   void FitAndSwim();
 
-  const bool& IsSuccessful() const { return fIsSuccessful; };
+  const bool&     IsSuccessful() const { return fIsSuccessful; };
   WTrackParameter GetTrack(int i) const;
 
 private:

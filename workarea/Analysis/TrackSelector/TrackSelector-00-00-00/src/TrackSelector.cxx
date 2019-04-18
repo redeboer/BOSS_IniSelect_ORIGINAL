@@ -811,7 +811,8 @@ void TrackSelector::WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vect
 {
   if(!tuple.DoWrite()) return;
   fLog << MSG::DEBUG << "Writing \"" << tuple.Name() << "\" info" << endmsg;
-  for(std::vector<EvtRecTrack*>::const_iterator it = vector.begin(); it != vector.end(); ++it) WriteDedxInfo(*it, tuple);
+  for(std::vector<EvtRecTrack*>::const_iterator it = vector.begin(); it != vector.end(); ++it)
+    WriteDedxInfo(*it, tuple);
 }
 
 /// This `virtual` method has been declared in the base algorithm to standardise the writing of a fit tuple.

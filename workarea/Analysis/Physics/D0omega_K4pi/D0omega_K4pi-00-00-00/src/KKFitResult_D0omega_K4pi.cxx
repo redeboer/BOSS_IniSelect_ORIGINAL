@@ -25,36 +25,23 @@ KKFitResult_D0omega_K4pi::KKFitResult_D0omega_K4pi(KalmanKinematicFit* kkmfit) :
     return;
   }
   /// Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
-  SetValues(
-    kkmfit->pfit(0), /// -# \f$\gamma\f$ (first occurrence)
-    kkmfit->pfit(1), /// -# \f$\gamma\f$ (second occurrence)
-    kkmfit->pfit(2), /// -# \f$K^-\f$
-    kkmfit->pfit(3), /// -# \f$\pi^-\f$
-    kkmfit->pfit(4), /// -# \f$\pi^+\f$  (first occurrence)
-    kkmfit->pfit(5)  /// -# \f$\pi^+\f$  (second occurrence)
+  SetValues(kkmfit->pfit(0), /// -# \f$\gamma\f$ (first occurrence)
+            kkmfit->pfit(1), /// -# \f$\gamma\f$ (second occurrence)
+            kkmfit->pfit(2), /// -# \f$K^-\f$
+            kkmfit->pfit(3), /// -# \f$\pi^-\f$
+            kkmfit->pfit(4), /// -# \f$\pi^+\f$  (first occurrence)
+            kkmfit->pfit(5)  /// -# \f$\pi^+\f$  (second occurrence)
   );
 }
 
 /// Construct a `KKFitResult_D0omega_K4pi` object based on a pointer to a `KalmanKinematicFit`
 /// object.
 KKFitResult_D0omega_K4pi::KKFitResult_D0omega_K4pi(
-  Event::McParticle* gamma1,
-  Event::McParticle* gamma2,
-  Event::McParticle* kaonNeg,
-  Event::McParticle* pionNeg,
-  Event::McParticle* pionPos1,
-  Event::McParticle* pionPos2
-) :
+  Event::McParticle* gamma1, Event::McParticle* gamma2, Event::McParticle* kaonNeg,
+  Event::McParticle* pionNeg, Event::McParticle* pionPos1, Event::McParticle* pionPos2) :
   KKFitResult(nullptr)
 {
-  SetValues(
-    gamma1,
-    gamma2,
-    kaonNeg,
-    pionNeg,
-    pionPos1,
-    pionPos2
-  );
+  SetValues(gamma1, gamma2, kaonNeg, pionNeg, pionPos1, pionPos2);
 }
 
 // * ============================ * //
@@ -62,14 +49,9 @@ KKFitResult_D0omega_K4pi::KKFitResult_D0omega_K4pi(
 // * ============================ * //
 
 /// Helper function for the constructor (hence `private` method).
-void KKFitResult_D0omega_K4pi::SetValues(
-  Event::McParticle* gamma1,
-  Event::McParticle* gamma2,
-  Event::McParticle* kaonNeg,
-  Event::McParticle* pionNeg,
-  Event::McParticle* pionPos1,
-  Event::McParticle* pionPos2
-)
+void KKFitResult_D0omega_K4pi::SetValues(Event::McParticle* gamma1, Event::McParticle* gamma2,
+                                         Event::McParticle* kaonNeg, Event::McParticle* pionNeg,
+                                         Event::McParticle* pionPos1, Event::McParticle* pionPos2)
 {
   /// <ol>
   /// <li> Test whether all `Event::McParticle` pointers exist.
@@ -80,34 +62,25 @@ void KKFitResult_D0omega_K4pi::SetValues(
   if(!pionPos1) return;
   if(!pionPos2) return;
   /// <li> Apply `SetValues` to the `initialFourMomentum` of these `Event::McParticle` pointers.
-  SetValues(
-    gamma1->initialFourMomentum(),
-    gamma2->initialFourMomentum(),
-    kaonNeg->initialFourMomentum(),
-    pionNeg->initialFourMomentum(),
-    pionPos1->initialFourMomentum(),
-    pionPos2->initialFourMomentum()
-  );
+  SetValues(gamma1->initialFourMomentum(), gamma2->initialFourMomentum(),
+            kaonNeg->initialFourMomentum(), pionNeg->initialFourMomentum(),
+            pionPos1->initialFourMomentum(), pionPos2->initialFourMomentum());
   /// </ol>
 }
 
 /// Helper function for the constructor (hence `private` method).
-void KKFitResult_D0omega_K4pi::SetValues(
-  const HepLorentzVector& p_g1,
-  const HepLorentzVector& p_g2,
-  const HepLorentzVector& p_Km,
-  const HepLorentzVector& p_pm,
-  const HepLorentzVector& p_pi1,
-  const HepLorentzVector& p_pi2
-)
+void KKFitResult_D0omega_K4pi::SetValues(const HepLorentzVector& p_g1, const HepLorentzVector& p_g2,
+                                         const HepLorentzVector& p_Km, const HepLorentzVector& p_pm,
+                                         const HepLorentzVector& p_pi1,
+                                         const HepLorentzVector& p_pi2)
 {
   /// <ol>
   /// <li> Compute Lorentz vectors of the particles to be reconstructed:
   /// <ul>
-  HepLorentzVector p_pi0   = p_g1 + p_g2;  /// <li> \f$pi^0 \rightarrow \gamma\gamma\f$
-  HepLorentzVector p_D0    = p_Km + p_pi1; /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^0\f$
+  HepLorentzVector p_pi0   = p_g1 + p_g2;          /// <li> \f$pi^0 \rightarrow \gamma\gamma\f$
+  HepLorentzVector p_D0    = p_Km + p_pi1;         /// <li> \f$D^0 \rightarrow K^-\pi^+\pi^0\f$
   HepLorentzVector p_omega = p_pm + p_pi2 + p_pi0; /// <li> \f$\omega \rightarrow K^-K^+\f$
-  HepLorentzVector p_Jpsi  = p_D0 + p_omega;                /// <li> \f$J/\psi \rightarrow D^0\omega\f$
+  HepLorentzVector p_Jpsi  = p_D0 + p_omega;       /// <li> \f$J/\psi \rightarrow D^0\omega\f$
   /// </ul>
   /// <li> Compute invariant masses and momentum:
   /// <ul>

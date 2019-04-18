@@ -44,9 +44,10 @@ namespace TSGlobals
   } // namespace Mass
   namespace Paths
   {
-    static const char* pdtTable = "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
+    static const char* pdtTable =
+      "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
-}; // namespace TSGlobals
+};  // namespace TSGlobals
 
 /// @}
 #endif

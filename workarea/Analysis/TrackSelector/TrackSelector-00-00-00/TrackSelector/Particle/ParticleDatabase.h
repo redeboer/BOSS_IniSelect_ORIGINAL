@@ -32,13 +32,13 @@ private:
 
   bool PdtPathExists() const;
 
-  template<typename T> inline
-  static void ThrowNoParticleException(const T& info);
+  template <typename T>
+  inline static void ThrowNoParticleException(const T& info);
 };
 /// @}
 
-template<typename T> inline
-void ParticleDatabase::ThrowNoParticleException(const T& info)
+template <typename T>
+inline void ParticleDatabase::ThrowNoParticleException(const T& info)
 {
   std::stringstream ss;
   ss << "Particle \"" << info << "\" does not exist in database" << std::endl;

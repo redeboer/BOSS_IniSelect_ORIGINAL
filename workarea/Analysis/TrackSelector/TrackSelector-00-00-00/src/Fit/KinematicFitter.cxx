@@ -1,6 +1,6 @@
 #include "TrackSelector/Fit/KinematicFitter.h"
-#include "TrackSelector/TSGlobals/TSException.h"
 #include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSException.h"
 using namespace TSGlobals;
 using namespace TSGlobals::Error;
 
