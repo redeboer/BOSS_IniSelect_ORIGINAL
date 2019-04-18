@@ -1,5 +1,4 @@
 var namespaceTSGlobals =
 [
-    [ "CombinationShuffler", "namespaceTSGlobals_1_1CombinationShuffler.html", null ],
-    [ "Mass", "namespaceTSGlobals_1_1Mass.html", null ]
+    [ "Error", "namespaceTSGlobals_1_1Error.html", "namespaceTSGlobals_1_1Error" ]
 ];

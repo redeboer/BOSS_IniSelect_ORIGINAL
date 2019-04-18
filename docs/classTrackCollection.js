@@ -1,8 +1,5 @@
 var classTrackCollection =
 [
-    [ "OutOfRange", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34d", [
-      [ "NumberOfIterators", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34dac02a5dcd43649462b80a36225e342db5", null ]
-    ] ],
     [ "TrackCollection", "classTrackCollection.html#a86dfe4ea76f2ed1ce17430e6f7a5a45f", null ],
     [ "AddTrack", "classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6", null ],
     [ "Clear", "classTrackCollection.html#a770e36cbc659694580fd539b840fe947", null ],

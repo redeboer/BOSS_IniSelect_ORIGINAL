@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jobswitch',['JobSwitch',['../classJobSwitch.html',1,'']]]
+  ['exception',['Exception',['../classTSGlobals_1_1Error_1_1Exception.html',1,'TSGlobals::Error']]]
 ];

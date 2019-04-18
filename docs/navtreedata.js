@@ -39,13 +39,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AngleDifferences_8cxx.html",
-"PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html",
-"classD0omega__K4pi.html#aaffc5bf2da95c9435bcbe6dbc1d2a62a",
-"classKKFitResult__D0phi__3K3pi.html#a5767ee147671d0ea229862143b8feba2",
-"classNTupleTopoAna.html#a187f137903a4f73761fad0cc9c76b2bf",
-"classRhopi.html#a705d47dc7c22108b1ebf14f0fcc520a5",
-"classTrackSelector.html#a6f3590ad49e0e1c6ef4f017d76e74b24",
-"namespaceTSGlobals.html"
+"classD0omega__K4pi.html#a60b710948559605bbfc357fa86acfc27",
+"classKinematicFitter.html#a03190e828f56506ff4f9325fc2bf5616",
+"classRhopiAlg.html#a2c907b2b6d12917ce44b4cf8442738ff",
+"classrhopi__pipigg.html#a0a908148b72ca5e83416bbc0f9ec7193"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

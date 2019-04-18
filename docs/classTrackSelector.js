@@ -14,7 +14,6 @@ var classTrackSelector =
     [ "AssertPostConstructed", "classTrackSelector.html#abf66c40a572bf69d485310545c813613", null ],
     [ "BookNTuple", "classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7", null ],
     [ "BookNTuples", "classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92", null ],
-    [ "BuildWTrackParameter", "classTrackSelector.html#a4d992eb5d152781cf0d672f31e771944", null ],
     [ "ComputeMomentum", "classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0", null ],
     [ "CreateChargedCollection", "classTrackSelector.html#ad9a4a9a0e79824ac11ab4f77e8f18a96", null ],
     [ "CreateCollections", "classTrackSelector.html#a3461bb78f407bbcf8cfa33f056732f1a", null ],
@@ -75,6 +74,7 @@ var classTrackSelector =
     [ "fEventHeader", "classTrackSelector.html#a660f30908144b2029444c891c79c4196", null ],
     [ "fEvtRecEvent", "classTrackSelector.html#a3bc4f864aeff7186812300fc1435629a", null ],
     [ "fEvtRecTrkCol", "classTrackSelector.html#a918337343c0640834a5e552fae23fac1", null ],
+    [ "fKinematicFitter", "classTrackSelector.html#a0c86e6ab5eac31d9010ad461275dd220", null ],
     [ "fLog", "classTrackSelector.html#a94dfa3d4153e1798e155e5a0e5d733af", null ],
     [ "fMcParticleCol", "classTrackSelector.html#aa8ec429073607086041f8e9a5d6b8c45", null ],
     [ "fMcParticles", "classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017", null ],
@@ -96,5 +96,6 @@ var classTrackSelector =
     [ "fPostConstructed", "classTrackSelector.html#ab32cedbfaa07339347ff36556373c390", null ],
     [ "fSecondaryVtx", "classTrackSelector.html#a736c6519e8ca9b1cc87115db93b0be38", null ],
     [ "fTrackIter", "classTrackSelector.html#a2d5baccdedd2a8c1310974f76d59082f", null ],
+    [ "fVertexFitter", "classTrackSelector.html#a37adc362b66554f48dcda8c2dfb41a4d", null ],
     [ "fVertexPoint", "classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6", null ]
 ];

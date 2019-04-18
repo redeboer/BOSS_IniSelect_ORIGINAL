@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['localeptopipieta3piselector',['LocalEptoPiPiEta3PiSelector',['../classLocalEptoPiPiEta3PiSelector.html',1,'']]],
-  ['localeptopipietaselector',['LocalEptoPiPiEtaSelector',['../classLocalEptoPiPiEtaSelector.html',1,'']]],
-  ['localeptorhogamselector',['LocalEptoRhoGamSelector',['../classLocalEptoRhoGamSelector.html',1,'']]],
-  ['localetatoggselector',['LocalEtatoGGSelector',['../classLocalEtatoGGSelector.html',1,'']]],
-  ['localetatopipipi0selector',['LocalEtatoPiPiPi0Selector',['../classLocalEtatoPiPiPi0Selector.html',1,'']]],
-  ['localkaonselector',['LocalKaonSelector',['../classLocalKaonSelector.html',1,'']]],
-  ['localksselector',['LocalKsSelector',['../classLocalKsSelector.html',1,'']]],
-  ['localphotonselector',['LocalPhotonSelector',['../classLocalPhotonSelector.html',1,'']]],
-  ['localpi0selector',['LocalPi0Selector',['../classLocalPi0Selector.html',1,'']]],
-  ['localpionselector',['LocalPionSelector',['../classLocalPionSelector.html',1,'']]],
-  ['localrhotopipiselector',['LocalRhotoPiPiSelector',['../classLocalRhotoPiPiSelector.html',1,'']]]
+  ['kinematicfitter',['KinematicFitter',['../classKinematicFitter.html',1,'']]],
+  ['kkfitresult',['KKFitResult',['../classKKFitResult.html',1,'']]],
+  ['kkfitresult_5fd0omega_5fk4pi',['KKFitResult_D0omega_K4pi',['../classKKFitResult__D0omega__K4pi.html',1,'']]],
+  ['kkfitresult_5fd0phi_5f3k3pi',['KKFitResult_D0phi_3K3pi',['../classKKFitResult__D0phi__3K3pi.html',1,'']]],
+  ['kkfitresult_5fd0phi_5fkpikk',['KKFitResult_D0phi_KpiKK',['../classKKFitResult__D0phi__KpiKK.html',1,'']]],
+  ['kkfitresult_5fd0phi_5fkpipikk',['KKFitResult_D0phi_KpipiKK',['../classKKFitResult__D0phi__KpipiKK.html',1,'']]],
+  ['kkfitresult_5frhopi_5fpipigg',['KKFitResult_rhopi_pipigg',['../classKKFitResult__rhopi__pipigg.html',1,'']]]
 ];

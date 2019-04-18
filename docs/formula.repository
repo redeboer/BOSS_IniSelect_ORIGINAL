@@ -101,16 +101,7 @@
 \form#100:$\pi^+\pi^-$
 \form#101:$\pi^0\pi^+$
 \form#102:$\pi^0\pi^-$
-\form#103:$ J/\psi \rightarrow D^0 \phi $
-\form#104:$\pi^\pm$
-\form#105:$K^\pm$
-\form#106:$ K^- pi^+ $
-\form#107:$ D^0 $
-\form#108:$ K^+ K^+ $
-\form#109:$ \phi $
-\form#110:$ D^0 \phi $
-\form#111:$ J/\psi $
-\form#112:$Z$
-\form#113:$p$
-\form#114:$R$
-\form#115:$n$
+\form#103:$Z$
+\form#104:$p$
+\form#105:$R$
+\form#106:$n$

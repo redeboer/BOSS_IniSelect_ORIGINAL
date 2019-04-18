@@ -1,19 +1,20 @@
 var searchData=
 [
   ['p',['p',['../namespaceTSGlobals_1_1Mass.html#ae2a747499dd48c3e5e6cf3128c33da05',1,'TSGlobals::Mass']]],
-  ['particle',['particle',['../classNTupleTopoAna.html#a187f137903a4f73761fad0cc9c76b2bf',1,'NTupleTopoAna']]],
+  ['particle',['Particle',['../classParticle.html',1,'Particle'],['../classParticle.html#a60906484370add09fa2bd7bc20b3ec67',1,'Particle::Particle()'],['../classNTupleTopoAna.html#a187f137903a4f73761fad0cc9c76b2bf',1,'NTupleTopoAna::particle()']]],
   ['particletracks',['ParticleTracks',['../classParticleTracks.html',1,'ParticleTracks'],['../classParticleTracks.html#a4af94df225e88209e2aad82e964c84ad',1,'ParticleTracks::ParticleTracks()']]],
   ['particletracks_2eh',['ParticleTracks.h',['../ParticleTracks_8h.html',1,'']]],
+  ['pdgcode',['pdgCode',['../classParticle.html#ac364a2d55b523def9222305d9ec98b34',1,'Particle']]],
+  ['pdgname',['pdgName',['../classParticle.html#ae643f6b7264d090f66ecd4b5e99ee817',1,'Particle']]],
   ['phi',['phi',['../namespaceTSGlobals_1_1Mass.html#a6b17451b96cd1a6d409725ff24dfdf09',1,'TSGlobals::Mass']]],
-  ['photonselector',['photonSelector',['../LocalPhotonSelector_8h.html#a56034c41f237f50e6fd8bba216eff884',1,'photonSelector():&#160;LocalPhotonSelector.cxx'],['../LocalPhotonSelector_8cxx.html#a56034c41f237f50e6fd8bba216eff884',1,'photonSelector():&#160;LocalPhotonSelector.cxx']]],
-  ['pi',['PI',['../PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html#a952eac791b596a61bba0a133a3bb439f',1,'PI():&#160;PipiJpsi.cxx'],['../PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html#a952eac791b596a61bba0a133a3bb439f',1,'PI():&#160;PipiJpsi.cxx'],['../namespaceTSGlobals_1_1Mass.html#a57901b211648544107534ec87cdd5949',1,'TSGlobals::Mass::pi()']]],
+  ['pi',['pi',['../namespaceTSGlobals_1_1Mass.html#a57901b211648544107534ec87cdd5949',1,'TSGlobals::Mass::pi()'],['../PipiJpsi_8cxx.html#a952eac791b596a61bba0a133a3bb439f',1,'PI():&#160;PipiJpsi.cxx']]],
   ['pi0',['pi0',['../namespaceTSGlobals_1_1Mass.html#ad310fa67de3b4deb021b6870f3f6f4d2',1,'TSGlobals::Mass']]],
-  ['pi0selector',['pi0Selector',['../LocalPi0Selector_8h.html#a28fbdef376e9835fed235baeae7a9a58',1,'pi0Selector():&#160;LocalPi0Selector.cxx'],['../LocalPi0Selector_8cxx.html#a28fbdef376e9835fed235baeae7a9a58',1,'pi0Selector():&#160;LocalPi0Selector.cxx']]],
-  ['pidtag',['pidtag',['../classChargedDReconstruction.html#a6d1289427a18b601b2ed8519260933bc',1,'ChargedDReconstruction::pidtag()'],['../classDsReconstruction.html#a8a64dbc3dce2f4cda66e323a8f20056f',1,'DsReconstruction::pidtag()'],['../classNeutralDReconstruction.html#adb8db92e2b24b3780815b29622175061',1,'NeutralDReconstruction::pidtag()']]],
-  ['pionselector',['pionSelector',['../LocalPionSelector_8h.html#a2d4d36d440b88ba4338ac640c8f9f6a3',1,'pionSelector():&#160;LocalPionSelector.cxx'],['../LocalPionSelector_8cxx.html#a2d4d36d440b88ba4338ac640c8f9f6a3',1,'pionSelector():&#160;LocalPionSelector.cxx']]],
-  ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html',1,'PipiJpsi'],['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi::PipiJpsi(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi::PipiJpsi(const std::string &amp;name, ISvcLocator *pSvcLocator)']]],
-  ['pipijpsi_2ecxx',['PipiJpsi.cxx',['../PipiJpsiAlg-00-00-03_2src_2PipiJpsi_8cxx.html',1,'(Global Namespace)'],['../PipiJpsiAlg-01-00-00_2src_2PipiJpsi_8cxx.html',1,'(Global Namespace)']]],
-  ['pipijpsi_2eh',['PipiJpsi.h',['../PipiJpsiAlg-00-00-03_2PipiJpsiAlg_2PipiJpsi_8h.html',1,'(Global Namespace)'],['../PipiJpsiAlg-01-00-00_2PipiJpsiAlg_2PipiJpsi_8h.html',1,'(Global Namespace)']]],
+  ['pionneg',['PionNeg',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfaad2e883ae2a53a6419d1d17d754b95dd',1,'Particle']]],
+  ['pionpos',['PionPos',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfab1a080519249094c1b398c6fef719d7a',1,'Particle']]],
+  ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html',1,'PipiJpsi'],['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi::PipiJpsi()']]],
+  ['pipijpsi_2ecxx',['PipiJpsi.cxx',['../PipiJpsi_8cxx.html',1,'']]],
+  ['pipijpsi_2eh',['PipiJpsi.h',['../PipiJpsi_8h.html',1,'']]],
+  ['positron',['Positron',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfaf95b9e36213413b506158a613a7f1637',1,'Particle']]],
   ['postconstructor',['PostConstructor',['../classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3',1,'TrackSelector']]],
   ['print',['Print',['../classCutObject.html#ad4f31cc8a1ff92a1200bfd25f6031234',1,'CutObject']]],
   ['printall',['PrintAll',['../classCutObject.html#a40f977450f860f158a94705a9c7380e0',1,'CutObject']]],
@@ -25,6 +26,6 @@ var searchData=
   ['printmultiplicities',['PrintMultiplicities',['../classD0omega__K4pi.html#a77beec6dc5a67bbc7f18848652d43487',1,'D0omega_K4pi']]],
   ['printswitches',['PrintSwitches',['../classJobSwitch.html#acf18865dfd9f65ca8481b6a974fc7be4',1,'JobSwitch']]],
   ['printtuplesanditems',['PrintTuplesAndItems',['../classNTupleContainer.html#a28930fa0669b3405bfa9b2cb90ab883a',1,'NTupleContainer']]],
-  ['putparticleincorrectvector',['PutParticleInCorrectVector',['../classD0omega__K4pi.html#aaf5f790141ee3fcaf4032d651a34e7a0',1,'D0omega_K4pi']]],
-  ['trkinfo_2eh',['trkInfo.h',['../PipiJpsiAlg-00-00-03_2PipiJpsiAlg_2trkInfo_8h.html',1,'(Global Namespace)'],['../PipiJpsiAlg-01-00-00_2PipiJpsiAlg_2trkInfo_8h.html',1,'(Global Namespace)']]]
+  ['proton',['Proton',['../classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa88ce286c27a129c1514dab5f52b224d1',1,'Particle']]],
+  ['putparticleincorrectvector',['PutParticleInCorrectVector',['../classD0omega__K4pi.html#aaf5f790141ee3fcaf4032d651a34e7a0',1,'D0omega_K4pi']]]
 ];

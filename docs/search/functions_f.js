@@ -1,8 +1,8 @@
 var searchData=
 [
+  ['particle',['Particle',['../classParticle.html#a60906484370add09fa2bd7bc20b3ec67',1,'Particle']]],
   ['particletracks',['ParticleTracks',['../classParticleTracks.html#a4af94df225e88209e2aad82e964c84ad',1,'ParticleTracks']]],
-  ['pidtag',['pidtag',['../classChargedDReconstruction.html#a6d1289427a18b601b2ed8519260933bc',1,'ChargedDReconstruction::pidtag()'],['../classDsReconstruction.html#a8a64dbc3dce2f4cda66e323a8f20056f',1,'DsReconstruction::pidtag()'],['../classNeutralDReconstruction.html#adb8db92e2b24b3780815b29622175061',1,'NeutralDReconstruction::pidtag()']]],
-  ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi::PipiJpsi(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi::PipiJpsi(const std::string &amp;name, ISvcLocator *pSvcLocator)']]],
+  ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi']]],
   ['postconstructor',['PostConstructor',['../classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3',1,'TrackSelector']]],
   ['print',['Print',['../classCutObject.html#ad4f31cc8a1ff92a1200bfd25f6031234',1,'CutObject']]],
   ['printall',['PrintAll',['../classCutObject.html#a40f977450f860f158a94705a9c7380e0',1,'CutObject']]],

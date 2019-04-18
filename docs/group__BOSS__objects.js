@@ -80,41 +80,16 @@ var group__BOSS__objects =
     ] ],
     [ "MctruthForTopoAna", "classMctruthForTopoAna.html", [
       [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "MctruthForTopoAna", "classMctruthForTopoAna.html#a8798a00b70fe59ec9b11364d04a79cc6", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
-      [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
       [ "execute", "classMctruthForTopoAna.html#a31d830efda52e991f6fc3ec3547e2c71", null ],
       [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
-      [ "finalize", "classMctruthForTopoAna.html#a23cc8ddd428e2e2cb34a5166a2d26821", null ],
       [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "initialize", "classMctruthForTopoAna.html#a7d5e77225fb2195719b0df23af66bbb9", null ],
-      [ "m_evtid", "classMctruthForTopoAna.html#abcad51b0cb5cc50d46d787b2cee555d6", null ],
-      [ "m_ievt", "classMctruthForTopoAna.html#a79780e38bc49d3c65a49c62c05accd02", null ],
-      [ "m_midx", "classMctruthForTopoAna.html#a6038db735920634eac9afb453d92bb53", null ],
-      [ "m_nmcps", "classMctruthForTopoAna.html#a8e06fe785a1340ce40ef2c5e8f0acddc", null ],
-      [ "m_nps", "classMctruthForTopoAna.html#a4a1660ae3a3ef7be6317a80cade43dd2", null ],
-      [ "m_pid", "classMctruthForTopoAna.html#a5f3962be75f9fc54ced0ea1dc1efb718", null ],
-      [ "m_runid", "classMctruthForTopoAna.html#a56c2bc0e736ce0177a32294a09907d62", null ],
-      [ "m_tuple", "classMctruthForTopoAna.html#a30f6e51b446ef4cddea842f433ff1987", null ]
+      [ "m_evtid", "classMctruthForTopoAna.html#a90ad93b58fb0e38eb3853ccf73d4ee70", null ],
+      [ "m_ievt", "classMctruthForTopoAna.html#ae2529a7bcda08907f9270fec1e0820e4", null ],
+      [ "m_midx", "classMctruthForTopoAna.html#a8f316c94630cad71972402ad69cc9788", null ],
+      [ "m_nmcps", "classMctruthForTopoAna.html#a63bacf05b4a20d4e22b6a03ac29f1e8a", null ],
+      [ "m_pid", "classMctruthForTopoAna.html#ab1b4c35b3847a5f3009736fd40951895", null ],
+      [ "m_runid", "classMctruthForTopoAna.html#af8a0a5e5d22c958968310610e0bb2b9e", null ],
+      [ "m_tuple", "classMctruthForTopoAna.html#a46f270fb677cb27f7c6cf1ed52eb3411", null ]
     ] ],
     [ "AngleDifferences", "classAngleDifferences.html", [
       [ "AngleDifferences", "classAngleDifferences.html#a5eca4d4bf36f0bc2bd3175f5e4521ef6", null ],
@@ -251,6 +226,24 @@ var group__BOSS__objects =
       [ "fRxy", "classSecondaryVertexGeometry.html#a3ec97b24aa591ef638a551a101d9a116", null ],
       [ "fRz", "classSecondaryVertexGeometry.html#a7794640dd4ca5485f9c0a6132d03a99b", null ]
     ] ],
+    [ "KinematicFitter", "classKinematicFitter.html", [
+      [ "KinematicFitter", "classKinematicFitter.html#a8810c72ed80461cd8c8b4db41f02de13", null ],
+      [ "AddConstraintCMS", "classKinematicFitter.html#af50ec6b544d0249a91b12da694f9ea9e", null ],
+      [ "AddResonance", "classKinematicFitter.html#a971affc56fb6c2ecacc4a0fe568b312f", null ],
+      [ "AddTrack", "classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c", null ],
+      [ "AddTrack", "classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6", null ],
+      [ "Fit", "classKinematicFitter.html#ad28a0ca6236a00d8f343f0586663e847", null ],
+      [ "GetFit", "classKinematicFitter.html#a8613bf13e6104444818358e30da60384", null ],
+      [ "GetNContstraints", "classKinematicFitter.html#a1b350ca4522955455c87d2f84aaad3e7", null ],
+      [ "GetTrack", "classKinematicFitter.html#abd771d00e1184e7c1058e2d46a949280", null ],
+      [ "Initialize", "classKinematicFitter.html#a22eac5f6ad674474ed73f46af860210f", null ],
+      [ "IsSuccessful", "classKinematicFitter.html#adde02ea4766036c3ce09d97258b1c85c", null ],
+      [ "fConstraintCount", "classKinematicFitter.html#a03190e828f56506ff4f9325fc2bf5616", null ],
+      [ "fIsSuccessful", "classKinematicFitter.html#a1b0d270f998a8fe060a0ff31f576b136", null ],
+      [ "fKinematicFit", "classKinematicFitter.html#aee940ee54298d5b03448df894e39c0f8", null ],
+      [ "fNConstraints", "classKinematicFitter.html#a51b2354e0a0acea04fef360eae90f30e", null ],
+      [ "fNTracks", "classKinematicFitter.html#a4317cf60274659e80f02dfd0582e79bc", null ]
+    ] ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult", "classKKFitResult.html#a7cd27e315fc41838d21ece3055268742", null ],
       [ "HasResults", "classKKFitResult.html#af04b864ec284ddc1339d9d2809a18c3c", null ],
@@ -301,9 +294,6 @@ var group__BOSS__objects =
       [ "fTrackTOF", "classRecTrackPointers.html#a6bc5634805917750cfb4ba8534f9288c", null ]
     ] ],
     [ "TrackCollection", "classTrackCollection.html", [
-      [ "OutOfRange", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34d", [
-        [ "NumberOfIterators", "classTrackCollection.html#a68eea01dbcdbb3c82e05cf5f0142a34dac02a5dcd43649462b80a36225e342db5", null ]
-      ] ],
       [ "TrackCollection", "classTrackCollection.html#a86dfe4ea76f2ed1ce17430e6f7a5a45f", null ],
       [ "AddTrack", "classTrackCollection.html#a17934a1bfa851be9cac684015c4d92e6", null ],
       [ "Clear", "classTrackCollection.html#a770e36cbc659694580fd539b840fe947", null ],
@@ -318,6 +308,39 @@ var group__BOSS__objects =
       [ "fNParticles", "classTrackCollection.html#aa65509ab34dee80a09f09dc52b0ca60b", null ],
       [ "fParticleName", "classTrackCollection.html#a573f7eea084017fb04edfe019403490c", null ],
       [ "fTrackColl", "classTrackCollection.html#ad1509e961864078e4c01ddeb0e0b9315", null ]
+    ] ],
+    [ "Particle", "classParticle.html", [
+      [ "EPpdgCode", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcf", [
+        [ "Electron", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa6f2b8c5ab0f25f1f0da7b95a99d59bb6", null ],
+        [ "Positron", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfaf95b9e36213413b506158a613a7f1637", null ],
+        [ "Muon", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa996168e1ebf7338abe28aec0c07b386f", null ],
+        [ "AntiMuon", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa3800f9afa6ddfdeec4ed02cf7c88368a", null ],
+        [ "PionNeg", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfaad2e883ae2a53a6419d1d17d754b95dd", null ],
+        [ "PionPos", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfab1a080519249094c1b398c6fef719d7a", null ],
+        [ "KaonNeg", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa6eaf5d16721b55a439971c19b22b5046", null ],
+        [ "KaonPos", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa8d5688e416482cba16aed6b948cdff09", null ],
+        [ "Proton", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfa88ce286c27a129c1514dab5f52b224d1", null ],
+        [ "AntiProton", "classParticle.html#a63ba8d566fb1ace15fe8d2e104605dcfafb9589c226bc4fc9cc621bbfa49b6b85", null ]
+      ] ],
+      [ "Particle", "classParticle.html#a60906484370add09fa2bd7bc20b3ec67", null ],
+      [ "ConvertCodeToName", "classParticle.html#a5b12573e9a6bef469de8a779aac78a63", null ],
+      [ "ConvertNameToCode", "classParticle.html#adcfcedeb0c23d88734a1d8dc485d4f29", null ],
+      [ "GetMessage", "classParticle.html#a41f476250e3332e34a5564e5fa22b4d0", null ],
+      [ "pdgCode", "classParticle.html#ac364a2d55b523def9222305d9ec98b34", null ],
+      [ "pdgName", "classParticle.html#ae643f6b7264d090f66ecd4b5e99ee817", null ]
+    ] ],
+    [ "VertexFitter", "classVertexFitter.html", [
+      [ "VertexFitter", "classVertexFitter.html#abe661664232f04afae6c7ab1b02e72b3", null ],
+      [ "AddCleanVertex", "classVertexFitter.html#a6fed6b447f6e3949e0da22fc8f6ccff9", null ],
+      [ "AddTrack", "classVertexFitter.html#a63f1ef7436ffafe823f09dcda8d06adf", null ],
+      [ "BuildVertexParameter", "classVertexFitter.html#a77f0e688dee791b9741228e3ff553d24", null ],
+      [ "FitAndSwim", "classVertexFitter.html#a4ad714875103f37d569179b00d0a3268", null ],
+      [ "GetTrack", "classVertexFitter.html#aec1fb79cba238835645efb14ac462c55", null ],
+      [ "Initialize", "classVertexFitter.html#a2604ad60d01cfafe382aaf8027271ad1", null ],
+      [ "IsSuccessful", "classVertexFitter.html#ac4a8c9ffa503a8fd6fb99765d2fb0f9f", null ],
+      [ "fIsSuccessful", "classVertexFitter.html#a13e5826157ef6da1821ad295c9eb28c7", null ],
+      [ "fNTracks", "classVertexFitter.html#a2b92251ac8f7fd3410d8dbfac0356ea1", null ],
+      [ "fVertexFit", "classVertexFitter.html#ac1ac889cd6aa8415987e3075263a4468", null ]
     ] ],
     [ "fInstances", "group__BOSS__objects.html#gaf185f8936d4f3937f75e48291999b244", null ],
     [ "fIterator", "group__BOSS__objects.html#ga5b1300d5915aaefa20586e4bfa7c9a75", null ]

@@ -84,6 +84,8 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
+<dt><a class="anchor" id="_todo000014"></a>Module <a class="el" href="group__BOSS__objects.html">BOSS_objects</a>  </dt>
+<dd>Would be better to work with CERN ROOT's <code>TDatabasePDG</code>, but this is not included in the BOSS libraries... </dd>
 <dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="classContainer__base.html">Container_base</a>  </dt>
 <dd>Encapsulate in <code>namespace</code> structure.  </dd>
 <dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classContainer__indexed.html">Container_indexed</a>  </dt>
@@ -96,17 +98,19 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>.  </dd>
 <dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classD0phi__KpipiKK.html#a9e232c48e45ada91d00579f05ecedda7">D0phi_KpipiKK::execute_rest</a>  ()</dt>
 <dd>Decide whether 4-constraints is indeed suitable.  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
 <dd>It would be more efficient to use <code>unordered_map</code>, but this is a <code>c++11</code> feature...  </dd>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classKinematicFitter.html#a8613bf13e6104444818358e30da60384">KinematicFitter::GetFit</a>  ()</dt>
+<dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>.  </dd>
 <dt><a class="anchor" id="_todo000010"></a>Class <a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a>  </dt>
 <dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace.  </dd>
-<dt><a class="anchor" id="_todo000012"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
+<dt><a class="anchor" id="_todo000013"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
 <dd>The design of using <code>map</code>s of <code>NTuple::Items</code>s is not ideal, as it does not (yet) allow enough flexibility.  </dd>
 <dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2">TrackSelector::AddNTupleItems_charged</a>  ()</dt>
 <dd>Get explanation of geometry (angle) definitions in an event.<ul>
 <li><code>"rvphi"</code>: Angle in the <img class="formulaInl" alt="$xy$" src="form_64.png"/>plane.</li>
 <li><code>"phi"</code>: Helix angle of the particle.</li>
-<li><code>"p"</code>: Momentum <img class="formulaInl" alt="$p$" src="form_113.png"/> of the track.  </li>
+<li><code>"p"</code>: Momentum <img class="formulaInl" alt="$p$" src="form_104.png"/> of the track.  </li>
 </ul>
 </dd>
 <dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93">TrackSelector::AddNTupleItems_neutral</a>  ()</dt>
