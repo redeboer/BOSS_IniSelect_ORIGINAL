@@ -15,7 +15,7 @@
     repoURL="https://gitlab.cern.ch/geant4/geant4.git"
   elif [ "${repoChoice}" == "root" ]; then
     repoURL="http://github.com/root-project/root.git"
-    repoVersion="6-16-00"
+    repoVersion="v6-16-00"
     # Best to get the Pro release.
     # See latest Pro release here:
     # https://root.cern.ch/releases
@@ -61,6 +61,7 @@
   git pull
   if [[ $? != 0 ]]; then
     echo
+    echo
     echo "ERROR: Failed to pull repository"
     echo "Read the above output..."
   fi
@@ -68,8 +69,16 @@
 # * Set repo version * #
   if [[ "${repoVersion}" != "" ]]; then
     echo "Setting version \"${repoVersion}\""
-    git tag -l
-    $ git checkout -b "${repoVersion}" "${repoVersion}"
+    git checkout -b "${repoVersion}" "${repoVersion}"
+    if [[ $? != 0 ]]; then
+      echo "ERROR: version \"${repoVersion}\" does not exist"
+      read -p "List available versions? (y/n) " -n 1 -r
+      if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo
+        git tag -l | less
+      fi
+      exit 1
+    fi
   fi
 
 # * Ask user whether to compile * #
