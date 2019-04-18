@@ -36,11 +36,11 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   fMcKaonNeg("K-"),
   fMcPionNeg("pi-"),
   fMcPionPos("pi+", 2),
-  fMcPhotons("gamma", 2),
+  fMcPhotons("g", 2),
   fKaonNeg("K-"),
   fPionNeg("pi-"),
   fPionPos("pi+", 2),
-  fGammas("gamma", 2),
+  fGammas("g", 2),
   /// * Construct `NTuple::Tuple` containers used in derived classes.
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
