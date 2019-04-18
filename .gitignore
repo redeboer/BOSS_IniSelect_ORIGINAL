@@ -1,7 +1,7 @@
 # Ignore Windows files
 desktop.ini
 
-include
+extLibs
 
 # Ignore jobs
 jobs/**/sed*
