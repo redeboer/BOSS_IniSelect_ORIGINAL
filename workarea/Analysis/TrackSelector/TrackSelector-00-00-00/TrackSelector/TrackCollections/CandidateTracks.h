@@ -39,9 +39,9 @@ public:
   const char*    GetPdtName() const { return fParticle.GetPdtName(); }
   const Int_t&   GetPdgCode() const { return fParticle.GetPdgCode(); }
   const Float_t& GetMass() const { return fParticle.GetMass(); }
-  T*             GetParticle(const size_t i = 0) const;
+  T*             GetCandidate(const size_t i = 0) const;
 
-  bool IsCharged() const { fParticle.GetCharge(); }
+  bool IsCharged() const { return fParticle.GetCharge(); }
 
   bool NextCombination();
 
@@ -64,7 +64,7 @@ private:
 /// @}
 
 template <typename T>
-T* CandidateTracks<T>::GetParticle(const size_t i) const
+T* CandidateTracks<T>::GetCandidate(const size_t i) const
 {
   if(i < fTrackColl.size()) return fTrackColl.at(i);
   return nullptr;

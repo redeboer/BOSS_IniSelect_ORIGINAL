@@ -87,9 +87,10 @@ StatusCode D0omega_K4pi::initialize_rest()
 /// `"mult_select"`: Multiplicities of selected particles.
 void D0omega_K4pi::AddNTupleItems_mult_sel()
 {
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
     fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetPdtName()));
+  while(coll = fParticleSel.NextCharged());
 }
 
 /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
@@ -221,12 +222,13 @@ void D0omega_K4pi::CreateChargedTrackSelections()
     ParticleIdentifier::UseTofE();
     ParticleIdentifier::SetMinimalChi2(4.);
 
-    CandidateTracks<EvtRecTrack>* coll;
-    for(fParticleSel.ResetLooper(); coll = fParticleSel.NextCharged();)
+    CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+    do if(coll)
       ParticleIdentifier::IdentifyParticle(coll->GetPdgCode());
+    while(coll = fParticleSel.NextCharged());
 
     ParticleIdentifier::SetTrack(*fTrackIter);
-    if(!ParticleIdentifier::Calculate()) continue;
+    if(!ParticleIdentifier::AttemptIdentification()) continue;
     WritePIDInformation();
     CategorizeTrack(*fTrackIter);
   }
@@ -236,8 +238,11 @@ void D0omega_K4pi::CreateChargedTrackSelections()
 bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
 {
   fTrackKal = track->mdcKalTrack();
+std::cout << ParticleIdentifier::GetProbPion() << std::endl;
+std::cout << ParticleIdentifier::GetProbKaon() << std::endl;
   if(ParticleIdentifier::GetProbPion() > ParticleIdentifier::GetProbKaon())
   {
+std::cout << "pion" << std::endl << std::endl;
     if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbPion())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
     if(fTrackKal->charge() > 0)
@@ -247,17 +252,10 @@ bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
   }
   else
   {
-    std::cout << "kaon" << std::endl;
+std::cout << "kaon" << std::endl << std::endl;
     if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbKaon())) return false;
-    std::cout << "kaon OK" << std::endl;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-    std::cout << "charge: " << fTrackKal->charge() << std::endl;
-    std::cout << "here1" << std::endl;
-    std::cout << "Candidate: " << fParticleSel.GetCandidates("K-").GetPdtName() << std::endl;
-    std::cout << "here2" << std::endl;
     if(fTrackKal->charge() < 0) fParticleSel.GetCandidates("K-").AddTrack(track);
-    std::cout << "here3" << std::endl;
-    std::cout << "NKaon: " << fParticleSel.GetCandidates("K-").GetNTracks() << std::endl;
   }
 }
 
@@ -339,9 +337,10 @@ void D0omega_K4pi::WriteMultiplicities()
 {
   PrintMultiplicities();
   if(!fNTuple_mult_sel.DoWrite()) return;
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
     fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
+  while(coll = fParticleSel.NextCharged());
   fNTuple_mult_sel.Write();
 }
 
@@ -349,23 +348,25 @@ void D0omega_K4pi::WriteMultiplicities()
 void D0omega_K4pi::PrintMultiplicities()
 {
   fLog << MSG::INFO;
-  Int_t                         i = 0;
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  Int_t i = 0;
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
   {
     if(i) fLog << ", ";
     fLog << Form("N_%s = ", coll->GetPdtName(), coll->GetNTracks());
     ++i;
   }
+  while(coll = fParticleSel.NextCharged());
   fLog << endmsg;
 }
 
 /// **PID cut**: apply a strict cut on the number of the selected particles.
 void D0omega_K4pi::CutPID()
 {
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
     if(coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
+  while(coll = fParticleSel.NextCharged());
   ++fCutFlow_NPIDnumberOK;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
        << ", " << fEventHeader->eventNumber() << ")" << endmsg;
@@ -459,10 +460,11 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
 void D0omega_K4pi::DoVertexFit()
 {
   fVertexFitter.Initialize();
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.NextCharged();)
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
     for(int i = 0; i < coll->GetNTracks(); ++i)
-      fVertexFitter.AddTrack(coll->GetParticle(i), coll->GetMass());
+      fVertexFitter.AddTrack(coll->GetCandidate(i), coll->GetMass());
+  while(coll = fParticleSel.NextCharged());
 }
 
 void D0omega_K4pi::DoKinematicFit()
@@ -478,17 +480,14 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::AddTracksToKinematicFitter()
 {
-  CandidateTracks<EvtRecTrack>* coll;
-  for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
-  {
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do if(coll)
     for(int i = 0; i < coll->GetNTracks(); ++i)
-    {
       if(coll->IsCharged())
         fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
       else
-        fKinematicFitter.AddTrack(coll->GetParticle(i)->emcShower());
-    }
-  }
+        fKinematicFitter.AddTrack(coll->GetCandidate(i)->emcShower());
+  while(coll = fParticleSel.NextCharged());
 }
 
 void D0omega_K4pi::ExtractFitResults()
@@ -545,9 +544,10 @@ void D0omega_K4pi::CreateMCTruthSelection()
 
 void D0omega_K4pi::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
-  int                                 pdgCode = mcParticle->particleProperty();
-  CandidateTracks<Event::McParticle>* coll;
-  for(fParticleSelMC.ResetLooper(); coll = fParticleSelMC.NextCharged();)
+  int pdgCode = mcParticle->particleProperty();
+
+  CandidateTracks<Event::McParticle>* coll = fParticleSelMC.FirstParticle();
+  do if(coll)
   {
     if(coll->GetPdgCode() == pdgCode)
     {
@@ -555,6 +555,7 @@ void D0omega_K4pi::PutParticleInCorrectVector(Event::McParticle* mcParticle)
       return;
     }
   }
+  while(coll = fParticleSelMC.NextCharged());
   fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in fParticleSelMC" << endmsg;
 }
 

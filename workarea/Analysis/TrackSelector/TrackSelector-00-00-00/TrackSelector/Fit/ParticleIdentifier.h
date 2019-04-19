@@ -32,7 +32,7 @@ public:
 
   static void SetTrack(EvtRecTrack* trk) { gPID->setRecTrack(trk); }
 
-  static bool Calculate();
+  static bool AttemptIdentification();
 
   static double GetChiTofE() { gPID->chiTofE(2); }
   static double GetChiTofIB() { gPID->chiTof1(2); }

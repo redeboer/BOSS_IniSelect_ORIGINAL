@@ -17,19 +17,18 @@ void Particle::Set(const Int_t pdgCode)
 
 void Particle::Set(PdtEntry* particle)
 {
-  fName     = particle->name();
-  fPdgCode  = particle->pdgId();
-  fMass     = particle->mass();
-  fLifetime = particle->lifetime();
-  fCharge   = particle->charge();
-  fSpin     = particle->spin();
+  fName      = particle->name();
+  fPdgCode   = particle->pdgId();
+  fMass      = particle->mass();
+  fLifetime  = particle->lifetime();
+  fCharge    = particle->charge();
+  fSpin      = particle->spin();
 }
 
 void Particle::Print() const
 {
   if(fName.EqualTo("")) cout << "Particle is empty" << endl;
   cout << "Particle \"" << fName << "\"" << endl;
-  cout << "  mass     = " << fName << endl;
   cout << "  PDG code = " << fPdgCode << endl;
   cout << "  mass     = " << fMass << endl;
   cout << "  lifetime = " << fLifetime << endl;

@@ -40,9 +40,10 @@ public:
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
 
-  CandidateTracks<T>* ResetLooper();
-  CandidateTracks<T>* Next();
+  CandidateTracks<T>* FirstParticle();
+  CandidateTracks<T>* NextParticle();
   CandidateTracks<T>* NextCharged();
+  bool                ReachedEnd() { return fSelectionsIter == fSelections.end(); }
 
 private:
   typename std::map<std::string, CandidateTracks<T> >           fSelections;
@@ -58,14 +59,14 @@ typedef ParticleSelectionTempl<Event::McParticle> ParticleSelectionMC;
 /// @}
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::ResetLooper()
+CandidateTracks<T>* ParticleSelectionTempl<T>::FirstParticle()
 {
   fSelectionsIter = fSelections.begin();
   return UnpackIter();
 }
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::Next()
+CandidateTracks<T>* ParticleSelectionTempl<T>::NextParticle()
 {
   ++fSelectionsIter;
   return UnpackIter();
@@ -74,12 +75,12 @@ CandidateTracks<T>* ParticleSelectionTempl<T>::Next()
 template <typename T>
 CandidateTracks<T>* ParticleSelectionTempl<T>::NextCharged()
 {
-  CandidateTracks<T>* coll;
-  while(coll = Next())
+  while(NextParticle())
   {
-    if(!coll) return nullptr;
-    if(coll->IsCharged()) return coll;
+    if(!UnpackIter()) return nullptr;
+    if(UnpackIter()->IsCharged()) return UnpackIter();
   }
+  return nullptr;
 }
 
 template <typename T>

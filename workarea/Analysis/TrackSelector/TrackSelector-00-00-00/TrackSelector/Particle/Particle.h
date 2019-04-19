@@ -20,14 +20,14 @@ public:
   void Set(const TString& pdtName);
   void Set(const Int_t pdgCode);
 
+  void Print() const;
+
   const char*    GetPdtName() const { return fName.Data(); }
   const Int_t&   GetPdgCode() const { return fPdgCode; }
   const Float_t& GetMass() const { return fMass; }
   const Float_t& GetLifetime() const { return fLifetime; }
   const Float_t& GetCharge() const { return fCharge; }
   const Float_t& GetSpin() const { return fSpin; }
-
-  void Print() const;
 
 private:
   TString fName;

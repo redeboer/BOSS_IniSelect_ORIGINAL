@@ -46,7 +46,7 @@ double ParticleIdentifier::GetProbByPDGCode(const int pdgCode)
   }
 }
 
-bool ParticleIdentifier::Calculate()
+bool ParticleIdentifier::AttemptIdentification()
 {
   gPID->calculate();
   return gPID->IsPidInfoValid();
