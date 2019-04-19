@@ -17,7 +17,6 @@
 #include "GaudiKernel/SmartRefVector.h"
 #include "McTruth/McEvent.h"
 #include "McTruth/McParticle.h"
-#include "ParticleID/ParticleID.h"
 #include "TH1D.h"
 #include "THStack.h"
 #include "TofRecEvent/RecTofTrack.h"
@@ -28,8 +27,8 @@
 #include "TrackSelector/Fit/KKFitResult.h"
 #include "TrackSelector/Fit/KinematicFitter.h"
 #include "TrackSelector/Fit/VertexFitter.h"
-#include "TrackSelector/TrackCollections/RecTrackPointers.h"
 #include "TrackSelector/TrackCollections/ParticleSelection.h"
+#include "TrackSelector/TrackCollections/RecTrackPointers.h"
 #include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
 #include <vector>
@@ -131,8 +130,6 @@ protected:
   bool CreateMCTruthCollection();
 
   HepLorentzVector ComputeMomentum(EvtRecTrack* track);
-  ParticleID*      InitializePID(const int method, const int pidsys, const int pidcase,
-                                 const double chimin = 4.);
 
   virtual void CreateMCTruthSelection()                                     = 0;
   virtual void SetFitNTuple(KKFitResult* fitresult, NTupleContainer& tuple) = 0;
@@ -222,12 +219,6 @@ protected:
   ///< Cut on the \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits.
   CutObject fCut_PIDProb;
   ///< Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance [`ParticleID::probPion`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6).
-  ///@}
-
-  /// @name Particle Identification
-  ///@{
-  ParticleID* fPIDInstance;
-  ///< Pointer to instance of particle identification (PID). Only used in *derived subalgorithms*.
   ///@}
 
   /// @name Other stored values

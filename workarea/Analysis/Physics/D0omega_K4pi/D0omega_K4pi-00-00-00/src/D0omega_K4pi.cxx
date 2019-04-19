@@ -7,6 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "TrackSelector/Fit/ParticleIdentifier.h"
 #include "TrackSelector/TSGlobals/TSException.h"
 #include "TrackSelector/TSGlobals/TSGlobals.h"
 #include <string>
@@ -211,34 +212,33 @@ void D0omega_K4pi::CreateChargedTrackSelections()
   fParticleSel.ClearCharged();
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
-    if(!InitializePID()) continue;
+    ParticleIdentifier::Reset();
+
+    ParticleIdentifier::UseProbabilityMethod();
+    ParticleIdentifier::UseDedx();
+    ParticleIdentifier::UseTofIB();
+    ParticleIdentifier::UseTofOB();
+    ParticleIdentifier::UseTofE();
+    ParticleIdentifier::SetMinimalChi2(4.);
+
+    CandidateTracks<EvtRecTrack>* coll;
+    for(fParticleSel.ResetLooper(); coll = fParticleSel.NextCharged();)
+      ParticleIdentifier::IdentifyParticle(coll->GetPdgCode());
+
+    ParticleIdentifier::SetTrack(*fTrackIter);
+    if(!ParticleIdentifier::Calculate()) continue;
     WritePIDInformation();
     CategorizeTrack(*fTrackIter);
   }
-}
-
-/// Specialized initialise PID method for D0omega_K4pi. @see TrackSelector::InitializePID.
-bool D0omega_K4pi::InitializePID()
-{
-  return TrackSelector::InitializePID(
-    /// * Use **probability method**.
-    fPIDInstance->methodProbability(),
-    /// * Use \f$dE/dx\f$ and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, `ParticleID::useTofCorr()` should be used for ToF instead of e.g. `useTof1`.
-    fPIDInstance->useDedx() | fPIDInstance->useTof1() | fPIDInstance->useTof2() |
-      fPIDInstance->useTofE(),
-    /// * Identify only pions and kaons.
-    fPIDInstance->onlyPion() | fPIDInstance->onlyKaon(),
-    /// * Use \f$\chi^2 > 4.0\f$.
-    4.0);
 }
 
 /// Identify type of charged particle and add to related vector.
 bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
 {
   fTrackKal = track->mdcKalTrack();
-  if(fPIDInstance->probPion() > fPIDInstance->probKaon())
+  if(ParticleIdentifier::GetProbPion() > ParticleIdentifier::GetProbKaon())
   {
-    if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) return false;
+    if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbPion())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
     if(fTrackKal->charge() > 0)
       fParticleSel.GetCandidates("pi+").AddTrack(track);
@@ -247,17 +247,17 @@ bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
   }
   else
   {
-std::cout << "kaon" << std::endl;
-    if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) return false;
-std::cout << "kaon OK" << std::endl;
+    std::cout << "kaon" << std::endl;
+    if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbKaon())) return false;
+    std::cout << "kaon OK" << std::endl;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-std::cout << "charge: " << fTrackKal->charge() << std::endl;
-std::cout << "here1" << std::endl;
-std::cout << "Candidate: " << fParticleSel.GetCandidates("K-").GetPdtName() << std::endl;
-std::cout << "here2" << std::endl;
+    std::cout << "charge: " << fTrackKal->charge() << std::endl;
+    std::cout << "here1" << std::endl;
+    std::cout << "Candidate: " << fParticleSel.GetCandidates("K-").GetPdtName() << std::endl;
+    std::cout << "here2" << std::endl;
     if(fTrackKal->charge() < 0) fParticleSel.GetCandidates("K-").AddTrack(track);
-std::cout << "here3" << std::endl;
-std::cout << "NKaon: " << fParticleSel.GetCandidates("K-").GetNTracks() << std::endl;
+    std::cout << "here3" << std::endl;
+    std::cout << "NKaon: " << fParticleSel.GetCandidates("K-").GetNTracks() << std::endl;
   }
 }
 
@@ -545,11 +545,12 @@ void D0omega_K4pi::CreateMCTruthSelection()
 
 void D0omega_K4pi::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
-  int pdgCode = mcParticle->particleProperty();
+  int                                 pdgCode = mcParticle->particleProperty();
   CandidateTracks<Event::McParticle>* coll;
   for(fParticleSelMC.ResetLooper(); coll = fParticleSelMC.NextCharged();)
   {
-    if(coll->GetPdgCode() == pdgCode) {
+    if(coll->GetPdgCode() == pdgCode)
+    {
       coll->AddTrack(mcParticle);
       return;
     }

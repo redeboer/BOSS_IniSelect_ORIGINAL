@@ -93,7 +93,6 @@ private:
   ///@{
   void CutNumberOfChargedParticles();
   void CreateChargedTrackSelections();
-  bool InitializePID();
   bool CategorizeTrack(EvtRecTrack* track);
 
   void CreateNeutralTrackSelections();

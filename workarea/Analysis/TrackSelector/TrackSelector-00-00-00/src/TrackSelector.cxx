@@ -13,6 +13,7 @@
 #include "TMath.h"
 #include "TString.h"
 #include "TrackSelector/Containers/NTupleTopoAna.h"
+#include "TrackSelector/Fit/ParticleIdentifier.h"
 #include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
@@ -461,7 +462,6 @@ void TrackSelector::CreateChargedCollection()
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
   if(!fEvtRecEvent->totalCharged()) return;
-  fPIDInstance = ParticleID::instance();
   /// -# Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
   fNetChargeMDC = 0;
   fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
@@ -873,9 +873,6 @@ void TrackSelector::WritePIDInformation()
   /// -# @b Abort if the 'write `JobSwitch`' has been set to `false`.
   if(!fNTuple_PID.DoWrite()) return;
 
-  /// -# @b Abort if there is no PID instance.
-  if(!fPIDInstance) return;
-
   /// -# @b Abort if there is no `fTrackMDC`.
   if(!fTrackMDC) return;
 
@@ -884,15 +881,15 @@ void TrackSelector::WritePIDInformation()
   fTrackMDC                               = (*fTrackIter)->mdcTrack();
   fNTuple_PID.GetItem<double>("p")        = fTrackMDC->p();
   fNTuple_PID.GetItem<double>("cost")     = cos(fTrackMDC->theta());
-  fNTuple_PID.GetItem<double>("chiToFEC") = fPIDInstance->chiTofE(2);
-  fNTuple_PID.GetItem<double>("chiToFIB") = fPIDInstance->chiTof1(2);
-  fNTuple_PID.GetItem<double>("chiToFOB") = fPIDInstance->chiTof2(2);
-  fNTuple_PID.GetItem<double>("chidEdx")  = fPIDInstance->chiDedx(2);
-  fNTuple_PID.GetItem<double>("prob_K")   = fPIDInstance->probKaon();
-  fNTuple_PID.GetItem<double>("prob_e")   = fPIDInstance->probElectron();
-  fNTuple_PID.GetItem<double>("prob_mu")  = fPIDInstance->probMuon();
-  fNTuple_PID.GetItem<double>("prob_p")   = fPIDInstance->probProton();
-  fNTuple_PID.GetItem<double>("prob_pi")  = fPIDInstance->probPion();
+  fNTuple_PID.GetItem<double>("chiToFEC") = ParticleIdentifier::GetChiTofE();
+  fNTuple_PID.GetItem<double>("chiToFIB") = ParticleIdentifier::GetChiTofIB();
+  fNTuple_PID.GetItem<double>("chiToFOB") = ParticleIdentifier::GetChiTofOB();
+  fNTuple_PID.GetItem<double>("chidEdx")  = ParticleIdentifier::GetChiDedx();
+  fNTuple_PID.GetItem<double>("prob_K")   = ParticleIdentifier::GetProbKaon();
+  fNTuple_PID.GetItem<double>("prob_e")   = ParticleIdentifier::GetProbElectron();
+  fNTuple_PID.GetItem<double>("prob_mu")  = ParticleIdentifier::GetProbMuon();
+  fNTuple_PID.GetItem<double>("prob_p")   = ParticleIdentifier::GetProbProton();
+  fNTuple_PID.GetItem<double>("prob_pi")  = ParticleIdentifier::GetProbPion();
 
   /// -# @b Write PID info.
   fNTuple_PID.Write();
@@ -913,28 +910,6 @@ HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack* track)
                         eraw);
   // ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
   return ptrk;
-}
-
-/// Method that standardizes the initialisation of the particle identification system.
-/// Define here *as general as possible*, but use in the derived subalgorithms. See http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html for more info.
-ParticleID* TrackSelector::InitializePID(const int method, const int pidsys, const int pidcase,
-                                         const double chimin)
-{
-
-  // * Initialise PID sub-system and set method: probability, likelihood, or neuron network
-  fPIDInstance->init();
-  fPIDInstance->setMethod(method);
-  fPIDInstance->setChiMinCut(chimin);
-  fPIDInstance->setRecTrack(*fTrackIter);
-
-  // * Choose ID system and which particles to use
-  fPIDInstance->usePidSys(pidsys);
-  fPIDInstance->identify(pidcase);
-
-  // * Perform PID
-  fPIDInstance->calculate();
-  if(!(fPIDInstance->IsPidInfoValid())) return nullptr;
-  return fPIDInstance;
 }
 
 /// Check whether a decayed MC truth particle comes from a particle with PDG code `mother`.
