@@ -36,6 +36,7 @@ public:
 
   const size_t   GetNTracks() const { return fTrackColl.size(); }
   const char*    GetPdtName() const { return fParticle.GetPdtName(); }
+  const Int_t&   GetPdgCode() const { return fParticle.GetPdgCode(); }
   const Float_t& GetMass() const { return fParticle.GetMass(); }
   T*             GetParticle(const size_t i = 0) const;
 

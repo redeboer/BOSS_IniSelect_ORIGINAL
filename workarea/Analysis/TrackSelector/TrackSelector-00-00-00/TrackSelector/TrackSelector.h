@@ -233,6 +233,7 @@ protected:
   /// @name Other stored values
   ///@{
   ParticleSelection       fParticleSel;
+  ParticleSelectionMC     fParticleSelMC;
   SecondaryVertexGeometry fSecondaryVtx;
   HepPoint3D              fVertexPoint;
   VertexFitter            fVertexFitter;

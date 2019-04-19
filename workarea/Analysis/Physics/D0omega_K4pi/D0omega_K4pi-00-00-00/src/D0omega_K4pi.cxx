@@ -7,8 +7,8 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "TrackSelector/TSGlobals/TSException.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include <string>
 #include <utility>
 
@@ -71,6 +71,10 @@ StatusCode D0omega_K4pi::initialize_rest()
   fParticleSel.SetN_PionMin(1);  /// * `"NKaonPos"`: Number of \f$K^+\f$.
   fParticleSel.SetN_PionPlus(2); /// * `"NKaonNeg"`: Number of \f$K^-\f$.
   fParticleSel.SetN_Photons(2);  /// * `"NPionPos"`: Number of \f$\pi^-\f$.
+  fParticleSelMC.SetN_KaonMin(1);
+  fParticleSelMC.SetN_PionMin(1);
+  fParticleSelMC.SetN_PionPlus(2);
+  fParticleSelMC.SetN_Photons(2);
   AddNTupleItems_mult_sel();
   AddNTupleItems_dedx();
   AddNTupleItems_fit();
@@ -337,7 +341,7 @@ void D0omega_K4pi::WriteMultiplicities()
 void D0omega_K4pi::PrintMultiplicities()
 {
   fLog << MSG::INFO;
-  Int_t i = 0;
+  Int_t                         i = 0;
   CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
   {
@@ -526,24 +530,23 @@ void D0omega_K4pi::CreateMCTruthSelection()
 {
   if(fEventHeader->runNumber() >= 0) return; // negative run number means MC data
   if(!fNTuple_fit_mc.DoWrite()) return;
-  fMcKaonNeg.Clear();
-  fMcPionNeg.Clear();
-  fMcPionPos.Clear();
+  fParticleSelMC.ClearCharged();
   std::vector<Event::McParticle*>::iterator it;
   for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) PutParticleInCorrectVector(*it);
 }
 
 void D0omega_K4pi::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
-  switch(mcParticle->particleProperty())
+  int pdgCode = mcParticle->particleProperty();
+  CandidateTracks<Event::McParticle>* coll;
+  for(fParticleSelMC.ResetLooper(); coll = fParticleSelMC.NextCharged();)
   {
-    case -321: fMcKaonNeg.AddTrack(mcParticle); break;
-    case -211: fMcPionNeg.AddTrack(mcParticle); break;
-    case 211: fMcPionPos.AddTrack(mcParticle); break;
-    default:
-      fLog << MSG::DEBUG << "No switch case defined for McParticle "
-           << mcParticle->particleProperty() << endmsg;
+    if(coll->GetPdgCode() == pdgCode) {
+      coll->AddTrack(mcParticle);
+      return;
+    }
   }
+  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in fParticleSelMC" << endmsg;
 }
 
 // * ============================= * //
