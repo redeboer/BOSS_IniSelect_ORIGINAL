@@ -237,15 +237,15 @@ bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
     if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
     if(fTrackKal->charge() > 0)
-      fParticleSel.GetCollection("pi+").AddTrack(track);
+      fParticleSel.GetCandidates("pi+").AddTrack(track);
     else
-      fParticleSel.GetCollection("pi-").AddTrack(track);
+      fParticleSel.GetCandidates("pi-").AddTrack(track);
   }
   else
   {
     if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-    if(fTrackKal->charge() < 0) fParticleSel.GetCollection("K-").AddTrack(track);
+    if(fTrackKal->charge() < 0) fParticleSel.GetCandidates("K-").AddTrack(track);
   }
 }
 
@@ -362,9 +362,9 @@ void D0omega_K4pi::CutPID()
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
 void D0omega_K4pi::WriteDedxOfSelectedParticles()
 {
-  WriteDedxInfoForVector(fParticleSel.GetCollection("K-").GetCollection(), fNTuple_dedx_K);
-  WriteDedxInfoForVector(fParticleSel.GetCollection("pi-").GetCollection(), fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fParticleSel.GetCollection("pi+").GetCollection(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fParticleSel.GetCandidates("K-").GetTracks(), fNTuple_dedx_K);
+  WriteDedxInfoForVector(fParticleSel.GetCandidates("pi-").GetTracks(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fParticleSel.GetCandidates("pi+").GetTracks(), fNTuple_dedx_pi);
 }
 
 /// Specification of what should be written to the fit `NTuple`.

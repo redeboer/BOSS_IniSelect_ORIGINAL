@@ -32,7 +32,7 @@ public:
 
   bool FailsMultiplicityCut() const;
 
-  const std::vector<T*>& GetCollection() const { return fTrackColl; }
+  const std::vector<T*>& GetTracks() const { return fTrackColl; }
 
   const size_t   GetNTracks() const { return fTrackColl.size(); }
   const char*    GetPdtName() const { return fParticle.GetPdtName(); }

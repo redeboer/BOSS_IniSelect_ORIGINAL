@@ -33,8 +33,8 @@ public:
 
   bool NextPhotonCombination();
 
-  CandidateTracks<EvtRecTrack>& GetCollection(const std::string& pdtName) { fSelections[pdtName]; }
-  CandidateTracks<EvtRecTrack>& GetPhotons() { return GetCollection("g"); };
+  CandidateTracks<EvtRecTrack>& GetCandidates(const std::string& pdtName) { fSelections[pdtName]; }
+  CandidateTracks<EvtRecTrack>& GetPhotons() { return GetCandidates("g"); };
 
   CandidateTracks<EvtRecTrack>* ResetLooper();
   CandidateTracks<EvtRecTrack>* Next();
