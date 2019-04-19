@@ -1,5 +1,5 @@
-#ifndef Analysis_JobSwitch_H
-#define Analysis_JobSwitch_H
+#ifndef Analysis_TrackSelector_JobSwitch_H
+#define Analysis_TrackSelector_JobSwitch_H
 
 #include "TString.h"
 #include "TrackSelector/Containers/Container_base.h"

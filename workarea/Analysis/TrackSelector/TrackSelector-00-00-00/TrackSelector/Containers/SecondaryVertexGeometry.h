@@ -1,5 +1,5 @@
-#ifndef Analysis_SecondaryVertexGeometry_H
-#define Analysis_SecondaryVertexGeometry_H
+#ifndef Analysis_TrackSelector_SecondaryVertexGeometry_H
+#define Analysis_TrackSelector_SecondaryVertexGeometry_H
 
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/ThreeVector.h"

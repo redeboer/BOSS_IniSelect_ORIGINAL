@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_NTupleTopoAna_H
-#define Physics_Analysis_NTupleTopoAna_H
+#ifndef Analysis_TrackSelector_NTupleTopoAna_H
+#define Analysis_TrackSelector_NTupleTopoAna_H
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -15,9 +15,7 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// @b OUTDATED Extension of `NTupleContainer` that represents the `NTuple` containing MC truth
-/// necessary for the `topoana` package. This object is still around, because it's `static` `IsJpsi`
-/// functions etc. are still required by `TrackSelector` and derived classes.
+/// @b OUTDATED Extension of `NTupleContainer` that represents the `NTuple` containing MC truth necessary for the `topoana` package. This object is still around, because it's `static` `IsJpsi` functions etc. are still required by `TrackSelector` and derived classes.
 /// @todo Move `static` `IsJpsi` functions etc. to some other object or namespace.
 /// @author Remco de Boer 雷穆克
 /// @date February 18th, 2019

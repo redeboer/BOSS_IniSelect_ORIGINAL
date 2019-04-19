@@ -1,5 +1,5 @@
-#ifndef Analysis_KKFitResult_H
-#define Analysis_KKFitResult_H
+#ifndef Analysis_TrackSelector_KKFitResult_H
+#define Analysis_TrackSelector_KKFitResult_H
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //

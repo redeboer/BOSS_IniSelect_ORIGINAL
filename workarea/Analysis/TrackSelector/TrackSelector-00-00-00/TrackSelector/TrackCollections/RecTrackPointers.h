@@ -1,5 +1,5 @@
-#ifndef Analysis_RecTrackPointers_H
-#define Analysis_RecTrackPointers_H
+#ifndef Analysis_TrackSelector_RecTrackPointers_H
+#define Analysis_TrackSelector_RecTrackPointers_H
 
 #include "EmcRecEventModel/RecEmcShower.h"
 #include "ExtEvent/RecExtTrack.h"

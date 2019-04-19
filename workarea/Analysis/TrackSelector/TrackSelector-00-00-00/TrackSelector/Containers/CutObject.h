@@ -1,5 +1,5 @@
-#ifndef Analysis_CutObject_H
-#define Analysis_CutObject_H
+#ifndef Analysis_TrackSelector_CutObject_H
+#define Analysis_TrackSelector_CutObject_H
 
 #include "TString.h"
 #include "TrackSelector/Containers/Container_base.h"

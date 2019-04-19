@@ -1,5 +1,5 @@
-#ifndef Analysis_AngleDifferences_H
-#define Analysis_AngleDifferences_H
+#ifndef Analysis_TrackSelector_AngleDifferences_H
+#define Analysis_TrackSelector_AngleDifferences_H
 
 #include "CLHEP/Vector/ThreeVector.h"
 #include <cmath>

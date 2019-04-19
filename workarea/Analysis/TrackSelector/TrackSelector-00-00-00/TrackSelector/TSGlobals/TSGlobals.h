@@ -1,5 +1,5 @@
-#ifndef Analysis_TSGlobals_H
-#define Analysis_TSGlobals_H
+#ifndef Analysis_TrackSelector_TSGlobals_H
+#define Analysis_TrackSelector_TSGlobals_H
 
 /// @defgroup BOSS_packages Event selection
 /// Event selection **packages** for the BOSS framework. The core of these packages is the `TrackSelector` algorithm, which is the base class for all subalgorithms, such as `D0phi_KpiKK`.

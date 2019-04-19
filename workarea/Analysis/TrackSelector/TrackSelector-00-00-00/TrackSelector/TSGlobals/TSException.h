@@ -1,5 +1,5 @@
-#ifndef Analysis_TSGlobals_TSException_H
-#define Analysis_TSGlobals_TSException_H
+#ifndef Analysis_TrackSelector_TSGlobals_TSException_H
+#define Analysis_TrackSelector_TSGlobals_TSException_H
 
 #include "TString.h"
 #include <vector>

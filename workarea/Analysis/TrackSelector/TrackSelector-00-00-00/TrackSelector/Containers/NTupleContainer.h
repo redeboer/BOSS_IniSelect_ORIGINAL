@@ -1,5 +1,5 @@
-#ifndef Analysis_NTupleContainer_H
-#define Analysis_NTupleContainer_H
+#ifndef Analysis_TrackSelector_NTupleContainer_H
+#define Analysis_TrackSelector_NTupleContainer_H
 
 #include "GaudiKernel/NTuple.h"
 #include "TrackSelector/Containers/Container_base.h"

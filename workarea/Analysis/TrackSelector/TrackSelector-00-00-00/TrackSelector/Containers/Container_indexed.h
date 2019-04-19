@@ -1,5 +1,5 @@
-#ifndef Analysis_Container_indexed_H
-#define Analysis_Container_indexed_H
+#ifndef Analysis_TrackSelector_Container_indexed_H
+#define Analysis_TrackSelector_Container_indexed_H
 
 #include "TrackSelector/Containers/Container_base.h"
 #include <iostream>

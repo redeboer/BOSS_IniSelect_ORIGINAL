@@ -1,5 +1,5 @@
-#ifndef Physics_KinematicFitter_H
-#define Physics_KinematicFitter_H
+#ifndef Analysis_TrackSelector_KinematicFitter_H
+#define Analysis_TrackSelector_KinematicFitter_H
 
 #include "EmcRecEventModel/RecEmcShower.h"
 #include "VertexFit/KalmanKinematicFit.h"

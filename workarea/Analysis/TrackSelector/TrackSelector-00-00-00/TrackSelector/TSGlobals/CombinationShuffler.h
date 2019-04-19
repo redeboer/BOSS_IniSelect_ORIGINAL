@@ -1,5 +1,5 @@
-#ifndef Analysis_TSGlobals_CombinationShuffler_H
-#define Analysis_TSGlobals_CombinationShuffler_H
+#ifndef Analysis_TrackSelector_TSGlobals_CombinationShuffler_H
+#define Analysis_TrackSelector_TSGlobals_CombinationShuffler_H
 
 #include <algorithm>
 #include <vector>
