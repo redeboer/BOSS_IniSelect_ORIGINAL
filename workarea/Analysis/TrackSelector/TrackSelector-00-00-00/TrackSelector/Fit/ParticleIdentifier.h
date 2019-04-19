@@ -34,16 +34,16 @@ public:
 
   static bool AttemptIdentification();
 
-  static double GetChiTofE() { gPID->chiTofE(2); }
-  static double GetChiTofIB() { gPID->chiTof1(2); }
-  static double GetChiTofOB() { gPID->chiTof2(2); }
-  static double GetChiDedx() { gPID->chiDedx(2); }
+  static double GetChiTofE() { return gPID->chiTofE(2); }
+  static double GetChiTofIB() { return gPID->chiTof1(2); }
+  static double GetChiTofOB() { return gPID->chiTof2(2); }
+  static double GetChiDedx() { return gPID->chiDedx(2); }
 
-  static double GetProbKaon() { gPID->probKaon(); }
-  static double GetProbElectron() { gPID->probElectron(); }
-  static double GetProbMuon() { gPID->probMuon(); }
-  static double GetProbProton() { gPID->probProton(); }
-  static double GetProbPion() { gPID->probPion(); }
+  static double GetProbKaon() { return gPID->probKaon(); }
+  static double GetProbElectron() { return gPID->probElectron(); }
+  static double GetProbMuon() { return gPID->probMuon(); }
+  static double GetProbProton() { return gPID->probProton(); }
+  static double GetProbPion() { return gPID->probPion(); }
   static double GetProbByPDGCode(const int pdgCode);
 
 private:
