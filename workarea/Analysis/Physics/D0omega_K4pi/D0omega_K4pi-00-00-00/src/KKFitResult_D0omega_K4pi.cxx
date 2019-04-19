@@ -4,7 +4,7 @@
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "CLHEP/Vector/LorentzVector.h"
-#include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "TrackSelector/TrackSelector.h"
 #include <cmath>
 

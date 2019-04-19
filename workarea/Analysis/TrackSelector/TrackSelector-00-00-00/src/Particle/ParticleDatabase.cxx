@@ -2,7 +2,7 @@
 #include "MdcRecoUtil/Pdt.h"
 #include "MdcRecoUtil/PdtPdg.h"
 #include "TString.h"
-#include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 using namespace TSGlobals;
 
 ParticleDatabase::ParticleDatabase()

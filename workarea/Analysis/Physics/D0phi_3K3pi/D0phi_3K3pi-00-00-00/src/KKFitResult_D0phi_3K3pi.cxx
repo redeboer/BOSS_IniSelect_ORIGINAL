@@ -4,7 +4,7 @@
 
 #include "D0phi_3K3pi/KKFitResult_D0phi_3K3pi.h"
 #include "CLHEP/Vector/LorentzVector.h"
-#include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "TrackSelector/TrackSelector.h"
 #include <cmath>
 

@@ -13,7 +13,7 @@
 #include "TMath.h"
 #include "TString.h"
 #include "TrackSelector/Containers/NTupleTopoAna.h"
-#include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>

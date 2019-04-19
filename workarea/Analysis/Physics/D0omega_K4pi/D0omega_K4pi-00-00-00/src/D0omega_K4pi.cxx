@@ -7,7 +7,7 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "TrackSelector/TSGlobals.h"
+#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "TrackSelector/TSGlobals/TSException.h"
 #include <string>
 #include <utility>
