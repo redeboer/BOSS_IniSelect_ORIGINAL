@@ -82,7 +82,7 @@ StatusCode D0omega_K4pi::initialize_rest()
 /// `"mult_select"`: Multiplicities of selected particles.
 void D0omega_K4pi::AddNTupleItems_mult_sel()
 {
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
     fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetPdtName()));
 }
@@ -327,7 +327,7 @@ void D0omega_K4pi::WriteMultiplicities()
 {
   PrintMultiplicities();
   if(!fNTuple_mult_sel.DoWrite()) return;
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
     fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
   fNTuple_mult_sel.Write();
@@ -338,7 +338,7 @@ void D0omega_K4pi::PrintMultiplicities()
 {
   fLog << MSG::INFO;
   Int_t i = 0;
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
   {
     if(i) fLog << ", ";
@@ -351,7 +351,7 @@ void D0omega_K4pi::PrintMultiplicities()
 /// **PID cut**: apply a strict cut on the number of the selected particles.
 void D0omega_K4pi::CutPID()
 {
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
     if(coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
@@ -447,7 +447,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
 void D0omega_K4pi::DoVertexFit()
 {
   fVertexFitter.Initialize();
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.NextCharged();)
     for(int i = 0; i < coll->GetNTracks(); ++i)
       fVertexFitter.AddTrack(coll->GetParticle(i), coll->GetMass());
@@ -466,7 +466,7 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::AddTracksToKinematicFitter()
 {
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   for(fParticleSel.ResetLooper(); coll = fParticleSel.Next();)
   {
     for(int i = 0; i < coll->GetNTracks(); ++i)

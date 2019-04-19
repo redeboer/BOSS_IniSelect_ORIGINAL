@@ -2,7 +2,7 @@
 #define Analysis_TrackSelector_ParticleSelection_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
-#include "TrackSelector/TrackCollections/TrackCollection.h"
+#include "TrackSelector/TrackCollections/CandidateTracks.h"
 #include <map>
 #include <string>
 
@@ -33,20 +33,20 @@ public:
 
   bool NextPhotonCombination();
 
-  TrackCollection<EvtRecTrack>& GetCollection(const std::string& pdtName) { fSelections[pdtName]; }
-  TrackCollection<EvtRecTrack>& GetPhotons() { return GetCollection("g"); };
+  CandidateTracks<EvtRecTrack>& GetCollection(const std::string& pdtName) { fSelections[pdtName]; }
+  CandidateTracks<EvtRecTrack>& GetPhotons() { return GetCollection("g"); };
 
-  TrackCollection<EvtRecTrack>* ResetLooper();
-  TrackCollection<EvtRecTrack>* Next();
-  TrackCollection<EvtRecTrack>* NextCharged();
+  CandidateTracks<EvtRecTrack>* ResetLooper();
+  CandidateTracks<EvtRecTrack>* Next();
+  CandidateTracks<EvtRecTrack>* NextCharged();
 
 
 private:
-  std::map<std::string, TrackCollection<EvtRecTrack> >           fSelections;
-  std::map<std::string, TrackCollection<EvtRecTrack> >::iterator fSelectionsIter;
+  std::map<std::string, CandidateTracks<EvtRecTrack> >           fSelections;
+  std::map<std::string, CandidateTracks<EvtRecTrack> >::iterator fSelectionsIter;
   void SetParticleToN(const TString& pdtName, const size_t& nInstances);
 
-  TrackCollection<EvtRecTrack>* UnpackIter();
+  CandidateTracks<EvtRecTrack>* UnpackIter();
 };
 
 /// @}

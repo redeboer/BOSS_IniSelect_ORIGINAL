@@ -1,5 +1,5 @@
-#ifndef Analysis_TrackSelector_TrackCollection_H
-#define Analysis_TrackSelector_TrackCollection_H
+#ifndef Analysis_TrackSelector_CandidateTracks_H
+#define Analysis_TrackSelector_CandidateTracks_H
 
 #include "TString.h"
 #include "TrackSelector/Particle/Particle.h"
@@ -12,11 +12,11 @@
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 16th, 2018
 template <typename T>
-class TrackCollection
+class CandidateTracks
 {
 public:
-  TrackCollection() {}
-  TrackCollection(const TString& pdtName, const size_t nparticles = 1) :
+  CandidateTracks() {}
+  CandidateTracks(const TString& pdtName, const size_t nparticles = 1) :
     fParticle(pdtName),
     fNParticles(nparticles)
   {}
@@ -62,20 +62,20 @@ private:
 /// @}
 
 template <typename T>
-T* TrackCollection<T>::GetParticle(const size_t i) const
+T* CandidateTracks<T>::GetParticle(const size_t i) const
 {
   if(i < fTrackColl.size()) return fTrackColl.at(i);
   return nullptr;
 }
 
 template <typename T>
-bool TrackCollection<T>::NextCombination()
+bool CandidateTracks<T>::NextCombination()
 {
   return TSGlobals::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
 }
 
 template <typename T>
-bool TrackCollection<T>::FailsMultiplicityCut() const
+bool CandidateTracks<T>::FailsMultiplicityCut() const
 {
   switch(fMultiplicityCut)
   {

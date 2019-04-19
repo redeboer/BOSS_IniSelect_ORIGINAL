@@ -12,6 +12,7 @@
 /// @addtogroup BOSS_objects
 /// @{
 
+/// `TrackSelector` inherits from this object.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 16th, 2018
 class RecTrackPointers

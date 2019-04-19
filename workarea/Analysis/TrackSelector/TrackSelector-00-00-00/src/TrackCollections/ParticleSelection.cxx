@@ -1,20 +1,20 @@
 #include "TrackSelector/TrackCollections/ParticleSelection.h"
 
-TrackCollection<EvtRecTrack>* ParticleSelection::ResetLooper()
+CandidateTracks<EvtRecTrack>* ParticleSelection::ResetLooper()
 {
   fSelectionsIter = fSelections.begin();
   return UnpackIter();
 }
 
-TrackCollection<EvtRecTrack>* ParticleSelection::Next()
+CandidateTracks<EvtRecTrack>* ParticleSelection::Next()
 {
   ++fSelectionsIter;
   return UnpackIter();
 }
 
-TrackCollection<EvtRecTrack>* ParticleSelection::NextCharged()
+CandidateTracks<EvtRecTrack>* ParticleSelection::NextCharged()
 {
-  TrackCollection<EvtRecTrack>* coll;
+  CandidateTracks<EvtRecTrack>* coll;
   while(coll = Next())
   {
     if(!coll) return nullptr;
@@ -22,7 +22,7 @@ TrackCollection<EvtRecTrack>* ParticleSelection::NextCharged()
   }
 }
 
-TrackCollection<EvtRecTrack>* ParticleSelection::UnpackIter()
+CandidateTracks<EvtRecTrack>* ParticleSelection::UnpackIter()
 {
   if(fSelectionsIter == fSelections.end()) return nullptr;
   return &fSelectionsIter->second;
@@ -35,14 +35,14 @@ void ParticleSelection::SetParticleToN(const TString& pdtName, const size_t& nIn
 
 void ParticleSelection::ClearCharged()
 {
-  std::map<std::string, TrackCollection<EvtRecTrack> >::iterator it;
+  std::map<std::string, CandidateTracks<EvtRecTrack> >::iterator it;
   for(it = fSelections.begin(); it != fSelections.end(); ++it)
     if(it->second.IsCharged()) it->second.Clear();
 }
 
 void ParticleSelection::ClearNeutral()
 {
-  std::map<std::string, TrackCollection<EvtRecTrack> >::iterator it;
+  std::map<std::string, CandidateTracks<EvtRecTrack> >::iterator it;
   for(it = fSelections.begin(); it != fSelections.end(); ++it)
     if(!it->second.IsCharged()) it->second.Clear();
 }
