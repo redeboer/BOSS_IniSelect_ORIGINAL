@@ -35,6 +35,7 @@ public:
   const std::vector<T*>& GetTracks() const { return fTrackColl; }
 
   const size_t   GetNTracks() const { return fTrackColl.size(); }
+  const size_t&  GetNParticles() const { return fNParticles; }
   const char*    GetPdtName() const { return fParticle.GetPdtName(); }
   const Int_t&   GetPdgCode() const { return fParticle.GetPdgCode(); }
   const Float_t& GetMass() const { return fParticle.GetMass(); }

@@ -247,9 +247,17 @@ bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
   }
   else
   {
+std::cout << "kaon" << std::endl;
     if(fCut_PIDProb.FailsMin(fPIDInstance->probKaon())) return false;
+std::cout << "kaon OK" << std::endl;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+std::cout << "charge: " << fTrackKal->charge() << std::endl;
+std::cout << "here1" << std::endl;
+std::cout << "Candidate: " << fParticleSel.GetCandidates("K-").GetPdtName() << std::endl;
+std::cout << "here2" << std::endl;
     if(fTrackKal->charge() < 0) fParticleSel.GetCandidates("K-").AddTrack(track);
+std::cout << "here3" << std::endl;
+std::cout << "NKaon: " << fParticleSel.GetCandidates("K-").GetNTracks() << std::endl;
   }
 }
 
