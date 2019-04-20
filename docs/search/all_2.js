@@ -1,11 +1,12 @@
 var searchData=
 [
   ['cal_5fvia_5fmom',['cal_via_mom',['../trkInfo_8h.html#a98aba6f81c8438a063472de2b2e21985',1,'trkInfo.h']]],
+  ['candidatetracks',['CandidateTracks',['../classCandidateTracks.html',1,'CandidateTracks&lt; T &gt;'],['../classCandidateTracks.html#aaa18503bf2c70aa2f8b69c4c810f3900',1,'CandidateTracks::CandidateTracks()'],['../classCandidateTracks.html#ac6049d64a99132eae4ad3f17918fd957',1,'CandidateTracks::CandidateTracks(const TString &amp;pdtName, const short nparticles=1)']]],
+  ['candidatetracks_2eh',['CandidateTracks.h',['../CandidateTracks_8h.html',1,'']]],
   ['categorizetrack',['CategorizeTrack',['../classD0omega__K4pi.html#adccf50d0dd39dd8839e9311f398b7a43',1,'D0omega_K4pi']]],
-  ['clear',['Clear',['../classTrackCollection.html#a770e36cbc659694580fd539b840fe947',1,'TrackCollection']]],
-  ['clearall',['ClearAll',['../classParticleTracks.html#a357d0afc7a79eb82d7e6af44ec3b1c34',1,'ParticleTracks']]],
-  ['clearcharged',['ClearCharged',['../classParticleSelection.html#a12b82dc95677b9adf008159414361ae7',1,'ParticleSelection::ClearCharged()'],['../classParticleSelection.html#a12b82dc95677b9adf008159414361ae7',1,'ParticleSelection::ClearCharged()']]],
-  ['clearneutral',['ClearNeutral',['../classParticleSelection.html#a4d8a57e1d4d65698cbb01c479df4583e',1,'ParticleSelection::ClearNeutral()'],['../classParticleSelection.html#a4d8a57e1d4d65698cbb01c479df4583e',1,'ParticleSelection::ClearNeutral()']]],
+  ['clear',['Clear',['../classCandidateTracks.html#a8126bb840c69c8a12bde75cedef975ec',1,'CandidateTracks']]],
+  ['clearcharged',['ClearCharged',['../classParticleSelectionTempl.html#acb5a451d61e84452f34e6cc43f8683a4',1,'ParticleSelectionTempl']]],
+  ['clearneutral',['ClearNeutral',['../classParticleSelectionTempl.html#a52ca3e892d72abb618428a0005efc545',1,'ParticleSelectionTempl']]],
   ['cmsenergy',['CMSEnergy',['../simulation_8txt.html#a3329ecc90880ec228aa5dd63440d67db',1,'simulation.txt']]],
   ['combinationshuffler_2eh',['CombinationShuffler.h',['../CombinationShuffler_8h.html',1,'']]],
   ['computemomentum',['ComputeMomentum',['../classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0',1,'TrackSelector']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['equalto',['EqualTo',['../classTrackCollection.html#a1f01801eae24a06c6ed178d9e1d2e3bfadcbabf1ef4a49736d56e02532ec9a118',1,'TrackCollection']]]
+  ['equalto',['EqualTo',['../classCandidateTracks.html#a7b94f7923fee250ec44461644e801310a6f4626f80365af8c34ac9e617cce5fab',1,'CandidateTracks']]]
 ];

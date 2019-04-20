@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['atleast',['AtLeast',['../classTrackCollection.html#a1f01801eae24a06c6ed178d9e1d2e3bfa307ee5c330083da81229c8871a6320e5',1,'TrackCollection']]],
-  ['atmost',['AtMost',['../classTrackCollection.html#a1f01801eae24a06c6ed178d9e1d2e3bfa179cc83429761a41283e326507966770',1,'TrackCollection']]]
+  ['atleast',['AtLeast',['../classCandidateTracks.html#a7b94f7923fee250ec44461644e801310adffe83ad778b7cb5cd6f1af4d0289ba0',1,'CandidateTracks']]],
+  ['atmost',['AtMost',['../classCandidateTracks.html#a7b94f7923fee250ec44461644e801310add8d215d132fe239941854ff1965c573',1,'CandidateTracks']]]
 ];

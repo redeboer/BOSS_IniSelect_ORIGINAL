@@ -107,13 +107,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7f0176ebbd3cceef08cf5a8005ff2bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Gaudi Algorithm steps</div></td></tr>
 <tr class="memitem:a42987b298b549df8af27578a7c8160f6"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6">initialize</a> ()</td></tr>
-<tr class="memdesc:a42987b298b549df8af27578a7c8160f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>.  <a href="#a42987b298b549df8af27578a7c8160f6">More...</a><br /></td></tr>
+<tr class="memdesc:a42987b298b549df8af27578a7c8160f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b>  <a href="#a42987b298b549df8af27578a7c8160f6">More...</a><br /></td></tr>
 <tr class="separator:a42987b298b549df8af27578a7c8160f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93c6042360744cee6c886ee0ba985504"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#a93c6042360744cee6c886ee0ba985504">execute</a> ()</td></tr>
 <tr class="memdesc:a93c6042360744cee6c886ee0ba985504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>execute</code> method of the <code>Algorithm</code>. This function is called <em>for each event</em>.  <a href="#a93c6042360744cee6c886ee0ba985504">More...</a><br /></td></tr>
 <tr class="separator:a93c6042360744cee6c886ee0ba985504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab76937e733cff9572d08436bf9236b16"><td class="memItemLeft" align="right" valign="top">StatusCode&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#ab76937e733cff9572d08436bf9236b16">finalize</a> ()</td></tr>
-<tr class="memdesc:ab76937e733cff9572d08436bf9236b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>.  <a href="#ab76937e733cff9572d08436bf9236b16">More...</a><br /></td></tr>
+<tr class="memdesc:ab76937e733cff9572d08436bf9236b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inherited <code>finalize</code> method of <code>Algorithm</code>. This function is only called once, after running over all events. Prints the flow chart to the terminal, so <b>make sure you save this output!</b>  <a href="#ab76937e733cff9572d08436bf9236b16">More...</a><br /></td></tr>
 <tr class="separator:ab76937e733cff9572d08436bf9236b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -151,7 +151,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a67fee3f1672e9ae8754235e4d67bcf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>do not necessarily have to be of the same type.</p>
-<p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the <a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6" title="(Inherited) initialize step of Algorithm. ">RhopiAlg::initialize()</a> step. This is also the place where you name these variables, so make sure that the structure here is reflected there! </p>
+<p>In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the <a class="el" href="classRhopiAlg.html#a42987b298b549df8af27578a7c8160f6" title="(Inherited) initialize step of Algorithm. This function is called only once in the beginning...">RhopiAlg::initialize()</a> step. This is also the place where you name these variables, so make sure that the structure here is reflected there! </p>
 </div></td></tr>
 <tr class="memitem:acb3f3e60fff80d1614bf8f074569cdd4"><td class="memItemLeft" align="right" valign="top">NTuple::Tuple *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRhopiAlg.html#acb3f3e60fff80d1614bf8f074569cdd4">fTupleVxyz</a></td></tr>
 <tr class="memdesc:acb3f3e60fff80d1614bf8f074569cdd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vertex information of the charged tracks.  <a href="#acb3f3e60fff80d1614bf8f074569cdd4">More...</a><br /></td></tr>
@@ -443,7 +443,7 @@ Private Attributes</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="RhopiAlg_8h.html">RhopiAlg/RhopiAlg.h</a>) and that you should assign the values in <code>share/jopOptions_RhopiAlg.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See <a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00079">79</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00075">75</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -529,7 +529,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00494">494</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00478">478</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -548,10 +548,9 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Inherited <code>finalize</code> method of <code>Algorithm</code>. </p>
-<p>This function is only called once, after running over all events. Prints the flow chart to the terminal, so <b>make sure you save this output!</b> </p>
+<p>Inherited <code>finalize</code> method of <code>Algorithm</code>. This function is only called once, after running over all events. Prints the flow chart to the terminal, so <b>make sure you save this output!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01167">1167</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l01148">1148</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>
@@ -570,202 +569,347 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
-<p>This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
+<p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. This function is called only once in the beginning. <b>Define and load <code>NTuple</code>s here.</b> </p>
 <table class="doxtable">
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "vxyz"</code>: Vertex information of the charged tracks**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"vx0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$x$" src="form_12.png"/>-vertex as determined by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"vy0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$y$" src="form_13.png"/>-vertex as determined by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"vz0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$z$" src="form_14.png"/>-vertex as determined by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"vr0"</code> </td><td><p class="starttd">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_64.png"/>-plane</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"rvxy0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_64.png"/> plane</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"rvz0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_14.png"/> direction</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"rvphi0"</code></td><td><p class="starttd">Angle in the <img class="formulaInl" alt="$xy$" src="form_64.png"/>-plane (?)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vx0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$x$" src="form_12.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vy0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$y$" src="form_13.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vz0"</code> </td><td><p class="starttd">Primary <img class="formulaInl" alt="$z$" src="form_14.png"/>-vertex as determined by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"vr0"</code> </td><td><p class="starttd">Distance from origin in <img class="formulaInl" alt="$xy$" src="form_64.png"/>-plane</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvxy0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$xy$" src="form_64.png"/> plane</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvz0"</code> </td><td><p class="starttd">Nearest distance to IP in <img class="formulaInl" alt="$z$" src="form_14.png"/> direction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rvphi0"</code></td><td><p class="starttd">Angle in the <img class="formulaInl" alt="$xy$" src="form_64.png"/>-plane (?)</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "photon"</code>: Photon kinematics**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"dthe"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\theta$" src="form_4.png"/> angle difference with nearest charged track (degrees)</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"dphi"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\phi$" src="form_3.png"/> angle difference with nearest charged track (degrees)</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"dang"</code></td><td><p class="starttd">Angle difference with nearest charged track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"eraw"</code></td><td><p class="starttd">Energy of the photon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dthe"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\theta$" src="form_4.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dphi"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\phi$" src="form_3.png"/> angle difference with nearest charged track (degrees)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dang"</code></td><td><p class="starttd">Angle difference with nearest charged track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"eraw"</code></td><td><p class="starttd">Energy of the photon</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "etot"</code>: Energy branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"m2gg"</code></td><td><p class="starttd">Invariant mass of the two gammas</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"etot"</code></td><td><p class="starttd">Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_11.png"/> and the two gammas</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"m2gg"</code></td><td><p class="starttd">Invariant mass of the two gammas</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"etot"</code></td><td><p class="starttd">Total energy of <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>, <img class="formulaInl" alt="$\pi^-$" src="form_11.png"/> and the two gammas</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "fit4c"</code>: Neutral pion (pi0) fit branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"mpi0"</code></td><td><p class="starttd">Invariant <img class="formulaInl" alt="$\pi^0$" src="form_5.png"/> mass according to Kalman kinematic fit</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chi2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mpi0"</code></td><td><p class="starttd">Invariant <img class="formulaInl" alt="$\pi^0$" src="form_5.png"/> mass according to Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chi2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "fit5c"</code>: Rho fit branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chi2"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"mrho0"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_100.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_79.png"/>)</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"mrhop"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_101.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_81.png"/>)</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"mrhom"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_102.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_80.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chi2"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrho0"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^+\pi^-$" src="form_100.png"/> combination ( <img class="formulaInl" alt="$\rho^0$" src="form_79.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrhop"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^+$" src="form_101.png"/> combination ( <img class="formulaInl" alt="$\rho^+$" src="form_81.png"/>)</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"mrhom"</code></td><td><p class="starttd">Invariant mass for <img class="formulaInl" alt="$\pi^0\pi^-$" src="form_102.png"/> combination ( <img class="formulaInl" alt="$\rho^-$" src="form_80.png"/>)</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "geff"</code>: Photon detection efficiences**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"fcos"</code></td><td><p class="starttd"><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_63.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_5.png"/> candidate</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"elow"</code></td><td><p class="starttd">Lowest energy of the two photons</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"fcos"</code></td><td><p class="starttd"><img class="formulaInl" alt="$E/|\vec{p}|$" src="form_63.png"/> ratio for <img class="formulaInl" alt="$\pi^0$" src="form_5.png"/> candidate</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"elow"</code></td><td><p class="starttd">Lowest energy of the two photons</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "dedx"</code>: Import dE/dx PID branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ptrk"</code> </td><td><p class="starttd">Momentum of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chie"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chimu"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chipi"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chik"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"chip"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"probPH"</code></td><td><p class="starttd">Most probable pulse height from truncated mean</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"normPH"</code></td><td><p class="starttd">Normalized pulse height</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ghit"</code> </td><td><p class="starttd">Number of good hits</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"thit"</code> </td><td><p class="starttd">Total number of hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code> </td><td><p class="starttd">Momentum of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chie"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of electron</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chimu"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of muon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chipi"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of pion</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chik"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of kaon</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"chip"</code> </td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> in case of proton</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"probPH"</code></td><td><p class="starttd">Most probable pulse height from truncated mean</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"normPH"</code></td><td><p class="starttd">Normalized pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ghit"</code> </td><td><p class="starttd">Number of good hits</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"thit"</code> </td><td><p class="starttd">Total number of hits</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "tofe"</code>: ToF endcap branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"path"</code></td><td><p class="starttd">Path length</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"rhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"rhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "tof1"</code>: ToF <em>inner</em> barrel branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"path"</code></td><td><p class="starttd">Path length</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "tof2"</code>: ToF <em>outer</em> barrel branch**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"path"</code></td><td><p class="starttd">Path length</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track as reconstructed by MDC</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"path"</code></td><td><p class="starttd">Path length</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof"</code> </td><td><p class="starttd">Time of flight</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cntr"</code></td><td><p class="starttd">ToF counter ID</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ph"</code> </td><td><p class="starttd">ToF pulse height</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"zhit"</code></td><td><p class="starttd">Track extrapolate Z or R Hit position</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"qual"</code></td><td><p class="starttd">Data quality of reconstruction</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"te"</code> </td><td><p class="starttd">Difference with ToF in electron hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tmu"</code> </td><td><p class="starttd">Difference with ToF in muon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tpi"</code> </td><td><p class="starttd">Difference with ToF in charged pion hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tk"</code> </td><td><p class="starttd">Difference with ToF in charged kaon hypothesis</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tp"</code> </td><td><p class="starttd">Difference with ToF in proton hypothesis</p>
 <p class="endtd"></p>
 </td></tr>
 <tr>
 <td colspan="2"><p class="starttd">**<code>NTuple "pid"</code>: Track PID information**</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"cost"</code></td><td><p class="starttd">Theta angle of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"dedx"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_2.png"/> of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tof1"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"tof2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track</p>
-<p class="endtd">&lt; tr&gt;</p>
-</td><td><code>"prob"</code></td><td><p class="starttd">Probability that it is a pion</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"ptrk"</code></td><td><p class="starttd">Momentum of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"cost"</code></td><td><p class="starttd">Theta angle of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"dedx"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the <img class="formulaInl" alt="$dE/dx$" src="form_2.png"/> of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof1"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the inner barrel ToF of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"tof2"</code></td><td><p class="starttd"><img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the outer barrel ToF of the track</p>
+<p class="endtd"></p>
+</td></tr>
+<tr>
+<td><code>"prob"</code></td><td><p class="starttd">Probability that it is a pion</p>
 <p class="endtd"></p>
 </td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00112">112</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="RhopiAlg_8cxx_source.html#l00107">107</a> of file <a class="el" href="RhopiAlg_8cxx_source.html">RhopiAlg.cxx</a>.</p>
 
 </div>
 </div>

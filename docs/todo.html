@@ -84,40 +84,44 @@ $(document).ready(function(){initNavTree('todo.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_todo000012"></a>Module <a class="el" href="group__BOSS__objects.html">BOSS_objects</a>  </dt>
+<dt><a class="anchor" id="_todo000013"></a>Module <a class="el" href="group__BOSS__objects.html">BOSS_objects</a>  </dt>
 <dd><p class="startdd">Would be better to work with CERN ROOT's <code>TDatabasePDG</code>, but this is not included in the BOSS libraries...</p>
 <p class="enddd">Would be better to work with CERN ROOT's <code>TDatabasePDG</code>, but this is not included in the BOSS libraries...  </p>
 </dd>
-<dt><a class="anchor" id="_todo000007"></a>Class <a class="el" href="classContainer__base.html">Container_base</a>  </dt>
+<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classContainer__base.html">Container_base</a>  </dt>
 <dd>Encapsulate in <code>namespace</code> structure.  </dd>
-<dt><a class="anchor" id="_todo000008"></a>Class <a class="el" href="classContainer__indexed.html">Container_indexed</a>  </dt>
+<dt><a class="anchor" id="_todo000009"></a>Class <a class="el" href="classContainer__indexed.html">Container_indexed</a>  </dt>
 <dd>Consider implementing <a href="https://en.wikipedia.org/wiki/Curiously_recurring_template_pattern">Curiously Recurring Template Pattern</a> for independent objects of <code>fInstances</code> in derived classes.  </dd>
-<dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087">Container_indexed::KeyExists</a>  (const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const</dt>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087">Container_indexed::KeyExists</a>  (const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const</dt>
 <dd>Use error handling for existing keys, not <code>terminate</code>.  </dd>
-<dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classD0omega__K4pi.html#a27b4ce5de2ddf86dcc8a1ce5a9637ff5">D0omega_K4pi::FindBestKinematicFit</a>  ()</dt>
+<dt><a class="anchor" id="_todo000001"></a>Member <a class="el" href="classD0omega__K4pi.html#af74250526bb3431cfdc5d42f042944e6">D0omega_K4pi::CreateChargedTrackSelections</a>  ()</dt>
+<dd>Check if all these <code><a class="el" href="classParticleIdentifier.html">ParticleIdentifier</a></code> methods can be moved out of the loop, up to <code>SetTrack</code>. Can perhaps even be moved to <code>initialize</code>?  </dd>
+<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classD0omega__K4pi.html#a27b4ce5de2ddf86dcc8a1ce5a9637ff5">D0omega_K4pi::FindBestKinematicFit</a>  ()</dt>
 <dd>Decide whether 4-constraints is indeed suitable. <em>For more information, see <a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit">the page on primary and secondary vertex fits on the Offline Software Pages</a> (requires login).</em>  </dd>
-<dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">D0phi_KpiKK::fKaonNeg</a>  </dt>
+<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classD0phi__KpiKK.html#afd19015366820f50472c723e6610e53e">D0phi_KpiKK::fKaonNeg</a>  </dt>
 <dd>Decide if this can be formulated in terms of some <code>fEvtRecTrackMap</code>.  </dd>
-<dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classD0phi__KpipiKK.html#a9e232c48e45ada91d00579f05ecedda7">D0phi_KpipiKK::execute_rest</a>  ()</dt>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classD0phi__KpipiKK.html#a9e232c48e45ada91d00579f05ecedda7">D0phi_KpipiKK::execute_rest</a>  ()</dt>
 <dd>Decide whether 4-constraints is indeed suitable.  </dd>
-<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
+<dt><a class="anchor" id="_todo000016"></a>Member <a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>  </dt>
 <dd>It would be more efficient to use <code>unordered_map</code>, but this is a <code>c++11</code> feature...  </dd>
-<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="classKinematicFitter.html#a8613bf13e6104444818358e30da60384">KinematicFitter::GetFit</a>  ()</dt>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="classKinematicFitter.html#a8613bf13e6104444818358e30da60384">KinematicFitter::GetFit</a>  ()</dt>
 <dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>.  </dd>
-<dt><a class="anchor" id="_todo000010"></a>Class <a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a>  </dt>
+<dt><a class="anchor" id="_todo000011"></a>Class <a class="el" href="classNTupleTopoAna.html">NTupleTopoAna</a>  </dt>
 <dd>Move <code>static</code> <code>IsJpsi</code> functions etc. to some other object or namespace.  </dd>
-<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
+<dt><a class="anchor" id="_todo000015"></a>Class <a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl&lt; T &gt;</a>  </dt>
+<dd>Consider converting <code><a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a></code> into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods. </dd>
+<dt><a class="anchor" id="_todo000017"></a>Class <a class="el" href="classTrackSelector.html">TrackSelector</a>  </dt>
 <dd>The design of using <code>map</code>s of <code>NTuple::Items</code>s is not ideal, as it does not (yet) allow enough flexibility.  </dd>
-<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2">TrackSelector::AddNTupleItems_charged</a>  ()</dt>
+<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2">TrackSelector::AddNTupleItems_charged</a>  ()</dt>
 <dd>Get explanation of geometry (angle) definitions in an event.<ul>
 <li><code>"rvphi"</code>: Angle in the <img class="formulaInl" alt="$xy$" src="form_64.png"/>plane.</li>
 <li><code>"phi"</code>: Helix angle of the particle.</li>
 <li><code>"p"</code>: Momentum <img class="formulaInl" alt="$p$" src="form_104.png"/> of the track.  </li>
 </ul>
 </dd>
-<dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93">TrackSelector::AddNTupleItems_neutral</a>  ()</dt>
+<dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93">TrackSelector::AddNTupleItems_neutral</a>  ()</dt>
 <dd>Investigate what this parameter precisely means.  </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
+<dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="classTrackSelector.html#a66444e69d52ba9b5d861916fa072c4a4">TrackSelector::initialize</a>  ()</dt>
 <dd>Try to catch the <code>StatusCode</code>. Note that this is problematic, because you actually want to catch the <code>enum</code> within the class <code>StatusCode</code>... </dd>
 </dl>
 </div></div><!-- contents -->

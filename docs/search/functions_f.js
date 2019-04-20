@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['particle',['Particle',['../classParticle.html#afbc95f3808b4bec3c9d76ada39feb4ff',1,'Particle::Particle(const TString &amp;pdtName)'],['../classParticle.html#a75c23e7029c3fbade6d9a8d2a7edcd9e',1,'Particle::Particle(const Int_t pdgCode)']]],
+  ['particle',['Particle',['../classParticle.html#a40f4c7e248029d72e7714b7802d5e5e1',1,'Particle::Particle()'],['../classParticle.html#afbc95f3808b4bec3c9d76ada39feb4ff',1,'Particle::Particle(const TString &amp;pdtName)'],['../classParticle.html#a75c23e7029c3fbade6d9a8d2a7edcd9e',1,'Particle::Particle(const Int_t pdgCode)']]],
   ['particledatabase',['ParticleDatabase',['../classParticleDatabase.html#a1b93dc4fe7a7dd06681b987dc2b3a5f7',1,'ParticleDatabase::ParticleDatabase()'],['../classParticleDatabase.html#ae540868caa69c7f9c3fa738a4fee6ad2',1,'ParticleDatabase::ParticleDatabase(const ParticleDatabase &amp;)']]],
-  ['particleselection',['ParticleSelection',['../classParticleSelection.html#a1c7bdb4c9093366bdc8b00fa13b70700',1,'ParticleSelection::ParticleSelection()'],['../classParticleSelection.html#a1c7bdb4c9093366bdc8b00fa13b70700',1,'ParticleSelection::ParticleSelection()']]],
-  ['particletracks',['ParticleTracks',['../classParticleTracks.html#a4af94df225e88209e2aad82e964c84ad',1,'ParticleTracks']]],
+  ['particleidentifier',['ParticleIdentifier',['../classParticleIdentifier.html#a57c4dc2aabb83ca4e0ed1d2404311b89',1,'ParticleIdentifier::ParticleIdentifier()'],['../classParticleIdentifier.html#a3ab214fc1c78cd0ceb4a1d8761e331c0',1,'ParticleIdentifier::ParticleIdentifier(const ParticleIdentifier &amp;)']]],
+  ['particleselectiontempl',['ParticleSelectionTempl',['../classParticleSelectionTempl.html#a893b5c012cb70c7b7894e279f1a48842',1,'ParticleSelectionTempl']]],
   ['pdtpathexists',['PdtPathExists',['../classParticleDatabase.html#a3dfe17ddf7b21744a8ea9cc102ee5ab4',1,'ParticleDatabase']]],
   ['pipijpsi',['PipiJpsi',['../classPipiJpsi.html#aee15e034e71dbbd94b837aeefefaa74e',1,'PipiJpsi']]],
   ['postconstructor',['PostConstructor',['../classTrackSelector.html#a1208e2cca3e227978fea89f86116bfa3',1,'TrackSelector']]],

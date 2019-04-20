@@ -26,7 +26,6 @@ var classD0omega__K4pi =
     [ "GetEmcPosition", "classD0omega__K4pi.html#ae6bc4a01d37760be455b75e310b51ed5", null ],
     [ "GetExtendedEmcPosition", "classD0omega__K4pi.html#ac4fb8cd4b2341b247692d5fd526cb420", null ],
     [ "initialize_rest", "classD0omega__K4pi.html#ab1ae22a27a09306cac603ba7aff0c806", null ],
-    [ "InitializePID", "classD0omega__K4pi.html#a01bbc670ae2a1ecb1c1941cf55a95167", null ],
     [ "PrintMultiplicities", "classD0omega__K4pi.html#a77beec6dc5a67bbc7f18848652d43487", null ],
     [ "PutParticleInCorrectVector", "classD0omega__K4pi.html#aaf5f790141ee3fcaf4032d651a34e7a0", null ],
     [ "ResetBestKalmanFit", "classD0omega__K4pi.html#a61d18479a52d58f15d5f3e7648eaded0", null ],

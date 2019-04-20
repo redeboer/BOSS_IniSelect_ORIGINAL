@@ -71,11 +71,7 @@ int Ncut6; // "geff" branch
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 /// Constructor for the `RhopiAlg` algorithm.
-/// Here, you should declare properties: give them a name, assign a parameter (data member of
-/// `RhopiAlg`), and if required a documentation string. Note that you should define the paramters
-/// themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in
-/// `share/jopOptions_RhopiAlg.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See
-/// https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
+/// Here, you should declare properties: give them a name, assign a parameter (data member of `RhopiAlg`), and if required a documentation string. Note that you should define the paramters themselves in the header (RhopiAlg/RhopiAlg.h) and that you should assign the values in `share/jopOptions_RhopiAlg.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator)
 {
 
@@ -107,8 +103,7 @@ RhopiAlg::RhopiAlg(const std::string& name, ISvcLocator* pSvcLocator) : Algorith
 // * ========================== * //
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
-/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the
-/// beginning. **Define and load `NTuple`s here.**
+/// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning. **Define and load `NTuple`s here.**
 StatusCode RhopiAlg::initialize()
 {
   // * Log stream and status code * //
@@ -116,8 +111,7 @@ StatusCode RhopiAlg::initialize()
   log << MSG::INFO << "In initialize():" << endmsg;
 
   /// <table>
-  /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged
-  /// tracks**</td></tr>
+  /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged tracks**</td></tr>
   NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
   if(nt1)
     fTupleVxyz = nt1;
@@ -126,26 +120,20 @@ StatusCode RhopiAlg::initialize()
     fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if(fTupleVxyz)
     {
-      fTupleVxyz->addItem(
-        "vx0",
-        fVx0); ///< tr><td>`"vx0"`   </td><td>Primary \f$x\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem(
-        "vy0",
-        fVy0); ///< tr><td>`"vy0"`   </td><td>Primary \f$y\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem(
-        "vz0",
-        fVz0); ///< tr><td>`"vz0"`   </td><td>Primary \f$z\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem(
-        "vr0",
-        fVr0); ///< tr><td>`"vr0"`   </td><td>Distance from origin in \f$xy\f$-plane</td></tr>
-      fTupleVxyz->addItem(
-        "rvxy0",
-        fRvxy0); ///< tr><td>`"rvxy0"` </td><td>Nearest distance to IP in \f$xy\f$ plane</td></tr>
-      fTupleVxyz->addItem(
-        "rvz0",
-        fRvz0); ///< tr><td>`"rvz0"`  </td><td>Nearest distance to IP in \f$z\f$ direction</td></tr>
-      fTupleVxyz->addItem(
-        "rvphi0", fRvphi0); ///< tr><td>`"rvphi0"`</td><td>Angle in the \f$xy\f$-plane (?)</td></tr>
+      fTupleVxyz->addItem("vx0", fVx0);
+      /// <tr><td>`"vx0"`   </td><td>Primary \f$x\f$-vertex as determined by MDC</td></tr>
+      fTupleVxyz->addItem("vy0", fVy0);
+      /// <tr><td>`"vy0"`   </td><td>Primary \f$y\f$-vertex as determined by MDC</td></tr>
+      fTupleVxyz->addItem("vz0", fVz0);
+      /// <tr><td>`"vz0"`   </td><td>Primary \f$z\f$-vertex as determined by MDC</td></tr>
+      fTupleVxyz->addItem("vr0", fVr0);
+      /// <tr><td>`"vr0"`   </td><td>Distance from origin in \f$xy\f$-plane</td></tr>
+      fTupleVxyz->addItem("rvxy0", fRvxy0);
+      /// <tr><td>`"rvxy0"` </td><td>Nearest distance to IP in \f$xy\f$ plane</td></tr>
+      fTupleVxyz->addItem("rvz0", fRvz0);
+      /// <tr><td>`"rvz0"`  </td><td>Nearest distance to IP in \f$z\f$ direction</td></tr>
+      fTupleVxyz->addItem("rvphi0", fRvphi0);
+      /// <tr><td>`"rvphi0"`</td><td>Angle in the \f$xy\f$-plane (?)</td></tr>
     }
     else
     {
@@ -163,16 +151,14 @@ StatusCode RhopiAlg::initialize()
     fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if(fTupleAngles)
     {
-      fTupleAngles->addItem("dthe",
-                            fDeltaTheta); ///< tr><td>`"dthe"`</td><td>\f$\theta\f$ angle difference
-                                          ///< with nearest charged track (degrees)</td></tr>
-      fTupleAngles->addItem("dphi",
-                            fDeltaPhi); ///< tr><td>`"dphi"`</td><td>\f$\phi\f$ angle difference
-                                        ///< with nearest charged track (degrees)</td></tr>
-      fTupleAngles->addItem("dang", fDeltaAngle); ///< tr><td>`"dang"`</td><td>Angle difference with
-                                                  ///< nearest charged track</td></tr>
-      fTupleAngles->addItem("eraw",
-                            fEraw); ///< tr><td>`"eraw"`</td><td>Energy of the photon</td></tr>
+      fTupleAngles->addItem("dthe", fDeltaTheta);
+      /// <tr><td>`"dthe"`</td><td>\f$\theta\f$ angle difference with nearest charged track (degrees)</td></tr>
+      fTupleAngles->addItem("dphi", fDeltaPhi);
+      /// <tr><td>`"dphi"`</td><td>\f$\phi\f$ angle difference with nearest charged track (degrees)</td></tr>
+      fTupleAngles->addItem("dang", fDeltaAngle);
+      /// <tr><td>`"dang"`</td><td>Angle difference with nearest charged track</td></tr>
+      fTupleAngles->addItem("eraw", fEraw);
+      /// <tr><td>`"eraw"`</td><td>Energy of the photon</td></tr>
     }
     else
     {
@@ -181,7 +167,7 @@ StatusCode RhopiAlg::initialize()
     }
   }
 
-  /// <tr><td colspan="2">**`NTuple "etot"`:   Energy branch**</td></tr>
+  /// <tr><td colspan="2">**`NTuple "etot"`: Energy branch**</td></tr>
   NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
   if(nt3)
     fTupleMgg = nt3;
@@ -190,10 +176,11 @@ StatusCode RhopiAlg::initialize()
     fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if(fTupleMgg)
     {
-      fTupleMgg->addItem(
-        "m2gg", fMtoGG); ///< tr><td>`"m2gg"`</td><td>Invariant mass of the two gammas</td></tr>
-      fTupleMgg->addItem("etot", fEtot); ///< tr><td>`"etot"`</td><td>Total energy of \f$\pi^+\f$,
-                                         ///< \f$\pi^-\f$ and the two gammas</td></tr>
+      fTupleMgg->addItem("m2gg", fMtoGG);
+      /// <tr><td>`"m2gg"`</td><td>Invariant mass of the two gammas</td></tr>
+      fTupleMgg->addItem("etot", fEtot);
+      /// <tr><td>`"etot"`</td><td>Total energy of \f$\pi^+\f$,
+      ///< \f$\pi^-\f$ and the two gammas</td></tr>
     }
     else
     {
@@ -213,11 +200,10 @@ StatusCode RhopiAlg::initialize()
       fTupleFit4C = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleFit4C)
       {
-        fTupleFit4C->addItem("mpi0", fMpi0); ///< tr><td>`"mpi0"`</td><td>Invariant \f$\pi^0\f$ mass
-                                             ///< according to Kalman kinematic fit</td></tr>
-        fTupleFit4C->addItem(
-          "chi2",
-          fChi1); ///< tr><td>`"chi2"`</td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+        fTupleFit4C->addItem("mpi0", fMpi0);
+        /// <tr><td>`"mpi0"`</td><td>Invariant \f$\pi^0\f$ mass according to Kalman kinematic fit</td></tr>
+        fTupleFit4C->addItem("chi2", fChi1);
+        /// <tr><td>`"chi2"`</td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
       }
       else
       {
@@ -238,18 +224,14 @@ StatusCode RhopiAlg::initialize()
       fTupleFit5C = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleFit5C)
       {
-        fTupleFit5C->addItem(
-          "chi2",
-          fChi2); ///< tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
-        fTupleFit5C->addItem("mrho0",
-                             fMrho0); ///< tr><td>`"mrho0"`</td><td>Invariant mass for
-                                      ///< \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)</td></tr>
-        fTupleFit5C->addItem("mrhop",
-                             fMrhop); ///< tr><td>`"mrhop"`</td><td>Invariant mass for
-                                      ///< \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)</td></tr>
-        fTupleFit5C->addItem("mrhom",
-                             fMrhom); ///< tr><td>`"mrhom"`</td><td>Invariant mass for
-                                      ///< \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)</td></tr>
+        fTupleFit5C->addItem("chi2", fChi2);
+        /// <tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+        fTupleFit5C->addItem("mrho0", fMrho0);
+        /// <tr><td>`"mrho0"`</td><td>Invariant mass for \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)</td></tr>
+        fTupleFit5C->addItem("mrhop", fMrhop);
+        /// <tr><td>`"mrhop"`</td><td>Invariant mass for \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)</td></tr>
+        fTupleFit5C->addItem("mrhom", fMrhom);
+        /// <tr><td>`"mrhom"`</td><td>Invariant mass for \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)</td></tr>
       }
       else
       {
@@ -270,10 +252,10 @@ StatusCode RhopiAlg::initialize()
       fTuplePhoton = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTuplePhoton)
       {
-        fTuplePhoton->addItem("fcos", fFcos); ///< tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio
-                                              ///< for \f$\pi^0\f$ candidate</td></tr>
-        fTuplePhoton->addItem(
-          "elow", fElow); ///< tr><td>`"elow"`</td><td>Lowest energy of the two photons</td></tr>
+        fTuplePhoton->addItem("fcos", fFcos);
+        /// <tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate</td></tr>
+        fTuplePhoton->addItem("elow", fElow);
+        /// <tr><td>`"elow"`</td><td>Lowest energy of the two photons</td></tr>
       }
       else
       {
@@ -294,26 +276,26 @@ StatusCode RhopiAlg::initialize()
       fTupleDedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleDedx)
       {
-        fTupleDedx->addItem("ptrk",
-                            fPtrack); ///< tr><td>`"ptrk"`  </td><td>Momentum of the track</td></tr>
-        fTupleDedx->addItem(
-          "chie", fChi2e); ///< tr><td>`"chie"`  </td><td>\f$\chi^2\f$ in case of electron</td></tr>
-        fTupleDedx->addItem(
-          "chimu", fChi2mu); ///< tr><td>`"chimu"` </td><td>\f$\chi^2\f$ in case of muon</td></tr>
-        fTupleDedx->addItem(
-          "chipi", fChi2pi); ///< tr><td>`"chipi"` </td><td>\f$\chi^2\f$ in case of pion</td></tr>
-        fTupleDedx->addItem(
-          "chik", fChi2k); ///< tr><td>`"chik"`  </td><td>\f$\chi^2\f$ in case of kaon</td></tr>
-        fTupleDedx->addItem(
-          "chip", fChi2p); ///< tr><td>`"chip"`  </td><td>\f$\chi^2\f$ in case of proton</td></tr>
-        fTupleDedx->addItem("probPH", fProbPH); ///< tr><td>`"probPH"`</td><td>Most probable pulse
-                                                ///< height from truncated mean</td></tr>
-        fTupleDedx->addItem(
-          "normPH", fNormPH); ///< tr><td>`"normPH"`</td><td>Normalized pulse height</td></tr>
-        fTupleDedx->addItem("ghit",
-                            fGhit); ///< tr><td>`"ghit"`  </td><td>Number of good hits</td></tr>
-        fTupleDedx->addItem("thit",
-                            fThit); ///< tr><td>`"thit"`  </td><td>Total number of hits</td></tr>
+        fTupleDedx->addItem("ptrk", fPtrack);
+        /// <tr><td>`"ptrk"`  </td><td>Momentum of the track</td></tr>
+        fTupleDedx->addItem("chie", fChi2e);
+        /// <tr><td>`"chie"`  </td><td>\f$\chi^2\f$ in case of electron</td></tr>
+        fTupleDedx->addItem("chimu", fChi2mu);
+        /// <tr><td>`"chimu"` </td><td>\f$\chi^2\f$ in case of muon</td></tr>
+        fTupleDedx->addItem("chipi", fChi2pi);
+        /// <tr><td>`"chipi"` </td><td>\f$\chi^2\f$ in case of pion</td></tr>
+        fTupleDedx->addItem("chik", fChi2k);
+        /// <tr><td>`"chik"`  </td><td>\f$\chi^2\f$ in case of kaon</td></tr>
+        fTupleDedx->addItem("chip", fChi2p);
+        /// <tr><td>`"chip"`  </td><td>\f$\chi^2\f$ in case of proton</td></tr>
+        fTupleDedx->addItem("probPH", fProbPH);
+        /// <tr><td>`"probPH"`</td><td>Most probable pulse height from truncated mean</td></tr>
+        fTupleDedx->addItem("normPH", fNormPH);
+        /// <tr><td>`"normPH"`</td><td>Normalized pulse height</td></tr>
+        fTupleDedx->addItem("ghit", fGhit);
+        /// <tr><td>`"ghit"`  </td><td>Number of good hits</td></tr>
+        fTupleDedx->addItem("thit", fThit);
+        /// <tr><td>`"thit"`  </td><td>Total number of hits</td></tr>
       }
       else
       {
@@ -334,30 +316,30 @@ StatusCode RhopiAlg::initialize()
       fTupleTofEC = ntupleSvc()->book("FILE1/tofe", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleTofEC)
       {
-        fTupleTofEC->addItem("ptrk", fPtotTofEC); ///< tr><td>`"ptrk"`</td><td>Momentum of the track
-                                                  ///< as reconstructed by MDC</td></tr>
-        fTupleTofEC->addItem("path", fPathTofEC); ///< tr><td>`"path"`</td><td>Path length</td></tr>
-        fTupleTofEC->addItem("tof", fTofEC); ///< tr><td>`"tof"` </td><td>Time of flight</td></tr>
-        fTupleTofEC->addItem("cntr",
-                             fCntrTofEC);     ///< tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
-        fTupleTofEC->addItem("ph", fPhTofEC); ///< tr><td>`"ph"`  </td><td>ToF pulse
-                                              ///< height</td></tr>
-        fTupleTofEC->addItem(
-          "rhit",
-          fRhitTofEC); ///< tr><td>`"rhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
-        fTupleTofEC->addItem(
-          "qual", fQualTofEC); ///< tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
-        fTupleTofEC->addItem("te", fElectronTofEC); ///< tr><td>`"te"`  </td><td>Difference with ToF
-                                                    ///< in electron hypothesis</td></tr>
-        fTupleTofEC->addItem(
-          "tmu",
-          fMuonTofEC); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
-        fTupleTofEC->addItem("tpi", fProtoniTofEC); ///< tr><td>`"tpi"` </td><td>Difference with ToF
-                                                    ///< in charged pion hypothesis</td></tr>
-        fTupleTofEC->addItem("tk", fKaonTofEC); ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                                ///< charged kaon hypothesis</td></tr>
-        fTupleTofEC->addItem("tp", fProtonTofEC); ///< tr><td>`"tp"`  </td><td>Difference with ToF
-                                                  ///< in proton hypothesis</td></tr>
+        fTupleTofEC->addItem("ptrk", fPtotTofEC);
+        /// <tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+        fTupleTofEC->addItem("path", fPathTofEC);
+        /// <tr><td>`"path"`</td><td>Path length</td></tr>
+        fTupleTofEC->addItem("tof", fTofEC);
+        /// <tr><td>`"tof"` </td><td>Time of flight</td></tr>
+        fTupleTofEC->addItem("cntr", fCntrTofEC);
+        /// <tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+        fTupleTofEC->addItem("ph", fPhTofEC);
+        /// <tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+        fTupleTofEC->addItem("rhit", fRhitTofEC);
+        /// <tr><td>`"rhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+        fTupleTofEC->addItem("qual", fQualTofEC);
+        /// <tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+        fTupleTofEC->addItem("te", fElectronTofEC);
+        /// <tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+        fTupleTofEC->addItem("tmu", fMuonTofEC);
+        /// <tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+        fTupleTofEC->addItem("tpi", fProtoniTofEC);
+        /// <tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+        fTupleTofEC->addItem("tk", fKaonTofEC);
+        /// <tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+        fTupleTofEC->addItem("tp", fProtonTofEC);
+        /// <tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
       }
       else
       {
@@ -378,29 +360,30 @@ StatusCode RhopiAlg::initialize()
       TupleTofIB = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(TupleTofIB)
       {
-        TupleTofIB->addItem("ptrk", fPtotTofIB); ///< tr><td>`"ptrk"`</td><td>Momentum of the track
-                                                 ///< as reconstructed by MDC</td></tr>
-        TupleTofIB->addItem("path", fPathTofIB); ///< tr><td>`"path"`</td><td>Path length</td></tr>
-        TupleTofIB->addItem("tof", fTofIB); ///< tr><td>`"tof"` </td><td>Time of flight</td></tr>
-        TupleTofIB->addItem("cntr",
-                            fCntrTofIB);     ///< tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
-        TupleTofIB->addItem("ph", fPhTofIB); ///< tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
-        TupleTofIB->addItem(
-          "zhit",
-          fZhitTofIB); ///< tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
-        TupleTofIB->addItem(
-          "qual", fQualTofIB); ///< tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
-        TupleTofIB->addItem("te", fElectronTofIB); ///< tr><td>`"te"`  </td><td>Difference with ToF
-                                                   ///< in electron hypothesis</td></tr>
-        TupleTofIB->addItem(
-          "tmu",
-          fMuonTofIB); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
-        TupleTofIB->addItem("tpi", fProtoniTofIB); ///< tr><td>`"tpi"` </td><td>Difference with ToF
-                                                   ///< in charged pion hypothesis</td></tr>
-        TupleTofIB->addItem("tk", fKaonTofIB);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                                 ///< charged kaon hypothesis</td></tr>
-        TupleTofIB->addItem("tp", fProtonTofIB); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
-                                                 ///< proton hypothesis</td></tr>
+        TupleTofIB->addItem("ptrk", fPtotTofIB);
+        /// <tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+        TupleTofIB->addItem("path", fPathTofIB);
+        /// <tr><td>`"path"`</td><td>Path length</td></tr>
+        TupleTofIB->addItem("tof", fTofIB);
+        /// <tr><td>`"tof"` </td><td>Time of flight</td></tr>
+        TupleTofIB->addItem("cntr", fCntrTofIB);
+        /// <tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+        TupleTofIB->addItem("ph", fPhTofIB);
+        /// <tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+        TupleTofIB->addItem("zhit", fZhitTofIB);
+        /// <tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+        TupleTofIB->addItem("qual", fQualTofIB);
+        /// <tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+        TupleTofIB->addItem("te", fElectronTofIB);
+        /// <tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+        TupleTofIB->addItem("tmu", fMuonTofIB);
+        /// <tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+        TupleTofIB->addItem("tpi", fProtoniTofIB);
+        /// <tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+        TupleTofIB->addItem("tk", fKaonTofIB);
+        /// <tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+        TupleTofIB->addItem("tp", fProtonTofIB);
+        /// <tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
       }
       else
       {
@@ -421,29 +404,30 @@ StatusCode RhopiAlg::initialize()
       TupleTofOB = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(TupleTofOB)
       {
-        TupleTofOB->addItem("ptrk", fPtotTofOB); ///< tr><td>`"ptrk"`</td><td>Momentum of the track
-                                                 ///< as reconstructed by MDC</td></tr>
-        TupleTofOB->addItem("path", fPathTofOB); ///< tr><td>`"path"`</td><td>Path length</td></tr>
-        TupleTofOB->addItem("tof", fTofOB); ///< tr><td>`"tof"` </td><td>Time of flight</td></tr>
-        TupleTofOB->addItem("cntr",
-                            fCntrTofOB);     ///< tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
-        TupleTofOB->addItem("ph", fPhTofOB); ///< tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
-        TupleTofOB->addItem(
-          "zhit",
-          fZhitTofOB); ///< tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
-        TupleTofOB->addItem(
-          "qual", fQualTofOB); ///< tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
-        TupleTofOB->addItem("te", fElectronTofOB); ///< tr><td>`"te"`  </td><td>Difference with ToF
-                                                   ///< in electron hypothesis</td></tr>
-        TupleTofOB->addItem(
-          "tmu",
-          fMuonTofOB); ///< tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
-        TupleTofOB->addItem("tpi", fProtoniTofOB); ///< tr><td>`"tpi"` </td><td>Difference with ToF
-                                                   ///< in charged pion hypothesis</td></tr>
-        TupleTofOB->addItem("tk", fKaonTofOB);   ///< tr><td>`"tk"`  </td><td>Difference with ToF in
-                                                 ///< charged kaon hypothesis</td></tr>
-        TupleTofOB->addItem("tp", fProtonTofOB); ///< tr><td>`"tp"`  </td><td>Difference with ToF in
-                                                 ///< proton hypothesis</td></tr>
+        TupleTofOB->addItem("ptrk", fPtotTofOB);
+        /// <tr><td>`"ptrk"`</td><td>Momentum of the track as reconstructed by MDC</td></tr>
+        TupleTofOB->addItem("path", fPathTofOB);
+        /// <tr><td>`"path"`</td><td>Path length</td></tr>
+        TupleTofOB->addItem("tof", fTofOB);
+        /// <tr><td>`"tof"` </td><td>Time of flight</td></tr>
+        TupleTofOB->addItem("cntr", fCntrTofOB);
+        /// <tr><td>`"cntr"`</td><td>ToF counter ID</td></tr>
+        TupleTofOB->addItem("ph", fPhTofOB);
+        /// <tr><td>`"ph"`  </td><td>ToF pulse height</td></tr>
+        TupleTofOB->addItem("zhit", fZhitTofOB);
+        /// <tr><td>`"zhit"`</td><td>Track extrapolate Z or R Hit position</td></tr>
+        TupleTofOB->addItem("qual", fQualTofOB);
+        /// <tr><td>`"qual"`</td><td>Data quality of reconstruction</td></tr>
+        TupleTofOB->addItem("te", fElectronTofOB);
+        /// <tr><td>`"te"`  </td><td>Difference with ToF in electron hypothesis</td></tr>
+        TupleTofOB->addItem("tmu", fMuonTofOB);
+        /// <tr><td>`"tmu"` </td><td>Difference with ToF in muon hypothesis</td></tr>
+        TupleTofOB->addItem("tpi", fProtoniTofOB);
+        /// <tr><td>`"tpi"` </td><td>Difference with ToF in charged pion hypothesis</td></tr>
+        TupleTofOB->addItem("tk", fKaonTofOB);
+        /// <tr><td>`"tk"`  </td><td>Difference with ToF in charged kaon hypothesis</td></tr>
+        TupleTofOB->addItem("tp", fProtonTofOB);
+        /// <tr><td>`"tp"`  </td><td>Difference with ToF in proton hypothesis</td></tr>
       }
       else
       {
@@ -462,18 +446,18 @@ StatusCode RhopiAlg::initialize()
     fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
     if(fTuplePID)
     {
-      fTuplePID->addItem("ptrk",
-                         fPtrackPID); ///< tr><td>`"ptrk"`</td><td>Momentum of the track</td></tr>
-      fTuplePID->addItem("cost",
-                         fCostPID); ///< tr><td>`"cost"`</td><td>Theta angle of the track</td></tr>
-      fTuplePID->addItem("dedx", fDedxPID); ///< tr><td>`"dedx"`</td><td>\f$\chi^2\f$ of the
-                                            ///< \f$dE/dx\f$ of the track</td></tr>
-      fTuplePID->addItem("tof1", fTof1PID); ///< tr><td>`"tof1"`</td><td>\f$\chi^2\f$ of the inner
-                                            ///< barrel ToF of the track</td></tr>
-      fTuplePID->addItem("tof2", fTof2PID); ///< tr><td>`"tof2"`</td><td>\f$\chi^2\f$ of the outer
-                                            ///< barrel ToF of the track</td></tr>
-      fTuplePID->addItem(
-        "prob", fProbPID); ///< tr><td>`"prob"`</td><td>Probability that it is a pion</td></tr>
+      fTuplePID->addItem("ptrk", fPtrackPID);
+      /// <tr><td>`"ptrk"`</td><td>Momentum of the track</td></tr>
+      fTuplePID->addItem("cost", fCostPID);
+      /// <tr><td>`"cost"`</td><td>Theta angle of the track</td></tr>
+      fTuplePID->addItem("dedx", fDedxPID);
+      /// <tr><td>`"dedx"`</td><td>\f$\chi^2\f$ of the \f$dE/dx\f$ of the track</td></tr>
+      fTuplePID->addItem("tof1", fTof1PID);
+      /// <tr><td>`"tof1"`</td><td>\f$\chi^2\f$ of the inner barrel ToF of the track</td></tr>
+      fTuplePID->addItem("tof2", fTof2PID);
+      /// <tr><td>`"tof2"`</td><td>\f$\chi^2\f$ of the outer barrel ToF of the track</td></tr>
+      fTuplePID->addItem("prob", fProbPID);
+      /// <tr><td>`"prob"`</td><td>Probability that it is a pion</td></tr>
     }
     else
     {
@@ -1068,8 +1052,7 @@ StatusCode RhopiAlg::execute()
 
   /// <li> Apply Kalman kinematic fit
   /// ** Uses `Ncut5` counter**: Kalman kinematic fit 5c is successful.
-  /// ** Uses `Ncut6` counter**: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass
-  /// window).
+  /// ** Uses `Ncut6` counter**: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass window).
   if(fDo_fit5c)
   {
     HepLorentzVector ecms(0.034, 0, 0, Ecms);
@@ -1161,9 +1144,7 @@ StatusCode RhopiAlg::execute()
 // * ========================== * //
 // * -------- FINALIZE -------- * //
 // * ========================== * //
-/// Inherited `finalize` method of `Algorithm`. This function is only called once, after running
-/// over all events. Prints the flow chart to the terminal, so **make sure you save this
-/// output!**
+/// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events. Prints the flow chart to the terminal, so **make sure you save this output!**
 StatusCode RhopiAlg::finalize()
 {
   MsgStream log(msgSvc(), name());

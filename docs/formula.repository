@@ -23,18 +23,18 @@
 \form#22:$K^- \pi^+$
 \form#23:$K^+ K^+ $
 \form#24:$\pi^+$
-\form#25:$\chi^2 > 4.0$
-\form#26:$m_{K^-K^+}-m_{\omega}$
-\form#27:$pi^0 \rightarrow \gamma\gamma$
-\form#28:$D^0 \rightarrow K^-\pi^+\pi^0$
-\form#29:$\omega \rightarrow K^-K^+$
-\form#30:$J/\psi \rightarrow D^0\omega$
-\form#31:$M_{\gamma\gamma}$
-\form#32:$M_{K^-\pi^+\pi^0}$
-\form#33:$M_{K^-K^+}$
-\form#34:$M_{D^0\omega}$
-\form#35:$M_{\pi^-\pi^+\pi^0} - m_{\omega}$
-\form#36:$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ $
+\form#25:$m_{K^-K^+}-m_{\omega}$
+\form#26:$pi^0 \rightarrow \gamma\gamma$
+\form#27:$D^0 \rightarrow K^-\pi^+\pi^0$
+\form#28:$\omega \rightarrow K^-K^+$
+\form#29:$J/\psi \rightarrow D^0\omega$
+\form#30:$M_{\gamma\gamma}$
+\form#31:$M_{K^-\pi^+\pi^0}$
+\form#32:$M_{K^-K^+}$
+\form#33:$M_{D^0\omega}$
+\form#34:$M_{\pi^-\pi^+\pi^0} - m_{\omega}$
+\form#35:$ J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ \pi^-\pi^+ $
+\form#36:$\chi^2 > 4.0$
 \form#37:$J/\psi \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+$
 \form#38:$m_{K^-K^+}-m_{\phi}$
 \form#39:$D^0 \phi $

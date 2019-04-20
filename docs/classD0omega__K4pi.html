@@ -97,7 +97,7 @@ Inheritance diagram for D0omega_K4pi:</div>
   <img src="classD0omega__K4pi.png" usemap="#D0omega_5FK4pi_map" alt=""/>
   <map id="D0omega_5FK4pi_map" name="D0omega_5FK4pi_map">
 <area href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. " alt="TrackSelector" shape="rect" coords="61,56,173,80"/>
-<area href="classRecTrackPointers.html" alt="RecTrackPointers" shape="rect" coords="122,0,234,24"/>
+<area href="classRecTrackPointers.html" title="TrackSelector inherits from this object. " alt="RecTrackPointers" shape="rect" coords="122,0,234,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -304,11 +304,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCutObject.html">CutObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">fCut_PIDProb</a></td></tr>
 <tr class="memdesc:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>.  <a href="classTrackSelector.html#ab9858b0f0874a92d2046843649b3ae12">More...</a><br /></td></tr>
 <tr class="separator:ab9858b0f0874a92d2046843649b3ae12 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">fPIDInstance</a></td></tr>
-<tr class="memdesc:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to instance of particle identification (PID). Only used in <em>derived subalgorithms</em>.  <a href="classTrackSelector.html#a8611bb6308f03110601aa7787c38a304">More...</a><br /></td></tr>
-<tr class="separator:a8611bb6308f03110601aa7787c38a304 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cfbb6c304fe4005f0f0fa87a6221286 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classParticleSelection.html">ParticleSelection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1cfbb6c304fe4005f0f0fa87a6221286">fParticleSel</a></td></tr>
+<tr class="memitem:a1cfbb6c304fe4005f0f0fa87a6221286 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__BOSS__objects.html#ga18ab972739387c1d94cd339c5899c035">ParticleSelection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1cfbb6c304fe4005f0f0fa87a6221286">fParticleSel</a></td></tr>
 <tr class="separator:a1cfbb6c304fe4005f0f0fa87a6221286 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7cf303893ff8ddc0f476f7838987a6f inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__BOSS__objects.html#ga0ecf88d11136bab58e122d04cc42eef4">ParticleSelectionMC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae7cf303893ff8ddc0f476f7838987a6f">fParticleSelMC</a></td></tr>
+<tr class="separator:ae7cf303893ff8ddc0f476f7838987a6f inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a736c6519e8ca9b1cc87115db93b0be38 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSecondaryVertexGeometry.html">SecondaryVertexGeometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a736c6519e8ca9b1cc87115db93b0be38">fSecondaryVtx</a></td></tr>
 <tr class="separator:a736c6519e8ca9b1cc87115db93b0be38 inherit pro_attribs_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f67fa2bbfcf98e28d15508f85f02e6 inherit pro_attribs_classTrackSelector"><td class="memItemLeft" align="right" valign="top"><a class="el" href="D0omega__K4pi_8cxx.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">fVertexPoint</a></td></tr>
@@ -369,9 +368,6 @@ Private Member Functions</h2></td></tr>
 <tr class="memitem:af74250526bb3431cfdc5d42f042944e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#af74250526bb3431cfdc5d42f042944e6">CreateChargedTrackSelections</a> ()</td></tr>
 <tr class="memdesc:af74250526bb3431cfdc5d42f042944e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create selections of <b>charged</b> tracks: <img class="formulaInl" alt="$K^-$" src="form_10.png"/>, <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>, and <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>.  <a href="#af74250526bb3431cfdc5d42f042944e6">More...</a><br /></td></tr>
 <tr class="separator:af74250526bb3431cfdc5d42f042944e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01bbc670ae2a1ecb1c1941cf55a95167"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#a01bbc670ae2a1ecb1c1941cf55a95167">InitializePID</a> ()</td></tr>
-<tr class="memdesc:a01bbc670ae2a1ecb1c1941cf55a95167"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialized initialise PID method for <a class="el" href="classD0omega__K4pi.html" title="Analyse  events. ">D0omega_K4pi</a>.  <a href="#a01bbc670ae2a1ecb1c1941cf55a95167">More...</a><br /></td></tr>
-<tr class="separator:a01bbc670ae2a1ecb1c1941cf55a95167"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adccf50d0dd39dd8839e9311f398b7a43"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classD0omega__K4pi.html#adccf50d0dd39dd8839e9311f398b7a43">CategorizeTrack</a> (EvtRecTrack *track)</td></tr>
 <tr class="memdesc:adccf50d0dd39dd8839e9311f398b7a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identify type of charged particle and add to related vector.  <a href="#adccf50d0dd39dd8839e9311f398b7a43">More...</a><br /></td></tr>
 <tr class="separator:adccf50d0dd39dd8839e9311f398b7a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -541,9 +537,6 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">ComputeMomentum</a> (EvtRecTrack *track)</td></tr>
 <tr class="memdesc:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute a 'momentum' for a neutral track.  <a href="classTrackSelector.html#a2e0e5162c35890e141524a2cb73c6ea0">More...</a><br /></td></tr>
 <tr class="separator:a2e0e5162c35890e141524a2cb73c6ea0 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memItemLeft" align="right" valign="top">ParticleID *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">InitializePID</a> (const int method, const int pidsys, const int pidcase, const double chimin=4.)</td></tr>
-<tr class="memdesc:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that standardizes the initialisation of the particle identification system.  <a href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06">More...</a><br /></td></tr>
-<tr class="separator:a5596e6e2fbfa4cee94ac8d4c82e78e06 inherit pro_methods_classTrackSelector"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Analyse <img class="formulaInl" alt="$ J/\psi \rightarrow D^0\omega \rightarrow K^-\pi^+\pi^0 \pi^-\pi^+ $" src="form_1.png"/> events. </p>
@@ -581,7 +574,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classD0omega__K4pi.html" title="Analyse  events. ">D0omega_K4pi</a></code> algorithm, derived from <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classD0omega__K4pi.html" title="Analyse  events. ">D0omega_K4pi</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (<a class="el" href="D0omega__K4pi_8h.html">D0omega_K4pi/D0omega_K4pi.h</a>) and that you should assign the values in <code>share/D0omega_K4pi.txt</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00032">32</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00033">33</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -619,7 +612,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"pomega"</code>: Momentum of the <img class="formulaInl" alt="$\omega$" src="form_7.png"/> candidate in the <img class="formulaInl" alt="$J/\psi \to D^0\omega$" src="form_17.png"/>. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00125">125</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00131">131</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -648,7 +641,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>"dedx_K"</code> and <code>"dedx_pi"</code>: energy loss <img class="formulaInl" alt="$dE/dx$" src="form_2.png"/> PID branch. See <code><a class="el" href="classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c" title="This function encapsulates the addItem procedure for the  energy loss branch (&quot;dedx&quot;). This method allows you to perform the same booking method for different types of charged particles (for instance &#39;all charged particles&#39;, kaons, and pions). ">TrackSelector::AddNTupleItems_dedx</a></code> for more info. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00091">91</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00097">97</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -677,7 +670,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>"fit4c_*"</code>: Kinematic fit results. See <code>TrackSelector::AddNTupleItems_Fit</code> for more info. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00098">98</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00104">104</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -716,7 +709,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"chisq"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_15.png"/> of the Kalman kinematic fit. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00151">151</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00157">157</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -745,7 +738,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><code>"mult_select"</code>: Multiplicities of selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00083">83</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00088">88</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -783,7 +776,7 @@ Additional Inherited Members</h2></td></tr>
 <li><code>"angle"</code>: Smallest angle between the photon and the nearest charged pion. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00106">106</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00112">112</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -810,7 +803,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00467">467</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00486">486</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -840,7 +833,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Identify type of charged particle and add to related vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00232">232</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00239">239</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -868,8 +861,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Create selections of <b>charged</b> tracks: <img class="formulaInl" alt="$K^-$" src="form_10.png"/>, <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>, and <img class="formulaInl" alt="$\pi^+$" src="form_24.png"/>. </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Check if all these <code><a class="el" href="classParticleIdentifier.html">ParticleIdentifier</a></code> methods can be moved out of the loop, up to <code>SetTrack</code>. Can perhaps even be moved to <code>initialize</code>? </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00205">205</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00211">211</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -898,7 +892,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a129b0c7acd91d7c29d0f61233c7b6416">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00525">525</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00541">541</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -927,7 +921,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Create selection <b>neutral</b> tracks (photons). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00253">253</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00268">268</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -956,7 +950,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><b>Charged track cut</b>: Apply a strict cut on the number of particles &ndash; only <b>4 charged tracks in total</b>. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00198">198</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00204">204</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -986,7 +980,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00317">317</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00332">332</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1009,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p><b>PID cut</b>: apply a strict cut on the number of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00352">352</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00369">369</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1042,7 +1036,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00456">456</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00475">475</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1069,7 +1063,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00425">425</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00443">443</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1096,7 +1090,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00447">447</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00465">465</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1127,7 +1121,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a421380908922f9d240213014c2508360">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00184">184</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00190">190</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1154,7 +1148,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00482">482</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00498">498</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1180,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a96c7c12f231c8cd622d7e5a6742d80a0">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00555">555</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00573">573</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1214,9 +1208,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Perform a Kalman <b>4-constraint</b> Kalman kinematic fit for all combinations and decide the combinations that results in the 'best' result. </p>
-<p>The 'best' result is defined as the combination that has the smallest value of: <img class="formulaInl" alt="$m_{K^-K^+}-m_{\omega}$" src="form_26.png"/> (that is the combination for which the invariant mass of the <img class="formulaInl" alt="$K^-\pi^+$" src="form_19.png"/> is closest to <img class="formulaInl" alt="$\omega$" src="form_7.png"/>). See <code>D0omega_K4pi::MeasureForBestFit</code> for the definition of this measure. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Decide whether 4-constraints is indeed suitable. <em>For more information, see <a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit">the page on primary and secondary vertex fits on the Offline Software Pages</a> (requires login).</em> </dd></dl>
+<p>The 'best' result is defined as the combination that has the smallest value of: <img class="formulaInl" alt="$m_{K^-K^+}-m_{\omega}$" src="form_25.png"/> (that is the combination for which the invariant mass of the <img class="formulaInl" alt="$K^-\pi^+$" src="form_19.png"/> is closest to <img class="formulaInl" alt="$\omega$" src="form_7.png"/>). See <code>D0omega_K4pi::MeasureForBestFit</code> for the definition of this measure. </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Decide whether 4-constraints is indeed suitable. <em>For more information, see <a href="https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit">the page on primary and secondary vertex fits on the Offline Software Pages</a> (requires login).</em> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00408">408</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00426">426</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1245,7 +1239,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Find angle differences with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00267">267</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00282">282</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1272,7 +1266,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00281">281</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00296">296</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1300,7 +1294,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00287">287</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00302">302</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1338,43 +1332,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Implements <a class="el" href="classTrackSelector.html#a80e9293aeca2c5b955eb3ed393c908f6">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00067">67</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a01bbc670ae2a1ecb1c1941cf55a95167"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01bbc670ae2a1ecb1c1941cf55a95167">&#9670;&nbsp;</a></span>InitializePID()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool D0omega_K4pi::InitializePID </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Specialized initialise PID method for <a class="el" href="classD0omega__K4pi.html" title="Analyse  events. ">D0omega_K4pi</a>. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classTrackSelector.html#a5596e6e2fbfa4cee94ac8d4c82e78e06" title="Method that standardizes the initialisation of the particle identification system. ">TrackSelector::InitializePID</a>. </dd></dl>
-<ul>
-<li>Use <b>probability method</b>.</li>
-<li>Use <img class="formulaInl" alt="$dE/dx$" src="form_2.png"/> and the three ToF detectors. Since data reconstructed with BOSS 7.0.4, <code>ParticleID::useTofCorr()</code> should be used for ToF instead of e.g. <code>useTof1</code>.</li>
-<li>Identify only pions and kaons.</li>
-<li>Use <img class="formulaInl" alt="$\chi^2 &gt; 4.0$" src="form_25.png"/>. </li>
-</ul>
-
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00217">217</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00068">68</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1403,7 +1361,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Print multiplicities of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00337">337</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00353">353</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1389,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00536">536</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00550">550</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1458,7 +1416,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00419">419</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00437">437</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1485,7 +1443,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00504">504</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00520">520</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1538,7 +1496,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p>Implements <a class="el" href="classTrackSelector.html#ac29ffb6542a27402d12c001d1a2d5809">TrackSelector</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00371">371</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00389">389</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1565,7 +1523,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00488">488</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00504">504</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1594,7 +1552,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_2.png"/> PID information (<code>"dedx_*"</code> branchs). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00363">363</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00381">381</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1623,7 +1581,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><b>Write</b> the multiplicities of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00326">326</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00341">341</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>
@@ -1653,7 +1611,7 @@ This cast is required and cannot be solved using virtual methods, because of the
 
 <p><em>Write</em> photon info (<code>"photon"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00297">297</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="D0omega__K4pi_8cxx_source.html#l00312">312</a> of file <a class="el" href="D0omega__K4pi_8cxx_source.html">D0omega_K4pi.cxx</a>.</p>
 
 </div>
 </div>

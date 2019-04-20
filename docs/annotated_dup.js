@@ -2,6 +2,7 @@ var annotated_dup =
 [
     [ "TSGlobals", "namespaceTSGlobals.html", "namespaceTSGlobals" ],
     [ "AngleDifferences", "classAngleDifferences.html", "classAngleDifferences" ],
+    [ "CandidateTracks", "classCandidateTracks.html", "classCandidateTracks" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],
     [ "Container_indexed", "classContainer__indexed.html", "classContainer__indexed" ],
     [ "CutObject", "classCutObject.html", "classCutObject" ],
@@ -23,14 +24,13 @@ var annotated_dup =
     [ "NTupleTopoAna", "classNTupleTopoAna.html", "classNTupleTopoAna" ],
     [ "Particle", "classParticle.html", "classParticle" ],
     [ "ParticleDatabase", "classParticleDatabase.html", "classParticleDatabase" ],
-    [ "ParticleSelection", "classParticleSelection.html", "classParticleSelection" ],
-    [ "ParticleTracks", "classParticleTracks.html", "classParticleTracks" ],
+    [ "ParticleIdentifier", "classParticleIdentifier.html", "classParticleIdentifier" ],
+    [ "ParticleSelectionTempl", "classParticleSelectionTempl.html", "classParticleSelectionTempl" ],
     [ "PipiJpsi", "classPipiJpsi.html", "classPipiJpsi" ],
     [ "RecTrackPointers", "classRecTrackPointers.html", "classRecTrackPointers" ],
     [ "rhopi_pipigg", "classrhopi__pipigg.html", "classrhopi__pipigg" ],
     [ "RhopiAlg", "classRhopiAlg.html", "classRhopiAlg" ],
     [ "SecondaryVertexGeometry", "classSecondaryVertexGeometry.html", "classSecondaryVertexGeometry" ],
-    [ "TrackCollection", "classTrackCollection.html", "classTrackCollection" ],
     [ "TrackSelector", "classTrackSelector.html", "classTrackSelector" ],
     [ "VertexFitter", "classVertexFitter.html", "classVertexFitter" ]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['emultiplicitycut',['EMultiplicityCut',['../classTrackCollection.html#a1f01801eae24a06c6ed178d9e1d2e3bf',1,'TrackCollection']]]
+  ['emultiplicitycut',['EMultiplicityCut',['../classCandidateTracks.html#a7b94f7923fee250ec44461644e801310',1,'CandidateTracks']]]
 ];

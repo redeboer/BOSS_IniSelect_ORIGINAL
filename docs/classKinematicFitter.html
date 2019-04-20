@@ -107,10 +107,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a971affc56fb6c2ecacc4a0fe568b312f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28a0ca6236a00d8f343f0586663e847"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#ad28a0ca6236a00d8f343f0586663e847">Fit</a> ()</td></tr>
 <tr class="separator:ad28a0ca6236a00d8f343f0586663e847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adde02ea4766036c3ce09d97258b1c85c"><td class="memItemLeft" align="right" valign="top">const bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#adde02ea4766036c3ce09d97258b1c85c">IsSuccessful</a> () const</td></tr>
-<tr class="separator:adde02ea4766036c3ce09d97258b1c85c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b350ca4522955455c87d2f84aaad3e7"><td class="memItemLeft" align="right" valign="top">const int &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a1b350ca4522955455c87d2f84aaad3e7">GetNContstraints</a> () const</td></tr>
-<tr class="separator:a1b350ca4522955455c87d2f84aaad3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4e3e11eb88db93d99b890c7f1cfbd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a2a4e3e11eb88db93d99b890c7f1cfbd7">IsSuccessful</a> () const</td></tr>
+<tr class="separator:a2a4e3e11eb88db93d99b890c7f1cfbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff1c4fad16aa06d6586266cff3046b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#acff1c4fad16aa06d6586266cff3046b7">GetNContstraints</a> () const</td></tr>
+<tr class="separator:acff1c4fad16aa06d6586266cff3046b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd771d00e1184e7c1058e2d46a949280"><td class="memItemLeft" align="right" valign="top">HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#abd771d00e1184e7c1058e2d46a949280">GetTrack</a> (int i) const</td></tr>
 <tr class="separator:abd771d00e1184e7c1058e2d46a949280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8613bf13e6104444818358e30da60384"><td class="memItemLeft" align="right" valign="top">KalmanKinematicFit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a8613bf13e6104444818358e30da60384">GetFit</a> ()</td></tr>
@@ -293,14 +293,14 @@ Static Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000011">Todo:</a></b></dt><dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000012">Todo:</a></b></dt><dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00024">24</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
-<a id="a1b350ca4522955455c87d2f84aaad3e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1b350ca4522955455c87d2f84aaad3e7">&#9670;&nbsp;</a></span>GetNContstraints()</h2>
+<a id="acff1c4fad16aa06d6586266cff3046b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acff1c4fad16aa06d6586266cff3046b7">&#9670;&nbsp;</a></span>GetNContstraints()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +309,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const int&amp; KinematicFitter::GetNContstraints </td>
+          <td class="memname">int KinematicFitter::GetNContstraints </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -365,8 +365,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adde02ea4766036c3ce09d97258b1c85c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adde02ea4766036c3ce09d97258b1c85c">&#9670;&nbsp;</a></span>IsSuccessful()</h2>
+<a id="a2a4e3e11eb88db93d99b890c7f1cfbd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a4e3e11eb88db93d99b890c7f1cfbd7">&#9670;&nbsp;</a></span>IsSuccessful()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,7 +375,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const bool&amp; KinematicFitter::IsSuccessful </td>
+          <td class="memname">bool KinematicFitter::IsSuccessful </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
