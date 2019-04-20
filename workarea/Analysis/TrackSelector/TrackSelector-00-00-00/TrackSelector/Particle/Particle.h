@@ -22,12 +22,12 @@ public:
 
   void Print() const;
 
-  const char*    GetPdtName() const { return fName.Data(); }
-  const Int_t&   GetPdgCode() const { return fPdgCode; }
-  const Float_t& GetMass() const { return fMass; }
-  const Float_t& GetLifetime() const { return fLifetime; }
-  const Float_t& GetCharge() const { return fCharge; }
-  const Float_t& GetSpin() const { return fSpin; }
+  const char* GetPdtName() const { return fName.Data(); }
+  Int_t       GetPdgCode() const { return fPdgCode; }
+  Float_t     GetMass() const { return fMass; }
+  Float_t     GetLifetime() const { return fLifetime; }
+  Float_t     GetCharge() const { return fCharge; }
+  Float_t     GetSpin() const { return fSpin; }
 
 private:
   TString fName;

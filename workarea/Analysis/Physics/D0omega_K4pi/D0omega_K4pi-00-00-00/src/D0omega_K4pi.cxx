@@ -214,6 +214,7 @@ void D0omega_K4pi::CreateChargedTrackSelections()
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     ParticleIdentifier::Reset();
+    /// @todo Check if all these `ParticleIdentifier` methods can be moved out of the loop, up to `SetTrack`. Can perhaps even be moved to `initialize`?
 
     ParticleIdentifier::UseProbabilityMethod();
     ParticleIdentifier::UseDedx();
@@ -238,11 +239,12 @@ void D0omega_K4pi::CreateChargedTrackSelections()
 bool D0omega_K4pi::CategorizeTrack(EvtRecTrack* track)
 {
   fTrackKal = track->mdcKalTrack();
+std::cout << std::endl << std::endl;
 std::cout << ParticleIdentifier::GetProbPion() << std::endl;
 std::cout << ParticleIdentifier::GetProbKaon() << std::endl;
   if(ParticleIdentifier::GetProbPion() > ParticleIdentifier::GetProbKaon())
   {
-std::cout << "pion" << std::endl << std::endl;
+std::cout << "pion" << std::endl;
     if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbPion())) return false;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
     if(fTrackKal->charge() > 0)
@@ -252,10 +254,13 @@ std::cout << "pion" << std::endl << std::endl;
   }
   else
   {
-std::cout << "kaon" << std::endl << std::endl;
+std::cout << "kaon" << std::endl;
     if(fCut_PIDProb.FailsMin(ParticleIdentifier::GetProbKaon())) return false;
+std::cout << "kaon OK" << std::endl;
     RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+std::cout << "kaon" << std::endl;
     if(fTrackKal->charge() < 0) fParticleSel.GetCandidates("K-").AddTrack(track);
+std::cout << "kaon" << std::endl;
   }
 }
 

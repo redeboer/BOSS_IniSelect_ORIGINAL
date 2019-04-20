@@ -16,14 +16,14 @@ class CandidateTracks
 {
 public:
   CandidateTracks() {}
-  CandidateTracks(const TString& pdtName, const size_t nparticles = 1) :
+  CandidateTracks(const TString& pdtName, const short nparticles = 1) :
     fParticle(pdtName),
     fNParticles(nparticles)
   {}
 
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
-  void SetNParticles(const size_t nparticles) { fNParticles = nparticles; }
+  void SetNParticles(const short nparticles) { fNParticles = nparticles; }
   void SetParticle(const TString& pdtName) { fParticle = Particle(pdtName); }
 
   void SetMultCut_EqualTo() { fMultiplicityCut = EqualTo; }
@@ -34,12 +34,12 @@ public:
 
   const std::vector<T*>& GetTracks() const { return fTrackColl; }
 
-  const size_t   GetNTracks() const { return fTrackColl.size(); }
-  const size_t&  GetNParticles() const { return fNParticles; }
-  const char*    GetPdtName() const { return fParticle.GetPdtName(); }
-  const Int_t&   GetPdgCode() const { return fParticle.GetPdgCode(); }
-  const Float_t& GetMass() const { return fParticle.GetMass(); }
-  T*             GetCandidate(const size_t i = 0) const;
+  short       GetNTracks() const { return fTrackColl.size(); }
+  short       GetNParticles() const { return fNParticles; }
+  const char* GetPdtName() const { return fParticle.GetPdtName(); }
+  Int_t       GetPdgCode() const { return fParticle.GetPdgCode(); }
+  Float_t     GetMass() const { return fParticle.GetMass(); }
+  T*          GetCandidate(const short i = 0) const;
 
   bool IsCharged() const { return fParticle.GetCharge(); }
 
@@ -55,7 +55,7 @@ private:
   };
 
   Particle fParticle;
-  size_t   fNParticles;
+  short   fNParticles;
 
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;
@@ -64,7 +64,7 @@ private:
 /// @}
 
 template <typename T>
-T* CandidateTracks<T>::GetCandidate(const size_t i) const
+T* CandidateTracks<T>::GetCandidate(const short i) const
 {
   if(i < fTrackColl.size()) return fTrackColl.at(i);
   return nullptr;
