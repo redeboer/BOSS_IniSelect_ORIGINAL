@@ -189,6 +189,7 @@ void D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer& tuple)
 /// Inherited `execute` method of the `Algorithm` that is called *for each event*.
 StatusCode D0omega_K4pi::execute_rest()
 {
+std::cout << std::endl;
   PrintFunctionName("D0omega_K4pi", __func__);
   CutNumberOfChargedParticles();
   CreateChargedTrackSelections();
@@ -203,7 +204,7 @@ StatusCode D0omega_K4pi::execute_rest()
 /// **Charged track cut**: Apply a strict cut on the number of particles -- only **4 charged tracks in total**.
 void D0omega_K4pi::CutNumberOfChargedParticles()
 {
-  if(fChargedTracks.size() != 4) throw StatusCode::SUCCESS;
+  if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 }
 

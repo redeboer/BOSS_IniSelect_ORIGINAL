@@ -18,7 +18,7 @@ template <typename T>
 class ParticleSelectionTempl
 {
 public:
-  ParticleSelectionTempl() { fSelectionsIter = fSelections.begin(); }
+  ParticleSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
 
   void SetN_Photons(size_t n) { SetParticleToN("g", n); }
   void SetN_PionMin(size_t n) { SetParticleToN("pi-", n); }
@@ -42,6 +42,7 @@ public:
 
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
+  int                 GetNCharged() { return fNCharged; }
 
   CandidateTracks<T>* FirstParticle();
   CandidateTracks<T>* NextParticle();
@@ -52,6 +53,8 @@ private:
   typename std::map<std::string, CandidateTracks<T> >           fSelections;
   typename std::map<std::string, CandidateTracks<T> >::iterator fSelectionsIter;
   void SetParticleToN(const TString& pdtName, const size_t& nInstances);
+
+  int fNCharged;
 
   CandidateTracks<T>* UnpackIter();
 };
@@ -96,8 +99,10 @@ CandidateTracks<T>* ParticleSelectionTempl<T>::UnpackIter()
 template <typename T>
 void ParticleSelectionTempl<T>::SetParticleToN(const TString& pdtName, const size_t& nInstances)
 {
-  fSelections[pdtName.Data()].SetParticle(pdtName);
-  fSelections[pdtName.Data()].SetNParticles(nInstances);
+  CandidateTracks<T>& coll = fSelections[pdtName.Data()];
+  coll.SetParticle(pdtName);
+  coll.SetNParticles(nInstances);
+  if(coll.IsCharged()) fNCharged += nInstances;
 }
 
 template <typename T>
