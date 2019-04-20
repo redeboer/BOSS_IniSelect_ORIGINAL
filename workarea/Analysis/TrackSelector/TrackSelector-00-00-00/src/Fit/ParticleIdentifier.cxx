@@ -19,17 +19,18 @@ void ParticleIdentifier::SetParticleToIdentify(int pdcCode)
   switch(pdcCode)
   {
     case -11:
-    case 11: gPID->identify(gPID->onlyElectron()); return;
+    case 11: fParticleToIdentify |= gPID->onlyElectron(); break;
     case -13:
-    case 13: gPID->identify(gPID->onlyMuon()); return;
+    case 13: fParticleToIdentify |= gPID->onlyMuon(); break;
     case -211:
-    case 211: gPID->identify(gPID->onlyPion()); return;
+    case 211: fParticleToIdentify |= gPID->onlyPion(); break;
     case -321:
-    case 321: gPID->identify(gPID->onlyKaon()); return;
+    case 321: fParticleToIdentify |= gPID->onlyKaon(); break;
     case -2212:
-    case 2212: gPID->identify(gPID->onlyProton()); return;
+    case 2212: fParticleToIdentify |= gPID->onlyProton(); break;
     default: throw Exception(Form("No PID case defined for PDG code %d", pdcCode));
   }
+  gPID->identify(fParticleToIdentify);
 }
 
 std::string ParticleIdentifier::FindMostProbable(EvtRecTrack* trk, CutObject& probCut)
@@ -53,7 +54,8 @@ void ParticleIdentifier::SetMostProbable()
   fBestIndex = 0;
   double bestProb{0.};
   for(int i = 0; i < 5; ++i) {
-printf("  %8.6f", gPID->prob(i));
+if(IsIdentified(i)) printf("  %8.6f", gPID->prob(i));
+else printf("  %8.6f", 0.);
     if(gPID->prob(i) > bestProb) fBestIndex = i;
   }
 printf("\n");
@@ -85,6 +87,21 @@ std::string ParticleIdentifier::ConvertIndexToName(int index)
     case 2: return "pi";
     case 3: return "K";
     case 4: return "p";
+    default: throw Exception(Form("No name case defined for index %d", index));
+  }
+}
+
+bool ParticleIdentifier::IsIdentified(int index)
+{
+  /// Mapping from the array index used in [`ParticleID`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) to a particle name.
+  /// See [here](http://bes3.to.infn.it/Boss/7.0.2/html/ParticleID_8h-source.html#l00121) for an example of what this mapping should be.
+  switch(index)
+  {
+    case 0: return fParticleToIdentify & gPID->onlyElectron();
+    case 1: return fParticleToIdentify & gPID->onlyMuon();
+    case 2: return fParticleToIdentify & gPID->onlyPion();
+    case 3: return fParticleToIdentify & gPID->onlyKaon();
+    case 4: return fParticleToIdentify & gPID->onlyProton();
     default: throw Exception(Form("No name case defined for index %d", index));
   }
 }

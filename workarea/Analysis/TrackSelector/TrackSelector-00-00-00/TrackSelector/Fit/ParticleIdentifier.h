@@ -47,6 +47,7 @@ private:
   static ParticleID* gPID;
   static int         fBestIndex;
   static std::string fBestName;
+  static int         fParticleToIdentify;
 
   static bool SetProbabilities(EvtRecTrack* trk);
   static void SetMostProbable();
@@ -54,6 +55,7 @@ private:
   static void AppendChargeSign(EvtRecTrack* trk);
 
   static std::string ConvertIndexToName(int index);
+  static bool        IsIdentified(int index);
   static void        SetPidType(int index);
 };
 /// @}
