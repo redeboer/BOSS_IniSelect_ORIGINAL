@@ -13,8 +13,6 @@
 #include <string>
 #include <utility>
 
-#include <stdio.h>
-
 #ifndef ENABLE_BACKWARDS_COMPATIBILITY
 typedef HepGeom::Point3D<double> HepPoint3D;
 #endif
@@ -265,7 +263,6 @@ void D0omega_K4pi::AddTracksToKinematicFitter()
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
   while(coll)
   {
-std::cout << "here" << std::endl;
     for(int i = 0; i < coll->GetNTracks(); ++i)
       if(coll->IsCharged())
         fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
