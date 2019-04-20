@@ -1,8 +1,8 @@
 #ifndef Analysis_TrackSelector_ParticleSelection_H
 #define Analysis_TrackSelector_ParticleSelection_H
 
-#include "McTruth/McEvent.h"
 #include "EvtRecEvent/EvtRecTrack.h"
+#include "McTruth/McEvent.h"
 #include "TrackSelector/TrackCollections/CandidateTracks.h"
 #include <map>
 #include <string>
@@ -37,6 +37,9 @@ public:
 
   bool NextPhotonCombination();
 
+  bool HasParticle(const std::string& name) const;
+  bool AddTrackToParticle(T* trk, const std::string& name);
+
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
 
@@ -53,7 +56,7 @@ private:
   CandidateTracks<T>* UnpackIter();
 };
 
-typedef ParticleSelectionTempl<EvtRecTrack> ParticleSelection;
+typedef ParticleSelectionTempl<EvtRecTrack>       ParticleSelection;
 typedef ParticleSelectionTempl<Event::McParticle> ParticleSelectionMC;
 
 /// @}
@@ -117,6 +120,20 @@ template <typename T>
 bool ParticleSelectionTempl<T>::NextPhotonCombination()
 {
   return fSelections.at("g").NextCombination();
+}
+
+template <typename T>
+bool ParticleSelectionTempl<T>::HasParticle(const std::string& name) const
+{
+  return fSelections.find(name) == fSelections.end();
+}
+
+template <typename T>
+bool ParticleSelectionTempl<T>::AddTrackToParticle(T* track, const std::string& name)
+{
+  if(HasParticle(name)) false;
+  fSelections.at(name).AddTrack(track);
+  return true;
 }
 
 #endif

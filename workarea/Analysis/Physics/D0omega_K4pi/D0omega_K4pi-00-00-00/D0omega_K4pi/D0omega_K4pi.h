@@ -93,8 +93,6 @@ private:
   ///@{
   void CutNumberOfChargedParticles();
   void CreateChargedTrackSelections();
-  bool CategorizeTrack(EvtRecTrack* track);
-
   void CreateNeutralTrackSelections();
   void GetEmcPosition();
   bool GetExtendedEmcPosition(EvtRecTrack* track);

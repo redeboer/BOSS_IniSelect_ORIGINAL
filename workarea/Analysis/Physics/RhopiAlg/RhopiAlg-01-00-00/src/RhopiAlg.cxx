@@ -588,10 +588,7 @@ StatusCode RhopiAlg::execute()
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
   /// ** Uses `Ncut2` counter**: number of good photons has to be 2 at least.
-  // The second part of the set of reconstructed events consists of the neutral tracks, that is, the
-  // photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired
-  // with each charged track and if their angle is smaller than a certain value (here, 200), the
-  // photon track is stored as 'good photon' (added to `iGam`).
+  /// The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
   Vint iGam;
   for(int i = evtRecEvent->totalCharged(); i < evtRecEvent->totalTracks(); ++i)
   {
@@ -873,10 +870,10 @@ StatusCode RhopiAlg::execute()
     if(pid->pdf(2) < pid->pdf(3))
       continue; // for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
 
-    RecMdcKalTrack* mdcKalTrk =
-      (*itTrk)->mdcKalTrack(); // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
-    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); // PID can set to electron, muon, pion, kaon
-                                                      // and proton;The default setting is pion
+    RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
+    // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
+    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+    // PID can set to electron, muon, pion, kaon and proton;The default setting is pion
 
     if(mdcKalTrk->charge() > 0)
     {
@@ -905,28 +902,32 @@ StatusCode RhopiAlg::execute()
   }
 
   /// <li> RhopiAlg without PID (*optional: needs to be uncommented*)
-  // for(int i = 0; i < nGood; ++i) {
-  // EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
-  // RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
-  // if(mdcTrk->charge() >0) {
-  // ipip.push_back(iGood[i]);
-  // HepLorentzVector ptrk;
-  // ptrk.setPx(mdcTrk->px());
-  // ptrk.setPy(mdcTrk->py());
-  // ptrk.setPz(mdcTrk->pz());
-  // double p3 = ptrk.mag();
-  // ptrk.setE(sqrt(p3*p3+mpi0*mpi0));
-  // ppip.push_back(ptrk);
-  // } else {
-  // ipim.push_back(iGood[i]);
-  // HepLorentzVector ptrk;
-  // ptrk.setPx(mdcTrk->px());
-  // ptrk.setPy(mdcTrk->py());
-  // ptrk.setPz(mdcTrk->pz());
-  // double p3 = ptrk.mag();
-  // ptrk.setE(sqrt(p3*p3+mpi0*mpi0));
-  // ppim.push_back(ptrk);
-  // }
+  // for(int i = 0; i < nGood; ++i)
+  // {
+  //   EvtRecTrackIterator itTrk  = evtRecTrkCol->begin() + iGood[i];
+  //   RecMdcTrack*        mdcTrk = (*itTrk)->mdcTrack();
+  //   if(mdcTrk->charge() > 0)
+  //   {
+  //     ipip.push_back(iGood[i]);
+  //     HepLorentzVector ptrk;
+  //     ptrk.setPx(mdcTrk->px());
+  //     ptrk.setPy(mdcTrk->py());
+  //     ptrk.setPz(mdcTrk->pz());
+  //     double p3 = ptrk.mag();
+  //     ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
+  //     ppip.push_back(ptrk);
+  //   }
+  //   else
+  //   {
+  //     ipim.push_back(iGood[i]);
+  //     HepLorentzVector ptrk;
+  //     ptrk.setPx(mdcTrk->px());
+  //     ptrk.setPy(mdcTrk->py());
+  //     ptrk.setPz(mdcTrk->pz());
+  //     double p3 = ptrk.mag();
+  //     ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
+  //     ppim.push_back(ptrk);
+  //   }
   // } // without PID
 
   /// ** Uses `Ncut3` counter**: `ipip.size()` * `ipim.size()` cannot be `1`.
@@ -960,10 +961,10 @@ StatusCode RhopiAlg::execute()
   wvpimTrk = WTrackParameter(mpi0, pimTrk->getZHelix(), pimTrk->getZError());
 
   /// <li> Default is pion, for other particles (*optional: needs to be uncommented*)
-  // wvppTrk = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP()); // proton
+  // wvppTrk  = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP());    // proton
   // wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu()); // muon
-  // wvepTrk = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE()); // electron
-  // wvkpTrk = WTrackParameter(mk, pipTrk->getZHelixK(), pipTrk->getZErrorK()); // kaon
+  // wvepTrk  = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE());    // electron
+  // wvkpTrk  = WTrackParameter(mk, pipTrk->getZHelixK(), pipTrk->getZErrorK());    // kaon
 
   /// <li> Test vertex fit
   HepPoint3D   vx(0., 0., 0.);

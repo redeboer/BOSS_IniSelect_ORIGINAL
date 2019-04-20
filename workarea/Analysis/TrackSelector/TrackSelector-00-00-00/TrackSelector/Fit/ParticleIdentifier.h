@@ -3,6 +3,7 @@
 
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "ParticleID/ParticleID.h"
+#include <string>
 
 /// Static access to the [`ParticleID`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) class in BOSS.
 /// @addtogroup BOSS_objects
@@ -22,29 +23,14 @@ public:
   static void UseTofE() { gPID->usePidSys(gPID->useTofE()); }
 
   static void SetMinimalChi2(double minchi) { gPID->setChiMinCut(minchi); }
+  static void SetParticleToIdentify(int pdgCode);
 
-  static void IdentifyElectron() { gPID->identify(gPID->onlyElectron()); }
-  static void IdentifyMuon() { gPID->identify(gPID->onlyMuon()); }
-  static void IdentifyPion() { gPID->identify(gPID->onlyPion()); }
-  static void IdentifyKaon() { gPID->identify(gPID->onlyKaon()); }
-  static void IdentifyProton() { gPID->identify(gPID->onlyProton()); }
-  static void IdentifyParticle(const int pdgCode);
-
-  static void SetTrack(EvtRecTrack* trk) { gPID->setRecTrack(trk); }
-
-  static bool AttemptIdentification();
+  static std::string FindMostProbable(EvtRecTrack* trk, CutObject& pidCut);
 
   static double GetChiTofE() { return gPID->chiTofE(2); }
   static double GetChiTofIB() { return gPID->chiTof1(2); }
   static double GetChiTofOB() { return gPID->chiTof2(2); }
   static double GetChiDedx() { return gPID->chiDedx(2); }
-
-  static double GetProbKaon() { return gPID->probKaon(); }
-  static double GetProbElectron() { return gPID->probElectron(); }
-  static double GetProbMuon() { return gPID->probMuon(); }
-  static double GetProbProton() { return gPID->probProton(); }
-  static double GetProbPion() { return gPID->probPion(); }
-  static double GetProbByPDGCode(const int pdgCode);
 
 private:
   ParticleIdentifier();
@@ -52,6 +38,16 @@ private:
   ParticleIdentifier& operator=(const ParticleIdentifier&){};
 
   static ParticleID* gPID;
+  static int         fBestIndex;
+  static std::string fBestName;
+
+  static bool SetProbabilities(EvtRecTrack* trk);
+  static void SetMostProbable();
+  static bool FailsProbPidCut(CutObject& pidCut);
+  static void AppendChargeSign(EvtRecTrack* trk);
+
+  static std::string ConvertIndexToName(int index);
+  static void        SetPidType(int index);
 };
 /// @}
 #endif
