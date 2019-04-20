@@ -13,11 +13,12 @@ use ExHelloWorld    *                 BesExamples
 # use BKlamsVTX       BKlamsVTX-00-*    Analysis
 # use GammaEtaAlg     GammaEtaAlg-00-*  Analysis/Physics
 # use KlamsTestAlg    KlamsTestAlg-00-* Analysis/Physics
-use TrackSelector   TrackSelector-*   Analysis
+use TrackSelector   TrackSelector-*   Analysis/IniSelect/Algorithms
 use RhopiAlg        RhopiAlg-*        Analysis/Physics
-use D0phi_KpiKK     D0phi_KpiKK-*     Analysis/Physics
-use rhopi_pipigg    rhopi_pipigg-*    Analysis/Physics
 use PipiJpsiAlg     PipiJpsiAlg-*     Analysis/Physics/PsiPrime
+use D0omega_K4pi    D0omega_K4pi-*    Analysis/IniSelect/Algorithms
+use D0phi_KpiKK     D0phi_KpiKK-*     Analysis/IniSelect/Algorithms
+use rhopi_pipigg    rhopi_pipigg-*    Analysis/IniSelect/Algorithms
 use AbsCor          AbsCor-*          Analysis/PhotonCor
 # use Telesis         Telesis-00-*      Analysis
 # use VertexFit       VertexFit-*       Analysis

@@ -6,7 +6,6 @@
 // * ========================= * //
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
-#include "TrackSelector/TrackCollections/CandidateTracks.h"
 #include "TrackSelector/TrackSelector.h"
 
 // * ================================ * //

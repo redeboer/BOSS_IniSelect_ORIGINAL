@@ -8,14 +8,14 @@ use DstEvent DstEvent-* Event
 use EventModel   EventModel-*  Event
 use EvtRecEvent  EvtRecEvent-* Event
 
-use VertexFit    VertexFit-*   Analysis 
+use VertexFit    VertexFit-*   Analysis
 use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*     External
 
-use TrackSelector TrackSelector-* Analysis 
+use TrackSelector TrackSelector-* Analysis/IniSelect/Algorithms
 
-apply_pattern component_library 
+apply_pattern component_library
 library D0phi_KpipiKK TrackSelector *.cxx  components/*.cxx
 macro TrackSelector_linkopts " -lTrackSelector "
 

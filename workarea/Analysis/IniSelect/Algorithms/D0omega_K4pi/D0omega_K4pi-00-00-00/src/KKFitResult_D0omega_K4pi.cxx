@@ -4,12 +4,12 @@
 
 #include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
 #include "CLHEP/Vector/LorentzVector.h"
-#include "TrackSelector/TSGlobals/TSGlobals.h"
+#include "IniSelect/Globals.h"
 #include "TrackSelector/TrackSelector.h"
 #include <cmath>
 
 using CLHEP::HepLorentzVector;
-using namespace TSGlobals;
+using namespace IniSelect;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //

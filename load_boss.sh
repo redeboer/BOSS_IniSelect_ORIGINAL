@@ -25,12 +25,13 @@
 # * Setup BOSS area * #
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setupCMT.sh"
 	source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0omega_K4pi/D0omega_K4pi-00-00-00/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_3K3pi/D0phi_3K3pi-00-00-00/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpiKK/D0phi_KpiKK-00-00-00/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/D0phi_KpipiKK/D0phi_KpipiKK-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/Algorithms/D0omega_K4pi/D0omega_K4pi-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/Algorithms/D0phi_3K3pi/D0phi_3K3pi-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/Algorithms/D0phi_KpiKK/D0phi_KpiKK-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/Algorithms/D0phi_KpipiKK/D0phi_KpipiKK-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/Algorithms/TrackSelector/TrackSelector-00-00-00/cmt/setup.sh"
+	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
-	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TrackSelector/TrackSelector-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-00-00/cmt/setup.sh"
 	source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
 	export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/

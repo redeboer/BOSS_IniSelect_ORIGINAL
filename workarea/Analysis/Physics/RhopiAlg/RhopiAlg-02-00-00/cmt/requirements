@@ -13,7 +13,7 @@ use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*     External
 
-use TrackSelector TrackSelector-* Analysis
+use TrackSelector TrackSelector-* Analysis/IniSelect/Algorithms
 
 apply_pattern component_library 
 library RhopiAlg TrackSelector *.cxx  components/*.cxx

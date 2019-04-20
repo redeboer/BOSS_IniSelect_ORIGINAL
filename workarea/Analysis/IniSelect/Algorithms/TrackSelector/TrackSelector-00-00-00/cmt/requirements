@@ -15,11 +15,10 @@ use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*   External
 
-use MdcRecoUtil  MdcRecoUtil-*  Reconstruction/MdcPatRec
-
-use IniSelectObjects   IniSelectObjects-*  Analysis/IniSelect
+use IniSelect   IniSelect-*  Analysis/IniSelect
 
 apply_pattern component_library
 library TrackSelector  *.cxx  Containers/*.cxx  Fit/*.cxx  Particle/*.cxx  TrackCollections/*.cxx
+macro IniSelect_linkopts " -lIniSelect "
 
 apply_pattern declare_runtime files=*.txt

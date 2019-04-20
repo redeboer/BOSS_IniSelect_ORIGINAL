@@ -7,9 +7,9 @@
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "TrackSelector/Fit/ParticleIdentifier.h"
-#include "TrackSelector/TSGlobals/TSException.h"
-#include "TrackSelector/TSGlobals/TSGlobals.h"
+#include "IniSelect/Globals.h"
+#include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include <string>
 #include <utility>
 
@@ -20,7 +20,7 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
-using namespace TSGlobals;
+using namespace IniSelect;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //

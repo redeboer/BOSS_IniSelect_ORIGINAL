@@ -10,11 +10,11 @@
 #include "EventModel/Event.h"
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
+#include "IniSelect/Containers/NTupleTopoAna.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
+#include "IniSelect/Globals.h"
 #include "TMath.h"
 #include "TString.h"
-#include "TrackSelector/Containers/NTupleTopoAna.h"
-#include "TrackSelector/Fit/ParticleIdentifier.h"
-#include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
@@ -22,7 +22,7 @@
 using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
-using namespace TSGlobals;
+using namespace IniSelect;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //

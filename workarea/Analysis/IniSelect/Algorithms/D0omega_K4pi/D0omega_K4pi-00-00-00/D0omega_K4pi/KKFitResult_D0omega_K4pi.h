@@ -6,7 +6,7 @@
 // * ========================= * //
 
 #include "McTruth/McParticle.h"
-#include "TrackSelector/Fit/KKFitResult.h"
+#include "IniSelect/Containers/KKFitResult.h"
 #include "TrackSelector/TrackSelector.h"
 
 // * ================================ * //
