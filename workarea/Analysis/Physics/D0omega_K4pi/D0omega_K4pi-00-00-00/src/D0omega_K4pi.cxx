@@ -209,24 +209,23 @@ void D0omega_K4pi::CutNumberOfChargedParticles()
 
 void D0omega_K4pi::CreateChargedTrackSelections()
 {
+  ParticleIdentifier::Initialize();
+
+  ParticleIdentifier::UseProbabilityMethod();
+  ParticleIdentifier::UseDedx();
+  ParticleIdentifier::UseTofIB();
+  ParticleIdentifier::UseTofOB();
+  ParticleIdentifier::UseTofE();
+  ParticleIdentifier::SetMinimalChi2(4.);
+
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  do
+    if(coll) ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
+  while(coll = fParticleSel.NextCharged());
+
   fParticleSel.ClearCharged();
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
-    ParticleIdentifier::Reset();
-    /// @todo Check if all these `ParticleIdentifier` methods can be moved out of the loop, up to `SetTrack`. Can perhaps even be moved to `initialize`?
-
-    ParticleIdentifier::UseProbabilityMethod();
-    ParticleIdentifier::UseDedx();
-    ParticleIdentifier::UseTofIB();
-    ParticleIdentifier::UseTofOB();
-    ParticleIdentifier::UseTofE();
-    ParticleIdentifier::SetMinimalChi2(4.);
-
-    CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-    do
-      if(coll) ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
-    while(coll = fParticleSel.NextCharged());
-
     std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
     if(!fParticleSel.HasParticle(particleName)) continue;
     WritePIDInformation();

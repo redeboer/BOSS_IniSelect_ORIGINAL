@@ -1,10 +1,13 @@
 #include "TrackSelector/Fit/ParticleIdentifier.h"
 #include "TString.h"
-#include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/TSGlobals/TSException.h"
 using namespace TSGlobals::Error;
 
+#include <stdio.h>
+
 ParticleID* ParticleIdentifier::gPID = ParticleID::instance();
+int         ParticleIdentifier::fBestIndex;
+std::string ParticleIdentifier::fBestName;
 
 ParticleIdentifier::ParticleIdentifier()
 {
@@ -49,8 +52,11 @@ void ParticleIdentifier::SetMostProbable()
 {
   fBestIndex = 0;
   double bestProb{0.};
-  for(int i = 0; i < 5; ++i)
+  for(int i = 0; i < 5; ++i) {
+printf("  %8.6f", gPID->prob(i));
     if(gPID->prob(i) > bestProb) fBestIndex = i;
+  }
+printf("\n");
   fBestName = ConvertIndexToName(fBestIndex);
 }
 

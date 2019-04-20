@@ -3,6 +3,7 @@
 
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "ParticleID/ParticleID.h"
+#include "TrackSelector/Containers/CutObject.h"
 #include <string>
 
 /// Static access to the [`ParticleID`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) class in BOSS.
@@ -11,7 +12,7 @@
 class ParticleIdentifier
 {
 public:
-  static void Reset() { gPID->init(); }
+  static void Initialize() { gPID->init(); }
 
   static void UseLikelihoodMethod() { gPID->setMethod(gPID->methodLikelihood()); }
   static void UseProbabilityMethod() { gPID->setMethod(gPID->methodProbability()); }
@@ -31,6 +32,12 @@ public:
   static double GetChiTofIB() { return gPID->chiTof1(2); }
   static double GetChiTofOB() { return gPID->chiTof2(2); }
   static double GetChiDedx() { return gPID->chiDedx(2); }
+
+  static double GetProbKaon() { return gPID->probKaon(); }
+  static double GetProbElectron() { return gPID->probElectron(); }
+  static double GetProbMuon() { return gPID->probMuon(); }
+  static double GetProbProton() { return gPID->probProton(); }
+  static double GetProbPion() { return gPID->probPion(); }
 
 private:
   ParticleIdentifier();
