@@ -49,15 +49,21 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fNTuple_TofIB("TofIB", "Inner barrel ToF of all tracks"),
   fNTuple_TofOB("TofOB", "Outer barrel ToF of all tracks"),
   fNTuple_PID("PID", "Particle Identification parameters"),
+  fNTuple_photon("photon", "Kinematics of selected photons"),
   fNTuple_cuts("_cutvalues",
                "1st entry: min value, 2nd entry: max value, 3rd entry: number passed"),
-  /// * Construct `NTuple::Tuple`s containers used in derived classes.
-  fNTuple_mult_sel("mult_select", "Multiplicities of selected particles"),
   fNTuple_topology("topology", "Monte Carlo truth for TopoAna package"),
   /// * Construct counters (in essence a `CutObject` without cuts).
   fCutFlow_Nevents("N_events"),
   fCutFlow_NetChargeOK("N_netcharge_OK",
                        "Number of events where the total charge detected in the detectors was 0"),
+  fCutFlow_NChargedOK("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
+  fCutFlow_NFitOK("N_Fit_OK", "Number of combinations where where the kinematic fit worked"),
+  fCutFlow_NPIDnumberOK("N_PID_OK",
+                        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
+  fCut_GammaAngle("gamma_angle"),
+  fCut_GammaPhi("gamma_phi"),
+  fCut_GammaTheta("gamma_theta"),
   fCounter_Ntracks("N_tracks"),
   fCounter_Ncharged("N_charged"),
   fCounter_Nneutral("N_neutral"),
@@ -134,15 +140,9 @@ StatusCode TrackSelector::initialize()
     AssertPostConstructed();
     OverwriteCreateBits();
     BookNTuples();
-    AddNTupleItems_mult();
-    AddNTupleItems_vertex();
-    AddNTupleItems_charged();
-    AddNTupleItems_neutral();
-    AddNTupleItems_Tof();
-    AddNTupleItems_dedx(fNTuple_dedx);
-    AddNTupleItems_MCTruth(fNTuple_topology);
-    AddNTupleItems_PID();
-    initialize_rest();
+    AddNTupleItems();
+    AddAdditionalNTupleItems();
+    ConfigureParticleSelection();
   }
   catch(...)
   {
@@ -206,24 +206,43 @@ void TrackSelector::OverwriteCreateBits()
   fCreateChargedCollection |= fNTuple_charged.DoWrite();
 }
 
-/// `"mult"`: Multiplicities of the total event
+void TrackSelector::AddNTupleItems()
+{
+  AddNTupleItems_mult();
+  AddNTupleItems_vertex();
+  AddNTupleItems_charged();
+  AddNTupleItems_neutral();
+  AddNTupleItems_Tof();
+  AddNTupleItems_dedx(fNTuple_dedx);
+  AddNTupleItems_MCTruth(fNTuple_topology);
+  AddNTupleItems_PID();
+}
+
 void TrackSelector::AddNTupleItems_mult()
 {
+  /// `"mult"`: Multiplicities of the total event
   /// * `"Ntotal"`:   Total number of events per track.
   /// * `"Ncharge"`:  Number of charged tracks.
   /// * `"Nneutral"`: Number of charged tracks.
   /// * `"NgoodNeutral"`: Number of 'good' neutral tracks (if performed).
   /// * `"NgoodCharged"`: Number of 'good' charged tracks (if performed).
+  /// * `"N_<particle>"`: Multiplicity for the particles you selected.
   fNTuple_mult.AddItem<int>("Ntotal");
   fNTuple_mult.AddItem<int>("Ncharge");
   fNTuple_mult.AddItem<int>("Nneutral");
   if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral");
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  while(coll)
+  {
+    fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
+    coll = fParticleSel.NextCharged();
+  }
 }
 
-/// `"vertex"`: Primary vertex info (interaction point)
 void TrackSelector::AddNTupleItems_vertex()
 {
+  /// `"vertex"`: Primary vertex info (interaction point)
   /// * `"vx0"`: \f$x\f$ coordinate of the interaction point.
   /// * `"vy0"`: \f$y\f$ coordinate of the interaction point.
   /// * `"vz0"`: \f$z\f$ coordinate of the interaction point.
@@ -232,9 +251,9 @@ void TrackSelector::AddNTupleItems_vertex()
   fNTuple_vertex.AddItem<double>("vz0");
 }
 
-/// `"charged"`: Charged track info: secondary vertact and distance to IP.
 void TrackSelector::AddNTupleItems_charged()
 {
+  /// `"charged"`: Charged track info: secondary vertact and distance to IP.
   /// * `"vx"`:    \f$x\f$ coordinate of the secondary vertex as determined by MDC.
   /// * `"vy"`:    \f$y\f$ coordinate of the secondary vertex as determined by MDC.
   /// * `"vz"`:    \f$z\f$ coordinate of the secondary vertex as determined by MDC.
@@ -255,9 +274,9 @@ void TrackSelector::AddNTupleItems_charged()
   fNTuple_charged.AddItem<double>("p");
 }
 
-/// `"neutral"`: Neutral track info.
 void TrackSelector::AddNTupleItems_neutral()
 {
+  /// `"neutral"`: Neutral track info.
   /// * `"E"`: Energy of the neutral track as determined by the EM calorimeter.
   /// * `"x"`: \f$x\f$-coordinate of the neutral track according to the EMC.
   /// * `"y"`: \f$y\f$-coordinate of the neutral track according to the EMC.
@@ -310,9 +329,9 @@ void TrackSelector::AddNTupleItems_Tof(NTupleContainer& tuple)
   tuple.AddItem<double>("tof_p");
 }
 
-/// This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
 void TrackSelector::AddNTupleItems_dedx(NTupleContainer& tuple)
 {
+  /// This function encapsulates the `addItem` procedure for the \f$dE/dx\f$ energy loss branch (`"dedx"`). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).
   /// * `"Ngoodhits"`:  Number of good \f$dE/dx\f$ hits (excluding overflow).
   /// * `"Ntotalhits"`: Number of good \f$dE/dx\f$ hits (including overflow).
   /// * `"chie"`:       \f$\chi^2\f$ in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").
@@ -336,23 +355,25 @@ void TrackSelector::AddNTupleItems_dedx(NTupleContainer& tuple)
   tuple.AddItem<double>("probPH");
 }
 
-/// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package. Have a look at [this page](https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection) as for why these fields are required.
 void TrackSelector::AddNTupleItems_MCTruth(NTupleContainer& tuple)
 {
+  /// This function encapsulates the `addItem` procedure for the MC truth branches for the TopoAna package. Have a look at [this page](https://besiii.gitbook.io/boss/packages/analysis/topoana#preparing-initial-event-selection) as for why these fields are required.
+  /// * `"runID"`: Run number ID.
+  /// * `"evtID"`: Rvent number ID.
+  /// * `"index"`: Index that is necessary for loading the following his one is necessary for loading following two items, because they are arrays.
+  /// * `"particle"`: PDG code for the particle in this array.
+  /// * `"mother"`: Track index of the mother particle.
   if(!tuple.DoWrite()) return;
-  tuple.AddItem<int>("runID"); /// * `"runID"`: Run number ID.
-  tuple.AddItem<int>("evtID"); /// * `"evtID"`: Rvent number ID.
-  NTuple::Item<int>& index = *tuple.AddItem<int>(
-    "index", 0, 100); /// * `"index"`: Index that is necessary for loading the following his one is
-                      /// necessary for loading following two items, because they are arrays.
-  tuple.AddIndexedItem<int>("particle",
-                            index); /// * `"particle"`: PDG code for the particle in this array.
-  tuple.AddIndexedItem<int>("mother", index); /// * `"mother"`: Track index of the mother particle.
+  tuple.AddItem<int>("runID");
+  tuple.AddItem<int>("evtID");
+  NTuple::Item<int>& index = *tuple.AddItem<int>("index", 0, 100);
+  tuple.AddIndexedItem<int>("particle", index);
+  tuple.AddIndexedItem<int>("mother", index);
 }
 
-/// `"PID"`: Track PID information.
 void TrackSelector::AddNTupleItems_PID()
 {
+  /// `"PID"`: Track PID information.
   /// * `"p"`:        Momentum of the track as reconstructed by MDC.
   /// * `"cost"`:     Theta angle of the track.
   /// * `"chiToFIB"`: \f$\chi^2\f$ of the inner barrel ToF of the track.
@@ -377,6 +398,25 @@ void TrackSelector::AddNTupleItems_PID()
   fNTuple_PID.AddItem<double>("prob_pi");
 }
 
+void TrackSelector::AddNTupleItems_photon()
+{
+  /// `"photon"`: Information of the selected photons
+  /// * `"E"`: Energy of the photon.
+  /// * `"py"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
+  /// * `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
+  /// * `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
+  /// * `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
+  /// * `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
+  /// * `"angle"`: Smallest angle between the photon and the nearest charged pion.
+  fNTuple_photon.AddItem<double>("E");
+  fNTuple_photon.AddItem<double>("px");
+  fNTuple_photon.AddItem<double>("py");
+  fNTuple_photon.AddItem<double>("pz");
+  fNTuple_photon.AddItem<double>("smallest_phi");
+  fNTuple_photon.AddItem<double>("smallest_theta");
+  fNTuple_photon.AddItem<double>("smallest_angle");
+}
+
 // * ============================ * //
 // * ------- EXECUTE STEP ------- * //
 // * ============================ * //
@@ -390,9 +430,15 @@ StatusCode TrackSelector::execute()
     LoadDstFile();
     SetVertexOrigin();
     CreateCollections();
-    WriteMultiplicities();
     WriteVertexInfo();
-    execute_rest();
+    CutNumberOfChargedParticles();
+    CreateChargedTrackSelections();
+    CreateNeutralTrackSelections();
+    WriteMultiplicities();
+    PrintMultiplicities();
+    CutPID();
+    WriteDedxOfSelectedParticles();
+    FindBestKinematicFit();
   }
   catch(...)
   {}
@@ -685,7 +731,42 @@ void TrackSelector::WriteMultiplicities()
   fNTuple_mult.GetItem<int>("Nneutral") = fEvtRecEvent->totalNeutral();
   if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  while(coll)
+  {
+    fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
+    coll = fParticleSel.NextCharged();
+  }
   fNTuple_mult.Write();
+}
+
+void TrackSelector::PrintMultiplicities()
+{
+  fLog << MSG::INFO;
+  Int_t                         i    = 0;
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  while(coll)
+  {
+    if(i) fLog << ", ";
+    fLog << Form("N_%s = ", coll->GetPdtName(), coll->GetNTracks());
+    ++i;
+    coll = fParticleSel.NextCharged();
+  }
+  fLog << endmsg;
+}
+
+/// **PID cut**: apply a strict cut on the number of the selected particles.
+void TrackSelector::CutPID()
+{
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  while(coll)
+  {
+    if(coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
+    coll = fParticleSel.NextCharged();
+  }
+  ++fCutFlow_NPIDnumberOK;
+  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
+       << ", " << fEventHeader->eventNumber() << ")" << endmsg;
 }
 
 void TrackSelector::WriteVertexInfo()
@@ -698,6 +779,107 @@ void TrackSelector::WriteVertexInfo()
   fNTuple_vertex.Write();
 }
 
+void TrackSelector::CutNumberOfChargedParticles()
+{
+  if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
+  ++fCutFlow_NChargedOK;
+}
+
+void TrackSelector::CreateChargedTrackSelections()
+{
+  ParticleIdentifier::Initialize();
+  ConfigurePID();
+
+  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  while(coll)
+  {
+    ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
+    coll = fParticleSel.NextCharged();
+  }
+
+  fParticleSel.ClearCharged();
+  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
+  {
+    std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
+printf("pi = %8.6f, K = %8.6f --> %s\n", ParticleIdentifier::GetProbPion(), ParticleIdentifier::GetProbKaon(), particleName.c_str());
+    if(!fParticleSel.HasParticle(particleName)) continue;
+    WritePIDInformation();
+    fParticleSel.AddTrackToParticle(*fTrackIter, particleName);
+  }
+}
+
+void TrackSelector::CreateNeutralTrackSelections()
+{
+  fParticleSel.ClearNeutral();
+  for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
+  {
+    AngleDifferences smallestAngles = FindSmallestPhotonAngles();
+    smallestAngles.ConvertToDegrees();
+    WritePhotonKinematics(smallestAngles);
+    if(CutPhotonAngles(smallestAngles)) continue;
+    fParticleSel.GetPhotons().AddTrack(*fTrackIter);
+  }
+}
+
+/// Find angle differences with nearest charged track.
+AngleDifferences TrackSelector::FindSmallestPhotonAngles()
+{
+  GetEmcPosition();
+  AngleDifferences smallestAngles;
+  for(std::vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end();
+      ++it)
+  {
+    if(!GetExtendedEmcPosition(*it)) continue;
+    AngleDifferences angles(fExtendedEmcPosition, fEmcPosition);
+    if(angles.IsSmaller(smallestAngles)) smallestAngles = angles;
+  }
+  return smallestAngles;
+}
+
+void TrackSelector::GetEmcPosition()
+{
+  fTrackEMC    = (*fTrackIter)->emcShower();
+  fEmcPosition = fTrackEMC->position();
+}
+
+bool TrackSelector::GetExtendedEmcPosition(EvtRecTrack* track)
+{
+  if(!track->isExtTrackValid()) return false;
+  fTrackExt = track->extTrack();
+  if(fTrackExt->emcVolumeNumber() == -1) return false;
+  fExtendedEmcPosition = fTrackExt->emcPosition();
+  return true;
+}
+
+/// *Write* photon info (`"photon"` branch).
+void TrackSelector::WritePhotonKinematics(const AngleDifferences& angles)
+{
+  if(!fNTuple_photon.DoWrite()) return;
+  double eraw  = fTrackEMC->energy();
+  double phi   = fTrackEMC->phi();
+  double theta = fTrackEMC->theta();
+
+  HepLorentzVector four_mom(eraw * sin(theta) * cos(phi), eraw * sin(theta) * sin(phi),
+                            eraw * cos(theta), eraw);
+  fNTuple_photon.GetItem<double>("E")              = four_mom.e();
+  fNTuple_photon.GetItem<double>("px")             = four_mom.px();
+  fNTuple_photon.GetItem<double>("py")             = four_mom.py();
+  fNTuple_photon.GetItem<double>("pz")             = four_mom.pz();
+  fNTuple_photon.GetItem<double>("smallest_phi")   = angles.GetTheta();
+  fNTuple_photon.GetItem<double>("smallest_theta") = angles.GetPhi();
+  fNTuple_photon.GetItem<double>("smallest_angle") = angles.GetAngle();
+  fNTuple_photon.Write();
+}
+
+/// Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
+bool TrackSelector::CutPhotonAngles(const AngleDifferences& angles)
+{
+  if(!fCut_GammaAngle.FailsCut(angles.GetAbsoluteAngle())) return false;
+  if(!fCut_GammaPhi.FailsCut(angles.GetAbsolutePhi())) return false;
+  if(!fCut_GammaTheta.FailsCut(angles.GetAbsoluteTheta())) return false;
+  return true;
+}
+
 // * ============================= * //
 // * ------- FINALIZE STEP ------- * //
 // * ============================= * //
@@ -707,7 +889,6 @@ void TrackSelector::WriteVertexInfo()
 StatusCode TrackSelector::finalize()
 {
   PrintFunctionName("TrackSelector", __func__);
-  finalize_rest();
   NTupleContainer::PrintFilledTuples();
   AddAndWriteCuts();
   CutObject::PrintAll();
@@ -734,6 +915,23 @@ void TrackSelector::AddAndWriteCuts()
   }
   ++index; // to make the array size 3
   fNTuple_cuts.Write();
+}
+
+void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
+{
+  int pdgCode = mcParticle->particleProperty();
+
+  CandidateTracks<Event::McParticle>* coll = fParticleSelMC.FirstParticle();
+  while(coll)
+  {
+    if(coll->GetPdgCode() == pdgCode)
+    {
+      coll->AddTrack(mcParticle);
+      return;
+    }
+    coll = fParticleSelMC.NextCharged();
+  }
+  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in fParticleSelMC" << endmsg;
 }
 
 // * ===================================== * //

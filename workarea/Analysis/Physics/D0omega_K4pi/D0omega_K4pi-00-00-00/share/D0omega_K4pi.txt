@@ -22,7 +22,6 @@ D0omega_K4pi.write_dedx_pi     = 0;
 D0omega_K4pi.write_fit4c_all   = 1;
 D0omega_K4pi.write_fit4c_best  = 1;
 D0omega_K4pi.write_fit_mc      = 0;
-D0omega_K4pi.write_mult_select = 0;
 D0omega_K4pi.write_photon      = 0;
 
 // * Geometry cuts *

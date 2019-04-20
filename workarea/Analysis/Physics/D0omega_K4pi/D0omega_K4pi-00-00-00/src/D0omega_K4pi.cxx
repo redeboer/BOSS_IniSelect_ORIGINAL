@@ -37,20 +37,8 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
   fNTuple_fit4c_all("fit4c_all", "4-constraint fit information (CMS 4-momentum)"),
-  fNTuple_fit4c_best(
-    "fit4c_best",
-    "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
-  fNTuple_fit_mc("fit_mc", "Fake fit information according to MC truth"),
-  fNTuple_photon("photon", "Kinematics of selected photons"),
-  /// * Construct counters (in essence a `CutObject` without cuts).
-  fCutFlow_NChargedOK("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
-  fCutFlow_NFitOK("N_Fit_OK", "Number of combinations where where the kinematic fit worked"),
-  fCutFlow_NPIDnumberOK("N_PID_OK",
-                        "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks"),
-  /// * Construct additional `CutObject`s that are specific for the `rhopi_pipig` package.
-  fCut_GammaAngle("gamma_angle"),
-  fCut_GammaPhi("gamma_phi"),
-  fCut_GammaTheta("gamma_theta")
+  fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
+  fNTuple_fit_mc("fit_mc", "Fake fit information according to MC truth")
 {
   PrintFunctionName("D0omega_K4pi", __func__);
   PostConstructor();
@@ -62,12 +50,8 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 // * ------- INITIALIZE STEP ------- * //
 // * =============================== * //
 
-/// (Inherited) `initialize` step of `Algorithm`.
-/// This function is called only once, when the algorithm is initialised.
-/// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the TrackSelector::initilize` step prior to this this method.
-StatusCode D0omega_K4pi::initialize_rest()
+void D0omega_K4pi::ConfigureParticleSelection()
 {
-  PrintFunctionName("D0omega_K4pi", __func__);
   fParticleSel.SetN_KaonMin(1);  /// * `"NPhotons"`: Number of \f$\gamma\f$.
   fParticleSel.SetN_PionMin(1);  /// * `"NKaonPos"`: Number of \f$K^+\f$.
   fParticleSel.SetN_PionPlus(2); /// * `"NKaonNeg"`: Number of \f$K^-\f$.
@@ -76,87 +60,34 @@ StatusCode D0omega_K4pi::initialize_rest()
   fParticleSelMC.SetN_PionMin(1);
   fParticleSelMC.SetN_PionPlus(2);
   fParticleSelMC.SetN_Photons(2);
-  AddNTupleItems_mult_sel();
+}
+
+void D0omega_K4pi::AddAdditionalNTupleItems()
+{
   AddNTupleItems_dedx();
   AddNTupleItems_fit();
-  AddNTupleItems_photon();
   AddAdditionalNTuples_topology();
-  return StatusCode::SUCCESS;
 }
 
-/// `"mult_select"`: Multiplicities of selected particles.
-void D0omega_K4pi::AddNTupleItems_mult_sel()
-{
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll) fNTuple_mult_sel.AddItem<int>(Form("N_%s", coll->GetPdtName()));
-  while(coll = fParticleSel.NextCharged());
-}
-
-/// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
 void D0omega_K4pi::AddNTupleItems_dedx()
 {
+  /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
   TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_K);
   TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_pi);
 }
 
-/// `"fit4c_*"`: Kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
 void D0omega_K4pi::AddNTupleItems_fit()
 {
-  AddNTupleItems_Fit(fNTuple_fit4c_all);
-  AddNTupleItems_Fit(fNTuple_fit4c_best);
-  AddNTupleItems_Fit(fNTuple_fit_mc);
+  /// `"fit4c_*"`: Kinematic fit results. See `TrackSelector::AddNTupleItems_fit` for more info.
+  AddNTupleItems_fit(fNTuple_fit4c_all);
+  AddNTupleItems_fit(fNTuple_fit4c_best);
+  AddNTupleItems_fit(fNTuple_fit_mc);
 }
 
-/// `"photon"`: Information of the selected photons
-void D0omega_K4pi::AddNTupleItems_photon()
-{
-  /// * `"E"`: Energy of the photon.
-  /// * `"py"`: \f$x\f$ component of the 4-momentum of the photon (computed from the detected angles).
-  /// * `"py"`: \f$y\f$ component of the 4-momentum of the photon (computed from the detected angles).
-  /// * `"pz"`: \f$z\f$ component of the 4-momentum of the photon (computed from the detected angles).
-  /// * `"phi"`:   Smallest \f$\phi\f$ angle between the photon and the nearest charged pion.
-  /// * `"theta"`: Smallest \f$\theta\f$ angle between the photon and the nearest charged pion.
-  /// * `"angle"`: Smallest angle between the photon and the nearest charged pion.
-  fNTuple_photon.AddItem<double>("E");
-  fNTuple_photon.AddItem<double>("px");
-  fNTuple_photon.AddItem<double>("py");
-  fNTuple_photon.AddItem<double>("pz");
-  fNTuple_photon.AddItem<double>("smallest_phi");
-  fNTuple_photon.AddItem<double>("smallest_theta");
-  fNTuple_photon.AddItem<double>("smallest_angle");
-}
-
-/// `"topology"`: Add *additional* mass branches to the MC truth branch for the `topoana` package
-void D0omega_K4pi::AddAdditionalNTuples_topology()
-{
-  /// * `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
-  /// * `"mpi0"`: Invariant mass of the \f$\pi^0\f$ candidate in \f$D^0 \to K^-\pi^+\pi^0\f$.
-  /// * `"mD0"`:  Invariant mass of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
-  /// * `"momega"`: Invariant mass of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
-  /// * `"pD0"`:  Momentum of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
-  /// * `"pomega"`: Momentum of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
-  fNTuple_topology.AddItem<double>("chi2");
-  fNTuple_topology.AddItem<double>("mpi0");
-  fNTuple_topology.AddItem<double>("mD0");
-  fNTuple_topology.AddItem<double>("momega");
-  fNTuple_topology.AddItem<double>("pD0");
-  fNTuple_topology.AddItem<double>("pomega");
-  fNTuple_topology.AddItem<double>("ppi0");
-  fNTuple_topology.AddItem<double>("pK-");
-  fNTuple_topology.AddItem<double>("ppi-");
-  fNTuple_topology.AddItem<double>("ppi+1");
-  fNTuple_topology.AddItem<double>("ppi+2");
-  fNTuple_topology.AddItem<double>("fDalitzOmega_pi-pi+");
-  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi-");
-  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi+");
-  fNTuple_topology.AddItem<double>("fRelativePhotonAngle");
-}
-
-/// This function encapsulates the `addItem` procedure for the fit branches.
-void D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer& tuple)
+void D0omega_K4pi::AddNTupleItems_fit(NTupleContainer& tuple)
 {
   if(!tuple.DoWrite()) return;
+  /// This function encapsulates the `addItem` procedure for the fit branches.
   /// * `"mpi0"`:  Invariant mass for \f$gamma\gamma\f$ (\f$\pi^0\f$).
   /// * `"mD0"`:   Invariant mass for \f$K^-\pi^+\f$ (\f$D^0\f$).
   /// * `"momega"`:  Invariant mass for \f$K^+K^+\f$ (\f$\omega\f$).
@@ -182,172 +113,44 @@ void D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer& tuple)
   tuple.AddItem<double>("fRelativePhotonAngle");
 }
 
+void D0omega_K4pi::AddAdditionalNTuples_topology()
+{
+  /// `"topology"`: Add *additional* mass branches to the MC truth branch for the `topoana` package
+  /// * `"chi2"`: \f$\chi^2\f$ of the Kinematic kalman fit.
+  /// * `"mpi0"`: Invariant mass of the \f$\pi^0\f$ candidate in \f$D^0 \to K^-\pi^+\pi^0\f$.
+  /// * `"mD0"`:  Invariant mass of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+  /// * `"momega"`: Invariant mass of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+  /// * `"pD0"`:  Momentum of the \f$D^0\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+  /// * `"pomega"`: Momentum of the \f$\omega\f$ candidate in the \f$J/\psi \to D^0\omega\f$.
+  fNTuple_topology.AddItem<double>("chi2");
+  fNTuple_topology.AddItem<double>("mpi0");
+  fNTuple_topology.AddItem<double>("mD0");
+  fNTuple_topology.AddItem<double>("momega");
+  fNTuple_topology.AddItem<double>("pD0");
+  fNTuple_topology.AddItem<double>("pomega");
+  fNTuple_topology.AddItem<double>("ppi0");
+  fNTuple_topology.AddItem<double>("pK-");
+  fNTuple_topology.AddItem<double>("ppi-");
+  fNTuple_topology.AddItem<double>("ppi+1");
+  fNTuple_topology.AddItem<double>("ppi+2");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi-pi+");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi-");
+  fNTuple_topology.AddItem<double>("fDalitzOmega_pi0pi+");
+  fNTuple_topology.AddItem<double>("fRelativePhotonAngle");
+}
+
 // * ============================ * //
 // * ------- EXECUTE STEP ------- * //
 // * ============================ * //
 
-/// Inherited `execute` method of the `Algorithm` that is called *for each event*.
-StatusCode D0omega_K4pi::execute_rest()
+void D0omega_K4pi::ConfigurePID()
 {
-std::cout << std::endl;
-  PrintFunctionName("D0omega_K4pi", __func__);
-  CutNumberOfChargedParticles();
-  CreateChargedTrackSelections();
-  CreateNeutralTrackSelections();
-  WriteMultiplicities();
-  CutPID();
-  WriteDedxOfSelectedParticles();
-  FindBestKinematicFit();
-  return StatusCode::SUCCESS;
-}
-
-/// **Charged track cut**: Apply a strict cut on the number of particles -- only **4 charged tracks in total**.
-void D0omega_K4pi::CutNumberOfChargedParticles()
-{
-  if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
-  ++fCutFlow_NChargedOK;
-}
-
-void D0omega_K4pi::CreateChargedTrackSelections()
-{
-  ParticleIdentifier::Initialize();
-
   ParticleIdentifier::UseProbabilityMethod();
   ParticleIdentifier::UseDedx();
   ParticleIdentifier::UseTofIB();
   ParticleIdentifier::UseTofOB();
   ParticleIdentifier::UseTofE();
   ParticleIdentifier::SetMinimalChi2(4.);
-
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  while(coll)
-  {
-    ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
-    coll = fParticleSel.NextCharged();
-  }
-
-  fParticleSel.ClearCharged();
-  for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
-  {
-    std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
-printf("pi = %8.6f, K = %8.6f --> %s\n", ParticleIdentifier::GetProbPion(), ParticleIdentifier::GetProbKaon(), particleName.c_str());
-    if(!fParticleSel.HasParticle(particleName)) continue;
-    WritePIDInformation();
-    fParticleSel.AddTrackToParticle(*fTrackIter, particleName);
-  }
-}
-
-void D0omega_K4pi::CreateNeutralTrackSelections()
-{
-  fParticleSel.ClearNeutral();
-  for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
-  {
-    AngleDifferences smallestAngles = FindSmallestPhotonAngles();
-    smallestAngles.ConvertToDegrees();
-    WritePhotonKinematics(smallestAngles);
-    if(CutPhotonAngles(smallestAngles)) continue;
-    fParticleSel.GetPhotons().AddTrack(*fTrackIter);
-  }
-}
-
-/// Find angle differences with nearest charged track.
-AngleDifferences D0omega_K4pi::FindSmallestPhotonAngles()
-{
-  GetEmcPosition();
-  AngleDifferences smallestAngles;
-  for(std::vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end();
-      ++it)
-  {
-    if(!GetExtendedEmcPosition(*it)) continue;
-    AngleDifferences angles(fExtendedEmcPosition, fEmcPosition);
-    if(angles.IsSmaller(smallestAngles)) smallestAngles = angles;
-  }
-  return smallestAngles;
-}
-
-void D0omega_K4pi::GetEmcPosition()
-{
-  fTrackEMC    = (*fTrackIter)->emcShower();
-  fEmcPosition = fTrackEMC->position();
-}
-
-bool D0omega_K4pi::GetExtendedEmcPosition(EvtRecTrack* track)
-{
-  if(!track->isExtTrackValid()) return false;
-  fTrackExt = track->extTrack();
-  if(fTrackExt->emcVolumeNumber() == -1) return false;
-  fExtendedEmcPosition = fTrackExt->emcPosition();
-  return true;
-}
-
-/// *Write* photon info (`"photon"` branch).
-void D0omega_K4pi::WritePhotonKinematics(const AngleDifferences& angles)
-{
-  if(!fNTuple_photon.DoWrite()) return;
-  double eraw  = fTrackEMC->energy();
-  double phi   = fTrackEMC->phi();
-  double theta = fTrackEMC->theta();
-
-  HepLorentzVector four_mom(eraw * sin(theta) * cos(phi), eraw * sin(theta) * sin(phi),
-                            eraw * cos(theta), eraw);
-  fNTuple_photon.GetItem<double>("E")              = four_mom.e();
-  fNTuple_photon.GetItem<double>("px")             = four_mom.px();
-  fNTuple_photon.GetItem<double>("py")             = four_mom.py();
-  fNTuple_photon.GetItem<double>("pz")             = four_mom.pz();
-  fNTuple_photon.GetItem<double>("smallest_phi")   = angles.GetTheta();
-  fNTuple_photon.GetItem<double>("smallest_theta") = angles.GetPhi();
-  fNTuple_photon.GetItem<double>("smallest_angle") = angles.GetAngle();
-  fNTuple_photon.Write();
-}
-
-/// Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track.
-bool D0omega_K4pi::CutPhotonAngles(const AngleDifferences& angles)
-{
-  if(!fCut_GammaAngle.FailsCut(angles.GetAbsoluteAngle())) return false;
-  if(!fCut_GammaPhi.FailsCut(angles.GetAbsolutePhi())) return false;
-  if(!fCut_GammaTheta.FailsCut(angles.GetAbsoluteTheta())) return false;
-  return true;
-}
-
-/// **Write** the multiplicities of the selected particles.
-void D0omega_K4pi::WriteMultiplicities()
-{
-  PrintMultiplicities();
-  if(!fNTuple_mult_sel.DoWrite()) return;
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll) fNTuple_mult_sel.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
-  while(coll = fParticleSel.NextCharged());
-  fNTuple_mult_sel.Write();
-}
-
-/// Print multiplicities of the selected particles.
-void D0omega_K4pi::PrintMultiplicities()
-{
-  fLog << MSG::INFO;
-  Int_t                         i    = 0;
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll)
-    {
-      if(i) fLog << ", ";
-      fLog << Form("N_%s = ", coll->GetPdtName(), coll->GetNTracks());
-      ++i;
-    }
-  while(coll = fParticleSel.NextCharged());
-  fLog << endmsg;
-}
-
-/// **PID cut**: apply a strict cut on the number of the selected particles.
-void D0omega_K4pi::CutPID()
-{
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll && coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
-  while(coll = fParticleSel.NextCharged());
-  ++fCutFlow_NPIDnumberOK;
-  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
-       << ", " << fEventHeader->eventNumber() << ")" << endmsg;
 }
 
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
@@ -460,14 +263,16 @@ void D0omega_K4pi::DoKinematicFit()
 void D0omega_K4pi::AddTracksToKinematicFitter()
 {
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll)
-      for(int i = 0; i < coll->GetNTracks(); ++i)
-        if(coll->IsCharged())
-          fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
-        else
-          fKinematicFitter.AddTrack(coll->GetCandidate(i)->emcShower());
-  while(coll = fParticleSel.NextCharged());
+  while(coll)
+  {
+std::cout << "here" << std::endl;
+    for(int i = 0; i < coll->GetNTracks(); ++i)
+      if(coll->IsCharged())
+        fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
+      else
+        fKinematicFitter.AddTrack(coll->GetCandidate(i)->emcShower());
+    coll = fParticleSel.NextParticle();
+  }
 }
 
 void D0omega_K4pi::ExtractFitResults()
@@ -520,31 +325,4 @@ void D0omega_K4pi::CreateMCTruthSelection()
   fParticleSelMC.ClearCharged();
   std::vector<Event::McParticle*>::iterator it;
   for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) PutParticleInCorrectVector(*it);
-}
-
-void D0omega_K4pi::PutParticleInCorrectVector(Event::McParticle* mcParticle)
-{
-  int pdgCode = mcParticle->particleProperty();
-
-  CandidateTracks<Event::McParticle>* coll = fParticleSelMC.FirstParticle();
-  do
-    if(coll && coll->GetPdgCode() == pdgCode)
-    {
-      coll->AddTrack(mcParticle);
-      return;
-    }
-  while(coll = fParticleSelMC.NextCharged());
-  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in fParticleSelMC" << endmsg;
-}
-
-// * ============================= * //
-// * ------- FINALIZE STEP ------- * //
-// * ============================= * //
-
-/// Currently does nothing.
-/// See `TrackSelector::finalize` for what else is done when finalising.
-StatusCode D0omega_K4pi::finalize_rest()
-{
-  PrintFunctionName("D0omega_K4pi", __func__);
-  return StatusCode::SUCCESS;
 }

@@ -3,6 +3,8 @@
 #include "TrackSelector/TSGlobals/TSException.h"
 using namespace TSGlobals::Error;
 
+#include <stdio.h>
+
 ParticleID* ParticleIdentifier::gPID = ParticleID::instance();
 int         ParticleIdentifier::fBestIndex;
 std::string ParticleIdentifier::fBestName;
@@ -59,6 +61,9 @@ void ParticleIdentifier::SetMostProbable()
       fBestIndex = i;
     }
   }
+for(int i = 0; i < 5; ++i) printf("  %8.6f", gPID->prob(i)); printf("\n");
+for(int i = 0; i < 5; ++i) if(IsIdentified(i)) printf("  %8.6f", gPID->prob(i)); else printf("  %8.6f", 0.); printf("\n");
+printf("--> %3d\n", fBestIndex);
   fBestName = ConvertIndexToName(fBestIndex);
 }
 

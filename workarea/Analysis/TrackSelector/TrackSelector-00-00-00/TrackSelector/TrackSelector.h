@@ -20,6 +20,7 @@
 #include "TH1D.h"
 #include "THStack.h"
 #include "TofRecEvent/RecTofTrack.h"
+#include "TrackSelector/Containers/AngleDifferences.h"
 #include "TrackSelector/Containers/CutObject.h"
 #include "TrackSelector/Containers/JobSwitch.h"
 #include "TrackSelector/Containers/NTupleContainer.h"
@@ -73,6 +74,7 @@ protected:
   void BookNTuple(NTupleContainer& tuple);
   void BookNTuples();
   void OverwriteCreateBits();
+  void AddNTupleItems();
   void AddNTupleItems_mult();
   void AddNTupleItems_vertex();
   void AddNTupleItems_charged();
@@ -82,8 +84,10 @@ protected:
   void AddNTupleItems_dedx(NTupleContainer& tuple);
   void AddNTupleItems_MCTruth(NTupleContainer& tuple);
   void AddNTupleItems_PID();
+  void AddNTupleItems_photon();
 
-  virtual StatusCode initialize_rest() = 0;
+  virtual void ConfigureParticleSelection() = 0;
+  virtual void AddAdditionalNTupleItems() = 0;
   ///@}
 
   /// @name Helper methods for execute step
@@ -103,16 +107,25 @@ protected:
   void WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
   void CreateNeutralCollection();
   void WriteMultiplicities();
+  void PrintMultiplicities();
+  void CutPID();
   void WriteVertexInfo();
+  void CutNumberOfChargedParticles();
+  void CreateChargedTrackSelections();
+  virtual void ConfigurePID() = 0;
+  void CreateNeutralTrackSelections();
+  AngleDifferences FindSmallestPhotonAngles();
+  void GetEmcPosition();
+  bool GetExtendedEmcPosition(EvtRecTrack* track);
+  void WritePhotonKinematics(const AngleDifferences& angles);
+  bool CutPhotonAngles(const AngleDifferences& angles);
 
-  virtual StatusCode execute_rest() = 0;
+  void PutParticleInCorrectVector(Event::McParticle* mcParticle);
   ///@}
 
   /// @name Helper methods for finalize step
   ///@{
   void AddAndWriteCuts();
-
-  virtual StatusCode finalize_rest() = 0;
   ///@}
 
   MsgStream fLog;
@@ -122,6 +135,8 @@ protected:
   ///@{
   void CutZeroNetCharge();
   void WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
+  virtual void WriteDedxOfSelectedParticles() = 0;
+  virtual void FindBestKinematicFit() = 0;
   bool IsDecay(Event::McParticle* particle, const int mother) const;
   bool IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
   void WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
@@ -181,10 +196,10 @@ protected:
   ///< `NTuple::Tuple` container for the energy loss (\f$dE/dx\f$) branch.
   NTupleContainer fNTuple_mult;
   ///< `NTuple::Tuple` container for the multiplicities branch.
-  NTupleContainer fNTuple_mult_sel;
-  ///< `NTuple::Tuple` container for the `"mult_select"` branch.
   NTupleContainer fNTuple_neutral;
   ///< `NTuple::Tuple` container for the neutral track info neutral track info branch.
+  NTupleContainer fNTuple_photon;
+  ///< `NTuple::Tuple` container for the photon branch.
   NTupleContainer fNTuple_vertex;
   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
   NTupleContainer fNTuple_topology;
@@ -205,6 +220,12 @@ protected:
   ///< **Cut flow counter**: total number of events.
   CutObject fCutFlow_NetChargeOK;
   ///< **Cut flow counter**: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
+  CutObject fCutFlow_NChargedOK;
+  ///< **Cut flow counter**: total number of events that have exactly the number of charged tracks we want.
+  CutObject fCutFlow_NFitOK;
+  ///< **Cut flow counter**: total number of events where there is at least one combination where the kinematic fit worked.
+  CutObject fCutFlow_NPIDnumberOK;
+  ///< **Cut flow counter**: total number of events that that has exactly the identified tracks that we want.
   CutObject fCut_Vxy;
   ///< Cut on the radius \f$r\f$ of the primary vertex.
   CutObject fCut_Vz;
@@ -219,6 +240,12 @@ protected:
   ///< Cut on the \f$\chi_\mathrm{red}^2\f$ of the kinematic Kalman fits.
   CutObject fCut_PIDProb;
   ///< Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance [`ParticleID::probPion`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6).
+  CutObject fCut_GammaAngle;
+  ///< Cut on angle between the photon and the nearest charged track *in degrees*.
+  CutObject fCut_GammaPhi;
+  ///< Cut on \f$\phi\f$ angle between the photon and the nearest charged track *in radians*.
+  CutObject fCut_GammaTheta;
+  ///< Cut on \f$\theta\f$ angle between the photon and the nearest charged track *in radians*.
   ///@}
 
   /// @name Other stored values
@@ -232,6 +259,12 @@ protected:
   ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
   Int_t fNetChargeMDC;
   ///< Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the `RhopiAlg` example.
+  ///@}
+
+  /// @name Photon kinematics
+  ///@{
+  Hep3Vector fEmcPosition;
+  Hep3Vector fExtendedEmcPosition;
   ///@}
 
 private:
