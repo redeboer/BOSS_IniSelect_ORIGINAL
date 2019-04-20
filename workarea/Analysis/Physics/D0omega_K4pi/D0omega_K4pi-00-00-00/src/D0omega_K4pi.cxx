@@ -13,7 +13,7 @@
 #include <string>
 #include <utility>
 
-#include "TrackSelector/Particle/Particle.h"
+#include <stdio.h>
 
 #ifndef ENABLE_BACKWARDS_COMPATIBILITY
 typedef HepGeom::Point3D<double> HepPoint3D;
@@ -219,14 +219,17 @@ void D0omega_K4pi::CreateChargedTrackSelections()
   ParticleIdentifier::SetMinimalChi2(4.);
 
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll) ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
-  while(coll = fParticleSel.NextCharged());
+  while(coll)
+  {
+    ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
+    coll = fParticleSel.NextCharged();
+  }
 
   fParticleSel.ClearCharged();
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
+printf("pi = %8.6f, K = %8.6f --> %s\n", ParticleIdentifier::GetProbPion(), ParticleIdentifier::GetProbKaon(), particleName.c_str());
     if(!fParticleSel.HasParticle(particleName)) continue;
     WritePIDInformation();
     fParticleSel.AddTrackToParticle(*fTrackIter, particleName);

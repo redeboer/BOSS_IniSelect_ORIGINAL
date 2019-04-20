@@ -3,11 +3,10 @@
 #include "TrackSelector/TSGlobals/TSException.h"
 using namespace TSGlobals::Error;
 
-#include <stdio.h>
-
 ParticleID* ParticleIdentifier::gPID = ParticleID::instance();
 int         ParticleIdentifier::fBestIndex;
 std::string ParticleIdentifier::fBestName;
+int         ParticleIdentifier::fParticleToIdentify = 0;
 
 ParticleIdentifier::ParticleIdentifier()
 {
@@ -51,14 +50,15 @@ bool ParticleIdentifier::SetProbabilities(EvtRecTrack* trk)
 
 void ParticleIdentifier::SetMostProbable()
 {
-  fBestIndex = 0;
+  fBestIndex = -1;
   double bestProb{0.};
-  for(int i = 0; i < 5; ++i) {
-if(IsIdentified(i)) printf("  %8.6f", gPID->prob(i));
-else printf("  %8.6f", 0.);
-    if(gPID->prob(i) > bestProb) fBestIndex = i;
+  for(int i = 0; i < 5; ++i)
+  {
+    if(IsIdentified(i) && gPID->prob(i) > bestProb) {
+      bestProb = gPID->prob(i);
+      fBestIndex = i;
+    }
   }
-printf("\n");
   fBestName = ConvertIndexToName(fBestIndex);
 }
 
@@ -76,12 +76,13 @@ void ParticleIdentifier::AppendChargeSign(EvtRecTrack* trk)
     fBestName += "-";
 }
 
-std::string ParticleIdentifier::ConvertIndexToName(int index)
+const char* ParticleIdentifier::ConvertIndexToName(int index)
 {
   /// Mapping from the array index used in [`ParticleID`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) to a particle name.
   /// See [here](http://bes3.to.infn.it/Boss/7.0.2/html/ParticleID_8h-source.html#l00121) for an example of what this mapping should be.
   switch(index)
   {
+    case -1: return "";
     case 0: return "e";
     case 1: return "mu";
     case 2: return "pi";

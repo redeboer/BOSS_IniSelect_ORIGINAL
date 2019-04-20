@@ -33,11 +33,11 @@ public:
   static double GetChiTofOB() { return gPID->chiTof2(2); }
   static double GetChiDedx() { return gPID->chiDedx(2); }
 
-  static double GetProbKaon() { return gPID->probKaon(); }
   static double GetProbElectron() { return gPID->probElectron(); }
   static double GetProbMuon() { return gPID->probMuon(); }
-  static double GetProbProton() { return gPID->probProton(); }
   static double GetProbPion() { return gPID->probPion(); }
+  static double GetProbKaon() { return gPID->probKaon(); }
+  static double GetProbProton() { return gPID->probProton(); }
 
 private:
   ParticleIdentifier();
@@ -54,7 +54,7 @@ private:
   static bool FailsProbPidCut(CutObject& pidCut);
   static void AppendChargeSign(EvtRecTrack* trk);
 
-  static std::string ConvertIndexToName(int index);
+  static const char* ConvertIndexToName(int index);
   static bool        IsIdentified(int index);
   static void        SetPidType(int index);
 };
