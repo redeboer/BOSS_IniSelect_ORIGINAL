@@ -40,7 +40,7 @@ public:
   static double GetProbProton() { return gPID->probProton(); }
 
 private:
-  ParticleIdentifier() {}
+  ParticleIdentifier();
   ParticleIdentifier(const ParticleIdentifier&) {}
   ParticleIdentifier& operator=(const ParticleIdentifier&) {}
 

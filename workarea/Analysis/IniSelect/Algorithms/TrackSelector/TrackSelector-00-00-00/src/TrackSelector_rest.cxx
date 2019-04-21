@@ -5,7 +5,6 @@
 #include "EventModel/Event.h"
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
-#include "IniSelect/Containers/NTupleTopoAna.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
@@ -67,8 +66,8 @@ bool TrackSelector::CreateMCTruthCollection()
     if((*it)->primaryParticle()) continue;
     /// <li> @b Skip if the track is not from the generator. This means that it is simulated in the detectors, but did not come from the event generator.
     if(!(*it)->decayFromGenerator()) continue;
-    /// <li> Only start recording *after* we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `NTupleTopoAna::IsInitialCluster`.
-    if(doNotInclude && NTupleTopoAna::IsJPsi(*it)) doNotInclude = false;
+    /// <li> Only start recording *after* we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `McTruth::IsInitialCluster`.
+    if(doNotInclude && McTruth::IsJPsi(*it)) doNotInclude = false;
     if(doNotInclude) continue;
     /// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
     fMcParticles.push_back(*it);
@@ -136,8 +135,8 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
   {
     particle[index] = (*it)->particleProperty();
     mother[index]   = (*it)->mother().trackIndex() - indexOffset;
-    if(!NTupleTopoAna::IsFromJPsi(*it)) --mother[index];
-    if(NTupleTopoAna::IsJPsi(*it)) mother[index] = 0;
+    if(!McTruth::IsFromJPsi(*it)) --mother[index];
+    if(McTruth::IsJPsi(*it)) mother[index] = 0;
     ++index;
   }
 

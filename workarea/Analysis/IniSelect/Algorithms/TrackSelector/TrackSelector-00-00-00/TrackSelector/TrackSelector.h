@@ -160,7 +160,7 @@ protected:
   /// @name Track collections and iterators
   ///@{
   std::vector<Event::McParticle*> fMcParticles;
-  ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See [here](https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection) for a better explanation. @remark Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fNTuple_mctruth` member and calling its `NTupleTopoAna::Write` method, otherwise it is useless.
+  ///< Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See [here](https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection) for a better explanation. @remark Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the `fNTuple_mctruth` member and calling its `Write` method, otherwise it is useless.
   std::vector<EvtRecTrack*> fChargedTracks;
   ///< Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks.
   std::vector<EvtRecTrack*> fNeutralTracks;
@@ -198,7 +198,7 @@ protected:
   NTupleContainer fNTuple_vertex;
   ///< `NTuple::Tuple` container for the primary vertex info vertex branch.
   NTupleContainer fNTuple_topology;
-  ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth. This `NTuple` contains indexed items (`NTuple::Array`) and therefore had to be further specified in a `NTupleTopoAna` object, a derived class of `NTupleContainer`.
+  ///< `NTuple::Tuple` container for the decay topology according to Monte Carlo truth.
   ///@}
 
   /// @name Counters and cut objects

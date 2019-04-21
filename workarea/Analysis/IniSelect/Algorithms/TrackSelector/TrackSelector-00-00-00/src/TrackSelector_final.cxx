@@ -5,7 +5,6 @@
 #include "EventModel/Event.h"
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
-#include "IniSelect/Containers/NTupleTopoAna.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
