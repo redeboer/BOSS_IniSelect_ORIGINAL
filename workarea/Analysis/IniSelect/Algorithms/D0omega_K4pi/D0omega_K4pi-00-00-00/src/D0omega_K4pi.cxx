@@ -10,6 +10,8 @@
 #include "IniSelect/Globals.h"
 #include "IniSelect/Globals/Exception.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
+#include "IniSelect/Handlers/KinematicFitter.h"
+#include "IniSelect/Handlers/VertexFitter.h"
 #include <string>
 #include <utility>
 
@@ -227,6 +229,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     {
       DoVertexFit();
       DoKinematicFit();
+      ExtractFitResults();
     }
     catch(const Error::Exception& e)
     {
@@ -240,43 +243,25 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
 
 void D0omega_K4pi::DoVertexFit()
 {
-  fVertexFitter.Initialize();
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  do
-    if(coll)
-      for(int i = 0; i < coll->GetNTracks(); ++i)
-        fVertexFitter.AddTrack(coll->GetCandidate(i), coll->GetMass());
-  while(coll = fParticleSel.NextCharged());
+  VertexFitter::Initialize();
+  VertexFitter::AddTracks(fParticleSel);
+  VertexFitter::AddCleanVertex();
+  VertexFitter::FitAndSwim();
 }
 
 void D0omega_K4pi::DoKinematicFit()
 {
-  if(!fVertexFitter.IsSuccessful()) return;
-  fKinematicFitter.Initialize();
-  AddTracksToKinematicFitter();
-  fKinematicFitter.AddConstraintCMS();
-  fKinematicFitter.AddResonance(Mass::pi0, 0, 1);
-  fKinematicFitter.Fit();
-  ExtractFitResults();
-}
-
-void D0omega_K4pi::AddTracksToKinematicFitter()
-{
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
-  while(coll)
-  {
-    for(int i = 0; i < coll->GetNTracks(); ++i)
-      if(coll->IsCharged())
-        fKinematicFitter.AddTrack(fVertexFitter.GetTrack(i));
-      else
-        fKinematicFitter.AddTrack(coll->GetCandidate(i)->emcShower());
-    coll = fParticleSel.NextParticle();
-  }
+  if(!VertexFitter::IsSuccessful()) return;
+  KinematicFitter::Initialize();
+  KinematicFitter::AddTracks(fParticleSel);
+  KinematicFitter::AddConstraintCMS();
+  KinematicFitter::AddResonance(Mass::pi0, 0, 1);
+  KinematicFitter::Fit();
 }
 
 void D0omega_K4pi::ExtractFitResults()
 {
-  fCurrentKalmanFit = KKFitResult_D0omega_K4pi(fKinematicFitter.GetFit());
+  fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
   fCurrentKalmanFit.SetRunAndEventNumber(fEventHeader);
 }
 

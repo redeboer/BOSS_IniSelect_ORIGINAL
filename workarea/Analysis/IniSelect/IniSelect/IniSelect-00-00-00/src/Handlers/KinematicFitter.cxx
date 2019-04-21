@@ -1,19 +1,15 @@
 #include "IniSelect/Handlers/KinematicFitter.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Handlers/VertexFitter.h"
 using namespace IniSelect;
 using namespace IniSelect::Error;
 
-KinematicFitter::KinematicFitter() :
-  fNTracks(0),
-  fNConstraints(0),
-  fConstraintCount(0),
-  fIsSuccessful(false)
-{
-  Initialize();
-}
-
-KalmanKinematicFit* KinematicFitter::fKinematicFit = KalmanKinematicFit::instance();
+int                 KinematicFitter::fNTracks         = 0;
+int                 KinematicFitter::fConstraintCount = 0;
+int                 KinematicFitter::fNConstraints    = 0;
+bool                KinematicFitter::fIsSuccessful    = false;
+KalmanKinematicFit* KinematicFitter::fKinematicFit    = KalmanKinematicFit::instance();
 
 void KinematicFitter::Initialize()
 {
@@ -34,6 +30,20 @@ void KinematicFitter::AddTrack(WTrackParameter track)
 {
   fKinematicFit->AddTrack(fNTracks, track);
   ++fNTracks;
+}
+
+void KinematicFitter::AddTracks(ParticleSelection& selection)
+{
+  CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
+  while(coll)
+  {
+    for(int i = 0; i < coll->GetNTracks(); ++i)
+      if(coll->IsCharged())
+        KinematicFitter::AddTrack(VertexFitter::GetTrack(i));
+      else
+        KinematicFitter::AddTrack(coll->GetCandidate(i)->emcShower());
+    coll = selection.NextParticle();
+  }
 }
 
 void KinematicFitter::AddConstraintCMS()
@@ -58,7 +68,7 @@ void KinematicFitter::Fit()
   fIsSuccessful = true;
 }
 
-HepLorentzVector KinematicFitter::GetTrack(int i) const
+HepLorentzVector KinematicFitter::GetTrack(int i)
 {
   if(!fKinematicFit) throw Exception("KinematicFitter has empty pointer!");
   if(i < fNTracks) return fKinematicFit->pfit(i);

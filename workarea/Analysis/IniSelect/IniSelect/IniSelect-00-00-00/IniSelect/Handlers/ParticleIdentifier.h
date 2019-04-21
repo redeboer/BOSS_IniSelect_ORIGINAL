@@ -40,9 +40,9 @@ public:
   static double GetProbProton() { return gPID->probProton(); }
 
 private:
-  ParticleIdentifier();
-  ParticleIdentifier(const ParticleIdentifier&){};
-  ParticleIdentifier& operator=(const ParticleIdentifier&){};
+  ParticleIdentifier() {}
+  ParticleIdentifier(const ParticleIdentifier&) {}
+  ParticleIdentifier& operator=(const ParticleIdentifier&) {}
 
   static ParticleID* gPID;
   static int         fBestIndex;

@@ -2,12 +2,9 @@
 #include "IniSelect/Globals/Exception.h"
 using namespace IniSelect::Error;
 
-VertexFitter::VertexFitter() : fNTracks(0), fIsSuccessful(false)
-{
-  Initialize();
-}
-
-VertexFit* VertexFitter::fVertexFit = VertexFit::instance();
+int        VertexFitter::fNTracks      = 0;
+bool       VertexFitter::fIsSuccessful = false;
+VertexFit* VertexFitter::fVertexFit    = VertexFit::instance();
 
 void VertexFitter::Initialize()
 {
@@ -24,6 +21,17 @@ void VertexFitter::AddTrack(EvtRecTrack* track, const double& mass)
   ++fNTracks;
 }
 
+void VertexFitter::AddTracks(ParticleSelection& selection)
+{
+  CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
+  while(coll)
+  {
+    for(int i = 0; i < coll->GetNTracks(); ++i)
+      VertexFitter::AddTrack(coll->GetCandidate(i), coll->GetMass());
+    coll = selection.NextCharged();
+  }
+}
+
 void VertexFitter::AddCleanVertex()
 {
   fVertexFit->AddVertex(0, BuildVertexParameter(), 0, 1);
@@ -36,7 +44,7 @@ void VertexFitter::FitAndSwim()
   fIsSuccessful = true;
 }
 
-VertexParameter VertexFitter::BuildVertexParameter() const
+VertexParameter VertexFitter::BuildVertexParameter()
 {
   HepPoint3D   vx(0., 0., 0.);
   HepSymMatrix Evx(3, 0);
@@ -52,7 +60,7 @@ VertexParameter VertexFitter::BuildVertexParameter() const
   return vtxPar;
 }
 
-WTrackParameter VertexFitter::GetTrack(int i) const
+WTrackParameter VertexFitter::GetTrack(int i)
 {
   if(i < fNTracks) return fVertexFit->wtrk(i);
   throw OutOfRange("VertexFitter::GetTrack", i, fNTracks);

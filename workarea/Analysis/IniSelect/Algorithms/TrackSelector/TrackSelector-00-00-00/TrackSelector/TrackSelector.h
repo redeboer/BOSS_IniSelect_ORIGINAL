@@ -21,16 +21,11 @@
 #include "IniSelect/Containers/KKFitResult.h"
 #include "IniSelect/Containers/NTupleContainer.h"
 #include "IniSelect/Containers/SecondaryVertexGeometry.h"
-#include "IniSelect/Handlers/KinematicFitter.h"
-#include "IniSelect/Handlers/VertexFitter.h"
 #include "IniSelect/TrackCollections/ParticleSelection.h"
 #include "IniSelect/TrackCollections/RecTrackPointers.h"
 #include "McTruth/McEvent.h"
 #include "McTruth/McParticle.h"
-#include "TH1D.h"
-#include "THStack.h"
 #include "TofRecEvent/RecTofTrack.h"
-#include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `c++11` feature...
 #include <string>
 #include <vector>
 
@@ -254,8 +249,6 @@ protected:
   ParticleSelectionMC     fParticleSelMC;
   SecondaryVertexGeometry fSecondaryVtx;
   HepPoint3D              fVertexPoint;
-  VertexFitter            fVertexFitter;
-  KinematicFitter         fKinematicFitter;
   ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
   Int_t fNetChargeMDC;
   ///< Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the `RhopiAlg` example.

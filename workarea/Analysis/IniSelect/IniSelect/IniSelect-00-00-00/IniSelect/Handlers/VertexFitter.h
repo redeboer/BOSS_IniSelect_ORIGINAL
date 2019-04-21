@@ -2,30 +2,34 @@
 #define Analysis_IniSelect_VertexFitter_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
+#include "IniSelect/TrackCollections/ParticleSelection.h"
 #include "VertexFit/VertexFit.h"
 
+/// @todo This class functions more as a `namespce`, but has to be a class as it wraps the `VertexFit` singleton.
 /// @addtogroup BOSS_objects
 /// @{
 class VertexFitter
 {
 public:
-  VertexFitter();
+  static void Initialize();
+  static void AddTrack(EvtRecTrack* track, const double& mass);
+  static void AddTracks(ParticleSelection& selection);
+  static void AddCleanVertex();
+  static void FitAndSwim();
 
-  void Initialize();
-  void AddTrack(EvtRecTrack* track, const double& mass);
-  void AddCleanVertex();
-  void FitAndSwim();
-
-  const bool&     IsSuccessful() const { return fIsSuccessful; };
-  WTrackParameter GetTrack(int i) const;
+  static const bool&     IsSuccessful() { return fIsSuccessful; };
+  static WTrackParameter GetTrack(int i);
 
 private:
-  int  fNTracks;
-  bool fIsSuccessful;
+  VertexFitter() {}
+  VertexFitter(const VertexFitter&) {}
+  VertexFitter& operator=(const VertexFitter&) {}
 
+  static int        fNTracks;
+  static bool       fIsSuccessful;
   static VertexFit* fVertexFit;
 
-  VertexParameter BuildVertexParameter() const;
+  static VertexParameter BuildVertexParameter();
 };
 /// @}
 #endif

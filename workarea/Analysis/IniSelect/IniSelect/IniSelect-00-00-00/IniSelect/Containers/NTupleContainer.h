@@ -5,7 +5,7 @@
 #include "IniSelect/Containers/Container_base.h"
 #include "IniSelect/Containers/JobSwitch.h"
 #include <iostream>
-#include <map>
+#include <map> /// @todo It would be more efficient to use `unordered_map`, but this is a `C++11` feature...
 #include <string>
 
 /// @addtogroup BOSS_objects
