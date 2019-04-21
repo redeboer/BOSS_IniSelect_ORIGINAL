@@ -20,8 +20,8 @@ class DstFile
 public:
   DstFile(IDataProviderSvc* dataProvider);
 
-  // void LoadHeaders();
-  // bool LoadMcCollection();
+  void LoadHeaders();
+  bool LoadMcCollection();
 
   int TotalChargedTracks() { return fEvtRecEvent->totalCharged(); }
   int TotalNeutralTracks() { return fEvtRecEvent->totalNeutral(); }

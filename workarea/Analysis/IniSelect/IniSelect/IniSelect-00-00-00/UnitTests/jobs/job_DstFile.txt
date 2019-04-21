@@ -1,0 +1,16 @@
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+#include "$MAGNETICFIELDROOT/share/MagneticField.txt"
+#include "$ABSCORROOT/share/jobOptions_AbsCor.txt"
+#include "$INISELECTROOT/UnitTests/jobOptions/jobOptions_DstFile.txt"
+
+EventCnvSvc.digiRootInputFile = {
+	"$INISELECTROOT/UnitTests/data/input/excl/D0omega_K4pi.dst"
+};
+
+MessageSvc.OutputLevel = 4;
+MessageSvc.useColors   = false;
+
+ApplicationMgr.EvtMax = 100;
+
+ApplicationMgr.HistogramPersistency = "NONE"; // ROOT
+NTupleSvc.Output = { "FILE1 DATAFILE='$INISELECTROOT/UnitTests/data/output/DstFile.root' OPT='NEW' TYP='ROOT'"};
