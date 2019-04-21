@@ -42,7 +42,7 @@ namespace IniSelect
       const size_t  fSize;
     };
   } // namespace Error
-} // namespace Globals
+} // namespace IniSelect
 
 /// @}
 #endif

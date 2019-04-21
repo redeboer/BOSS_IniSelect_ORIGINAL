@@ -87,38 +87,38 @@ protected:
   void AddNTupleItems_photon();
 
   virtual void ConfigureParticleSelection() = 0;
-  virtual void AddAdditionalNTupleItems() = 0;
+  virtual void AddAdditionalNTupleItems()   = 0;
   ///@}
 
   /// @name Helper methods for execute step
   ///@{
-  void LoadDstFile();
-  void LoadDstHeaders();
-  void PrintEventInfo();
-  void IncrementCounters();
-  void SetVertexOrigin();
-  void CreateCollections();
-  void CreateChargedCollection();
-  void SetTrackIter(const int& i);
-  bool IsMdcTrackValid();
-  bool CutSecondaryVertex();
-  void WriteChargedTrackVertex();
-  void WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
-  void WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
-  void CreateNeutralCollection();
-  void WriteMultiplicities();
-  void PrintMultiplicities();
-  void CutPID();
-  void WriteVertexInfo();
-  void CutNumberOfChargedParticles();
-  void CreateChargedTrackSelections();
-  virtual void ConfigurePID() = 0;
-  void CreateNeutralTrackSelections();
+  void             LoadDstFile();
+  void             LoadDstHeaders();
+  void             PrintEventInfo();
+  void             IncrementCounters();
+  void             SetVertexOrigin();
+  void             CreateCollections();
+  void             CreateChargedCollection();
+  void             SetTrackIter(const int& i);
+  bool             IsMdcTrackValid();
+  bool             CutSecondaryVertex();
+  void             WriteChargedTrackVertex();
+  void             WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
+  void             WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
+  void             CreateNeutralCollection();
+  void             WriteMultiplicities();
+  void             PrintMultiplicities();
+  void             CutPID();
+  void             WriteVertexInfo();
+  void             CutNumberOfChargedParticles();
+  void             CreateChargedTrackSelections();
+  virtual void     ConfigurePID() = 0;
+  void             CreateNeutralTrackSelections();
   AngleDifferences FindSmallestPhotonAngles();
-  void GetEmcPosition();
-  bool GetExtendedEmcPosition(EvtRecTrack* track);
-  void WritePhotonKinematics(const AngleDifferences& angles);
-  bool CutPhotonAngles(const AngleDifferences& angles);
+  void             GetEmcPosition();
+  bool             GetExtendedEmcPosition(EvtRecTrack* track);
+  void             WritePhotonKinematics(const AngleDifferences& angles);
+  bool             CutPhotonAngles(const AngleDifferences& angles);
 
   void PutParticleInCorrectVector(Event::McParticle* mcParticle);
   ///@}
@@ -136,13 +136,13 @@ protected:
   void CutZeroNetCharge();
   void WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
   virtual void WriteDedxOfSelectedParticles() = 0;
-  virtual void FindBestKinematicFit() = 0;
-  bool IsDecay(Event::McParticle* particle, const int mother) const;
-  bool IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
-  void WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
-  bool WriteMCTruthForTopoAna(NTupleContainer& tuple);
-  void WritePIDInformation();
-  bool CreateMCTruthCollection();
+  virtual void FindBestKinematicFit()         = 0;
+  bool         IsDecay(Event::McParticle* particle, const int mother) const;
+  bool         IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;
+  void         WriteFitResults(KKFitResult* fitresult, NTupleContainer& tuple);
+  bool         WriteMCTruthForTopoAna(NTupleContainer& tuple);
+  void         WritePIDInformation();
+  bool         CreateMCTruthCollection();
 
   HepLorentzVector ComputeMomentum(EvtRecTrack* track);
 

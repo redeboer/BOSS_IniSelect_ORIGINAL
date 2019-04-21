@@ -5,8 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "McTruth/McParticle.h"
 #include "IniSelect/Containers/KKFitResult.h"
+#include "McTruth/McParticle.h"
 #include "TrackSelector/TrackSelector.h"
 
 // * ================================ * //

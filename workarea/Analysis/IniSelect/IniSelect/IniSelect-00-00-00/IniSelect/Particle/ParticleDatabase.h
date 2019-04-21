@@ -1,8 +1,8 @@
 #ifndef Analysis_IniSelect_ParticleDatabase_H
 #define Analysis_IniSelect_ParticleDatabase_H
 
-#include "MdcRecoUtil/PdtEntry.h"
 #include "IniSelect/Globals/Exception.h"
+#include "MdcRecoUtil/PdtEntry.h"
 #include <iostream>
 #include <sstream>
 #include <string>

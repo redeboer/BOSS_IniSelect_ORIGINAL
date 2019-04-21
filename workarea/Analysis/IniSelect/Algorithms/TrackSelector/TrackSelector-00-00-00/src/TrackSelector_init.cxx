@@ -1,4 +1,3 @@
-#include "TrackSelector/TrackSelector.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
@@ -7,10 +6,11 @@
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Containers/NTupleTopoAna.h"
-#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Globals.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
+#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
@@ -71,7 +71,8 @@ void TrackSelector::BookNTuples()
 void TrackSelector::BookNTuple(NTupleContainer& tuple)
 {
   /// -# **Abort** if the `"write_"` `JobSwitch` option has been set to `false`.
-  if(!tuple.DoWrite()) {
+  if(!tuple.DoWrite())
+  {
     fLog << MSG::DEBUG << "  NTuple \"" << tuple.Name() << "\" will not be written" << endmsg;
     return;
   }

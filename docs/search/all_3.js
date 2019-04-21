@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['d0',['D0',['../namespaceTSGlobals_1_1Mass.html#a05196854d318db7536df3cbd27dbfd67',1,'TSGlobals::Mass']]],
+  ['d0',['D0',['../namespaceIniSelect_1_1Mass.html#a480f74a7150233c3b5f54efeabf3ceb1',1,'IniSelect::Mass']]],
   ['d0omega_5fk4pi',['D0omega_K4pi',['../classD0omega__K4pi.html',1,'D0omega_K4pi'],['../classD0omega__K4pi.html#adc315c8c5f26c0c155339bc4ea09186e',1,'D0omega_K4pi::D0omega_K4pi()']]],
   ['d0omega_5fk4pi_2ecxx',['D0omega_K4pi.cxx',['../D0omega__K4pi_8cxx.html',1,'']]],
   ['d0omega_5fk4pi_2eh',['D0omega_K4pi.h',['../D0omega__K4pi_8h.html',1,'']]],

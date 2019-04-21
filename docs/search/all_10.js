@@ -1,13 +1,13 @@
 var searchData=
 [
+  ['radtodeg',['RadToDeg',['../namespaceIniSelect_1_1Math.html#a6b0fb599011df8cccd87cfde23cbc0dc',1,'IniSelect::Math']]],
   ['reachedend',['ReachedEnd',['../classParticleSelectionTempl.html#add2cb444859356911f87cb7d7796b1b0',1,'ParticleSelectionTempl']]],
   ['reconstruction_2etxt',['reconstruction.txt',['../reconstruction_8txt.html',1,'']]],
   ['rectrackpointers',['RecTrackPointers',['../classRecTrackPointers.html',1,'']]],
   ['rectrackpointers_2eh',['RecTrackPointers.h',['../RecTrackPointers_8h.html',1,'']]],
-  ['reset',['Reset',['../classParticleIdentifier.html#a5d1a4b38d3d34509d57205c881cebb2b',1,'ParticleIdentifier']]],
   ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
   ['resetbestkalmanfit',['ResetBestKalmanFit',['../classD0omega__K4pi.html#a61d18479a52d58f15d5f3e7648eaded0',1,'D0omega_K4pi']]],
-  ['rho',['rho',['../namespaceTSGlobals_1_1Mass.html#a16c67d22ebd22c7a58354f185533eea9',1,'TSGlobals::Mass']]],
+  ['rho',['rho',['../namespaceIniSelect_1_1Mass.html#a0a46ea12ead36045f0be19547e3fe9c7',1,'IniSelect::Mass']]],
   ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html',1,'rhopi_pipigg'],['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg::rhopi_pipigg()']]],
   ['rhopi_5fpipigg_2ecxx',['rhopi_pipigg.cxx',['../rhopi__pipigg_8cxx.html',1,'']]],
   ['rhopi_5fpipigg_2eh',['rhopi_pipigg.h',['../rhopi__pipigg_8h.html',1,'']]],

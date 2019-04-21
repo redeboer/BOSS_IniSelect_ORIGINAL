@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['combinationshuffler',['CombinationShuffler',['../namespaceTSGlobals_1_1CombinationShuffler.html',1,'TSGlobals']]],
-  ['error',['Error',['../namespaceTSGlobals_1_1Error.html',1,'TSGlobals']]],
-  ['mass',['Mass',['../namespaceTSGlobals_1_1Mass.html',1,'TSGlobals']]],
-  ['paths',['Paths',['../namespaceTSGlobals_1_1Paths.html',1,'TSGlobals']]],
-  ['tsglobals',['TSGlobals',['../namespaceTSGlobals.html',1,'']]]
+  ['combinationshuffler',['CombinationShuffler',['../namespaceIniSelect_1_1CombinationShuffler.html',1,'IniSelect']]],
+  ['error',['Error',['../namespaceIniSelect_1_1Error.html',1,'IniSelect']]],
+  ['iniselect',['IniSelect',['../namespaceIniSelect.html',1,'']]],
+  ['mass',['Mass',['../namespaceIniSelect_1_1Mass.html',1,'IniSelect']]],
+  ['math',['Math',['../namespaceIniSelect_1_1Math.html',1,'IniSelect']]],
+  ['paths',['Paths',['../namespaceIniSelect_1_1Paths.html',1,'IniSelect']]]
 ];

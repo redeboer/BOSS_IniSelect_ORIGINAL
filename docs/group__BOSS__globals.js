@@ -1,4 +1,4 @@
 var group__BOSS__globals =
 [
-    [ "TSGlobals", "namespaceTSGlobals.html", null ]
+    [ "IniSelect", "namespaceIniSelect.html", null ]
 ];

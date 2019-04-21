@@ -1,19 +1,20 @@
 var searchData=
 [
+  ['addadditionalntupleitems',['AddAdditionalNTupleItems',['../classD0omega__K4pi.html#aff99cf76487697e1914f801e9df5a987',1,'D0omega_K4pi::AddAdditionalNTupleItems()'],['../classTrackSelector.html#a5662acceac854015754a55f481a3a00e',1,'TrackSelector::AddAdditionalNTupleItems()']]],
   ['addadditionalntuples_5ftopology',['AddAdditionalNTuples_topology',['../classD0omega__K4pi.html#ad423e25161f34c9d9043ab23006f013d',1,'D0omega_K4pi']]],
   ['addandwritecuts',['AddAndWriteCuts',['../classTrackSelector.html#a71be8816dc906b046937c13113a33268',1,'TrackSelector']]],
   ['addcleanvertex',['AddCleanVertex',['../classVertexFitter.html#a6fed6b447f6e3949e0da22fc8f6ccff9',1,'VertexFitter']]],
   ['addconstraintcms',['AddConstraintCMS',['../classKinematicFitter.html#af50ec6b544d0249a91b12da694f9ea9e',1,'KinematicFitter']]],
   ['addindexeditem',['AddIndexedItem',['../classNTupleContainer.html#aa83866791ff3e746b57483ad434329c7',1,'NTupleContainer']]],
   ['additem',['AddItem',['../classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a87da57e80b9369b5003482020cd5e7e8',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a20761f944a68daa27fa6c15b3a245bfc',1,'NTupleContainer::AddItem(const std::string &amp;item_name, const RANGE low, const RANGE high)']]],
+  ['addntupleitems',['AddNTupleItems',['../classTrackSelector.html#ae7497d80b7650850991be723f5dc8c31',1,'TrackSelector']]],
   ['addntupleitems_5fcharged',['AddNTupleItems_charged',['../classTrackSelector.html#a00bb5f12e95b512b7eedb704263f0be2',1,'TrackSelector']]],
   ['addntupleitems_5fdedx',['AddNTupleItems_dedx',['../classD0omega__K4pi.html#abd8caaabc05d156b7fa12625d13884d1',1,'D0omega_K4pi::AddNTupleItems_dedx()'],['../classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c',1,'TrackSelector::AddNTupleItems_dedx()']]],
-  ['addntupleitems_5ffit',['AddNTupleItems_fit',['../classD0omega__K4pi.html#a04f3700045e9ddb99912622faea8aaf5',1,'D0omega_K4pi::AddNTupleItems_fit()'],['../classD0omega__K4pi.html#a60789665097ecc3834bbb8259308202b',1,'D0omega_K4pi::AddNTupleItems_Fit(NTupleContainer &amp;tuple)'],['../classD0phi__3K3pi.html#acf96a23525e5036a84cbb830326a68d1',1,'D0phi_3K3pi::AddNTupleItems_Fit()'],['../classD0phi__KpiKK.html#a95d7ef9fdc6df8ce8a40847e11ad1dde',1,'D0phi_KpiKK::AddNTupleItems_Fit()'],['../classD0phi__KpipiKK.html#a597fe9e3f96613c5fec9cf698dba26de',1,'D0phi_KpipiKK::AddNTupleItems_Fit()'],['../classrhopi__pipigg.html#ad6cd42c49e6e911bd05214ada215c4c8',1,'rhopi_pipigg::AddNTupleItems_Fit()']]],
+  ['addntupleitems_5ffit',['AddNTupleItems_fit',['../classD0omega__K4pi.html#a04f3700045e9ddb99912622faea8aaf5',1,'D0omega_K4pi::AddNTupleItems_fit()'],['../classD0omega__K4pi.html#a2805269b0ab45920c9079ee3b5110a0f',1,'D0omega_K4pi::AddNTupleItems_fit(NTupleContainer &amp;tuple)'],['../classD0phi__3K3pi.html#acf96a23525e5036a84cbb830326a68d1',1,'D0phi_3K3pi::AddNTupleItems_Fit()'],['../classD0phi__KpiKK.html#a95d7ef9fdc6df8ce8a40847e11ad1dde',1,'D0phi_KpiKK::AddNTupleItems_Fit()'],['../classD0phi__KpipiKK.html#a597fe9e3f96613c5fec9cf698dba26de',1,'D0phi_KpipiKK::AddNTupleItems_Fit()'],['../classrhopi__pipigg.html#ad6cd42c49e6e911bd05214ada215c4c8',1,'rhopi_pipigg::AddNTupleItems_Fit()']]],
   ['addntupleitems_5fmctruth',['AddNTupleItems_MCTruth',['../classTrackSelector.html#ae1127b90eded632298e2109e8dfd8bd0',1,'TrackSelector']]],
   ['addntupleitems_5fmult',['AddNTupleItems_mult',['../classTrackSelector.html#a6f3590ad49e0e1c6ef4f017d76e74b24',1,'TrackSelector']]],
-  ['addntupleitems_5fmult_5fsel',['AddNTupleItems_mult_sel',['../classD0omega__K4pi.html#a8c53fe80fdfdbd9e8368e99d6146b9c4',1,'D0omega_K4pi']]],
   ['addntupleitems_5fneutral',['AddNTupleItems_neutral',['../classTrackSelector.html#ac7e84912a32eb54aac831b4224df3d93',1,'TrackSelector']]],
-  ['addntupleitems_5fphoton',['AddNTupleItems_photon',['../classD0omega__K4pi.html#a7d77f7adc1f9175e68c8fe09f12f9f92',1,'D0omega_K4pi']]],
+  ['addntupleitems_5fphoton',['AddNTupleItems_photon',['../classTrackSelector.html#ad573010345c123f253bcff8de8ce519d',1,'TrackSelector']]],
   ['addntupleitems_5fpid',['AddNTupleItems_PID',['../classTrackSelector.html#ae143ea3bdbc678932b0c0e7223e437c1',1,'TrackSelector']]],
   ['addntupleitems_5ftof',['AddNTupleItems_Tof',['../classTrackSelector.html#a5bfa2b3f94ef19594086b09bc9617fe5',1,'TrackSelector::AddNTupleItems_Tof()'],['../classTrackSelector.html#a701d237f6c62d93597247263e89b6ae4',1,'TrackSelector::AddNTupleItems_Tof(NTupleContainer &amp;tuple)']]],
   ['addntupleitems_5fvertex',['AddNTupleItems_vertex',['../classTrackSelector.html#a18c22f3459324ff1a8cce8d969fe896f',1,'TrackSelector']]],
@@ -21,7 +22,8 @@ var searchData=
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
   ['addtrack',['AddTrack',['../classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c',1,'KinematicFitter::AddTrack(RecEmcShower *track)'],['../classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6',1,'KinematicFitter::AddTrack(WTrackParameter track)'],['../classVertexFitter.html#a63f1ef7436ffafe823f09dcda8d06adf',1,'VertexFitter::AddTrack()'],['../classCandidateTracks.html#adae484964713a66f9d3ebc402ff7b33f',1,'CandidateTracks::AddTrack()']]],
   ['addtrackstokinematicfitter',['AddTracksToKinematicFitter',['../classD0omega__K4pi.html#a19d9f30e1d5f38f9dbd005376590e2d6',1,'D0omega_K4pi']]],
+  ['addtracktoparticle',['AddTrackToParticle',['../classParticleSelectionTempl.html#afc38ab9fca3ae1ad6d514fff1a5db205',1,'ParticleSelectionTempl']]],
   ['angledifferences',['AngleDifferences',['../classAngleDifferences.html#a5eca4d4bf36f0bc2bd3175f5e4521ef6',1,'AngleDifferences::AngleDifferences()'],['../classAngleDifferences.html#afd1128339478126cfd0bef18c9a669fd',1,'AngleDifferences::AngleDifferences(const CLHEP::Hep3Vector &amp;vec1, const CLHEP::Hep3Vector &amp;vec2)']]],
-  ['assertpostconstructed',['AssertPostConstructed',['../classTrackSelector.html#abf66c40a572bf69d485310545c813613',1,'TrackSelector']]],
-  ['attemptidentification',['AttemptIdentification',['../classParticleIdentifier.html#a5b6f59eafbaa55833f91047d707a45ed',1,'ParticleIdentifier']]]
+  ['appendchargesign',['AppendChargeSign',['../classParticleIdentifier.html#a1bc353c07594affe88a3eee74c5ba248',1,'ParticleIdentifier']]],
+  ['assertpostconstructed',['AssertPostConstructed',['../classTrackSelector.html#abf66c40a572bf69d485310545c813613',1,'TrackSelector']]]
 ];

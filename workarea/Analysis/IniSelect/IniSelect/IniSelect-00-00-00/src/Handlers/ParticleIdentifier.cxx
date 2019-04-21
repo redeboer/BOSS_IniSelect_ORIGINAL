@@ -1,6 +1,6 @@
 #include "IniSelect/Handlers/ParticleIdentifier.h"
-#include "TString.h"
 #include "IniSelect/Globals/Exception.h"
+#include "TString.h"
 using namespace IniSelect::Error;
 
 ParticleID* ParticleIdentifier::gPID = ParticleID::instance();
@@ -54,8 +54,9 @@ void ParticleIdentifier::SetMostProbable()
   double bestProb{0.};
   for(int i = 0; i < 5; ++i)
   {
-    if(IsIdentified(i) && gPID->prob(i) > bestProb) {
-      bestProb = gPID->prob(i);
+    if(IsIdentified(i) && gPID->prob(i) > bestProb)
+    {
+      bestProb   = gPID->prob(i);
       fBestIndex = i;
     }
   }

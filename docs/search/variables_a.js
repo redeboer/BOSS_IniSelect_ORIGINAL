@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['k',['K',['../namespaceTSGlobals_1_1Mass.html#a8925c6a04e92a9eef1485222cf54b757',1,'TSGlobals::Mass']]]
+  ['k',['K',['../namespaceIniSelect_1_1Mass.html#ac12e8701b07035b4c7b64bffaae515d3',1,'IniSelect::Mass']]]
 ];

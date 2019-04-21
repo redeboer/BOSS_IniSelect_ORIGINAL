@@ -1,10 +1,9 @@
 var files =
 [
-    [ "AngleDifferences.cxx", "AngleDifferences_8cxx.html", "AngleDifferences_8cxx" ],
+    [ "AngleDifferences.cxx", "AngleDifferences_8cxx.html", null ],
     [ "AngleDifferences.h", "AngleDifferences_8h.html", null ],
     [ "CandidateTracks.h", "CandidateTracks_8h.html", null ],
     [ "CombinationShuffler.h", "CombinationShuffler_8h.html", "CombinationShuffler_8h" ],
-    [ "Container_base.cxx", "Container__base_8cxx.html", null ],
     [ "Container_base.h", "Container__base_8h.html", null ],
     [ "Container_indexed.cxx", "Container__indexed_8cxx.html", null ],
     [ "Container_indexed.h", "Container__indexed_8h.html", null ],
@@ -18,6 +17,11 @@ var files =
     [ "D0phi_KpiKK.h", "D0phi__KpiKK_8h.html", null ],
     [ "D0phi_KpipiKK.cxx", "D0phi__KpipiKK_8cxx.html", "D0phi__KpipiKK_8cxx" ],
     [ "D0phi_KpipiKK.h", "D0phi__KpipiKK_8h.html", null ],
+    [ "Exception.h", "Exception_8h.html", [
+      [ "Exception", "classIniSelect_1_1Error_1_1Exception.html", "classIniSelect_1_1Error_1_1Exception" ],
+      [ "OutOfRange", "classIniSelect_1_1Error_1_1OutOfRange.html", "classIniSelect_1_1Error_1_1OutOfRange" ]
+    ] ],
+    [ "Globals.h", "Globals_8h.html", "Globals_8h" ],
     [ "JobSwitch.cxx", "JobSwitch_8cxx.html", null ],
     [ "JobSwitch.h", "JobSwitch_8h.html", null ],
     [ "KinematicFitter.cxx", "KinematicFitter_8cxx.html", null ],
@@ -55,14 +59,13 @@ var files =
     [ "RhopiAlg.h", "RhopiAlg_8h.html", null ],
     [ "SecondaryVertexGeometry.cxx", "SecondaryVertexGeometry_8cxx.html", null ],
     [ "SecondaryVertexGeometry.h", "SecondaryVertexGeometry_8h.html", "SecondaryVertexGeometry_8h" ],
-    [ "TrackSelector.cxx", "TrackSelector_8cxx.html", null ],
     [ "TrackSelector.h", "TrackSelector_8h.html", "TrackSelector_8h" ],
+    [ "TrackSelector_const.cxx", "TrackSelector__const_8cxx.html", null ],
+    [ "TrackSelector_exe.cxx", "TrackSelector__exe_8cxx.html", null ],
+    [ "TrackSelector_final.cxx", "TrackSelector__final_8cxx.html", null ],
+    [ "TrackSelector_init.cxx", "TrackSelector__init_8cxx.html", null ],
+    [ "TrackSelector_rest.cxx", "TrackSelector__rest_8cxx.html", null ],
     [ "trkInfo.h", "trkInfo_8h.html", "trkInfo_8h" ],
-    [ "TSException.h", "TSException_8h.html", [
-      [ "Exception", "classTSGlobals_1_1Error_1_1Exception.html", "classTSGlobals_1_1Error_1_1Exception" ],
-      [ "OutOfRange", "classTSGlobals_1_1Error_1_1OutOfRange.html", "classTSGlobals_1_1Error_1_1OutOfRange" ]
-    ] ],
-    [ "TSGlobals.h", "TSGlobals_8h.html", "TSGlobals_8h" ],
     [ "VertexFitter.cxx", "VertexFitter_8cxx.html", null ],
     [ "VertexFitter.h", "VertexFitter_8h.html", null ]
 ];

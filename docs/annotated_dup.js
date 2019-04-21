@@ -1,6 +1,6 @@
 var annotated_dup =
 [
-    [ "TSGlobals", "namespaceTSGlobals.html", "namespaceTSGlobals" ],
+    [ "IniSelect", "namespaceIniSelect.html", "namespaceIniSelect" ],
     [ "AngleDifferences", "classAngleDifferences.html", "classAngleDifferences" ],
     [ "CandidateTracks", "classCandidateTracks.html", "classCandidateTracks" ],
     [ "Container_base", "classContainer__base.html", "classContainer__base" ],

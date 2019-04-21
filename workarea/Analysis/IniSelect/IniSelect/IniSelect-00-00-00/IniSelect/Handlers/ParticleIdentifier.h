@@ -2,8 +2,8 @@
 #define Analysis_IniSelect_ParticleIdentifier_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
-#include "ParticleID/ParticleID.h"
 #include "IniSelect/Containers/CutObject.h"
+#include "ParticleID/ParticleID.h"
 #include <string>
 
 /// Static access to the [`ParticleID`](http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html) class in BOSS.

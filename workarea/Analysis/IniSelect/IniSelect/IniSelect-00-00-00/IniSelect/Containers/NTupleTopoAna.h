@@ -6,8 +6,8 @@
 // * ========================= * //
 
 #include "GaudiKernel/NTuple.h"
-#include "McTruth/McParticle.h"
 #include "IniSelect/Containers/NTupleContainer.h"
+#include "McTruth/McParticle.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

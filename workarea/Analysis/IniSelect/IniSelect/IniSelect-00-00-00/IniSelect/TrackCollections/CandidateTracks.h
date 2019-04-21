@@ -1,9 +1,9 @@
 #ifndef Analysis_IniSelect_CandidateTracks_H
 #define Analysis_IniSelect_CandidateTracks_H
 
-#include "TString.h"
-#include "IniSelect/Particle/Particle.h"
 #include "IniSelect/Globals/CombinationShuffler.h"
+#include "IniSelect/Particle/Particle.h"
+#include "TString.h"
 #include <vector>
 
 /// @addtogroup BOSS_objects
@@ -55,7 +55,7 @@ private:
   };
 
   Particle fParticle;
-  short   fNParticles;
+  short    fNParticles;
 
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;

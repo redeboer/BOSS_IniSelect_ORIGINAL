@@ -123,10 +123,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a52ca3e892d72abb618428a0005efc545"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a332e493de7190c01eae6d3731b07fa97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a332e493de7190c01eae6d3731b07fa97">NextPhotonCombination</a> ()</td></tr>
 <tr class="separator:a332e493de7190c01eae6d3731b07fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f8fe951ed029f99bedb85a50eaa3a04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a3f8fe951ed029f99bedb85a50eaa3a04">HasParticle</a> (const std::string &amp;name) const</td></tr>
+<tr class="separator:a3f8fe951ed029f99bedb85a50eaa3a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc38ab9fca3ae1ad6d514fff1a5db205"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#afc38ab9fca3ae1ad6d514fff1a5db205">AddTrackToParticle</a> (T *trk, const std::string &amp;name)</td></tr>
+<tr class="separator:afc38ab9fca3ae1ad6d514fff1a5db205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad013432d6f5edc229b7447bdd7418435"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCandidateTracks.html">CandidateTracks</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#ad013432d6f5edc229b7447bdd7418435">GetCandidates</a> (const std::string &amp;pdtName)</td></tr>
 <tr class="separator:ad013432d6f5edc229b7447bdd7418435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c989cf9e95013b8f86a23775b212958"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCandidateTracks.html">CandidateTracks</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a0c989cf9e95013b8f86a23775b212958">GetPhotons</a> ()</td></tr>
 <tr class="separator:a0c989cf9e95013b8f86a23775b212958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e80a13e2a0d411befbf8b80b6229a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a64e80a13e2a0d411befbf8b80b6229a9">GetNCharged</a> ()</td></tr>
+<tr class="separator:a64e80a13e2a0d411befbf8b80b6229a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affd73e6dadb4a66eeb6dbf5e00f87b6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCandidateTracks.html">CandidateTracks</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#affd73e6dadb4a66eeb6dbf5e00f87b6f">FirstParticle</a> ()</td></tr>
 <tr class="separator:affd73e6dadb4a66eeb6dbf5e00f87b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8596901fae1ad0e6d8ae1ce111168f0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCandidateTracks.html">CandidateTracks</a>&lt; T &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a8596901fae1ad0e6d8ae1ce111168f0f">NextParticle</a> ()</td></tr>
@@ -149,12 +155,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aa982c254e14c95931e079782a79ca536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c3455ee6a5497f6d6c75e0c601ef9eb"><td class="memItemLeft" align="right" valign="top">std::map&lt; std::string, <a class="el" href="classCandidateTracks.html">CandidateTracks</a>&lt; T &gt; &gt;::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a1c3455ee6a5497f6d6c75e0c601ef9eb">fSelectionsIter</a></td></tr>
 <tr class="separator:a1c3455ee6a5497f6d6c75e0c601ef9eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f67cbb9d5885fc4d02733658aaf0eea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticleSelectionTempl.html#a7f67cbb9d5885fc4d02733658aaf0eea">fNCharged</a></td></tr>
+<tr class="separator:a7f67cbb9d5885fc4d02733658aaf0eea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
 class ParticleSelectionTempl&lt; T &gt;</h3>
 
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Consider converting <code><a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a></code> into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods.</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Consider converting <code><a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a></code> into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods.</dd></dl>
 <p>This will, however, remove the option of creating separate sets of particle selections. </p><dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>April 18th, 2018 </dd></dl>
 
@@ -190,6 +198,38 @@ template&lt;typename T&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="afc38ab9fca3ae1ad6d514fff1a5db205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc38ab9fca3ae1ad6d514fff1a5db205">&#9670;&nbsp;</a></span>AddTrackToParticle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a>&lt; T &gt;::AddTrackToParticle </td>
+          <td>(</td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>trk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00137">137</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+
+</div>
+</div>
 <a id="acb5a451d61e84452f34e6cc43f8683a4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb5a451d61e84452f34e6cc43f8683a4">&#9670;&nbsp;</a></span>ClearCharged()</h2>
 
@@ -207,7 +247,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00101">101</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00109">109</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -228,7 +268,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00109">109</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00117">117</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -249,7 +289,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00062">62</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00068">68</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +319,36 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00040">40</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00043">43</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+
+</div>
+</div>
+<a id="a64e80a13e2a0d411befbf8b80b6229a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e80a13e2a0d411befbf8b80b6229a9">&#9670;&nbsp;</a></span>GetNCharged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a>&lt; T &gt;::GetNCharged </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00045">45</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -308,7 +377,29 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00041">41</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00044">44</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+
+</div>
+</div>
+<a id="a3f8fe951ed029f99bedb85a50eaa3a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f8fe951ed029f99bedb85a50eaa3a04">&#9670;&nbsp;</a></span>HasParticle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a>&lt; T &gt;::HasParticle </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00131">131</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -329,7 +420,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00076">76</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00082">82</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -350,7 +441,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00069">69</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00075">75</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -371,7 +462,7 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00117">117</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00125">125</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +491,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00046">46</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00050">50</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -770,7 +861,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00094">94</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00100">100</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -799,11 +890,37 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00087">87</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00093">93</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7f67cbb9d5885fc4d02733658aaf0eea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f67cbb9d5885fc4d02733658aaf0eea">&#9670;&nbsp;</a></span>fNCharged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classParticleSelectionTempl.html">ParticleSelectionTempl</a>&lt; T &gt;::fNCharged</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00057">57</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+
+</div>
+</div>
 <a id="aa982c254e14c95931e079782a79ca536"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa982c254e14c95931e079782a79ca536">&#9670;&nbsp;</a></span>fSelections</h2>
 
@@ -826,7 +943,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00049">49</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00053">53</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>
@@ -852,7 +969,7 @@ template&lt;typename T&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00050">50</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParticleSelection_8h_source.html#l00054">54</a> of file <a class="el" href="ParticleSelection_8h_source.html">ParticleSelection.h</a>.</p>
 
 </div>
 </div>

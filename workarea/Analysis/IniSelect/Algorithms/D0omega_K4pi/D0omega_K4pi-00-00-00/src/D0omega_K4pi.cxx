@@ -35,7 +35,9 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
   fNTuple_fit4c_all("fit4c_all", "4-constraint fit information (CMS 4-momentum)"),
-  fNTuple_fit4c_best("fit4c_best", "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
+  fNTuple_fit4c_best(
+    "fit4c_best",
+    "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
   fNTuple_fit_mc("fit_mc", "Fake fit information according to MC truth")
 {
   PrintFunctionName("D0omega_K4pi", __func__);

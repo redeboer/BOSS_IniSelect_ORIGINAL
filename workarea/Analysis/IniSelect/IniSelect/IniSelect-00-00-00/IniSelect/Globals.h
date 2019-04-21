@@ -27,7 +27,7 @@ namespace IniSelect
   namespace Math
   {
     static const double pi       = 3.14159265358979323846;
-    static const double twopi    = 2*pi;
+    static const double twopi    = 2 * pi;
     static const double RadToDeg = 180. / pi;
   } // namespace Math
   namespace Mass
@@ -52,7 +52,7 @@ namespace IniSelect
     static const char* pdtTable =
       "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
-};  // namespace Globals
+};  // namespace IniSelect
 
 /// @}
 #endif

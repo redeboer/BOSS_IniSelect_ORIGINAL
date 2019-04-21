@@ -1,8 +1,8 @@
 #ifndef Analysis_IniSelect_Particle_H
 #define Analysis_IniSelect_Particle_H
 
-#include "TString.h"
 #include "IniSelect/Particle/ParticleDatabase.h"
+#include "TString.h"
 
 /// @todo Would be better to work with CERN ROOT's `TDatabasePDG`, but this is not included in the BOSS libraries...
 /// @author Remco de Boer 雷穆克 (remco.de.boer@ihep.ac.cn or r.e.deboer@students.uu.nl)

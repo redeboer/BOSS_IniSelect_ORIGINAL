@@ -22,7 +22,7 @@ var hierarchy =
         [ "NTupleTopoAna", "classNTupleTopoAna.html", null ]
       ] ]
     ] ],
-    [ "TSGlobals::Error::Exception", "classTSGlobals_1_1Error_1_1Exception.html", null ],
+    [ "IniSelect::Error::Exception", "classIniSelect_1_1Error_1_1Exception.html", null ],
     [ "KinematicFitter", "classKinematicFitter.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0omega_K4pi", "classKKFitResult__D0omega__K4pi.html", null ],
@@ -32,7 +32,7 @@ var hierarchy =
       [ "KKFitResult_rhopi_pipigg", "classKKFitResult__rhopi__pipigg.html", null ]
     ] ],
     [ "m_trkInfo", "classm__trkInfo.html", null ],
-    [ "TSGlobals::Error::OutOfRange", "classTSGlobals_1_1Error_1_1OutOfRange.html", null ],
+    [ "IniSelect::Error::OutOfRange", "classIniSelect_1_1Error_1_1OutOfRange.html", null ],
     [ "Particle", "classParticle.html", null ],
     [ "ParticleDatabase", "classParticleDatabase.html", null ],
     [ "ParticleIdentifier", "classParticleIdentifier.html", null ],

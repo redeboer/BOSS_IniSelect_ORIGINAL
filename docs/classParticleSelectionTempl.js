@@ -1,11 +1,14 @@
 var classParticleSelectionTempl =
 [
     [ "ParticleSelectionTempl", "classParticleSelectionTempl.html#a893b5c012cb70c7b7894e279f1a48842", null ],
+    [ "AddTrackToParticle", "classParticleSelectionTempl.html#afc38ab9fca3ae1ad6d514fff1a5db205", null ],
     [ "ClearCharged", "classParticleSelectionTempl.html#acb5a451d61e84452f34e6cc43f8683a4", null ],
     [ "ClearNeutral", "classParticleSelectionTempl.html#a52ca3e892d72abb618428a0005efc545", null ],
     [ "FirstParticle", "classParticleSelectionTempl.html#affd73e6dadb4a66eeb6dbf5e00f87b6f", null ],
     [ "GetCandidates", "classParticleSelectionTempl.html#ad013432d6f5edc229b7447bdd7418435", null ],
+    [ "GetNCharged", "classParticleSelectionTempl.html#a64e80a13e2a0d411befbf8b80b6229a9", null ],
     [ "GetPhotons", "classParticleSelectionTempl.html#a0c989cf9e95013b8f86a23775b212958", null ],
+    [ "HasParticle", "classParticleSelectionTempl.html#a3f8fe951ed029f99bedb85a50eaa3a04", null ],
     [ "NextCharged", "classParticleSelectionTempl.html#af5338196d6f2e90b678d14f99f52fba1", null ],
     [ "NextParticle", "classParticleSelectionTempl.html#a8596901fae1ad0e6d8ae1ce111168f0f", null ],
     [ "NextPhotonCombination", "classParticleSelectionTempl.html#a332e493de7190c01eae6d3731b07fa97", null ],
@@ -23,6 +26,7 @@ var classParticleSelectionTempl =
     [ "SetN_Protons", "classParticleSelectionTempl.html#a5f78c2043ea061a9966dd6bd7644cc20", null ],
     [ "SetParticleToN", "classParticleSelectionTempl.html#ac92c192c1697a52b946a1c34d1c4b57c", null ],
     [ "UnpackIter", "classParticleSelectionTempl.html#a9b653fa3936c3a27dd16475adc96be4f", null ],
+    [ "fNCharged", "classParticleSelectionTempl.html#a7f67cbb9d5885fc4d02733658aaf0eea", null ],
     [ "fSelections", "classParticleSelectionTempl.html#aa982c254e14c95931e079782a79ca536", null ],
     [ "fSelectionsIter", "classParticleSelectionTempl.html#a1c3455ee6a5497f6d6c75e0c601ef9eb", null ]
 ];

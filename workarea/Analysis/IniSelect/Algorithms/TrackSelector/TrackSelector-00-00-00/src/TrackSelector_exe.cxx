@@ -1,4 +1,3 @@
-#include "TrackSelector/TrackSelector.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
@@ -7,10 +6,11 @@
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Containers/NTupleTopoAna.h"
-#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Globals.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
+#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
@@ -284,8 +284,8 @@ void TrackSelector::CreateNeutralCollection()
   /// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
   if(!fEvtRecEvent->totalNeutral())
 
-  /// <li> Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
-  fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
+    /// <li> Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
+    fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
   for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i)
   {
     /// <ol>
@@ -335,7 +335,7 @@ void TrackSelector::WriteMultiplicities()
   while(coll)
   {
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
-    coll = fParticleSel.NextCharged();
+    coll                                                        = fParticleSel.NextCharged();
   }
   fNTuple_mult.Write();
 }

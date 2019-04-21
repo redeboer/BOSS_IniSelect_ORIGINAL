@@ -1,4 +1,4 @@
 var namespaces =
 [
-    [ "TSGlobals", "namespaceTSGlobals.html", "namespaceTSGlobals" ]
+    [ "IniSelect", "namespaceIniSelect.html", "namespaceIniSelect" ]
 ];

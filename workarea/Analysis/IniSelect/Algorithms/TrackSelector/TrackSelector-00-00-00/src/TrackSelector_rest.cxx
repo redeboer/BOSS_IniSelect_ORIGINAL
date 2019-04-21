@@ -1,4 +1,3 @@
-#include "TrackSelector/TrackSelector.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
@@ -7,10 +6,11 @@
 #include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Containers/NTupleTopoAna.h"
-#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Globals.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
+#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
