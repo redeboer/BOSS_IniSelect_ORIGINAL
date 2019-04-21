@@ -3,10 +3,6 @@
 // * ========================= * //
 
 #include "D0omega_K4pi/D0omega_K4pi.h"
-#include "CLHEP/Geometry/Point3D.h"
-#include "CLHEP/Vector/LorentzVector.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Vector/TwoVector.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Globals/Exception.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
@@ -15,13 +11,6 @@
 #include <string>
 #include <utility>
 
-#ifndef ENABLE_BACKWARDS_COMPATIBILITY
-typedef HepGeom::Point3D<double> HepPoint3D;
-#endif
-
-using CLHEP::Hep2Vector;
-using CLHEP::Hep3Vector;
-using CLHEP::HepLorentzVector;
 using namespace IniSelect;
 
 // * =========================== * //
@@ -31,9 +20,7 @@ using namespace IniSelect;
 /// Constructor for the `D0omega_K4pi` algorithm, derived from `TrackSelector`.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `D0omega_K4pi`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0omega_K4pi/D0omega_K4pi.h) and that you should assign the values in `share/D0omega_K4pi.txt`.
 D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
-  /// * Construct base algorithm `TrackSelector`.
   TrackSelector(name, pSvcLocator),
-  /// * Construct `NTuple::Tuple` containers used in derived classes.
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
   fNTuple_fit4c_all("fit4c_all", "4-constraint fit information (CMS 4-momentum)"),
@@ -262,14 +249,15 @@ void D0omega_K4pi::DoKinematicFit()
 void D0omega_K4pi::ExtractFitResults()
 {
   fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
-  fCurrentKalmanFit.SetRunAndEventNumber(fEventHeader);
+  fCurrentKalmanFit.SetRunNumber(fInputFile.RunNumber());
+  fCurrentKalmanFit.SetEventNumber(fInputFile.EventNumber());
 }
 
 void D0omega_K4pi::WriteBestFitWithMcTruth()
 {
   std::cout << "  Result Kalman fit for (run, event) = ";
-  std::cout << fEventHeader->runNumber() << ", ";
-  std::cout << fEventHeader->eventNumber() << "):" << std::endl;
+  std::cout << fInputFile.RunNumber() << ", ";
+  std::cout << fInputFile.EventNumber() << "):" << std::endl;
   std::cout << "    chi2     = " << fBestKalmanFit.fChiSquared << std::endl
             << "    m_pi0    = " << fBestKalmanFit.fM_pi0 << std::endl
             << "    m_D0     = " << fBestKalmanFit.fM_D0 << std::endl
@@ -304,7 +292,7 @@ void D0omega_K4pi::SetAdditionalNtupleItems_topology()
 
 void D0omega_K4pi::CreateMCTruthSelection()
 {
-  if(fEventHeader->runNumber() >= 0) return; // negative run number means MC data
+  if(!fInputFile.IsMonteCarlo()) return;
   if(!fNTuple_fit_mc.DoWrite()) return;
   fParticleSelMC.ClearCharged();
   std::vector<Event::McParticle*>::iterator it;

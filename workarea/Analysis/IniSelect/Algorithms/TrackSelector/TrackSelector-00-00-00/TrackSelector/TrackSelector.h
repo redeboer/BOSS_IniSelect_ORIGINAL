@@ -7,16 +7,13 @@
 
 #include "CLHEP/Geometry/Point3D.h"
 #include "EmcRecEventModel/RecEmcShower.h"
-#include "EventModel/EventHeader.h"
-#include "EvtRecEvent/EvtRecEvent.h"
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/MsgStream.h"
 #include "GaudiKernel/NTuple.h"
-#include "GaudiKernel/SmartDataPtr.h"
-#include "GaudiKernel/SmartRefVector.h"
 #include "IniSelect/Containers/AngleDifferences.h"
 #include "IniSelect/Containers/CutObject.h"
+#include "IniSelect/Containers/DstFile.h"
 #include "IniSelect/Containers/JobSwitch.h"
 #include "IniSelect/Containers/KKFitResult.h"
 #include "IniSelect/Containers/NTupleContainer.h"
@@ -87,15 +84,10 @@ protected:
 
   /// @name Helper methods for execute step
   ///@{
-  void             LoadDstFile();
-  void             LoadDstHeaders();
   void             PrintEventInfo();
-  void             IncrementCounters();
   void             SetVertexOrigin();
   void             CreateCollections();
   void             CreateChargedCollection();
-  void             SetTrackIter(const int& i);
-  bool             IsMdcTrackValid();
   bool             CutSecondaryVertex();
   void             WriteChargedTrackVertex();
   void             WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
@@ -147,14 +139,7 @@ protected:
 
   /// @name Access to the DST file
   ///@{
-  SmartDataPtr<Event::EventHeader> fEventHeader;
-  ///< Data pointer for `"Event/EventHeader"` data. It is set in `execute()` step in each event.
-  SmartDataPtr<Event::McParticleCol> fMcParticleCol;
-  ///< Data pointer for `"Event/MC/McParticleCol"` data. It is set in `execute()` step in each event.
-  SmartDataPtr<EvtRecEvent> fEvtRecEvent;
-  ///< Data pointer for `EventModel::EvtRec::EvtRecEvent` which is set in `execute()` in each event.
-  SmartDataPtr<EvtRecTrackCol> fEvtRecTrkCol;
-  ///< Data pointer for `EventModel::EvtRec::EvtRecTrackCol` which is set in `execute()` in each event.
+  DstFile fInputFile;
   ///@}
 
   /// @name Track collections and iterators
@@ -205,14 +190,6 @@ protected:
   ///@{
   NTuple::Tuple* fCutTuples;
 
-  CutObject fCounter_Ntracks;  ///< Cummulative total number of tracks.
-  CutObject fCounter_Ncharged; ///< Cummulative total number of charged tracks.
-  CutObject fCounter_Nmdcvalid;
-  ///< Cummulative total number of charged tracks that are 'MDC valid'.
-  CutObject fCounter_Nneutral;
-  ///< Cummulative total number of neutral tracks.
-  CutObject fCutFlow_Nevents;
-  ///< **Cut flow counter**: total number of events.
   CutObject fCutFlow_NetChargeOK;
   ///< **Cut flow counter**: total number of events where the measured netto charge was \f$0\f$. This cut is used to exclude events where some charged tracks were not detected (an \f$e^+e^-\f$ collision has \f$0\f$ net charge).
   CutObject fCutFlow_NChargedOK;

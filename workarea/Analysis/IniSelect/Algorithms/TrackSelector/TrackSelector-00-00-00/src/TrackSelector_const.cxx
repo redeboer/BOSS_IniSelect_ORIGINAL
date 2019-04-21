@@ -2,8 +2,6 @@
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "DstEvent/TofHitStatus.h"
-#include "EventModel/Event.h"
-#include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
@@ -26,10 +24,7 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   Algorithm(name, pSvcLocator),
   fLog(msgSvc(), name),
   /// * Construct objects for file access.
-  fEventHeader(eventSvc(), "/Event/EventHeader"),
-  fMcParticleCol(eventSvc(), "/Event/MC/McParticleCol"),
-  fEvtRecEvent(eventSvc(), EventModel::EvtRec::EvtRecEvent),
-  fEvtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol),
+  fInputFile(eventSvc()),
   /// * Construct `NTuple::Tuple`s containers used in base class
   fNTuple_mult("mult", "Event multiplicities"),
   fNTuple_vertex("vertex", "Primary vertex (interaction point)"),
@@ -45,7 +40,6 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
                "1st entry: min value, 2nd entry: max value, 3rd entry: number passed"),
   fNTuple_topology("topology", "Monte Carlo truth for TopoAna package"),
   /// * Construct counters (in essence a `CutObject` without cuts).
-  fCutFlow_Nevents("N_events"),
   fCutFlow_NetChargeOK("N_netcharge_OK",
                        "Number of events where the total charge detected in the detectors was 0"),
   fCutFlow_NChargedOK("N_charged_OK", "Number of events that had exactly 4 charged tracks"),
@@ -55,10 +49,6 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fCut_GammaAngle("gamma_angle"),
   fCut_GammaPhi("gamma_phi"),
   fCut_GammaTheta("gamma_theta"),
-  fCounter_Ntracks("N_tracks"),
-  fCounter_Ncharged("N_charged"),
-  fCounter_Nneutral("N_neutral"),
-  fCounter_Nmdcvalid("N_MDCvalid"),
   /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
   fCut_Vxy("vertex_xy"),
   fCut_Vz("vertex_z"),

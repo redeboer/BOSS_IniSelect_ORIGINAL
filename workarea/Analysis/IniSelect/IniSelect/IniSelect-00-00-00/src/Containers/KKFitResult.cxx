@@ -1,15 +1,7 @@
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "IniSelect/Containers/KKFitResult.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include <cmath>
 using CLHEP::HepLorentzVector;
-
-// * =========================== * //
-// * ------- CONSTRUCTOR ------- * //
-// * =========================== * //
 
 double KKFitResult::fBestCompareValue = DBL_MAX;
 
@@ -23,20 +15,6 @@ KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
   if(!fFit) return;
   fChiSquared = fFit->chisq();
 }
-
-// * ========================= * //
-// * -------- SETTERS -------- * //
-// * =u======================== * //
-
-void KKFitResult::SetRunAndEventNumber(SmartDataPtr<Event::EventHeader> header)
-{
-  fRunNumber   = header->runNumber();
-  fEventNumber = header->eventNumber();
-}
-
-// * =================================== * //
-// * -------- PROTECTED METHODS -------- * //
-// * =================================== * //
 
 /// Comparison method.
 bool KKFitResult::IsBetter(const double& value, double& bestvalue) const

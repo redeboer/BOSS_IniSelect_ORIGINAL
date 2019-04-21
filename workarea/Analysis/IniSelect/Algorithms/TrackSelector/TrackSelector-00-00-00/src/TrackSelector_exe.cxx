@@ -1,15 +1,14 @@
+#include "TrackSelector/TrackSelector.h"
+
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "DstEvent/TofHitStatus.h"
-#include "EventModel/Event.h"
-#include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
-#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
@@ -25,7 +24,9 @@ StatusCode TrackSelector::execute()
   PrintFunctionName("TrackSelector", __func__);
   try
   {
-    LoadDstFile();
+    // fInputFile.LoadHeaders();
+    fInputFile.IncrementCounters();
+    PrintEventInfo();
     SetVertexOrigin();
     CreateCollections();
     WriteVertexInfo();
@@ -43,44 +44,13 @@ StatusCode TrackSelector::execute()
   return StatusCode::SUCCESS;
 }
 
-void TrackSelector::LoadDstFile()
-{
-  fLog << MSG::DEBUG << __func__ << endmsg;
-  LoadDstHeaders();
-  PrintEventInfo();
-  IncrementCounters();
-}
-
-void TrackSelector::LoadDstHeaders()
-{
-  /// Load headers, event, and track collection from the DST input file.
-  /// For more info see:
-  /// * [Namespace `EventModel`](http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html)
-  /// * [Class `EvtRecEvent`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html)
-  /// * [Type definition `EvtRecTrackCol`](http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html)
-  /// * [Type definition`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed)
-  fLog << MSG::DEBUG << "Loading EventHeader, EvtRecEvent, and EvtRecTrackCol" << endmsg;
-  fEventHeader  = SmartDataPtr<Event::EventHeader>(eventSvc(), "/Event/EventHeader");
-  fEvtRecEvent  = SmartDataPtr<EvtRecEvent>(eventSvc(), EventModel::EvtRec::EvtRecEvent);
-  fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
-}
-
 void TrackSelector::PrintEventInfo()
 {
-  /// Log run number, event number, and number of events.
-  fLog << MSG::DEBUG << "RUN " << fEventHeader->runNumber() << ", "
-       << "event number " << fEventHeader->eventNumber() << endmsg;
-  fLog << MSG::DEBUG << "Ncharged = " << fEvtRecEvent->totalCharged() << ", "
-       << "Nneutral = " << fEvtRecEvent->totalNeutral() << ", "
-       << "Ntotal = " << fEvtRecEvent->totalTracks() << endmsg;
-}
-
-void TrackSelector::IncrementCounters()
-{
-  ++fCutFlow_Nevents;
-  fCounter_Ncharged += fEvtRecEvent->totalCharged();
-  fCounter_Nneutral += fEvtRecEvent->totalNeutral();
-  fCounter_Ntracks += fEvtRecEvent->totalTracks();
+  fLog << MSG::DEBUG << "RUN " << fInputFile.RunNumber() << ", "
+       << "event number " << fInputFile.EventNumber() << endmsg;
+  fLog << MSG::DEBUG << "Ncharged = " << fInputFile.TotalChargedTracks() << ", "
+       << "Nneutral = " << fInputFile.TotalNeutralTracks() << ", "
+       << "Ntotal = " << fInputFile.TotalTracks() << endmsg;
 }
 
 void TrackSelector::SetVertexOrigin()
@@ -108,37 +78,33 @@ void TrackSelector::CreateChargedCollection()
   fLog << MSG::DEBUG << __func__ << endmsg;
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
-  if(!fEvtRecEvent->totalCharged()) return;
-  /// -# Loop over the charged tracks in the loaded `fEvtRecEvent` track collection. The first part of the set of reconstructed tracks are the charged tracks.
-  fNetChargeMDC = 0;
-  fLog << MSG::DEBUG << "Starting 'good' charged track selection:" << endmsg;
-  for(int i = 0; i < fEvtRecEvent->totalCharged(); ++i)
+  fNetChargeMDC      = 0;
+  EvtRecTrack* track = fInputFile.FirstChargedTrack();
+  while(track)
   {
-    SetTrackIter(i);
-    if(!IsMdcTrackValid()) continue;
-    fTrackMDC = (*fTrackIter)->mdcTrack();
+    fTrackMDC = track->mdcTrack();
     fSecondaryVtx.SetValues(fTrackMDC, fVertexPoint);
     if(!CutSecondaryVertex()) continue;
 
     // * Add charged track to vector
-    fChargedTracks.push_back(*fTrackIter);
+    fChargedTracks.push_back(track);
     fNetChargeMDC += fTrackMDC->charge();
     WriteChargedTrackVertex();
 
     /// -# **Write** dE/dx PID information ("dedx" branch)
-    WriteDedxInfo(*fTrackIter, fNTuple_dedx);
+    WriteDedxInfo(track, fNTuple_dedx);
 
     /// -# **Write** Time-of-Flight PID information ("tof*" branch)
     if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite())
     {
       // * Check if MDC and TOF info for track are valid *
-      if(!(*fTrackIter)->isMdcTrackValid()) continue;
-      if(!(*fTrackIter)->isTofTrackValid()) continue;
+      if(!track->isMdcTrackValid()) continue;
+      if(!track->isTofTrackValid()) continue;
       // * Get momentum as determined by MDC *
-      fTrackMDC = (*fTrackIter)->mdcTrack();
+      fTrackMDC = track->mdcTrack();
       double ptrk;
       if(fTrackMDC) ptrk = fTrackMDC->p();
-      SmartRefVector<RecTofTrack>           tofTrkCol = (*fTrackIter)->tofTrack();
+      SmartRefVector<RecTofTrack>           tofTrkCol = track->tofTrack();
       SmartRefVector<RecTofTrack>::iterator iter_tof  = tofTrkCol.begin();
       for(; iter_tof != tofTrkCol.end(); ++iter_tof)
       {
@@ -156,22 +122,10 @@ void TrackSelector::CreateChargedCollection()
           WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofEC);
       }
     }
+    track = fInputFile.NextChargedTrack();
   }
 
   fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fChargedTracks.size() << endmsg;
-}
-
-void TrackSelector::SetTrackIter(const int& i)
-{
-  fLog << MSG::DEBUG << "   charged track " << i << "/" << fEvtRecEvent->totalCharged() << endmsg;
-  fTrackIter = fEvtRecTrkCol->begin() + i;
-}
-
-bool TrackSelector::IsMdcTrackValid()
-{
-  if(!(*fTrackIter)->isMdcTrackValid()) return false;
-  ++fCounter_Nmdcvalid;
-  return true;
 }
 
 bool TrackSelector::CutSecondaryVertex()
@@ -229,7 +183,7 @@ void TrackSelector::WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tup
   tuple.GetItem<double>("p")       = fTrackMDC->p();
   tuple.GetItem<double>("probPH")  = fTrackDedx->probPH();
 
-  /// -# @b Write \f$dE/dx\f$ info.
+  /// -# **Write** \f$dE/dx\f$ info.
   tuple.Write();
 }
 
@@ -264,42 +218,29 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
   tuple.GetItem<double>("tof_K")  = path - texp[3];
   tuple.GetItem<double>("tof_p")  = path - texp[4];
 
-  /// -# @b Write ToF info
+  /// -# **Write** ToF info
   tuple.Write();
 }
 
-/// Create a preselection of @b neutral tracks (without cuts).
+/// Create a preselection of **neutral** tracks (without cuts).
 /// This method is used in `TrackSelector::execute` only. See `fNeutralTracks` for more information.
 void TrackSelector::CreateNeutralCollection()
 {
   fLog << MSG::DEBUG << __func__ << endmsg;
-  /// <ol>
-  /// <li> @b Abort if `fCreateNeutralCollection` has been set to `false`. This is decided in the derived class.
+  /// -# **Abort** if `fCreateNeutralCollection` has been set to `false`. This is decided in the derived class.
   if(!fCreateNeutralCollection) return;
 
-  /// <li> Clear `fNeutralTracks` collection `vector`.
+  /// -# Clear `fNeutralTracks` collection `vector`.
   fNeutralTracks.clear();
 
-  /// <li> @ Abort if there are no charged tracks in the `fEvtRecEvent` track collection.
-  if(!fEvtRecEvent->totalNeutral())
-
-    /// <li> Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
-    fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
-  for(int i = fEvtRecEvent->totalCharged(); i < fEvtRecEvent->totalTracks(); ++i)
+  /// -# Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
+  fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
+  EvtRecTrack* track = fInputFile.FirstNeutralTrack();
+  while(track)
   {
-    /// <ol>
-    /// <li> Get EMC information
-    fLog << MSG::DEBUG << "   neutral track " << i - fEvtRecEvent->totalCharged() << "/"
-         << fEvtRecEvent->totalNeutral() << endmsg;
-    fTrackIter = fEvtRecTrkCol->begin() + i;
-    if(!(*fTrackIter)->isEmcShowerValid()) continue;
-    fTrackEMC = (*fTrackIter)->emcShower();
+    fTrackEMC = track->emcShower();
     if(!fTrackEMC) continue;
-
-    /// <li> Apply photon energy cut (set by `TrackSelector.cut_PhotonEnergy`).
     if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
-
-    /// <li> @b Write neutral track information (if `write_neutral` is set to `true`).
     if(fNTuple_neutral.DoWrite())
     {
       fNTuple_neutral.GetItem<double>("E")     = fTrackEMC->energy();
@@ -311,23 +252,19 @@ void TrackSelector::CreateNeutralCollection()
       fNTuple_neutral.GetItem<double>("time")  = fTrackEMC->time();
       fNTuple_neutral.Write();
     }
-
-    /// <li> Add photon track to vector of neutral tracks (`fNeutralTracks`).
     fNeutralTracks.push_back(*fTrackIter);
-
-    /// </ol>
+    track = fInputFile.NextNeutralTrack();
   }
   fLog << MSG::DEBUG << "Number of 'good' photons: " << fNeutralTracks.size() << endmsg;
-  /// </ol>
 }
 
 void TrackSelector::WriteMultiplicities()
 {
   fLog << MSG::DEBUG << __func__ << endmsg;
   if(!fNTuple_mult.DoWrite()) return;
-  fNTuple_mult.GetItem<int>("Ntotal")   = fEvtRecEvent->totalTracks();
-  fNTuple_mult.GetItem<int>("Ncharge")  = fEvtRecEvent->totalCharged();
-  fNTuple_mult.GetItem<int>("Nneutral") = fEvtRecEvent->totalNeutral();
+  fNTuple_mult.GetItem<int>("Ntotal")   = fInputFile.TotalTracks();
+  fNTuple_mult.GetItem<int>("Ncharge")  = fInputFile.TotalChargedTracks();
+  fNTuple_mult.GetItem<int>("Nneutral") = fInputFile.TotalNeutralTracks();
   if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
@@ -364,8 +301,8 @@ void TrackSelector::CutPID()
     coll = fParticleSel.NextCharged();
   }
   ++fCutFlow_NPIDnumberOK;
-  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
-       << ", " << fEventHeader->eventNumber() << ")" << endmsg;
+  fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fInputFile.RunNumber() << ", "
+       << fInputFile.EventNumber() << ")" << endmsg;
 }
 
 void TrackSelector::WriteVertexInfo()

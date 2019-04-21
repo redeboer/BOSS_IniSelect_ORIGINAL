@@ -1,15 +1,14 @@
+#include "TrackSelector/TrackSelector.h"
+
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
 #include "DstEvent/TofHitStatus.h"
-#include "EventModel/Event.h"
-#include "EventModel/EventModel.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
-#include "TrackSelector/TrackSelector.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
@@ -36,7 +35,7 @@ bool TrackSelector::CreateMCTruthCollection()
 {
   /// <ol>
   /// <li> @b Abort if input file is not MC generated (that is, if the run number is not negative).
-  if(fEventHeader->runNumber() >= 0) return false;
+  if(!fInputFile.IsMonteCarlo()) return false;
 
   /// <li> @b Abort if `"write_topology"` job switch has been set to `false`.
   if(!fNTuple_topology.DoWrite()) return false;
@@ -44,34 +43,34 @@ bool TrackSelector::CreateMCTruthCollection()
   /// <li> Clear `fMcParticles` vector.
   fMcParticles.clear();
 
-  /// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file
-  /// and @b abort if does not exist.
-  fMcParticleCol = SmartDataPtr<Event::McParticleCol>(eventSvc(), "/Event/MC/McParticleCol");
-  if(!fMcParticleCol)
-  {
-    fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
-    return false;
-  }
+  // /// <li> Load `McParticelCol` from `"/Event/MC/McParticleCol"` directory in `"FILE1"` input file
+  // /// and @b abort if does not exist.
+  // if(!fInputFile.LoadMcCollection())
+  // {
+  //   fLog << MSG::ERROR << "Could not retrieve McParticelCol" << endmsg;
+  //   return false;
+  // }
 
   /// <li> Loop over collection of MC particles (`Event::McParticleCol`). For more info on the data
   /// available in `McParticle`, see
   /// [here](http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html). Only add to
   /// `fMcParticles` if the `McParticle` satisfies:
   bool doNotInclude(true); // only start recording if set to false in the loop
-  for(Event::McParticleCol::iterator it = fMcParticleCol->begin(); it != fMcParticleCol->end();
-      ++it)
+  Event::McParticle* particle = fInputFile.FirstMcTrack();
+  while(particle)
   {
     /// <ul>
     /// <li> @b Skip if the track is not a primary particle (has no mother). The initial meson towhich the beam is tuned is included, because its mother is a `cluster` or `string`.
-    if((*it)->primaryParticle()) continue;
+    if(particle->primaryParticle()) continue;
     /// <li> @b Skip if the track is not from the generator. This means that it is simulated in the detectors, but did not come from the event generator.
-    if(!(*it)->decayFromGenerator()) continue;
+    if(!particle->decayFromGenerator()) continue;
     /// <li> Only start recording *after* we have passed the initial simulation `cluster` (code 91) or `string` (code 92). The next particle after this cluster or string will be the meson to which the beam is tuned (e.g. \f$J/\psi\f$). @see `McTruth::IsInitialCluster`.
-    if(doNotInclude && McTruth::IsJPsi(*it)) doNotInclude = false;
+    if(doNotInclude && McTruth::IsJPsi(particle)) doNotInclude = false;
     if(doNotInclude) continue;
     /// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
-    fMcParticles.push_back(*it);
+    fMcParticles.push_back(particle);
     /// </ul>
+    particle = fInputFile.NextMcTrack();
   }
 
   /// <li> *(For the derived class:)*<br> Create selections of specific MC truth particles
@@ -111,14 +110,14 @@ void TrackSelector::WriteFitResults(KKFitResult* fitresults, NTupleContainer& tu
 /// @see `CreateMCTruthCollection`
 bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
 {
-  if(fEventHeader->runNumber() >= 0) return false;
+  if(!fInputFile.IsMonteCarlo()) return false;
   if(!tuple.DoWrite()) return false;
   if(!fMcParticles.size()) return false;
 
   fLog << MSG::DEBUG << "Writing TopoAna NTuple \"" << tuple.Name() << "\" with "
        << fMcParticles.size() << " particles" << endmsg;
-  tuple.GetItem<int>("runID") = fEventHeader->runNumber();
-  tuple.GetItem<int>("evtID") = fEventHeader->eventNumber();
+  tuple.GetItem<int>("runID") = fInputFile.RunNumber();
+  tuple.GetItem<int>("evtID") = fInputFile.EventNumber();
 
   /// -# The `trackIndex` of the first particle is to be the offset for the array index, because
   /// this entry should have array index `0`. See

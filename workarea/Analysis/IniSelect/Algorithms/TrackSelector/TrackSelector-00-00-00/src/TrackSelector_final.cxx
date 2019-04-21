@@ -1,23 +1,4 @@
-#include "CLHEP/Vector/LorentzVector.h"
-#include "CLHEP/Vector/ThreeVector.h"
-#include "CLHEP/Vector/TwoVector.h"
-#include "DstEvent/TofHitStatus.h"
-#include "EventModel/Event.h"
-#include "EventModel/EventModel.h"
-#include "GaudiKernel/Bootstrap.h"
-#include "IniSelect/Globals.h"
-#include "IniSelect/Handlers/ParticleIdentifier.h"
-#include "TMath.h"
-#include "TString.h"
 #include "TrackSelector/TrackSelector.h"
-#include "VertexFit/Helix.h"
-#include "VertexFit/IVertexDbSvc.h"
-#include <cmath>
-
-using CLHEP::Hep2Vector;
-using CLHEP::Hep3Vector;
-using CLHEP::HepLorentzVector;
-using namespace IniSelect;
 
 /// Is called at the end *of the entire process*.
 /// Writes total cut flow to terminal and to the output file.
