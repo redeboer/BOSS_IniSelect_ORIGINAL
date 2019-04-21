@@ -11,6 +11,7 @@
 /// Global **parameters** encapsulated in namespaces.
 
 #include "CLHEP/Vector/LorentzVector.h"
+#include "McTruth/McParticle.h"
 #include <vector>
 
 /// @addtogroup BOSS_globals
