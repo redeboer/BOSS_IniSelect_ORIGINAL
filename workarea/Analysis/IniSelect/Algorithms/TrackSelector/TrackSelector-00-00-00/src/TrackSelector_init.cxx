@@ -71,7 +71,10 @@ void TrackSelector::BookNTuples()
 void TrackSelector::BookNTuple(NTupleContainer& tuple)
 {
   /// -# **Abort** if the `"write_"` `JobSwitch` option has been set to `false`.
-  if(!tuple.DoWrite()) return;
+  if(!tuple.DoWrite()) {
+    fLog << MSG::DEBUG << "  NTuple \"" << tuple.Name() << "\" will not be written" << endmsg;
+    return;
+  }
   /// -# Form a string for booking in the file. Typically: `"FILE1/<tree name>"`.
   const char* bookName = Form("FILE1/%s", tuple.Name().c_str());
   /// -# Attempt to get this `NTuple::Tuple` from file the file.
