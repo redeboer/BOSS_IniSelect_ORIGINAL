@@ -90,3 +90,9 @@ workarea/Analysis/TopoAna/v1.6.9.1/share/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/test/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/tutorials/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9/**/*.pdf
+
+workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/excl/D0phi_KpiKK.dst
+workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/data_round02.dst
+workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/data_round05.dst
+workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/data_round11.dst
+workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/excl/D0omega_K4pi.dst
