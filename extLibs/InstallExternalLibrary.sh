@@ -52,7 +52,7 @@ fi
   fi
 
 # * Parameter names * #
-  outputPath="extLibs"
+  outputPath="."
   buildDir="compile"
 
 # * Get repository name * #

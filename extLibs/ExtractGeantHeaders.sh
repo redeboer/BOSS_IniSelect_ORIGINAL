@@ -1,7 +1,7 @@
 # Run this script if you failed to build Geant,
 # but still want to have an include path
 
-geantDir="extLibs/geant4"
+geantDir="geant4"
 if [[ ! -d "${geantDir}" ]]; then
   echo "ERROR: Geant directory \"${geantDir}\" does not exist"
   exit 1

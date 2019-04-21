@@ -22,7 +22,7 @@
 # * Check input and output paths * #
   HeaderSubPath="InstallArea/include"
   inputPath="${BossPath}/${BossVersion}/${HeaderSubPath}"
-  outputPath="extLibs/BOSS"
+  outputPath="BOSS"
   # outputPath="/scratchfs/bes/${USER}/BOSS/include"
   if [ ! -d "${inputPath}" ]; then
     echo "ERROR: Folder"
