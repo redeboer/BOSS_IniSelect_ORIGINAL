@@ -15,8 +15,16 @@
 
 /// @author Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date   April 21st, 2019
+class ChargedTrackIter;
+class NeutralTrackIter;
+class McTrackIter;
+
 class DstFile
 {
+  friend class ChargedTrackIter;
+  friend class NeutralTrackIter;
+  friend class McTrackIter;
+
 public:
   DstFile(IDataProviderSvc* dataProvider);
 
@@ -29,13 +37,6 @@ public:
   bool IsMonteCarlo() { return fEventHeader->runNumber() < 0; }
   int  RunNumber() { return fEventHeader->runNumber(); }
   int  EventNumber() { return fEventHeader->eventNumber(); }
-
-  Event::McParticle* FirstMcTrack();
-  EvtRecTrack*       FirstChargedTrack();
-  EvtRecTrack*       FirstNeutralTrack();
-  Event::McParticle* NextMcTrack();
-  EvtRecTrack*       NextChargedTrack();
-  EvtRecTrack*       NextNeutralTrack();
 
 private:
   IDataProviderSvc*                  fDataProvider;
@@ -57,6 +58,48 @@ private:
   CutObject fCumulativeNMdcValid;
 
   void IncrementCounters();
+};
+
+template <class T>
+class DstFileIter_base
+{
+public:
+  DstFileIter_base(DstFile& file) : fFile(&file) {}
+  virtual T* Next() = 0;
+
+protected:
+  DstFile* fFile;
+};
+
+class ChargedTrackIter : public DstFileIter_base<EvtRecTrack>
+{
+public:
+  ChargedTrackIter(DstFile& file);
+  EvtRecTrack* Next();
+
+private:
+  std::vector<EvtRecTrack*>::iterator fIter;
+  int                                 fIndex;
+};
+
+class NeutralTrackIter : public DstFileIter_base<EvtRecTrack>
+{
+public:
+  NeutralTrackIter(DstFile& file);
+  EvtRecTrack* Next();
+
+private:
+  std::vector<EvtRecTrack*>::iterator fIter;
+};
+
+class McTrackIter : public DstFileIter_base<Event::McParticle>
+{
+public:
+  McTrackIter(DstFile& file);
+  Event::McParticle* Next();
+
+private:
+  Event::McParticleCol::iterator fIter;
 };
 /// @}
 #endif

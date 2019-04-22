@@ -31,9 +31,9 @@ void DstFile::LoadNextEvent()
   /// * [Class `EvtRecEvent`](http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html)
   /// * [Type definition `EvtRecTrackCol`](http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html)
   /// * [Type definition`Event::McParticleCol`](http://bes3.to.infn.it/Boss/7.0.0/html/namespaceEvent.html#b6a28637c54f890ed93d8fd13d5021ed)
-  fEventHeader  = SmartDataPtr<Event::EventHeader>(fDataProvider, gHeaderName);
-  fEvtRecEvent  = SmartDataPtr<EvtRecEvent>(fDataProvider, EventModel::EvtRec::EvtRecEvent);
-  fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>(fDataProvider, EventModel::EvtRec::EvtRecTrackCol);
+  fEventHeader   = SmartDataPtr<Event::EventHeader>(fDataProvider, gHeaderName);
+  fEvtRecEvent   = SmartDataPtr<EvtRecEvent>(fDataProvider, EventModel::EvtRec::EvtRecEvent);
+  fEvtRecTrkCol  = SmartDataPtr<EvtRecTrackCol>(fDataProvider, EventModel::EvtRec::EvtRecTrackCol);
   fMcParticleCol = SmartDataPtr<Event::McParticleCol>(fDataProvider, gMcColName);
   IncrementCounters();
 }
@@ -46,53 +46,45 @@ void DstFile::IncrementCounters()
   fCumulativeNNeutral += TotalTracks();
 }
 
-Event::McParticle* DstFile::FirstMcTrack()
+McTrackIter::McTrackIter(DstFile& file) : DstFileIter_base(file)
 {
-  fMcIter = fMcParticleCol->begin();
-  if(fMcIter == fMcParticleCol->end()) return nullptr;
-  return *fMcIter;
+  fIter = fFile->fMcParticleCol->begin();
 }
 
-EvtRecTrack* DstFile::FirstChargedTrack()
+ChargedTrackIter::ChargedTrackIter(DstFile& file) : DstFileIter_base(file)
 {
-  fChargedIter = fEvtRecTrkCol->begin();
-  if(fChargedIter == fEvtRecTrkCol->end()) return nullptr;
-  return *fChargedIter;
+  fIter = fFile->fEvtRecTrkCol->begin();
 }
 
-EvtRecTrack* DstFile::FirstNeutralTrack()
+NeutralTrackIter::NeutralTrackIter(DstFile& file) : DstFileIter_base(file)
 {
-  fNeutralIter = fEvtRecTrkCol->begin() + TotalChargedTracks();
-  if(fNeutralIter == fEvtRecTrkCol->end()) return nullptr;
-  return *fNeutralIter;
+  fIter = fFile->fEvtRecTrkCol->begin() + fFile->TotalChargedTracks();
 }
 
-Event::McParticle* DstFile::NextMcTrack()
+Event::McParticle* McTrackIter::Next()
 {
-  ++fMcIter;
-  if(fMcIter == fMcParticleCol->end()) return nullptr;
-  return *fMcIter;
+  ++fIter;
+  if(fIter == fFile->fMcParticleCol->end()) return nullptr;
+  return *fIter;
 }
 
-EvtRecTrack* DstFile::NextChargedTrack()
+EvtRecTrack* ChargedTrackIter::Next()
 {
-  if(fChargedIter == fEvtRecTrkCol->end()) return nullptr;
-  ++fChargedIter;
+  if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
+  ++fIter;
   ++fIndex;
-  if(fIndex >= TotalChargedTracks()) return nullptr;
-  if((*fChargedIter)->isMdcTrackValid())
-    ++fCumulativeNMdcValid;
-  else
-    NextChargedTrack();
-  return *fChargedIter;
+  if(fIndex >= fFile->TotalChargedTracks()) return nullptr;
+  if(!(*fIter)->isMdcTrackValid()) Next();
+  ++fFile->fCumulativeNMdcValid;
+  return *fIter;
 }
 
-EvtRecTrack* DstFile::NextNeutralTrack()
+EvtRecTrack* NeutralTrackIter::Next()
 {
-std::cout << "NextNeutralTrack" << std::endl;
-  if(fNeutralIter == fEvtRecTrkCol->end()) return nullptr;
-  ++fNeutralIter;
-  if(!(*fNeutralIter)->emcShower()) NextNeutralTrack();
-  if(!(*fNeutralIter)->isEmcShowerValid()) NextNeutralTrack();
-  return *fNeutralIter;
+  std::cout << "NextNeutralTrack" << std::endl;
+  if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
+  ++fIter;
+  if(!(*fIter)->emcShower()) Next();
+  if(!(*fIter)->isEmcShowerValid()) Next();
+  return *fIter;
 }
