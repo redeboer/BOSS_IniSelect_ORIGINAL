@@ -45,12 +45,6 @@ private:
   SmartDataPtr<EvtRecEvent>          fEvtRecEvent;
   SmartDataPtr<EvtRecTrackCol>       fEvtRecTrkCol;
 
-  Event::McParticleCol::iterator      fMcIter;
-  std::vector<EvtRecTrack*>::iterator fChargedIter;
-  std::vector<EvtRecTrack*>::iterator fNeutralIter;
-
-  int fIndex;
-
   CutObject fEventCounter;
   CutObject fCumulativeNTracks;
   CutObject fCumulativeNCharged;

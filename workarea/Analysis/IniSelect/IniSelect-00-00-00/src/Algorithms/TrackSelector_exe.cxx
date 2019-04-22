@@ -72,8 +72,8 @@ void TrackSelector::CreateChargedCollection()
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
   fNetChargeMDC      = 0;
-  EvtRecTrack* track = fInputFile.FirstChargedTrack();
-  while(track)
+  ChargedTrackIter iter(fInputFile);
+  while(EvtRecTrack* track = iter.Next())
   {
     fTrackMDC = track->mdcTrack();
     fSecondaryVtx.SetValues(fTrackMDC, fVertexPoint);
@@ -115,7 +115,6 @@ void TrackSelector::CreateChargedCollection()
           WriteTofInformation(iter_tof->data(), ptrk, fNTuple_TofEC);
       }
     }
-    track = fInputFile.NextChargedTrack();
   }
 
   fLog << MSG::DEBUG << "Number of 'good' charged tracks: " << fChargedTracks.size() << endmsg;
@@ -222,8 +221,8 @@ void TrackSelector::CreateNeutralCollection()
   fLog << MSG::DEBUG << __func__ << endmsg;
   if(!fCreateNeutralCollection) return;
   fNeutralTracks.clear();
-  EvtRecTrack* track = fInputFile.FirstNeutralTrack();
-  while(track)
+  NeutralTrackIter iter(fInputFile);
+  while(EvtRecTrack* track = iter.Next())
   {
     fTrackEMC = track->emcShower();
     if(!fTrackEMC) continue;
@@ -240,7 +239,6 @@ void TrackSelector::CreateNeutralCollection()
       fNTuple_neutral.Write();
     }
     fNeutralTracks.push_back(track);
-    track = fInputFile.NextNeutralTrack();
   }
   fLog << MSG::DEBUG << "Number of 'good' photons: " << fNeutralTracks.size() << endmsg;
 }

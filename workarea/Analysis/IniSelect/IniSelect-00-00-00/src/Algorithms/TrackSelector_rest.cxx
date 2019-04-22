@@ -56,8 +56,8 @@ bool TrackSelector::CreateMCTruthCollection()
   /// [here](http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html). Only add to
   /// `fMcParticles` if the `McParticle` satisfies:
   bool doNotInclude(true); // only start recording if set to false in the loop
-  Event::McParticle* particle = fInputFile.FirstMcTrack();
-  while(particle)
+  McTrackIter iter(fInputFile);
+  while(Event::McParticle* particle = iter.Next())
   {
     /// <ul>
     /// <li> @b Skip if the track is not a primary particle (has no mother). The initial meson towhich the beam is tuned is included, because its mother is a `cluster` or `string`.
@@ -70,7 +70,6 @@ bool TrackSelector::CreateMCTruthCollection()
     /// <li> Add the pointer to the `fMcParticles` collection vector for use in the derived algorithms.
     fMcParticles.push_back(particle);
     /// </ul>
-    particle = fInputFile.NextMcTrack();
   }
 
   /// <li> *(For the derived class:)*<br> Create selections of specific MC truth particles
