@@ -305,6 +305,7 @@ void TrackSelector::WriteVertexInfo()
 void TrackSelector::CutNumberOfChargedParticles()
 {
   PrintFunctionName("TrackSelector", __func__);
+  fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be " << fParticleSel.GetNCharged() << endmsg;
   if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 }
@@ -315,21 +316,27 @@ void TrackSelector::CreateChargedTrackSelections()
   ParticleIdentifier::Initialize();
   ConfigurePID();
 
+  fLog << MSG::DEBUG << "Will identify particles: ";
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
   while(coll)
   {
+    fLog << MSG::DEBUG << coll->GetPdgCode() << "  ";
     ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
     coll = fParticleSel.NextCharged();
   }
+  fLog << MSG::DEBUG << endmsg;
 
   fParticleSel.ClearCharged();
+  fLog << MSG::DEBUG << "Identified: ";
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
+    fLog << MSG::DEBUG << particleName << "  ";
     if(!fParticleSel.HasParticle(particleName)) continue;
     WritePIDInformation();
     fParticleSel.AddTrackToParticle(*fTrackIter, particleName);
   }
+  fLog << MSG::DEBUG << endmsg;
 }
 
 void TrackSelector::CreateNeutralTrackSelections()
@@ -338,11 +345,19 @@ void TrackSelector::CreateNeutralTrackSelections()
   fParticleSel.ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
+std::cout << "here1" << std::endl;
     AngleDifferences smallestAngles = FindSmallestPhotonAngles();
+std::cout << "here2" << std::endl;
     smallestAngles.ConvertToDegrees();
+std::cout << "here3" << std::endl;
     WritePhotonKinematics(smallestAngles);
+std::cout << "here4" << std::endl;
     if(CutPhotonAngles(smallestAngles)) continue;
+std::cout << "here5" << std::endl;
+std::cout << "here6: " << *fTrackIter << std::endl;
+std::cout << "here7: " << fParticleSel.GetPhotons().GetNTracks() << std::endl;
     fParticleSel.GetPhotons().AddTrack(*fTrackIter);
+std::cout << "here8" << std::endl;
   }
 }
 

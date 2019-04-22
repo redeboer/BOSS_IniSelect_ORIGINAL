@@ -22,7 +22,11 @@ public:
   {}
 
   void Clear() { fTrackColl.clear(); }
-  void AddTrack(T* track) { fTrackColl.push_back(track); }
+  void AddTrack(T* track) { 
+std::cout << "hiero1!" << std::endl;
+    fTrackColl.push_back(track);
+std::cout << "hiero2!" << std::endl;
+ }
   void SetNParticles(const short nparticles) { fNParticles = nparticles; }
   void SetParticle(const TString& pdtName) { fParticle = Particle(pdtName); }
 
@@ -34,7 +38,7 @@ public:
 
   const std::vector<T*>& GetTracks() const { return fTrackColl; }
 
-  short       GetNTracks() const { return fTrackColl.size(); }
+  size_t      GetNTracks() const { return fTrackColl.size(); }
   short       GetNParticles() const { return fNParticles; }
   const char* GetPdtName() const { return fParticle.GetPdtName(); }
   Int_t       GetPdgCode() const { return fParticle.GetPdgCode(); }
