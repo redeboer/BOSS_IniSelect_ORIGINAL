@@ -13,10 +13,10 @@ use ParticleID   ParticleID-*  Analysis
 
 use BesROOT      BesROOT-00-*     External
 
-use TrackSelector TrackSelector-* Analysis/IniSelect/Algorithms
+use IniSelect IniSelect-* Analysis
 
 apply_pattern component_library 
-library RhopiAlg TrackSelector *.cxx  components/*.cxx
-macro TrackSelector_linkopts " -lTrackSelector "
+library RhopiAlg IniSelect *.cxx  components/*.cxx
+macro IniSelect_linkopts " -lIniSelect "
 
 apply_pattern declare_runtime files=*.txt

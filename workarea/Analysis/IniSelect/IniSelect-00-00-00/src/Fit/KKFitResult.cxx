@@ -1,4 +1,4 @@
-#include "IniSelect/Containers/KKFitResult.h"
+#include "IniSelect/Fit/KKFitResult.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include <cmath>
 using CLHEP::HepLorentzVector;

@@ -5,8 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "TrackSelector/TrackSelector.h"
-#include "rhopi_pipigg/KKFitResult_rhopi_pipigg.h"
+#include "IniSelect/Fit/KKFitResult_rhopi_pipigg.h"
+#include "IniSelect/Algorithms/TrackSelector.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

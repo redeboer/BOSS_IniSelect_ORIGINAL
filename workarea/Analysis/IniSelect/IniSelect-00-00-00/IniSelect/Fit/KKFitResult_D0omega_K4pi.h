@@ -5,9 +5,9 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "IniSelect/Containers/KKFitResult.h"
+#include "IniSelect/Algorithms/TrackSelector.h"
+#include "IniSelect/Fit/KKFitResult.h"
 #include "McTruth/McParticle.h"
-#include "TrackSelector/TrackSelector.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

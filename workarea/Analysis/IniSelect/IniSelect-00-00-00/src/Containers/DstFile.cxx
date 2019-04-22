@@ -92,7 +92,7 @@ EvtRecTrack* DstFile::NextNeutralTrack()
 std::cout << "NextNeutralTrack" << std::endl;
   if(fNeutralIter == fEvtRecTrkCol->end()) return nullptr;
   ++fNeutralIter;
-  if(!(*fNeutralIter)->emcShower()()) NextNeutralTrack();
+  if(!(*fNeutralIter)->emcShower()) NextNeutralTrack();
   if(!(*fNeutralIter)->isEmcShowerValid()) NextNeutralTrack();
   return *fNeutralIter;
 }

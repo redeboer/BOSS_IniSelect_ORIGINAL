@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "D0phi_KpipiKK/D0phi_KpipiKK.h"
+#include "IniSelect/Algorithms/D0phi_KpipiKK.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"

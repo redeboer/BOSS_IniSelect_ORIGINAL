@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "D0phi_3K3pi/D0phi_3K3pi.h"
+#include "IniSelect/Algorithms/D0phi_KpiKK.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
@@ -27,12 +27,12 @@ using namespace TSGlobals;
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 
-/// Constructor for the `D0phi_3K3pi` algorithm, derived from `TrackSelector`.
+/// Constructor for the `D0phi_KpiKK` algorithm, derived from `TrackSelector`.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of
-/// `D0phi_3K3pi`), and if required a documentation string. Note that you should define the
-/// paramters themselves in the header (D0phi_3K3pi/D0phi_3K3pi.h) and that you should assign the
-/// values in `share/D0phi_3K3pi.txt`.
-D0phi_3K3pi::D0phi_3K3pi(const std::string& name, ISvcLocator* pSvcLocator) :
+/// `D0phi_KpiKK`), and if required a documentation string. Note that you should define the
+/// paramters themselves in the header (D0phi_KpiKK/D0phi_KpiKK.h) and that you should assign the
+/// values in `share/D0phi_KpiKK.txt`.
+D0phi_KpiKK::D0phi_KpiKK(const std::string& name, ISvcLocator* pSvcLocator) :
   /// * Construct base algorithm `TrackSelector`.
   TrackSelector(name, pSvcLocator),
   /// * Construct `NTuple::Tuple` containers used in derived classes.
@@ -49,9 +49,11 @@ D0phi_3K3pi::D0phi_3K3pi(const std::string& name, ISvcLocator* pSvcLocator) :
   fCutFlow_NPIDnumberOK("N_PID_OK",
                         "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
 {
-  PrintFunctionName("D0phi_3K3pi", __func__);
+  PrintFunctionName("D0phi_KpiKK", __func__);
   PostConstructor();
-  fCreateChargedCollection = true;
+  fCreateChargedCollection =
+    true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of
+          /// charged tracks is made. The neutral tracks are not necessary.
   fCreateNeutralCollection = false;
 }
 
@@ -63,9 +65,9 @@ D0phi_3K3pi::D0phi_3K3pi(const std::string& name, ISvcLocator* pSvcLocator) :
 /// This function is called only once, when the algorithm is initialised.
 /// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the
 /// `TrackSelector::initilize` step prior to this this method.
-StatusCode D0phi_3K3pi::initialize_rest()
+StatusCode D0phi_KpiKK::initialize_rest()
 {
-  PrintFunctionName("D0phi_3K3pi", __func__);
+  PrintFunctionName("D0phi_KpiKK", __func__);
   /// <ol type="A">
   /// <li> `"mult_select"`: Multiplicities of selected particles
   /// <ol>
@@ -92,15 +94,19 @@ StatusCode D0phi_3K3pi::initialize_rest()
   fNTuple_topology.AddItem<double>("pD0");
   fNTuple_topology.AddItem<double>("pphi");
 
+  fNTuple_topology.AddItem<double>("pK-1");
+  fNTuple_topology.AddItem<double>("pK-2");
+  fNTuple_topology.AddItem<double>("pK+");
+  fNTuple_topology.AddItem<double>("ppi+");
   /// </ol>
   return StatusCode::SUCCESS;
 }
 
 /// Inherited `execute` method of the `Algorithm`.
 /// This function is called *for each event*.
-StatusCode D0phi_3K3pi::execute_rest()
+StatusCode D0phi_KpiKK::execute_rest()
 {
-  PrintFunctionName("D0phi_3K3pi", __func__);
+  PrintFunctionName("D0phi_KpiKK", __func__);
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4
   /// charged tracks in total**.
@@ -146,14 +152,13 @@ StatusCode D0phi_3K3pi::execute_rest()
       // if(fPIDInstance->pdf(RecMdcKalTrack::pion) < fPIDInstance->pdf(RecMdcKalTrack::kaon))
       // continue; /// If, according to the likelihood method, the particle is still more likely to
       // be a kaon than a pion, the track is rejected.
-      if(fCut_PIDProb.FailsMin(fPIDInstance->probPion()))
-        continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at
-                  /// least `fCut_PIDProb_min` (see eventual settings in `D0phi_3K3pi.txt`).
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the
-                                                        /// `RecMdcKalTrack` object is set to pion
-      if(fTrackKal->charge() > 0)
-        fPionPos.push_back(
-          *fTrackIter); /// and the (positive) pion is added to the vector of pions.
+      if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue;
+      /// A cut is then applied on whether the probability to be a pion (or kaon) is at
+      /// least `fCut_PIDProb_min` (see eventual settings in `D0phi_KpiKK.txt`).
+      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+      /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
+      if(fTrackKal->charge() > 0) fPionPos.push_back(*fTrackIter);
+      /// and the (positive) pion is added to the vector of pions.
     }
     else
     {
@@ -182,12 +187,10 @@ StatusCode D0phi_3K3pi::execute_rest()
     fNTuple_mult_sel.Write();
   }
 
-  /// <li> **PID cut**: apply a strict cut on the number of the selected particles. Only:
-  /// <ol>
-  if(fKaonNeg.size() != 2) return StatusCode::SUCCESS; /// <li> 2 negative kaons
-  if(fKaonPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive kaon
-  if(fPionPos.size() != 1) return StatusCode::SUCCESS; /// <li> 1 positive pion
-  /// </ol>
+  /// <li> **PID cut**: apply a strict cut on the number of the selected particles.
+  if(fKaonNeg.size() != 2) return StatusCode::SUCCESS;
+  if(fKaonPos.size() != 1) return StatusCode::SUCCESS;
+  if(fPionPos.size() != 1) return StatusCode::SUCCESS;
   ++fCutFlow_NPIDnumberOK;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fEventHeader->runNumber()
        << ", " << fEventHeader->eventNumber() << ")" << endmsg;
@@ -202,44 +205,36 @@ StatusCode D0phi_3K3pi::execute_rest()
     for(fMcKaonNeg2Iter = fMcKaonNeg.begin(); fMcKaonNeg2Iter != fMcKaonNeg.end();
         ++fMcKaonNeg2Iter)
       for(fMcKaonPosIter = fMcKaonPos.begin(); fMcKaonPosIter != fMcKaonPos.end(); ++fMcKaonPosIter)
-        for(fMcPionNegIter = fMcPionPos.begin(); fMcPionNegIter != fMcPionPos.end();
-            ++fMcPionNegIter)
-          for(fMcPionPos1Iter = fMcPionPos.begin(); fMcPionPos1Iter != fMcPionPos.end();
-              ++fMcPionPos1Iter)
-            for(fMcPionPos2Iter = fMcPionPos.begin(); fMcPionPos2Iter != fMcPionPos.end();
-                ++fMcPionPos2Iter)
-            {
-              /// <ol>
-              /// <li> Only continue if the two kaons are different.
-              if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
-              if(fMcPionPos1Iter == fMcPionPos2Iter) continue;
-              /// <li> Check topology: only consider that combination which comes from \f$J/\psi
-              /// \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
-              if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-  (1st occurence)
-              if(!IsDecay(*fMcPionPos1Iter, 421, 211)) continue;  // D0  --> pi+ (1st occurence)
-              if(!IsDecay(*fMcPionNegIter, 421, -211)) continue;  // D0  --> pi-
-              if(!IsDecay(*fMcPionPos2Iter, 421, 211)) continue;  // D0  --> pi+ (2nd occurence)
-              if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-  (2nd occurence)
-              if(!IsDecay(*fMcKaonPosIter, 333, 321)) continue;   // phi --> K+
-              /// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed
-              /// from MC truth.
-              KKFitResult_D0phi_3K3pi fitresult(*fMcKaonNeg1Iter, *fMcKaonNeg2Iter, *fMcKaonPosIter,
-                                                *fMcPionNegIter, *fMcPionPos1Iter,
-                                                *fMcPionPos2Iter);
-              fitresult.SetRunAndEventNumber(fEventHeader);
-              WriteFitResults(&fitresult, fNTuple_fit_mc);
-              /// </ol>
-            }
+        for(fMcPionPosIter = fMcPionPos.begin(); fMcPionPosIter != fMcPionPos.end();
+            ++fMcPionPosIter)
+        {
+          /// <ol>
+          /// <li> Only continue if the two kaons are different.
+          if(fMcKaonNeg1Iter == fMcKaonNeg2Iter) continue;
+          /// <li> Check topology: only consider that combination which comes from \f$J/\psi
+          /// \rightarrow D^0\phi \rightarrow K^-\pi^+ K^-K^+\f$.
+          if(!IsDecay(*fMcKaonNeg1Iter, 421, -321)) continue; // D0  --> K-
+          if(!IsDecay(*fMcPionPosIter, 421, 211)) continue;   // D0  --> pi+
+          if(!IsDecay(*fMcKaonNeg2Iter, 333, -321)) continue; // phi --> K-
+          if(!IsDecay(*fMcKaonPosIter, 333, 321)) continue;   // phi --> K+
+          /// <li> Write 'fake' fit results, that is, momenta of the particles reconstructed from MC
+          /// truth.
+          KKFitResult_D0phi_KpiKK fitresult(*fMcKaonNeg1Iter, *fMcKaonNeg2Iter, *fMcKaonPosIter,
+                                            *fMcPionPosIter);
+          fitresult.SetRunAndEventNumber(fEventHeader);
+          WriteFitResults(&fitresult, fNTuple_fit_mc);
+          /// </ol>
+        }
 
   /// <li> Perform Kalman 4-constraint Kalman kinematic fit for all combinations and decide the
   /// combinations that results in the 'best' result. The 'best' result is defined as the
   /// combination that has the smallest value of: \f$m_{K^-K^+}-m_{\phi}\f$ (that is the combination
   /// for which the invariant mass of the \f$K^-\pi^+\f$ is closest to \f$\phi\f$). See
-  /// `D0phi_3K3pi::MeasureForBestFit` for the definition of this measure.
+  /// `D0phi_KpiKK::MeasureForBestFit` for the definition of this measure.
   if(fNTuple_fit4c_all.DoWrite() || fNTuple_fit4c_best.DoWrite())
   {
     // * Reset best fit parameters * //
-    KKFitResult_D0phi_3K3pi bestKalmanFit;
+    KKFitResult_D0phi_KpiKK bestKalmanFit;
     bestKalmanFit.ResetBestCompareValue();
     // * Loop over all combinations //
     bool printfit{true};
@@ -247,94 +242,79 @@ StatusCode D0phi_3K3pi::execute_rest()
     for(fKaonNeg1Iter = fKaonNeg.begin(); fKaonNeg1Iter != fKaonNeg.end(); ++fKaonNeg1Iter)
       for(fKaonNeg2Iter = fKaonNeg.begin(); fKaonNeg2Iter != fKaonNeg.end(); ++fKaonNeg2Iter)
         for(fKaonPosIter = fKaonPos.begin(); fKaonPosIter != fKaonPos.end(); ++fKaonPosIter)
-          for(fPionNegIter = fPionNeg.begin(); fPionNegIter != fPionNeg.end(); ++fPionNegIter)
-            for(fPionPos1Iter = fPionPos.begin(); fPionPos1Iter != fPionPos.end(); ++fPionPos1Iter)
-              for(fPionPos2Iter = fPionPos.begin(); fPionPos2Iter != fPionPos.end();
-                  ++fPionPos2Iter)
-              {
-                // * Only continue if we are not dealing with the same kaon
-                if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
-                fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
+          for(fPionPosIter = fPionPos.begin(); fPionPosIter != fPionPos.end(); ++fPionPosIter)
+          {
+            // * Only continue if we are not dealing with the same kaon
+            if(fKaonNeg1Iter == fKaonNeg2Iter) continue;
+            fLog << MSG::INFO << "  fitting combination " << count << "..." << endmsg;
 
-                // * Get Kalman tracks reconstructed by the MDC
-                RecMdcKalTrack* kalTrkKm1  = (*fKaonNeg1Iter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkKm2  = (*fKaonNeg2Iter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkKp   = (*fKaonPosIter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpim  = (*fPionNegIter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpip1 = (*fPionPos1Iter)->mdcKalTrack();
-                RecMdcKalTrack* kalTrkpip2 = (*fPionPos2Iter)->mdcKalTrack();
+            // * Get Kalman tracks reconstructed by the MDC
+            RecMdcKalTrack* kalTrkKm1 = (*fKaonNeg1Iter)->mdcKalTrack();
+            RecMdcKalTrack* kalTrkKm2 = (*fKaonNeg2Iter)->mdcKalTrack();
+            RecMdcKalTrack* kalTrkKp  = (*fKaonPosIter)->mdcKalTrack();
+            RecMdcKalTrack* kalTrkpip = (*fPionPosIter)->mdcKalTrack();
 
-                // * Get W-tracks
-                WTrackParameter wvKmTrk1(Mass::K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
-                WTrackParameter wvKmTrk2(Mass::K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
-                WTrackParameter wvKpTrk(Mass::K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
-                WTrackParameter wvpimTrk(Mass::pi, kalTrkpim->getZHelix(), kalTrkpim->getZError());
-                WTrackParameter wvpipTrk1(Mass::pi, kalTrkpip1->getZHelix(),
-                                          kalTrkpip1->getZError());
-                WTrackParameter wvpipTrk2(Mass::pi, kalTrkpip2->getZHelix(),
-                                          kalTrkpip2->getZError());
+            // * Get W-tracks
+            WTrackParameter wvKmTrk1(Mass::K, kalTrkKm1->getZHelix(), kalTrkKm1->getZError());
+            WTrackParameter wvKmTrk2(Mass::K, kalTrkKm2->getZHelix(), kalTrkKm2->getZError());
+            WTrackParameter wvKpTrk(Mass::K, kalTrkKp->getZHelix(), kalTrkKp->getZError());
+            WTrackParameter wvpipTrk(Mass::pi, kalTrkpip->getZHelix(), kalTrkpip->getZError());
 
-                // * Initiate vertex fit * //
-                HepPoint3D   vx(0., 0., 0.);
-                HepSymMatrix Evx(3, 0);
-                double       bx = 1E+6;
-                double       by = 1E+6;
-                double       bz = 1E+6;
-                Evx[0][0]       = bx * bx;
-                Evx[1][1]       = by * by;
-                Evx[2][2]       = bz * bz;
-                VertexParameter vxpar;
-                vxpar.setVx(vx);
-                vxpar.setEvx(Evx);
+            // * Initiate vertex fit * //
+            HepPoint3D   vx(0., 0., 0.);
+            HepSymMatrix Evx(3, 0);
+            double       bx = 1E+6;
+            double       by = 1E+6;
+            double       bz = 1E+6;
+            Evx[0][0]       = bx * bx;
+            Evx[1][1]       = by * by;
+            Evx[2][2]       = bz * bz;
+            VertexParameter vxpar;
+            vxpar.setVx(vx);
+            vxpar.setEvx(Evx);
 
-                // * Test vertex fit * //
-                VertexFit* vtxfit = VertexFit::instance();
-                vtxfit->init();
-                vtxfit->AddTrack(0, wvKmTrk1);
-                vtxfit->AddTrack(1, wvKmTrk2);
-                vtxfit->AddTrack(2, wvKpTrk);
-                vtxfit->AddTrack(3, wvpimTrk);
-                vtxfit->AddTrack(4, wvpipTrk1);
-                vtxfit->AddTrack(5, wvpipTrk2);
-                vtxfit->AddVertex(0, vxpar, 0, 1);
-                if(!vtxfit->Fit(0))
-                {
-                  fLog << MSG::WARNING << "vertex fit failed" << endmsg;
-                  continue;
-                }
-                vtxfit->Swim(0);
+            // * Test vertex fit * //
+            VertexFit* vtxfit = VertexFit::instance();
+            vtxfit->init();
+            vtxfit->AddTrack(0, wvKmTrk1);
+            vtxfit->AddTrack(1, wvKmTrk2);
+            vtxfit->AddTrack(2, wvKpTrk);
+            vtxfit->AddTrack(3, wvpipTrk);
+            vtxfit->AddVertex(0, vxpar, 0, 1);
+            if(!vtxfit->Fit(0))
+            {
+              fLog << MSG::WARNING << "vertex fit failed" << endmsg;
+              continue;
+            }
+            vtxfit->Swim(0);
 
-                // * Get Kalman kinematic fit for this combination and store if better than previous
-                // one
-                KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
-                kkmfit->init();
-                kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
-                kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
-                kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
-                kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi-
-                kkmfit->AddTrack(4, vtxfit->wtrk(4)); // pi+ (1st occurrence)
-                kkmfit->AddTrack(5, vtxfit->wtrk(5)); // pi+ (2nd occurrence)
-                kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
-                if(kkmfit->Fit())
-                {
-                  /// <ol>
-                  /// <li> Construct fit result object for this combintation.
-                  KKFitResult_D0phi_3K3pi fitresult(kkmfit);
-                  fitresult.SetRunAndEventNumber(fEventHeader);
-                  /// <li> @b Write results of the Kalman kinematic fit (all combinations,
-                  /// `"fit4c_all"`).
-                  WriteFitResults(&fitresult, fNTuple_fit4c_all);
-                  /// <li> Decide if this fit is better than the previous.
-                  if(fitresult.IsBetter()) bestKalmanFit = fitresult;
-                  /// </ol>
-                }
-                else if(printfit)
-                {
-                  fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
-                  printfit = false;
-                }
-                ++count;
-              }
+            // * Get Kalman kinematic fit for this combination and store if better than previous one
+            KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
+            kkmfit->init();
+            kkmfit->AddTrack(0, vtxfit->wtrk(0)); // K- (1st occurrence)
+            kkmfit->AddTrack(1, vtxfit->wtrk(1)); // K- (2nd occurrence)
+            kkmfit->AddTrack(2, vtxfit->wtrk(2)); // K+
+            kkmfit->AddTrack(3, vtxfit->wtrk(3)); // pi+
+            kkmfit->AddFourMomentum(0, gEcmsVec); // 4 constraints: CMS energy and 3-momentum
+            if(kkmfit->Fit())
+            {
+              /// <ol>
+              /// <li> Construct fit result object for this combintation.
+              KKFitResult_D0phi_KpiKK fitresult(kkmfit);
+              /// <li> @b Write results of the Kalman kinematic fit (all combinations,
+              /// `"fit4c_all"`).
+              WriteFitResults(&fitresult, fNTuple_fit4c_all);
+              /// <li> Decide if this fit is better than the previous.
+              if(fitresult.IsBetter()) bestKalmanFit = fitresult;
+              /// </ol>
+            }
+            else if(printfit)
+            {
+              fLog << MSG::INFO << "  fit failed: chisq = " << kkmfit->chisq() << endmsg;
+              printfit = false;
+            }
+            ++count;
+          }
     /// After loop over combintations:
     /// @b Write results of the Kalman kitematic fit *of the best combination* (`"fit4c_best"`
     /// branches).
@@ -358,6 +338,11 @@ StatusCode D0phi_3K3pi::execute_rest()
       fNTuple_topology.GetItem<double>("mphi") = bestKalmanFit.fM_phi;
       fNTuple_topology.GetItem<double>("pD0")  = bestKalmanFit.fP_D0;
       fNTuple_topology.GetItem<double>("pphi") = bestKalmanFit.fP_phi;
+
+      fNTuple_topology.GetItem<double>("pK-1") = bestKalmanFit.fP_Km1;
+      fNTuple_topology.GetItem<double>("pK-2") = bestKalmanFit.fP_Km2;
+      fNTuple_topology.GetItem<double>("pK+")  = bestKalmanFit.fP_Kp;
+      fNTuple_topology.GetItem<double>("ppi+") = bestKalmanFit.fP_pip;
       WriteMCTruthForTopoAna(fNTuple_topology);
     }
   }
@@ -368,9 +353,9 @@ StatusCode D0phi_3K3pi::execute_rest()
 
 /// Currently does nothing.
 /// See `TrackSelector::finalize` for what else is done when finalising.
-StatusCode D0phi_3K3pi::finalize_rest()
+StatusCode D0phi_KpiKK::finalize_rest()
 {
-  PrintFunctionName("D0phi_3K3pi", __func__);
+  PrintFunctionName("D0phi_KpiKK", __func__);
   return StatusCode::SUCCESS;
 }
 
@@ -379,7 +364,7 @@ StatusCode D0phi_3K3pi::finalize_rest()
 // * ============================== * //
 
 /// This function encapsulates the `addItem` procedure for the fit branches.
-void D0phi_3K3pi::AddNTupleItems_Fit(NTupleContainer& tuple)
+void D0phi_KpiKK::AddNTupleItems_Fit(NTupleContainer& tuple)
 {
   if(!tuple.DoWrite()) return;
   tuple.AddItem<double>("mD0");  /// * `"mD0"`:   Invariant mass for \f$K^- \pi^+\f$ (\f$D^0\f$).
@@ -391,12 +376,17 @@ void D0phi_3K3pi::AddNTupleItems_Fit(NTupleContainer& tuple)
   tuple.AddItem<double>("pphi"); /// * `"pphi"`:  3-momentum mass for the combination \f$K^+ K^+ \f$
                                  /// (\f$\phi\f$ candidate).
   tuple.AddItem<double>("chisq"); /// * `"chisq"`: \f$\chi^2\f$ of the Kalman kinematic fit.
+
+  tuple.AddItem<double>("pK-1");
+  tuple.AddItem<double>("pK-2");
+  tuple.AddItem<double>("pK+");
+  tuple.AddItem<double>("ppi+");
 }
 
 /// Specification of `TrackSelector::CreateMCTruthSelection`.
 /// Create selection of MC truth particles by looping over the collection of MC particles created by
 /// `TrackSelector::CreateMCTruthCollection()`.
-void D0phi_3K3pi::CreateMCTruthSelection()
+void D0phi_KpiKK::CreateMCTruthSelection()
 {
   /// -# @b Abort if input file is not from a Monte Carlo simulation (that is, if the run number is
   /// not negative).
@@ -425,12 +415,12 @@ void D0phi_3K3pi::CreateMCTruthSelection()
 
 /// Specification of what should be written to the fit `NTuple`.
 /// This function is called in `TrackSelector::WriteFitResults`.
-void D0phi_3K3pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
+void D0phi_KpiKK::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
 {
   /// -# Convert to the derived object of `KKFitResult` designed for this package. @remark This cast
   /// is required and cannot be solved using virtual methods, because of the specific structure of
   /// each analysis.
-  KKFitResult_D0phi_3K3pi* fit = dynamic_cast<KKFitResult_D0phi_3K3pi*>(fitresults);
+  KKFitResult_D0phi_KpiKK* fit = dynamic_cast<KKFitResult_D0phi_KpiKK*>(fitresults);
 
   /// -# @warning Terminate if cast failed.
   if(!fit)
@@ -446,4 +436,9 @@ void D0phi_3K3pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   tuple.GetItem<double>("pD0")   = fit->fP_D0;
   tuple.GetItem<double>("pphi")  = fit->fP_phi;
   tuple.GetItem<double>("chisq") = fit->fChiSquared;
+
+  tuple.GetItem<double>("pK-1") = fit->fP_Km1;
+  tuple.GetItem<double>("pK-2") = fit->fP_Km2;
+  tuple.GetItem<double>("pK+")  = fit->fP_Kp;
+  tuple.GetItem<double>("ppi+") = fit->fP_pip;
 }

@@ -1,4 +1,4 @@
-#include "TrackSelector/TrackSelector.h"
+#include "IniSelect/Algorithms/TrackSelector.h"
 
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"

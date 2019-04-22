@@ -10,8 +10,8 @@
 
 // * ------- ROOT input data file (rec or dst) ------- * //
 EventCnvSvc.digiRootInputFile = {
-	"/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/input/excl/D0omega_K4pi.dst"
-	// "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/input/incl_2009.dst"
+	"/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/input/excl/D0omega_K4pi.dst"
+	// "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/input/incl_2009.dst"
 };
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
@@ -25,4 +25,4 @@ ApplicationMgr.EvtMax = 100;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";
-NTupleSvc.Output = { "FILE1 DATAFILE='/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/output/D0omega_K4pi.root' OPT='NEW' TYP='ROOT'"};
+NTupleSvc.Output = { "FILE1 DATAFILE='/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/output/D0omega_K4pi.root' OPT='NEW' TYP='ROOT'"};

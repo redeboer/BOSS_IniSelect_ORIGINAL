@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "D0omega_K4pi/D0omega_K4pi.h"
+#include "IniSelect/Algorithms/D0omega_K4pi.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Globals/Exception.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"

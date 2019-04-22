@@ -5,8 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "D0omega_K4pi/KKFitResult_D0omega_K4pi.h"
-#include "TrackSelector/TrackSelector.h"
+#include "IniSelect/Algorithms/TrackSelector.h"
+#include "IniSelect/Fit/KKFitResult_D0omega_K4pi.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

@@ -5,8 +5,8 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "D0phi_KpipiKK/KKFitResult_D0phi_KpipiKK.h"
-#include "TrackSelector/TrackSelector.h"
+#include "IniSelect/Algorithms/TrackSelector.h"
+#include "IniSelect/Fit/KKFitResult_D0phi_KpipiKK.h"
 
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //

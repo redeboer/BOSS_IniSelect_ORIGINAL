@@ -2,7 +2,7 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "rhopi_pipigg/rhopi_pipigg.h"
+#include "IniSelect/Algorithms/rhopi_pipigg.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"

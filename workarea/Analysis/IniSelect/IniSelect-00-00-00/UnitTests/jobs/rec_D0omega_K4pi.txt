@@ -46,10 +46,10 @@ MessageSvc.OutputLevel = 4;
 MessageSvc.useColors   = false;
 
 // * ------- ROOT input data file (rtraw) ------- * //
-EventCnvSvc.digiRootInputFile = {"/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/excl/D0omega_K4pi.rtraw"};
+EventCnvSvc.digiRootInputFile = {"/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/input/excl/D0omega_K4pi.rtraw"};
 
 // * ------- ROOT output data file (dst) ------- * //
-EventCnvSvc.digiRootOutputFile ="/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/excl/D0omega_K4pi_new.dst";
+EventCnvSvc.digiRootOutputFile ="/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/input/excl/D0omega_K4pi_new.dst";
 
 // * ------- Number of events ------- * //
 /// Number of events to be processed (-1 stands for all events)

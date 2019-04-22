@@ -36,7 +36,7 @@ RealizationSvc.RunIdList = {-27255,0,-28236}; /// For the `RealizationSvc.RunIdL
 
 // * ------- ROOT output data file (rtraw) ------- * //
 #include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
-RootCnvSvc.digiRootOutputFile = "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect/IniSelect-00-00-00/UnitTests/data/excl/D0omega_K4pi.rtraw";
+RootCnvSvc.digiRootOutputFile = "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/input/excl/D0omega_K4pi.rtraw";
 
 // * ------- OUTPUT PRINTOUT LEVEL ------- * //
 /// Set output level threshold: 2=DEBUG, 3=INFO, 4=WARNING, 5=ERROR, 6=FATAL
