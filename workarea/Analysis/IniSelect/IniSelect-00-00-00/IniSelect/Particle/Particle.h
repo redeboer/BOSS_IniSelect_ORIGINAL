@@ -1,7 +1,7 @@
 #ifndef Analysis_IniSelect_Particle_H
 #define Analysis_IniSelect_Particle_H
 
-#include "IniSelect/Particle/ParticleDatabase.h"
+#include "MdcRecoUtil/PdtEntry.h"
 #include "TString.h"
 
 /// @todo Would be better to work with CERN ROOT's `TDatabasePDG`, but this is not included in the BOSS libraries...
@@ -14,11 +14,7 @@ class Particle
 {
 public:
   Particle() {}
-  Particle(const TString& pdtName) { Set(pdtName); }
-  Particle(const Int_t pdgCode) { Set(pdgCode); }
-
-  void Set(const TString& pdtName);
-  void Set(const Int_t pdgCode);
+  Particle(PdtEntry* entry) { Set(entry); }
 
   void Print() const;
 
@@ -38,8 +34,6 @@ private:
   Float_t fSpin;
 
   void Set(PdtEntry* particle);
-
-  static const ParticleDatabase* fDatabase;
 };
 /// @}
 #endif

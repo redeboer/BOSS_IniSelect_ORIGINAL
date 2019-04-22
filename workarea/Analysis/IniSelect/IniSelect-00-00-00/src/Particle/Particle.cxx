@@ -2,19 +2,6 @@
 #include <iostream>
 using namespace std;
 
-const ParticleDatabase* fDatabase = ParticleDatabase::Instance();
-
-void Particle::Set(const TString& pdtName)
-{
-  /// See names in the PDT table: `/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table`.
-  Set(fDatabase->GetParticle(pdtName.Data()));
-}
-
-void Particle::Set(const Int_t pdgCode)
-{
-  Set(fDatabase->GetParticle(pdgCode));
-}
-
 void Particle::Set(PdtEntry* particle)
 {
   fName     = particle->name();

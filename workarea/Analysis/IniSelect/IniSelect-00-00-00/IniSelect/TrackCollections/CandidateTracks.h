@@ -2,7 +2,7 @@
 #define Analysis_IniSelect_CandidateTracks_H
 
 #include "IniSelect/Globals/CombinationShuffler.h"
-#include "IniSelect/Particle/Particle.h"
+#include "IniSelect/Particle/ParticleDatabase.h"
 #include "TString.h"
 #include <vector>
 
@@ -22,13 +22,9 @@ public:
   {}
 
   void Clear() { fTrackColl.clear(); }
-  void AddTrack(T* track) { 
-std::cout << "hiero1!" << std::endl;
-    fTrackColl.push_back(track);
-std::cout << "hiero2!" << std::endl;
- }
+  void AddTrack(T* track) { fTrackColl.push_back(track); }
   void SetNParticles(const short nparticles) { fNParticles = nparticles; }
-  void SetParticle(const TString& pdtName) { fParticle = Particle(pdtName); }
+  void SetParticle(const TString& pdtName) { fParticle = ParticleDatabase::GetParticle(pdtName); }
 
   void SetMultCut_EqualTo() { fMultiplicityCut = EqualTo; }
   void SetMultCut_AtLeast() { fMultiplicityCut = AtLeast; };

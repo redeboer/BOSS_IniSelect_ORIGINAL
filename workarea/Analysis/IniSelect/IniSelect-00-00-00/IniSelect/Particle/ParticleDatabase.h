@@ -2,6 +2,7 @@
 #define Analysis_IniSelect_ParticleDatabase_H
 
 #include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Particle/Particle.h"
 #include "MdcRecoUtil/PdtEntry.h"
 #include <iostream>
 #include <sstream>
@@ -20,8 +21,8 @@ class ParticleDatabase
 public:
   static const ParticleDatabase* Instance();
 
-  static PdtEntry* GetParticle(const std::string& pdtName);
-  static PdtEntry* GetParticle(const int pdgCode);
+  static Particle GetParticle(const std::string& pdtName);
+  static Particle GetParticle(const int pdgCode);
 
 private:
   static const ParticleDatabase* fUniqueInstance;

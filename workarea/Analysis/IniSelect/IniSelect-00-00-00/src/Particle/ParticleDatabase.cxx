@@ -1,5 +1,6 @@
 #include "IniSelect/Particle/ParticleDatabase.h"
 #include "IniSelect/Globals.h"
+#include "IniSelect/Globals/Exception.h"
 #include "MdcRecoUtil/Pdt.h"
 #include "MdcRecoUtil/PdtPdg.h"
 #include "TString.h"
@@ -27,16 +28,17 @@ const ParticleDatabase* ParticleDatabase::Instance()
   return fUniqueInstance;
 }
 
-PdtEntry* ParticleDatabase::GetParticle(const std::string& pdtName)
+Particle ParticleDatabase::GetParticle(const std::string& pdtName)
 {
+  /// See names in the PDT table: `/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table`.
   PdtEntry* particle = Pdt::lookup(pdtName);
-  if(particle) return particle;
-  ThrowNoParticleException(pdtName);
+  if(!particle) ThrowNoParticleException(pdtName);
+  return Particle(particle);
 }
 
-PdtEntry* ParticleDatabase::GetParticle(const int pdgCode)
+Particle ParticleDatabase::GetParticle(const int pdgCode)
 {
   PdtEntry* particle = Pdt::lookup(static_cast<PdtPdg::PdgType>(pdgCode));
-  if(particle) return particle;
-  ThrowNoParticleException(pdgCode);
+  if(!particle) ThrowNoParticleException(pdgCode);
+  return Particle(particle);
 }
