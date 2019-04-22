@@ -37,8 +37,7 @@ StatusCode TrackSelector::initialize()
 /// @remark In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format `PrintFunctionName("<class name>", __func__)`.
 void TrackSelector::PrintFunctionName(const char* class_name, const char* function_name)
 {
-  fLog << MSG::DEBUG << "\n\n\n\n===>> " << class_name << "::" << function_name << " <<===\n"
-       << endmsg;
+  fLog << MSG::DEBUG << "===>> " << class_name << "::" << function_name << " <<===" << endmsg;
 }
 
 /// Method that has to be called before anything can be done in the `initialize` step.

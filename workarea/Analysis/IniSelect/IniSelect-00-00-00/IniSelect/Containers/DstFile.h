@@ -58,11 +58,12 @@ template <class T>
 class DstFileIter_base
 {
 public:
-  DstFileIter_base(DstFile& file) : fFile(&file) {}
+  DstFileIter_base(DstFile& file) : fFile(&file), fIsIterMode(false) {}
   virtual T* Next() = 0;
 
 protected:
   DstFile* fFile;
+  bool     fIsIterMode;
 };
 
 class ChargedTrackIter : public DstFileIter_base<EvtRecTrack>

@@ -55,7 +55,7 @@ void TrackSelector::PrintEventInfo()
 
 void TrackSelector::SetVertexOrigin()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   IVertexDbSvc* vtxsvc;
   Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
   if(!vtxsvc->isVertexValid()) return;
@@ -68,7 +68,7 @@ void TrackSelector::SetVertexOrigin()
 /// This method is used in `TrackSelector::execute` only. See `fChargedTracks` for more information.
 void TrackSelector::CreateChargedCollection()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
   fNetChargeMDC      = 0;
@@ -218,14 +218,15 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
 /// This method is used in `TrackSelector::execute` only. See `fNeutralTracks` for more information.
 void TrackSelector::CreateNeutralCollection()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   if(!fCreateNeutralCollection) return;
   fNeutralTracks.clear();
   NeutralTrackIter iter(fInputFile);
   while(EvtRecTrack* track = iter.Next())
   {
+    if(!track->isEmcShowerValid()) continue;
+    if(!track->emcShower()) continue;
     fTrackEMC = track->emcShower();
-    if(!fTrackEMC) continue;
     if(fCut_PhotonEnergy.FailsMin(fTrackEMC->energy())) continue;
     if(fNTuple_neutral.DoWrite())
     {
@@ -245,7 +246,7 @@ void TrackSelector::CreateNeutralCollection()
 
 void TrackSelector::WriteMultiplicities()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   if(!fNTuple_mult.DoWrite()) return;
   fNTuple_mult.GetItem<int>("Ntotal")   = fInputFile.TotalTracks();
   fNTuple_mult.GetItem<int>("Ncharge")  = fInputFile.TotalChargedTracks();
@@ -293,7 +294,7 @@ void TrackSelector::CutPID()
 void TrackSelector::WriteVertexInfo()
 {
   /// **Write** information about the interaction point (`"vertex"` branch).
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   if(!fNTuple_vertex.DoWrite()) return;
   fNTuple_vertex.GetItem<double>("vx0") = fVertexPoint.x();
   fNTuple_vertex.GetItem<double>("vy0") = fVertexPoint.y();
@@ -303,14 +304,14 @@ void TrackSelector::WriteVertexInfo()
 
 void TrackSelector::CutNumberOfChargedParticles()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 }
 
 void TrackSelector::CreateChargedTrackSelections()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   ParticleIdentifier::Initialize();
   ConfigurePID();
 
@@ -333,7 +334,7 @@ void TrackSelector::CreateChargedTrackSelections()
 
 void TrackSelector::CreateNeutralTrackSelections()
 {
-  fLog << MSG::DEBUG << __func__ << endmsg;
+  PrintFunctionName("TrackSelector", __func__);
   fParticleSel.ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {

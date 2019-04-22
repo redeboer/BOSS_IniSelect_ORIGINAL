@@ -2,8 +2,6 @@
 #include "IniSelect/Globals/Exception.h"
 using namespace IniSelect::Error;
 
-#include <iostream>
-
 const char* gHeaderName = "/Event/EventHeader";
 const char* gMcColName  = "/Event/MC/McParticleCol";
 
@@ -51,7 +49,7 @@ McTrackIter::McTrackIter(DstFile& file) : DstFileIter_base(file)
   fIter = fFile->fMcParticleCol->begin();
 }
 
-ChargedTrackIter::ChargedTrackIter(DstFile& file) : DstFileIter_base(file)
+ChargedTrackIter::ChargedTrackIter(DstFile& file) : DstFileIter_base(file), fIndex(0)
 {
   fIter = fFile->fEvtRecTrkCol->begin();
 }
@@ -63,17 +61,24 @@ NeutralTrackIter::NeutralTrackIter(DstFile& file) : DstFileIter_base(file)
 
 Event::McParticle* McTrackIter::Next()
 {
-  ++fIter;
   if(fIter == fFile->fMcParticleCol->end()) return nullptr;
+  if(fIsIterMode) ++fIter;
+  else fIsIterMode = true;
   return *fIter;
 }
 
 EvtRecTrack* ChargedTrackIter::Next()
 {
   if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
-  ++fIter;
-  ++fIndex;
+  if(fIsIterMode)
+  {
+    ++fIter;
+    ++fIndex;
+  }
+  else
+    fIsIterMode = true;
   if(fIndex >= fFile->TotalChargedTracks()) return nullptr;
+  if(!(*fIter)) Next();
   if(!(*fIter)->isMdcTrackValid()) Next();
   ++fFile->fCumulativeNMdcValid;
   return *fIter;
@@ -81,10 +86,8 @@ EvtRecTrack* ChargedTrackIter::Next()
 
 EvtRecTrack* NeutralTrackIter::Next()
 {
-  std::cout << "NextNeutralTrack" << std::endl;
   if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
-  ++fIter;
-  if(!(*fIter)->emcShower()) Next();
-  if(!(*fIter)->isEmcShowerValid()) Next();
+  if(fIsIterMode) ++fIter;
+  else fIsIterMode = true;
   return *fIter;
 }
