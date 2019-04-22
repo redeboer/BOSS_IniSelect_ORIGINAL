@@ -13,9 +13,9 @@ public:
   virtual StatusCode finalize();
 
 protected:
-  virtual StatusCode TestInitialize() = 0;
-  virtual StatusCode TestExecute()    = 0;
-  virtual StatusCode TestFinalize()   = 0;
+  virtual void TestInitialize() = 0;
+  virtual void TestExecute()    = 0;
+  virtual void TestFinalize()   = 0;
 };
 
 #endif

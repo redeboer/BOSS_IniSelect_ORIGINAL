@@ -2,6 +2,8 @@
 #include "IniSelect/Globals/Exception.h"
 using namespace IniSelect::Error;
 
+#include <iostream>
+
 const char* gHeaderName = "/Event/EventHeader";
 const char* gMcColName  = "/Event/MC/McParticleCol";
 
@@ -21,7 +23,7 @@ DstFile::DstFile(IDataProviderSvc* dataProvider) :
     throw Exception("FATAL ERROR: could not load data provider service (Algorithm::eventSvc)");
 }
 
-void DstFile::LoadHeaders()
+void DstFile::LoadNextEvent()
 {
   /// Load headers, event, and track collection from the DST input file.
   /// For more info see:
@@ -32,12 +34,8 @@ void DstFile::LoadHeaders()
   fEventHeader  = SmartDataPtr<Event::EventHeader>(fDataProvider, gHeaderName);
   fEvtRecEvent  = SmartDataPtr<EvtRecEvent>(fDataProvider, EventModel::EvtRec::EvtRecEvent);
   fEvtRecTrkCol = SmartDataPtr<EvtRecTrackCol>(fDataProvider, EventModel::EvtRec::EvtRecTrackCol);
-}
-
-bool DstFile::LoadMcCollection()
-{
-  fMcParticleCol = SmartDataPtr<Event::McParticleCol>(fDataProvider, "/Event/MC/McParticleCol");
-  return fMcParticleCol;
+  fMcParticleCol = SmartDataPtr<Event::McParticleCol>(fDataProvider, gMcColName);
+  IncrementCounters();
 }
 
 void DstFile::IncrementCounters()

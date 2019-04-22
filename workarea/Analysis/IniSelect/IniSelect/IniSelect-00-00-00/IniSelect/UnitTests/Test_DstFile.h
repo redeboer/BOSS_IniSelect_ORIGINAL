@@ -9,9 +9,9 @@ class Test_DstFile : public UnitTester
 public:
   Test_DstFile(const std::string& name, ISvcLocator* pSvcLocator);
 
-  StatusCode TestInitialize();
-  StatusCode TestExecute();
-  StatusCode TestFinalize();
+  void TestInitialize();
+  void TestExecute();
+  void TestFinalize();
 
 private:
   DstFile fInputFile;

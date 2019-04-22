@@ -20,8 +20,7 @@ class DstFile
 public:
   DstFile(IDataProviderSvc* dataProvider);
 
-  void LoadHeaders();
-  bool LoadMcCollection();
+  void LoadNextEvent();
 
   int TotalChargedTracks() { return fEvtRecEvent->totalCharged(); }
   int TotalNeutralTracks() { return fEvtRecEvent->totalNeutral(); }
@@ -30,8 +29,8 @@ public:
   void IncrementCounters();
 
   bool IsMonteCarlo() { return fEventHeader->runNumber() < 0; }
-  int  RunNumber() { fEventHeader->runNumber(); }
-  int  EventNumber() { fEventHeader->eventNumber(); }
+  int  RunNumber() { return fEventHeader->runNumber(); }
+  int  EventNumber() { return fEventHeader->eventNumber(); }
 
   Event::McParticle* FirstMcTrack();
   EvtRecTrack*       FirstChargedTrack();

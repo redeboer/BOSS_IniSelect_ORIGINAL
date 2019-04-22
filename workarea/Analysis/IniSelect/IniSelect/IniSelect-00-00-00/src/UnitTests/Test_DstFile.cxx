@@ -5,20 +5,16 @@ Test_DstFile::Test_DstFile(const std::string& name, ISvcLocator* pSvcLocator) :
   UnitTester(name, pSvcLocator), fInputFile(eventSvc())
 {}
 
-StatusCode Test_DstFile::TestInitialize()
+void Test_DstFile::TestInitialize()
 {
-  return StatusCode::SUCCESS;
 }
 
-StatusCode Test_DstFile::TestExecute()
+void Test_DstFile::TestExecute()
 {
-  fInputFile.LoadHeaders();
-  printf("run %10d, event %10d\n", fInputFile.RunNumber(), fInputFile.EventNumber());
-  fInputFile.IncrementCounters();
-  return StatusCode::SUCCESS;
+  fInputFile.LoadNextEvent();
+  printf("run %8d, event %4d\n", fInputFile.RunNumber(), fInputFile.EventNumber());
 }
 
-StatusCode Test_DstFile::TestFinalize()
+void Test_DstFile::TestFinalize()
 {
-  return StatusCode::SUCCESS;
 }
