@@ -115,7 +115,7 @@
 		fi
 	}
 	export AttemptToExecute
-	function cmtbroadcast()
+	function cdcmt()
 	{
 		# * Attempt to move to last cmt folder
 		local currentPath="$(pwd)"
@@ -127,6 +127,12 @@
 			fi
 			cd "${cmtFolder}"
 		fi
+	}
+	export cdcmt
+	function cmtbroadcast()
+	{
+		cdcmt
+		local currentPath="$(pwd)"
 		# * Print package and version name
 		echo
 		echo "=================================="
@@ -150,16 +156,8 @@
 	export cmtbroadcast
 	function cmtconfig()
 	{
-		# * Attempt to move to last cmt folder
+		cdcmt
 		local currentPath="$(pwd)"
-		if [ "$(basename "${currentPath}")" != "cmt" ]; then
-			local cmtFolder="$(find -name cmt | head -1)"
-			if [ "${cmtFolder}" == "" ]; then
-				echo "ERROR: no cmt folder available!"
-				return 1
-			fi
-			cd "${cmtFolder}"
-		fi
 		# * Print package and version name
 		echo; echo
 		echo "====================================="
@@ -179,3 +177,20 @@
 		return 0
 	}
 	export cmtconfig
+	function cmtmake()
+	{
+		cdcmt
+		local currentPath="$(pwd)"
+		# * Print package and version name
+		echo; echo
+		echo "====================================="
+		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "====================================="
+		# * Build executables
+		AttemptToExecute "make"
+		if [ $? != 0 ]; then return 1; fi
+		# * Move back to original path
+		cd "${currentPath}"
+		return 0
+	}
+	export cmtmake

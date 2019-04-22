@@ -45,6 +45,7 @@ void DstFile::IncrementCounters()
   fCumulativeNCharged += TotalNeutralTracks();
   fCumulativeNNeutral += TotalTracks();
 }
+
 Event::McParticle* DstFile::FirstMcTrack()
 {
   fMcIter = fMcParticleCol->begin();
@@ -75,9 +76,9 @@ Event::McParticle* DstFile::NextMcTrack()
 
 EvtRecTrack* DstFile::NextChargedTrack()
 {
+  if(fChargedIter == fEvtRecTrkCol->end()) return nullptr;
   ++fChargedIter;
   ++fIndex;
-  if(fChargedIter == fEvtRecTrkCol->end()) return nullptr;
   if(fIndex >= TotalChargedTracks()) return nullptr;
   if((*fChargedIter)->isMdcTrackValid())
     ++fCumulativeNMdcValid;
@@ -88,8 +89,10 @@ EvtRecTrack* DstFile::NextChargedTrack()
 
 EvtRecTrack* DstFile::NextNeutralTrack()
 {
-  ++fNeutralIter;
+std::cout << "NextNeutralTrack" << std::endl;
   if(fNeutralIter == fEvtRecTrkCol->end()) return nullptr;
+  ++fNeutralIter;
+  if(!(*fNeutralIter)->emcShower()()) NextNeutralTrack();
   if(!(*fNeutralIter)->isEmcShowerValid()) NextNeutralTrack();
   return *fNeutralIter;
 }

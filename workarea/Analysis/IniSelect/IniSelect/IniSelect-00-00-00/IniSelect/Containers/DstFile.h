@@ -26,8 +26,6 @@ public:
   int TotalNeutralTracks() { return fEvtRecEvent->totalNeutral(); }
   int TotalTracks() { return fEvtRecEvent->totalTracks(); }
 
-  void IncrementCounters();
-
   bool IsMonteCarlo() { return fEventHeader->runNumber() < 0; }
   int  RunNumber() { return fEventHeader->runNumber(); }
   int  EventNumber() { return fEventHeader->eventNumber(); }
@@ -57,6 +55,8 @@ private:
   CutObject fCumulativeNCharged;
   CutObject fCumulativeNNeutral;
   CutObject fCumulativeNMdcValid;
+
+  void IncrementCounters();
 };
 /// @}
 #endif

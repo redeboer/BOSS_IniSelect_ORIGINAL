@@ -15,8 +15,8 @@ fi
 clear && \
 cd "${IniSelectObjects}" && \
 cd cmt && \
-cmt config && \
+# cmt config && \
 make && \
-source setup.sh && \
+# source setup.sh && \
 cd "${IniSelectObjects}" && \
 boss.exe "UnitTests/jobs/job_${TestName}.txt"

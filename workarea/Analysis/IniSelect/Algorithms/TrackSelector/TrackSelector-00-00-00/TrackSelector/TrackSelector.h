@@ -84,20 +84,22 @@ protected:
 
   /// @name Helper methods for execute step
   ///@{
-  void             PrintEventInfo();
-  void             SetVertexOrigin();
-  void             CreateCollections();
-  void             CreateChargedCollection();
-  bool             CutSecondaryVertex();
-  void             WriteChargedTrackVertex();
-  void             WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
-  void             WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
-  void             CreateNeutralCollection();
-  void             WriteMultiplicities();
-  void             PrintMultiplicities();
-  void             CutPID();
-  void             WriteVertexInfo();
-  void             CutNumberOfChargedParticles();
+  void PrintEventInfo();
+  void SetVertexOrigin();
+
+  void CreateChargedCollection();
+  bool CutSecondaryVertex();
+  void WriteChargedTrackVertex();
+  void WriteDedxInfo(EvtRecTrack* evtRecTrack, NTupleContainer& tuple);
+  void WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTupleContainer& tuple);
+
+  void CreateNeutralCollection();
+  void WriteMultiplicities();
+  void PrintMultiplicities();
+  void CutPID();
+  void WriteVertexInfo();
+  void CutNumberOfChargedParticles();
+
   void             CreateChargedTrackSelections();
   virtual void     ConfigurePID() = 0;
   void             CreateNeutralTrackSelections();

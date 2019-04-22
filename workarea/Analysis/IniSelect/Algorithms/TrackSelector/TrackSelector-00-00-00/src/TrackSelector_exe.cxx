@@ -24,11 +24,11 @@ StatusCode TrackSelector::execute()
   PrintFunctionName("TrackSelector", __func__);
   try
   {
-    // fInputFile.LoadHeaders();
-    fInputFile.IncrementCounters();
+    fInputFile.LoadNextEvent();
     PrintEventInfo();
     SetVertexOrigin();
-    CreateCollections();
+    CreateChargedCollection();
+    CreateNeutralCollection();
     WriteVertexInfo();
     CutNumberOfChargedParticles();
     CreateChargedTrackSelections();
@@ -62,13 +62,6 @@ void TrackSelector::SetVertexOrigin()
   double* dbv = vtxsvc->PrimaryVertex();
   // double* vv  = vtxsvc->SigmaPrimaryVertex();
   fVertexPoint.set(dbv[0], dbv[1], dbv[2]);
-}
-
-void TrackSelector::CreateCollections()
-{
-  CreateChargedCollection(); /// -# Perform `CreateChargedCollection`.
-  CreateNeutralCollection(); /// -# Perform `CreateNeutralCollection`.
-  /// @remark You should call `CreateMCtruthCollection` in the derived class.
 }
 
 /// Create a preselection of charged tracks (without cuts).
@@ -227,14 +220,8 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
 void TrackSelector::CreateNeutralCollection()
 {
   fLog << MSG::DEBUG << __func__ << endmsg;
-  /// -# **Abort** if `fCreateNeutralCollection` has been set to `false`. This is decided in the derived class.
   if(!fCreateNeutralCollection) return;
-
-  /// -# Clear `fNeutralTracks` collection `vector`.
   fNeutralTracks.clear();
-
-  /// -# Loop over the neutral tracks in the loaded `fEvtRecEvent` track collection. The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies).
-  fLog << MSG::DEBUG << "Starting 'good' neutral track selection:" << endmsg;
   EvtRecTrack* track = fInputFile.FirstNeutralTrack();
   while(track)
   {
@@ -252,7 +239,7 @@ void TrackSelector::CreateNeutralCollection()
       fNTuple_neutral.GetItem<double>("time")  = fTrackEMC->time();
       fNTuple_neutral.Write();
     }
-    fNeutralTracks.push_back(*fTrackIter);
+    fNeutralTracks.push_back(track);
     track = fInputFile.NextNeutralTrack();
   }
   fLog << MSG::DEBUG << "Number of 'good' photons: " << fNeutralTracks.size() << endmsg;
