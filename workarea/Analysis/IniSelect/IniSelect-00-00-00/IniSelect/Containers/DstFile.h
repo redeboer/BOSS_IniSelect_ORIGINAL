@@ -30,6 +30,7 @@ public:
 
   void LoadNextEvent();
 
+  int TotalMcTracks() { return fMcParticleCol->size(); }
   int TotalChargedTracks() { return fEvtRecEvent->totalCharged(); }
   int TotalNeutralTracks() { return fEvtRecEvent->totalNeutral(); }
   int TotalTracks() { return fEvtRecEvent->totalTracks(); }
@@ -58,12 +59,12 @@ template <class T>
 class DstFileIter_base
 {
 public:
-  DstFileIter_base(DstFile& file) : fFile(&file), fIsIterMode(false) {}
+  DstFileIter_base(DstFile& file) : fFile(&file), fIndex(0) {}
   virtual T* Next() = 0;
 
 protected:
   DstFile* fFile;
-  bool     fIsIterMode;
+  int      fIndex;
 };
 
 class ChargedTrackIter : public DstFileIter_base<EvtRecTrack>
@@ -74,7 +75,6 @@ public:
 
 private:
   std::vector<EvtRecTrack*>::iterator fIter;
-  int                                 fIndex;
 };
 
 class NeutralTrackIter : public DstFileIter_base<EvtRecTrack>

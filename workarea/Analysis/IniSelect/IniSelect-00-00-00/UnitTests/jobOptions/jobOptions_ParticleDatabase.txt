@@ -1,4 +1,2 @@
-#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
-
 ApplicationMgr.DLLs   += {"IniSelect"};
 ApplicationMgr.TopAlg += {"Test_ParticleDatabase"};

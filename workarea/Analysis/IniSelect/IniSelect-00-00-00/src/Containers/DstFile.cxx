@@ -49,7 +49,7 @@ McTrackIter::McTrackIter(DstFile& file) : DstFileIter_base(file)
   fIter = fFile->fMcParticleCol->begin();
 }
 
-ChargedTrackIter::ChargedTrackIter(DstFile& file) : DstFileIter_base(file), fIndex(0)
+ChargedTrackIter::ChargedTrackIter(DstFile& file) : DstFileIter_base(file)
 {
   fIter = fFile->fEvtRecTrkCol->begin();
 }
@@ -61,33 +61,31 @@ NeutralTrackIter::NeutralTrackIter(DstFile& file) : DstFileIter_base(file)
 
 Event::McParticle* McTrackIter::Next()
 {
+  if(fIndex >= fFile->TotalMcTracks()) return nullptr;
   if(fIter == fFile->fMcParticleCol->end()) return nullptr;
-  if(fIsIterMode) ++fIter;
-  else fIsIterMode = true;
+  if(fIndex) ++fIter;
+  ++fIndex;
+  if(!(*fIter)) Next();
   return *fIter;
 }
 
 EvtRecTrack* ChargedTrackIter::Next()
 {
-  if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
-  if(fIsIterMode)
-  {
-    ++fIter;
-    ++fIndex;
-  }
-  else
-    fIsIterMode = true;
   if(fIndex >= fFile->TotalChargedTracks()) return nullptr;
+  if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
+  if(fIndex) ++fIter;
+  ++fIndex;
   if(!(*fIter)) Next();
-  if(!(*fIter)->isMdcTrackValid()) Next();
-  ++fFile->fCumulativeNMdcValid;
+  if((*fIter)->isMdcTrackValid()) ++fFile->fCumulativeNMdcValid;
   return *fIter;
 }
 
 EvtRecTrack* NeutralTrackIter::Next()
 {
+  if(fIndex >= fFile->TotalNeutralTracks()) return nullptr;
   if(fIter == fFile->fEvtRecTrkCol->end()) return nullptr;
-  if(fIsIterMode) ++fIter;
-  else fIsIterMode = true;
+  if(fIndex) ++fIter;
+  ++fIndex;
+  if(!(*fIter)) Next();
   return *fIter;
 }

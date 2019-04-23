@@ -1,16 +1,9 @@
 #ifndef Physics_Analysis_D0omega_K4pi_H
 #define Physics_Analysis_D0omega_K4pi_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
 #include "IniSelect/Algorithms/TrackSelector.h"
 #include "IniSelect/Fit/KKFitResult_D0omega_K4pi.h"
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_packages
 /// @{
 
@@ -26,15 +19,10 @@ protected:
   /// @name NTuples (eventual TTrees)
   ///@{
   NTupleContainer fNTuple_dedx_K;
-  ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of kaons.
   NTupleContainer fNTuple_dedx_pi;
-  ///< `NTuple::Tuple` container for the \f$dE/dx\f$ of pions.
   NTupleContainer fNTuple_fit4c_all;
-  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing *all* combinations.
   NTupleContainer fNTuple_fit4c_best;
-  ///< `NTuple::Tuple` container for the 4-constraint fit branch containing only the *best* combination.
   NTupleContainer fNTuple_fit_mc;
-  ///< `NTuple::Tuple` container for the 4-constraint fit of MC truth.
   ///@}
 
   /// @name Fit objects

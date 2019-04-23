@@ -24,4 +24,8 @@ void Test_ParticleDatabase::TestFinalize()
   TEST_CASE(CompareFloat(pip.GetLifetime(), 780.45));
   TEST_CASE(pip.GetCharge() == 1);
   TEST_CASE(pip.GetSpin() == 0);
+
+  TString Kp("K+");
+  TEST_CASE(Kp.EqualTo(ParticleDatabase::CodeToName(321)));
+  TEST_CASE(ParticleDatabase::NameToCode("D0") == 421);
 }

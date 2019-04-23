@@ -15,8 +15,11 @@ public:
 
 private:
   DstFile fInputFile;
-  int fCountEvent;
 
+  int fCountEvent;
+  int fNMCTracks;
+  int fNChargedTracks;
+  int fNNeutralTracks;
 };
 
 #endif

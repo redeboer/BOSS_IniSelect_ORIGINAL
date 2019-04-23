@@ -22,6 +22,9 @@ public:
   static Particle GetParticle(const std::string& pdtName);
   static Particle GetParticle(const int pdgCode);
 
+  static int         NameToCode(const std::string& pdtName);
+  static const char* CodeToName(const int pdgCode);
+
 private:
   static const ParticleDatabase fUniqueInstance;
 

@@ -37,6 +37,20 @@ Particle ParticleDatabase::GetParticle(const int pdgCode)
   ThrowNoParticleException(pdgCode);
 }
 
+int ParticleDatabase::NameToCode(const std::string& pdtName)
+{
+  PdtEntry* particle = Pdt::lookup(pdtName);
+  if(particle) return particle->pdgId();
+  return 0;
+}
+
+const char* ParticleDatabase::CodeToName(const int pdgCode)
+{
+  PdtEntry* particle = Pdt::lookup(static_cast<PdtPdg::PdgType>(pdgCode));
+  if(particle) return particle->name();
+  return "";
+}
+
 template <typename T>
 inline void ParticleDatabase::ThrowNoParticleException(const T& info)
 {
