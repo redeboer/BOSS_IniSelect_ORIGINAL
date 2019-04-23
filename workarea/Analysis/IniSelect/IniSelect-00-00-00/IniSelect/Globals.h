@@ -12,6 +12,7 @@
 
 #include "CLHEP/Vector/LorentzVector.h"
 #include "McTruth/McParticle.h"
+#include "TString.h"
 #include <vector>
 
 /// @addtogroup BOSS_globals
@@ -50,24 +51,33 @@ namespace IniSelect
   } // namespace Mass
   namespace McTruth
   {
-    static bool IsInitialCluster(Event::McParticle* mcparticle)
-    {
-      return (mcparticle->particleProperty() == 91 || mcparticle->particleProperty() == 92);
-    } ///< Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG code of a string). This function is used to characterised the initial cluster, e.g. \f$J/\psi\f$
-    static bool IsJPsi(Event::McParticle* mcparticle)
-    {
-      return (mcparticle->particleProperty() == 443);
-    } ///< Test whether an MC truth particle is \f$J/\psi\f$ (PDG code `91`).
-    static bool IsFromJPsi(Event::McParticle* mcparticle)
-    {
-      return (mcparticle->mother().particleProperty() == 443);
-    } ///< Test whether an MC truth particle is \f$J/\psi\f$ (PDG code `91`).
+    bool IsInitialCluster(Event::McParticle* mcparticle);
+    bool IsJPsi(Event::McParticle* mcparticle);
+    bool IsFromJPsi(Event::McParticle* mcparticle);
   }   // namespace McTruth
   namespace Paths
   {
     static const char* pdtTable =
       "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
+  namespace TerminalIO
+  {
+    enum EIniSelColor
+    {
+      Red = 31,
+      Green = 32,
+      Yellow = 33
+    };
+    void ColourPrintBold(const char code, const TString& message);
+    void ColourPrint(const char code, const TString& message, const TString& qualifier = "");
+    void PrintFatalError(const TString& message);
+    void PrintSuccess(const TString& message);
+    void PrintWarning(const TString& message);
+    void PrintRed(const TString& message);
+    void PrintGreen(const TString& message);
+    void PrintYellow(const TString& message);
+    void PrintBold(const TString& message);
+  } // namespace TerminalIO
 };  // namespace IniSelect
 
 /// @}

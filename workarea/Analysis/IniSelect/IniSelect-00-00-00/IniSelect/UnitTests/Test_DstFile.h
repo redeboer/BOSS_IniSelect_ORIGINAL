@@ -15,6 +15,7 @@ public:
 
 private:
   DstFile fInputFile;
+  int fCountEvent;
 
 };
 

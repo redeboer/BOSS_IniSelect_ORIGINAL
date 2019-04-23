@@ -19,13 +19,11 @@
 class ParticleDatabase
 {
 public:
-  static const ParticleDatabase* Instance();
-
   static Particle GetParticle(const std::string& pdtName);
   static Particle GetParticle(const int pdgCode);
 
 private:
-  static const ParticleDatabase* fUniqueInstance;
+  static const ParticleDatabase fUniqueInstance;
 
   ParticleDatabase();
   ParticleDatabase(const ParticleDatabase&){};
@@ -37,15 +35,4 @@ private:
   inline static void ThrowNoParticleException(const T& info);
 };
 /// @}
-
-template <typename T>
-inline void ParticleDatabase::ThrowNoParticleException(const T& info)
-{
-  std::stringstream ss;
-  ss << "Particle \"" << info << "\" does not exist in database" << std::endl;
-  IniSelect::Error::Exception message(ss.str());
-  std::cout << message.GetMessage() << std::endl;
-  throw message;
-}
-
 #endif
