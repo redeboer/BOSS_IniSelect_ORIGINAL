@@ -6,6 +6,8 @@
 #include "TString.h"
 using namespace IniSelect;
 
+const ParticleDatabase ParticleDatabase::fUniqueInstance;
+
 ParticleDatabase::ParticleDatabase()
 {
   Pdt::readMCppTable(Paths::pdtTable);
@@ -20,25 +22,27 @@ bool ParticleDatabase::PdtPathExists() const
   return Pdt::lookup(PdtPdg::pi0);
 }
 
-const ParticleDatabase* ParticleDatabase::fUniqueInstance = nullptr;
-
-const ParticleDatabase* ParticleDatabase::Instance()
-{
-  if(!fUniqueInstance) fUniqueInstance = new ParticleDatabase();
-  return fUniqueInstance;
-}
-
 Particle ParticleDatabase::GetParticle(const std::string& pdtName)
 {
   /// See names in the PDT table: `/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table`.
   PdtEntry* particle = Pdt::lookup(pdtName);
-  if(!particle) ThrowNoParticleException(pdtName);
-  return Particle(particle);
+  if(particle) return Particle(particle);
+  ThrowNoParticleException(pdtName);
 }
 
 Particle ParticleDatabase::GetParticle(const int pdgCode)
 {
   PdtEntry* particle = Pdt::lookup(static_cast<PdtPdg::PdgType>(pdgCode));
-  if(!particle) ThrowNoParticleException(pdgCode);
-  return Particle(particle);
+  if(particle) return Particle(particle);
+  ThrowNoParticleException(pdgCode);
+}
+
+template <typename T>
+inline void ParticleDatabase::ThrowNoParticleException(const T& info)
+{
+  std::stringstream ss;
+  ss << "Particle \"" << info << "\" does not exist in database" << std::endl;
+  IniSelect::Error::Exception message(ss.str());
+  std::cout << message.GetMessage() << std::endl;
+  throw message;
 }

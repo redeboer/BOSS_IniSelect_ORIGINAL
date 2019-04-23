@@ -24,7 +24,7 @@ public:
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
   void SetNParticles(const short nparticles) { fNParticles = nparticles; }
-  void SetParticle(const TString& pdtName) { fParticle = ParticleDatabase::GetParticle(pdtName); }
+  void SetParticle(const TString& pdtName) { fParticle = ParticleDatabase::GetParticle(pdtName.Data()); }
 
   void SetMultCut_EqualTo() { fMultiplicityCut = EqualTo; }
   void SetMultCut_AtLeast() { fMultiplicityCut = AtLeast; };
