@@ -21,6 +21,8 @@ private:
 
   CandidateTracks<Event::McParticle> fCandidateTracks_g;   // this one is set using methods
   CandidateTracks<Event::McParticle> fCandidateTracks_pip; // this one is set through the constructor
+
+  void AddDummyTracks(CandidateTracks<Event::McParticle>& obj, int n);
 };
 
 #endif

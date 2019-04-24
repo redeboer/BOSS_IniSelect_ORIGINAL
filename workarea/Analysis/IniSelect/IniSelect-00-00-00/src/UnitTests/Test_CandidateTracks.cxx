@@ -21,30 +21,28 @@ void Test_CandidateTracks::TestInitialize()
   REQUIRE(g_name.EqualTo("g"));
   REQUIRE(pip_name.EqualTo("pi+"));
 
+  /// * Test `CandidateTracks::GetNParticles`
   REQUIRE(fCandidateTracks_g.GetNParticles() == 5);
   REQUIRE(fCandidateTracks_pip.GetNParticles() == 2);
 
-  /// * Test `CandidateTracks::FailsMultiplicityCut`
+  /// * Test `CandidateTracks::FailsMultiplicityCut` and `AddTrack`
   REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
-  fCandidateTracks_g.AddTrack(nullptr);
-  fCandidateTracks_g.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_g, 2);
   REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
-  fCandidateTracks_g.AddTrack(nullptr);
-  fCandidateTracks_g.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_g, 2);
   REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
-  fCandidateTracks_g.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_g, 1);
   REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == false);
 
   REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == true);
-  fCandidateTracks_pip.AddTrack(nullptr);
-  fCandidateTracks_pip.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_pip, 2);
   REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == false);
-  fCandidateTracks_pip.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_pip, 1);
   REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == true);
 
   /// * Test `CandidateTracks::SetMultCut_AtMost`
   fCandidateTracks_g.SetMultCut_AtMost();
-  fCandidateTracks_g.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_g, 1);
   REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
 
   /// * Test `CandidateTracks::Clear`
@@ -53,9 +51,10 @@ void Test_CandidateTracks::TestInitialize()
 
   /// * Test `CandidateTracks::GetTracks`
   REQUIRE(fCandidateTracks_pip.GetTracks().size() == 0);
-  fCandidateTracks_pip.AddTrack(nullptr);
-  fCandidateTracks_pip.AddTrack(nullptr);
+  AddDummyTracks(fCandidateTracks_pip, 2);
   REQUIRE(fCandidateTracks_pip.GetTracks().size() == 2);
+
+  /// * Test `CandidateTracks::GetTracks`
 }
 
 void Test_CandidateTracks::TestExecute()
@@ -65,4 +64,9 @@ void Test_CandidateTracks::TestExecute()
 
 void Test_CandidateTracks::TestFinalize()
 {
+}
+
+void Test_CandidateTracks::AddDummyTracks(CandidateTracks<Event::McParticle>& obj, int n)
+{
+  for(int i = 0; i < n; ++i) obj.AddTrack(nullptr);
 }
