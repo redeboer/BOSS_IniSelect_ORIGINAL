@@ -19,15 +19,15 @@ void Test_CandidateTracks::TestInitialize()
 void Test_CandidateTracks::TestExecute()
 {
   fInputFile.LoadNextEvent();
-  TEST_CASE(fInputFile.RunNumber() == -10870);
-  TEST_CASE(fInputFile.EventNumber() == fCountEvent);
-  TEST_CASE(fInputFile.IsMonteCarlo() == true);
+  REQUIRE(fInputFile.RunNumber() == -10870);
+  REQUIRE(fInputFile.EventNumber() == fCountEvent);
+  REQUIRE(fInputFile.IsMonteCarlo() == true);
   ++fCountEvent;
 }
 
 void Test_CandidateTracks::TestFinalize()
 {
-  TEST_CASE(fInputFile.TotalChargedTracks() == 2);
-  TEST_CASE(fInputFile.TotalNeutralTracks() == 11);
-  TEST_CASE(fInputFile.TotalTracks() == 13);
+  REQUIRE(fInputFile.TotalChargedTracks() == 2);
+  REQUIRE(fInputFile.TotalNeutralTracks() == 11);
+  REQUIRE(fInputFile.TotalTracks() == 13);
 }

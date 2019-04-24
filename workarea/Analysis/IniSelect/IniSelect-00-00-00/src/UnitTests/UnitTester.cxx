@@ -29,34 +29,34 @@ void UnitTester::PrintTestResults() const
   if(fNFailed)
   {
     PrintLine();
-    TerminalIO::PrintRed(Form("Failed %d of %d tests", fNFailed, fNTests));
+    TerminalIO::PrintRed(Form("Failed %d of %d tests\n\n\n", fNFailed, fNTests));
   }
   else
   {
     PrintTestResultHeader();
-    TerminalIO::PrintGreen(Form("Succesfully passed %d tests", fNTests));
+    TerminalIO::PrintGreen(Form("Succesfully passed %d tests\n\n\n", fNTests));
   }
-  std::cout << std::endl << std::endl << std::endl << std::endl;
 }
 
 void UnitTester::PrintLine() const
 {
-  std::cout << std::setw(25) << std::setfill('-') << "" << std::endl;
+  std::cerr << std::setw(25) << std::setfill('-') << "" << std::endl;
 }
 
 void UnitTester::PrintTestResultHeader() const
 {
-  TerminalIO::PrintBold("\n\n\n\n==========================");
+  TerminalIO::PrintBold("\n\n\n==========================");
   TerminalIO::PrintBold("------ TEST RESULTS ------");
   TerminalIO::PrintBold("==========================\n");
 }
 
-void UnitTester::Test(bool passed, int lineNr, const char* input)
+void UnitTester::Require(bool passed, int lineNr, const char* file, const char* input)
 {
   ++fNTests;
   if(passed) return;
   if(fNFailed == 0) PrintTestResultHeader();
-  TerminalIO::PrintRed(Form("Failed test line %d: %s", lineNr, input));
+  TerminalIO::PrintRed(Form("Failed test %s:%d", file, lineNr));
+  TerminalIO::PrintYellow(Form("  %s", input));
   ++fNFailed;
 }
 

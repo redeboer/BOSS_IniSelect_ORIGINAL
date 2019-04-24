@@ -1,4 +1,5 @@
 #include "IniSelect/Globals.h"
+#include <stdio.h>
 
 
 /// Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG code of a string). This function is used to characterised the initial cluster, e.g. \f$J/\psi\f$
@@ -28,7 +29,7 @@ void IniSelect::TerminalIO::ColourPrint(const char code, const TString& message,
 
 void IniSelect::TerminalIO::ColourPrintBold(const char code, const TString& message)
 {
-  printf("\033[1;%dm%s\033[0m\n", code, message.Data());
+  fprintf(stderr, "\033[1;%dm%s\033[0m\n", code, message.Data());
 }
 
 void IniSelect::TerminalIO::PrintFatalError(const TString& message)
@@ -63,5 +64,5 @@ void IniSelect::TerminalIO::PrintYellow(const TString& message)
 
 void IniSelect::TerminalIO::PrintBold(const TString& message)
 {
-  printf("\033[1m%s\033[0m\n", message.Data());
+  fprintf(stderr, "\033[1m%s\033[0m\n", message.Data());
 }

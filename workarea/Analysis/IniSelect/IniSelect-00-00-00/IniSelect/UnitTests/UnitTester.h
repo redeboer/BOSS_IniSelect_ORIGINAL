@@ -4,7 +4,7 @@
 #include "GaudiKernel/Algorithm.h"
 
 #define TO_STRING(x) #x
-#define TEST_CASE(VARIABLE) Test(VARIABLE, __LINE__, TO_STRING(VARIABLE))
+#define REQUIRE(VARIABLE) Require(VARIABLE, __LINE__, __FILE__, TO_STRING(VARIABLE))
 
 class UnitTester : public Algorithm
 {
@@ -20,7 +20,7 @@ protected:
   virtual void TestExecute()    = 0;
   virtual void TestFinalize()   = 0;
 
-  void Test(bool passed, int lineNr, const char* input);
+  void Require(bool passed, int lineNr, const char* file, const char* input);
   bool CompareFloat(float val1, float val2, float procentualDifference = 0.0001f) const;
   bool CompareDouble(double val1, double val2, double procentualDifference = 0.0000001f) const;
 
