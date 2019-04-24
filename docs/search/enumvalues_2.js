@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nocut',['NoCut',['../classCandidateTracks.html#a7b94f7923fee250ec44461644e801310aac9905c5768961c655193ca5d47a34e3',1,'CandidateTracks']]]
+  ['green',['Green',['../namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84a54fc95425c067091cceeee2716586acc',1,'IniSelect::TerminalIO']]]
 ];
