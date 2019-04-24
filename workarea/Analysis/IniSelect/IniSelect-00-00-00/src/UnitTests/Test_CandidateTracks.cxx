@@ -1,7 +1,7 @@
 #include "IniSelect/UnitTests/Test_CandidateTracks.h"
-#include <iostream>
+#include "TString.h"
 
-Test_DstFile::Test_DstFile(const std::string& name, ISvcLocator* pSvcLocator) :
+Test_CandidateTracks::Test_CandidateTracks(const std::string& name, ISvcLocator* pSvcLocator) :
   UnitTester(name, pSvcLocator),
   fInputFile(eventSvc()),
   fCandidateTracks_pip("pi+", 2)
@@ -14,20 +14,55 @@ void Test_CandidateTracks::TestInitialize()
 
   fCandidateTracks_g.SetMultCut_AtLeast();
   fCandidateTracks_pip.SetMultCut_EqualTo();
+
+  /// * Test `CandidateTracks::GetPdtName`
+  TString g_name(fCandidateTracks_g.GetPdtName());
+  TString pip_name(fCandidateTracks_pip.GetPdtName());
+  REQUIRE(g_name.EqualTo("g"));
+  REQUIRE(pip_name.EqualTo("pi+"));
+
+  REQUIRE(fCandidateTracks_g.GetNParticles() == 5);
+  REQUIRE(fCandidateTracks_pip.GetNParticles() == 2);
+
+  /// * Test `CandidateTracks::FailsMultiplicityCut`
+  REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
+  fCandidateTracks_g.AddTrack(nullptr);
+  fCandidateTracks_g.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
+  fCandidateTracks_g.AddTrack(nullptr);
+  fCandidateTracks_g.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
+  fCandidateTracks_g.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == false);
+
+  REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == true);
+  fCandidateTracks_pip.AddTrack(nullptr);
+  fCandidateTracks_pip.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == false);
+  fCandidateTracks_pip.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == true);
+
+  /// * Test `CandidateTracks::SetMultCut_AtMost`
+  fCandidateTracks_g.SetMultCut_AtMost();
+  fCandidateTracks_g.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_g.FailsMultiplicityCut() == true);
+
+  /// * Test `CandidateTracks::Clear`
+  fCandidateTracks_pip.Clear();
+  REQUIRE(fCandidateTracks_pip.FailsMultiplicityCut() == true);
+
+  /// * Test `CandidateTracks::GetTracks`
+  REQUIRE(fCandidateTracks_pip.GetTracks().size() == 0);
+  fCandidateTracks_pip.AddTrack(nullptr);
+  fCandidateTracks_pip.AddTrack(nullptr);
+  REQUIRE(fCandidateTracks_pip.GetTracks().size() == 2);
 }
 
 void Test_CandidateTracks::TestExecute()
 {
   fInputFile.LoadNextEvent();
-  REQUIRE(fInputFile.RunNumber() == -10870);
-  REQUIRE(fInputFile.EventNumber() == fCountEvent);
-  REQUIRE(fInputFile.IsMonteCarlo() == true);
-  ++fCountEvent;
 }
 
 void Test_CandidateTracks::TestFinalize()
 {
-  REQUIRE(fInputFile.TotalChargedTracks() == 2);
-  REQUIRE(fInputFile.TotalNeutralTracks() == 11);
-  REQUIRE(fInputFile.TotalTracks() == 13);
 }

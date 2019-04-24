@@ -126,8 +126,8 @@
 	export cdcmt
 	function cmtbroadcast()
 	{
-		cdcmt
 		local currentPath="$(pwd)"
+		cdcmt
 		# * Print package and version name
 		echo
 		echo "=================================="
@@ -151,8 +151,8 @@
 	export cmtbroadcast
 	function cmtconfig()
 	{
-		cdcmt
 		local currentPath="$(pwd)"
+		cdcmt
 		# * Print package and version name
 		echo; echo
 		echo "====================================="
@@ -174,8 +174,8 @@
 	export cmtconfig
 	function cmtmake()
 	{
-		cdcmt
 		local currentPath="$(pwd)"
+		cdcmt
 		# * Print package and version name
 		echo; echo
 		echo "====================================="

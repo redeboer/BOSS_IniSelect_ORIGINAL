@@ -17,7 +17,7 @@ class CandidateTracks
 public:
   CandidateTracks() {}
   CandidateTracks(const TString& pdtName, const short nparticles = 1) :
-    fParticle(pdtName),
+    fParticle(ParticleDatabase::GetParticle(pdtName.Data())),
     fNParticles(nparticles)
   {}
 
