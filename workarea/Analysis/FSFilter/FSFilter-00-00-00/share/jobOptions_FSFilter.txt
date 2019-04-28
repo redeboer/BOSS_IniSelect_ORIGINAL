@@ -1,0 +1,7 @@
+//name as seen on directories
+ApplicationMgr.DLLs += {"FSFilter"};
+//algorithm name in .cxx file
+ApplicationMgr.TopAlg += { "FSFilter" };
+
+
+
