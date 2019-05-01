@@ -345,4 +345,4 @@
 
 
 
-PrintSuccessMessage "\nSuccessfully loaded \"CommonFunctions.sh\"\n"
+# PrintSuccessMessage "\nSuccessfully loaded \"CommonFunctions.sh\"\n"
