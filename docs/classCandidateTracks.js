@@ -14,7 +14,7 @@ var classCandidateTracks =
     [ "GetCandidate", "classCandidateTracks.html#a57effa68df67453bd38d4ce01623e0f0", null ],
     [ "GetMass", "classCandidateTracks.html#ad2c0fafa07d5e95f4c6c910f0feaac7f", null ],
     [ "GetNParticles", "classCandidateTracks.html#a2dc30c6ff10f14a396abcdbc2054c10f", null ],
-    [ "GetNTracks", "classCandidateTracks.html#ad8df79266112be20133ba8ed4392412f", null ],
+    [ "GetNTracks", "classCandidateTracks.html#aafafd9b25ab6d944c49f8d2665f35606", null ],
     [ "GetPdgCode", "classCandidateTracks.html#aac8de999aaa9b5849a984d759d79096a", null ],
     [ "GetPdtName", "classCandidateTracks.html#aeccbabe032bbdb6129d8736407439d05", null ],
     [ "GetTracks", "classCandidateTracks.html#a11807c3329119e9e85d87050d7607e07", null ],

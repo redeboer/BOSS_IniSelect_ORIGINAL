@@ -36,6 +36,9 @@ fi
     # Best to get the Pro release.
     # See latest Pro release here:
     # https://root.cern.ch/releases
+  elif [ "${repoChoice}" == "yaml-cpp" ]; then
+    repoURL="https://github.com/jbeder/yaml-cpp"
+    cmakeOptions="-DBUILD_SHARED_LIBS=ON"
   else
     echo "ERROR: No repository URL defined for \"${repoChoice}\""
     exit
@@ -52,7 +55,7 @@ fi
   fi
 
 # * Parameter names * #
-  outputPath="."
+  outputPath="/usr/local"
   buildDir="compile"
 
 # * Get repository name * #

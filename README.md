@@ -2,7 +2,7 @@
 
 This repository serves as an extra layer to the BESIII Offline Software System (BOSS). For more information on BOSS, see the [BOSS GitBook](https://besiii.gitbook.io/boss).
 
-The BOSS IniSelect repository contains BOSS packages for **initial event selection** (hence the name). These packages are to facilitate analysis procedures in BESIII by further modulating the procedure for selecting tracks from a DST file. The main feature is the [TrackSelector]()
+The BOSS IniSelect repository contains BOSS packages for **initial event selection** (hence the name). These packages are to facilitate analysis procedures in BESIII by further modulating the procedure for selecting tracks from a DST file. The main feature is the [TrackSelector](https://redeboer.github.io/BOSS_IniSelect/classTrackSelector.html), which is a *base algorithm* that takes care of all procedures required by an initial event selection. The specifics of your own analysis are defined in an algorithm that you derive from the `TrackSelector`.
 
 Originally, this repository was contained within the [BOSS Afterburner](https://github.com/redeboer/BOSS_Afterburner). The repository has been split into BOSS IniSelect for the **initial event selection** and BOSS Afterburner for **final event selection**. The reason is that IniSelect is integrated with BOSS and therefore has to run on the IHEP server, while the Afterburner is perferably run locally (so you can use the newest versions of `gcc`, ROOT, etc).
 
@@ -15,7 +15,11 @@ Originally, this repository was contained within the [BOSS Afterburner](https://
 
 * An `NTupleContainer` faciliates the booking procedure for `NTuple`s.
 
-* Selections of identified tracks are assembled two [`TrackCollection`](`https://redeboer.github.io/BOSS_IniSelect/classTrackCollection.html`) objects in algorithms you derive of `TrackSelector`. Other objects that are of help at this level too are:
+* A [framework for **unit testing**](https://github.com/redeboer/BOSS_IniSelect/tree/master/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests). You can (should!) define boolean test cases for the output of algorithms or objects you are designing. These unit tests (1) serve as a 'playground' in which you can experiment with your code and (2) *helps you make sure that your code keeps functioning as you want it to* if you decide to modify it. See [here](https://github.com/redeboer/BOSS_IniSelect/blob/master/workarea/Analysis/IniSelect/IniSelect-00-00-00/src/UnitTests/Test_ParticleDatabase.cxx) for an example of what such a test looks like.
+
+* A [`ParticleDatabase`](https://redeboer.github.io/BOSS_IniSelect/classParticleDatabase.html): just fill in a name or PDG code of the particle you are looking for and you have access to properties like mass, charge, and lifetime through the resulting [`Particle`](https://redeboer.github.io/BOSS_IniSelect/classParticle.html) object. No need to initialize and the database access methods are `static`.
+
+* Selections of identified tracks are assembled to [`TrackCollection`](`https://redeboer.github.io/BOSS_IniSelect/classTrackCollection.html`) objects in algorithms you derive of `TrackSelector`. Other objects that are of help at this level too are:
 
     * Kalman kinematic fit and vertex fit procedure is contained within objects [`KinematicFitter`](https://redeboer.github.io/BOSS_IniSelect/classKinematicFitter.html) and [`VertexFitter`](https://redeboer.github.io/BOSS_IniSelect/classVertexFitter.html).
 

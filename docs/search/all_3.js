@@ -5,13 +5,10 @@ var searchData=
   ['d0omega_5fk4pi_2ecxx',['D0omega_K4pi.cxx',['../D0omega__K4pi_8cxx.html',1,'']]],
   ['d0omega_5fk4pi_2eh',['D0omega_K4pi.h',['../D0omega__K4pi_8h.html',1,'']]],
   ['d0phi_5f3k3pi',['D0phi_3K3pi',['../classD0phi__3K3pi.html',1,'D0phi_3K3pi'],['../classD0phi__3K3pi.html#a13307ada4a5e7701e7a5fb15705b3cc3',1,'D0phi_3K3pi::D0phi_3K3pi()']]],
-  ['d0phi_5f3k3pi_2ecxx',['D0phi_3K3pi.cxx',['../D0phi__3K3pi_8cxx.html',1,'']]],
   ['d0phi_5f3k3pi_2eh',['D0phi_3K3pi.h',['../D0phi__3K3pi_8h.html',1,'']]],
   ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html',1,'D0phi_KpiKK'],['../classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a',1,'D0phi_KpiKK::D0phi_KpiKK()']]],
-  ['d0phi_5fkpikk_2ecxx',['D0phi_KpiKK.cxx',['../D0phi__KpiKK_8cxx.html',1,'']]],
   ['d0phi_5fkpikk_2eh',['D0phi_KpiKK.h',['../D0phi__KpiKK_8h.html',1,'']]],
   ['d0phi_5fkpipikk',['D0phi_KpipiKK',['../classD0phi__KpipiKK.html',1,'D0phi_KpipiKK'],['../classD0phi__KpipiKK.html#aa173894efe5b5d58cfd6cd9ce8d247f5',1,'D0phi_KpipiKK::D0phi_KpipiKK()']]],
-  ['d0phi_5fkpipikk_2ecxx',['D0phi_KpipiKK.cxx',['../D0phi__KpipiKK_8cxx.html',1,'']]],
   ['d0phi_5fkpipikk_2eh',['D0phi_KpipiKK.h',['../D0phi__KpipiKK_8h.html',1,'']]],
   ['declarecuts',['DeclareCuts',['../classTrackSelector.html#a07b15e1875115d75d60c6a98f77e62b4',1,'TrackSelector']]],
   ['declareswitches',['DeclareSwitches',['../classTrackSelector.html#a9e910b15aef461531eabc99faa56057e',1,'TrackSelector']]],
@@ -22,5 +19,11 @@ var searchData=
   ['dokinematicfitforallcombinations',['DoKinematicFitForAllCombinations',['../classD0omega__K4pi.html#a8b643eca9b137a403811806a9e232cb2',1,'D0omega_K4pi']]],
   ['dovertexfit',['DoVertexFit',['../classD0omega__K4pi.html#a60b710948559605bbfc357fa86acfc27',1,'D0omega_K4pi']]],
   ['dowrite',['DoWrite',['../classNTupleContainer.html#ab98eb1f1af29156374091e0ccefb983b',1,'NTupleContainer']]],
-  ['doxygenmainpage_2emd',['DoxygenMainPage.md',['../DoxygenMainPage_8md.html',1,'']]]
+  ['doxygenmainpage_2emd',['DoxygenMainPage.md',['../DoxygenMainPage_8md.html',1,'']]],
+  ['dstfile',['DstFile',['../classDstFile.html',1,'DstFile'],['../classDstFile.html#a890a61ca0717bdac6561a8da413df4db',1,'DstFile::DstFile()']]],
+  ['dstfile_2ecxx',['DstFile.cxx',['../DstFile_8cxx.html',1,'']]],
+  ['dstfile_2eh',['DstFile.h',['../DstFile_8h.html',1,'']]],
+  ['dstfileiter_5fbase',['DstFileIter_base',['../classDstFileIter__base.html',1,'DstFileIter_base&lt; T &gt;'],['../classDstFileIter__base.html#a77a031e12bbaff7544668e77e764c583',1,'DstFileIter_base::DstFileIter_base()']]],
+  ['dstfileiter_5fbase_3c_20event_3a_3amcparticle_20_3e',['DstFileIter_base&lt; Event::McParticle &gt;',['../classDstFileIter__base.html',1,'']]],
+  ['dstfileiter_5fbase_3c_20evtrectrack_20_3e',['DstFileIter_base&lt; EvtRecTrack &gt;',['../classDstFileIter__base.html',1,'']]]
 ];

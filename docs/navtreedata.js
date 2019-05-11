@@ -9,7 +9,9 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ]
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -21,7 +23,8 @@ var NAVTREE =
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Enumerations", "functions_enum.html", null ],
-        [ "Enumerator", "functions_eval.html", null ]
+        [ "Enumerator", "functions_eval.html", null ],
+        [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", null, [
@@ -30,7 +33,8 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Variables", "globals_vars.html", null ],
-        [ "Typedefs", "globals_type.html", null ]
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -39,10 +43,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AngleDifferences_8cxx.html",
-"classContainer__indexed.html#a4e6d1fa25fc9f96b4318be2691aabde6",
-"classKKFitResult__D0phi__KpipiKK.html#a16c155fc0aad2f7bd376d861b57e66e6",
-"classPipiJpsi.html#a8e8f40d1e35d336ac99316d895485d43",
-"classTrackSelector.html#a8d10ffb29ea6c5b82113488cb6216c7c"
+"classCandidateTracks.html#ac7f43083bcf9449a307f5c3bb7e7983a",
+"classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0",
+"classPipiJpsi.html#a078ab117c0fb6718f04ad4eccf2ab73f",
+"classTest__DstFile.html#a7d780324eb9aa595065d41780543f826",
+"functions_vars_i.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

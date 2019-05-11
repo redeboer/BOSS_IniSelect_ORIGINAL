@@ -80,8 +80,8 @@ $(document).ready(function(){initNavTree('classKinematicFitter.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classKinematicFitter-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -91,56 +91,67 @@ $(document).ready(function(){initNavTree('classKinematicFitter.html','');});
 
 <p><code>#include &lt;<a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a22eac5f6ad674474ed73f46af860210f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a22eac5f6ad674474ed73f46af860210f">Initialize</a> ()</td></tr>
+<tr class="separator:a22eac5f6ad674474ed73f46af860210f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97d79f78018f3cfe08a6da2afa263f1c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c">AddTrack</a> (RecEmcShower *track)</td></tr>
+<tr class="separator:a97d79f78018f3cfe08a6da2afa263f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a405940cb81db2173e58b760ede3ab0b6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6">AddTrack</a> (WTrackParameter track)</td></tr>
+<tr class="separator:a405940cb81db2173e58b760ede3ab0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0515b700f046f47fba2d95c2f64bcb59"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a0515b700f046f47fba2d95c2f64bcb59">AddTracks</a> (<a class="el" href="group__BOSS__objects.html#ga18ab972739387c1d94cd339c5899c035">ParticleSelection</a> &amp;selection)</td></tr>
+<tr class="separator:a0515b700f046f47fba2d95c2f64bcb59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50ec6b544d0249a91b12da694f9ea9e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#af50ec6b544d0249a91b12da694f9ea9e">AddConstraintCMS</a> ()</td></tr>
+<tr class="separator:af50ec6b544d0249a91b12da694f9ea9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971affc56fb6c2ecacc4a0fe568b312f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a971affc56fb6c2ecacc4a0fe568b312f">AddResonance</a> (const double &amp;mass, int track1, int track2)</td></tr>
+<tr class="separator:a971affc56fb6c2ecacc4a0fe568b312f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28a0ca6236a00d8f343f0586663e847"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#ad28a0ca6236a00d8f343f0586663e847">Fit</a> ()</td></tr>
+<tr class="separator:ad28a0ca6236a00d8f343f0586663e847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254611e37a5ca9d005c9fc5313dad0d3"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a254611e37a5ca9d005c9fc5313dad0d3">IsSuccessful</a> ()</td></tr>
+<tr class="separator:a254611e37a5ca9d005c9fc5313dad0d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3b2637230aa860ee4c9718b5d73df62"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#af3b2637230aa860ee4c9718b5d73df62">GetNContstraints</a> ()</td></tr>
+<tr class="separator:af3b2637230aa860ee4c9718b5d73df62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c94d017b1a6bc142a50fcb89b6cb2ec"><td class="memItemLeft" align="right" valign="top">static HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a1c94d017b1a6bc142a50fcb89b6cb2ec">GetTrack</a> (int i)</td></tr>
+<tr class="separator:a1c94d017b1a6bc142a50fcb89b6cb2ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e154db026db976c3b4f50983d531b41"><td class="memItemLeft" align="right" valign="top">static KalmanKinematicFit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a0e154db026db976c3b4f50983d531b41">GetFit</a> ()</td></tr>
+<tr class="separator:a0e154db026db976c3b4f50983d531b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc5d0b9ace966d48650818434b2cda43"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#abc5d0b9ace966d48650818434b2cda43">GetChi2</a> ()</td></tr>
+<tr class="separator:abc5d0b9ace966d48650818434b2cda43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
 <tr class="memitem:a8810c72ed80461cd8c8b4db41f02de13"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a8810c72ed80461cd8c8b4db41f02de13">KinematicFitter</a> ()</td></tr>
 <tr class="separator:a8810c72ed80461cd8c8b4db41f02de13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a22eac5f6ad674474ed73f46af860210f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a22eac5f6ad674474ed73f46af860210f">Initialize</a> ()</td></tr>
-<tr class="separator:a22eac5f6ad674474ed73f46af860210f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97d79f78018f3cfe08a6da2afa263f1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c">AddTrack</a> (RecEmcShower *track)</td></tr>
-<tr class="separator:a97d79f78018f3cfe08a6da2afa263f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a405940cb81db2173e58b760ede3ab0b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6">AddTrack</a> (WTrackParameter track)</td></tr>
-<tr class="separator:a405940cb81db2173e58b760ede3ab0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af50ec6b544d0249a91b12da694f9ea9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#af50ec6b544d0249a91b12da694f9ea9e">AddConstraintCMS</a> ()</td></tr>
-<tr class="separator:af50ec6b544d0249a91b12da694f9ea9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a971affc56fb6c2ecacc4a0fe568b312f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a971affc56fb6c2ecacc4a0fe568b312f">AddResonance</a> (const double &amp;mass, int track1, int track2)</td></tr>
-<tr class="separator:a971affc56fb6c2ecacc4a0fe568b312f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad28a0ca6236a00d8f343f0586663e847"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#ad28a0ca6236a00d8f343f0586663e847">Fit</a> ()</td></tr>
-<tr class="separator:ad28a0ca6236a00d8f343f0586663e847"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a4e3e11eb88db93d99b890c7f1cfbd7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a2a4e3e11eb88db93d99b890c7f1cfbd7">IsSuccessful</a> () const</td></tr>
-<tr class="separator:a2a4e3e11eb88db93d99b890c7f1cfbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acff1c4fad16aa06d6586266cff3046b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#acff1c4fad16aa06d6586266cff3046b7">GetNContstraints</a> () const</td></tr>
-<tr class="separator:acff1c4fad16aa06d6586266cff3046b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd771d00e1184e7c1058e2d46a949280"><td class="memItemLeft" align="right" valign="top">HepLorentzVector&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#abd771d00e1184e7c1058e2d46a949280">GetTrack</a> (int i) const</td></tr>
-<tr class="separator:abd771d00e1184e7c1058e2d46a949280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8613bf13e6104444818358e30da60384"><td class="memItemLeft" align="right" valign="top">KalmanKinematicFit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a8613bf13e6104444818358e30da60384">GetFit</a> ()</td></tr>
-<tr class="separator:a8613bf13e6104444818358e30da60384"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a4317cf60274659e80f02dfd0582e79bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a4317cf60274659e80f02dfd0582e79bc">fNTracks</a></td></tr>
-<tr class="separator:a4317cf60274659e80f02dfd0582e79bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03190e828f56506ff4f9325fc2bf5616"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a03190e828f56506ff4f9325fc2bf5616">fConstraintCount</a></td></tr>
-<tr class="separator:a03190e828f56506ff4f9325fc2bf5616"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51b2354e0a0acea04fef360eae90f30e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a51b2354e0a0acea04fef360eae90f30e">fNConstraints</a></td></tr>
-<tr class="separator:a51b2354e0a0acea04fef360eae90f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b0d270f998a8fe060a0ff31f576b136"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a1b0d270f998a8fe060a0ff31f576b136">fIsSuccessful</a></td></tr>
-<tr class="separator:a1b0d270f998a8fe060a0ff31f576b136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bb7c70626d0b9881cb53eeb011d96e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a9bb7c70626d0b9881cb53eeb011d96e9">KinematicFitter</a> (const <a class="el" href="classKinematicFitter.html">KinematicFitter</a> &amp;)</td></tr>
+<tr class="separator:a9bb7c70626d0b9881cb53eeb011d96e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7c30c990efdf99252482aa33c8c27f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinematicFitter.html">KinematicFitter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#af7c30c990efdf99252482aa33c8c27f1">operator=</a> (const <a class="el" href="classKinematicFitter.html">KinematicFitter</a> &amp;)</td></tr>
+<tr class="separator:af7c30c990efdf99252482aa33c8c27f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
+<tr class="memitem:a4317cf60274659e80f02dfd0582e79bc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a4317cf60274659e80f02dfd0582e79bc">fNTracks</a> = 0</td></tr>
+<tr class="separator:a4317cf60274659e80f02dfd0582e79bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03190e828f56506ff4f9325fc2bf5616"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a03190e828f56506ff4f9325fc2bf5616">fConstraintCount</a> = 0</td></tr>
+<tr class="separator:a03190e828f56506ff4f9325fc2bf5616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51b2354e0a0acea04fef360eae90f30e"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a51b2354e0a0acea04fef360eae90f30e">fNConstraints</a> = 0</td></tr>
+<tr class="separator:a51b2354e0a0acea04fef360eae90f30e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b0d270f998a8fe060a0ff31f576b136"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#a1b0d270f998a8fe060a0ff31f576b136">fIsSuccessful</a> = false</td></tr>
+<tr class="separator:a1b0d270f998a8fe060a0ff31f576b136"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee940ee54298d5b03448df894e39c0f8"><td class="memItemLeft" align="right" valign="top">static KalmanKinematicFit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinematicFitter.html#aee940ee54298d5b03448df894e39c0f8">fKinematicFit</a> = KalmanKinematicFit::instance()</td></tr>
 <tr class="separator:aee940ee54298d5b03448df894e39c0f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00009">9</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00011">11</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a8810c72ed80461cd8c8b4db41f02de13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8810c72ed80461cd8c8b4db41f02de13">&#9670;&nbsp;</a></span>KinematicFitter()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8810c72ed80461cd8c8b4db41f02de13">&#9670;&nbsp;</a></span>KinematicFitter() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">KinematicFitter::KinematicFitter </td>
@@ -149,9 +160,42 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00007">7</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00030">30</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+
+</div>
+</div>
+<a id="a9bb7c70626d0b9881cb53eeb011d96e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bb7c70626d0b9881cb53eeb011d96e9">&#9670;&nbsp;</a></span>KinematicFitter() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">KinematicFitter::KinematicFitter </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematicFitter.html">KinematicFitter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00031">31</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -161,6 +205,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::AddConstraintCMS </td>
@@ -169,10 +216,15 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Add the typical 4-constraint: CMS energy and 3-momentum </p>
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00039">39</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00049">49</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
@@ -181,6 +233,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::AddResonance </td>
@@ -206,9 +261,14 @@ Static Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00047">47</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00057">57</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
@@ -217,6 +277,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::AddTrack </td>
@@ -226,9 +289,14 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00027">27</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00023">23</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
@@ -237,6 +305,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::AddTrack </td>
@@ -246,9 +317,42 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00033">33</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00029">29</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+
+</div>
+</div>
+<a id="a0515b700f046f47fba2d95c2f64bcb59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0515b700f046f47fba2d95c2f64bcb59">&#9670;&nbsp;</a></span>AddTracks()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void KinematicFitter::AddTracks </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__BOSS__objects.html#ga18ab972739387c1d94cd339c5899c035">ParticleSelection</a> &amp;&#160;</td>
+          <td class="paramname"><em>selection</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00035">35</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
@@ -257,6 +361,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::Fit </td>
@@ -265,14 +372,19 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00054">54</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00064">64</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a8613bf13e6104444818358e30da60384"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8613bf13e6104444818358e30da60384">&#9670;&nbsp;</a></span>GetFit()</h2>
+<a id="abc5d0b9ace966d48650818434b2cda43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc5d0b9ace966d48650818434b2cda43">&#9670;&nbsp;</a></span>GetChi2()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +393,7 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">KalmanKinematicFit* KinematicFitter::GetFit </td>
+          <td class="memname">static double KinematicFitter::GetChi2 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -289,18 +401,17 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000013">Todo:</a></b></dt><dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00024">24</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00027">27</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
-<a id="acff1c4fad16aa06d6586266cff3046b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acff1c4fad16aa06d6586266cff3046b7">&#9670;&nbsp;</a></span>GetNContstraints()</h2>
+<a id="a0e154db026db976c3b4f50983d531b41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e154db026db976c3b4f50983d531b41">&#9670;&nbsp;</a></span>GetFit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,40 +420,76 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int KinematicFitter::GetNContstraints </td>
+          <td class="memname">static KalmanKinematicFit* KinematicFitter::GetFit </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000008">Todo:</a></b></dt><dd><code>fKinematicFit</code> should somehow be protected, but this is not yet possible as long as <a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a> does not accept <code>const KalmanKinematicFit*</code>. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00025">25</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+
+</div>
+</div>
+<a id="af3b2637230aa860ee4c9718b5d73df62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3b2637230aa860ee4c9718b5d73df62">&#9670;&nbsp;</a></span>GetNContstraints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int KinematicFitter::GetNContstraints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00022">22</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00023">23</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
-<a id="abd771d00e1184e7c1058e2d46a949280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd771d00e1184e7c1058e2d46a949280">&#9670;&nbsp;</a></span>GetTrack()</h2>
+<a id="a1c94d017b1a6bc142a50fcb89b6cb2ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c94d017b1a6bc142a50fcb89b6cb2ec">&#9670;&nbsp;</a></span>GetTrack()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">HepLorentzVector KinematicFitter::GetTrack </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>i</em></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00061">61</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00071">71</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
@@ -351,6 +498,9 @@ Static Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void KinematicFitter::Initialize </td>
@@ -359,14 +509,19 @@ Static Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00018">18</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8cxx_source.html#l00014">14</a> of file <a class="el" href="KinematicFitter_8cxx_source.html">KinematicFitter.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a2a4e3e11eb88db93d99b890c7f1cfbd7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a4e3e11eb88db93d99b890c7f1cfbd7">&#9670;&nbsp;</a></span>IsSuccessful()</h2>
+<a id="a254611e37a5ca9d005c9fc5313dad0d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254611e37a5ca9d005c9fc5313dad0d3">&#9670;&nbsp;</a></span>IsSuccessful()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -375,20 +530,48 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool KinematicFitter::IsSuccessful </td>
+          <td class="memname">static bool KinematicFitter::IsSuccessful </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00021">21</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00022">22</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+
+</div>
+</div>
+<a id="af7c30c990efdf99252482aa33c8c27f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7c30c990efdf99252482aa33c8c27f1">&#9670;&nbsp;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinematicFitter.html">KinematicFitter</a>&amp; KinematicFitter::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classKinematicFitter.html">KinematicFitter</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00032">32</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -403,17 +586,17 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int KinematicFitter::fConstraintCount</td>
+          <td class="memname">int KinematicFitter::fConstraintCount = 0</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00029">29</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00035">35</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -427,17 +610,17 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool KinematicFitter::fIsSuccessful</td>
+          <td class="memname">bool KinematicFitter::fIsSuccessful = false</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00031">31</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00037">37</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -461,7 +644,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00033">33</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00038">38</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -475,17 +658,17 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int KinematicFitter::fNConstraints</td>
+          <td class="memname">int KinematicFitter::fNConstraints = 0</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00030">30</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00036">36</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>
@@ -499,17 +682,17 @@ Static Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int KinematicFitter::fNTracks</td>
+          <td class="memname">int KinematicFitter::fNTracks = 0</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00028">28</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="KinematicFitter_8h_source.html#l00034">34</a> of file <a class="el" href="KinematicFitter_8h_source.html">KinematicFitter.h</a>.</p>
 
 </div>
 </div>

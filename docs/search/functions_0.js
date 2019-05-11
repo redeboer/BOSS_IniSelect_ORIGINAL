@@ -21,6 +21,7 @@ var searchData=
   ['addresonance',['AddResonance',['../classKinematicFitter.html#a971affc56fb6c2ecacc4a0fe568b312f',1,'KinematicFitter']]],
   ['addtomap',['AddToMap',['../classNTupleContainer.html#a9c1d749f005c96f4236d7792c1b91e75',1,'NTupleContainer']]],
   ['addtrack',['AddTrack',['../classKinematicFitter.html#a97d79f78018f3cfe08a6da2afa263f1c',1,'KinematicFitter::AddTrack(RecEmcShower *track)'],['../classKinematicFitter.html#a405940cb81db2173e58b760ede3ab0b6',1,'KinematicFitter::AddTrack(WTrackParameter track)'],['../classVertexFitter.html#a63f1ef7436ffafe823f09dcda8d06adf',1,'VertexFitter::AddTrack()'],['../classCandidateTracks.html#adae484964713a66f9d3ebc402ff7b33f',1,'CandidateTracks::AddTrack()']]],
+  ['addtracks',['AddTracks',['../classKinematicFitter.html#a0515b700f046f47fba2d95c2f64bcb59',1,'KinematicFitter::AddTracks()'],['../classVertexFitter.html#a40491c6d51a36d7d170dbac41acc6168',1,'VertexFitter::AddTracks()']]],
   ['addtrackstokinematicfitter',['AddTracksToKinematicFitter',['../classD0omega__K4pi.html#a19d9f30e1d5f38f9dbd005376590e2d6',1,'D0omega_K4pi']]],
   ['addtracktoparticle',['AddTrackToParticle',['../classParticleSelectionTempl.html#afc38ab9fca3ae1ad6d514fff1a5db205',1,'ParticleSelectionTempl']]],
   ['angledifferences',['AngleDifferences',['../classAngleDifferences.html#a5eca4d4bf36f0bc2bd3175f5e4521ef6',1,'AngleDifferences::AngleDifferences()'],['../classAngleDifferences.html#afd1128339478126cfd0bef18c9a669fd',1,'AngleDifferences::AngleDifferences(const CLHEP::Hep3Vector &amp;vec1, const CLHEP::Hep3Vector &amp;vec2)']]],

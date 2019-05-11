@@ -115,10 +115,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a7cd27e315fc41838d21ece3055268742 inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a7cd27e315fc41838d21ece3055268742">KKFitResult</a> (KalmanKinematicFit *kkmfit=nullptr)</td></tr>
 <tr class="memdesc:a7cd27e315fc41838d21ece3055268742 inherit pub_methods_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that immediately instantiates all its members from a <code>KalmanKinematic</code> fit result.  <a href="classKKFitResult.html#a7cd27e315fc41838d21ece3055268742">More...</a><br /></td></tr>
 <tr class="separator:a7cd27e315fc41838d21ece3055268742 inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaf75f65ebf70a31ef3f2e438d2b23fb inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb">ResetBestCompareValue</a> (const double value=DBL_MAX)</td></tr>
-<tr class="separator:adaf75f65ebf70a31ef3f2e438d2b23fb inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bfc1a64d3b3003d47de15516ffca23f inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a0bfc1a64d3b3003d47de15516ffca23f">SetRunAndEventNumber</a> (SmartDataPtr&lt; Event::EventHeader &gt; header)</td></tr>
-<tr class="separator:a0bfc1a64d3b3003d47de15516ffca23f inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af04b864ec284ddc1339d9d2809a18c3c inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#af04b864ec284ddc1339d9d2809a18c3c">HasResults</a> ()</td></tr>
 <tr class="separator:af04b864ec284ddc1339d9d2809a18c3c inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2e2ee5c9f82ea348e46372fac624065 inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ae2e2ee5c9f82ea348e46372fac624065">operator bool</a> () const</td></tr>
@@ -126,27 +122,33 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad62460e597db015b74a7234f1f1325bd inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ad62460e597db015b74a7234f1f1325bd">IsBetter</a> () const</td></tr>
 <tr class="memdesc:ad62460e597db015b74a7234f1f1325bd inherit pub_methods_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default function of <code>KKFitResult::IsBetter(const double &amp;value, double &amp;bestvalue)</code>.  <a href="classKKFitResult.html#ad62460e597db015b74a7234f1f1325bd">More...</a><br /></td></tr>
 <tr class="separator:ad62460e597db015b74a7234f1f1325bd inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf75f65ebf70a31ef3f2e438d2b23fb inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb">ResetBestCompareValue</a> (const double value=DBL_MAX)</td></tr>
+<tr class="separator:adaf75f65ebf70a31ef3f2e438d2b23fb inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72524f2b362ee75dbdb72f6af5ee7e35 inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a72524f2b362ee75dbdb72f6af5ee7e35">SetEventNumber</a> (int runNr)</td></tr>
+<tr class="separator:a72524f2b362ee75dbdb72f6af5ee7e35 inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93b7875e2c74093d2dd3cf0c09083fec inherit pub_methods_classKKFitResult"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a93b7875e2c74093d2dd3cf0c09083fec">SetRunNumber</a> (int eventNr)</td></tr>
+<tr class="separator:a93b7875e2c74093d2dd3cf0c09083fec inherit pub_methods_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Parameters computed from fit</div></td></tr>
 <tr class="memitem:a41d1e4eb2530c911b96c81f0ead6336d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#a41d1e4eb2530c911b96c81f0ead6336d">fM_pi0</a></td></tr>
-<tr class="memdesc:a41d1e4eb2530c911b96c81f0ead6336d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$\pi^0$" src="form_3.png"/> candidate.  <a href="#a41d1e4eb2530c911b96c81f0ead6336d">More...</a><br /></td></tr>
+<tr class="memdesc:a41d1e4eb2530c911b96c81f0ead6336d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$\pi^0$" src="form_11.png"/> candidate.  <a href="#a41d1e4eb2530c911b96c81f0ead6336d">More...</a><br /></td></tr>
 <tr class="separator:a41d1e4eb2530c911b96c81f0ead6336d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab29242d1faa050c3ab1476e763c557bb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#ab29242d1faa050c3ab1476e763c557bb">fM_D0</a></td></tr>
-<tr class="memdesc:ab29242d1faa050c3ab1476e763c557bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$D^0$" src="form_4.png"/> candidate.  <a href="#ab29242d1faa050c3ab1476e763c557bb">More...</a><br /></td></tr>
+<tr class="memdesc:ab29242d1faa050c3ab1476e763c557bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$D^0$" src="form_9.png"/> candidate.  <a href="#ab29242d1faa050c3ab1476e763c557bb">More...</a><br /></td></tr>
 <tr class="separator:ab29242d1faa050c3ab1476e763c557bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae41e769779e34cdc9d8a122b37eb6b39"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#ae41e769779e34cdc9d8a122b37eb6b39">fM_Jpsi</a></td></tr>
 <tr class="memdesc:ae41e769779e34cdc9d8a122b37eb6b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> candidate.  <a href="#ae41e769779e34cdc9d8a122b37eb6b39">More...</a><br /></td></tr>
 <tr class="separator:ae41e769779e34cdc9d8a122b37eb6b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24a78f891e97cc423b05356a80384902"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#a24a78f891e97cc423b05356a80384902">fM_omega</a></td></tr>
-<tr class="memdesc:a24a78f891e97cc423b05356a80384902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$\omega$" src="form_5.png"/> candidate.  <a href="#a24a78f891e97cc423b05356a80384902">More...</a><br /></td></tr>
+<tr class="memdesc:a24a78f891e97cc423b05356a80384902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed mass of the <img class="formulaInl" alt="$\omega$" src="form_30.png"/> candidate.  <a href="#a24a78f891e97cc423b05356a80384902">More...</a><br /></td></tr>
 <tr class="separator:a24a78f891e97cc423b05356a80384902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f19194678f2a14f9d6bb0c9899c82e6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#a2f19194678f2a14f9d6bb0c9899c82e6">fP_D0</a></td></tr>
-<tr class="memdesc:a2f19194678f2a14f9d6bb0c9899c82e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed 3-momentum of <img class="formulaInl" alt="$D^0$" src="form_4.png"/> candidate.  <a href="#a2f19194678f2a14f9d6bb0c9899c82e6">More...</a><br /></td></tr>
+<tr class="memdesc:a2f19194678f2a14f9d6bb0c9899c82e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed 3-momentum of <img class="formulaInl" alt="$D^0$" src="form_9.png"/> candidate.  <a href="#a2f19194678f2a14f9d6bb0c9899c82e6">More...</a><br /></td></tr>
 <tr class="separator:a2f19194678f2a14f9d6bb0c9899c82e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5437df809cac08b501649003ca55863"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#af5437df809cac08b501649003ca55863">fP_omega</a></td></tr>
-<tr class="memdesc:af5437df809cac08b501649003ca55863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed 3-momentum of <img class="formulaInl" alt="$\omega$" src="form_5.png"/> candidate.  <a href="#af5437df809cac08b501649003ca55863">More...</a><br /></td></tr>
+<tr class="memdesc:af5437df809cac08b501649003ca55863"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current computed 3-momentum of <img class="formulaInl" alt="$\omega$" src="form_30.png"/> candidate.  <a href="#af5437df809cac08b501649003ca55863">More...</a><br /></td></tr>
 <tr class="separator:af5437df809cac08b501649003ca55863"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e6599c04f48fc9bead1347c3858b9bb"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult__D0omega__K4pi.html#a3e6599c04f48fc9bead1347c3858b9bb">fP_pi0</a></td></tr>
 <tr class="separator:a3e6599c04f48fc9bead1347c3858b9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,14 +172,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ae950317dc8ce1cff1d35ab522faa9a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_attribs_classKKFitResult"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_classKKFitResult')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="classKKFitResult.html">KKFitResult</a></td></tr>
 <tr class="memitem:ab998d45583725a8561225c1ac7a36a46 inherit pub_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46">fChiSquared</a></td></tr>
-<tr class="memdesc:ab998d45583725a8561225c1ac7a36a46 inherit pub_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight"><img class="formulaInl" alt="$\chi^2$" src="form_16.png"/> of <em>this</em> fit (hence, not <code>static</code>).  <a href="classKKFitResult.html#ab998d45583725a8561225c1ac7a36a46">More...</a><br /></td></tr>
 <tr class="separator:ab998d45583725a8561225c1ac7a36a46 inherit pub_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d3894e77184e0041d4da4c116a2d433 inherit pub_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433">fRunNumber</a></td></tr>
-<tr class="memdesc:a9d3894e77184e0041d4da4c116a2d433 inherit pub_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run number of this event.  <a href="classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433">More...</a><br /></td></tr>
-<tr class="separator:a9d3894e77184e0041d4da4c116a2d433 inherit pub_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8de025d0097e3db1efa63a6394d5b7b3 inherit pub_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a8de025d0097e3db1efa63a6394d5b7b3">fEventNumber</a></td></tr>
-<tr class="memdesc:a8de025d0097e3db1efa63a6394d5b7b3 inherit pub_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event number of this event.  <a href="classKKFitResult.html#a8de025d0097e3db1efa63a6394d5b7b3">More...</a><br /></td></tr>
 <tr class="separator:a8de025d0097e3db1efa63a6394d5b7b3 inherit pub_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d3894e77184e0041d4da4c116a2d433 inherit pub_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#a9d3894e77184e0041d4da4c116a2d433">fRunNumber</a></td></tr>
+<tr class="separator:a9d3894e77184e0041d4da4c116a2d433 inherit pub_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -205,11 +204,11 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:ad7499ab02d1777dde3ca506cd35f81b1 inherit pro_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">KalmanKinematicFit *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ad7499ab02d1777dde3ca506cd35f81b1">fFit</a></td></tr>
 <tr class="separator:ad7499ab02d1777dde3ca506cd35f81b1 inherit pro_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdb4cc2eb44095e82e839d29ac2e16f6 inherit pro_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6">fHasResults</a></td></tr>
-<tr class="memdesc:acdb4cc2eb44095e82e839d29ac2e16f6 inherit pro_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">You will only want to write the fit results if they have been properly computed.  <a href="classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6">More...</a><br /></td></tr>
+<tr class="memdesc:acdb4cc2eb44095e82e839d29ac2e16f6 inherit pro_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">You will only want to write the fit results if they have been properly computed. This bit is set to <code>true</code> if either this object has been constructed using a non-empty <code>KalmanKinematicFit</code> pointer or has been constructed with (see derived classes for implementation)  <a href="classKKFitResult.html#acdb4cc2eb44095e82e839d29ac2e16f6">More...</a><br /></td></tr>
 <tr class="separator:acdb4cc2eb44095e82e839d29ac2e16f6 inherit pro_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classKKFitResult"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classKKFitResult')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classKKFitResult.html">KKFitResult</a></td></tr>
 <tr class="memitem:ad0a4efdb7c57e95f2dbf19f6b0571ed0 inherit pro_static_attribs_classKKFitResult"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0">fBestCompareValue</a> = DBL_MAX</td></tr>
-<tr class="memdesc:ad0a4efdb7c57e95f2dbf19f6b0571ed0 inherit pro_static_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current best value for the comparison.  <a href="classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0">More...</a><br /></td></tr>
+<tr class="memdesc:ad0a4efdb7c57e95f2dbf19f6b0571ed0 inherit pro_static_attribs_classKKFitResult"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current best value for the comparison. Note that it is automatically reset to the value set here when all (derived) instances of <code><a class="el" href="classKKFitResult.html" title="Base class for a container that contains important fit results of the KalmanKinematicFit. ">KKFitResult</a></code> are destroyed.  <a href="classKKFitResult.html#ad0a4efdb7c57e95f2dbf19f6b0571ed0">More...</a><br /></td></tr>
 <tr class="separator:ad0a4efdb7c57e95f2dbf19f6b0571ed0 inherit pro_static_attribs_classKKFitResult"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -265,12 +264,12 @@ Additional Inherited Members</h2></td></tr>
 <p>Construct a <code><a class="el" href="classKKFitResult__D0omega__K4pi.html" title="Derived class for a container that contains important fit results of the KalmanKinematicFit, including masses. ">KKFitResult_D0omega_K4pi</a></code> object based on a pointer to a <code>KalmanKinematicFit</code> object. </p>
 <p>Get Lorentz vectors of the decay products using <code>KalmanKinematicFit::pfit</code>:</p>
 <ol type="1">
-<li><img class="formulaInl" alt="$\gamma$" src="form_6.png"/> (first occurrence)</li>
-<li><img class="formulaInl" alt="$\gamma$" src="form_6.png"/> (second occurrence)</li>
-<li><img class="formulaInl" alt="$K^-$" src="form_8.png"/></li>
-<li><img class="formulaInl" alt="$\pi^-$" src="form_9.png"/></li>
-<li><img class="formulaInl" alt="$\pi^+$" src="form_20.png"/> (first occurrence)</li>
-<li><img class="formulaInl" alt="$\pi^+$" src="form_20.png"/> (second occurrence) </li>
+<li><img class="formulaInl" alt="$\gamma$" src="form_16.png"/> (first occurrence)</li>
+<li><img class="formulaInl" alt="$\gamma$" src="form_16.png"/> (second occurrence)</li>
+<li><img class="formulaInl" alt="$K^-$" src="form_3.png"/></li>
+<li><img class="formulaInl" alt="$\pi^-$" src="form_5.png"/></li>
+<li><img class="formulaInl" alt="$\pi^+$" src="form_6.png"/> (first occurrence)</li>
+<li><img class="formulaInl" alt="$\pi^+$" src="form_6.png"/> (second occurrence) </li>
 </ol>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8cxx_source.html#l00020">20</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8cxx_source.html">KKFitResult_D0omega_K4pi.cxx</a>.</p>
@@ -397,19 +396,19 @@ Additional Inherited Members</h2></td></tr>
 <li>
 Compute Lorentz vectors of the particles to be reconstructed: <ul>
 <li>
-<p class="startli"><img class="formulaInl" alt="$pi^0 \rightarrow \gamma\gamma$" src="form_21.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$pi^0 \rightarrow \gamma\gamma$" src="form_53.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$D^0 \rightarrow K^-\pi^+\pi^0$" src="form_22.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$D^0 \rightarrow K^-\pi^+\pi^0$" src="form_54.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$\omega \rightarrow K^-K^+$" src="form_23.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$\omega \rightarrow K^-K^+$" src="form_55.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><img class="formulaInl" alt="$J/\psi \rightarrow D^0\omega$" src="form_24.png"/></p>
+<p class="startli"><img class="formulaInl" alt="$J/\psi \rightarrow D^0\omega$" src="form_56.png"/></p>
 <p class="endli"></p>
 </li>
 </ul>
@@ -417,19 +416,19 @@ Compute Lorentz vectors of the particles to be reconstructed: <ul>
 <li>
 Compute invariant masses and momentum: <ul>
 <li>
-<p class="startli"><code>fM_pi0</code> = <img class="formulaInl" alt="$M_{\gamma\gamma}$" src="form_25.png"/></p>
+<p class="startli"><code>fM_pi0</code> = <img class="formulaInl" alt="$M_{\gamma\gamma}$" src="form_57.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>fM_D0</code> = <img class="formulaInl" alt="$M_{K^-\pi^+\pi^0}$" src="form_26.png"/></p>
+<p class="startli"><code>fM_D0</code> = <img class="formulaInl" alt="$M_{K^-\pi^+\pi^0}$" src="form_58.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>fM_omega</code> = <img class="formulaInl" alt="$M_{K^-K^+}$" src="form_27.png"/></p>
+<p class="startli"><code>fM_omega</code> = <img class="formulaInl" alt="$M_{K^-K^+}$" src="form_59.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli"><code>fM_Jpsi</code> = <img class="formulaInl" alt="$M_{D^0\omega}$" src="form_28.png"/></p>
+<p class="startli"><code>fM_Jpsi</code> = <img class="formulaInl" alt="$M_{D^0\omega}$" src="form_60.png"/></p>
 <p class="endli"></p>
 </li>
 </ul>
@@ -447,7 +446,7 @@ Compute invariant masses and momentum: <ul>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">Compute measure for best fit: <code>fFitMeasure</code> := <img class="formulaInl" alt="$M_{\pi^-\pi^+\pi^0} - m_{\omega}$" src="form_29.png"/></p>
+<p class="startli">Compute measure for best fit: <code>fFitMeasure</code> := <img class="formulaInl" alt="$M_{\pi^-\pi^+\pi^0} - m_{\omega}$" src="form_61.png"/></p>
 <p class="endli"></p>
 </li>
 <li>
@@ -595,7 +594,7 @@ Compute invariant masses and momentum: <ul>
       </table>
 </div><div class="memdoc">
 
-<p>Current computed mass of the <img class="formulaInl" alt="$D^0$" src="form_4.png"/> candidate. </p>
+<p>Current computed mass of the <img class="formulaInl" alt="$D^0$" src="form_9.png"/> candidate. </p>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html#l00037">37</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html">KKFitResult_D0omega_K4pi.h</a>.</p>
 
@@ -631,7 +630,7 @@ Compute invariant masses and momentum: <ul>
       </table>
 </div><div class="memdoc">
 
-<p>Current computed mass of the <img class="formulaInl" alt="$\omega$" src="form_5.png"/> candidate. </p>
+<p>Current computed mass of the <img class="formulaInl" alt="$\omega$" src="form_30.png"/> candidate. </p>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html#l00039">39</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html">KKFitResult_D0omega_K4pi.h</a>.</p>
 
@@ -649,7 +648,7 @@ Compute invariant masses and momentum: <ul>
       </table>
 </div><div class="memdoc">
 
-<p>Current computed mass of the <img class="formulaInl" alt="$\pi^0$" src="form_3.png"/> candidate. </p>
+<p>Current computed mass of the <img class="formulaInl" alt="$\pi^0$" src="form_11.png"/> candidate. </p>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html#l00036">36</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html">KKFitResult_D0omega_K4pi.h</a>.</p>
 
@@ -667,7 +666,7 @@ Compute invariant masses and momentum: <ul>
       </table>
 </div><div class="memdoc">
 
-<p>Current computed 3-momentum of <img class="formulaInl" alt="$D^0$" src="form_4.png"/> candidate. </p>
+<p>Current computed 3-momentum of <img class="formulaInl" alt="$D^0$" src="form_9.png"/> candidate. </p>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html#l00040">40</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html">KKFitResult_D0omega_K4pi.h</a>.</p>
 
@@ -701,7 +700,7 @@ Compute invariant masses and momentum: <ul>
       </table>
 </div><div class="memdoc">
 
-<p>Current computed 3-momentum of <img class="formulaInl" alt="$\omega$" src="form_5.png"/> candidate. </p>
+<p>Current computed 3-momentum of <img class="formulaInl" alt="$\omega$" src="form_30.png"/> candidate. </p>
 
 <p class="definition">Definition at line <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html#l00041">41</a> of file <a class="el" href="KKFitResult__D0omega__K4pi_8h_source.html">KKFitResult_D0omega_K4pi.h</a>.</p>
 

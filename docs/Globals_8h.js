@@ -1,6 +1,23 @@
 var Globals_8h =
 [
+    [ "EIniSelColor", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84", [
+      [ "Red", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84a7724f65618d73d08182a4519e9977c29", null ],
+      [ "Green", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84a54fc95425c067091cceeee2716586acc", null ],
+      [ "Yellow", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84a7aad40629aea7f1c78a75cb167751cae", null ]
+    ] ],
+    [ "ColourPrint", "Globals_8h.html#a6e8a41888f3a918804c6806b64343c59", null ],
+    [ "ColourPrintBold", "Globals_8h.html#af18ea7a342ddfbc0afdcb943169f20f0", null ],
     [ "gEcmsVec", "Globals_8h.html#a54aa83907fcc30c611e8e3b91de4ccfb", null ],
+    [ "IsFromJPsi", "Globals_8h.html#a74b36be1825cbff42d580f1acd99791d", null ],
+    [ "IsInitialCluster", "Globals_8h.html#a8ed10c4b2ed763ce7d258d1ebfb20abb", null ],
+    [ "IsJPsi", "Globals_8h.html#a7c866177d9d915fa4376369fa1f68c62", null ],
+    [ "PrintBold", "Globals_8h.html#aefcc14ce92c17e09fab0cc8670dae03b", null ],
+    [ "PrintFatalError", "Globals_8h.html#af50184255edfdaa2122420dad83143d0", null ],
+    [ "PrintGreen", "Globals_8h.html#a318194d6c9b31aa72a1a5735d9d405aa", null ],
+    [ "PrintRed", "Globals_8h.html#ac8686a20c0af4628e6e9ec5b743eebd3", null ],
+    [ "PrintSuccess", "Globals_8h.html#a05baaba18711cfcc33ae97eab7e8f425", null ],
+    [ "PrintWarning", "Globals_8h.html#a9a99d65327e784907c9dac8e3364ac6a", null ],
+    [ "PrintYellow", "Globals_8h.html#a9f979b8f95bb4e0bd4cb603dba89127f", null ],
     [ "TOF", "Globals_8h.html#a7ae46b20b413abde542b8a09c02ddfbf", null ],
     [ "arr", "Globals_8h.html#a19bdcfb3ee975bd0b446043c124aa76f", null ],
     [ "D0", "Globals_8h.html#a480f74a7150233c3b5f54efeabf3ceb1", null ],

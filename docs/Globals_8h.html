@@ -81,6 +81,7 @@ $(document).ready(function(){initNavTree('Globals_8h.html','');});
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -88,6 +89,8 @@ $(document).ready(function(){initNavTree('Globals_8h.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;CLHEP/Vector/LorentzVector.h&quot;</code><br />
+<code>#include &quot;McTruth/McParticle.h&quot;</code><br />
+<code>#include &quot;TString.h&quot;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 </div>
 <p><a href="Globals_8h_source.html">Go to the source code of this file.</a></p>
@@ -101,8 +104,20 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceIniSelect_1_1Mass"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1Mass.html">IniSelect::Mass</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceIniSelect_1_1McTruth"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1McTruth.html">IniSelect::McTruth</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceIniSelect_1_1Paths"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1Paths.html">IniSelect::Paths</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceIniSelect_1_1TerminalIO"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html">IniSelect::TerminalIO</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a66cca066bf384dcbff4ab19e8a2ccb84"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84">IniSelect::TerminalIO::EIniSelColor</a> { <a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84a7724f65618d73d08182a4519e9977c29">IniSelect::TerminalIO::Red</a> = 31, 
+<a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84a54fc95425c067091cceeee2716586acc">IniSelect::TerminalIO::Green</a> = 32, 
+<a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84a7aad40629aea7f1c78a75cb167751cae">IniSelect::TerminalIO::Yellow</a> = 33
+ }</td></tr>
+<tr class="separator:a66cca066bf384dcbff4ab19e8a2ccb84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -111,6 +126,33 @@ Functions</h2></td></tr>
 <tr class="separator:a54aa83907fcc30c611e8e3b91de4ccfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ae46b20b413abde542b8a09c02ddfbf"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1Mass.html#a7ae46b20b413abde542b8a09c02ddfbf">IniSelect::Mass::TOF</a> (arr, arr+sizeof(arr)/sizeof(*arr))</td></tr>
 <tr class="separator:a7ae46b20b413abde542b8a09c02ddfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ed10c4b2ed763ce7d258d1ebfb20abb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1McTruth.html#a8ed10c4b2ed763ce7d258d1ebfb20abb">IniSelect::McTruth::IsInitialCluster</a> (Event::McParticle *mcparticle)</td></tr>
+<tr class="memdesc:a8ed10c4b2ed763ce7d258d1ebfb20abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <code>91</code> (the PDG code of a 'cluster') or <code>92</code> (the PDG code of a string). This function is used to characterised the initial cluster, e.g. <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/>.  <a href="namespaceIniSelect_1_1McTruth.html#a8ed10c4b2ed763ce7d258d1ebfb20abb">More...</a><br /></td></tr>
+<tr class="separator:a8ed10c4b2ed763ce7d258d1ebfb20abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c866177d9d915fa4376369fa1f68c62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1McTruth.html#a7c866177d9d915fa4376369fa1f68c62">IniSelect::McTruth::IsJPsi</a> (Event::McParticle *mcparticle)</td></tr>
+<tr class="memdesc:a7c866177d9d915fa4376369fa1f68c62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>).  <a href="namespaceIniSelect_1_1McTruth.html#a7c866177d9d915fa4376369fa1f68c62">More...</a><br /></td></tr>
+<tr class="separator:a7c866177d9d915fa4376369fa1f68c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74b36be1825cbff42d580f1acd99791d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1McTruth.html#a74b36be1825cbff42d580f1acd99791d">IniSelect::McTruth::IsFromJPsi</a> (Event::McParticle *mcparticle)</td></tr>
+<tr class="memdesc:a74b36be1825cbff42d580f1acd99791d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether an MC truth particle is <img class="formulaInl" alt="$J/\psi$" src="form_0.png"/> (PDG code <code>91</code>).  <a href="namespaceIniSelect_1_1McTruth.html#a74b36be1825cbff42d580f1acd99791d">More...</a><br /></td></tr>
+<tr class="separator:a74b36be1825cbff42d580f1acd99791d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18ea7a342ddfbc0afdcb943169f20f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#af18ea7a342ddfbc0afdcb943169f20f0">IniSelect::TerminalIO::ColourPrintBold</a> (const char code, const TString &amp;message)</td></tr>
+<tr class="separator:af18ea7a342ddfbc0afdcb943169f20f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e8a41888f3a918804c6806b64343c59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a6e8a41888f3a918804c6806b64343c59">IniSelect::TerminalIO::ColourPrint</a> (const char code, const TString &amp;message, const TString &amp;qualifier=&quot;&quot;)</td></tr>
+<tr class="separator:a6e8a41888f3a918804c6806b64343c59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50184255edfdaa2122420dad83143d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#af50184255edfdaa2122420dad83143d0">IniSelect::TerminalIO::PrintFatalError</a> (const TString &amp;message)</td></tr>
+<tr class="separator:af50184255edfdaa2122420dad83143d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05baaba18711cfcc33ae97eab7e8f425"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a05baaba18711cfcc33ae97eab7e8f425">IniSelect::TerminalIO::PrintSuccess</a> (const TString &amp;message)</td></tr>
+<tr class="separator:a05baaba18711cfcc33ae97eab7e8f425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a99d65327e784907c9dac8e3364ac6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a9a99d65327e784907c9dac8e3364ac6a">IniSelect::TerminalIO::PrintWarning</a> (const TString &amp;message)</td></tr>
+<tr class="separator:a9a99d65327e784907c9dac8e3364ac6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8686a20c0af4628e6e9ec5b743eebd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#ac8686a20c0af4628e6e9ec5b743eebd3">IniSelect::TerminalIO::PrintRed</a> (const TString &amp;message)</td></tr>
+<tr class="separator:ac8686a20c0af4628e6e9ec5b743eebd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a318194d6c9b31aa72a1a5735d9d405aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a318194d6c9b31aa72a1a5735d9d405aa">IniSelect::TerminalIO::PrintGreen</a> (const TString &amp;message)</td></tr>
+<tr class="separator:a318194d6c9b31aa72a1a5735d9d405aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f979b8f95bb4e0bd4cb603dba89127f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#a9f979b8f95bb4e0bd4cb603dba89127f">IniSelect::TerminalIO::PrintYellow</a> (const TString &amp;message)</td></tr>
+<tr class="separator:a9f979b8f95bb4e0bd4cb603dba89127f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefcc14ce92c17e09fab0cc8670dae03b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceIniSelect_1_1TerminalIO.html#aefcc14ce92c17e09fab0cc8670dae03b">IniSelect::TerminalIO::PrintBold</a> (const TString &amp;message)</td></tr>
+<tr class="separator:aefcc14ce92c17e09fab0cc8670dae03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -157,7 +199,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_79a4623d57a7a5bc0c324dc643ac7156.html">workarea</a></li><li class="navelem"><a class="el" href="dir_292c0d700d070d39d2dd54b2d0004c3e.html">Analysis</a></li><li class="navelem"><a class="el" href="dir_a6f5ce138cba5737c2d398eb92b956d3.html">IniSelect</a></li><li class="navelem"><a class="el" href="dir_3fcec082a93ac80b00fed54bdcb80f87.html">IniSelect</a></li><li class="navelem"><a class="el" href="dir_63edcba1011e6b9059e7bde85c7c4d54.html">IniSelect-00-00-00</a></li><li class="navelem"><a class="el" href="dir_22e199f13fbdea4b20de8806cb179e42.html">IniSelect</a></li><li class="navelem"><a class="el" href="Globals_8h.html">Globals.h</a></li>
+    <li class="navelem"><a class="el" href="dir_79a4623d57a7a5bc0c324dc643ac7156.html">workarea</a></li><li class="navelem"><a class="el" href="dir_292c0d700d070d39d2dd54b2d0004c3e.html">Analysis</a></li><li class="navelem"><a class="el" href="dir_a6f5ce138cba5737c2d398eb92b956d3.html">IniSelect</a></li><li class="navelem"><a class="el" href="dir_8a713c2df69c19770d52317df03a39a9.html">IniSelect-00-00-00</a></li><li class="navelem"><a class="el" href="dir_3e0921c9474dacbb24630b74812bb493.html">IniSelect</a></li><li class="navelem"><a class="el" href="Globals_8h.html">Globals.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

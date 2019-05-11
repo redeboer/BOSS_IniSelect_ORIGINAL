@@ -1,0 +1,26 @@
+var classDstFile =
+[
+    [ "DstFile", "classDstFile.html#a890a61ca0717bdac6561a8da413df4db", null ],
+    [ "EventNumber", "classDstFile.html#a8be4d8a493ae6ea55a2cb611362822e2", null ],
+    [ "IncrementCounters", "classDstFile.html#af38be3e0a992b1fe169a9b76d96c2a74", null ],
+    [ "IsMonteCarlo", "classDstFile.html#aebe4dfc3c73404ec5b783f3435af901d", null ],
+    [ "LoadNextEvent", "classDstFile.html#a3f9b2f55a7ea6dc1d44fdd762e0da9a4", null ],
+    [ "RunNumber", "classDstFile.html#a8423a88200199568ec1e3c6752e37c5e", null ],
+    [ "TotalChargedTracks", "classDstFile.html#aceb7f1889a20f753943a1ed752aa22cc", null ],
+    [ "TotalMcTracks", "classDstFile.html#a8f99bdd82d53e096168a580ee550a92e", null ],
+    [ "TotalNeutralTracks", "classDstFile.html#ae4fcb389f8b35ecc90c0fb78b0b5c33c", null ],
+    [ "TotalTracks", "classDstFile.html#a203ddad6b44a0aaa7aed02774ddd6373", null ],
+    [ "ChargedTrackIter", "classDstFile.html#a02eca7aa13eba14014a3654dc08c6047", null ],
+    [ "McTrackIter", "classDstFile.html#a539194eeccd83a1808d91350a22d1d84", null ],
+    [ "NeutralTrackIter", "classDstFile.html#a64a44668a94c9d4105794c17370fcb5b", null ],
+    [ "fCumulativeNCharged", "classDstFile.html#a2411e28f338b28f3986e34e565188dac", null ],
+    [ "fCumulativeNMdcValid", "classDstFile.html#a8e91fb6674de2c2ec9ca9fe63685ade0", null ],
+    [ "fCumulativeNNeutral", "classDstFile.html#ab581b4e8f6f2bc8a4ddd93560f21ca19", null ],
+    [ "fCumulativeNTracks", "classDstFile.html#aed8bd318c13300eed2ba1aab7165a67e", null ],
+    [ "fDataProvider", "classDstFile.html#a80e58c05f44f10a361b9426b248f7b29", null ],
+    [ "fEventCounter", "classDstFile.html#a3595df14bfb715351c97bfe63d54b1e8", null ],
+    [ "fEventHeader", "classDstFile.html#a8634d1e5fc921096d8fe02d500d1a48a", null ],
+    [ "fEvtRecEvent", "classDstFile.html#aeb7fb08b4a3110e3670780b6f03f95e4", null ],
+    [ "fEvtRecTrkCol", "classDstFile.html#a4736228848a86043832cd0b941513a0c", null ],
+    [ "fMcParticleCol", "classDstFile.html#a678cd5ee9deb79b389e5bf83f6ae5edd", null ]
+];
