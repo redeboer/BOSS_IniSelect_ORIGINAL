@@ -19,6 +19,7 @@ var searchData=
   ['convertindextoname',['ConvertIndexToName',['../classParticleIdentifier.html#a98b0682ad105372bcb2fa08f1e044361',1,'ParticleIdentifier']]],
   ['converttodegrees',['ConvertToDegrees',['../classAngleDifferences.html#a5dea6fd6107b3f31a2363aba5b6c61c0',1,'AngleDifferences']]],
   ['converttoradians',['ConvertToRadians',['../classAngleDifferences.html#ac50561540e5784afb7411015e1d9bb7f',1,'AngleDifferences']]],
+  ['countoccurences',['CountOccurences',['../classParticleSelectionTempl.html#afed7bc4d7a23afa39987cc87547df1e2',1,'ParticleSelectionTempl']]],
   ['createchargedcollection',['CreateChargedCollection',['../classTrackSelector.html#ad9a4a9a0e79824ac11ab4f77e8f18a96',1,'TrackSelector']]],
   ['createchargedtrackselections',['CreateChargedTrackSelections',['../classTrackSelector.html#a73331b0cb4d1a09068c459a744b80da0',1,'TrackSelector']]],
   ['createmctruthcollection',['CreateMCTruthCollection',['../classTrackSelector.html#a7fcf071193ce54e8ce65293133c7dbe3',1,'TrackSelector']]],

@@ -5,6 +5,7 @@ var searchData=
   ['addandwritecuts',['AddAndWriteCuts',['../classTrackSelector.html#a71be8816dc906b046937c13113a33268',1,'TrackSelector']]],
   ['addcleanvertex',['AddCleanVertex',['../classVertexFitter.html#a6fed6b447f6e3949e0da22fc8f6ccff9',1,'VertexFitter']]],
   ['addconstraintcms',['AddConstraintCMS',['../classKinematicFitter.html#af50ec6b544d0249a91b12da694f9ea9e',1,'KinematicFitter']]],
+  ['adddummytracks',['AddDummyTracks',['../classTest__CandidateTracks.html#a82aff1d34db56adce434c1981c6a9243',1,'Test_CandidateTracks']]],
   ['addindexeditem',['AddIndexedItem',['../classNTupleContainer.html#aa83866791ff3e746b57483ad434329c7',1,'NTupleContainer']]],
   ['additem',['AddItem',['../classNTupleContainer.html#a8bac526b05afb8ffccca54228c0ac73f',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a87da57e80b9369b5003482020cd5e7e8',1,'NTupleContainer::AddItem(const std::string &amp;item_name)'],['../classNTupleContainer.html#a20761f944a68daa27fa6c15b3a245bfc',1,'NTupleContainer::AddItem(const std::string &amp;item_name, const RANGE low, const RANGE high)']]],
   ['addntupleitems',['AddNTupleItems',['../classTrackSelector.html#ae7497d80b7650850991be723f5dc8c31',1,'TrackSelector']]],

@@ -519,7 +519,7 @@ Constructors</h2></td></tr>
 <p>Write all cuts to a branch called "_cutvalues". </p>
 <p>There will only be one entry per output file: a <code>C</code>-style array of size 3. Entry 0 of that array is the <code>min</code> value, entry 1 is the <code>max</code> value, and entry 2 is the recorded. As opposed to earlier versions of the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> (where the <code>"_cutvalues"</code> <code>TTree</code> contained 3 entries), we now use a <code>C</code>-style array (written through <code>NTuple::addIndexedItem</code>), because it allows to add up the number of counts when you have split up your jobs, which makes your output contain more than ROOT file. If you load these files as a <code>TChain</code>, you can get the total count of the <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code> by adding up all '2nd entries' (the counts) of each branch. </p><dl class="section see"><dt>See also</dt><dd>BOSSOutputLoader::PrintCuts </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00017">17</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00018">18</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
 
 </div>
 </div>
@@ -1120,7 +1120,7 @@ Constructors</h2></td></tr>
 <li><b>Write</b> Time-of-Flight PID information ("tof*" branch) </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00069">69</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00070">70</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1147,7 +1147,7 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00313">313</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00314">314</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1279,7 +1279,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Create a preselection of <b>neutral</b> tracks (without cuts). </p>
 <p>This method is used in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> only. See <code>fNeutralTracks</code> for more information. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00219">219</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00220">220</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1306,7 +1306,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00342">342</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00343">343</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1333,7 +1333,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00305">305</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00306">306</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1363,7 +1363,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00415">415</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00408">408</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1392,7 +1392,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>PID cut</b>: apply a strict cut on the number of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00281">281</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00282">282</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1419,7 +1419,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00123">123</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00124">124</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1518,7 +1518,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>This method is called <b>for each event</b>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00022">22</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00023">23</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1540,7 +1540,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Is called at the end <em>of the entire process</em>. </p>
 <p>Writes total cut flow to terminal and to the output file. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00005">5</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00006">6</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
 
 </div>
 </div>
@@ -1596,7 +1596,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Find angle differences with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00365">365</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00358">358</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1623,7 +1623,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00379">379</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00372">372</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1651,7 +1651,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00385">385</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00378">378</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1835,7 +1835,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00047">47</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00048">48</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1903,7 +1903,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00265">265</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00266">266</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -1931,7 +1931,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00036">36</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00037">37</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
 
 </div>
 </div>
@@ -1996,7 +1996,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00056">56</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00057">57</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2023,7 +2023,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00133">133</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00134">134</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2069,7 +2069,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> info. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00149">149</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00150">150</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2242,7 +2242,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00247">247</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00248">248</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2272,7 +2272,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><em>Write</em> photon info (<code>"photon"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00395">395</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00388">388</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2361,7 +2361,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> ToF info </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00184">184</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00185">185</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>
@@ -2389,7 +2389,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </div><div class="memdoc">
 <p><b>Write</b> information about the interaction point (<code>"vertex"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00294">294</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00295">295</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
 
 </div>
 </div>

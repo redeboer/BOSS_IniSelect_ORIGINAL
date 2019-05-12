@@ -19,6 +19,7 @@ var hierarchy =
     ] ],
     [ "AngleDifferences", "classAngleDifferences.html", null ],
     [ "CandidateTracks< T >", "classCandidateTracks.html", null ],
+    [ "CandidateTracks< Event::McParticle >", "classCandidateTracks.html", null ],
     [ "Container_base", "classContainer__base.html", [
       [ "Container_indexed", "classContainer__indexed.html", null ],
       [ "CutObject", "classCutObject.html", null ],
