@@ -71,9 +71,6 @@
 	alias ihep="ihep7"
 
 	alias cdroot="cd ${IHEPROOT}"
-	alias cdworkarea="cd ${BOSS_IniSelect}/workarea"
-	alias cdihepbatch="cd ${IHEPBATCH}"
-	alias cdbesfs="cd ${BESFS}"
 	alias cdrun="cd ${IHEPBATCH}/workarea-7.0.3/TestRelease/TestRelease-00-00-86/run"
 
 	alias myjobs="hep_q -u ${USER}"
