@@ -1,5 +1,5 @@
 #!/bin/bash -
-echo "Loading \"${BASH_SOURCE[0]/$(dirname ${BOSS_IniSelect})\/}\""
+# echo "Loading \"${BASH_SOURCE[0]/$(dirname ${BOSS_IniSelect})\/}\""
 
 # * BOSS paths and parameters * #
 export BOSSVERSION="7.0.4"
