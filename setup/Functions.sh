@@ -1,4 +1,6 @@
 #!/bin/bash -
+echo "Loading \"${BASH_SOURCE[0]/$(dirname ${BOSS_IniSelect})\/}\""
+
 # * ============================================================================= * #
 # *   DESCRIPTION: Shell script that contains definitions of functions that are   * #
 # *                used in the bash scripts this folder.                          * #
@@ -6,7 +8,7 @@
 # *  ORGANIZATION: IHEP, CAS (Beijing, CHINA)                                     * #
 # *       CREATED: 8 November 2018                                                * #
 # *         USAGE: include in another bash script with this line:                 * #
-# *                source CommonFunctions.sh                                      * #
+# *                source Functions.sh                                            * #
 # * ============================================================================= * #
 
 
@@ -14,40 +16,149 @@
 # * ------- SCRIPT INITIALISER ------- * #
 # * ================================== * #
 
-	# * Check if already being sourced * #
-		# if [ "${gCommonFunctionsScriptIsSourced}" == true ]; then
-		# 	return
-		# fi
 
-	# * Set identifier parameters for this script * #
-		# * Parameter that blocks script from resourcing
-		gCommonFunctionsScriptIsSourced=true
-		# * Get absolute path to script
-		if [[ "${BASH_SOURCE[0]}" == /* ]]; then # if absolute already
-			PathToCommonFunctionsScript="${BASH_SOURCE[0]}"
-		else # if relative path
-			cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null
-			PathToCommonFunctionsScript="$(pwd)/${BASH_SOURCE[0]}"
-			cd - > /dev/null
+	# * Check if already being sourced * #
+		if [ "${gFunctionsScriptIsSourced}" == true ]; then
+			return
 		fi
 
 
+	# * Set identifier parameters for this script * #
+		# * Parameter that blocks script from resourcing
+		gFunctionsScriptIsSourced=true
+		export gFunctionsScriptIsSourced
+		# * Get absolute path to script
+		if [[ "${BASH_SOURCE[0]}" == /* ]]; then # if absolute already
+			PathToFunctionsScript="${BASH_SOURCE[0]}"
+		else # if relative path
+			cd "$(dirname "${BASH_SOURCE[0]}")" > /dev/null
+			PathToFunctionsScript="$(pwd)/${BASH_SOURCE[0]}"
+			cd - > /dev/null
+		fi
+		export PathToFunctionsScript
 
-# * ======================= * #
-# * ------- GLOBALS ------- * #
-# * ======================= * #
 
-	gErrorColorCode="\e[91m"
-	gSuccessColorCode="\e[92m"
-	gInputColorCode="\e[93m"
-	gColorCodeEnd="\e[0m"
-	gDataOutputDir="/scratchfs/bes/${USER}/data"
+
+# * ============================= * #
+# * ------- CMT FUNCTIONS ------- * #
+# * ============================= * #
+
+
+	function AttemptToExecute()
+	{
+		local commandToExecute="${1}"
+		echo -e "\n\n--== EXECUTING \"${commandToExecute}\" ==--"
+		${commandToExecute}
+		if [ $? != 0 ]; then
+			echo "ERROR: failed to execute \"${commandToExecute}\""
+			return 1
+		fi
+	}
+	export AttemptToExecute
+
+
+	function cdcmt()
+	{
+		# * Attempt to move to last cmt folder
+		local currentPath="$(pwd)"
+		if [ "$(basename "${currentPath}")" != "cmt" ]; then
+			local cmtFolder="$(find -name cmt | head -1)"
+			if [ "${cmtFolder}" == "" ]; then
+				echo "ERROR: no cmt folder available!"
+				return 1
+			fi
+			cd "${cmtFolder}"
+		fi
+	}
+	export cdcmt
+
+
+	function cmtbroadcast()
+	{
+		local currentPath="$(pwd)"
+		cdcmt
+		# * Print package and version name
+		echo
+		echo "=================================="
+		echo "BROADCASTING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "=================================="
+		# * Connect your workarea to BOSS
+		AttemptToExecute "cmt broadcast"
+		if [ $? != 0 ]; then return 1; fi
+		# * Perform setup and cleanup scripts
+		AttemptToExecute "cmt config"
+		if [ $? != 0 ]; then return 1; fi
+		# * Build and connect executables to BOSS
+		AttemptToExecute "cmt broadcast make"
+		if [ $? != 0 ]; then return 1; fi
+		# * Set bash variables
+		AttemptToExecute "source setup.sh"
+		if [ $? != 0 ]; then return 1; fi
+		# * Move back to original path
+		cd "${currentPath}"
+	}
+	export cmtbroadcast
+
+
+	function cmtconfig()
+	{
+		local currentPath="$(pwd)"
+		cdcmt
+		# * Print package and version name
+		echo; echo
+		echo "====================================="
+		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "====================================="
+		# * Create CMT scripts
+		AttemptToExecute "cmt config"
+		if [ $? != 0 ]; then return 1; fi
+		# * Build executables
+		AttemptToExecute "make"
+		if [ $? != 0 ]; then return 1; fi
+		# * Make package available to BOSS
+		AttemptToExecute "source setup.sh"
+		if [ $? != 0 ]; then return 1; fi
+		# * Move back to original path
+		cd "${currentPath}"
+		return 0
+	}
+	export cmtconfig
+
+
+	function cmtmake()
+	{
+		local currentPath="$(pwd)"
+		cdcmt
+		# * Print package and version name
+		echo; echo
+		echo "====================================="
+		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
+		echo "====================================="
+		# * Build executables
+		AttemptToExecute "make"
+		if [ $? != 0 ]; then return 1; fi
+		# * Move back to original path
+		cd "${currentPath}"
+		return 0
+	}
+	export cmtmake
 
 
 
 # * ==================================== * #
 # * ------- NAVIGATION FUNCTIONS ------- * #
 # * ==================================== * #
+
+
+	function CheckDirectory()
+	{
+		local path="${1}"
+		if [ ! -d "${path}" ]; then
+			echo "ERROR: Folder \"${path}\" does not exist"
+		fi
+	}
+	export -f CheckDirectory
+
 
 	function CreateBaseDir()
 	# Creates a base directory for a file to which you want to write.
@@ -56,6 +167,7 @@
 	}
 	export -f CreateBaseDir
 
+
 	function CdToBaseDir()
 	# Creates a base directory for a file to which you want to write.
 	{
@@ -63,6 +175,7 @@
 		cd "$(dirname "${1}")"
 	}
 	export -f CdToBaseDir
+
 
 	function CreateOrEmptyDirectory()
 	# Create a directory if necessary. If it already exists, remove the already existing files (with a certain pattern).
@@ -88,48 +201,21 @@
 # * ------- SCRIPT ACCESS FUNCTIONS ------- * #
 # * ======================================= * #
 
+
 	function ResourceCommonFunctions()
-	# The parameter `gCommonFunctionsScriptIsSourced` is set to `true` if this script is sourced. Use this function if you really want to bypass this safety measure and source again.
+	# The parameter `gFunctionsScriptIsSourced` is set to `true` if this script is sourced. Use this function if you really want to bypass this safety measure and source again.
 	{
-		gCommonFunctionsScriptIsSourced=false
-		source "${PathToCommonFunctionsScript}"
+		gFunctionsScriptIsSourced=false
+		source "${PathToFunctionsScript}"
 	}
 	export -f ResourceCommonFunctions
 
 
 
 # * =============================== * #
-# * ------- PRINT FUNCTIONS ------- * #
-# * =============================== * #
-
-	function PrintErrorMessage()
-	# Print a terminal message in the color used for an error message.
-	{
-		echo -e "${gErrorColorCode}ERROR: ${1}${gColorCodeEnd}"
-	}
-	export -f PrintErrorMessage
-
-	function PrintSuccessMessage()
-	# Print a terminal message in the color used for a success message.
-	{
-		echo -e "${gSuccessColorCode}${1}${gColorCodeEnd}"
-	}
-	export -f PrintSuccessMessage
-
-	function AskForInput()
-	# Print a terminal message in the color used for a success message.
-	{
-		echo -e "${gInputColorCode}${1}${gColorCodeEnd}"
-		echo -e "${gInputColorCode}Press ENTER to continue or break with Ctrl+C or Ctrl+Z...${gColorCodeEnd}"
-		read -p ""
-	}
-	export -f AskForInput
-
-
-
-# * =============================== * #
 # * ------- CHECK FUNCTIONS ------- * #
 # * =============================== * #
+
 
 	function AffirmMkdir()
 	# Check if the path to a folder exists. Exit the script if it doesn't.
@@ -142,6 +228,7 @@
 	}
 	export -f AffirmMkdir
 
+
 	function CheckIfFolderExists()
 	# Check if a folder exists. Exit the script if it doesn't.
 	{
@@ -153,12 +240,14 @@
 	}
 	export -f CheckIfFolderExists
 
+
 	function CheckIfBaseDirExists()
 	# Check if the path to a folder exists. Exit the script if it doesn't.
 	{
 		CheckIfFolderExists "$(dirname "${1}")"
 	}
 	export -f CheckIfBaseDirExists
+
 
 	function CheckIfFileExists()
 	# Check if a file exists. Exit the script if it doesn't.
@@ -187,6 +276,7 @@
 	}
 	export -f DeleteAllEmptyLines
 
+
 	function FormatTextFileToCppVectorArguments()
 	# Feed this function a text file, and it will prepend a `\t"` and append a `",` to each line. The comma is ommited for the last line.
 	{
@@ -203,6 +293,7 @@
 	}
 	export -f FormatTextFileToCppVectorArguments
 
+
 	function ChangeLineEndingsFromWindowsToUnix()
 	# Windows sometimes stores files with a different type of line endings. To make the file compatible again with Unix/Linux, use this function.
 	{
@@ -212,6 +303,7 @@
 		sed -i 's/\r$//' "${fileName}"
 	}
 	export -f ChangeLineEndingsFromWindowsToUnix
+
 
 	function SplitTextFile()
 	# Feed this function a path to a text file ($1) and it will split up this file into separate files each with a maximum number of lines ($2 -- default value is 10).
@@ -252,6 +344,7 @@
 # * ------- LS INVENTORY FUNCTIONS ------- * #
 # * ====================================== * #
 
+
 	function CreateFilenameInventoryFromDirectory()
 	# Feed this function a path to a directory ($1) and it will list all files within that directory including their absolute paths. This list will be written to text files ($2) with a maximum number of paths per file ($3 -- default is 0, namely no max). If you wish, you can only list files of a certain extension ($4).
 	{
@@ -283,6 +376,7 @@
 			fi
 	}
 	export -f CreateFilenameInventoryFromDirectory
+
 
 	function CreateFilenameInventoryFromFile()
 	# Feed this function a path ($1) to a file containing directories and/or file names and it will list all files within those directories including their absolute paths.  This list will be written to text files ($2) with a maximum number of paths per file ($3 -- default is 0, namely no max). If you wish, you can only list files of a certain extension ($4).
@@ -335,7 +429,7 @@
 			PrintSuccessMessage "--> output written to \"$(basename "${outputFile}")\"\n"
 		# * Split the output file if required
 			if [ $maxNLines -gt 0 ]; then
-				echo "Splitting text file \"$(basename ${outputFile})\" to max $maxNLines lines each..."
+				echo "Splitting text file \"$(basename ${outputFile})\" to max $maxNLines lines each"
 				SplitTextFile "${outputFile}" ${maxNLines}
 			fi
 		# * Go back to starting directory * #
@@ -345,4 +439,142 @@
 
 
 
-# PrintSuccessMessage "\nSuccessfully loaded \"CommonFunctions.sh\"\n"
+# * =========================== * #
+# * ------- UNIT TESTER ------- * #
+# * =========================== * #
+
+
+	function IniTest()
+	{
+		TestName="${1}"
+		IniSelectObjects="${BOSS_IniSelect}/workarea/Analysis/IniSelect/IniSelect-00-00-00"
+
+		if [[ ${#} != 1 ]]; then
+			PrintErrorMessage "IniTest function needs 1 argument"
+			return 1
+		fi
+
+		jobFile="UnitTests/jobs/job_${TestName}.txt"
+		if [[ ! -f "${IniSelectObjects}/${jobFile}" ]]; then
+			PrintErrorMessage "File \"${jobFile}\" does not exist"
+			return 1
+		fi
+
+		clear && \
+		cd "${IniSelectObjects}" && \
+		cd cmt && \
+		make && \
+		cd "${IniSelectObjects}" && \
+		boss.exe "UnitTests/jobs/job_${TestName}.txt"
+	}
+	export -f IniTest
+
+
+
+# * ======================== * #
+# * ------- EXTERNAL ------- * #
+# * ======================== * #
+
+
+	function gitsync()
+	{
+		# * Go to BOSS Afterburner main dir
+		local mainDir="${BOSS_IniSelect}"
+		cd ${mainDir}
+		if [ $? != 0 ]; then
+			echo -e "\e[91mERROR: Folder \"${mainDir}\" does not exist\"\e[0m" # light red color code
+			cd - > /dev/null
+			return
+		fi
+		# * Add all (!) files (can only be done from main folder)
+		git add --all .
+		if [ $? != 0 ]; then
+			echo -e "\e[91mERROR: Failed to \"add -all .\"\e[0m" # light red color code
+			cd - > /dev/null
+			return
+		fi
+		# * Commit with a default description (randomiser to make unique)
+		git commit -m "updated ($RANDOM)"
+		if [ $? != 0 ]; then
+			echo -e "\e[91mERROR: Failed to \"git commit -m ()\"\e[0m" # light red color code
+			cd - > /dev/null
+			return
+		else
+			echo -e "\e[92mSuccessfully added and commited changes\e[0m" # light green color code
+		fi
+		# * Pull possible new changes and rebase
+		git pull --rebase
+		if [ $? != 0 ]; then
+			echo -e "\e[91mERROR: Failed to \"git pull --rebase\"\e[0m" # light red color code
+			cd - > /dev/null
+			return
+		else
+			echo -e "\e[92mSuccessfully pulled from GitHub\e[0m" # light green color code
+		fi
+		# * Push to Git #
+		git push
+		if [ $? == 0 ]; then
+			echo -e "\e[92mSuccessfully pushed changes to to GitHub!\e[0m" # light green color code
+		fi
+		cd - > /dev/null
+	}
+	export -f gitsync
+
+
+	function RunClang()
+	{
+		local pathToFormat="."
+		local ExtensionsToFormat=( C cpp cxx h hpp )
+		if [[ ${#} == 1 ]]; then
+			pathToFormat="${1}"
+			if [[ ! -d "${pathToFormat}" ]]; then
+				echo "ERROR: Path \"${pathToFormat}\" does not exist"
+				return 1
+			fi
+		fi
+		cd "$(pwd)"
+		for ext in ${ExtensionsToFormat[@]}; do
+			clang-format -i $(find ${pathToFormat} -type f -iname "*.${ext}")
+		done
+		cd - > /dev/null
+	}
+	export -f RunClang
+
+
+	function GenerateDoxygen()
+	{
+		# * SCRIPT PARAMETERS * #
+			doxygenDir="doxygen"
+			doxygenFile="doxygen.in"
+			doxygenPath="${doxygenDir}/${doxygenFile}"
+			htmlDir="docs"
+			latexDir="latex"
+
+		# * CHECK PARAMETERS * #
+			if [ ! -d "${doxygenDir}" ]; then
+				echo "\e[91mThis repository does not contain a Doxygen directory (\"${doxygenDir}\")\e[0m"
+				exit
+			fi
+			if [ ! -f "${doxygenPath}" ]; then
+				echo "\e[91mThis repository does not contain a Doxygen file \"${doxygenPath}\"\e[0m"
+				exit
+			fi
+
+		# * PREPARE OUTPUT FOLDERS * #
+			cd "${doxygenDir}"
+			echo "Removed old Doxygen pages"
+			rm -rf "../${htmlDir}"
+			rm -rf "../${latexDir}"
+
+		# * WRITE DOXYGEN PAGES * #
+			echo "Writing Doxygen pages for repository $(basename $(pwd))"
+			doxygen doxygen.in
+			if [ $? == 0 ]; then
+				echo -e "\e[92mSuccessfully created Doxygen documentation!\e[0m" # light green color code
+			else
+				echo -e "\e[91mFailed to create Doxygen documentation!\e[0m"     # light red color code
+			fi
+
+		cd - > /dev/null
+	}
+	export -f GenerateDoxygen

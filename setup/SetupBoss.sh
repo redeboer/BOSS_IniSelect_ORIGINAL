@@ -1,4 +1,5 @@
-# ! Script parameters ! #
+# * Script parameters * #
+# ! Modify these
 BOSSVERSION="7.0.4"
 BOSSWORKAREA="/besfs/users/${USER}/BOSS_IniSelect/boss"
 BOSSWORKAREAbash="/besfs/users/\${USER}/BOSS_IniSelect/boss"
@@ -14,7 +15,7 @@ CMTHOMENAME="cmthome"
 		echo "ERROR: Folder \"${CMTHOME}\" (CMTHOME) does not exist"
 		exit
 	fi
-	echo "Loading BOSS version ${BOSSVERSION}..."
+	echo "Loading BOSS version ${BOSSVERSION}"
 
 # * Main script * #
 	# * Copy BOSS CMT files
@@ -43,3 +44,6 @@ CMTHOMENAME="cmthome"
 	echo -e "\n_______________"
 	echo -e "source setup.sh"
 	source setup.sh     # sets path variables
+
+
+PrintSuccessMessage "Loaded \"${BASH_SOURCE[0]}\""
