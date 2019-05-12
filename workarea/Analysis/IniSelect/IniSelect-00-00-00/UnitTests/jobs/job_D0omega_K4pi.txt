@@ -12,7 +12,7 @@ EventCnvSvc.digiRootInputFile = {
 MessageSvc.OutputLevel = 4;
 MessageSvc.useColors   = true;
 
-ApplicationMgr.EvtMax = 10;
+ApplicationMgr.EvtMax = 100;
 
 ApplicationMgr.HistogramPersistency = "ROOT";
 NTupleSvc.Output = { "FILE1 DATAFILE='/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/output/D0omega_K4pi.root' OPT='NEW' TYP='ROOT'"};

@@ -1,4 +1,5 @@
 #include "IniSelect/Algorithms/TrackSelector.h"
+using namespace std;
 
 /// Is called at the end *of the entire process*.
 /// Writes total cut flow to terminal and to the output file.
@@ -16,7 +17,7 @@ StatusCode TrackSelector::finalize()
 /// @see BOSSOutputLoader::PrintCuts
 void TrackSelector::AddAndWriteCuts()
 {
-  std::list<CutObject*>::iterator cut   = CutObject::gCutObjects.begin();
+  list<CutObject*>::iterator cut   = CutObject::gCutObjects.begin();
   NTuple::Item<int>&              index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
   for(; cut != CutObject::gCutObjects.end(); ++cut)
   {

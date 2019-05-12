@@ -17,6 +17,7 @@ using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
 using namespace IniSelect;
+using namespace std;
 
 /// This method is called **for each event**.
 StatusCode TrackSelector::execute()
@@ -188,7 +189,7 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
 
   /// -# Compute ToF for each particle hypothesis
   double              path = tofTrack->path();
-  std::vector<double> texp(Mass::TOF.size());
+  vector<double> texp(Mass::TOF.size());
   for(size_t j = 0; j < texp.size(); ++j)
   {
     double gb   = ptrk / Mass::TOF.at(j); // v = p/m (non-relativistic velocity)
@@ -330,7 +331,7 @@ void TrackSelector::CreateChargedTrackSelections()
   fLog << MSG::DEBUG << "Identified: ";
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
-    std::string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
+    string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
     fLog << MSG::DEBUG << particleName << "  ";
     if(!fParticleSel.HasParticle(particleName)) continue;
     WritePIDInformation();
@@ -345,19 +346,11 @@ void TrackSelector::CreateNeutralTrackSelections()
   fParticleSel.ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
-std::cout << "here1" << std::endl;
     AngleDifferences smallestAngles = FindSmallestPhotonAngles();
-std::cout << "here2" << std::endl;
     smallestAngles.ConvertToDegrees();
-std::cout << "here3" << std::endl;
     WritePhotonKinematics(smallestAngles);
-std::cout << "here4" << std::endl;
     if(CutPhotonAngles(smallestAngles)) continue;
-std::cout << "here5" << std::endl;
-std::cout << "here6: " << *fTrackIter << std::endl;
-std::cout << "here7: " << fParticleSel.GetPhotons().GetNTracks() << std::endl;
     fParticleSel.GetPhotons().AddTrack(*fTrackIter);
-std::cout << "here8" << std::endl;
   }
 }
 
@@ -366,7 +359,7 @@ AngleDifferences TrackSelector::FindSmallestPhotonAngles()
 {
   GetEmcPosition();
   AngleDifferences smallestAngles;
-  for(std::vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end();
+  for(vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end();
       ++it)
   {
     if(!GetExtendedEmcPosition(*it)) continue;

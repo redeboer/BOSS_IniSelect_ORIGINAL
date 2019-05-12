@@ -1,5 +1,6 @@
 #include "IniSelect/Handlers/VertexFitter.h"
 #include "IniSelect/Globals/Exception.h"
+using namespace std;
 using namespace IniSelect::Error;
 
 int        VertexFitter::fNTracks      = 0;
