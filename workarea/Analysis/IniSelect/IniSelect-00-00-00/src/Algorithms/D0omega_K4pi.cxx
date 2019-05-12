@@ -41,14 +41,8 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 
 void D0omega_K4pi::ConfigureParticleSelection()
 {
-  fParticleSel.SetN_KaonMin(1);  /// * `"NPhotons"`: Number of \f$\gamma\f$.
-  fParticleSel.SetN_PionMin(1);  /// * `"NKaonPos"`: Number of \f$K^+\f$.
-  fParticleSel.SetN_PionPlus(2); /// * `"NKaonNeg"`: Number of \f$K^-\f$.
-  fParticleSel.SetN_Photons(2);  /// * `"NPionPos"`: Number of \f$\pi^-\f$.
-  fParticleSelMC.SetN_KaonMin(1);
-  fParticleSelMC.SetN_PionMin(1);
-  fParticleSelMC.SetN_PionPlus(2);
-  fParticleSelMC.SetN_Photons(2);
+  fParticleSel.SetFinalState("K- pi+ K- K+ g g");
+  fParticleSelMC.SetFinalState("K- pi+ K- K+ g g");
 }
 
 void D0omega_K4pi::AddAdditionalNTupleItems()

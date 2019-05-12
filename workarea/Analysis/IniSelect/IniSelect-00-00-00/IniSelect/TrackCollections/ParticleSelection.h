@@ -6,6 +6,7 @@
 #include "McTruth/McParticle.h"
 #include <map>
 #include <string>
+#include "TString.h"
 #include <utility>
 
 /// @addtogroup BOSS_objects
@@ -30,7 +31,8 @@ public:
   void SetN_Muons(size_t n) { SetParticleToN("mu-", n); }
   void SetN_AntiMuons(size_t n) { SetParticleToN("mu+", n); }
   void SetN_Protons(size_t n) { SetParticleToN("p+", n); }
-  void SetN_AntiProtons(size_t n) { SetParticleToN("p-", n); }
+  void SetN_AntiProtons(size_t n) { SetParticleToN("anti-p-", n); }
+  void SetFinalState(const TString& input);
 
   void ClearCharged();
   void ClearNeutral();
@@ -57,6 +59,7 @@ private:
   int fNCharged;
 
   CandidateTracks<T>* UnpackIter();
+  Int_t CountOccurences(const TString& input, const TString& particle_name);
 };
 
 typedef ParticleSelectionTempl<EvtRecTrack>       ParticleSelection;
@@ -139,6 +142,32 @@ bool ParticleSelectionTempl<T>::AddTrackToParticle(T* track, const std::string& 
   if(HasParticle(name)) false;
   fSelections.at(name).AddTrack(track);
   return true;
+}
+
+template <typename T>
+void ParticleSelectionTempl<T>::SetFinalState(const TString& input)
+{
+  SetParticleToN("g", CountOccurences(input, "g"));
+  SetParticleToN("pi-", CountOccurences(input, "pi-"));
+  SetParticleToN("pi+", CountOccurences(input, "pi+"));
+  SetParticleToN("K-", CountOccurences(input, "K-"));
+  SetParticleToN("K+", CountOccurences(input, "K+"));
+  SetParticleToN("e-", CountOccurences(input, "e-"));
+  SetParticleToN("e+", CountOccurences(input, "e+"));
+  SetParticleToN("mu-", CountOccurences(input, "mu-"));
+  SetParticleToN("mu+", CountOccurences(input, "mu+"));
+  SetParticleToN("p+", CountOccurences(input, "p+"));
+  SetParticleToN("anti-p-", CountOccurences(input, "anti-p-"));
+}
+
+template <typename T>
+Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
+{
+  TString tok;
+  Ssiz_t from = 0;
+  Int_t n = 0;
+  while(input.Tokenize(tok, from)) if(tok.EqualTo(particle_name)) ++n;
+  return n;
 }
 
 #endif
