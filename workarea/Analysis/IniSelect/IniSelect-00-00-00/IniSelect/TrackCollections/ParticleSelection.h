@@ -40,7 +40,7 @@ public:
   bool NextPhotonCombination();
 
   bool HasParticle(const std::string& name) const;
-  bool AddTrackToParticle(T* trk, const std::string& name);
+  bool AddCandidate(T* trk, const std::string& name);
 
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { return fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
@@ -50,6 +50,8 @@ public:
   CandidateTracks<T>* NextParticle();
   CandidateTracks<T>* NextCharged();
   bool                ReachedEnd() { return fSelectionsIter == fSelections.end(); }
+
+  void Print();
 
 private:
   typename std::map<std::string, CandidateTracks<T> >           fSelections;
@@ -134,13 +136,13 @@ bool ParticleSelectionTempl<T>::NextPhotonCombination()
 template <typename T>
 bool ParticleSelectionTempl<T>::HasParticle(const std::string& name) const
 {
-  return fSelections.find(name) == fSelections.end();
+  return fSelections.find(name) != fSelections.end();
 }
 
 template <typename T>
-bool ParticleSelectionTempl<T>::AddTrackToParticle(T* track, const std::string& name)
+bool ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
 {
-  if(HasParticle(name)) false;
+  if(!HasParticle(name)) false;
   fSelections.at(name).AddTrack(track);
   return true;
 }
@@ -169,6 +171,21 @@ Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TSt
   Int_t n = 0;
   while(input.Tokenize(tok, from)) if(tok.EqualTo(particle_name)) ++n;
   return n;
+}
+
+template <typename T>
+void ParticleSelectionTempl<T>::Print()
+{
+  CandidateTracks<T>* coll = FirstParticle();
+  if(!coll) return;
+  std::cout << "Selected particles: ";
+  while(coll)
+  {
+    std::cout << coll->GetNParticles() << " " << coll->GetPdtName();
+    coll = NextParticle();
+    if(coll) std::cout << ", ";
+  }
+  std::cout << std::endl;
 }
 
 #endif

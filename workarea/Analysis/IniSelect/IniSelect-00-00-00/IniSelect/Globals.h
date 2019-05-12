@@ -7,6 +7,9 @@
 /// @defgroup BOSS_objects Helper objects
 /// Helper **classes** for the event selection packages. An example would be the `CutObject`, which is can be used in all packages for applying cuts and storing their paramters in the final ROOT output file.
 
+/// @defgroup BOSS_functions Functions
+/// Global **functions** encapsulated in namespaces.
+
 /// @defgroup BOSS_globals Globals
 /// Global **parameters** encapsulated in namespaces.
 

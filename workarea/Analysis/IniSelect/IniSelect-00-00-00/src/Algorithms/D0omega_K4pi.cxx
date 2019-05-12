@@ -29,7 +29,7 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
     "4-constraint fit information of the invariant masses closest to the reconstructed particles"),
   fNTuple_fit_mc("fit_mc", "Fake fit information according to MC truth")
 {
-  PrintFunctionName("D0omega_K4pi", __func__);
+  LOG_FUNCTION();
   PostConstructor();
   fCreateChargedCollection = true;
   fCreateNeutralCollection = true;
@@ -41,12 +41,15 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 
 void D0omega_K4pi::ConfigureParticleSelection()
 {
-  fParticleSel.SetFinalState("K- pi+ K- K+ g g");
-  fParticleSelMC.SetFinalState("K- pi+ K- K+ g g");
+  LOG_FUNCTION();
+  fParticleSel  .SetFinalState("K- pi+ pi- pi+ g g");
+  fParticleSelMC.SetFinalState("K- pi+ pi- pi+ g g");
+  fParticleSel.Print();
 }
 
 void D0omega_K4pi::AddAdditionalNTupleItems()
 {
+  LOG_FUNCTION();
   AddNTupleItems_dedx();
   AddNTupleItems_fit();
   AddAdditionalNTuples_topology();
@@ -184,6 +187,7 @@ void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
 /// @todo Decide whether 4-constraints is indeed suitable. *For more information, see [the page on primary and secondary vertex fits on the Offline Software Pages](https://docbes3.ihep.ac.cn/~offlinesoftware/index.php/Vertex_Fit) (requires login).*
 void D0omega_K4pi::FindBestKinematicFit()
 {
+  LOG_FUNCTION();
   if(!fNTuple_fit4c_all.DoWrite() && !fNTuple_fit4c_best.DoWrite()) return;
   ResetBestKalmanFit();
   DoKinematicFitForAllCombinations();
@@ -201,10 +205,12 @@ void D0omega_K4pi::ResetBestKalmanFit()
 
 void D0omega_K4pi::DoKinematicFitForAllCombinations()
 {
+  LOG_FUNCTION();
   int count = 0;
   do
   {
     ++count;
+cout << "  combination " << count << ": " << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
@@ -224,6 +230,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
 
 void D0omega_K4pi::DoVertexFit()
 {
+  LOG_FUNCTION();
   VertexFitter::Initialize();
   VertexFitter::AddTracks(fParticleSel);
   VertexFitter::AddCleanVertex();
@@ -232,6 +239,7 @@ void D0omega_K4pi::DoVertexFit()
 
 void D0omega_K4pi::DoKinematicFit()
 {
+  LOG_FUNCTION();
   if(!VertexFitter::IsSuccessful()) return;
   KinematicFitter::Initialize();
   KinematicFitter::AddTracks(fParticleSel);
@@ -242,6 +250,7 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::ExtractFitResults()
 {
+  LOG_FUNCTION();
   fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
   fCurrentKalmanFit.SetRunNumber(fInputFile.RunNumber());
   fCurrentKalmanFit.SetEventNumber(fInputFile.EventNumber());

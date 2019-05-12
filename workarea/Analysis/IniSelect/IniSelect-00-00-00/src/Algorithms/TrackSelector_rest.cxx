@@ -6,6 +6,7 @@
 #include "DstEvent/TofHitStatus.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "IniSelect/Globals.h"
+#include "IniSelect/Functions/String.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
@@ -16,7 +17,9 @@
 using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
+using namespace IniSelect::String;
 using namespace IniSelect;
+using namespace std;
 
 /// **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
 void TrackSelector::CutZeroNetCharge()
@@ -143,35 +146,6 @@ bool TrackSelector::WriteMCTruthForTopoAna(NTupleContainer& tuple)
   return true;
 }
 
-/// Encapsulates the proces of writing PID info.
-/// This allows you to write the PID information after the particle selection as well.
-void TrackSelector::WritePIDInformation()
-{
-  /// -# @b Abort if the 'write `JobSwitch`' has been set to `false`.
-  if(!fNTuple_PID.DoWrite()) return;
-
-  /// -# @b Abort if there is no `fTrackMDC`.
-  if(!fTrackMDC) return;
-
-  /// -# Get PID info and set the `NTuple::Item`s.
-  fLog << MSG::DEBUG << "Writing PID information" << endmsg;
-  fTrackMDC                               = (*fTrackIter)->mdcTrack();
-  fNTuple_PID.GetItem<double>("p")        = fTrackMDC->p();
-  fNTuple_PID.GetItem<double>("cost")     = cos(fTrackMDC->theta());
-  fNTuple_PID.GetItem<double>("chiToFEC") = ParticleIdentifier::GetChiTofE();
-  fNTuple_PID.GetItem<double>("chiToFIB") = ParticleIdentifier::GetChiTofIB();
-  fNTuple_PID.GetItem<double>("chiToFOB") = ParticleIdentifier::GetChiTofOB();
-  fNTuple_PID.GetItem<double>("chidEdx")  = ParticleIdentifier::GetChiDedx();
-  fNTuple_PID.GetItem<double>("prob_K")   = ParticleIdentifier::GetProbKaon();
-  fNTuple_PID.GetItem<double>("prob_e")   = ParticleIdentifier::GetProbElectron();
-  fNTuple_PID.GetItem<double>("prob_mu")  = ParticleIdentifier::GetProbMuon();
-  fNTuple_PID.GetItem<double>("prob_p")   = ParticleIdentifier::GetProbProton();
-  fNTuple_PID.GetItem<double>("prob_pi")  = ParticleIdentifier::GetProbPion();
-
-  /// -# @b Write PID info.
-  fNTuple_PID.Write();
-}
-
 /// Compute a 'momentum' for a neutral track.
 /// The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC.
 HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack* track)
@@ -205,4 +179,14 @@ bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother, const
   if(!IsDecay(particle, mother)) return false;
   if(particle->particleProperty() == pdg) return true;
   return false;
+}
+
+/// Print function for debugging purposes.
+/// This function has been implemented in the base class to standardise terminal output.
+/// @remark In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format `PrintFunctionName("<class name>", __func__)`.
+void TrackSelector::PrintFunctionName(const char* class_name, const char* function_name)
+{
+  const char* msg = Form("===>> %s::%s <<===", BaseName(NoExtension(class_name)).Data(), function_name);
+  cout << msg << endl;
+  fLog << MSG::DEBUG << msg << endmsg;
 }

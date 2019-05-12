@@ -30,6 +30,10 @@
 typedef HepGeom::Point3D<double> HepPoint3D;
 #endif
 
+#define TO_STRING(x) #x
+#define LOG_FUNCTION() PrintFunctionName(__FILE__, __func__)
+
+
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //
@@ -61,7 +65,6 @@ public:
 protected:
   /// @name Helper methods for initialize step
   ///@{
-  void PrintFunctionName(const char* class_name, const char* function_name);
   void AssertPostConstructed() const;
   void BookNTuple(NTupleContainer& tuple);
   void BookNTuples();
@@ -100,7 +103,7 @@ protected:
   void WriteVertexInfo();
   void CutNumberOfChargedParticles();
 
-  void             CreateChargedTrackSelections();
+  void             SelectChargedCandidates();
   virtual void     ConfigurePID() = 0;
   void             CreateNeutralTrackSelections();
   AngleDifferences FindSmallestPhotonAngles();
@@ -137,6 +140,8 @@ protected:
 
   virtual void CreateMCTruthSelection()                                     = 0;
   virtual void SetFitNTuple(KKFitResult* fitresult, NTupleContainer& tuple) = 0;
+
+  void PrintFunctionName(const char* file_name, const char* function_name);
   ///@}
 
   /// @name Access to the DST file

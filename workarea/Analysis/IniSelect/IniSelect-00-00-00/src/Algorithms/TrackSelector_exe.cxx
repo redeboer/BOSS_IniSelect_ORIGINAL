@@ -22,7 +22,8 @@ using namespace std;
 /// This method is called **for each event**.
 StatusCode TrackSelector::execute()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  cout << endl;
+  LOG_FUNCTION();
   try
   {
     fInputFile.LoadNextEvent();
@@ -32,7 +33,7 @@ StatusCode TrackSelector::execute()
     CreateNeutralCollection();
     WriteVertexInfo();
     CutNumberOfChargedParticles();
-    CreateChargedTrackSelections();
+    SelectChargedCandidates();
     CreateNeutralTrackSelections();
     WriteMultiplicities();
     PrintMultiplicities();
@@ -56,7 +57,7 @@ void TrackSelector::PrintEventInfo()
 
 void TrackSelector::SetVertexOrigin()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   IVertexDbSvc* vtxsvc;
   Gaudi::svcLocator()->service("VertexDbSvc", vtxsvc);
   if(!vtxsvc->isVertexValid()) return;
@@ -69,7 +70,7 @@ void TrackSelector::SetVertexOrigin()
 /// This method is used in `TrackSelector::execute` only. See `fChargedTracks` for more information.
 void TrackSelector::CreateChargedCollection()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
   fNetChargeMDC      = 0;
@@ -219,7 +220,7 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
 /// This method is used in `TrackSelector::execute` only. See `fNeutralTracks` for more information.
 void TrackSelector::CreateNeutralCollection()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   if(!fCreateNeutralCollection) return;
   fNeutralTracks.clear();
   NeutralTrackIter iter(fInputFile);
@@ -247,7 +248,7 @@ void TrackSelector::CreateNeutralCollection()
 
 void TrackSelector::WriteMultiplicities()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   if(!fNTuple_mult.DoWrite()) return;
   fNTuple_mult.GetItem<int>("Ntotal")   = fInputFile.TotalTracks();
   fNTuple_mult.GetItem<int>("Ncharge")  = fInputFile.TotalChargedTracks();
@@ -258,29 +259,29 @@ void TrackSelector::WriteMultiplicities()
   while(coll)
   {
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
-    coll                                                        = fParticleSel.NextCharged();
+    coll                                                        = fParticleSel.NextParticle();
   }
   fNTuple_mult.Write();
 }
 
 void TrackSelector::PrintMultiplicities()
 {
-  fLog << MSG::INFO;
-  Int_t                         i    = 0;
+  LOG_FUNCTION();
+  // fLog << MSG::INFO;
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
   while(coll)
   {
-    if(i) fLog << ", ";
-    fLog << Form("N_%s = ", coll->GetPdtName(), coll->GetNTracks());
-    ++i;
-    coll = fParticleSel.NextCharged();
+    cout << "N_" << coll->GetPdtName() << " = " << coll->GetNTracks();
+    coll = fParticleSel.NextParticle();
+    if(coll) cout << ", ";
   }
-  fLog << endmsg;
+  cout << endl;
 }
 
 /// **PID cut**: apply a strict cut on the number of the selected particles.
 void TrackSelector::CutPID()
 {
+  LOG_FUNCTION();
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
   while(coll)
   {
@@ -292,10 +293,10 @@ void TrackSelector::CutPID()
        << fInputFile.EventNumber() << ")" << endmsg;
 }
 
+/// **Write** information about the interaction point (`"vertex"` branch).
 void TrackSelector::WriteVertexInfo()
 {
-  /// **Write** information about the interaction point (`"vertex"` branch).
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   if(!fNTuple_vertex.DoWrite()) return;
   fNTuple_vertex.GetItem<double>("vx0") = fVertexPoint.x();
   fNTuple_vertex.GetItem<double>("vy0") = fVertexPoint.y();
@@ -305,15 +306,15 @@ void TrackSelector::WriteVertexInfo()
 
 void TrackSelector::CutNumberOfChargedParticles()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be " << fParticleSel.GetNCharged() << endmsg;
   if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 }
 
-void TrackSelector::CreateChargedTrackSelections()
+void TrackSelector::SelectChargedCandidates()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   ParticleIdentifier::Initialize();
   ConfigurePID();
 
@@ -321,9 +322,10 @@ void TrackSelector::CreateChargedTrackSelections()
   CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
   while(coll)
   {
-    fLog << MSG::DEBUG << coll->GetPdgCode() << "  ";
+    fLog << MSG::DEBUG << coll->GetPdtName();
     ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
     coll = fParticleSel.NextCharged();
+    if(coll) fLog << MSG::DEBUG << ", ";
   }
   fLog << MSG::DEBUG << endmsg;
 
@@ -332,17 +334,47 @@ void TrackSelector::CreateChargedTrackSelections()
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
+    if(particleName.compare("") == 0) continue;
     fLog << MSG::DEBUG << particleName << "  ";
     if(!fParticleSel.HasParticle(particleName)) continue;
     WritePIDInformation();
-    fParticleSel.AddTrackToParticle(*fTrackIter, particleName);
+    fParticleSel.AddCandidate(*fTrackIter, particleName);
   }
   fLog << MSG::DEBUG << endmsg;
 }
 
+/// Encapsulates the proces of writing PID info.
+/// This allows you to write the PID information after the particle selection as well.
+void TrackSelector::WritePIDInformation()
+{
+  /// -# @b Abort if the 'write `JobSwitch`' has been set to `false`.
+  if(!fNTuple_PID.DoWrite()) return;
+
+  /// -# @b Abort if there is no `fTrackMDC`.
+  if(!fTrackMDC) return;
+
+  /// -# Get PID info and set the `NTuple::Item`s.
+  fLog << MSG::DEBUG << "Writing PID information" << endmsg;
+  fTrackMDC                               = (*fTrackIter)->mdcTrack();
+  fNTuple_PID.GetItem<double>("p")        = fTrackMDC->p();
+  fNTuple_PID.GetItem<double>("cost")     = cos(fTrackMDC->theta());
+  fNTuple_PID.GetItem<double>("chiToFEC") = ParticleIdentifier::GetChiTofE();
+  fNTuple_PID.GetItem<double>("chiToFIB") = ParticleIdentifier::GetChiTofIB();
+  fNTuple_PID.GetItem<double>("chiToFOB") = ParticleIdentifier::GetChiTofOB();
+  fNTuple_PID.GetItem<double>("chidEdx")  = ParticleIdentifier::GetChiDedx();
+  fNTuple_PID.GetItem<double>("prob_K")   = ParticleIdentifier::GetProbKaon();
+  fNTuple_PID.GetItem<double>("prob_e")   = ParticleIdentifier::GetProbElectron();
+  fNTuple_PID.GetItem<double>("prob_mu")  = ParticleIdentifier::GetProbMuon();
+  fNTuple_PID.GetItem<double>("prob_p")   = ParticleIdentifier::GetProbProton();
+  fNTuple_PID.GetItem<double>("prob_pi")  = ParticleIdentifier::GetProbPion();
+
+  /// -# @b Write PID info.
+  fNTuple_PID.Write();
+}
+
 void TrackSelector::CreateNeutralTrackSelections()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   fParticleSel.ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
