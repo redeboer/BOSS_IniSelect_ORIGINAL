@@ -48,7 +48,7 @@ void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
   int pdgCode = mcParticle->particleProperty();
 
-  CandidateTracks<Event::McParticle>* coll = fParticleSelMC.FirstParticle();
+  CandidateTracks<Event::McParticle>* coll = fFinalState.GetParticleSelectionMC().FirstParticle();
   while(coll)
   {
     if(coll->GetPdgCode() == pdgCode)
@@ -56,7 +56,7 @@ void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
       coll->AddTrack(mcParticle);
       return;
     }
-    coll = fParticleSelMC.NextCharged();
+    coll = fFinalState.GetParticleSelectionMC().NextCharged();
   }
-  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in fParticleSelMC" << endmsg;
+  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in ParticleSelectionMC" << endmsg;
 }
