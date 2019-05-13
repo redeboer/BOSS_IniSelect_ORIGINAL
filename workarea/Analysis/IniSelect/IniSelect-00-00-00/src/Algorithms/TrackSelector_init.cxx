@@ -112,11 +112,11 @@ void TrackSelector::AddNTupleItems_mult()
   fNTuple_mult.AddItem<int>("Nneutral");
   if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral");
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
-  CandidateTracks<EvtRecTrack>* coll = fParticleSel.FirstParticle();
+  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetParticleSelection().FirstParticle();
   while(coll)
   {
     fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
-    coll = fParticleSel.NextCharged();
+    coll = fFinalState.GetParticleSelection().NextCharged();
   }
 }
 

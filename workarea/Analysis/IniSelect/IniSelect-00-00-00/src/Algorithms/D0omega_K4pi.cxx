@@ -42,9 +42,7 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 void D0omega_K4pi::ConfigureParticleSelection()
 {
   LOG_FUNCTION();
-  fParticleSel.SetFinalState("K- pi+ pi- pi+ g g");
-  fParticleSelMC.SetFinalState("K- pi+ pi- pi+ g g");
-  fParticleSel.Print();
+  fFinalState.SetFinalState("K- pi+ pi- pi+ g g");
 }
 
 void D0omega_K4pi::AddAdditionalNTupleItems()
@@ -142,9 +140,9 @@ void D0omega_K4pi::ConfigurePID()
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
 void D0omega_K4pi::WriteDedxOfSelectedParticles()
 {
-  WriteDedxInfoForVector(fParticleSel.GetCandidates("K-").GetTracks(), fNTuple_dedx_K);
-  WriteDedxInfoForVector(fParticleSel.GetCandidates("pi-").GetTracks(), fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fParticleSel.GetCandidates("pi+").GetTracks(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("K-").GetTracks(), fNTuple_dedx_K);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi-").GetTracks(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi+").GetTracks(), fNTuple_dedx_pi);
 }
 
 /// Specification of what should be written to the fit `NTuple`.
@@ -225,13 +223,13 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
     if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
-  } while(fParticleSel.NextPhotonCombination());
+  } while(fFinalState.GetParticleSelection().NextPhotonCombination());
 }
 
 void D0omega_K4pi::DoVertexFit()
 {
   VertexFitter::Initialize();
-  VertexFitter::AddTracks(fParticleSel);
+  VertexFitter::AddTracks(fFinalState.GetParticleSelection());
   VertexFitter::AddCleanVertex();
   VertexFitter::FitAndSwim();
 }
@@ -240,7 +238,7 @@ void D0omega_K4pi::DoKinematicFit()
 {
   if(!VertexFitter::IsSuccessful()) return;
   KinematicFitter::Initialize();
-  KinematicFitter::AddTracks(fParticleSel);
+  KinematicFitter::AddTracks(fFinalState.GetParticleSelection());
   KinematicFitter::AddConstraintCMS();
   KinematicFitter::AddResonance(Mass::pi0, 0, 1);
   KinematicFitter::Fit();
@@ -299,7 +297,7 @@ void D0omega_K4pi::CreateMCTruthSelection()
 {
   if(!fInputFile.IsMonteCarlo()) return;
   if(!fNTuple_fit_mc.DoWrite()) return;
-  fParticleSelMC.ClearCharged();
+  fFinalState.GetParticleSelectionMC().ClearCharged();
   std::vector<Event::McParticle*>::iterator it;
   for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) PutParticleInCorrectVector(*it);
 }
