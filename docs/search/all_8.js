@@ -24,5 +24,6 @@ var searchData=
   ['math',['Math',['../namespaceIniSelect_1_1Math.html',1,'IniSelect']]],
   ['mctruth',['McTruth',['../namespaceIniSelect_1_1McTruth.html',1,'IniSelect']]],
   ['paths',['Paths',['../namespaceIniSelect_1_1Paths.html',1,'IniSelect']]],
+  ['string',['String',['../namespaceIniSelect_1_1String.html',1,'IniSelect']]],
   ['terminalio',['TerminalIO',['../namespaceIniSelect_1_1TerminalIO.html',1,'IniSelect']]]
 ];

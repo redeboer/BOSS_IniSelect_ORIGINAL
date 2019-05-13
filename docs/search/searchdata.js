@@ -10,8 +10,8 @@ var indexSectionsWithContent =
   7: "e",
   8: "aegnry",
   9: "cmn",
-  10: "rt",
-  11: "egh",
+  10: "lrt",
+  11: "efgh",
   12: "mt"
 };
 

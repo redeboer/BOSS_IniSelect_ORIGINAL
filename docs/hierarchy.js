@@ -35,7 +35,9 @@ var hierarchy =
       [ "ChargedTrackIter", "classChargedTrackIter.html", null ],
       [ "NeutralTrackIter", "classNeutralTrackIter.html", null ]
     ] ],
-    [ "IniSelect::Error::Exception", "classIniSelect_1_1Error_1_1Exception.html", null ],
+    [ "IniSelect::Error::Exception", "classIniSelect_1_1Error_1_1Exception.html", [
+      [ "IniSelect::Error::KinematicFitFailed", "classIniSelect_1_1Error_1_1KinematicFitFailed.html", null ]
+    ] ],
     [ "KinematicFitter", "classKinematicFitter.html", null ],
     [ "KKFitResult", "classKKFitResult.html", [
       [ "KKFitResult_D0omega_K4pi", "classKKFitResult__D0omega__K4pi.html", null ],

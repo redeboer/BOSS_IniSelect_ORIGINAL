@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['helper_20objects',['Helper objects',['../group__BOSS__objects.html',1,'']]]
+  ['globals',['Globals',['../group__BOSS__globals.html',1,'']]]
 ];

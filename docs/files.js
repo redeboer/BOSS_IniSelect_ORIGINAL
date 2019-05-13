@@ -25,7 +25,9 @@ var files =
     [ "JobSwitch.cxx", "JobSwitch_8cxx.html", null ],
     [ "JobSwitch.h", "JobSwitch_8h.html", null ],
     [ "KinematicFitter.cxx", "KinematicFitter_8cxx.html", null ],
-    [ "KinematicFitter.h", "KinematicFitter_8h.html", null ],
+    [ "KinematicFitter.h", "KinematicFitter_8h.html", [
+      [ "KinematicFitFailed", "classIniSelect_1_1Error_1_1KinematicFitFailed.html", "classIniSelect_1_1Error_1_1KinematicFitFailed" ]
+    ] ],
     [ "KKFitResult.cxx", "KKFitResult_8cxx.html", null ],
     [ "KKFitResult.h", "KKFitResult_8h.html", null ],
     [ "KKFitResult_D0omega_K4pi.cxx", "KKFitResult__D0omega__K4pi_8cxx.html", null ],
@@ -53,6 +55,8 @@ var files =
     [ "RhopiAlg.h", "RhopiAlg_8h.html", null ],
     [ "SecondaryVertexGeometry.cxx", "SecondaryVertexGeometry_8cxx.html", null ],
     [ "SecondaryVertexGeometry.h", "SecondaryVertexGeometry_8h.html", "SecondaryVertexGeometry_8h" ],
+    [ "String.cxx", "String_8cxx.html", null ],
+    [ "String.h", "String_8h.html", "String_8h" ],
     [ "Test_CandidateTracks.cxx", "Test__CandidateTracks_8cxx.html", null ],
     [ "Test_CandidateTracks.h", "Test__CandidateTracks_8h.html", [
       [ "Test_CandidateTracks", "classTest__CandidateTracks.html", "classTest__CandidateTracks" ]

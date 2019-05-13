@@ -11,7 +11,7 @@ var searchData=
   ['getcandidate',['GetCandidate',['../classCandidateTracks.html#a57effa68df67453bd38d4ce01623e0f0',1,'CandidateTracks']]],
   ['getcandidates',['GetCandidates',['../classParticleSelectionTempl.html#ad013432d6f5edc229b7447bdd7418435',1,'ParticleSelectionTempl']]],
   ['getcharge',['GetCharge',['../classParticle.html#a7e25b809b2a57f5cd1b4f089bfe579d9',1,'Particle']]],
-  ['getchi2',['GetChi2',['../classKinematicFitter.html#abc5d0b9ace966d48650818434b2cda43',1,'KinematicFitter']]],
+  ['getchi2',['GetChi2',['../classKinematicFitter.html#ac1200cfe0926627bcbafab3976d9b6ae',1,'KinematicFitter']]],
   ['getchidedx',['GetChiDedx',['../classParticleIdentifier.html#af18482e78c04ce6775755f6d7ab08a9c',1,'ParticleIdentifier']]],
   ['getchitofe',['GetChiTofE',['../classParticleIdentifier.html#a1b9bb2eed28509b0b38f5abf167f4cc7',1,'ParticleIdentifier']]],
   ['getchitofib',['GetChiTofIB',['../classParticleIdentifier.html#a6473ceea8e5ed328db46372b82dc9c9e',1,'ParticleIdentifier']]],
@@ -29,7 +29,7 @@ var searchData=
   ['getmom',['getMom',['../classm__trkInfo.html#ab096fd6812448d386f99e8abd7286f3a',1,'m_trkInfo']]],
   ['getmomentum',['GetMomentum',['../classSecondaryVertexGeometry.html#a4ae5fb8d8884700036996de59ace01da',1,'SecondaryVertexGeometry']]],
   ['getncharged',['GetNCharged',['../classParticleSelectionTempl.html#a64e80a13e2a0d411befbf8b80b6229a9',1,'ParticleSelectionTempl']]],
-  ['getncontstraints',['GetNContstraints',['../classKinematicFitter.html#af3b2637230aa860ee4c9718b5d73df62',1,'KinematicFitter']]],
+  ['getncontstraints',['GetNContstraints',['../classKinematicFitter.html#aa6d30ed7a643bc41895db0c1f900dc64',1,'KinematicFitter']]],
   ['getnparticles',['GetNParticles',['../classCandidateTracks.html#a2dc30c6ff10f14a396abcdbc2054c10f',1,'CandidateTracks']]],
   ['getntracks',['GetNTracks',['../classCandidateTracks.html#aafafd9b25ab6d944c49f8d2665f35606',1,'CandidateTracks']]],
   ['getparticle',['GetParticle',['../classParticleDatabase.html#ab0d8f300ca7fd174bd140a6becd9bc21',1,'ParticleDatabase::GetParticle(const std::string &amp;pdtName)'],['../classParticleDatabase.html#a72f4fd4d4d335fa86dc797419cbcb12f',1,'ParticleDatabase::GetParticle(const int pdgCode)']]],
@@ -49,7 +49,7 @@ var searchData=
   ['getrz',['GetRz',['../classSecondaryVertexGeometry.html#a8f5dca8cb993840251f6939c1dcd64ed',1,'SecondaryVertexGeometry']]],
   ['getspin',['GetSpin',['../classParticle.html#a270ae53e8801d3a8d08de180185f1c7a',1,'Particle']]],
   ['gettheta',['GetTheta',['../classAngleDifferences.html#acb9af524b158aa44c22df1a2d8d18d28',1,'AngleDifferences']]],
-  ['gettrack',['GetTrack',['../classKinematicFitter.html#a1c94d017b1a6bc142a50fcb89b6cb2ec',1,'KinematicFitter::GetTrack()'],['../classVertexFitter.html#a1e9b77c1526b92033af4e908dafd5e9b',1,'VertexFitter::GetTrack()']]],
+  ['gettrack',['GetTrack',['../classKinematicFitter.html#a57de2812acbe1204635b50095a87d609',1,'KinematicFitter::GetTrack()'],['../classVertexFitter.html#a1e9b77c1526b92033af4e908dafd5e9b',1,'VertexFitter::GetTrack()']]],
   ['gettracks',['GetTracks',['../classCandidateTracks.html#a11807c3329119e9e85d87050d7607e07',1,'CandidateTracks']]],
   ['gettrk',['getTrk',['../classm__trkInfo.html#ac7cf6ca9fce5752ff20bbec72a071c82',1,'m_trkInfo::getTrk()'],['../classm__trkInfo.html#a57e5dfffd6d768d8dadbcaedb8f4f4f7',1,'m_trkInfo::getTrk(std::string m_particle_type)']]]
 ];

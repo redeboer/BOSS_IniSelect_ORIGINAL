@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['kinematicfitfailed',['KinematicFitFailed',['../classIniSelect_1_1Error_1_1KinematicFitFailed.html',1,'IniSelect::Error']]],
   ['kinematicfitter',['KinematicFitter',['../classKinematicFitter.html',1,'']]],
   ['kkfitresult',['KKFitResult',['../classKKFitResult.html',1,'']]],
   ['kkfitresult_5fd0omega_5fk4pi',['KKFitResult_D0omega_K4pi',['../classKKFitResult__D0omega__K4pi.html',1,'']]],

@@ -1,7 +1,7 @@
 var classParticleSelectionTempl =
 [
     [ "ParticleSelectionTempl", "classParticleSelectionTempl.html#a893b5c012cb70c7b7894e279f1a48842", null ],
-    [ "AddTrackToParticle", "classParticleSelectionTempl.html#afc38ab9fca3ae1ad6d514fff1a5db205", null ],
+    [ "AddCandidate", "classParticleSelectionTempl.html#ac04ae43228d3c505bbcaca3da8e79e99", null ],
     [ "ClearCharged", "classParticleSelectionTempl.html#acb5a451d61e84452f34e6cc43f8683a4", null ],
     [ "ClearNeutral", "classParticleSelectionTempl.html#a52ca3e892d72abb618428a0005efc545", null ],
     [ "CountOccurences", "classParticleSelectionTempl.html#afed7bc4d7a23afa39987cc87547df1e2", null ],
@@ -13,6 +13,7 @@ var classParticleSelectionTempl =
     [ "NextCharged", "classParticleSelectionTempl.html#af5338196d6f2e90b678d14f99f52fba1", null ],
     [ "NextParticle", "classParticleSelectionTempl.html#a8596901fae1ad0e6d8ae1ce111168f0f", null ],
     [ "NextPhotonCombination", "classParticleSelectionTempl.html#a332e493de7190c01eae6d3731b07fa97", null ],
+    [ "Print", "classParticleSelectionTempl.html#ae16219661f62ae065e6a5d0e07f19a1a", null ],
     [ "ReachedEnd", "classParticleSelectionTempl.html#add2cb444859356911f87cb7d7796b1b0", null ],
     [ "SetFinalState", "classParticleSelectionTempl.html#a35665f65b346ce142ceb00f01f3de155", null ],
     [ "SetN_AntiMuons", "classParticleSelectionTempl.html#ab0ecad3efa6ad871e773b56ceeb665a2", null ],

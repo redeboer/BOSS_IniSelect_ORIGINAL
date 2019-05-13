@@ -2,6 +2,7 @@ var searchData=
 [
   ['k',['K',['../namespaceIniSelect_1_1Mass.html#ac12e8701b07035b4c7b64bffaae515d3',1,'IniSelect::Mass']]],
   ['keyexists',['KeyExists',['../classContainer__indexed.html#a7f20601b36da5a8c273354c73627b087',1,'Container_indexed::KeyExists(const std::map&lt; std::string, TYPE *&gt; mapping, const std::string &amp;key) const'],['../classContainer__indexed.html#aab4c2e12876d522b062fa3ed25a6c423',1,'Container_indexed::KeyExists(const std::string &amp;key) const']]],
+  ['kinematicfitfailed',['KinematicFitFailed',['../classIniSelect_1_1Error_1_1KinematicFitFailed.html',1,'IniSelect::Error::KinematicFitFailed'],['../classIniSelect_1_1Error_1_1KinematicFitFailed.html#ac522a8d8494c5a7e37e5df3c599f90a0',1,'IniSelect::Error::KinematicFitFailed::KinematicFitFailed()']]],
   ['kinematicfitter',['KinematicFitter',['../classKinematicFitter.html',1,'KinematicFitter'],['../classKinematicFitter.html#a8810c72ed80461cd8c8b4db41f02de13',1,'KinematicFitter::KinematicFitter()'],['../classKinematicFitter.html#a9bb7c70626d0b9881cb53eeb011d96e9',1,'KinematicFitter::KinematicFitter(const KinematicFitter &amp;)']]],
   ['kinematicfitter_2ecxx',['KinematicFitter.cxx',['../KinematicFitter_8cxx.html',1,'']]],
   ['kinematicfitter_2eh',['KinematicFitter.h',['../KinematicFitter_8h.html',1,'']]],

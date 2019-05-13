@@ -1,6 +1,7 @@
 var searchData=
 [
   ['secondaryvertexgeometry',['SecondaryVertexGeometry',['../classSecondaryVertexGeometry.html#aa018e56af7e43a1186c8620555dc09e6',1,'SecondaryVertexGeometry::SecondaryVertexGeometry()'],['../classSecondaryVertexGeometry.html#a3839fa7f009b5fc607920a396e0b2149',1,'SecondaryVertexGeometry::SecondaryVertexGeometry(RecMdcTrack *mdcTrack, const HepPoint3D &amp;vertexPoint)']]],
+  ['selectchargedcandidates',['SelectChargedCandidates',['../classTrackSelector.html#aa5b1558564dbf2943fd38221aee2d582',1,'TrackSelector']]],
   ['set',['Set',['../classParticle.html#a5e0f360c3ac298bdf927739ea8021690',1,'Particle']]],
   ['setadditionalntupleitems_5ftopology',['SetAdditionalNtupleItems_topology',['../classD0omega__K4pi.html#a83b3c5e08fdba76ad13c73803596263d',1,'D0omega_K4pi']]],
   ['setangledifferences',['SetAngleDifferences',['../classAngleDifferences.html#a350d06dce4d5544fbf9fb61c3f0799d4',1,'AngleDifferences']]],

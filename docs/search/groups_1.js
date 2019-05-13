@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['globals',['Globals',['../group__BOSS__globals.html',1,'']]]
+  ['functions',['Functions',['../group__BOSS__functions.html',1,'']]]
 ];
