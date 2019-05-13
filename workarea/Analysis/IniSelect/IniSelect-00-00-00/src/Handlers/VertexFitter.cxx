@@ -1,7 +1,6 @@
 #include "IniSelect/Handlers/VertexFitter.h"
-#include "IniSelect/Exceptions/Exception.h"
+#include "IniSelect/Exceptions/OutOfRange.h"
 using namespace std;
-using namespace IniSelect::Error;
 
 Int_t      VertexFitter::fNTracks      = 0;
 Bool_t     VertexFitter::fIsSuccessful = false;
