@@ -5,8 +5,8 @@
 #include "IniSelect/Algorithms/D0omega_K4pi.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Globals/Exception.h"
-#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Handlers/KinematicFitter.h"
+#include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Handlers/VertexFitter.h"
 #include <string>
 #include <utility>
@@ -42,7 +42,7 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
 void D0omega_K4pi::ConfigureParticleSelection()
 {
   LOG_FUNCTION();
-  fParticleSel  .SetFinalState("K- pi+ pi- pi+ g g");
+  fParticleSel.SetFinalState("K- pi+ pi- pi+ g g");
   fParticleSelMC.SetFinalState("K- pi+ pi- pi+ g g");
   fParticleSel.Print();
 }
@@ -210,7 +210,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   do
   {
     ++count;
-cout << "  combination " << count << ": " << endl;
+    cout << "  combination " << count << ": " << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
@@ -248,11 +248,11 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::ExtractFitResults()
 {
-if(KinematicFitter::GetFit())
-{
-  cout << "numberWTrack:     " << KinematicFitter::GetFit()->numberWTrack() << endl;
-  cout << "numberGammaShape: " << KinematicFitter::GetFit()->numberGammaShape() << endl;
-}
+  if(KinematicFitter::GetFit())
+  {
+    cout << "numberWTrack:     " << KinematicFitter::GetFit()->numberWTrack() << endl;
+    cout << "numberGammaShape: " << KinematicFitter::GetFit()->numberGammaShape() << endl;
+  }
   fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
   fCurrentKalmanFit.SetRunNumber(fInputFile.RunNumber());
   fCurrentKalmanFit.SetEventNumber(fInputFile.EventNumber());

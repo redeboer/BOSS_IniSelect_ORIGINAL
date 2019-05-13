@@ -63,8 +63,7 @@ void Test_CandidateTracks::TestExecute()
 }
 
 void Test_CandidateTracks::TestFinalize()
-{
-}
+{}
 
 void Test_CandidateTracks::AddDummyTracks(CandidateTracks<Event::McParticle>& obj, int n)
 {

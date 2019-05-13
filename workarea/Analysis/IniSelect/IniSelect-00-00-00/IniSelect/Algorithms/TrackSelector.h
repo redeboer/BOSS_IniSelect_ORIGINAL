@@ -33,7 +33,6 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 #define TO_STRING(x) #x
 #define LOG_FUNCTION() PrintFunctionName(__FILE__, __func__)
 
-
 // * ================================ * //
 // * ------- CLASS DEFINITION ------- * //
 // * ================================ * //

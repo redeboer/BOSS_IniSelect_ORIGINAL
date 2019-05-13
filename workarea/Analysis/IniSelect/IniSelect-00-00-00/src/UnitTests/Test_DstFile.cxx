@@ -29,7 +29,7 @@ void Test_DstFile::TestExecute()
   /// * Check iterators for all events
   if(true)
   {
-    int countCharged = 0;
+    int              countCharged = 0;
     ChargedTrackIter iCharged(fInputFile);
     while(EvtRecTrack* track = iCharged.Next())
     {
@@ -39,7 +39,7 @@ void Test_DstFile::TestExecute()
     }
     REQUIRE(fInputFile.TotalChargedTracks() == countCharged);
 
-    int countNeutral = 0;
+    int              countNeutral = 0;
     NeutralTrackIter iNeutral(fInputFile);
     while(EvtRecTrack* track = iNeutral.Next())
     {
@@ -49,7 +49,7 @@ void Test_DstFile::TestExecute()
     }
     REQUIRE(fInputFile.TotalNeutralTracks() == countNeutral);
 
-    int countMC = 0;
+    int         countMC = 0;
     McTrackIter iMC(fInputFile);
     while(Event::McParticle* track = iMC.Next())
     {

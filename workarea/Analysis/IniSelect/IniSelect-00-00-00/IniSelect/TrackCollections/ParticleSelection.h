@@ -4,9 +4,9 @@
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "IniSelect/TrackCollections/CandidateTracks.h"
 #include "McTruth/McParticle.h"
+#include "TString.h"
 #include <map>
 #include <string>
-#include "TString.h"
 #include <utility>
 
 /// @addtogroup BOSS_objects
@@ -61,7 +61,7 @@ private:
   int fNCharged;
 
   CandidateTracks<T>* UnpackIter();
-  Int_t CountOccurences(const TString& input, const TString& particle_name);
+  Int_t               CountOccurences(const TString& input, const TString& particle_name);
 };
 
 typedef ParticleSelectionTempl<EvtRecTrack>       ParticleSelection;
@@ -167,9 +167,10 @@ template <typename T>
 Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
 {
   TString tok;
-  Ssiz_t from = 0;
-  Int_t n = 0;
-  while(input.Tokenize(tok, from)) if(tok.EqualTo(particle_name)) ++n;
+  Ssiz_t  from = 0;
+  Int_t   n    = 0;
+  while(input.Tokenize(tok, from))
+    if(tok.EqualTo(particle_name)) ++n;
   return n;
 }
 

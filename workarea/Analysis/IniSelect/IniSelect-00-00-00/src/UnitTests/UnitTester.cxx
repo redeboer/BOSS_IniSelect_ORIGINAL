@@ -1,8 +1,8 @@
 #include "IniSelect/UnitTests/UnitTester.h"
 #include "IniSelect/Globals.h"
-#include <iostream>
-#include <iomanip>
 #include <cmath>
+#include <iomanip>
+#include <iostream>
 using namespace IniSelect;
 
 StatusCode UnitTester::initialize()

@@ -73,7 +73,7 @@ void TrackSelector::CreateChargedCollection()
   LOG_FUNCTION();
   if(!fCreateChargedCollection) return;
   fChargedTracks.clear();
-  fNetChargeMDC      = 0;
+  fNetChargeMDC = 0;
   ChargedTrackIter iter(fInputFile);
   while(EvtRecTrack* track = iter.Next())
   {
@@ -189,7 +189,7 @@ void TrackSelector::WriteTofInformation(RecTofTrack* tofTrack, double ptrk, NTup
   if(!tuple.DoWrite()) return;
 
   /// -# Compute ToF for each particle hypothesis
-  double              path = tofTrack->path();
+  double         path = tofTrack->path();
   vector<double> texp(Mass::TOF.size());
   for(size_t j = 0; j < texp.size(); ++j)
   {
@@ -307,7 +307,8 @@ void TrackSelector::WriteVertexInfo()
 void TrackSelector::CutNumberOfChargedParticles()
 {
   LOG_FUNCTION();
-  fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be " << fParticleSel.GetNCharged() << endmsg;
+  fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be "
+       << fParticleSel.GetNCharged() << endmsg;
   if(fChargedTracks.size() != fParticleSel.GetNCharged()) throw StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 }
@@ -391,8 +392,7 @@ AngleDifferences TrackSelector::FindSmallestPhotonAngles()
 {
   GetEmcPosition();
   AngleDifferences smallestAngles;
-  for(vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end();
-      ++it)
+  for(vector<EvtRecTrack*>::iterator it = fChargedTracks.begin(); it != fChargedTracks.end(); ++it)
   {
     if(!GetExtendedEmcPosition(*it)) continue;
     AngleDifferences angles(fExtendedEmcPosition, fEmcPosition);

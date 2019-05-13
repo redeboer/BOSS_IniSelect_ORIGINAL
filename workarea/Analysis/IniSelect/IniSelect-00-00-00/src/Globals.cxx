@@ -1,7 +1,6 @@
 #include "IniSelect/Globals.h"
 #include <stdio.h>
 
-
 /// Test whether an MC truth particle is `91` (the PDG code of a 'cluster') or `92` (the PDG code of a string). This function is used to characterised the initial cluster, e.g. \f$J/\psi\f$
 bool IniSelect::McTruth::IsInitialCluster(Event::McParticle* mcparticle)
 {

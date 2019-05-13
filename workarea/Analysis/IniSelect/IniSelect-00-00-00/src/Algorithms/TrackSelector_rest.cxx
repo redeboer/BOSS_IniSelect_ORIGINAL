@@ -5,8 +5,8 @@
 #include "CLHEP/Vector/TwoVector.h"
 #include "DstEvent/TofHitStatus.h"
 #include "GaudiKernel/Bootstrap.h"
-#include "IniSelect/Globals.h"
 #include "IniSelect/Functions/String.h"
+#include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
 #include "TString.h"
@@ -58,7 +58,7 @@ bool TrackSelector::CreateMCTruthCollection()
   /// available in `McParticle`, see
   /// [here](http://bes3.to.infn.it/Boss/7.0.2/html/McParticle_8h-source.html). Only add to
   /// `fMcParticles` if the `McParticle` satisfies:
-  bool doNotInclude(true); // only start recording if set to false in the loop
+  bool        doNotInclude(true); // only start recording if set to false in the loop
   McTrackIter iter(fInputFile);
   while(Event::McParticle* particle = iter.Next())
   {
@@ -186,7 +186,8 @@ bool TrackSelector::IsDecay(Event::McParticle* particle, const int mother, const
 /// @remark In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format `PrintFunctionName("<class name>", __func__)`.
 void TrackSelector::PrintFunctionName(const char* class_name, const char* function_name)
 {
-  const char* msg = Form("===>> %s::%s <<===", BaseName(NoExtension(class_name)).Data(), function_name);
+  const char* msg =
+    Form("===>> %s::%s <<===", BaseName(NoExtension(class_name)).Data(), function_name);
   cout << msg << endl;
   fLog << MSG::DEBUG << msg << endmsg;
 }

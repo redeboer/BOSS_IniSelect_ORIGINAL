@@ -9,7 +9,11 @@
 class UnitTester : public Algorithm
 {
 public:
-  UnitTester(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator), fNTests(0), fNFailed(0) {}
+  UnitTester(const std::string& name, ISvcLocator* pSvcLocator) :
+    Algorithm(name, pSvcLocator),
+    fNTests(0),
+    fNFailed(0)
+  {}
 
   virtual StatusCode initialize();
   virtual StatusCode execute();

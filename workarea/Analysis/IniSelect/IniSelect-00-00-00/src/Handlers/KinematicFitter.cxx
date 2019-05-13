@@ -5,9 +5,9 @@
 using namespace IniSelect;
 using namespace IniSelect::Error;
 
-int                 KinematicFitter::fNTracks         = 0;
-int                 KinematicFitter::fConstraintCount = 0;
-int                 KinematicFitter::fNConstraints    = 0;
+Int_t               KinematicFitter::fNTracks         = 0;
+Int_t               KinematicFitter::fConstraintCount = 0;
+Int_t               KinematicFitter::fNConstraints    = 0;
 bool                KinematicFitter::fIsSuccessful    = false;
 KalmanKinematicFit* KinematicFitter::fKinematicFit    = KalmanKinematicFit::instance();
 
@@ -37,7 +37,7 @@ void KinematicFitter::AddTracks(ParticleSelection& selection)
   CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
   while(coll)
   {
-    for(int i = 0; i < coll->GetNTracks(); ++i)
+    for(Int_t i = 0; i < coll->GetNTracks(); ++i)
       if(coll->IsCharged())
         KinematicFitter::AddTrack(VertexFitter::GetTrack(i));
       else
@@ -54,7 +54,7 @@ void KinematicFitter::AddConstraintCMS()
   fNConstraints += 4;
 }
 
-void KinematicFitter::AddResonance(const double& mass, int track1, int track2)
+void KinematicFitter::AddResonance(const Double_t mass, Int_t track1, Int_t track2)
 {
   fKinematicFit->AddResonance(fConstraintCount, mass, track1, track2);
   ++fConstraintCount;
@@ -67,7 +67,7 @@ void KinematicFitter::Fit()
   fIsSuccessful = true;
 }
 
-HepLorentzVector KinematicFitter::GetTrack(int i)
+HepLorentzVector KinematicFitter::GetTrack(Int_t i)
 {
   if(!fKinematicFit) throw Exception("KinematicFitter has empty pointer!");
   if(i < fNTracks) return fKinematicFit->pfit(i);

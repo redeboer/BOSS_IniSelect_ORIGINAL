@@ -1,7 +1,7 @@
 #include "GaudiKernel/DeclareFactoryEntries.h"
 #include "IniSelect/Algorithms/D0omega_K4pi.h"
-#include "IniSelect/UnitTests/Test_DstFile.h"
 #include "IniSelect/UnitTests/Test_CandidateTracks.h"
+#include "IniSelect/UnitTests/Test_DstFile.h"
 #include "IniSelect/UnitTests/Test_ParticleDatabase.h"
 
 DECLARE_ALGORITHM_FACTORY(D0omega_K4pi)

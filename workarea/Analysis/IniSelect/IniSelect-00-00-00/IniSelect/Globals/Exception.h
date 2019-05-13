@@ -20,7 +20,7 @@ namespace IniSelect
     public:
       Exception(const TString& message) : fMessage(message) {}
       const char* GetMessage() const { return fMessage.Data(); }
-      void Print() const { std::cout << "EXCEPTION: " << fMessage << std::endl; }
+      void        Print() const { std::cout << "EXCEPTION: " << fMessage << std::endl; }
 
     private:
       const TString fMessage;

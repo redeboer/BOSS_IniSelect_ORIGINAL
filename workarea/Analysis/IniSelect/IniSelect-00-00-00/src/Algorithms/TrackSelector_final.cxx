@@ -18,7 +18,7 @@ StatusCode TrackSelector::finalize()
 void TrackSelector::AddAndWriteCuts()
 {
   list<CutObject*>::iterator cut   = CutObject::gCutObjects.begin();
-  NTuple::Item<int>&              index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
+  NTuple::Item<int>&         index = *fNTuple_cuts.AddItem<int>("index", 0, 3);
   for(; cut != CutObject::gCutObjects.end(); ++cut)
   {
     NTuple::Array<double>& array = *fNTuple_cuts.AddIndexedItem<double>((*cut)->Name(), index);

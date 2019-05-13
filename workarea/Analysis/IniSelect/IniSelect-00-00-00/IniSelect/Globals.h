@@ -57,7 +57,7 @@ namespace IniSelect
     bool IsInitialCluster(Event::McParticle* mcparticle);
     bool IsJPsi(Event::McParticle* mcparticle);
     bool IsFromJPsi(Event::McParticle* mcparticle);
-  }   // namespace McTruth
+  } // namespace McTruth
   namespace Paths
   {
     static const char* pdtTable =
@@ -67,8 +67,8 @@ namespace IniSelect
   {
     enum EIniSelColor
     {
-      Red = 31,
-      Green = 32,
+      Red    = 31,
+      Green  = 32,
       Yellow = 33
     };
     void ColourPrintBold(const char code, const TString& message);

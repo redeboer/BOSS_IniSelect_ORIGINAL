@@ -10,8 +10,8 @@ public:
     UnitTester(name, pSvcLocator)
   {}
 
-  void TestInitialize(){}
-  void TestExecute(){}
+  void TestInitialize() {}
+  void TestExecute() {}
   void TestFinalize();
 };
 
