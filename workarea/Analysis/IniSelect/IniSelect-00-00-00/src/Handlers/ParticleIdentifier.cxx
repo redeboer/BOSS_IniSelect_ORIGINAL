@@ -1,7 +1,6 @@
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Exceptions/Exception.h"
 #include "TString.h"
-using namespace IniSelect::Error;
 
 ParticleID* ParticleIdentifier::gPID = ParticleID::instance();
 int         ParticleIdentifier::fBestIndex;

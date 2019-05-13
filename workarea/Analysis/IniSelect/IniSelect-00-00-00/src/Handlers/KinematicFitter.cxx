@@ -3,7 +3,7 @@
 #include "IniSelect/Exceptions/Exception.h"
 #include "IniSelect/Handlers/VertexFitter.h"
 using namespace IniSelect;
-using namespace IniSelect::Error;
+using namespace IniSelect::Physics;
 
 Int_t               KinematicFitter::fNTracks         = 0;
 Int_t               KinematicFitter::fConstraintCount = 0;
@@ -49,7 +49,7 @@ void KinematicFitter::AddTracks(ParticleSelection& selection)
 void KinematicFitter::AddConstraintCMS()
 {
   /// Add the typical 4-constraint: CMS energy and 3-momentum
-  fKinematicFit->AddFourMomentum(fConstraintCount, gEcmsVec);
+  fKinematicFit->AddFourMomentum(fConstraintCount, EcmsVec);
   ++fConstraintCount;
   fNConstraints += 4;
 }

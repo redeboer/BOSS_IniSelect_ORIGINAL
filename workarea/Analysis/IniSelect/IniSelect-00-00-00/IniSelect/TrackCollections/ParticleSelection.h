@@ -136,22 +136,6 @@ Bool_t ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::SetFinalState(const TString& input)
-{
-  SetParticleToN("g", CountOccurences(input, "g"));
-  SetParticleToN("pi-", CountOccurences(input, "pi-"));
-  SetParticleToN("pi+", CountOccurences(input, "pi+"));
-  SetParticleToN("K-", CountOccurences(input, "K-"));
-  SetParticleToN("K+", CountOccurences(input, "K+"));
-  SetParticleToN("e-", CountOccurences(input, "e-"));
-  SetParticleToN("e+", CountOccurences(input, "e+"));
-  SetParticleToN("mu-", CountOccurences(input, "mu-"));
-  SetParticleToN("mu+", CountOccurences(input, "mu+"));
-  SetParticleToN("p+", CountOccurences(input, "p+"));
-  SetParticleToN("anti-p-", CountOccurences(input, "anti-p-"));
-}
-
-template <typename T>
 Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
 {
   TString tok;

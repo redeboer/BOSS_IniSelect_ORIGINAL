@@ -11,6 +11,7 @@
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/MsgStream.h"
 #include "GaudiKernel/NTuple.h"
+#include "IniSelect/Handlers/FinalStateHandler.h"
 #include "IniSelect/Containers/AngleDifferences.h"
 #include "IniSelect/Containers/CutObject.h"
 #include "IniSelect/Containers/DstFile.h"
@@ -18,7 +19,6 @@
 #include "IniSelect/Containers/NTupleContainer.h"
 #include "IniSelect/Containers/SecondaryVertexGeometry.h"
 #include "IniSelect/Fit/KKFitResult.h"
-#include "IniSelect/TrackCollections/ParticleSelection.h"
 #include "IniSelect/TrackCollections/RecTrackPointers.h"
 #include "McTruth/McEvent.h"
 #include "McTruth/McParticle.h"
@@ -228,8 +228,7 @@ protected:
 
   /// @name Other stored values
   ///@{
-  ParticleSelection       fParticleSel;
-  ParticleSelectionMC     fParticleSelMC;
+  FinalStateHandler       fFinalState;
   SecondaryVertexGeometry fSecondaryVtx;
   HepPoint3D              fVertexPoint;
   ///< Coordinates of the interaction point (primary vertex). Set in each event in `TrackSelector::execute`.
