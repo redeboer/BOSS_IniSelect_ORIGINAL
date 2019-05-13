@@ -37,5 +37,18 @@ private:
   static bool                fIsSuccessful;
   static KalmanKinematicFit* fKinematicFit;
 };
+
+namespace IniSelect
+{
+  namespace Error
+  {
+    class KinematicFitFailed
+    {
+    public:
+      KinematicFitFailed(double chi2) : fChi2(chi2) {}
+      Double_t fChi2;
+    };
+  }
+}
 /// @}
 #endif

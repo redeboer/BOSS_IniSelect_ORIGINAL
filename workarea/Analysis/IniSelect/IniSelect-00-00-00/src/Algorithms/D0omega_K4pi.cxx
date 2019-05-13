@@ -218,10 +218,10 @@ cout << "  combination " << count << ": " << endl;
       DoKinematicFit();
       ExtractFitResults();
     }
-    catch(const Error::Exception& e)
+    catch(const Error::KinematicFitFailed& e)
     {
-      std::cout << e.GetMessage() << std::endl;
-      return;
+      std::cout << e.fChi2 << std::endl;
+      continue;
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
     if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;

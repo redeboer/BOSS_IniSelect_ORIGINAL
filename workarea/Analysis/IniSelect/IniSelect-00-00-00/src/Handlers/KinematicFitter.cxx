@@ -63,8 +63,7 @@ void KinematicFitter::AddResonance(const double& mass, int track1, int track2)
 
 void KinematicFitter::Fit()
 {
-  if(!fKinematicFit->Fit())
-    throw Exception(Form("Kinematic fit failed: chisq = %g", fKinematicFit->chisq()));
+  if(!fKinematicFit->Fit()) throw KinematicFitFailed(fKinematicFit->chisq());
   fIsSuccessful = true;
 }
 
