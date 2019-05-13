@@ -26,26 +26,26 @@ namespace IniSelect
 {
   namespace Math
   {
-    static const double pi       = 3.14159265358979323846;
-    static const double twopi    = 2 * pi;
-    static const double RadToDeg = 180. / pi;
+    inline const double pi       = 3.14159265358979323846;
+    inline const double twopi    = 2 * pi;
+    inline const double RadToDeg = 180. / pi;
   } // namespace Math
   namespace Mass
   {
-    static const double D0    = 1.86483;
-    static const double Jpsi  = 3.0969;
-    static const double K     = 0.493677;
-    static const double e     = 0.000511;
-    static const double mu    = 0.105658;
-    static const double omega = 0.78265;
-    static const double p     = 0.938272;
-    static const double phi   = 1.019461;
-    static const double pi    = 0.13957061;
-    static const double pi0   = 0.1349770;
-    static const double rho   = 0.77526;
+    inline const double D0    = 1.86483;
+    inline const double Jpsi  = 3.0969;
+    inline const double K     = 0.493677;
+    inline const double e     = 0.000511;
+    inline const double mu    = 0.105658;
+    inline const double omega = 0.78265;
+    inline const double p     = 0.938272;
+    inline const double phi   = 1.019461;
+    inline const double pi    = 0.13957061;
+    inline const double pi0   = 0.1349770;
+    inline const double rho   = 0.77526;
 
-    const double                     arr[] = {e, mu, pi, K, p};
-    static const std::vector<double> TOF(arr, arr + sizeof(arr) / sizeof(*arr));
+    inline const double                     arr[] = {e, mu, pi, K, p};
+    inline const std::vector<double> TOF(arr, arr + sizeof(arr) / sizeof(*arr));
   } // namespace Mass
   namespace McTruth
   {
@@ -55,18 +55,18 @@ namespace IniSelect
   } // namespace McTruth
   namespace Paths
   {
-    static const char* pdtTable =
+    inline const char* pdtTable =
       "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
   namespace Physics
   {
-    static const double Ecms = 3.097;
+    inline const double Ecms = 3.097;
     ///< Center-of-mass energy.
-    static const CLHEP::HepLorentzVector EcmsVec(0.034, 0, 0, Ecms);
+    inline const CLHEP::HepLorentzVector EcmsVec(0.034, 0, 0, Ecms);
     ///< Center-of-mass 4-momentum.
-    static const double SpeedOfLight = 299.792458;
-    const char* arr[] = {"pi-", "pi+", "K-", "K+", "e-", "e+", "mu-", "mu+", "p+", "anti-p-", "g"};
-    static const std::vector<TString> BESIIIparticles(arr, arr + sizeof(arr) / sizeof(*arr));
+    inline const double SpeedOfLight = 299.792458;
+    inline const char* arr[] = {"pi-", "pi+", "K-", "K+", "e-", "e+", "mu-", "mu+", "p+", "anti-p-", "g"};
+    inline const std::vector<TString> BESIIIparticles(arr, arr + sizeof(arr) / sizeof(*arr));
   } // namespace Physics
   namespace TerminalIO
   {
