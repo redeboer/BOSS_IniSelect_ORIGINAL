@@ -47,7 +47,10 @@ StatusCode TrackSelector::execute()
     e.Print();
     return StatusCode::FAILURE;
   }
-  return StatusCode::SUCCESS;
+  catch(const AlgorithmSuccess& e)
+  {
+    return StatusCode::SUCCESS;
+  }
 }
 
 void TrackSelector::PrintEventInfo()
@@ -287,7 +290,7 @@ void TrackSelector::CutPID()
   CandidateTracks<EvtRecTrack>* coll = fFinalState.GetParticleSelection().FirstParticle();
   while(coll)
   {
-    if(coll->FailsMultiplicityCut()) throw StatusCode::SUCCESS;
+    if(coll->FailsMultiplicityCut()) throw AlgorithmSuccess();
     coll = fFinalState.GetParticleSelection().NextCharged();
   }
   ++fCutFlow_NPIDnumberOK;
@@ -311,7 +314,7 @@ void TrackSelector::CutNumberOfChargedParticles()
   LOG_FUNCTION();
   fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be "
        << fFinalState.GetParticleSelection().GetNCharged() << endmsg;
-  if(fChargedTracks.size() != fFinalState.GetParticleSelection().GetNCharged()) throw StatusCode::SUCCESS;
+  if(fChargedTracks.size() != fFinalState.GetParticleSelection().GetNCharged()) throw AlgorithmSuccess();
   ++fCutFlow_NChargedOK;
 }
 
