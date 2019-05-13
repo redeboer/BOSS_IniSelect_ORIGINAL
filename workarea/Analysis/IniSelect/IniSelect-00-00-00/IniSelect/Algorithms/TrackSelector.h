@@ -12,6 +12,7 @@
 #include "GaudiKernel/MsgStream.h"
 #include "GaudiKernel/NTuple.h"
 #include "IniSelect/Handlers/FinalStateHandler.h"
+#include "IniSelect/Handlers/NTupleBooker.h"
 #include "IniSelect/Containers/AngleDifferences.h"
 #include "IniSelect/Containers/CutObject.h"
 #include "IniSelect/Containers/DstFile.h"
@@ -65,8 +66,6 @@ protected:
   /// @name Helper methods for initialize step
   ///@{
   void AssertPostConstructed() const;
-  void BookNTuple(NTupleContainer& tuple);
-  void BookNTuples();
   void OverwriteCreateBits();
   void AddNTupleItems();
   void AddNTupleItems_mult();
@@ -146,6 +145,7 @@ protected:
   /// @name Access to the DST file
   ///@{
   DstFile fInputFile;
+  NTupleBooker fNTupleBooker;
   ///@}
 
   /// @name Track collections and iterators

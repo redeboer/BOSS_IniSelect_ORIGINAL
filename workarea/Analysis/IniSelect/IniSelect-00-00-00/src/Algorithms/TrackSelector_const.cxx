@@ -26,6 +26,7 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fLog(msgSvc(), name),
   /// * Construct objects for file access.
   fInputFile(eventSvc()),
+  fNTupleBooker(ntupleSvc()),
   /// * Construct `NTuple::Tuple`s containers used in base class
   fNTuple_mult("mult", "Event multiplicities"),
   fNTuple_vertex("vertex", "Primary vertex (interaction point)"),

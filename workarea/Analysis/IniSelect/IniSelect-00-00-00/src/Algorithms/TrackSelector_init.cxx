@@ -22,7 +22,7 @@ StatusCode TrackSelector::initialize()
   {
     AssertPostConstructed();
     OverwriteCreateBits();
-    BookNTuples();
+    fNTupleBooker.BookAll();
     AddNTupleItems();
     AddAdditionalNTupleItems();
     ConfigureParticleSelection();
@@ -32,7 +32,10 @@ StatusCode TrackSelector::initialize()
     e.Print();
     return StatusCode::FAILURE;
   }
-  return StatusCode::SUCCESS;
+  catch(const AlgorithmSuccess& e)
+  {
+    return StatusCode::SUCCESS;
+  }
 }
 
 /// Method that has to be called before anything can be done in the `initialize` step.
@@ -42,42 +45,7 @@ void TrackSelector::AssertPostConstructed() const
   std::cout << "FATAL ERROR: PostConstructor has not been called in constructor of derived class "
                "of TrackSelector"
             << std::endl;
-  throw StatusCode::FAILURE;
-}
-
-/// Go over all instances of `NTupleContainer` and book them using `BookNTuple`.
-void TrackSelector::BookNTuples()
-{
-  fLog << MSG::INFO << "Booking " << NTupleContainer::instances.size() << " NTuples:" << endmsg;
-  std::map<std::string, NTupleContainer*>::iterator it = NTupleContainer::instances.begin();
-  for(it; it != NTupleContainer::instances.end(); ++it) BookNTuple(*it->second);
-}
-
-/// Helper function that allows you to relate the `NTupleContainer` argument `tuple` to the output file (i.e. to 'book' it).
-void TrackSelector::BookNTuple(NTupleContainer& tuple)
-{
-  /// -# **Abort** if the `"write_"` `JobSwitch` option has been set to `false`.
-  if(!tuple.DoWrite())
-  {
-    fLog << MSG::DEBUG << "  NTuple \"" << tuple.Name() << "\" will not be written" << endmsg;
-    return;
-  }
-  /// -# Form a string for booking in the file. Typically: `"FILE1/<tree name>"`.
-  const char* bookName = Form("FILE1/%s", tuple.Name().c_str());
-  /// -# Attempt to get this `NTuple::Tuple` from file the file.
-  NTuplePtr nt(ntupleSvc(), bookName);
-  if(nt) fLog << MSG::INFO << "  loaded NTuple \"" << tuple.Name() << "\" from FILE1" << endmsg;
-  /// -# If not available in file, book a new one.
-  else
-  {
-    fLog << MSG::INFO << "  booked NTuple \"" << tuple.Name() << "\"" << endmsg;
-    nt = ntupleSvc()->book(bookName, CLID_ColumnWiseTuple, tuple.Description());
-    if(!nt)
-      fLog << MSG::WARNING << "  --> cannot book N-tuple: " << long(nt) << " (\"" << tuple.Name()
-           << "\")" << endmsg;
-  }
-  /// -# Import this NTuplePtr to the `tuple` object.
-  tuple.SetTuplePtr(nt);
+  throw AlgorithmSuccess();
 }
 
 void TrackSelector::OverwriteCreateBits()
