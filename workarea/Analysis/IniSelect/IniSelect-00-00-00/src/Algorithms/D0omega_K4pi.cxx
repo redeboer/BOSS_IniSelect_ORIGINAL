@@ -4,7 +4,7 @@
 
 #include "IniSelect/Algorithms/D0omega_K4pi.h"
 #include "IniSelect/Globals.h"
-#include "IniSelect/Exceptions/Exception.h"
+#include "IniSelect/Exceptions/KinematicFitFailed.h"
 #include "IniSelect/Handlers/KinematicFitter.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Handlers/VertexFitter.h"
@@ -216,7 +216,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
       DoKinematicFit();
       ExtractFitResults();
     }
-    catch(const Error::KinematicFitFailed& e)
+    catch(const KinematicFitFailed& e)
     {
       std::cout << "  " << e.GetMessage() << std::endl;
       continue;

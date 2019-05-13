@@ -1,6 +1,6 @@
 #include "IniSelect/Handlers/KinematicFitter.h"
 #include "IniSelect/Globals.h"
-#include "IniSelect/Exceptions/Exception.h"
+#include "IniSelect/Exceptions/KinematicFitFailed.h"
 #include "IniSelect/Handlers/VertexFitter.h"
 using namespace IniSelect;
 using namespace IniSelect::Physics;
