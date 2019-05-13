@@ -14,9 +14,9 @@ class Exception
 public:
   Exception() {}
   Exception(const TString& message) : fMessage(message) {}
-  virtual const char* GetMessage() const { return fMessage.Data(); }
-  virtual void        SetMessage(const TString& message) { fMessage = message; }
-  virtual void        Print() const;
+  const char* GetMessage() const { return fMessage.Data(); }
+  void        SetMessage(const TString& message) { fMessage = message; }
+  void        Print() const;
 
 protected:
   TString fMessage;
