@@ -220,7 +220,7 @@ cout << "  combination " << count << ": " << endl;
     }
     catch(const Error::KinematicFitFailed& e)
     {
-      std::cout << e.fChi2 << std::endl;
+      std::cout << "  " << e.GetMessage() << std::endl;
       continue;
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
@@ -230,7 +230,6 @@ cout << "  combination " << count << ": " << endl;
 
 void D0omega_K4pi::DoVertexFit()
 {
-  LOG_FUNCTION();
   VertexFitter::Initialize();
   VertexFitter::AddTracks(fParticleSel);
   VertexFitter::AddCleanVertex();
@@ -239,7 +238,6 @@ void D0omega_K4pi::DoVertexFit()
 
 void D0omega_K4pi::DoKinematicFit()
 {
-  LOG_FUNCTION();
   if(!VertexFitter::IsSuccessful()) return;
   KinematicFitter::Initialize();
   KinematicFitter::AddTracks(fParticleSel);
@@ -250,7 +248,11 @@ void D0omega_K4pi::DoKinematicFit()
 
 void D0omega_K4pi::ExtractFitResults()
 {
-  LOG_FUNCTION();
+if(KinematicFitter::GetFit())
+{
+  cout << "numberWTrack:     " << KinematicFitter::GetFit()->numberWTrack() << endl;
+  cout << "numberGammaShape: " << KinematicFitter::GetFit()->numberGammaShape() << endl;
+}
   fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
   fCurrentKalmanFit.SetRunNumber(fInputFile.RunNumber());
   fCurrentKalmanFit.SetEventNumber(fInputFile.EventNumber());

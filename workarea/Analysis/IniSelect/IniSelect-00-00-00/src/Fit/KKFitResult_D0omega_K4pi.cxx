@@ -10,6 +10,7 @@
 
 using CLHEP::HepLorentzVector;
 using namespace IniSelect;
+using namespace std;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
@@ -21,7 +22,7 @@ KKFitResult_D0omega_K4pi::KKFitResult_D0omega_K4pi(KalmanKinematicFit* kkmfit) :
 {
   if(!fFit)
   {
-    std::cout << std::endl << "empty fit!" << std::endl << std::endl;
+    cout << endl << "empty fit!" << endl << endl;
     return;
   }
   /// Get Lorentz vectors of the decay products using `KalmanKinematicFit::pfit`:
@@ -104,7 +105,7 @@ void KKFitResult_D0omega_K4pi::SetValues(const HepLorentzVector& p_g1, const Hep
   /// <li> Info about the gammas
   fRelativeGammaAngle = p_g1.angle(p_g2);
   /// <li> Compute measure for best fit: `fFitMeasure` := \f$M_{\pi^-\pi^+\pi^0} - m_{\omega}\f$
-  fFitMeasure = std::abs(fM_omega - Mass::phi);
+  fFitMeasure = abs(fM_omega - Mass::phi);
   /// <li> Set `fHasResults` to `true`.
   fHasResults = true;
   /// </ol>

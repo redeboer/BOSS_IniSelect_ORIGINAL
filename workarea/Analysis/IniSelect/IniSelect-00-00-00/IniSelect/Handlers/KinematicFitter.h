@@ -2,8 +2,10 @@
 #define Analysis_IniSelect_KinematicFitter_H
 
 #include "EmcRecEventModel/RecEmcShower.h"
+#include "IniSelect/Globals/Exception.h"
 #include "IniSelect/TrackCollections/ParticleSelection.h"
 #include "VertexFit/KalmanKinematicFit.h"
+#include "TString.h"
 
 /// @todo This class functions more as a `namespce`, but has to be a class as it wraps the `KalmanKinematicFit` singleton.
 /// @addtogroup BOSS_objects
@@ -42,11 +44,10 @@ namespace IniSelect
 {
   namespace Error
   {
-    class KinematicFitFailed
+    class KinematicFitFailed : public Exception
     {
     public:
-      KinematicFitFailed(double chi2) : fChi2(chi2) {}
-      Double_t fChi2;
+      KinematicFitFailed(double chi2) : Exception(Form("Kinematic fit failed: chi2 = %g", chi2)) {}
     };
   }
 }

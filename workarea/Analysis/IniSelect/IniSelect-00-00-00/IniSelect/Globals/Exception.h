@@ -2,6 +2,7 @@
 #define Analysis_IniSelect_Exception_H
 
 #include "TString.h"
+#include <iostream>
 #include <vector>
 
 /// @author Remco de Boer 雷穆克 (remco.de.boer@ihep.ac.cn or r.e.deboer@students.uu.nl)
@@ -19,6 +20,7 @@ namespace IniSelect
     public:
       Exception(const TString& message) : fMessage(message) {}
       const char* GetMessage() const { return fMessage.Data(); }
+      void Print() const { std::cout << "EXCEPTION: " << fMessage << std::endl; }
 
     private:
       const TString fMessage;
