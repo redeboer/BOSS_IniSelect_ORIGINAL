@@ -1,5 +1,5 @@
 #include "IniSelect/Handlers/ParticleIdentifier.h"
-#include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Exceptions/Exception.h"
 #include "TString.h"
 using namespace IniSelect::Error;
 

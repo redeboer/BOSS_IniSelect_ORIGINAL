@@ -24,11 +24,6 @@
 /// Namespace that contains some parameters (such as particle masses) that are useful for derived classes of the `IniSelectObjects` base algorithm.
 namespace IniSelect
 {
-  static const double gEcms = 3.097;
-  ///< Center-of-mass energy.
-  static const CLHEP::HepLorentzVector gEcmsVec(0.034, 0, 0, gEcms);
-  ///< Center-of-mass 4-momentum.
-  static const double gSpeedOfLight = 299.792458; // tof path unit in mm
   namespace Math
   {
     static const double pi       = 3.14159265358979323846;
@@ -63,6 +58,16 @@ namespace IniSelect
     static const char* pdtTable =
       "/afs/ihep.ac.cn/bes3/offline/Boss/7.0.4/InstallArea/share/pdt.table";
   } // namespace Paths
+  namespace Physics
+  {
+    static const double Ecms = 3.097;
+    ///< Center-of-mass energy.
+    static const CLHEP::HepLorentzVector EcmsVec(0.034, 0, 0, Ecms);
+    ///< Center-of-mass 4-momentum.
+    static const double SpeedOfLight = 299.792458;
+    const char* arr[] = {"pi-", "pi+", "K-", "K+", "e-", "e+", "mu-", "mu+", "p+", "anti-p-", "g"};
+    static const std::vector<TString> BESIIIparticles(arr, arr + sizeof(arr) / sizeof(*arr));
+  } // namespace Physics
   namespace TerminalIO
   {
     enum EIniSelColor

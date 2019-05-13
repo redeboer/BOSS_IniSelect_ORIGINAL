@@ -5,6 +5,7 @@
 #include "CLHEP/Vector/TwoVector.h"
 #include "DstEvent/TofHitStatus.h"
 #include "GaudiKernel/Bootstrap.h"
+#include "IniSelect/Exceptions/AlgorithmResult.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
@@ -41,8 +42,11 @@ StatusCode TrackSelector::execute()
     WriteDedxOfSelectedParticles();
     FindBestKinematicFit();
   }
-  catch(...)
-  {}
+  catch(const AlgorithmFailure& e)
+  {
+    e.Print();
+    return StatusCode::FAILURE;
+  }
   return StatusCode::SUCCESS;
 }
 

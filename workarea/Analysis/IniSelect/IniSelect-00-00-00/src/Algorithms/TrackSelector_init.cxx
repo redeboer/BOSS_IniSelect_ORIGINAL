@@ -2,6 +2,7 @@
 
 #include "DstEvent/TofHitStatus.h"
 #include "GaudiKernel/Bootstrap.h"
+#include "IniSelect/Exceptions/AlgorithmResult.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "TMath.h"
@@ -26,9 +27,11 @@ StatusCode TrackSelector::initialize()
     AddAdditionalNTupleItems();
     ConfigureParticleSelection();
   }
-  catch(...)
+  catch(const AlgorithmFailure& e)
   {
-  } /// @todo Try to catch the `StatusCode`. Note that this is problematic, because you actually want to catch the `enum` within the class `StatusCode`...
+    e.Print();
+    return StatusCode::FAILURE;
+  }
   return StatusCode::SUCCESS;
 }
 

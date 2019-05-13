@@ -1,5 +1,5 @@
 #include "IniSelect/Containers/DstFile.h"
-#include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Exceptions/Exception.h"
 using namespace IniSelect::Error;
 
 const char* gHeaderName = "/Event/EventHeader";

@@ -21,44 +21,32 @@ class ParticleSelectionTempl
 public:
   ParticleSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
 
-  void SetN_Photons(size_t n) { SetParticleToN("g", n); }
-  void SetN_PionMin(size_t n) { SetParticleToN("pi-", n); }
-  void SetN_PionPlus(size_t n) { SetParticleToN("pi+", n); }
-  void SetN_KaonMin(size_t n) { SetParticleToN("K-", n); }
-  void SetN_KaonPlus(size_t n) { SetParticleToN("K+", n); }
-  void SetN_Electrons(size_t n) { SetParticleToN("e-", n); }
-  void SetN_Positrons(size_t n) { SetParticleToN("e+", n); }
-  void SetN_Muons(size_t n) { SetParticleToN("mu-", n); }
-  void SetN_AntiMuons(size_t n) { SetParticleToN("mu+", n); }
-  void SetN_Protons(size_t n) { SetParticleToN("p+", n); }
-  void SetN_AntiProtons(size_t n) { SetParticleToN("anti-p-", n); }
-  void SetFinalState(const TString& input);
+  void SetParticleToN(const TString& pdtName, Int_t nInstances);
 
   void ClearCharged();
   void ClearNeutral();
 
-  bool NextPhotonCombination();
+  Bool_t NextPhotonCombination();
 
-  bool HasParticle(const std::string& name) const;
-  bool AddCandidate(T* trk, const std::string& name);
+  Bool_t HasParticle(const std::string& name) const;
+  Bool_t AddCandidate(T* trk, const std::string& name);
 
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { return fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
-  int                 GetNCharged() { return fNCharged; }
+  Int_t               GetNCharged() { return fNCharged; }
 
   CandidateTracks<T>* FirstParticle();
   CandidateTracks<T>* NextParticle();
   CandidateTracks<T>* NextCharged();
-  bool                ReachedEnd() { return fSelectionsIter == fSelections.end(); }
+  Bool_t              ReachedEnd() { return fSelectionsIter == fSelections.end(); }
 
   void Print();
 
 private:
   typename std::map<std::string, CandidateTracks<T> >           fSelections;
   typename std::map<std::string, CandidateTracks<T> >::iterator fSelectionsIter;
-  void SetParticleToN(const TString& pdtName, const size_t nInstances);
 
-  int fNCharged;
+  Int_t fNCharged;
 
   CandidateTracks<T>* UnpackIter();
   Int_t               CountOccurences(const TString& input, const TString& particle_name);
@@ -97,12 +85,12 @@ CandidateTracks<T>* ParticleSelectionTempl<T>::NextCharged()
 template <typename T>
 CandidateTracks<T>* ParticleSelectionTempl<T>::UnpackIter()
 {
-  if(fSelectionsIter == fSelections.end()) return nullptr;
+  if(ReachedEnd()) return nullptr;
   return &fSelectionsIter->second;
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::SetParticleToN(const TString& pdtName, const size_t nInstances)
+void ParticleSelectionTempl<T>::SetParticleToN(const TString& pdtName, Int_t nInstances)
 {
   if(!nInstances) return;
   CandidateTracks<T>& coll = fSelections[pdtName.Data()];
@@ -128,19 +116,19 @@ void ParticleSelectionTempl<T>::ClearNeutral()
 }
 
 template <typename T>
-bool ParticleSelectionTempl<T>::NextPhotonCombination()
+Bool_t ParticleSelectionTempl<T>::NextPhotonCombination()
 {
   return fSelections.at("g").NextCombination();
 }
 
 template <typename T>
-bool ParticleSelectionTempl<T>::HasParticle(const std::string& name) const
+Bool_t ParticleSelectionTempl<T>::HasParticle(const std::string& name) const
 {
   return fSelections.find(name) != fSelections.end();
 }
 
 template <typename T>
-bool ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
+Bool_t ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
 {
   if(!HasParticle(name)) false;
   fSelections.at(name).AddTrack(track);

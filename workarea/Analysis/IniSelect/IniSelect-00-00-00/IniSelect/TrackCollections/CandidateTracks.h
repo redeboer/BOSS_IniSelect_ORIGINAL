@@ -16,14 +16,14 @@ class CandidateTracks
 {
 public:
   CandidateTracks() {}
-  CandidateTracks(const TString& pdtName, const short nparticles = 1) :
+  CandidateTracks(const TString& pdtName, Int_t nparticles = 1) :
     fParticle(ParticleDatabase::GetParticle(pdtName.Data())),
     fNParticles(nparticles)
   {}
 
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
-  void SetNParticles(const short nparticles) { fNParticles = nparticles; }
+  void SetNParticles(Int_t nparticles) { fNParticles = nparticles; }
   void SetParticle(const TString& pdtName)
   {
     fParticle = ParticleDatabase::GetParticle(pdtName.Data());
@@ -33,20 +33,20 @@ public:
   void SetMultCut_AtLeast() { fMultiplicityCut = AtLeast; };
   void SetMultCut_AtMost() { fMultiplicityCut = AtMost; };
 
-  bool FailsMultiplicityCut() const;
+  Bool_t FailsMultiplicityCut() const;
 
   const std::vector<T*>& GetTracks() const { return fTrackColl; }
 
   size_t      GetNTracks() const { return fTrackColl.size(); }
-  short       GetNParticles() const { return fNParticles; }
+  Int_t       GetNParticles() const { return fNParticles; }
   const char* GetPdtName() const { return fParticle.GetPdtName(); }
   Int_t       GetPdgCode() const { return fParticle.GetPdgCode(); }
   Float_t     GetMass() const { return fParticle.GetMass(); }
-  T*          GetCandidate(const short i = 0) const;
+  T*          GetCandidate(size_t i = 0) const;
 
-  bool IsCharged() const { return fParticle.GetCharge(); }
+  Bool_t IsCharged() const { return fParticle.GetCharge(); }
 
-  bool NextCombination();
+  Bool_t NextCombination();
 
 private:
   enum EMultiplicityCut
@@ -58,7 +58,7 @@ private:
   };
 
   Particle fParticle;
-  short    fNParticles;
+  Int_t    fNParticles;
 
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;
@@ -67,20 +67,20 @@ private:
 /// @}
 
 template <typename T>
-T* CandidateTracks<T>::GetCandidate(const short i) const
+T* CandidateTracks<T>::GetCandidate(size_t i) const
 {
   if(i < fTrackColl.size()) return fTrackColl.at(i);
   return nullptr;
 }
 
 template <typename T>
-bool CandidateTracks<T>::NextCombination()
+Bool_t CandidateTracks<T>::NextCombination()
 {
   return IniSelect::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
 }
 
 template <typename T>
-bool CandidateTracks<T>::FailsMultiplicityCut() const
+Bool_t CandidateTracks<T>::FailsMultiplicityCut() const
 {
   switch(fMultiplicityCut)
   {

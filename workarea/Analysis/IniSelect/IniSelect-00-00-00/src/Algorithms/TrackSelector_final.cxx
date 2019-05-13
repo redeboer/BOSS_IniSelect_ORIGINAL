@@ -1,14 +1,24 @@
 #include "IniSelect/Algorithms/TrackSelector.h"
+
+#include "IniSelect/Exceptions/AlgorithmResult.h"
 using namespace std;
 
 /// Is called at the end *of the entire process*.
 /// Writes total cut flow to terminal and to the output file.
 StatusCode TrackSelector::finalize()
 {
-  PrintFunctionName("TrackSelector", __func__);
-  NTupleContainer::PrintFilledTuples();
-  AddAndWriteCuts();
-  CutObject::PrintAll();
+  try
+  {
+    PrintFunctionName("TrackSelector", __func__);
+    NTupleContainer::PrintFilledTuples();
+    AddAndWriteCuts();
+    CutObject::PrintAll();
+  }
+  catch(const AlgorithmFailure& e)
+  {
+    e.Print();
+    return StatusCode::FAILURE;
+  }
   return StatusCode::SUCCESS;
 }
 

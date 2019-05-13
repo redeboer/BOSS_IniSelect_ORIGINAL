@@ -2,7 +2,7 @@
 #define Analysis_IniSelect_KinematicFitter_H
 
 #include "EmcRecEventModel/RecEmcShower.h"
-#include "IniSelect/Globals/Exception.h"
+#include "IniSelect/Exceptions/Exception.h"
 #include "IniSelect/TrackCollections/ParticleSelection.h"
 #include "TString.h"
 #include "VertexFit/KalmanKinematicFit.h"
@@ -39,18 +39,5 @@ private:
   static bool                fIsSuccessful;
   static KalmanKinematicFit* fKinematicFit;
 };
-
-namespace IniSelect
-{
-  namespace Error
-  {
-    class KinematicFitFailed : public Exception
-    {
-    public:
-      KinematicFitFailed(Double_t chi2) : Exception(Form("Kinematic fit failed: chi2 = %g", chi2))
-      {}
-    };
-  } // namespace Error
-} // namespace IniSelect
 /// @}
 #endif
