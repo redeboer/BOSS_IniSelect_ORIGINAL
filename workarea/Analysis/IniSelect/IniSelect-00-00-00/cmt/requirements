@@ -17,6 +17,6 @@ use BesROOT      BesROOT-00-*   External
 use MdcRecoUtil  MdcRecoUtil-*  Reconstruction/MdcPatRec
 
 apply_pattern component_library
-library IniSelect  *.cxx  .factory/*.cxx  Algorithms/*.cxx  Containers/*.cxx  Fit/*.cxx  Functions/*.cxx  Handlers/*.cxx  Particle/*.cxx  UnitTests/*.cxx  UnitTests/.factory/*.cxx
+library IniSelect  *.cxx  .factory/*.cxx  Algorithms/*.cxx  Containers/*.cxx  Exceptions/*.cxx  Fit/*.cxx  Functions/*.cxx  Handlers/*.cxx  Particle/*.cxx  UnitTests/*.cxx  UnitTests/.factory/*.cxx
 
 apply_pattern declare_runtime files=*.txt
