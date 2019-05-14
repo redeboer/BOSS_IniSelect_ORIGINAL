@@ -33,7 +33,6 @@ protected:
 private:
   Int_t   fNTests;
   Int_t   fNFailed;
-  TString fAlgorithmName;
 
   void PrintLine() const;
   void PrintTestResults() const;
