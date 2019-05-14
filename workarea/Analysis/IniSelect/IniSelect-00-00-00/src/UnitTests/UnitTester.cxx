@@ -49,11 +49,11 @@ void UnitTester::PrintTestResultHeader() const
 {
   stringstream ss;
   ss << setw(name().size() + 16) << setfill('=') << "";
-  cout << endl << endl << endl;
+  cerr << endl << endl << endl;
   TerminalIO::PrintBold(ss.str());
   TerminalIO::PrintBold(Form("------- %s -------", name().c_str()));
   TerminalIO::PrintBold(ss.str());
-  cout << endl;
+  cerr << endl;
 }
 
 void UnitTester::Require(Bool_t passed, Int_t lineNr, const char* file, const char* input)
