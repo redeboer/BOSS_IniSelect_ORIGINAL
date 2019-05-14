@@ -16,80 +16,85 @@
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 18th, 2018
 template <typename T>
+class ParticleIter_base;
+template <typename T>
+class ChargedCandidateIterTempl;
+template <typename T>
+class CandidateIterTempl;
+
+template <typename T>
 class CandidateSelectionTempl
 {
+  friend class CandidateIter_base<T>;
+  friend class ChargedCandidateIterTempl<T>;
+  friend class CandidateIterTempl<T>;
+
 public:
   CandidateSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
 
-  void SetParticleToN(const TString& pdtName, Int_t nInstances);
+  void SetCandidateToN(const TString& pdtName, Int_t nInstances);
 
   void ClearCharged();
   void ClearNeutral();
 
   Bool_t NextPhotonCombination();
 
-  Bool_t HasParticle(const std::string& name) const;
+  Bool_t HasCandidate(const std::string& name) const;
   Bool_t AddCandidate(T* trk, const std::string& name);
 
   CandidateTracks<T>& GetCandidates(const std::string& pdtName) { return fSelections.at(pdtName); }
   CandidateTracks<T>& GetPhotons() { return GetCandidates("g"); };
   Int_t               GetNCharged() { return fNCharged; }
 
-  CandidateTracks<T>* FirstParticle();
-  CandidateTracks<T>* NextParticle();
-  CandidateTracks<T>* NextCharged();
-
   void Print();
 
 private:
-  typename std::map<std::string, CandidateTracks<T> >           fSelections;
-  typename std::map<std::string, CandidateTracks<T> >::iterator fSelectionsIter;
+  typename std::map<std::string, CandidateTracks<T> > fSelections;
 
   Int_t fNCharged;
-
-  CandidateTracks<T>* UnpackIter();
-  Int_t               CountOccurences(const TString& input, const TString& particle_name);
+  Int_t CountOccurences(const TString& input, const TString& particle_name);
 };
 
-typedef CandidateSelectionTempl<EvtRecTrack>       CandidateSelection;
-typedef CandidateSelectionTempl<Event::McParticle> CandidateSelectionMC;
+template <typename T>
+class CandidateIter_base
+{
+public:
+  CandidateIter_base(CandidateSelectionTempl<T>& candidates);
+  virtual T* Next() = 0;
 
+protected:
+  CandidateSelectionTempl<T>*                          fSelection;
+  std::map<std::string, CandidateTracks<T> >::iterator fIter;
+
+  CandidateTracks<T>* UnpackIter();
+};
+
+template <typename T>
+class ChargedCandidateIterTempl : public CandidateTracks<T>
+{
+public:
+  ChargedCandidateIterTempl(DstFile& file);
+  CandidateTracks<T>* Next();
+};
+
+template <typename T>
+class CandidateIterTempl : public CandidateTracks<EvtRecTrack>
+{
+public:
+  CandidateIterTempl(DstFile& file);
+  CandidateTracks<T>* Next();
+};
+
+typedef CandidateSelectionTempl<EvtRecTrack>         CandidateSelection;
+typedef CandidateSelectionTempl<Event::McParticle>   CandidateSelectionMC;
+typedef ChargedCandidateIterTempl<EvtRecTrack>       ChargedCandidateIter;
+typedef ChargedCandidateIterTempl<Event::McParticle> ChargedCandidateIterMC;
+typedef CandidateIterTempl<EvtRecTrack>              CandidateIter;
+typedef CandidateIterTempl<Event::McParticle>        CandidateIterMC;
 /// @}
 
 template <typename T>
-CandidateTracks<T>* CandidateSelectionTempl<T>::FirstParticle()
-{
-  fSelectionsIter = fSelections.begin();
-  return UnpackIter();
-}
-
-template <typename T>
-CandidateTracks<T>* CandidateSelectionTempl<T>::NextParticle()
-{
-  ++fSelectionsIter;
-  return UnpackIter();
-}
-
-template <typename T>
-CandidateTracks<T>* CandidateSelectionTempl<T>::NextCharged()
-{
-  while(NextParticle())
-  {
-    if(!UnpackIter()) return nullptr;
-    if(UnpackIter()->IsCharged()) return UnpackIter();
-  }
-  return nullptr;
-}
-
-template <typename T>
-CandidateTracks<T>* CandidateSelectionTempl<T>::UnpackIter()
-{
-  if(fSelectionsIter == fSelections.end()) return nullptr;
-  return &fSelectionsIter->second;
-}
-
-template <typename T>
-void CandidateSelectionTempl<T>::SetParticleToN(const TString& pdtName, Int_t nInstances)
+void CandidateSelectionTempl<T>::SetCandidateToN(const TString& pdtName, Int_t nInstances)
 {
   if(!nInstances) return;
   CandidateTracks<T>& coll = fSelections[pdtName.Data()];
@@ -121,7 +126,7 @@ Bool_t CandidateSelectionTempl<T>::NextPhotonCombination()
 }
 
 template <typename T>
-Bool_t CandidateSelectionTempl<T>::HasParticle(const std::string& name) const
+Bool_t CandidateSelectionTempl<T>::HasCandidate(const std::string& name) const
 {
   return fSelections.find(name) != fSelections.end();
 }
@@ -129,13 +134,14 @@ Bool_t CandidateSelectionTempl<T>::HasParticle(const std::string& name) const
 template <typename T>
 Bool_t CandidateSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
 {
-  if(!HasParticle(name)) false;
+  if(!HasCandidate(name)) false;
   fSelections.at(name).AddTrack(track);
   return true;
 }
 
 template <typename T>
-Int_t CandidateSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
+Int_t CandidateSelectionTempl<T>::CountOccurences(const TString& input,
+                                                  const TString& particle_name)
 {
   TString tok;
   Ssiz_t  from = 0;
@@ -148,7 +154,7 @@ Int_t CandidateSelectionTempl<T>::CountOccurences(const TString& input, const TS
 template <typename T>
 void CandidateSelectionTempl<T>::Print()
 {
-  CandidateTracks<T>* coll = FirstParticle();
+  CandidateTracks<T>* coll = FirstCandidate();
   if(!coll) return;
   std::cout << "Selected particles: ";
   while(coll)
@@ -158,6 +164,38 @@ void CandidateSelectionTempl<T>::Print()
     if(coll) std::cout << ", ";
   }
   std::cout << std::endl;
+}
+
+template <typename T>
+CandidateIter_base<T>::CandidateIter_base(CandidateSelectionTempl<T>& candidates) :
+  fSelection(&candidates)
+{
+  fIter = fSelection->begin();
+}
+
+template <typename T>
+CandidateTracks<T>* CandidateIterTempl<T>::Next()
+{
+  ++fSelectionsIter;
+  return UnpackIter();
+}
+
+template <typename T>
+CandidateTracks<T>* ChargedCandidateIterTempl<T>::Next()
+{
+  while(NextCandidate())
+  {
+    if(!UnpackIter()) return nullptr;
+    if(UnpackIter()->IsCharged()) return UnpackIter();
+  }
+  return nullptr;
+}
+
+template <typename T>
+CandidateTracks<T>* CandidateIter_base<T>::UnpackIter()
+{
+  if(fSelectionsIter == fSelections.end()) return nullptr;
+  return &fSelectionsIter->second;
 }
 
 #endif

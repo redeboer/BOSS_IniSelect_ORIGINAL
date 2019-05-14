@@ -213,8 +213,8 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   {
     ++count;
     cout << "  combination " << count << ": ";
-    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks()[0] << ", ";
-    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks()[1] << endl;
+    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks(0) << ", ";
+    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks(1) << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
