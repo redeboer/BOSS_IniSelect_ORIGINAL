@@ -15,8 +15,8 @@ void FinalStateHandler::SetFinalState(const TString& finalState)
   {
     const TString& pdtName = BESIIIparticles[i];
     Int_t          n       = fFinalState.CountOccurences(pdtName);
-    fParticleSel.SetParticleToN(pdtName, n);
-    fParticleSelMC.SetParticleToN(pdtName, n);
+    fCandidates.SetCandidateToN(pdtName, n);
+    fCandidatesMC.SetCandidateToN(pdtName, n);
     AddParticle(pdtName.Data(), n);
   }
 }

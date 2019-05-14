@@ -141,11 +141,11 @@ void D0omega_K4pi::ConfigurePID()
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
 void D0omega_K4pi::WriteDedxOfSelectedParticles()
 {
-  WriteDedxInfoForVector(fFinalState.GetCandidateSelection().GetCandidates("K-").GetTracks(),
+  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("K-").GetTracks(),
                          fNTuple_dedx_K);
-  WriteDedxInfoForVector(fFinalState.GetCandidateSelection().GetCandidates("pi-").GetTracks(),
+  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("pi-").GetTracks(),
                          fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fFinalState.GetCandidateSelection().GetCandidates("pi+").GetTracks(),
+  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("pi+").GetTracks(),
                          fNTuple_dedx_pi);
 }
 
@@ -213,8 +213,8 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   {
     ++count;
     cout << "  combination " << count << ": ";
-    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks(0) << ", ";
-    cout << fFinalState.GetCandidateSelection().GetPhotons().GetTracks(1) << endl;
+    cout << fFinalState.GetCandidates().GetPhotons().GetTracks(0) << ", ";
+    cout << fFinalState.GetCandidates().GetPhotons().GetTracks(1) << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
@@ -229,13 +229,13 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
     if(fCurrentKalmanFit.IsBetter()) fBestKalmanFit = fCurrentKalmanFit;
-  } while(fFinalState.GetCandidateSelection().NextPhotonCombination());
+  } while(fFinalState.GetCandidates().NextPhotonCombination());
 }
 
 void D0omega_K4pi::DoVertexFit()
 {
   VertexFitter::Initialize();
-  VertexFitter::AddTracks(fFinalState.GetCandidateSelection());
+  VertexFitter::AddTracks(fFinalState.GetCandidates());
   VertexFitter::AddCleanVertex();
   VertexFitter::FitAndSwim();
 }
@@ -244,7 +244,7 @@ void D0omega_K4pi::DoKinematicFit()
 {
   if(!VertexFitter::IsSuccessful()) return;
   KinematicFitter::Initialize();
-  KinematicFitter::AddTracks(fFinalState.GetCandidateSelection());
+  KinematicFitter::AddTracks(fFinalState.GetCandidates());
   KinematicFitter::AddConstraintCMS();
   KinematicFitter::AddResonance(Mass::pi0, 0, 1);
   KinematicFitter::Fit();
@@ -303,7 +303,7 @@ void D0omega_K4pi::CreateMCTruthSelection()
 {
   if(!fInputFile.IsMonteCarlo()) return;
   if(!fNTuple_fit_mc.DoWrite()) return;
-  fFinalState.GetCandidateSelectionMC().ClearCharged();
+  fFinalState.GetCandidatesMC().ClearCharged();
   vector<Event::McParticle*>::iterator it;
   for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) PutParticleInCorrectVector(*it);
 }

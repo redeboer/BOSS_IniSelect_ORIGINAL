@@ -49,7 +49,7 @@ void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
   int pdgCode = mcParticle->particleProperty();
 
-  ChargedCandidateIterMC it(fFinalState.GetCandidateSelectionMC());
+  ChargedCandidateIterMC it(fFinalState.GetCandidatesMC());
   while(CandidateTracks<Event::McParticle>* coll = it.Next())
   {
     if(coll->GetPdgCode() == pdgCode)

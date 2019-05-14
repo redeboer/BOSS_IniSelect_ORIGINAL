@@ -81,7 +81,7 @@ void TrackSelector::AddNTupleItems_mult()
   fNTuple_mult.AddItem<int>("Nneutral");
   if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral");
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
-  ChargedCandidateIter it(fFinalState.GetCandidateSelection());
+  ChargedCandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
 }

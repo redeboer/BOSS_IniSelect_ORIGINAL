@@ -262,7 +262,7 @@ void TrackSelector::WriteMultiplicities()
   fNTuple_mult.GetItem<int>("Nneutral") = fInputFile.TotalNeutralTracks();
   if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
-  CandidateIter it(fFinalState.GetCandidateSelection());
+  CandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
   fNTuple_mult.Write();
@@ -272,7 +272,7 @@ void TrackSelector::PrintMultiplicities()
 {
   LOG_FUNCTION();
   // fLog << MSG::INFO;
-  CandidateIter it(fFinalState.GetCandidateSelection());
+  CandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     cout << "N_" << coll->GetPdtName() << " = " << coll->GetNTracks() << "  ";
   cout << endl;
@@ -282,7 +282,7 @@ void TrackSelector::PrintMultiplicities()
 void TrackSelector::CutPID()
 {
   LOG_FUNCTION();
-  ChargedCandidateIter          it(fFinalState.GetCandidateSelection());
+  ChargedCandidateIter          it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     if(coll->FailsMultiplicityCut()) throw AlgorithmSuccess();
   ++fCutFlow_NPIDnumberOK;
@@ -305,8 +305,8 @@ void TrackSelector::CutNumberOfChargedParticles()
 {
   LOG_FUNCTION();
   fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be "
-       << fFinalState.GetCandidateSelection().GetNCharged() << endmsg;
-  if(fChargedTracks.size() != fFinalState.GetCandidateSelection().GetNCharged())
+       << fFinalState.GetCandidates().GetNCharged() << endmsg;
+  if(fChargedTracks.size() != fFinalState.GetCandidates().GetNCharged())
     throw AlgorithmSuccess();
   ++fCutFlow_NChargedOK;
 }
@@ -318,7 +318,7 @@ void TrackSelector::SelectChargedCandidates()
   ConfigurePID();
 
   fLog << MSG::DEBUG << "Will identify particles: ";
-  ChargedCandidateIter it(fFinalState.GetCandidateSelection());
+  ChargedCandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
   {
     fLog << MSG::DEBUG << coll->GetPdtName() << "  ";
@@ -326,16 +326,16 @@ void TrackSelector::SelectChargedCandidates()
   }
   fLog << MSG::DEBUG << endmsg;
 
-  fFinalState.GetCandidateSelection().ClearCharged();
+  fFinalState.GetCandidates().ClearCharged();
   fLog << MSG::DEBUG << "Identified: ";
   for(fTrackIter = fChargedTracks.begin(); fTrackIter != fChargedTracks.end(); ++fTrackIter)
   {
     string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
     if(particleName.compare("") == 0) continue;
     fLog << MSG::DEBUG << particleName << "  ";
-    if(!fFinalState.GetCandidateSelection().HasCandidate(particleName)) continue;
+    if(!fFinalState.GetCandidates().HasCandidate(particleName)) continue;
     WritePIDInformation();
-    fFinalState.GetCandidateSelection().AddCandidate(*fTrackIter, particleName);
+    fFinalState.GetCandidates().AddCandidate(*fTrackIter, particleName);
   }
   fLog << MSG::DEBUG << endmsg;
 }
@@ -372,14 +372,14 @@ void TrackSelector::WritePIDInformation()
 void TrackSelector::CreateNeutralTrackSelections()
 {
   LOG_FUNCTION();
-  fFinalState.GetCandidateSelection().ClearNeutral();
+  fFinalState.GetCandidates().ClearNeutral();
   for(fTrackIter = fNeutralTracks.begin(); fTrackIter != fNeutralTracks.end(); ++fTrackIter)
   {
     AngleDifferences smallestAngles = FindSmallestPhotonAngles();
     smallestAngles.ConvertToDegrees();
     WritePhotonKinematics(smallestAngles);
     if(CutPhotonAngles(smallestAngles)) continue;
-    fFinalState.GetCandidateSelection().GetPhotons().AddTrack(*fTrackIter);
+    fFinalState.GetCandidates().GetPhotons().AddTrack(*fTrackIter);
   }
 }
 
