@@ -64,7 +64,6 @@ private:
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;
 };
-
 /// @}
 
 template <typename T>

@@ -260,12 +260,9 @@ void TrackSelector::WriteMultiplicities()
   fNTuple_mult.GetItem<int>("Nneutral") = fInputFile.TotalNeutralTracks();
   if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
-  while(coll)
-  {
+  CandidateIter it(fFinalState.GetCandidateSelection());
+  while(it.Next())
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
-    coll = fFinalState.GetCandidateSelection().NextParticle();
-  }
   fNTuple_mult.Write();
 }
 

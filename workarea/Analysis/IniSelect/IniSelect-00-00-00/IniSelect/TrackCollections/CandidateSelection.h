@@ -15,22 +15,25 @@
 /// @todo Consider converting `CandidateSelectionTempl` into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods. This will, however, remove the option of creating separate sets of particle selections.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 18th, 2018
-template <typename T>
-class ParticleIter_base;
-template <typename T>
-class ChargedCandidateIterTempl;
-template <typename T>
-class CandidateIterTempl;
+class CandidateIter_base;
+class CandidateIter_baseMC;
+class CandidateIter;
+class CandidateIterMC;
+class ChargedCandidateIter;
+class ChargedCandidateIterMC;
 
 template <typename T>
 class CandidateSelectionTempl
 {
-  friend class CandidateIter_base<T>;
-  friend class ChargedCandidateIterTempl<T>;
-  friend class CandidateIterTempl<T>;
+  friend class CandidateIter_base;
+  friend class CandidateIter_baseMC;
+  friend class CandidateIter;
+  friend class CandidateIterMC;
+  friend class ChargedCandidateIter;
+  friend class ChargedCandidateIterMC;
 
 public:
-  CandidateSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
+  CandidateSelectionTempl() : fNCharged(0) {}
 
   void SetCandidateToN(const TString& pdtName, Int_t nInstances);
 
@@ -55,42 +58,8 @@ private:
   Int_t CountOccurences(const TString& input, const TString& particle_name);
 };
 
-template <typename T>
-class CandidateIter_base
-{
-public:
-  CandidateIter_base(CandidateSelectionTempl<T>& candidates);
-  virtual T* Next() = 0;
-
-protected:
-  CandidateSelectionTempl<T>*                          fSelection;
-  std::map<std::string, CandidateTracks<T> >::iterator fIter;
-
-  CandidateTracks<T>* UnpackIter();
-};
-
-template <typename T>
-class ChargedCandidateIterTempl : public CandidateTracks<T>
-{
-public:
-  ChargedCandidateIterTempl(DstFile& file);
-  CandidateTracks<T>* Next();
-};
-
-template <typename T>
-class CandidateIterTempl : public CandidateTracks<EvtRecTrack>
-{
-public:
-  CandidateIterTempl(DstFile& file);
-  CandidateTracks<T>* Next();
-};
-
 typedef CandidateSelectionTempl<EvtRecTrack>         CandidateSelection;
 typedef CandidateSelectionTempl<Event::McParticle>   CandidateSelectionMC;
-typedef ChargedCandidateIterTempl<EvtRecTrack>       ChargedCandidateIter;
-typedef ChargedCandidateIterTempl<Event::McParticle> ChargedCandidateIterMC;
-typedef CandidateIterTempl<EvtRecTrack>              CandidateIter;
-typedef CandidateIterTempl<Event::McParticle>        CandidateIterMC;
 /// @}
 
 template <typename T>
@@ -154,48 +123,14 @@ Int_t CandidateSelectionTempl<T>::CountOccurences(const TString& input,
 template <typename T>
 void CandidateSelectionTempl<T>::Print()
 {
-  CandidateTracks<T>* coll = FirstCandidate();
-  if(!coll) return;
+  typename std::map<std::string, CandidateTracks<T> >::iterator it;
   std::cout << "Selected particles: ";
-  while(coll)
+  for(it = fSelections.begin(); it != fSelections.end(); ++it)
   {
-    std::cout << coll->GetNParticles() << " " << coll->GetPdtName();
-    coll = NextParticle();
-    if(coll) std::cout << ", ";
+    std::cout << it->GetNParticles() << " " << it->GetPdtName();
+    if(it != fSelections.end()) std::cout << ", ";
   }
   std::cout << std::endl;
-}
-
-template <typename T>
-CandidateIter_base<T>::CandidateIter_base(CandidateSelectionTempl<T>& candidates) :
-  fSelection(&candidates)
-{
-  fIter = fSelection->begin();
-}
-
-template <typename T>
-CandidateTracks<T>* CandidateIterTempl<T>::Next()
-{
-  ++fSelectionsIter;
-  return UnpackIter();
-}
-
-template <typename T>
-CandidateTracks<T>* ChargedCandidateIterTempl<T>::Next()
-{
-  while(NextCandidate())
-  {
-    if(!UnpackIter()) return nullptr;
-    if(UnpackIter()->IsCharged()) return UnpackIter();
-  }
-  return nullptr;
-}
-
-template <typename T>
-CandidateTracks<T>* CandidateIter_base<T>::UnpackIter()
-{
-  if(fSelectionsIter == fSelections.end()) return nullptr;
-  return &fSelectionsIter->second;
 }
 
 #endif
