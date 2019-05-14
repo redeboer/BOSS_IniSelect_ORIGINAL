@@ -21,33 +21,33 @@ protected:
   CandidateTracks<Event::McParticle>* UnpackIter();
 };
 
-class ChargedCandidateIter : public CandidateIter_baseMC
+class CandidateIterMC : public CandidateIter_baseMC
 {
 public:
-  ChargedCandidateIter(CandidateSelectionMC&);
+  CandidateIterMC(CandidateSelectionMC&);
   CandidateTracks<Event::McParticle>* Next();
 };
 
-class CandidateIter : public CandidateIter_baseMC
+class ChargedCandidateIterMC : public CandidateIter_baseMC
 {
 public:
-  CandidateIter(CandidateSelectionMC&);
+  ChargedCandidateIterMC(CandidateSelectionMC&);
   CandidateTracks<Event::McParticle>* Next();
 };
 /// @}
 
-CandidateIter_base::CandidateIter_base(CandidateSelectionMC& candidates) : fSelection(&candidates)MC
+CandidateIter_baseMC::CandidateIter_baseMC(CandidateSelectionMC& candidates) : fSelection(&candidates)
 {
   fIter = fSelection->fSelections.begin();
 }
 
-CandidateTracks<Event::McParticle>* CandidateIter::Next()
+CandidateTracks<Event::McParticle>* CandidateIterMC::Next()
 {
   ++fIter;
   return UnpackIter();
 }
 
-CandidateTracks<Event::McParticle>* ChargedCandidateIter::Next()
+CandidateTracks<Event::McParticle>* ChargedCandidateIterMC::Next()
 {
   while(fIter != fSelection->fSelections.end())
   {
@@ -57,7 +57,7 @@ CandidateTracks<Event::McParticle>* ChargedCandidateIter::Next()
   return nullptr;
 }
 
-CandidateTracks<Event::McParticle>* CandidateIter_base::UnpackIter()MC
+CandidateTracks<Event::McParticle>* CandidateIter_baseMC::UnpackIter()
 {
   if(fIter == fSelection->fSelections.end()) return nullptr;
   return &fIter->second;

@@ -1,6 +1,7 @@
 #include "IniSelect/Algorithms/TrackSelector.h"
 
 #include "IniSelect/Exceptions/AlgorithmResult.h"
+#include "IniSelect/TrackCollections/CandidateIterMC.h"
 using namespace std;
 
 /// Is called at the end *of the entire process*.
@@ -48,15 +49,14 @@ void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
 {
   int pdgCode = mcParticle->particleProperty();
 
-  CandidateTracks<Event::McParticle>* coll = fFinalState.GetCandidateSelectionMC().FirstParticle();
-  while(coll)
+  ChargedCandidateIterMC it(fFinalState.GetCandidateSelectionMC());
+  while(CandidateTracks<Event::McParticle>* coll = it.Next())
   {
     if(coll->GetPdgCode() == pdgCode)
     {
       coll->AddTrack(mcParticle);
       return;
     }
-    coll = fFinalState.GetCandidateSelectionMC().NextCharged();
   }
   fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in CandidateSelectionMC"
        << endmsg;

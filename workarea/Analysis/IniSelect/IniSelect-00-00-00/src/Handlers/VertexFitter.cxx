@@ -1,5 +1,6 @@
 #include "IniSelect/Handlers/VertexFitter.h"
 #include "IniSelect/Exceptions/OutOfRange.h"
+#include "IniSelect/TrackCollections/CandidateIter.h"
 using namespace std;
 
 Int_t      VertexFitter::fNTracks      = 0;
@@ -23,13 +24,10 @@ void VertexFitter::AddTrack(EvtRecTrack* track, const Double_t mass)
 
 void VertexFitter::AddTracks(CandidateSelection& selection)
 {
-  CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
-  while(coll)
-  {
+  ChargedCandidateIter it(selection);
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     for(Int_t i = 0; i < coll->GetNTracks(); ++i)
       VertexFitter::AddTrack(coll->GetCandidate(i), coll->GetMass());
-    coll = selection.NextCharged();
-  }
 }
 
 void VertexFitter::AddCleanVertex()

@@ -5,6 +5,7 @@
 #include "IniSelect/Exceptions/AlgorithmResult.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
+#include "IniSelect/TrackCollections/CandidateIter.h"
 #include "TMath.h"
 #include "TString.h"
 #include "VertexFit/Helix.h"
@@ -80,12 +81,9 @@ void TrackSelector::AddNTupleItems_mult()
   fNTuple_mult.AddItem<int>("Nneutral");
   if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral");
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
-  while(coll)
-  {
+  ChargedCandidateIter it(fFinalState.GetCandidateSelection());
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
-    coll = fFinalState.GetCandidateSelection().NextCharged();
-  }
 }
 
 void TrackSelector::AddNTupleItems_vertex()

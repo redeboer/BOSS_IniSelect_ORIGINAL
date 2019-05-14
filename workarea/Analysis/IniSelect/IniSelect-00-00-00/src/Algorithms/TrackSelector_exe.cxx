@@ -8,11 +8,13 @@
 #include "IniSelect/Exceptions/AlgorithmResult.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
+#include "IniSelect/TrackCollections/CandidateIter.h"
 #include "TMath.h"
 #include "TString.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
 #include <cmath>
+#include <iostream>
 
 using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
@@ -261,7 +263,7 @@ void TrackSelector::WriteMultiplicities()
   if(fCreateChargedCollection) fNTuple_mult.GetItem<int>("NgoodCharged") = fChargedTracks.size();
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
   CandidateIter it(fFinalState.GetCandidateSelection());
-  while(it.Next())
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
   fNTuple_mult.Write();
 }
@@ -270,13 +272,9 @@ void TrackSelector::PrintMultiplicities()
 {
   LOG_FUNCTION();
   // fLog << MSG::INFO;
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
-  while(coll)
-  {
-    cout << "N_" << coll->GetPdtName() << " = " << coll->GetNTracks();
-    coll = fFinalState.GetCandidateSelection().NextParticle();
-    if(coll) cout << ", ";
-  }
+  CandidateIter it(fFinalState.GetCandidateSelection());
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
+    cout << "N_" << coll->GetPdtName() << " = " << coll->GetNTracks() << "  ";
   cout << endl;
 }
 
@@ -284,12 +282,9 @@ void TrackSelector::PrintMultiplicities()
 void TrackSelector::CutPID()
 {
   LOG_FUNCTION();
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
-  while(coll)
-  {
+  ChargedCandidateIter          it(fFinalState.GetCandidateSelection());
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     if(coll->FailsMultiplicityCut()) throw AlgorithmSuccess();
-    coll = fFinalState.GetCandidateSelection().NextCharged();
-  }
   ++fCutFlow_NPIDnumberOK;
   fLog << MSG::INFO << "PID selection passed for (run, event) = (" << fInputFile.RunNumber() << ", "
        << fInputFile.EventNumber() << ")" << endmsg;
@@ -323,13 +318,11 @@ void TrackSelector::SelectChargedCandidates()
   ConfigurePID();
 
   fLog << MSG::DEBUG << "Will identify particles: ";
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
-  while(coll)
+  ChargedCandidateIter it(fFinalState.GetCandidateSelection());
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
   {
-    fLog << MSG::DEBUG << coll->GetPdtName();
+    fLog << MSG::DEBUG << coll->GetPdtName() << "  ";
     ParticleIdentifier::SetParticleToIdentify(coll->GetPdgCode());
-    coll = fFinalState.GetCandidateSelection().NextCharged();
-    if(coll) fLog << MSG::DEBUG << ", ";
   }
   fLog << MSG::DEBUG << endmsg;
 
@@ -340,7 +333,7 @@ void TrackSelector::SelectChargedCandidates()
     string particleName = ParticleIdentifier::FindMostProbable(*fTrackIter, fCut_PIDProb);
     if(particleName.compare("") == 0) continue;
     fLog << MSG::DEBUG << particleName << "  ";
-    if(!fFinalState.GetCandidateSelection().HasParticle(particleName)) continue;
+    if(!fFinalState.GetCandidateSelection().HasCandidate(particleName)) continue;
     WritePIDInformation();
     fFinalState.GetCandidateSelection().AddCandidate(*fTrackIter, particleName);
   }

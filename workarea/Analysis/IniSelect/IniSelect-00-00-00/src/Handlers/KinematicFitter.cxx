@@ -4,6 +4,7 @@
 #include "IniSelect/Exceptions/OutOfRange.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/VertexFitter.h"
+#include "IniSelect/TrackCollections/CandidateIter.h"
 using namespace IniSelect;
 using namespace IniSelect::Physics;
 
@@ -36,16 +37,13 @@ void KinematicFitter::AddTrack(WTrackParameter track)
 
 void KinematicFitter::AddTracks(CandidateSelection& selection)
 {
-  CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
-  while(coll)
-  {
+  CandidateIter it(selection);
+  while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     for(Int_t i = 0; i < coll->GetNTracks(); ++i)
       if(coll->IsCharged())
         KinematicFitter::AddTrack(VertexFitter::GetTrack(i));
       else
         KinematicFitter::AddTrack(coll->GetCandidate(i)->emcShower());
-    coll = selection.NextParticle();
-  }
 }
 
 void KinematicFitter::AddConstraintCMS()
