@@ -19,48 +19,22 @@ protected:
   std::map<std::string, CandidateTracks<EvtRecTrack> >::iterator fIter;
 
   CandidateTracks<EvtRecTrack>* UnpackIter();
-};
-
-class ChargedCandidateIter : public CandidateIter_base
-{
-public:
-  ChargedCandidateIter(CandidateSelection&);
-  CandidateTracks<EvtRecTrack>* Next();
+  bool fIsFirst;
 };
 
 class CandidateIter : public CandidateIter_base
 {
 public:
-  CandidateIter(CandidateSelection&);
+  CandidateIter(CandidateSelection& candidates) : CandidateIter_base(candidates) {}
   CandidateTracks<EvtRecTrack>* Next();
 };
+
+class ChargedCandidateIter : public CandidateIter_base
+{
+public:
+  ChargedCandidateIter(CandidateSelection& candidates) : CandidateIter_base(candidates) {}
+  CandidateTracks<EvtRecTrack>* Next();
+};
+
 /// @}
-
-CandidateIter_base::CandidateIter_base(CandidateSelection& candidates) : fSelection(&candidates)
-{
-  fIter = fSelection->fSelections.begin();
-}
-
-CandidateTracks<EvtRecTrack>* CandidateIter::Next()
-{
-  ++fIter;
-  return UnpackIter();
-}
-
-CandidateTracks<EvtRecTrack>* ChargedCandidateIter::Next()
-{
-  while(fIter != fSelection->fSelections.end())
-  {
-    if(!UnpackIter()) return nullptr;
-    if(UnpackIter()->IsCharged()) return UnpackIter();
-  }
-  return nullptr;
-}
-
-CandidateTracks<EvtRecTrack>* CandidateIter_base::UnpackIter()
-{
-  if(fIter == fSelection->fSelections.end()) return nullptr;
-  return &fIter->second;
-}
-
 #endif

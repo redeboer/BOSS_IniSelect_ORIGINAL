@@ -8,7 +8,6 @@
 #include "IniSelect/Exceptions/AlgorithmResult.h"
 #include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
-#include "IniSelect/TrackCollections/CandidateIter.h"
 #include "TMath.h"
 #include "TString.h"
 #include "VertexFit/Helix.h"
