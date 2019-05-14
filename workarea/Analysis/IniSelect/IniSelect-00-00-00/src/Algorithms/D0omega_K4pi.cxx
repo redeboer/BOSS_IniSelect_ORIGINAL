@@ -12,6 +12,7 @@
 #include <utility>
 
 using namespace IniSelect;
+using namespace std;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
@@ -19,7 +20,7 @@ using namespace IniSelect;
 
 /// Constructor for the `D0omega_K4pi` algorithm, derived from `TrackSelector`.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `D0omega_K4pi`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0omega_K4pi/D0omega_K4pi.h) and that you should assign the values in `share/D0omega_K4pi.txt`.
-D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
+D0omega_K4pi::D0omega_K4pi(const string& name, ISvcLocator* pSvcLocator) :
   TrackSelector(name, pSvcLocator),
   fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
   fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
@@ -155,7 +156,7 @@ void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   /// -# @warning Terminate if cast failed.
   if(!fit)
   {
-    std::cout << "FATAL ERROR: Dynamic cast failed" << std::endl;
+    cout << "FATAL ERROR: Dynamic cast failed" << endl;
     throw StatusCode::FAILURE;
   }
 
@@ -208,7 +209,9 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   do
   {
     ++count;
-    cout << "  combination " << count << ": " << endl;
+    cout << "  combination " << count << ": ";
+    cout << fFinalState.GetParticleSelection().GetPhotons().GetTracks()[0] << ", ";
+    cout << fFinalState.GetParticleSelection().GetPhotons().GetTracks()[1] << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
@@ -218,7 +221,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
     }
     catch(const KinematicFitFailed& e)
     {
-      std::cout << "  " << e.GetMessage() << std::endl;
+      cout << "  " << e.GetMessage() << endl;
       continue;
     }
     WriteFitResults(&fCurrentKalmanFit, fNTuple_fit4c_all);
@@ -258,15 +261,15 @@ void D0omega_K4pi::ExtractFitResults()
 
 void D0omega_K4pi::WriteBestFitWithMcTruth()
 {
-  std::cout << "  Result Kalman fit for (run, event) = ";
-  std::cout << fInputFile.RunNumber() << ", ";
-  std::cout << fInputFile.EventNumber() << "):" << std::endl;
-  std::cout << "    chi2     = " << fBestKalmanFit.fChiSquared << std::endl
-            << "    m_pi0    = " << fBestKalmanFit.fM_pi0 << std::endl
-            << "    m_D0     = " << fBestKalmanFit.fM_D0 << std::endl
-            << "    m_omega  = " << fBestKalmanFit.fM_omega << std::endl
-            << "    p_D0     = " << fBestKalmanFit.fP_D0 << std::endl
-            << "    p_pi0    = " << fBestKalmanFit.fP_pi0 << std::endl;
+  cout << "  Result Kalman fit for (run, event) = ";
+  cout << fInputFile.RunNumber() << ", ";
+  cout << fInputFile.EventNumber() << "):" << endl;
+  cout << "    chi2     = " << fBestKalmanFit.fChiSquared << endl
+            << "    m_pi0    = " << fBestKalmanFit.fM_pi0 << endl
+            << "    m_D0     = " << fBestKalmanFit.fM_D0 << endl
+            << "    m_omega  = " << fBestKalmanFit.fM_omega << endl
+            << "    p_D0     = " << fBestKalmanFit.fP_D0 << endl
+            << "    p_pi0    = " << fBestKalmanFit.fP_pi0 << endl;
   CreateMCTruthCollection();
   SetAdditionalNtupleItems_topology();
   WriteMCTruthForTopoAna(fNTuple_topology);
@@ -298,6 +301,6 @@ void D0omega_K4pi::CreateMCTruthSelection()
   if(!fInputFile.IsMonteCarlo()) return;
   if(!fNTuple_fit_mc.DoWrite()) return;
   fFinalState.GetParticleSelectionMC().ClearCharged();
-  std::vector<Event::McParticle*>::iterator it;
+  vector<Event::McParticle*>::iterator it;
   for(it = fMcParticles.begin(); it != fMcParticles.end(); ++it) PutParticleInCorrectVector(*it);
 }
