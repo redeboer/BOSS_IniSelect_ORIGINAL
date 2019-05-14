@@ -1,5 +1,5 @@
-#ifndef Analysis_IniSelect_ParticleSelection_H
-#define Analysis_IniSelect_ParticleSelection_H
+#ifndef Analysis_IniSelect_CandidateSelection_H
+#define Analysis_IniSelect_CandidateSelection_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "IniSelect/TrackCollections/CandidateTracks.h"
@@ -12,14 +12,14 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// @todo Consider converting `ParticleSelectionTempl` into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods. This will, however, remove the option of creating separate sets of particle selections.
+/// @todo Consider converting `CandidateSelectionTempl` into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods. This will, however, remove the option of creating separate sets of particle selections.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 18th, 2018
 template <typename T>
-class ParticleSelectionTempl
+class CandidateSelectionTempl
 {
 public:
-  ParticleSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
+  CandidateSelectionTempl() : fNCharged(0) { fSelectionsIter = fSelections.begin(); }
 
   void SetParticleToN(const TString& pdtName, Int_t nInstances);
 
@@ -52,27 +52,27 @@ private:
   Int_t               CountOccurences(const TString& input, const TString& particle_name);
 };
 
-typedef ParticleSelectionTempl<EvtRecTrack>       ParticleSelection;
-typedef ParticleSelectionTempl<Event::McParticle> ParticleSelectionMC;
+typedef CandidateSelectionTempl<EvtRecTrack>       CandidateSelection;
+typedef CandidateSelectionTempl<Event::McParticle> CandidateSelectionMC;
 
 /// @}
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::FirstParticle()
+CandidateTracks<T>* CandidateSelectionTempl<T>::FirstParticle()
 {
   fSelectionsIter = fSelections.begin();
   return UnpackIter();
 }
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::NextParticle()
+CandidateTracks<T>* CandidateSelectionTempl<T>::NextParticle()
 {
   ++fSelectionsIter;
   return UnpackIter();
 }
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::NextCharged()
+CandidateTracks<T>* CandidateSelectionTempl<T>::NextCharged()
 {
   while(NextParticle())
   {
@@ -83,14 +83,14 @@ CandidateTracks<T>* ParticleSelectionTempl<T>::NextCharged()
 }
 
 template <typename T>
-CandidateTracks<T>* ParticleSelectionTempl<T>::UnpackIter()
+CandidateTracks<T>* CandidateSelectionTempl<T>::UnpackIter()
 {
   if(ReachedEnd()) return nullptr;
   return &fSelectionsIter->second;
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::SetParticleToN(const TString& pdtName, Int_t nInstances)
+void CandidateSelectionTempl<T>::SetParticleToN(const TString& pdtName, Int_t nInstances)
 {
   if(!nInstances) return;
   CandidateTracks<T>& coll = fSelections[pdtName.Data()];
@@ -100,7 +100,7 @@ void ParticleSelectionTempl<T>::SetParticleToN(const TString& pdtName, Int_t nIn
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::ClearCharged()
+void CandidateSelectionTempl<T>::ClearCharged()
 {
   typename std::map<std::string, CandidateTracks<T> >::iterator it;
   for(it = fSelections.begin(); it != fSelections.end(); ++it)
@@ -108,7 +108,7 @@ void ParticleSelectionTempl<T>::ClearCharged()
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::ClearNeutral()
+void CandidateSelectionTempl<T>::ClearNeutral()
 {
   typename std::map<std::string, CandidateTracks<T> >::iterator it;
   for(it = fSelections.begin(); it != fSelections.end(); ++it)
@@ -116,19 +116,19 @@ void ParticleSelectionTempl<T>::ClearNeutral()
 }
 
 template <typename T>
-Bool_t ParticleSelectionTempl<T>::NextPhotonCombination()
+Bool_t CandidateSelectionTempl<T>::NextPhotonCombination()
 {
   return fSelections.at("g").NextCombination();
 }
 
 template <typename T>
-Bool_t ParticleSelectionTempl<T>::HasParticle(const std::string& name) const
+Bool_t CandidateSelectionTempl<T>::HasParticle(const std::string& name) const
 {
   return fSelections.find(name) != fSelections.end();
 }
 
 template <typename T>
-Bool_t ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
+Bool_t CandidateSelectionTempl<T>::AddCandidate(T* track, const std::string& name)
 {
   if(!HasParticle(name)) false;
   fSelections.at(name).AddTrack(track);
@@ -136,7 +136,7 @@ Bool_t ParticleSelectionTempl<T>::AddCandidate(T* track, const std::string& name
 }
 
 template <typename T>
-Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
+Int_t CandidateSelectionTempl<T>::CountOccurences(const TString& input, const TString& particle_name)
 {
   TString tok;
   Ssiz_t  from = 0;
@@ -147,7 +147,7 @@ Int_t ParticleSelectionTempl<T>::CountOccurences(const TString& input, const TSt
 }
 
 template <typename T>
-void ParticleSelectionTempl<T>::Print()
+void CandidateSelectionTempl<T>::Print()
 {
   CandidateTracks<T>* coll = FirstParticle();
   if(!coll) return;

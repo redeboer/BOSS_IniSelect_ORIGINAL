@@ -3,7 +3,7 @@
 
 #include "EmcRecEventModel/RecEmcShower.h"
 #include "IniSelect/Exceptions/Exception.h"
-#include "IniSelect/TrackCollections/ParticleSelection.h"
+#include "IniSelect/TrackCollections/CandidateSelection.h"
 #include "TString.h"
 #include "VertexFit/KalmanKinematicFit.h"
 
@@ -16,7 +16,7 @@ public:
   static void Initialize();
   static void AddTrack(RecEmcShower* track);
   static void AddTrack(WTrackParameter track);
-  static void AddTracks(ParticleSelection& selection);
+  static void AddTracks(CandidateSelection& selection);
   static void AddConstraintCMS();
   static void AddResonance(const Double_t mass, Int_t track1, Int_t track2);
   static void Fit();

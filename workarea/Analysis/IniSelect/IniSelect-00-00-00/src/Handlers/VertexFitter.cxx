@@ -21,7 +21,7 @@ void VertexFitter::AddTrack(EvtRecTrack* track, const Double_t mass)
   ++fNTracks;
 }
 
-void VertexFitter::AddTracks(ParticleSelection& selection)
+void VertexFitter::AddTracks(CandidateSelection& selection)
 {
   CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
   while(coll)

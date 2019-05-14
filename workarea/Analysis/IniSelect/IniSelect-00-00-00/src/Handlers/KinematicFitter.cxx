@@ -34,7 +34,7 @@ void KinematicFitter::AddTrack(WTrackParameter track)
   ++fNTracks;
 }
 
-void KinematicFitter::AddTracks(ParticleSelection& selection)
+void KinematicFitter::AddTracks(CandidateSelection& selection)
 {
   CandidateTracks<EvtRecTrack>* coll = selection.FirstParticle();
   while(coll)

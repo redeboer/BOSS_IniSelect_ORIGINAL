@@ -34,7 +34,7 @@ protected:
 private:
   /// @name Helper methods for initialize
   ///@{
-  void ConfigureParticleSelection();
+  void ConfigureCandidateSelection();
   void AddAdditionalNTupleItems();
   void AddNTupleItems_dedx();
   void AddNTupleItems_fit();

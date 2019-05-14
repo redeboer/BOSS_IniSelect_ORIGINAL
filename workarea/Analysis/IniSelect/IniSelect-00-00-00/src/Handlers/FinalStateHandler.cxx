@@ -21,7 +21,7 @@ void FinalStateHandler::SetFinalState(const TString& finalState)
   }
 }
 
-void FinalStateHandler::AddParticle(const std::string& pdtName, size_t n)
+void FinalStateHandler::AddParticle(const string& pdtName, size_t n)
 {
   vector<ParticleTrack> vec(n);
   for(size_t i = 0; i < n; ++i) vec[i] = ParticleTrack(pdtName);

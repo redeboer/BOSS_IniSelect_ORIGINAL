@@ -79,7 +79,7 @@ protected:
   void AddNTupleItems_PID();
   void AddNTupleItems_photon();
 
-  virtual void ConfigureParticleSelection() = 0;
+  virtual void ConfigureCandidateSelection() = 0;
   virtual void AddAdditionalNTupleItems()   = 0;
   ///@}
 

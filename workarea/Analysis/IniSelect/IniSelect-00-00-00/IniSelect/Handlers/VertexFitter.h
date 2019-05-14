@@ -2,7 +2,7 @@
 #define Analysis_IniSelect_VertexFitter_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
-#include "IniSelect/TrackCollections/ParticleSelection.h"
+#include "IniSelect/TrackCollections/CandidateSelection.h"
 #include "VertexFit/VertexFit.h"
 
 /// @todo This class functions more as a `namespce`, but has to be a class as it wraps the `VertexFit` singleton.
@@ -13,7 +13,7 @@ class VertexFitter
 public:
   static void Initialize();
   static void AddTrack(EvtRecTrack* track, const Double_t mass);
-  static void AddTracks(ParticleSelection& selection);
+  static void AddTracks(CandidateSelection& selection);
   static void AddCleanVertex();
   static void FitAndSwim();
 

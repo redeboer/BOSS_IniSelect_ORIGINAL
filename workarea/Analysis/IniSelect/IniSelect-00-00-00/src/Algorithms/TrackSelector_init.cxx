@@ -25,7 +25,7 @@ StatusCode TrackSelector::initialize()
     fNTupleBooker.BookAll();
     AddNTupleItems();
     AddAdditionalNTupleItems();
-    ConfigureParticleSelection();
+    ConfigureCandidateSelection();
   }
   catch(const AlgorithmFailure& e)
   {
@@ -80,11 +80,11 @@ void TrackSelector::AddNTupleItems_mult()
   fNTuple_mult.AddItem<int>("Nneutral");
   if(fCreateNeutralCollection) fNTuple_mult.AddItem<int>("NgoodNeutral");
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
-  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetParticleSelection().FirstParticle();
+  CandidateTracks<EvtRecTrack>* coll = fFinalState.GetCandidateSelection().FirstParticle();
   while(coll)
   {
     fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
-    coll = fFinalState.GetParticleSelection().NextCharged();
+    coll = fFinalState.GetCandidateSelection().NextCharged();
   }
 }
 
