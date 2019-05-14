@@ -264,7 +264,7 @@ void TrackSelector::WriteMultiplicities()
   while(coll)
   {
     fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
-    coll                                                        = fFinalState.GetParticleSelection().NextParticle();
+    coll = fFinalState.GetParticleSelection().NextParticle();
   }
   fNTuple_mult.Write();
 }
@@ -314,7 +314,8 @@ void TrackSelector::CutNumberOfChargedParticles()
   LOG_FUNCTION();
   fLog << MSG::DEBUG << "Has " << fChargedTracks.size() << " charged candidated, should be "
        << fFinalState.GetParticleSelection().GetNCharged() << endmsg;
-  if(fChargedTracks.size() != fFinalState.GetParticleSelection().GetNCharged()) throw AlgorithmSuccess();
+  if(fChargedTracks.size() != fFinalState.GetParticleSelection().GetNCharged())
+    throw AlgorithmSuccess();
   ++fCutFlow_NChargedOK;
 }
 

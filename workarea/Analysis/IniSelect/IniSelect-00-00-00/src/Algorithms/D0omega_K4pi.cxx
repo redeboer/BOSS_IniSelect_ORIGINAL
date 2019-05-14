@@ -3,8 +3,8 @@
 // * ========================= * //
 
 #include "IniSelect/Algorithms/D0omega_K4pi.h"
-#include "IniSelect/Globals.h"
 #include "IniSelect/Exceptions/KinematicFitFailed.h"
+#include "IniSelect/Globals.h"
 #include "IniSelect/Handlers/KinematicFitter.h"
 #include "IniSelect/Handlers/ParticleIdentifier.h"
 #include "IniSelect/Handlers/VertexFitter.h"
@@ -141,9 +141,12 @@ void D0omega_K4pi::ConfigurePID()
 /// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
 void D0omega_K4pi::WriteDedxOfSelectedParticles()
 {
-  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("K-").GetTracks(), fNTuple_dedx_K);
-  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi-").GetTracks(), fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi+").GetTracks(), fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("K-").GetTracks(),
+                         fNTuple_dedx_K);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi-").GetTracks(),
+                         fNTuple_dedx_pi);
+  WriteDedxInfoForVector(fFinalState.GetParticleSelection().GetCandidates("pi+").GetTracks(),
+                         fNTuple_dedx_pi);
 }
 
 /// Specification of what should be written to the fit `NTuple`.
@@ -265,11 +268,11 @@ void D0omega_K4pi::WriteBestFitWithMcTruth()
   cout << fInputFile.RunNumber() << ", ";
   cout << fInputFile.EventNumber() << "):" << endl;
   cout << "    chi2     = " << fBestKalmanFit.fChiSquared << endl
-            << "    m_pi0    = " << fBestKalmanFit.fM_pi0 << endl
-            << "    m_D0     = " << fBestKalmanFit.fM_D0 << endl
-            << "    m_omega  = " << fBestKalmanFit.fM_omega << endl
-            << "    p_D0     = " << fBestKalmanFit.fP_D0 << endl
-            << "    p_pi0    = " << fBestKalmanFit.fP_pi0 << endl;
+       << "    m_pi0    = " << fBestKalmanFit.fM_pi0 << endl
+       << "    m_D0     = " << fBestKalmanFit.fM_D0 << endl
+       << "    m_omega  = " << fBestKalmanFit.fM_omega << endl
+       << "    p_D0     = " << fBestKalmanFit.fP_D0 << endl
+       << "    p_pi0    = " << fBestKalmanFit.fP_pi0 << endl;
   CreateMCTruthCollection();
   SetAdditionalNtupleItems_topology();
   WriteMCTruthForTopoAna(fNTuple_topology);

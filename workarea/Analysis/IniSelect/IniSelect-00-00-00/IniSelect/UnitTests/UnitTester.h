@@ -31,8 +31,8 @@ protected:
                        Double_t procentualDifference = 0.0000001f) const;
 
 private:
-  Int_t   fNTests;
-  Int_t   fNFailed;
+  Int_t fNTests;
+  Int_t fNFailed;
 
   void PrintLine() const;
   void PrintTestResults() const;

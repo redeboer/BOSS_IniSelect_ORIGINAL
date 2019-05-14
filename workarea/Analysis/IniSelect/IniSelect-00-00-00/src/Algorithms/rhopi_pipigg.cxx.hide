@@ -2,11 +2,11 @@
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
 
-#include "IniSelect/Algorithms/rhopi_pipigg.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
+#include "IniSelect/Algorithms/rhopi_pipigg.h"
 #include "TrackSelector/TSGlobals/TSGlobals.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
@@ -28,10 +28,7 @@ using namespace TSGlobals;
 // * =========================== * //
 
 /// Constructor for the `rhopi_pipigg` algorithm, derived from `TrackSelector`.
-/// Here, you should declare properties: give them a name, assign a parameter (data member of
-/// `rhopi_pipigg`), and if required a documentation string. Note that you should define the
-/// paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the
-/// values in `share/rhopi_pipigg.txt`.
+/// Here, you should declare properties: give them a name, assign a parameter (data member of `rhopi_pipigg`), and if required a documentation string. Note that you should define the paramters themselves in the header (rhopi_pipigg/rhopi_pipigg.h) and that you should assign the values in `share/rhopi_pipigg.txt`.
 rhopi_pipigg::rhopi_pipigg(const std::string& name, ISvcLocator* pSvcLocator) :
   /// * Construct base algorithm `TrackSelector`.
   TrackSelector(name, pSvcLocator),
@@ -41,8 +38,7 @@ rhopi_pipigg::rhopi_pipigg(const std::string& name, ISvcLocator* pSvcLocator) :
   fNTuple_fit5c("fit5c", "5-constraint fit information (CMS 4-momentum + pi0 resonance)"),
   fNTuple_fit_mc("fit_mc", "Fake fit information according to MC truth"),
   fNTuple_photon("photon", "Kinematics of selected photons"),
-  /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain
-  /// parameters.
+  /// * Construct `CutObject`s. The `"cut_<parameter>_min/max"` properties determine cuts on certain parameters.
   fCutFlow_NChargedOK("N_charged_OK", "Number of events that had at least 1 charged track"),
   fCutFlow_NFit4cOK(
     "N_fit4c_OK", "Number of events where the 4-constraint kinematic was successful (no chi2 cut)"),
@@ -61,7 +57,7 @@ rhopi_pipigg::rhopi_pipigg(const std::string& name, ISvcLocator* pSvcLocator) :
   fCut_GammaPhi("gamma_phi"),
   fCut_GammaTheta("gamma_theta")
 {
-  PrintFunctionName("rhopi_pipigg", __func__);
+  LOG_FUNCTION();
   PostConstructor();
   fCreateChargedCollection = true;
   fCreateNeutralCollection = true;
@@ -73,11 +69,10 @@ rhopi_pipigg::rhopi_pipigg(const std::string& name, ISvcLocator* pSvcLocator) :
 
 /// (Inherited) `initialize` step of `Algorithm`.
 /// This function is called only once, when the algorithm is initialised.
-/// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the
-/// `TrackSelector::initilize` step prior to this this method.
+/// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 StatusCode rhopi_pipigg::initialize_rest()
 {
-  PrintFunctionName("rhopi_pipigg", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
   /// <li> `"mult_select"`: Multiplicities of selected particles
   /// <ol>
@@ -90,8 +85,7 @@ StatusCode rhopi_pipigg::initialize_rest()
   /// for more info.
   AddNTupleItems_Dedx(fNTuple_dedx_pi);
 
-  /// <li> `"fit4c"` and `"fit5c"`: results of the Kalman kinematic fit results. See
-  /// `TrackSelector::AddNTupleItems_Fit` for more info.
+  /// <li> `"fit4c"` and `"fit5c"`: results of the Kalman kinematic fit results. See `TrackSelector::AddNTupleItems_Fit` for more info.
   AddNTupleItems_Fit(fNTuple_fit4c);
   AddNTupleItems_Fit(fNTuple_fit5c);
   AddNTupleItems_Fit(fNTuple_fit_mc);
@@ -122,15 +116,13 @@ StatusCode rhopi_pipigg::initialize_rest()
 /// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 StatusCode rhopi_pipigg::execute_rest()
 {
-  PrintFunctionName("rhopi_pipigg", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
-  /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **2 charged
-  /// tracks in total**.
+  /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **2 charged tracks in total**.
   if(fChargedTracks.size() != 2) return StatusCode::SUCCESS;
   ++fCutFlow_NChargedOK;
 
-  /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If
-  /// this charge is not \f$0\f$, this means some charged tracks have not been detected.
+  /// <li> **Net charge cut**: Apply a strict cut on the total charge detected in the detectors. If this charge is not \f$0\f$, this means some charged tracks have not been detected.
   if(fNetChargeMDC) return StatusCode::SUCCESS;
   ++fCutFlow_NetChargeOK;
 
@@ -164,11 +156,10 @@ StatusCode rhopi_pipigg::execute_rest()
 
     /// <li> Identify type of charged particle and add to related vector: this package: only pions.
     fTrackKal = (*fTrackIter)->mdcKalTrack();
-    if(fCut_PIDProb.FailsMin(fPIDInstance->probPion()))
-      continue; /// A cut is then applied on whether the probability to be a pion (or kaon) is at
-                /// least `fCut_PIDProb_min` (see eventual settings in `rhopi_pipigg.txt`).
-    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion); /// Finally, the particle ID of the
-                                                      /// `RecMdcKalTrack` object is set to pion
+    if(fCut_PIDProb.FailsMin(fPIDInstance->probPion())) continue;
+    /// A cut is then applied on whether the probability to be a pion (or kaon) is at least `fCut_PIDProb_min` (see eventual settings in `rhopi_pipigg.txt`).
+    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+    /// Finally, the particle ID of the `RecMdcKalTrack` object is set to pion
     if(fTrackKal->charge() > 0)
       fPionPos.push_back(
         *fTrackIter); /// and the pions (\f$\pm\f$) are added to the respective vector of pions.
@@ -498,7 +489,7 @@ StatusCode rhopi_pipigg::execute_rest()
 /// See `TrackSelector::finalize` for what else is done when finalising.
 StatusCode rhopi_pipigg::finalize_rest()
 {
-  PrintFunctionName("rhopi_pipigg", __func__);
+  LOG_FUNCTION();
   return StatusCode::SUCCESS;
 }
 

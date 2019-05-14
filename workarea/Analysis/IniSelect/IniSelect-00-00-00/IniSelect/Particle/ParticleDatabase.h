@@ -23,7 +23,7 @@ public:
   static Particle GetParticle(const std::string& pdtName);
   static Particle GetParticle(const Int_t pdgCode);
 
-  static Int_t         NameToCode(const std::string& pdtName);
+  static Int_t       NameToCode(const std::string& pdtName);
   static const char* CodeToName(const Int_t pdgCode);
 
 private:

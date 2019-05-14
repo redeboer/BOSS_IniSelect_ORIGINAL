@@ -11,15 +11,15 @@
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/MsgStream.h"
 #include "GaudiKernel/NTuple.h"
-#include "IniSelect/Handlers/FinalStateHandler.h"
-#include "IniSelect/Handlers/NTupleBooker.h"
 #include "IniSelect/Containers/AngleDifferences.h"
 #include "IniSelect/Containers/CutObject.h"
 #include "IniSelect/Containers/DstFile.h"
 #include "IniSelect/Containers/JobSwitch.h"
-#include "IniSelect/Containers/NTupleContainer.h"
 #include "IniSelect/Containers/SecondaryVertexGeometry.h"
 #include "IniSelect/Fit/KKFitResult.h"
+#include "IniSelect/Handlers/FinalStateHandler.h"
+#include "IniSelect/Handlers/NTupleBooker.h"
+#include "IniSelect/NTuples/NTupleContainer.h"
 #include "IniSelect/TrackCollections/RecTrackPointers.h"
 #include "McTruth/McEvent.h"
 #include "McTruth/McParticle.h"
@@ -144,7 +144,7 @@ protected:
 
   /// @name Access to the DST file
   ///@{
-  DstFile fInputFile;
+  DstFile      fInputFile;
   NTupleBooker fNTupleBooker;
   ///@}
 

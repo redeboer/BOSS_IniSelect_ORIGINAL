@@ -17,10 +17,11 @@ using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
 using namespace IniSelect;
+using namespace std;
 
 /// Constructor for the `TrackSelector` base algorithm.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `TrackSelector`), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in `share/jopOptions_TrackSelector.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See class `GaudiKernel`s [`Algorithm`][https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html] for more details.
-TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) :
+TrackSelector::TrackSelector(const string& name, ISvcLocator* pSvcLocator) :
   /// * Construct `Algorithm` objects.
   Algorithm(name, pSvcLocator),
   fLog(msgSvc(), name),
@@ -65,7 +66,7 @@ TrackSelector::TrackSelector(const std::string& name, ISvcLocator* pSvcLocator) 
   fCreateNeutralCollection(false),
   fPostConstructed(false)
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
 }
 
 /// Rather dubious construction, but this method is required and **has to be called at the end of each derived constructor**. The reason for that this method is necessary is that a Gaudi `Algorithm` requires properties to have been declared by the time the `Algorithm` has been constructed.
@@ -81,7 +82,7 @@ void TrackSelector::PostConstructor()
 void TrackSelector::DeclareSwitches()
 {
   fLog << MSG::INFO << "Assigning job switches to NTuple containers:" << endmsg;
-  std::list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
+  list<JobSwitch*>::iterator it = JobSwitch::gJobSwitches.begin();
   for(; it != JobSwitch::gJobSwitches.end(); ++it)
   {
     declareProperty((*it)->Name().c_str(), (*it)->fValue);
@@ -95,7 +96,7 @@ void TrackSelector::DeclareSwitches()
 void TrackSelector::DeclareCuts()
 {
   fLog << MSG::INFO << "Declaring cuts for NTuple \"" << fNTuple_cuts.Name() << "\":" << endmsg;
-  std::list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
+  list<CutObject*>::iterator cut = CutObject::gCutObjects.begin();
   for(; cut != CutObject::gCutObjects.end(); ++cut)
   {
     /// -# Declare a `"cut_<name>_min"` property.

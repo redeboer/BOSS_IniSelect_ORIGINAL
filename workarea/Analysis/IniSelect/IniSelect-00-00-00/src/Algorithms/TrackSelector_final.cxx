@@ -9,7 +9,7 @@ StatusCode TrackSelector::finalize()
 {
   try
   {
-    PrintFunctionName("TrackSelector", __func__);
+    LOG_FUNCTION();
     NTupleContainer::PrintFilledTuples();
     AddAndWriteCuts();
     CutObject::PrintAll();
@@ -58,5 +58,6 @@ void TrackSelector::PutParticleInCorrectVector(Event::McParticle* mcParticle)
     }
     coll = fFinalState.GetParticleSelectionMC().NextCharged();
   }
-  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in ParticleSelectionMC" << endmsg;
+  fLog << MSG::DEBUG << "PDG code " << pdgCode << " does not exist in ParticleSelectionMC"
+       << endmsg;
 }

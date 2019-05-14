@@ -51,7 +51,7 @@ void UnitTester::PrintTestResultHeader() const
   ss << setw(name().size() + 16) << setfill('=') << "";
   cout << endl << endl << endl;
   TerminalIO::PrintBold(ss.str());
-  TerminalIO::PrintBold(Form("------ %s ------", name().c_str()));
+  TerminalIO::PrintBold(Form("------- %s -------", name().c_str()));
   TerminalIO::PrintBold(ss.str());
   cout << endl;
 }

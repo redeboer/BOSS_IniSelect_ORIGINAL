@@ -66,7 +66,7 @@ D0phi_KpipiKK::D0phi_KpipiKK(const std::string& name, ISvcLocator* pSvcLocator) 
   fCut_GammaPhi("gamma_phi"),
   fCut_GammaTheta("gamma_theta")
 {
-  PrintFunctionName("D0phi_KpipiKK", __func__);
+  LOG_FUNCTION();
   PostConstructor();
   fCreateChargedCollection = true;
   fCreateNeutralCollection = true;
@@ -82,7 +82,7 @@ D0phi_KpipiKK::D0phi_KpipiKK(const std::string& name, ISvcLocator* pSvcLocator) 
 /// `TrackSelector::initilize` step prior to this this method.
 StatusCode D0phi_KpipiKK::initialize_rest()
 {
-  PrintFunctionName("D0phi_KpipiKK", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
   /// <li> `"mult_select"`: Multiplicities of selected particles
   /// <ol>
@@ -146,7 +146,7 @@ StatusCode D0phi_KpipiKK::initialize_rest()
 /// This function is called *for each event*.
 StatusCode D0phi_KpipiKK::execute_rest()
 {
-  PrintFunctionName("D0phi_KpipiKK", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4 charged
   /// tracks in total**.
@@ -498,7 +498,7 @@ StatusCode D0phi_KpipiKK::execute_rest()
 /// See `TrackSelector::finalize` for what else is done when finalising.
 StatusCode D0phi_KpipiKK::finalize_rest()
 {
-  PrintFunctionName("D0phi_KpipiKK", __func__);
+  LOG_FUNCTION();
   return StatusCode::SUCCESS;
 }
 

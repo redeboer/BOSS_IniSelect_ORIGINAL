@@ -17,7 +17,7 @@ using namespace IniSelect;
 /// This function is called once in the beginning *of each run*. Define and load NTuples here. The `NTuples` will become the `TTree`s in the eventual ROOT file, the added `NTuple::Item`s will be the branches of those trees.
 StatusCode TrackSelector::initialize()
 {
-  PrintFunctionName("TrackSelector", __func__);
+  LOG_FUNCTION();
   try
   {
     AssertPostConstructed();

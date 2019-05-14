@@ -46,7 +46,7 @@ D0phi_KpiKK::D0phi_KpiKK(const std::string& name, ISvcLocator* pSvcLocator) :
   fCutFlow_NPIDnumberOK("N_PID_OK",
                         "Number of events that had exactly 2 K-, 1 K+ and 1 pi+ PID tracks")
 {
-  PrintFunctionName("D0phi_KpiKK", __func__);
+  LOG_FUNCTION();
   PostConstructor();
   fCreateChargedCollection =
     true; /// @remark Set `fCreateChargedCollection` to `true` to ensure that the preselection of
@@ -63,7 +63,7 @@ D0phi_KpiKK::D0phi_KpiKK(const std::string& name, ISvcLocator* pSvcLocator) :
 /// @remark Define and load `NTuple`s here. Other `NTuple`s have already been defined in the `TrackSelector::initilize` step prior to this this method.
 StatusCode D0phi_KpiKK::initialize_rest()
 {
-  PrintFunctionName("D0phi_KpiKK", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
   /// <li> `"mult_select"`: Multiplicities of selected particles
   /// <ol>
@@ -100,7 +100,7 @@ StatusCode D0phi_KpiKK::initialize_rest()
 /// This function is called *for each event*.
 StatusCode D0phi_KpiKK::execute_rest()
 {
-  PrintFunctionName("D0phi_KpiKK", __func__);
+  LOG_FUNCTION();
   /// <ol type="A">
   /// <li> **Charged track cut**: Apply a strict cut on the number of particles. Only **4
   /// charged tracks in total**.
@@ -349,7 +349,7 @@ StatusCode D0phi_KpiKK::execute_rest()
 /// See `TrackSelector::finalize` for what else is done when finalising.
 StatusCode D0phi_KpiKK::finalize_rest()
 {
-  PrintFunctionName("D0phi_KpiKK", __func__);
+  LOG_FUNCTION();
   return StatusCode::SUCCESS;
 }
 

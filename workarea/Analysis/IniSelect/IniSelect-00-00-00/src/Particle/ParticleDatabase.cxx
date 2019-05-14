@@ -1,6 +1,6 @@
 #include "IniSelect/Particle/ParticleDatabase.h"
-#include "IniSelect/Globals.h"
 #include "IniSelect/Exceptions/Exception.h"
+#include "IniSelect/Globals.h"
 #include "MdcRecoUtil/Pdt.h"
 #include "MdcRecoUtil/PdtPdg.h"
 #include <iostream>
