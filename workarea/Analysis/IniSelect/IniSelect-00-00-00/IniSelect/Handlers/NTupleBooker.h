@@ -3,7 +3,7 @@
 
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/ClassID.h"
-#include "IniSelect/NTuples/NTupleContainer.h"
+#include "IniSelect/Containers/NTupleContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
