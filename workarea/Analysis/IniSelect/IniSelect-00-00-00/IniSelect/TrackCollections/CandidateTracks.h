@@ -36,6 +36,7 @@ public:
   Bool_t FailsMultiplicityCut() const;
 
   const std::vector<T*>& GetTracks() const { return fTrackColl; }
+  T* GetTracks(size_t i) const { if(i < fTrackColl.size()) return fTrackColl.at(i); else return nullptr; }
 
   size_t      GetNTracks() const { return fTrackColl.size(); }
   Int_t       GetNParticles() const { return fNParticles; }

@@ -38,7 +38,6 @@ public:
   CandidateTracks<T>* FirstParticle();
   CandidateTracks<T>* NextParticle();
   CandidateTracks<T>* NextCharged();
-  Bool_t              ReachedEnd() { return fSelectionsIter == fSelections.end(); }
 
   void Print();
 
@@ -85,7 +84,7 @@ CandidateTracks<T>* CandidateSelectionTempl<T>::NextCharged()
 template <typename T>
 CandidateTracks<T>* CandidateSelectionTempl<T>::UnpackIter()
 {
-  if(ReachedEnd()) return nullptr;
+  if(fSelectionsIter == fSelections.end()) return nullptr;
   return &fSelectionsIter->second;
 }
 
