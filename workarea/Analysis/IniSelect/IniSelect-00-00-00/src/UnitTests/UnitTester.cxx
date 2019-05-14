@@ -3,7 +3,9 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 using namespace IniSelect;
+using namespace std;
 
 StatusCode UnitTester::initialize()
 {
@@ -40,17 +42,21 @@ void UnitTester::PrintTestResults() const
 
 void UnitTester::PrintLine() const
 {
-  std::cerr << std::setw(25) << std::setfill('-') << "" << std::endl;
+  cerr << setw(25) << setfill('-') << "" << endl;
 }
 
 void UnitTester::PrintTestResultHeader() const
 {
-  TerminalIO::PrintBold("\n\n\n==========================");
-  TerminalIO::PrintBold("------ TEST RESULTS ------");
-  TerminalIO::PrintBold("==========================\n");
+  stringstream ss;
+  ss << setw(25) << setfill('=') << "" << endl;
+  cout << endl << endl << endl;
+  TerminalIO::PrintBold(ss.str());
+  TerminalIO::PrintBold(Form("------ TEST RESULTS %s ------", name().c_str()));
+  TerminalIO::PrintBold(ss.str());
+  cout << endl;
 }
 
-void UnitTester::Require(bool passed, int lineNr, const char* file, const char* input)
+void UnitTester::Require(Bool_t passed, Int_t lineNr, const char* file, const char* input)
 {
   ++fNTests;
   if(passed) return;
@@ -60,12 +66,12 @@ void UnitTester::Require(bool passed, int lineNr, const char* file, const char* 
   ++fNFailed;
 }
 
-bool UnitTester::CompareFloat(float val1, float val2, float procentualDifference) const
+Bool_t UnitTester::CompareFloat(Float_t val1, Float_t val2, Float_t procentualDifference) const
 {
   return fabs((val1 - val2) / val1) < procentualDifference;
 }
 
-bool UnitTester::CompareDouble(double val1, double val2, double procentualDifference) const
+Bool_t UnitTester::CompareDouble(Double_t val1, Double_t val2, Double_t procentualDifference) const
 {
   return fabs((val1 - val2) / val1) < procentualDifference;
 }
