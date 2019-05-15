@@ -1,2 +1,0 @@
-ApplicationMgr.DLLs   += {"IniSelect"};
-ApplicationMgr.TopAlg += {"Test_DstFile"};

@@ -1,7 +1,10 @@
 #include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
-#include "$INISELECTROOT/UnitTests/jobOptions/jobOptions_CandidateTracks.txt"
-#include "$INISELECTROOT/UnitTests/jobOptions/jobOptions_DstFile.txt"
-#include "$INISELECTROOT/UnitTests/jobOptions/jobOptions_ParticleDatabase.txt"
+
+ApplicationMgr.DLLs   += {"IniSelect"};
+ApplicationMgr.TopAlg += {"Test_CandidateTracks"};
+ApplicationMgr.TopAlg += {"Test_CandidateSelection"};
+ApplicationMgr.TopAlg += {"Test_DstFile"};
+ApplicationMgr.TopAlg += {"Test_ParticleDatabase"};
 
 EventCnvSvc.digiRootInputFile = {
 	"$INISELECTROOT/UnitTests/data/input/incl_2009.dst"
