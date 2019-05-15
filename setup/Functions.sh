@@ -17,16 +17,7 @@
 # * ================================== * #
 
 
-	# * Check if already being sourced * #
-		if [ "${gFunctionsScriptIsSourced}" == true ]; then
-			return
-		fi
-
-
 	# * Set identifier parameters for this script * #
-		# * Parameter that blocks script from resourcing
-		gFunctionsScriptIsSourced=true
-		export gFunctionsScriptIsSourced
 		# * Get absolute path to script
 		if [[ "${BASH_SOURCE[0]}" == /* ]]; then # if absolute already
 			PathToFunctionsScript="${BASH_SOURCE[0]}"
@@ -468,6 +459,13 @@
 		boss.exe "UnitTests/jobs/job_${TestName}.txt"
 	}
 	export -f IniTest
+
+	function IniUnitTester()
+	{
+		clear
+		IniTest UnitTester > /dev/null
+	}
+	export -f IniUnitTester
 
 
 
