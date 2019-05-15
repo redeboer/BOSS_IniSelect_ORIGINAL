@@ -76,6 +76,7 @@ T* CandidateTracks<T>::GetCandidate(size_t i) const
 template <typename T>
 Bool_t CandidateTracks<T>::NextCombination()
 {
+  if(fTrackColl.size() < fNParticles) return false;
   return IniSelect::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
 }
 
