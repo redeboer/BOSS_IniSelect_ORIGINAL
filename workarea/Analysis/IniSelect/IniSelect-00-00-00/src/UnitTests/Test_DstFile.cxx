@@ -4,7 +4,6 @@
 
 Test_DstFile::Test_DstFile(const std::string& name, ISvcLocator* pSvcLocator) :
   UnitTester(name, pSvcLocator),
-  fInputFile(eventSvc()),
   fCountEvent(0),
   fNMCTracks(0),
   fNChargedTracks(0),
@@ -18,7 +17,6 @@ void Test_DstFile::TestInitialize()
 
 void Test_DstFile::TestExecute()
 {
-  fInputFile.LoadNextEvent();
   ++fCountEvent;
 
   /// * Test run and event numbers
@@ -26,42 +24,42 @@ void Test_DstFile::TestExecute()
   REQUIRE(fInputFile.EventNumber() == fCountEvent);
   REQUIRE(fInputFile.IsMonteCarlo() == true);
 
-  /// * Check iterators for all events
-  if(true)
+  /// * Test `ChargedTrackIter`
+  int              countCharged = 0;
+  ChargedTrackIter iCharged(fInputFile);
+  while(EvtRecTrack* track = iCharged.Next())
   {
-    int              countCharged = 0;
-    ChargedTrackIter iCharged(fInputFile);
-    while(EvtRecTrack* track = iCharged.Next())
-    {
-      REQUIRE(track->trackId() == countCharged);
-      ++countCharged;
-      ++fNChargedTracks;
-    }
-    REQUIRE(fInputFile.TotalChargedTracks() == countCharged);
-
-    int              countNeutral = 0;
-    NeutralTrackIter iNeutral(fInputFile);
-    while(EvtRecTrack* track = iNeutral.Next())
-    {
-      REQUIRE(track->trackId() - fInputFile.TotalChargedTracks() == countNeutral);
-      ++countNeutral;
-      ++fNNeutralTracks;
-    }
-    REQUIRE(fInputFile.TotalNeutralTracks() == countNeutral);
-
-    int         countMC = 0;
-    McTrackIter iMC(fInputFile);
-    while(Event::McParticle* track = iMC.Next())
-    {
-      REQUIRE(track->trackIndex() == countMC);
-      ++countMC;
-      ++fNMCTracks;
-    }
-    REQUIRE(fInputFile.TotalMcTracks() == countMC);
+    REQUIRE(track->trackId() == countCharged);
+    ++countCharged;
+    ++fNChargedTracks;
   }
+  REQUIRE(fInputFile.TotalChargedTracks() == countCharged);
 
-  /// * Track iterator test in case of event `50007`
-  if(fCountEvent != 50007) return;
+  /// * Test `NeutralTrackIter`
+  int              countNeutral = 0;
+  NeutralTrackIter iNeutral(fInputFile);
+  while(EvtRecTrack* track = iNeutral.Next())
+  {
+    REQUIRE(track->trackId() - fInputFile.TotalChargedTracks() == countNeutral);
+    ++countNeutral;
+    ++fNNeutralTracks;
+  }
+  REQUIRE(fInputFile.TotalNeutralTracks() == countNeutral);
+
+  /// * Test `McTrackIter`
+  int         countMC = 0;
+  McTrackIter iMC(fInputFile);
+  while(Event::McParticle* track = iMC.Next())
+  {
+    REQUIRE(track->trackIndex() == countMC);
+    ++countMC;
+    ++fNMCTracks;
+  }
+  REQUIRE(fInputFile.TotalMcTracks() == countMC);
+}
+
+void Test_DstFile::TestEvent()
+{
   REQUIRE(fInputFile.TotalChargedTracks() == 6);
   REQUIRE(fInputFile.TotalNeutralTracks() == 7);
   REQUIRE(fInputFile.TotalTracks() == 13);

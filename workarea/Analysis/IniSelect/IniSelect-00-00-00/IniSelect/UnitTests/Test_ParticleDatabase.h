@@ -12,6 +12,7 @@ public:
 
   void TestInitialize() {}
   void TestExecute() {}
+  void TestEvent() {}
   void TestFinalize();
 };
 

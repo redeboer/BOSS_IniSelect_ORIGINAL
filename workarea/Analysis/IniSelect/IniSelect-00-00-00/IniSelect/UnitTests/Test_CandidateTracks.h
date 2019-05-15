@@ -2,7 +2,6 @@
 #define Analysis_IniSelect_UnitTests_CandidateTracks_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
-#include "IniSelect/Containers/DstFile.h"
 #include "IniSelect/TrackCollections/CandidateTracks.h"
 #include "IniSelect/UnitTests/UnitTester.h"
 
@@ -13,16 +12,16 @@ public:
 
   void TestInitialize();
   void TestExecute();
+  void TestEvent();
   void TestFinalize();
 
 private:
-  DstFile fInputFile;
-
   CandidateTracks<EvtRecTrack> fKaons;
   CandidateTracks<Event::McParticle> fConstructed;
   CandidateTracks<Event::McParticle> fSetObject;
 
   void AddDummyTracks(CandidateTracks<Event::McParticle>& obj, int n);
+  int nChoosek(int n, int k);
 };
 
 #endif

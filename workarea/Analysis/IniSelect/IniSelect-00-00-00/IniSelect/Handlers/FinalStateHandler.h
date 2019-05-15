@@ -17,8 +17,8 @@ class FinalStateHandler
 {
 public:
   FinalStateHandler() {}
-  void                 SetFinalState(const TString& input);
-  ParticleTrack&       GetParticle(const std::string& pdtName, size_t i = 0);
+  void                  SetFinalState(const TString& input);
+  ParticleTrack&        GetParticle(const std::string& pdtName, size_t i = 0);
   CandidateSelection&   GetCandidates() { return fCandidates; }
   CandidateSelectionMC& GetCandidatesMC() { return fCandidatesMC; }
 

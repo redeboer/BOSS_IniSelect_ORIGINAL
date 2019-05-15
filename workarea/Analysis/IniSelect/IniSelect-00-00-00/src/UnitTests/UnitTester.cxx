@@ -7,6 +7,13 @@
 using namespace IniSelect;
 using namespace std;
 
+UnitTester::UnitTester(const string& name, ISvcLocator* pSvcLocator) :
+  Algorithm(name, pSvcLocator),
+  fInputFile(eventSvc()),
+  fNTests(0),
+  fNFailed(0)
+{}
+
 StatusCode UnitTester::initialize()
 {
   TestInitialize();
@@ -15,7 +22,10 @@ StatusCode UnitTester::initialize()
 
 StatusCode UnitTester::execute()
 {
+  fInputFile.LoadNextEvent();
   TestExecute();
+  if(fInputFile.EventNumber() != 50007) return StatusCode::SUCCESS;
+  TestEvent();
   return StatusCode::SUCCESS;
 }
 

@@ -12,7 +12,7 @@
 /// @addtogroup BOSS_objects
 /// @{
 
-/// @todo Consider converting `CandidateSelectionTempl` into "`ParticleSelectorTempl`", i.e., a singleton that only has static methods. This will, however, remove the option of creating separate sets of particle selections.
+/// @todo Consider converting `CandidateSelectionTempl` into "`CandidateSelectorTempl`", i.e., a singleton that only has static methods. This will, however, remove the option of creating separate sets of particle selections.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 18th, 2018
 class CandidateIter_base;
