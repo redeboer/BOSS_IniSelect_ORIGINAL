@@ -17,7 +17,7 @@ Test_CandidateSelection::Test_CandidateSelection(const std::string& name, ISvcLo
   REQUIRE(fSelection.HasCandidate("K+") == false);
 
   /// * Test `CandidateSelection::GetNCharged`
-  REQUIRE(fSelection.GetNCharged() == 2);
+  REQUIRE(fSelection.GetNCharged() == 5);
 }
 
 void Test_CandidateSelection::TestEvent()

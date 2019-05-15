@@ -3,6 +3,7 @@
 ApplicationMgr.DLLs   += {"IniSelect"};
 ApplicationMgr.TopAlg += {"Test_CandidateTracks"};
 ApplicationMgr.TopAlg += {"Test_CandidateSelection"};
+ApplicationMgr.TopAlg += {"Test_CombinationShuffler"};
 ApplicationMgr.TopAlg += {"Test_DstFile"};
 ApplicationMgr.TopAlg += {"Test_ParticleDatabase"};
 

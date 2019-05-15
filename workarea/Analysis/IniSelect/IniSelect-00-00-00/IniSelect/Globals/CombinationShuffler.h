@@ -55,13 +55,13 @@ namespace IniSelect
     }
 
     template <typename Iter_t>
-    bool NextCombination(const Iter_t first, const Iter_t last, const std::size_t& nCombinations)
+    bool NextCombination(const Iter_t first, const Iter_t last, size_t nCombinations)
     {
       return NextCombination(first, first + nCombinations, last);
     }
 
     template <typename T>
-    bool NextCombination(std::vector<T>& vec, const std::size_t& nCombinations)
+    bool NextCombination(std::vector<T>& vec, size_t nCombinations)
     {
       return NextCombination(vec.begin(), vec.end(), nCombinations);
     }

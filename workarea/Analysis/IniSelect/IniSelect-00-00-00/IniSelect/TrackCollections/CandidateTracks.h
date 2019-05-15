@@ -18,7 +18,8 @@ public:
   CandidateTracks() {}
   CandidateTracks(const TString& pdtName, Int_t nparticles = 1) :
     fParticle(ParticleDatabase::GetParticle(pdtName.Data())),
-    fNParticles(nparticles)
+    fNParticles(nparticles),
+    fFirstCombination(true)
   {}
 
   void Clear() { fTrackColl.clear(); }
@@ -35,7 +36,6 @@ public:
 
   Bool_t FailsMultiplicityCut() const;
 
-  const std::vector<T*>& GetTracks() const { return fTrackColl; }
   T* GetTracks(size_t i) const { if(i < fTrackColl.size()) return fTrackColl.at(i); else return nullptr; }
 
   size_t      GetNTracks() const { return fTrackColl.size(); }
@@ -59,7 +59,8 @@ private:
   };
 
   Particle fParticle;
-  Int_t    fNParticles;
+  size_t   fNParticles;
+  Bool_t   fFirstCombination;
 
   std::vector<T*>  fTrackColl;
   EMultiplicityCut fMultiplicityCut;
@@ -77,6 +78,11 @@ template <typename T>
 Bool_t CandidateTracks<T>::NextCombination()
 {
   if(fTrackColl.size() < fNParticles) return false;
+  if(fFirstCombination)
+  {
+    fFirstCombination = false;
+    return true;
+  }
   return IniSelect::CombinationShuffler::NextCombination(fTrackColl, fNParticles);
 }
 

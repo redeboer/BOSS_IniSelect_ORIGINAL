@@ -17,6 +17,7 @@ public:
 
 private:
   CandidateTracks<EvtRecTrack> fKaons;
+  CandidateTracks<EvtRecTrack> fPhotons;
   CandidateTracks<Event::McParticle> fConstructed;
   CandidateTracks<Event::McParticle> fSetObject;
 

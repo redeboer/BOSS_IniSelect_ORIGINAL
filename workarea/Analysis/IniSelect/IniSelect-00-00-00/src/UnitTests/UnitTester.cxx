@@ -59,7 +59,7 @@ void UnitTester::PrintTestResultHeader() const
 {
   stringstream ss;
   ss << setw(name().size() + 16) << setfill('=') << "";
-  cerr << endl << endl << endl;
+  cerr << endl << endl;
   TerminalIO::PrintBold(ss.str());
   TerminalIO::PrintBold(Form("------- %s -------", name().c_str()));
   TerminalIO::PrintBold(ss.str());
