@@ -22,6 +22,8 @@ public:
     fFirstCombination(true)
   {}
 
+  const std::vector<T*>& GetTracks() const { return fTrackColl; }
+
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
   void SetNParticles(Int_t nparticles) { fNParticles = nparticles; }

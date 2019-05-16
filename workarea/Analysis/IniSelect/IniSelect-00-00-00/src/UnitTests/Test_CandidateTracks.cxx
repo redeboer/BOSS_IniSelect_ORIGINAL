@@ -85,8 +85,8 @@ void Test_CandidateTracks::TestExecute()
 
   /// * Test `CandidateTracks::AddTrack`
   fPhotons.Clear();
-  McTrackIter itMC(fInputFile);
-  while(Event::McParticle* trk = itMC.Next()) fPhotons.AddTrack(trk);
+  NeutralTrackIter itPhoton(fInputFile);
+  while(EvtRecTrack* trk = itPhoton.Next()) fPhotons.AddTrack(trk);
   REQUIRE(fPhotons.GetNTracks() == fInputFile.TotalMcTracks());
 
   /// * Test `CandidateTracks::NextCombination`

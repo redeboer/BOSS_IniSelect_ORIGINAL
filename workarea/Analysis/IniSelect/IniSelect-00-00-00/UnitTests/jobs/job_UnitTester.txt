@@ -1,6 +1,10 @@
 #include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
 
 ApplicationMgr.DLLs   += {"IniSelect"};
+ApplicationMgr.TopAlg += {"Test_AlgSvc"};
+ApplicationMgr.TopAlg += {"Test_AlgSvc1"};
+ApplicationMgr.TopAlg += {"Test_AlgSvc2"};
+ApplicationMgr.TopAlg += {"Test_AlgSvc3"};
 ApplicationMgr.TopAlg += {"Test_CandidateTracks"};
 ApplicationMgr.TopAlg += {"Test_CandidateSelection"};
 ApplicationMgr.TopAlg += {"Test_CombinationShuffler"};
@@ -16,3 +20,5 @@ MessageSvc.OutputLevel = 6;
 MessageSvc.useColors   = true;
 
 ApplicationMgr.EvtMax = 10;
+
+NTupleSvc.Output = { "FILE1 DATAFILE='/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/output/UnitTester.root' OPT='NEW' TYP='ROOT'"};
