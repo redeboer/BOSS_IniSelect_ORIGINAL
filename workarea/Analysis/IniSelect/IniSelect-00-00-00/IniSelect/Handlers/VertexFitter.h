@@ -2,7 +2,7 @@
 #define Analysis_IniSelect_VertexFitter_H
 
 #include "EvtRecEvent/EvtRecTrack.h"
-#include "IniSelect/Handler/FinalStateHandler.h"
+#include "IniSelect/Handlers/FinalStateHandler.h"
 #include "VertexFit/VertexFit.h"
 #include <map>
 #include <string>

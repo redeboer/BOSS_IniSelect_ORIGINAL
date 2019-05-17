@@ -7,6 +7,8 @@ Int_t      VertexFitter::fNTracks      = 0;
 Bool_t     VertexFitter::fIsSuccessful = false;
 VertexFit* VertexFitter::fVertexFit    = VertexFit::instance();
 
+std::map<std::string, std::vector<Int_t> > VertexFitter::fNameToIndex;
+
 void VertexFitter::Initialize()
 {
   fVertexFit->init();
@@ -62,7 +64,7 @@ WTrackParameter VertexFitter::GetTrack(const std::string& pdtName, size_t i)
 {
   VertexFitter::ThrowIfEmpty();
   return fVertexFit->wtrk(fNameToIndex.at(pdtName).at(i));
-  throw OutOfRange(Form("VertexFitter::GetTrack key %s[%ul]"), pdtName.c_str(), i);
+  throw OutOfRange(Form("VertexFitter::GetTrack key %s[%ul]", pdtName.c_str(), i));
 }
 
 void VertexFitter::ThrowIfEmpty()

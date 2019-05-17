@@ -47,7 +47,6 @@ void D0omega_K4pi::ConfigureCandidateSelection()
 void D0omega_K4pi::AddAdditionalNTupleItems()
 {
   LOG_FUNCTION();
-  AddNTupleItems_dedx();
   AddNTupleItems_fit();
   AddAdditionalNTuples_topology();
 }
@@ -237,7 +236,7 @@ void D0omega_K4pi::ExtractFitResults()
     cout << "numberWTrack:     " << KinematicFitter::GetFit()->numberWTrack() << endl;
     cout << "numberGammaShape: " << KinematicFitter::GetFit()->numberGammaShape() << endl;
   }
-  fCurrentKalmanFit = KKFitResult_D0omega_K4pi(KinematicFitter::GetFit());
+  fCurrentKalmanFit = KKFitResult_D0omega_K4pi();
   fCurrentKalmanFit.SetRunNumber(fInputFile.RunNumber());
   fCurrentKalmanFit.SetEventNumber(fInputFile.EventNumber());
 }

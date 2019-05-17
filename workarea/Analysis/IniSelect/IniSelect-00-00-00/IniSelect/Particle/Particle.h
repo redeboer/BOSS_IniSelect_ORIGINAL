@@ -18,20 +18,21 @@ public:
 
   void Print() const;
 
-  std::string& GetPdtName() const { return fName; }
-  Int_t        GetPdgCode() const { return fPdgCode; }
-  Float_t      GetMass() const { return fMass; }
-  Float_t      GetLifetime() const { return fLifetime; }
-  Float_t      GetCharge() const { return fCharge; }
-  Float_t      GetSpin() const { return fSpin; }
+  const std::string& GetPdtName() const { return fName; }
+
+  int   GetPdgCode() const { return fPdgCode; }
+  float GetMass() const { return fMass; }
+  float GetLifetime() const { return fLifetime; }
+  float GetCharge() const { return fCharge; }
+  float GetSpin() const { return fSpin; }
 
 private:
   std::string fName;
-  Int_t       fPdgCode;
-  Float_t     fMass;
-  Float_t     fLifetime;
-  Float_t     fCharge;
-  Float_t     fSpin;
+  int         fPdgCode;
+  float       fMass;
+  float       fLifetime;
+  float       fCharge;
+  float       fSpin;
 
   void Set(PdtEntry* particle);
 };

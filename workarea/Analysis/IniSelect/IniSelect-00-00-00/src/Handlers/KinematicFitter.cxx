@@ -15,6 +15,8 @@ Int_t               KinematicFitter::fNConstraints    = 0;
 bool                KinematicFitter::fIsSuccessful    = false;
 KalmanKinematicFit* KinematicFitter::fKinematicFit    = KalmanKinematicFit::instance();
 
+std::map<std::string, std::vector<Int_t> >  KinematicFitter::fNameToIndex;
+
 void KinematicFitter::Initialize()
 {
   fKinematicFit->init();
@@ -38,7 +40,7 @@ void KinematicFitter::AddTrack(WTrackParameter track)
 
 void KinematicFitter::AddTracks(FinalStateHandler& selection)
 {
-  CandidateIter it(selection);
+  CandidateIter it(selection.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     for(Int_t i = 0; i < coll->GetNTracks(); ++i)
     {
@@ -75,7 +77,7 @@ HepLorentzVector KinematicFitter::GetTrack(const string& pdtName, size_t i)
 {
   KinematicFitter::ThrowIfEmpty();
   return fKinematicFit->pfit(fNameToIndex.at(pdtName).at(i));
-  throw OutOfRange(Form("KinematicFitter::GetTrack key %s[%ul]"), pdtName.c_str(), i);
+  throw OutOfRange(Form("KinematicFitter::GetTrack key %s[%ul]", pdtName.c_str(), i));
 }
 
 void KinematicFitter::ThrowIfEmpty()

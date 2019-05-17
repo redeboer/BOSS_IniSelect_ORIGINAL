@@ -36,9 +36,10 @@ public:
 
   Bool_t FailsMultiplicityCut() const;
 
+  const std::string& GetPdtName() const { return fParticle.GetPdtName(); }
+
   size_t       GetNTracks() const { return fTrackColl.size(); }
   Int_t        GetNParticles() const { return fNParticles; }
-  std::string& GetPdtName() const { return fParticle.GetPdtName(); }
   Int_t        GetPdgCode() const { return fParticle.GetPdgCode(); }
   Float_t      GetMass() const { return fParticle.GetMass(); }
   T*           GetCandidate(size_t i = 0) const;

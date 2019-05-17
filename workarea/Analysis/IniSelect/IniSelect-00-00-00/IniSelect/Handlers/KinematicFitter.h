@@ -19,7 +19,7 @@ public:
   static void Initialize();
   static void AddTrack(RecEmcShower* track);
   static void AddTrack(WTrackParameter track);
-  static void AddTracks(CandidateSelection& selection);
+  static void AddTracks(FinalStateHandler& selection);
   static void AddConstraintCMS();
   static void AddResonance(const Double_t mass, Int_t track1, Int_t track2);
   static void Fit();

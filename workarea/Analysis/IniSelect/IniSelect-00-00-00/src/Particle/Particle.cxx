@@ -14,7 +14,7 @@ void Particle::Set(PdtEntry* particle)
 
 void Particle::Print() const
 {
-  if(fName.EqualTo("")) cout << "Particle is empty" << endl;
+  if(fName.compare("") == 0) cout << "Particle is empty" << endl;
   cout << "Particle \"" << fName << "\"" << endl;
   cout << "  PDG code = " << fPdgCode << endl;
   cout << "  mass     = " << fMass << endl;

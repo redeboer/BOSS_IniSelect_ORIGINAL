@@ -34,7 +34,6 @@ private:
   ///@{
   void ConfigureCandidateSelection();
   void AddAdditionalNTupleItems();
-  void AddNTupleItems_dedx();
   void AddNTupleItems_fit();
   void AddNTupleItems_fit(NTupleContainer& tuple);
   void AddAdditionalNTuples_topology();
