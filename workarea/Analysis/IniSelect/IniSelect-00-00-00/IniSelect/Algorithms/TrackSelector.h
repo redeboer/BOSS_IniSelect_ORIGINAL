@@ -10,7 +10,6 @@
 #include "EvtRecEvent/EvtRecTrack.h"
 #include "GaudiKernel/Algorithm.h"
 #include "GaudiKernel/MsgStream.h"
-#include "GaudiKernel/NTuple.h"
 #include "IniSelect/Containers/AngleDifferences.h"
 #include "IniSelect/Containers/CutObject.h"
 #include "IniSelect/Containers/DstFile.h"
