@@ -18,8 +18,6 @@ public:
 protected:
   /// @name NTuples (eventual TTrees)
   ///@{
-  NTupleContainer fNTuple_dedx_K;
-  NTupleContainer fNTuple_dedx_pi;
   NTupleContainer fNTuple_fit4c_all;
   NTupleContainer fNTuple_fit4c_best;
   NTupleContainer fNTuple_fit_mc;
@@ -45,7 +43,6 @@ private:
   /// @name Helper methods for execute
   ///@{
   void ConfigurePID();
-  void WriteDedxOfSelectedParticles();
   void SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple);
 
   void FindBestKinematicFit();

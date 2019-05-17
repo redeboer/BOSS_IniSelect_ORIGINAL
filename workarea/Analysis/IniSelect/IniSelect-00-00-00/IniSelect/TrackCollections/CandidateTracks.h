@@ -22,8 +22,6 @@ public:
     fFirstCombination(true)
   {}
 
-  const std::vector<T*>& GetTracks() const { return fTrackColl; }
-
   void Clear() { fTrackColl.clear(); }
   void AddTrack(T* track) { fTrackColl.push_back(track); }
   void SetNParticles(Int_t nparticles) { fNParticles = nparticles; }
@@ -37,8 +35,6 @@ public:
   void SetMultCut_AtMost() { fMultiplicityCut = AtMost; };
 
   Bool_t FailsMultiplicityCut() const;
-
-  T* GetTracks(size_t i) const { if(i < fTrackColl.size()) return fTrackColl.at(i); else return nullptr; }
 
   size_t      GetNTracks() const { return fTrackColl.size(); }
   Int_t       GetNParticles() const { return fNParticles; }

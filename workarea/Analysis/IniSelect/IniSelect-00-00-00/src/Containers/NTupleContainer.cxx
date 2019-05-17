@@ -25,8 +25,8 @@ NTupleContainer::NTupleContainer(const std::string& name, const std::string& des
   if(instances.find(name) != instances.end())
   {
     std::cout << "FATAL ERROR: NTuple \"" << name << "\" already exists!" << std::endl;
-    std::terminate(); /// @warning Contains fatal `terminate` statement when double booking!
-                      /// Consider turning into a `return` statement.
+    std::terminate();
+    /// @warning Contains fatal `terminate` statement when double booking! Consider turning into a `throw` statement.
   }
   /// -# Insert a key to the `instances` mapping.
   instances.insert(make_pair(name, this));

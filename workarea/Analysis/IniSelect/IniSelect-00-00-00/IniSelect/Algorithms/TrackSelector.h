@@ -125,7 +125,6 @@ protected:
   ///@{
   void CutZeroNetCharge();
   void WriteDedxInfoForVector(const std::vector<EvtRecTrack*>& vector, NTupleContainer& tuple);
-  virtual void WriteDedxOfSelectedParticles() = 0;
   virtual void FindBestKinematicFit()         = 0;
   bool         IsDecay(Event::McParticle* particle, const int mother) const;
   bool         IsDecay(Event::McParticle* particle, const int mother, const int pdg) const;

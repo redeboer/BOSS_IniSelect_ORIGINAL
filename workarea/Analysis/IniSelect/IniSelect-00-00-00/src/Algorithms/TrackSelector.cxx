@@ -382,7 +382,6 @@ StatusCode TrackSelector::execute()
     WriteMultiplicities();
     PrintMultiplicities();
     CutPID();
-    WriteDedxOfSelectedParticles();
     FindBestKinematicFit();
   }
   catch(const AlgorithmFailure& e)
@@ -433,9 +432,6 @@ void TrackSelector::CreateChargedCollection()
     fChargedTracks.push_back(track);
     fNetChargeMDC += fTrackMDC->charge();
     WriteChargedTrackVertex();
-
-    /// -# **Write** dE/dx PID information ("dedx" branch)
-    WriteDedxInfo(track, fNTuple_dedx);
 
     /// -# **Write** Time-of-Flight PID information ("tof*" branch)
     if(fNTuple_TofEC.DoWrite() || fNTuple_TofIB.DoWrite() || fNTuple_TofOB.DoWrite())

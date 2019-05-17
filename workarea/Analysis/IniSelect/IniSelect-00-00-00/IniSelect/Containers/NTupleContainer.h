@@ -87,9 +87,8 @@ protected:
 
   /// @name Data members
   ///@{
-  JobSwitch
-    fWrite; ///< Boolean job property that determines whether or not to write data stored to this
-            ///< `NTuple` to a `TTree` (property name starts with `"write_"` by default).
+  JobSwitch fWrite;
+  ///< Boolean job property that determines whether or not to write data stored to this `NTuple` to a `TTree` (property name starts with `"write_"` by default).
   NTuple::Tuple* fTuple; ///< Pointer to the encapsulated `NTuple::Tuple`.
   ULong_t        fEntries;
   ///@}

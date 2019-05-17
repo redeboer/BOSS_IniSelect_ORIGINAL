@@ -22,8 +22,6 @@ using namespace std;
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `D0omega_K4pi`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0omega_K4pi/D0omega_K4pi.h) and that you should assign the values in `share/D0omega_K4pi.txt`.
 D0omega_K4pi::D0omega_K4pi(const string& name, ISvcLocator* pSvcLocator) :
   TrackSelector(name, pSvcLocator),
-  fNTuple_dedx_K("dedx_K", "dE/dx of the kaons"),
-  fNTuple_dedx_pi("dedx_pi", "dE/dx of the pions"),
   fNTuple_fit4c_all("fit4c_all", "4-constraint fit information (CMS 4-momentum)"),
   fNTuple_fit4c_best(
     "fit4c_best",
@@ -52,13 +50,6 @@ void D0omega_K4pi::AddAdditionalNTupleItems()
   AddNTupleItems_dedx();
   AddNTupleItems_fit();
   AddAdditionalNTuples_topology();
-}
-
-void D0omega_K4pi::AddNTupleItems_dedx()
-{
-  /// `"dedx_K"` and `"dedx_pi"`: energy loss \f$dE/dx\f$ PID branch. See `TrackSelector::AddNTupleItems_dedx` for more info.
-  TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_K);
-  TrackSelector::AddNTupleItems_dedx(fNTuple_dedx_pi);
 }
 
 void D0omega_K4pi::AddNTupleItems_fit()
@@ -138,17 +129,6 @@ void D0omega_K4pi::ConfigurePID()
   ParticleIdentifier::SetMinimalChi2(4.);
 }
 
-/// **Write** \f$dE/dx\f$ PID information (`"dedx_*"` branchs).
-void D0omega_K4pi::WriteDedxOfSelectedParticles()
-{
-  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("K-").GetTracks(),
-                         fNTuple_dedx_K);
-  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("pi-").GetTracks(),
-                         fNTuple_dedx_pi);
-  WriteDedxInfoForVector(fFinalState.GetCandidates().GetCandidates("pi+").GetTracks(),
-                         fNTuple_dedx_pi);
-}
-
 /// Specification of what should be written to the fit `NTuple`.
 void D0omega_K4pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
 {
@@ -213,8 +193,8 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
   {
     ++count;
     cout << "  combination " << count << ": ";
-    cout << fFinalState.GetCandidates().GetPhotons().GetTracks(0) << ", ";
-    cout << fFinalState.GetCandidates().GetPhotons().GetTracks(1) << endl;
+    cout << fFinalState.GetCandidates().GetPhotons().GetCandidate(0) << ", ";
+    cout << fFinalState.GetCandidates().GetPhotons().GetCandidate(1) << endl;
     fLog << MSG::INFO << "  combination " << count << ": " << endmsg;
     try
     {
