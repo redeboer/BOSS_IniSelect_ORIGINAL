@@ -1,29 +1,31 @@
 #include "IniSelect/Fit/KKFitResult.h"
-#include "CLHEP/Vector/LorentzVector.h"
-#include <cmath>
+#include <float.h> // for DBL_MAX
 using CLHEP::HepLorentzVector;
 
 double KKFitResult::fBestCompareValue = DBL_MAX;
 
 /// Constructor that immediately instantiates all its members from a `KalmanKinematic` fit result.
-KKFitResult::KKFitResult(KalmanKinematicFit* kkmfit) :
+KKFitResult::KKFitResult() :
   fChiSquared(DBL_MAX),
   fFitMeasure(DBL_MAX),
-  fFit(kkmfit),
   fHasResults(false)
 {
-  if(!fFit) return;
-  fChiSquared = fFit->chisq();
+  KinematicFitter::ThrowIfEmpty();
+  SetValues();
+  fChiSquared = KinematicFitter::GetFit()->chisq();
+}
+
+void KKFitResult::SetValues()
+{
+  SetValues_impl();
+  fHasResults = true;
 }
 
 /// Comparison method.
 bool KKFitResult::IsBetter(const double& value, double& bestvalue) const
 {
-  /// -# Returns `false` if the object does not contain a `KalmanKinematicFit`.
-  if(!fFit) return false;
-  /// -# Returns `false` if its own `fCompareValue` worse (`>`) than `fBestCompareValue`.
+  KinematicFitter::ThrowIfEmpty();
   if(value > bestvalue) return false;
-  /// -# If not, update `fBestCompareValue`.
   bestvalue = value;
   return true;
 }

@@ -12,7 +12,7 @@
 class OutOfRange : public Exception
 {
 public:
-  OutOfRange(const TString& message, size_t i, size_t size) :
+  OutOfRange(const TString& message, size_t i = 0, size_t size = 0) :
     Exception(message),
     fIndex(i),
     fSize(size)

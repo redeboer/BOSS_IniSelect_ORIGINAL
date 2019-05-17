@@ -183,7 +183,7 @@ void TrackSelector::AddNTupleItems_mult()
   if(fCreateChargedCollection) fNTuple_mult.AddItem<int>("NgoodCharged");
   ChargedCandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
-    fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName()));
+    fNTuple_mult.AddItem<int>(Form("N_%s", coll->GetPdtName().c_str()));
 }
 
 void TrackSelector::AddNTupleItems_vertex()
@@ -601,7 +601,7 @@ void TrackSelector::WriteMultiplicities()
   if(fCreateNeutralCollection) fNTuple_mult.GetItem<int>("NgoodNeutral") = fNeutralTracks.size();
   CandidateIter it(fFinalState.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
-    fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName())) = coll->GetNTracks();
+    fNTuple_mult.GetItem<int>(Form("N_%s", coll->GetPdtName().c_str())) = coll->GetNTracks();
   fNTuple_mult.Write();
 }
 

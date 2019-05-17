@@ -22,12 +22,15 @@ void VertexFitter::AddTrack(EvtRecTrack* track, const Double_t mass)
   ++fNTracks;
 }
 
-void VertexFitter::AddTracks(CandidateSelection& selection)
+void VertexFitter::AddTracks(FinalStateHandler& selection)
 {
-  ChargedCandidateIter it(selection);
+  ChargedCandidateIter it(selection.GetCandidates());
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     for(Int_t i = 0; i < coll->GetNTracks(); ++i)
+    {
       VertexFitter::AddTrack(coll->GetCandidate(i), coll->GetMass());
+      fNameToIndex[coll->GetPdtName()].push_back(i);
+    }
 }
 
 void VertexFitter::AddCleanVertex()
@@ -55,8 +58,14 @@ VertexParameter VertexFitter::BuildVertexParameter()
   return vtxPar;
 }
 
-WTrackParameter VertexFitter::GetTrack(Int_t i)
+WTrackParameter VertexFitter::GetTrack(const std::string& pdtName, size_t i)
 {
-  if(i < fNTracks) return fVertexFit->wtrk(i);
-  throw OutOfRange("VertexFitter::GetTrack", i, fNTracks);
+  VertexFitter::ThrowIfEmpty();
+  return fVertexFit->wtrk(fNameToIndex.at(pdtName).at(i));
+  throw OutOfRange(Form("VertexFitter::GetTrack key %s[%ul]"), pdtName.c_str(), i);
+}
+
+void VertexFitter::ThrowIfEmpty()
+{
+  if(!fVertexFit) throw NoVertexFit();
 }

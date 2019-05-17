@@ -1,56 +1,49 @@
 #ifndef Physics_Analysis_KKFitResult_D0phi_3K3pi_H
 #define Physics_Analysis_KKFitResult_D0phi_3K3pi_H
 
-// * ========================= * //
-// * ------- LIBRARIES ------- * //
-// * ========================= * //
-
-#include "IniSelect/Algorithms/TrackSelector.h"
 #include "IniSelect/Fit/KKFitResult.h"
-#include "McTruth/McParticle.h"
+#include "IniSelect/Globals.h"
 
-// * ================================ * //
-// * ------- CLASS DEFINITION ------- * //
-// * ================================ * //
 /// @addtogroup BOSS_objects
 /// @{
-
-/// Derived class for a container that contains important fit results of the `KalmanKinematicFit`,
-/// including masses.
+/// Derived class for a container that contains important fit results of the `KalmanKinematicFit`, including masses.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     April 6th, 2019
-class KKFitResult_D0phi_3K3pi : public KKFitResult
+struct KKFitResult_D0phi_3K3pi : public KKFitResult
 {
-public:
-  /// @name Constructor
-  ///@{
-  KKFitResult_D0phi_3K3pi() {}
-  KKFitResult_D0phi_3K3pi(KalmanKinematicFit* kkmfit);
-  KKFitResult_D0phi_3K3pi(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2,
-                          Event::McParticle* kaonPos, Event::McParticle* pionNeg,
-                          Event::McParticle* pionPos1, Event::McParticle* pionPos2);
-  ///@}
+  void SetValues_impl();
 
-  /// @name Parameters computed from fit
-  ///@{
-  double fM_D0;   ///< Current computed mass of the \f$D^0\f$ candidate.
-  double fM_Jpsi; ///< Current computed mass of the \f$J/\psi\f$ candidate.
-  double fM_phi;  ///< Current computed mass of the \f$\phi\f$ candidate.
-  double fP_D0;   ///< Current computed 3-momentum of \f$D^0\f$ candidate.
-  double fP_phi;  ///< Current computed 3-momentum of \f$D^0\f$ candidate.
-  ///@}
+  double fM_Jpsi;
+  double fM_D0;
+  double fM_phi;
 
-private:
-  /// @name Setters
-  ///@{
-  void SetValues(const HepLorentzVector& pKaonNeg1, const HepLorentzVector& pKaonNeg2,
-                 const HepLorentzVector& pKaonPos, const HepLorentzVector& pPionNeg,
-                 const HepLorentzVector& pPionPos1, const HepLorentzVector& pPionPos2);
-  void SetValues(Event::McParticle* kaonNeg1, Event::McParticle* kaonNeg2,
-                 Event::McParticle* kaonPos, Event::McParticle* pionNeg,
-                 Event::McParticle* pionPos1, Event::McParticle* pionPos2);
-  ///@}
+  double fP_Jpsi;
+  double fP_D0;
+  double fP_phi;
+  double fP_pi0;
 };
-
 /// @}
+
+void KKFitResult_D0phi_3K3pi::SetValues_impl()
+{
+  CLHEP::HepLorentzVector pKaonNeg1 = KinematicFitter::GetTrack("K-", 0);
+  CLHEP::HepLorentzVector pKaonNeg2 = KinematicFitter::GetTrack("K+", 1);
+  CLHEP::HepLorentzVector pKaonPos  = KinematicFitter::GetTrack("K+");
+  CLHEP::HepLorentzVector pPionNeg  = KinematicFitter::GetTrack("pi-");
+  CLHEP::HepLorentzVector pPionPos1 = KinematicFitter::GetTrack("pi+", 0);
+  CLHEP::HepLorentzVector pPionPos2 = KinematicFitter::GetTrack("pi+", 1);
+
+  CLHEP::HepLorentzVector pD0   = pKaonNeg1 + pPionNeg + pPionPos1 + pPionPos2;
+  CLHEP::HepLorentzVector pphi  = pKaonNeg2 + pKaonPos;
+  CLHEP::HepLorentzVector pJpsi = pD0 + pphi;
+
+  fM_D0   = pD0.m();
+  fM_phi  = pphi.m();
+  fM_Jpsi = pJpsi.m();
+  fP_D0   = std::sqrt(pD0.px() * pD0.px() + pD0.py() * pD0.py() + pD0.pz() * pD0.pz());
+  fP_phi  = std::sqrt(pphi.px() * pphi.px() + pphi.py() * pphi.py() + pphi.pz() * pphi.pz());
+
+  fFitMeasure = std::abs(fM_phi - IniSelect:Mass::phi);
+}
+
 #endif

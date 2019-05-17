@@ -21,8 +21,8 @@ void Test_CandidateTracks::TestInitialize()
   fSetObject.SetMultCut_EqualTo();
 
   /// * Test `CandidateTracks::GetPdtName`
-  TString g_name(fConstructed.GetPdtName());
-  TString pip_name(fSetObject.GetPdtName());
+  TString g_name(fConstructed.GetPdtName().Data());
+  TString pip_name(fSetObject.GetPdtName().Data());
   REQUIRE(g_name.EqualTo("g"));
   REQUIRE(pip_name.EqualTo("pi+"));
 

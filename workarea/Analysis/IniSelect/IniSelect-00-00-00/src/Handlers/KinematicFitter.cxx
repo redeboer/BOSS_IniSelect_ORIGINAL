@@ -7,6 +7,7 @@
 #include "IniSelect/TrackCollections/CandidateIter.h"
 using namespace IniSelect;
 using namespace IniSelect::Physics;
+using namespace std;
 
 Int_t               KinematicFitter::fNTracks         = 0;
 Int_t               KinematicFitter::fConstraintCount = 0;
@@ -35,15 +36,18 @@ void KinematicFitter::AddTrack(WTrackParameter track)
   ++fNTracks;
 }
 
-void KinematicFitter::AddTracks(CandidateSelection& selection)
+void KinematicFitter::AddTracks(FinalStateHandler& selection)
 {
   CandidateIter it(selection);
   while(CandidateTracks<EvtRecTrack>* coll = it.Next())
     for(Int_t i = 0; i < coll->GetNTracks(); ++i)
+    {
+      fNameToIndex[coll->GetPdtName()].push_back(i);
       if(coll->IsCharged())
-        KinematicFitter::AddTrack(VertexFitter::GetTrack(i));
+        KinematicFitter::AddTrack(VertexFitter::GetTrack(coll->GetPdtName()));
       else
         KinematicFitter::AddTrack(coll->GetCandidate(i)->emcShower());
+    }
 }
 
 void KinematicFitter::AddConstraintCMS()
@@ -67,9 +71,14 @@ void KinematicFitter::Fit()
   fIsSuccessful = true;
 }
 
-HepLorentzVector KinematicFitter::GetTrack(Int_t i)
+HepLorentzVector KinematicFitter::GetTrack(const string& pdtName, size_t i)
 {
-  if(!fKinematicFit) throw Exception("KinematicFitter has empty pointer!");
-  if(i < fNTracks) return fKinematicFit->pfit(i);
-  throw OutOfRange("KinematicFitter::GetTrack", i, fNTracks);
+  KinematicFitter::ThrowIfEmpty();
+  return fKinematicFit->pfit(fNameToIndex.at(pdtName).at(i));
+  throw OutOfRange(Form("KinematicFitter::GetTrack key %s[%ul]"), pdtName.c_str(), i);
+}
+
+void KinematicFitter::ThrowIfEmpty()
+{
+  if(!fKinematicFit) throw NoKinematicFit();
 }

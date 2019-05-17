@@ -3,9 +3,12 @@
 
 #include "EmcRecEventModel/RecEmcShower.h"
 #include "IniSelect/Exceptions/Exception.h"
-#include "IniSelect/TrackCollections/CandidateSelection.h"
+#include "IniSelect/Handlers/FinalStateHandler.h"
 #include "TString.h"
 #include "VertexFit/KalmanKinematicFit.h"
+#include <map>
+#include <string>
+#include <vector>
 
 /// @todo This class functions more as a `namespce`, but has to be a class as it wraps the `KalmanKinematicFit` singleton.
 /// @addtogroup BOSS_objects
@@ -23,10 +26,12 @@ public:
 
   static bool                IsSuccessful() { return fIsSuccessful; };
   static Int_t               GetNContstraints() { return fNConstraints; }
-  static HepLorentzVector    GetTrack(Int_t i);
+  static HepLorentzVector    GetTrack(const std::string& pdtName, size_t i = 0);
   static KalmanKinematicFit* GetFit() { return fKinematicFit; }
   ///< @todo `fKinematicFit` should somehow be protected, but this is not yet possible as long as KKFitResult does not accept `const KalmanKinematicFit*`.
   static Double_t GetChi2() { return fKinematicFit->chisq(); }
+
+  static void ThrowIfEmpty();
 
 private:
   KinematicFitter() { Initialize(); }
@@ -38,6 +43,19 @@ private:
   static Int_t               fNConstraints;
   static bool                fIsSuccessful;
   static KalmanKinematicFit* fKinematicFit;
+
+  static std::map<std::string, std::vector<Int_t> > fNameToIndex;
+};
+/// @}
+
+/// @addtogroup BOSS_globals
+/// @{
+/// @author Remco de Boer 雷穆克 (remco.de.boer@ihep.ac.cn or r.e.deboer@students.uu.nl)
+/// @date May 17th, 2019
+class NoKinematicFit : public Exception
+{
+public:
+  NoKinematicFit() : Exception("Empty pointer for kinematic fit") {}
 };
 /// @}
 #endif

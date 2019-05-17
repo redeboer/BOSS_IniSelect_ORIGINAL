@@ -215,7 +215,7 @@ void D0omega_K4pi::DoKinematicFitForAllCombinations()
 void D0omega_K4pi::DoVertexFit()
 {
   VertexFitter::Initialize();
-  VertexFitter::AddTracks(fFinalState.GetCandidates());
+  VertexFitter::AddTracks(fFinalState);
   VertexFitter::AddCleanVertex();
   VertexFitter::FitAndSwim();
 }
@@ -224,7 +224,7 @@ void D0omega_K4pi::DoKinematicFit()
 {
   if(!VertexFitter::IsSuccessful()) return;
   KinematicFitter::Initialize();
-  KinematicFitter::AddTracks(fFinalState.GetCandidates());
+  KinematicFitter::AddTracks(fFinalState);
   KinematicFitter::AddConstraintCMS();
   KinematicFitter::AddResonance(Mass::pi0, 0, 1);
   KinematicFitter::Fit();
