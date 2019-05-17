@@ -28,30 +28,4 @@ struct KKFitResult_D0phi_KpiKK : public KKFitResult
   double fP_pip;
 };
 /// @}
-
-void KKFitResult_D0phi_KpiKK::SetValues_impl()
-{
-  CLHEP::HepLorentzVector& Km1 = KinematicFitter::GetTrack("K-", 0);
-  CLHEP::HepLorentzVector& Km2 = KinematicFitter::GetTrack("K-", 1);
-  CLHEP::HepLorentzVector& Kp  = KinematicFitter::GetTrack("K+");
-  CLHEP::HepLorentzVector& pip = KinematicFitter::GetTrack("pi+");
-
-  CLHEP::HepLorentzVector pD0   = Km1 + pip;
-  CLHEP::HepLorentzVector pphi  = Km2 + Kp;
-  CLHEP::HepLorentzVector pJpsi = pD0 + pphi;
-
-  fM_D0   = pD0.m();
-  fM_phi  = pphi.m();
-  fM_Jpsi = pJpsi.m();
-
-  fP_D0  = ThreeMomentum(pD0);
-  fP_phi = ThreeMomentum(pphi);
-  fP_Km1 = ThreeMomentum(Km1);
-  fP_Km2 = ThreeMomentum(Km2);
-  fP_Kp  = ThreeMomentum(Kp);
-  fP_pip = ThreeMomentum(pip);
-
-  fFitMeasure = std::abs(fM_phi - IniSelect:Mass::phi);
-}
-
 #endif

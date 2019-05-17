@@ -33,7 +33,7 @@ public:
 protected:
   const double ThreeMomentum(const HepLorentzVector& vector) const;
 
-  bool IsBetter(const double& value, double& bestvalue) const;
+  bool IsBetter(double value, double& bestvalue) const;
 
   double fFitMeasure;
   ///< Measure that can be used to compare fits. @remark Usage depends completely on your implementation in the derived class.

@@ -447,3 +447,25 @@ void D0phi_3K3pi::SetFitNTuple(KKFitResult* fitresults, NTupleContainer& tuple)
   tuple.GetItem<double>("pphi")  = fit->fP_phi;
   tuple.GetItem<double>("chisq") = fit->fChiSquared;
 }
+
+void KKFitResult_D0phi_3K3pi::SetValues_impl()
+{
+  CLHEP::HepLorentzVector pKaonNeg1 = KinematicFitter::GetTrack("K-", 0);
+  CLHEP::HepLorentzVector pKaonNeg2 = KinematicFitter::GetTrack("K+", 1);
+  CLHEP::HepLorentzVector pKaonPos  = KinematicFitter::GetTrack("K+");
+  CLHEP::HepLorentzVector pPionNeg  = KinematicFitter::GetTrack("pi-");
+  CLHEP::HepLorentzVector pPionPos1 = KinematicFitter::GetTrack("pi+", 0);
+  CLHEP::HepLorentzVector pPionPos2 = KinematicFitter::GetTrack("pi+", 1);
+
+  CLHEP::HepLorentzVector pD0   = pKaonNeg1 + pPionNeg + pPionPos1 + pPionPos2;
+  CLHEP::HepLorentzVector pphi  = pKaonNeg2 + pKaonPos;
+  CLHEP::HepLorentzVector pJpsi = pD0 + pphi;
+
+  fM_D0   = pD0.m();
+  fM_phi  = pphi.m();
+  fM_Jpsi = pJpsi.m();
+  fP_D0   = std::sqrt(pD0.px() * pD0.px() + pD0.py() * pD0.py() + pD0.pz() * pD0.pz());
+  fP_phi  = std::sqrt(pphi.px() * pphi.px() + pphi.py() * pphi.py() + pphi.pz() * pphi.pz());
+
+  fFitMeasure = std::abs(fM_phi - IniSelect:Mass::phi);
+}

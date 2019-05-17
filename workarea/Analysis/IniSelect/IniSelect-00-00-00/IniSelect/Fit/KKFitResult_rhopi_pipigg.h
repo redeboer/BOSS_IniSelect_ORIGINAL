@@ -21,31 +21,4 @@ struct KKFitResult_rhopi_pipigg : public KKFitResult
   double fM_JpsiRhop;
 };
 /// @}
-
-void KKFitResult_rhopi_pipigg::SetValues_impl()
-{
-  CLHEP::HepLorentzVector g1  = KinematicFitter::GetTrack("g", 0);
-  CLHEP::HepLorentzVector g2  = KinematicFitter::GetTrack("g", 1);
-  CLHEP::HepLorentzVector pim = KinematicFitter::GetTrack("pi-");
-  CLHEP::HepLorentzVector pip = KinematicFitter::GetTrack("pi+");
-
-  CLHEP::HepLorentzVector pi0      = g1 + g2;
-  CLHEP::HepLorentzVector rho0     = pim + pip;
-  CLHEP::HepLorentzVector rhom     = pi0 + pim;
-  CLHEP::HepLorentzVector rhop     = pi0 + pip;
-  CLHEP::HepLorentzVector JpsiRho0 = rho0 + pi0;
-  CLHEP::HepLorentzVector JpsiRhom = rhom + pip;
-  CLHEP::HepLorentzVector JpsiRhop = rhop + pim;
-
-  fM_pi0      = pi0.m();
-  fM_rho0     = rho0.m();
-  fM_rhom     = rhom.m();
-  fM_rhop     = rhop.m();
-  fM_JpsiRho0 = JpsiRho0.m();
-  fM_JpsiRhom = JpsiRhom.m();
-  fM_JpsiRhop = JpsiRhop.m();
-
-  fFitMeasure = fChiSquared;
-}
-
 #endif

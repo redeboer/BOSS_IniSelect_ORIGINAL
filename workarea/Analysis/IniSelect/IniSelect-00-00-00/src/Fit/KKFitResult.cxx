@@ -4,25 +4,24 @@ using CLHEP::HepLorentzVector;
 
 double KKFitResult::fBestCompareValue = DBL_MAX;
 
-/// Constructor that immediately instantiates all its members from a `KalmanKinematic` fit result.
 KKFitResult::KKFitResult() :
   fChiSquared(DBL_MAX),
   fFitMeasure(DBL_MAX),
   fHasResults(false)
 {
   KinematicFitter::ThrowIfEmpty();
-  SetValues();
-  fChiSquared = KinematicFitter::GetFit()->chisq();
+  fHasResults = false;
 }
 
 void KKFitResult::SetValues()
 {
   SetValues_impl();
+  fChiSquared = KinematicFitter::GetFit()->chisq();
   fHasResults = true;
 }
 
 /// Comparison method.
-bool KKFitResult::IsBetter(const double& value, double& bestvalue) const
+bool KKFitResult::IsBetter(double value, double& bestvalue) const
 {
   KinematicFitter::ThrowIfEmpty();
   if(value > bestvalue) return false;

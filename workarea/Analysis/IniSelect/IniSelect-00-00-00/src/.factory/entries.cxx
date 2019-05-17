@@ -1,18 +1,18 @@
 #include "GaudiKernel/DeclareFactoryEntries.h"
 #include "IniSelect/Algorithms/D0omega_K4pi.h"
 
+DECLARE_ALGORITHM_FACTORY(D0omega_K4pi)
+DECLARE_FACTORY_ENTRIES(D0omega_K4pi)
+{
+  DECLARE_ALGORITHM(D0omega_K4pi);
+}
+
 #include "IniSelect/UnitTests/Test_AlgSvc.h"
 #include "IniSelect/UnitTests/Test_CandidateSelection.h"
 #include "IniSelect/UnitTests/Test_CandidateTracks.h"
 #include "IniSelect/UnitTests/Test_CombinationShuffler.h"
 #include "IniSelect/UnitTests/Test_DstFile.h"
 #include "IniSelect/UnitTests/Test_ParticleDatabase.h"
-
-DECLARE_ALGORITHM_FACTORY(D0omega_K4pi)
-DECLARE_FACTORY_ENTRIES(D0omega_K4pi)
-{
-  DECLARE_ALGORITHM(D0omega_K4pi);
-}
 
 DECLARE_ALGORITHM_FACTORY(Test_AlgSvc)
 DECLARE_FACTORY_ENTRIES(Test_AlgSvc)
