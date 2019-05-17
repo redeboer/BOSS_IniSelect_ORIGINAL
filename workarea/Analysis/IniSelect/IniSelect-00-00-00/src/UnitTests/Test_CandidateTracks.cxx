@@ -61,11 +61,6 @@ void Test_CandidateTracks::TestInitialize()
   /// * Test `CandidateTracks::Clear`
   fSetObject.Clear();
   REQUIRE(fSetObject.FailsMultiplicityCut() == true);
-
-  /// * Test size of `CandidateTracks::GetTracks`
-  REQUIRE(fSetObject.GetTracks().size() == 0);
-  AddDummyTracks(fSetObject, 2);
-  REQUIRE(fSetObject.GetTracks().size() == 2);
 }
 
 void Test_CandidateTracks::TestExecute()
