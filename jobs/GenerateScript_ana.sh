@@ -10,14 +10,15 @@
 # *         USAGE: bash ExampleScript_CreateDataJoboptions.sh
 # * ===============================================================================
 
-source CommonFunctions.sh
+source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
+source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * Input parameters * #
 	# * (1) Package name
-	packageName="D0phi_KpiKK" # default argument
+	packageName="RhopiAlg" # default argument
 	if [ $# -ge 1 ]; then packageName="${1}"; fi
 	# * (2) Input files that will be used to create the list of dst files
-	data_or_MC="data" # default argument
+	data_or_MC="excl" # default argument
 	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
 
 # * Default parameters * #
@@ -61,6 +62,7 @@ if [ "${fileToRead}" != "" ]; then
 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 else
 	# * This will create your job files based on a directory containing dst files
+echo $directoryToRead
 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 fi

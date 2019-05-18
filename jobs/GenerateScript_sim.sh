@@ -10,7 +10,8 @@
 # *         USAGE: bash ExampleScript_CreateDataJoboptions.sh
 # * ===============================================================================
 
-source CommonFunctions.sh
+source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
+source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * Scripts parameters * #
 packageName="D0phi_KpiKK"

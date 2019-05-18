@@ -7,3 +7,4 @@ source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/IniSelect/IniSelect-00-00-00/cm
 source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
 source "${BOSSWORKAREA}/${WORKAREANAME}/TestRelease/TestRelease-00-00-00/cmt/setup.sh"
 source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00/cmt/setup.sh"
+source "${BOSSWORKAREA}/${WORKAREANAME}/Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00/cmt/setup.sh"

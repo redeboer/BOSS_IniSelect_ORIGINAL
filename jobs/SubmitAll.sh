@@ -8,18 +8,6 @@
 # *     ARGUMENTS: $1 analysis name (e.g. "RhopiAlg")
 # * ===============================================================================
 
-# * ===================================================== * #
-# * ------- Attempt to load script with functions ------- * #
-# * ===================================================== * #
-
-	commonFunctionsScriptName="CommonFunctions.sh"
-	if [ -s "${commonFunctionsScriptName}" ]; then
-		source "${commonFunctionsScriptName}"
-	else
-		PrintErrorMessage "ERROR: Source script \"${commonFunctionsScriptName}\" does not exist"
-		exit
-	fi
-
 
 
 # ! ================================= ! #

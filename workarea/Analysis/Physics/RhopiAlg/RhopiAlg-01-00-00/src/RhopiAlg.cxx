@@ -490,7 +490,6 @@ StatusCode RhopiAlg::execute()
   int                              runNo = eventHeader->runNumber();
   int                              evtNo = eventHeader->eventNumber();
   log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
-  cout << "event number: " << evtNo << endl;
   Ncut0++; // counter for all events
 
   // * Load event information and track collection *

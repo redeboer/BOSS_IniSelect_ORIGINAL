@@ -15,16 +15,8 @@
 
 set -e # exit if a command or function exits with a non-zero status
 
-# * ===================================================== * #
-# * ------- Attempt to load script with functions ------- * #
-# * ===================================================== * #
-	commonFunctionsScriptName="CommonFunctions.sh"
-	if [ -s "${commonFunctionsScriptName}" ]; then
-		source "${commonFunctionsScriptName}"
-	else
-		echo -e "\e[91mFATAL ERROR: Source script \"${commonFunctionsScriptName}\" does not exist\e[0m"
-		exit
-	fi
+source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
+source "${BOSS_IniSelect}/setup/Functions.sh"
 
 
 # ! ================================ ! #
