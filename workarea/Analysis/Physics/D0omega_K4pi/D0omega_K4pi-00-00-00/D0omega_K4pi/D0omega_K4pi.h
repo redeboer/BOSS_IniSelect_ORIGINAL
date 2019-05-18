@@ -19,7 +19,7 @@
 /// @remark   In addition to the more extensive comments, some additional parameters, such as ToF
 /// without particle hypothesis, have been added.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
-/// @date     December 14th, 2018
+/// @date     May 18th, 2018
 class D0omega_K4pi : public Algorithm
 {
 public:
@@ -39,8 +39,7 @@ private:
   // ! ================================= ! //
   // ! ------- DECLARE CUTS HERE ------- ! //
   // ! ================================= ! //
-  /// @name Cut parameters. Here, you can define data members that you use to define cuts. The
-  /// values for these cuts should be set in the D0omega_K4pi::D0omega_K4pi constructor (see cxx file).
+  /// @name Cut parameters. Here, you can define data members that you use to define cuts. The values for these cuts should be set in the D0omega_K4pi::D0omega_K4pi constructor (see cxx file).
   ///@{
   // * Declare r0, z0 cut for charged tracks
   double fVr0cut;
@@ -63,22 +62,19 @@ private:
   double fMaxChiSq;
 
   // * Declare whether or not to check success of Particle Identification
+  bool fCheckVertex;
+  bool fCheckPhoton;
   bool fCheckDedx;
   bool fCheckTof;
+  bool fCheckPID;
+  bool fCheckEtot;
 
   ///@}
 
   // ! ==================================== ! //
   // ! ------- DECLARE NTUPLES HERE ------- ! //
   // ! ==================================== ! //
-  /// @name NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members
-  /// do not necessarily have to be of the same type. In this package, the NTuples are used to store
-  /// event-by-event information. Its values are then written to the output ROOT file, creating a
-  /// ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file,
-  /// and each NTuple::Item represents its leaves. The name of the leaves is determined when calling
-  /// NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the
-  /// D0omega_K4pi::initialize() step. This is also the place where you name these variables, so make
-  /// sure that the structure here is reflected there!
+  /// @name NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the D0omega_K4pi::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
   ///@{
   NTuple::Tuple*       fTupleVxyz; ///< Vertex information of the charged tracks
   NTuple::Item<double> fVx0;       ///< Primary \f$x\f$-vertex as determined by MDC
@@ -89,11 +85,11 @@ private:
   NTuple::Item<double> fRvz0;      ///< Nearest distance to IP in \f$z\f$ direction
   NTuple::Item<double> fRvphi0;    ///< Angle in the \f$xy\f$-plane (?)
 
-  NTuple::Tuple* fTupleAngles; ///< Photon kinematics
-  NTuple::Item<double>
-    fDeltaTheta; ///< \f$\theta\f$ angle difference with nearest charged track (degrees)
-  NTuple::Item<double>
-                       fDeltaPhi; ///< \f$\phi\f$ angle difference with nearest charged track (degrees)
+  NTuple::Tuple*       fTupleAngles; ///< Photon kinematics
+  NTuple::Item<double> fDeltaTheta;
+  ///< \f$\theta\f$ angle difference with nearest charged track (degrees)
+  NTuple::Item<double> fDeltaPhi;
+  ///< \f$\phi\f$ angle difference with nearest charged track (degrees)
   NTuple::Item<double> fDeltaAngle; ///< Angle difference with nearest charged track
   NTuple::Item<double> fEraw;       ///< Energy of the photon
 

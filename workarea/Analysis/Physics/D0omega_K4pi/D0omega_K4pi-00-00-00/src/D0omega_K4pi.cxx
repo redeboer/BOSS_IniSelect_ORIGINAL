@@ -50,7 +50,6 @@ const double xmass[5] = {
   0.493677, // charged kaon
   0.938272  // proton
 };
-const double velc_cm = 29.9792458; // tof_path unit in cm.
 const double velc_mm = 299.792458; // tof path unit in mm
 const double Ecms    = 3.097;      // center-of-mass energy
 
@@ -72,9 +71,9 @@ int Ncut6; // "geff" branch
 // * =========================== * //
 /// Constructor for the `D0omega_K4pi` algorithm.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `D0omega_K4pi`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0omega_K4pi/D0omega_K4pi.h) and that you should assign the values in `share/jopOptions_D0omega_K4pi.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) : Algorithm(name, pSvcLocator)
+D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
+  Algorithm(name, pSvcLocator)
 {
-
   // * Define r0, z0 cut for charged tracks *
   declareProperty("Vr0cut", fVr0cut);
   declareProperty("Vz0cut", fVz0cut);
@@ -96,8 +95,12 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) : 
   declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
 
   // * Whether or not to check success of Particle Identification *
+  declareProperty("CheckVertex", fCheckVertex);
+  declareProperty("CheckPhoton", fCheckPhoton);
   declareProperty("CheckDedx", fCheckDedx);
   declareProperty("CheckTof", fCheckTof);
+  declareProperty("CheckPID", fCheckPID);
+  declareProperty("CheckEtot", fCheckEtot);
 }
 
 // * ========================== * //
@@ -112,58 +115,64 @@ StatusCode D0omega_K4pi::initialize()
 
   /// <table>
   /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged tracks**</td></tr>
-  NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
-  if(nt1)
-    fTupleVxyz = nt1;
-  else
+  if(fCheckVertex)
   {
-    fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
-    if(fTupleVxyz)
-    {
-      fTupleVxyz->addItem("vx0", fVx0);
-      /// <tr><td>`"vx0"`   </td><td>Primary \f$x\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem("vy0", fVy0);
-      /// <tr><td>`"vy0"`   </td><td>Primary \f$y\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem("vz0", fVz0);
-      /// <tr><td>`"vz0"`   </td><td>Primary \f$z\f$-vertex as determined by MDC</td></tr>
-      fTupleVxyz->addItem("vr0", fVr0);
-      /// <tr><td>`"vr0"`   </td><td>Distance from origin in \f$xy\f$-plane</td></tr>
-      fTupleVxyz->addItem("rvxy0", fRvxy0);
-      /// <tr><td>`"rvxy0"` </td><td>Nearest distance to IP in \f$xy\f$ plane</td></tr>
-      fTupleVxyz->addItem("rvz0", fRvz0);
-      /// <tr><td>`"rvz0"`  </td><td>Nearest distance to IP in \f$z\f$ direction</td></tr>
-      fTupleVxyz->addItem("rvphi0", fRvphi0);
-      /// <tr><td>`"rvphi0"`</td><td>Angle in the \f$xy\f$-plane (?)</td></tr>
-    }
+    NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
+    if(nt1)
+      fTupleVxyz = nt1;
     else
     {
-      log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
-      return StatusCode::FAILURE;
+      fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
+      if(fTupleVxyz)
+      {
+        fTupleVxyz->addItem("vx0", fVx0);
+        /// <tr><td>`"vx0"`   </td><td>Primary \f$x\f$-vertex as determined by MDC</td></tr>
+        fTupleVxyz->addItem("vy0", fVy0);
+        /// <tr><td>`"vy0"`   </td><td>Primary \f$y\f$-vertex as determined by MDC</td></tr>
+        fTupleVxyz->addItem("vz0", fVz0);
+        /// <tr><td>`"vz0"`   </td><td>Primary \f$z\f$-vertex as determined by MDC</td></tr>
+        fTupleVxyz->addItem("vr0", fVr0);
+        /// <tr><td>`"vr0"`   </td><td>Distance from origin in \f$xy\f$-plane</td></tr>
+        fTupleVxyz->addItem("rvxy0", fRvxy0);
+        /// <tr><td>`"rvxy0"` </td><td>Nearest distance to IP in \f$xy\f$ plane</td></tr>
+        fTupleVxyz->addItem("rvz0", fRvz0);
+        /// <tr><td>`"rvz0"`  </td><td>Nearest distance to IP in \f$z\f$ direction</td></tr>
+        fTupleVxyz->addItem("rvphi0", fRvphi0);
+        /// <tr><td>`"rvphi0"`</td><td>Angle in the \f$xy\f$-plane (?)</td></tr>
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleVxyz) << endmsg;
+        return StatusCode::FAILURE;
+      }
     }
   }
 
   /// <tr><td colspan="2">**`NTuple "photon"`: Photon kinematics**</td></tr>
-  NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
-  if(nt2)
-    fTupleAngles = nt2;
-  else
+  if(fCheckVertex)
   {
-    fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
-    if(fTupleAngles)
-    {
-      fTupleAngles->addItem("dthe", fDeltaTheta);
-      /// <tr><td>`"dthe"`</td><td>\f$\theta\f$ angle difference with nearest charged track (degrees)</td></tr>
-      fTupleAngles->addItem("dphi", fDeltaPhi);
-      /// <tr><td>`"dphi"`</td><td>\f$\phi\f$ angle difference with nearest charged track (degrees)</td></tr>
-      fTupleAngles->addItem("dang", fDeltaAngle);
-      /// <tr><td>`"dang"`</td><td>Angle difference with nearest charged track</td></tr>
-      fTupleAngles->addItem("eraw", fEraw);
-      /// <tr><td>`"eraw"`</td><td>Energy of the photon</td></tr>
-    }
+    NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
+    if(nt2)
+      fTupleAngles = nt2;
     else
     {
-      log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleAngles) << endmsg;
-      return StatusCode::FAILURE;
+      fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
+      if(fTupleAngles)
+      {
+        fTupleAngles->addItem("dthe", fDeltaTheta);
+        /// <tr><td>`"dthe"`</td><td>\f$\theta\f$ angle difference with nearest charged track (degrees)</td></tr>
+        fTupleAngles->addItem("dphi", fDeltaPhi);
+        /// <tr><td>`"dphi"`</td><td>\f$\phi\f$ angle difference with nearest charged track (degrees)</td></tr>
+        fTupleAngles->addItem("dang", fDeltaAngle);
+        /// <tr><td>`"dang"`</td><td>Angle difference with nearest charged track</td></tr>
+        fTupleAngles->addItem("eraw", fEraw);
+        /// <tr><td>`"eraw"`</td><td>Energy of the photon</td></tr>
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleAngles) << endmsg;
+        return StatusCode::FAILURE;
+      }
     }
   }
 
@@ -559,14 +568,17 @@ StatusCode D0omega_K4pi::execute()
     double    Rvphi0 = vecipa[1];
 
     // * WRITE primary vertex position info ("vxyz" branch) *
-    fVx0    = x0;        // primary x-vertex as determined by MDC
-    fVy0    = y0;        // primary y-vertex as determined by MDC
-    fVz0    = z0;        // primary z-vertex as determined by MDC
-    fVr0    = Rxy;       // distance from origin in xy-plane
-    fRvxy0  = Rvxy0;     // nearest distance to IP in xy plane
-    fRvz0   = Rvz0;      // nearest distance to IP in z direction
-    fRvphi0 = Rvphi0;    // angle in the xy-plane (?)
-    fTupleVxyz->write(); // "vxyz" branch
+    if(fCheckVertex)
+    {
+      fVx0    = x0;        // primary x-vertex as determined by MDC
+      fVy0    = y0;        // primary y-vertex as determined by MDC
+      fVz0    = z0;        // primary z-vertex as determined by MDC
+      fVr0    = Rxy;       // distance from origin in xy-plane
+      fRvxy0  = Rvxy0;     // nearest distance to IP in xy plane
+      fRvz0   = Rvz0;      // nearest distance to IP in z direction
+      fRvphi0 = Rvphi0;    // angle in the xy-plane (?)
+      fTupleVxyz->write(); // "vxyz" branch
+    }
 
     // * Apply vertex cuts *
     if(fabs(z0) >= fVz0cut) continue;
@@ -631,11 +643,14 @@ StatusCode D0omega_K4pi::execute()
     dang        = dang * 180 / (CLHEP::pi);
 
     // * WRITE photon info ("photon" branch)
-    fDeltaTheta = dthe;    // theta difference with nearest charged track (degrees)
-    fDeltaPhi   = dphi;    // phi difference with nearest charged track (degrees)
-    fDeltaAngle = dang;    // angle difference with nearest charged track
-    fEraw       = eraw;    // energy of the photon
-    fTupleAngles->write(); // "photon" branch
+    if(fCheckPhoton)
+    {
+      fDeltaTheta = dthe;    // theta difference with nearest charged track (degrees)
+      fDeltaPhi   = dphi;    // phi difference with nearest charged track (degrees)
+      fDeltaAngle = dang;    // angle difference with nearest charged track
+      fEraw       = eraw;    // energy of the photon
+      fTupleAngles->write(); // "photon" branch
+    }
 
     // * Apply photon cuts
     if(eraw < fEnergyThreshold) continue;
@@ -856,18 +871,21 @@ StatusCode D0omega_K4pi::execute()
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
 
     // * WRITE particle identification info ("pid" branch) *
-    fPtrackPID = mdcTrk->p();          // momentum of the track
-    fCostPID   = cos(mdcTrk->theta()); // theta angle of the track
-    fDedxPID   = pid->chiDedx(2);      // Chi squared of the dedx of the track
-    fTof1PID   = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
-    fTof2PID   = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
-    fProbPID   = pid->probPion();      // probability that it is a pion
-    fTuplePID->write();                // "pid" branch
+    if(fCheckPID)
+    {
+      fPtrackPID = mdcTrk->p();          // momentum of the track
+      fCostPID   = cos(mdcTrk->theta()); // theta angle of the track
+      fDedxPID   = pid->chiDedx(2);      // Chi squared of the dedx of the track
+      fTof1PID   = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
+      fTof2PID   = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
+      fProbPID   = pid->probPion();      // probability that it is a pion
+      fTuplePID->write();                // "pid" branch
+    }
 
     if(pid->probPion() < 0.001 || (pid->probPion() < pid->probKaon())) continue;
     if(pid->probPion() < 0.001) continue;
-    if(pid->pdf(2) < pid->pdf(3))
-      continue; // for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
+    if(pid->pdf(2) < pid->pdf(3)) continue;
+    // for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
 
     RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
     // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
@@ -903,30 +921,30 @@ StatusCode D0omega_K4pi::execute()
   /// <li> D0omega_K4pi without PID (*optional: needs to be uncommented*)
   // for(int i = 0; i < nGood; ++i)
   // {
-  //   EvtRecTrackIterator itTrk  = evtRecTrkCol->begin() + iGood[i];
-  //   RecMdcTrack*        mdcTrk = (*itTrk)->mdcTrack();
-  //   if(mdcTrk->charge() > 0)
-  //   {
-  //     ipip.push_back(iGood[i]);
-  //     HepLorentzVector ptrk;
-  //     ptrk.setPx(mdcTrk->px());
-  //     ptrk.setPy(mdcTrk->py());
-  //     ptrk.setPz(mdcTrk->pz());
-  //     double p3 = ptrk.mag();
-  //     ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-  //     ppip.push_back(ptrk);
-  //   }
-  //   else
-  //   {
-  //     ipim.push_back(iGood[i]);
-  //     HepLorentzVector ptrk;
-  //     ptrk.setPx(mdcTrk->px());
-  //     ptrk.setPy(mdcTrk->py());
-  //     ptrk.setPz(mdcTrk->pz());
-  //     double p3 = ptrk.mag();
-  //     ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-  //     ppim.push_back(ptrk);
-  //   }
+  // EvtRecTrackIterator itTrk  = evtRecTrkCol->begin() + iGood[i];
+  // RecMdcTrack*        mdcTrk = (*itTrk)->mdcTrack();
+  // if(mdcTrk->charge() > 0)
+  // {
+  // ipip.push_back(iGood[i]);
+  // HepLorentzVector ptrk;
+  // ptrk.setPx(mdcTrk->px());
+  // ptrk.setPy(mdcTrk->py());
+  // ptrk.setPz(mdcTrk->pz());
+  // double p3 = ptrk.mag();
+  // ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
+  // ppip.push_back(ptrk);
+  // }
+  // else
+  // {
+  // ipim.push_back(iGood[i]);
+  // HepLorentzVector ptrk;
+  // ptrk.setPx(mdcTrk->px());
+  // ptrk.setPy(mdcTrk->py());
+  // ptrk.setPz(mdcTrk->pz());
+  // double p3 = ptrk.mag();
+  // ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
+  // ppim.push_back(ptrk);
+  // }
   // } // without PID
 
   /// ** Uses `Ncut3` counter**: `ipip.size()` * `ipim.size()` cannot be `1`.
@@ -936,19 +954,22 @@ StatusCode D0omega_K4pi::execute()
   Ncut3++; // ipip.size() * ipim.size() cannot be 1
 
   /// <li> Loop over each gamma pair and store total energy
-  HepLorentzVector pTot;
-  for(int i = 0; i < nGam - 1; ++i)
+  if(fCheckEtot)
   {
-    for(int j = i + 1; j < nGam; j++)
+    HepLorentzVector pTot;
+    for(int i = 0; i < nGam - 1; ++i)
     {
-      HepLorentzVector p2g = pGam[i] + pGam[j];
-      pTot                 = ppip[0] + ppim[0];
-      pTot += p2g;
+      for(int j = i + 1; j < nGam; j++)
+      {
+        HepLorentzVector p2g = pGam[i] + pGam[j];
+        pTot                 = ppip[0] + ppim[0];
+        pTot += p2g;
 
-      // * WRITE total energy and pi^0 candidate inv. mass ("etot" branch) *
-      fMtoGG = p2g.m();   // invariant mass of the two gammas
-      fEtot  = pTot.e();  // total energy of pi^+, pi^ and the two gammas
-      fTupleMgg->write(); // "etot" branch
+        // * WRITE total energy and pi^0 candidate inv. mass ("etot" branch) *
+        fMtoGG = p2g.m();   // invariant mass of the two gammas
+        fEtot  = pTot.e();  // total energy of pi^+, pi^ and the two gammas
+        fTupleMgg->write(); // "etot" branch
+      }
     }
   }
 
