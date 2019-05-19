@@ -258,6 +258,12 @@ StatusCode D0omega_K4pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit4C->addItem("momega", fMomega_4C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("ppi0", fPpi0_4C);
+        /// <tr><td>`"mpi0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("pD0", fPD0_4C);
+        /// <tr><td>`"mD0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("pomega", fPomega_4C);
+        /// <tr><td>`"momega"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
       }
       else
       {
@@ -286,6 +292,12 @@ StatusCode D0omega_K4pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("momega", fMomega_5C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("ppi0", fPpi0_5C);
+        /// <tr><td>`"mpi0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("pD0", fPD0_5C);
+        /// <tr><td>`"mD0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("pomega", fPomega_5C);
+        /// <tr><td>`"momega"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("fcos", fFcos);
         /// <tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate</td></tr>
         fTupleFit5C->addItem("elow", fElow);
@@ -691,7 +703,7 @@ StatusCode D0omega_K4pi::execute()
 
   // * Finish Good Photon Selection *
   int nGam = iGam.size();
-  log << MSG::DEBUG << "Number of good photons: " << nGam << " , " << evtRecEvent->totalNeutral()
+  log << MSG::DEBUG << "Number of good photons: " << nGam << "/" << evtRecEvent->totalNeutral()
       << endmsg;
   if(nGam < 2) { return StatusCode::SUCCESS; }
   Ncut2++; // number of photons < 2
@@ -1067,7 +1079,7 @@ StatusCode D0omega_K4pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << chisq << endmsg;
+    log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
 
     /// ** Uses `Ncut4` counter**: fit4c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)
@@ -1103,7 +1115,6 @@ StatusCode D0omega_K4pi::execute()
       Ncut4++;              // ChiSq has to be less than 200 and fit4c has to be passed
     }
   }
-
   /// <li> Apply Kalman kinematic fit
   /// ** Uses `Ncut5` counter**: Kalman kinematic fit 5c is successful.
   if(fDo_fit5c)
@@ -1145,7 +1156,7 @@ StatusCode D0omega_K4pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << chisq << endmsg;
+    log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
 
     /// ** Uses `Ncut5` counter**: fit5c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)
