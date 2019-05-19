@@ -43,20 +43,17 @@ StatusCode MctruthForTopoAna::initialize()
     if(m_tuple)
     {
       /// <ul>
-      m_tuple->addItem("Ievt",
-                       m_ievt); /// <li> `"Ievt"`: @b counter for number of events (not the ID!).
+      m_tuple->addItem("Ievt", m_ievt);
+      /// <li> `"Ievt"`: @b counter for number of events (not the ID!).
       m_tuple->addItem("Runid", m_runid); /// <li> `"Runid"`: run number ID.
       m_tuple->addItem("Evtid", m_evtid); /// <li> `"Evtid"`: event number ID.
-      m_tuple->addItem(
-        "Nmcps", m_nmcps, 0,
-        100); /// <li> `"Nmcps"`: number of MC particles stored for this event. This one is
-              /// necessary for loading following two items, because they are arrays.
-      m_tuple->addIndexedItem(
-        "Pid", m_nmcps, m_pid); /// <li> `"Pid"` (array): PDG code for the particle in this array.
-      m_tuple->addIndexedItem("Midx", m_nmcps,
-                              m_midx); /// <li> `"Midx"` (array): track index of the mother particle
-                                       /// (corrected with `rootIndex`).
-                                       /// </ul>
+      m_tuple->addItem("Nmcps", m_nmcps, 0, 100);
+      /// <li> `"Nmcps"`: number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
+      m_tuple->addIndexedItem("Pid", m_nmcps, m_pid);
+      /// <li> `"Pid"` (array): PDG code for the particle in this array.
+      m_tuple->addIndexedItem("Midx", m_nmcps, m_midx);
+      /// <li> `"Midx"` (array): track index of the mother particle (corrected with `rootIndex`).
+      /// </ul>
     }
     else
     {

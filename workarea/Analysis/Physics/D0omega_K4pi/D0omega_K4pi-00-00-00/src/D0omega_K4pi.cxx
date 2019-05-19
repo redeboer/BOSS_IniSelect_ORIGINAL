@@ -22,6 +22,7 @@
 #include "GaudiKernel/NTuple.h"
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
+#include "McTruth/McParticle.h"
 #include "ParticleID/ParticleID.h"
 #include "TMath.h"
 #include "VertexFit/Helix.h"
@@ -67,6 +68,10 @@ const double DegToRad = 180. / (CLHEP::pi);
 const double fivepi   = CLHEP::twopi + CLHEP::twopi + pi;
 
 HepLorentzVector ecms(0.034, 0, 0, Ecms);
+
+const int incPid1 = 91;
+const int incPid2 = 92;
+const int incPid  = 443;
 
 // * Typedefs * //
 typedef vector<int>              Vint;
@@ -134,6 +139,7 @@ D0omega_K4pi::D0omega_K4pi(const string& name, ISvcLocator* pSvcLocator) :
   declareProperty("MinPID", fMinPID);     // PID probability should be at least this value
 
   // * Whether or not to check success of Particle Identification *
+  declareProperty("CheckMCtruth", fCheckMC);
   declareProperty("CheckVertex", fCheckVertex);
   declareProperty("CheckPhoton", fCheckPhoton);
   declareProperty("CheckDedx", fCheckDedx);
@@ -156,9 +162,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "vxyz"`:   Vertex information of the charged tracks**</td></tr>
   if(fCheckVertex)
   {
-    NTuplePtr nt1(ntupleSvc(), "FILE1/vxyz");
-    if(nt1)
-      fTupleVxyz = nt1;
+    NTuplePtr nt(ntupleSvc(), "FILE1/vxyz");
+    if(nt)
+      fTupleVxyz = nt;
     else
     {
       fTupleVxyz = ntupleSvc()->book("FILE1/vxyz", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -190,9 +196,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "photon"`: Photon kinematics**</td></tr>
   if(fCheckVertex)
   {
-    NTuplePtr nt2(ntupleSvc(), "FILE1/photon");
-    if(nt2)
-      fTupleAngles = nt2;
+    NTuplePtr nt(ntupleSvc(), "FILE1/photon");
+    if(nt)
+      fTupleAngles = nt;
     else
     {
       fTupleAngles = ntupleSvc()->book("FILE1/photon", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -218,9 +224,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "etot"`: Energy branch**</td></tr>
   if(fCheckEtot)
   {
-    NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
-    if(nt3)
-      fTupleMgg = nt3;
+    NTuplePtr nt(ntupleSvc(), "FILE1/etot");
+    if(nt)
+      fTupleMgg = nt;
     else
     {
       fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -242,9 +248,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "fit4c"`:  4-constraint fit branch**</td></tr>
   if(fDo_fit4c)
   {
-    NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
-    if(nt4)
-      fTupleFit4C = nt4;
+    NTuplePtr nt(ntupleSvc(), "FILE1/fit4c");
+    if(nt)
+      fTupleFit4C = nt;
     else
     {
       fTupleFit4C = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -276,9 +282,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "fit5c"`:  5-constraint fit branch**</td></tr>
   if(fDo_fit5c)
   {
-    NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
-    if(nt5)
-      fTupleFit5C = nt5;
+    NTuplePtr nt(ntupleSvc(), "FILE1/fit5c");
+    if(nt)
+      fTupleFit5C = nt;
     else
     {
       fTupleFit5C = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -314,9 +320,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "dedx"`:   Import dE/dx PID branch**</td></tr>
   if(fCheckDedx)
   {
-    NTuplePtr nt7(ntupleSvc(), "FILE1/dedx");
-    if(nt7)
-      fTupleDedx = nt7;
+    NTuplePtr nt(ntupleSvc(), "FILE1/dedx");
+    if(nt)
+      fTupleDedx = nt;
     else
     {
       fTupleDedx = ntupleSvc()->book("FILE1/dedx", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -354,9 +360,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "tofe"`:   ToF endcap branch**</td></tr>
   if(fCheckTof)
   {
-    NTuplePtr nt8(ntupleSvc(), "FILE1/tofe");
-    if(nt8)
-      fTupleTofEC = nt8;
+    NTuplePtr nt(ntupleSvc(), "FILE1/tofe");
+    if(nt)
+      fTupleTofEC = nt;
     else
     {
       fTupleTofEC = ntupleSvc()->book("FILE1/tofe", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -398,9 +404,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "tof1"`:   ToF *inner* barrel branch**</td></tr>
   if(fCheckTof)
   {
-    NTuplePtr nt9(ntupleSvc(), "FILE1/tof1");
-    if(nt9)
-      TupleTofIB = nt9;
+    NTuplePtr nt(ntupleSvc(), "FILE1/tof1");
+    if(nt)
+      TupleTofIB = nt;
     else
     {
       TupleTofIB = ntupleSvc()->book("FILE1/tof1", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -442,9 +448,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "tof2"`:   ToF *outer* barrel branch**</td></tr>
   if(fCheckTof)
   {
-    NTuplePtr nt10(ntupleSvc(), "FILE1/tof2");
-    if(nt10)
-      TupleTofOB = nt10;
+    NTuplePtr nt(ntupleSvc(), "FILE1/tof2");
+    if(nt)
+      TupleTofOB = nt;
     else
     {
       TupleTofOB = ntupleSvc()->book("FILE1/tof2", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -486,9 +492,9 @@ StatusCode D0omega_K4pi::initialize()
   /// <tr><td colspan="2">**`NTuple "pid"`:    Track PID information**</td></tr>
   if(fCheckPID)
   {
-    NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
-    if(nt11)
-      fTuplePID = nt11;
+    NTuplePtr nt(ntupleSvc(), "FILE1/pid");
+    if(nt)
+      fTuplePID = nt;
     else
     {
       fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
@@ -512,6 +518,37 @@ StatusCode D0omega_K4pi::initialize()
       else
       {
         log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePID) << endmsg;
+        return StatusCode::FAILURE;
+      }
+    }
+  }
+
+  /// <tr><td colspan="2">**`NTuple "topology"`: Monte Carlo truth for TopoAna package**</td></tr>
+  if(fCheckMC)
+  {
+    NTuplePtr nt(ntupleSvc(), "FILE1/topology");
+    if(nt)
+      fTupleMC = nt;
+    else
+    {
+      fTupleMC = ntupleSvc()->book("FILE1/topology", CLID_ColumnWiseTuple,
+                                   "Monte Carlo truth for TopoAna package");
+      if(fTupleMC)
+      {
+        fTupleMC->addItem("run number", fRunid);
+        /// <tr><td>`"Runid"`</td><td>run number ID</td></tr>
+        fTupleMC->addItem("event number", fEvtid);
+        /// <tr><td>`"Evtid"`</td><td>event number ID</td></tr>
+        fTupleMC->addItem("Nparticles", fNparticles, 0, 100);
+        /// <tr><td>`"Nparticles"`</td><td>number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays</td></tr>
+        fTupleMC->addIndexedItem("PDG", fNparticles, fPDG);
+        /// <tr><td>`"PDG"` (array)</td><td>PDG code for the particle in this array</td></tr>
+        fTupleMC->addIndexedItem("mother", fNparticles, fMother);
+        /// <tr><td>`"mother"` (array)</td><td>track index of the mother particle (corrected with `rootIndex`)</td></tr>
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleMC) << endmsg;
         return StatusCode::FAILURE;
       }
     }
@@ -1041,6 +1078,45 @@ StatusCode D0omega_K4pi::execute()
   WTrackParameter wpip2 = vtxfit->wtrk(3);
 
   KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
+
+  /// <li> Get MC truth
+  if(fCheckMC && eventHeader->runNumber() < 0)
+  {
+    fRunid = eventHeader->runNumber();
+    fEvtid = eventHeader->eventNumber();
+    SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
+    if(!mcParticleCol)
+      std::cout << "Could not retrieve McParticelCol" << std::endl;
+    else
+    {
+      fNparticles = 0;
+      bool doNotInclude(true);
+      int  indexOffset = -1;
+      bool incPdcy(false);
+      int  rootIndex(-1);
+
+      Event::McParticleCol::iterator it = mcParticleCol->begin();
+      for(; it != mcParticleCol->end(); it++)
+      {
+        if((*it)->primaryParticle()) continue;
+        if(!(*it)->decayFromGenerator()) continue;
+        if((*it)->particleProperty() == incPid)
+        {
+          incPdcy   = true;
+          rootIndex = (*it)->trackIndex();
+        }
+        if(!incPdcy) continue;
+        fPDG[fNparticles] = (*it)->particleProperty();
+        if((*it)->mother().particleProperty() == incPid)
+          fMother[fNparticles] = (*it)->mother().trackIndex() - rootIndex;
+        else
+          fMother[fNparticles] = (*it)->mother().trackIndex() - rootIndex - 1;
+        if((*it)->particleProperty() == incPid) fMother[fNparticles] = 0;
+        fNparticles++;
+      }
+      fTupleMC->write();
+    }
+  }
 
   /// <li> Apply Kalman 4-constrain kinematic fit
   if(fDo_fit4c)

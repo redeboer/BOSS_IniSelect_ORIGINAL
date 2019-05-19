@@ -31,9 +31,8 @@ private:
   NTuple::Item<int> m_ievt;  ///< @b Counter for number of events (not the ID!)
   NTuple::Item<int> m_runid; ///< Run number ID.
   NTuple::Item<int> m_evtid; ///< Rvent number ID.
-  NTuple::Item<int>
-    m_nmcps; ///< Number of MC particles stored for this event. This one is necessary for loading
-             ///< following two items, because they are arrays.
+  NTuple::Item<int> m_nmcps;
+  ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
   NTuple::Array<int> m_pid;  ///< PDG code for the particle in this array.
   NTuple::Array<int> m_midx; ///< Track index of the mother particle.
 };

@@ -60,6 +60,7 @@ private:
   double fMinPID;
 
   // * Declare whether or not to check success of Particle Identification
+  bool fCheckMC;
   bool fCheckVertex;
   bool fCheckPhoton;
   bool fCheckDedx;
@@ -112,8 +113,8 @@ private:
   NTuple::Item<double> fPpi0_5C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_5C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
   NTuple::Item<double> fPomega_5C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
-  NTuple::Item<double> fFcos;        ///< \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
-  NTuple::Item<double> fElow;        ///< Lowest energy of the two photons
+  NTuple::Item<double> fFcos;       ///< \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
+  NTuple::Item<double> fElow;       ///< Lowest energy of the two photons
 
   NTuple::Tuple*       fTupleDedx; ///< Energy loss dE/dx
   NTuple::Item<double> fPtrack;    ///< Momentum of the track
@@ -177,6 +178,14 @@ private:
   NTuple::Item<double> fTof2PID;   ///< \f$\chi^2\f$ of the outer barrel ToF of the track
   NTuple::Item<double> fProbPi;    ///< Probability that it is a pion
   NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
+
+  NTuple::Tuple*    fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
+  NTuple::Item<int> fRunid;   ///< Run number ID.
+  NTuple::Item<int> fEvtid;   ///< Rvent number ID.
+  NTuple::Item<int> fNparticles;
+  ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
+  NTuple::Array<int> fPDG;    ///< PDG code for the particle in this array.
+  NTuple::Array<int> fMother; ///< Track index of the mother particle.
 
   ///@}
 };
