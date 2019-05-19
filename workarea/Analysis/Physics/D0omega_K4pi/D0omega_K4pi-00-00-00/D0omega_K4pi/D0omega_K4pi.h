@@ -142,7 +142,7 @@ private:
   NTuple::Item<double> fKaonTofEC;     ///< Difference with ToF in charged kaon hypothesis
   NTuple::Item<double> fProtonTofEC;   ///< Difference with ToF in proton hypothesis
 
-  NTuple::Tuple*       TupleTofIB;     ///< Inner barrel ToF decector
+  NTuple::Tuple*       fTupleTofIB;    ///< Inner barrel ToF decector
   NTuple::Item<double> fPtotTofIB;     ///< Momentum of the track as reconstructed by MDC
   NTuple::Item<double> fPathTofIB;     ///< Path length
   NTuple::Item<double> fTofIB;         ///< Time of flight
@@ -156,7 +156,7 @@ private:
   NTuple::Item<double> fKaonTofIB;     ///< Difference with ToF in charged kaon hypothesis
   NTuple::Item<double> fProtonTofIB;   ///< Difference with ToF in proton hypothesis
 
-  NTuple::Tuple*       TupleTofOB;     ///< Outer barrel ToF decector
+  NTuple::Tuple*       fTupleTofOB;    ///< Outer barrel ToF decector
   NTuple::Item<double> fPtotTofOB;     ///< Momentum of the track as reconstructed by MDC
   NTuple::Item<double> fPathTofOB;     ///< Path length
   NTuple::Item<double> fTofOB;         ///< Time of flight
@@ -179,10 +179,12 @@ private:
   NTuple::Item<double> fProbPi;    ///< Probability that it is a pion
   NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
 
-  NTuple::Tuple*    fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
-  NTuple::Item<int> fRunid;   ///< Run number ID.
-  NTuple::Item<int> fEvtid;   ///< Rvent number ID.
-  NTuple::Item<int> fNparticles;
+  NTuple::Tuple*     fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
+  NTuple::Item<int>  fRunid;   ///< Run number ID.
+  NTuple::Item<int>  fEvtid;   ///< Rvent number ID.
+  NTuple::Item<bool> fHasFit4c;
+  NTuple::Item<bool> fHasFit5c;
+  NTuple::Item<int>  fNparticles;
   ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
   NTuple::Array<int> fPDG;    ///< PDG code for the particle in this array.
   NTuple::Array<int> fMother; ///< Track index of the mother particle.
