@@ -535,8 +535,10 @@ StatusCode D0omega_K4pi::initialize()
                                    "Monte Carlo truth for TopoAna package");
       if(fTupleMC)
       {
-        fTupleMC->addItem("has fit4c", fHasFit4c);
-        fTupleMC->addItem("has fit4c", fHasFit5c);
+        fTupleMC->addItem("mD0 for fit4c", fMC_4C_mD0);
+        fTupleMC->addItem("momega for fit4c", fMC_4C_momega);
+        fTupleMC->addItem("mD0 for fit5c", fMC_5C_mD0);
+        fTupleMC->addItem("momega for fit5c", fMC_5C_momega);
         fTupleMC->addItem("run number", fRunid);
         /// <tr><td>`"Runid"`</td><td>run number ID</td></tr>
         fTupleMC->addItem("event number", fEvtid);
@@ -582,8 +584,13 @@ StatusCode D0omega_K4pi::execute()
   log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
   Ncut0++; // counter for all events
 
-  fHasFit4c = false;
-  fHasFit5c = false;
+  if(fCheckMC)
+  {
+    fMC_4C_mD0    = -9999.;
+    fMC_4C_momega = -9999.;
+    fMC_5C_mD0    = -9999.;
+    fMC_5C_momega = -9999.;
+  }
 
   // * Load event information and track collection *
   /*
@@ -1155,7 +1162,11 @@ StatusCode D0omega_K4pi::execute()
       // * WRITE pi^0 information from EMCal ("fit4c" branch) *
       fTupleFit4C->write(); // "fit4c" branch
       Ncut4++;              // ChiSq has to be less than 200 and fit4c has to be passed
-      fHasFit4c = true;
+      if(fCheckMC)
+      {
+        fMC_4C_mD0    = *fMD0_4C;
+        fMC_4C_momega = *fMomega_4C;
+      }
     }
   }
 
@@ -1239,7 +1250,11 @@ StatusCode D0omega_K4pi::execute()
       // * WRITE pi^0 information from EMCal ("fit5c" branch) *
       fTupleFit5C->write(); // "fit5c" branch
       Ncut5++;              // ChiSq has to be less than 200 and fit5c has to be passed
-      fHasFit5c = true;
+      if(fCheckMC)
+      {
+        fMC_5C_mD0    = *fMD0_5C;
+        fMC_5C_momega = *fMomega_5C;
+      }
     }
   }
 

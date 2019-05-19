@@ -180,11 +180,13 @@ private:
   NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
 
   NTuple::Tuple*     fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
-  NTuple::Item<int>  fRunid;   ///< Run number ID.
-  NTuple::Item<int>  fEvtid;   ///< Rvent number ID.
-  NTuple::Item<bool> fHasFit4c;
-  NTuple::Item<bool> fHasFit5c;
-  NTuple::Item<int>  fNparticles;
+  NTuple::Item<double> fMC_4C_mD0;
+  NTuple::Item<double> fMC_4C_momega;
+  NTuple::Item<double> fMC_5C_mD0;
+  NTuple::Item<double> fMC_5C_momega;
+  NTuple::Item<int>    fRunid; ///< Run number ID.
+  NTuple::Item<int>    fEvtid; ///< Rvent number ID.
+  NTuple::Item<int>    fNparticles;
   ///< Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.
   NTuple::Array<int> fPDG;    ///< PDG code for the particle in this array.
   NTuple::Array<int> fMother; ///< Track index of the mother particle.
