@@ -53,13 +53,11 @@ private:
   double fGammaThetaCut;
   double fGammaAngleCut;
 
-  // * Declare invariant mass window cut
-  double fDeltaMrho0; // width of inv. mass window around mrho0
-
   // * Declare whether to test the success of the 4- and 5-constraint fits
   bool   fDo_fit4c;
   bool   fDo_fit5c;
   double fMaxChiSq;
+  double fMinPID;
 
   // * Declare whether or not to check success of Particle Identification
   bool fCheckVertex;
@@ -94,20 +92,26 @@ private:
   NTuple::Item<double> fEraw;       ///< Energy of the photon
 
   NTuple::Tuple*       fTupleMgg; ///< Raw invariant mass of the two gammas and their total energy
-  NTuple::Item<double> fMtoGG;    ///< Invariant mass of the two gammas
+  NTuple::Item<double> fMtoGG;    ///< Inv. mass of the two gammas
   NTuple::Item<double> fEtot;     ///< Total energy of \f$\pi^+\f$, \f$\pi^-\f$ and the two gammas
 
   NTuple::Tuple*       fTupleFit4C; ///< 4-constraint (4C) fit information
-  NTuple::Item<double> fMpi0; ///< Invariant \f$\pi^0\f$ mass according to Kalman kinematic fit
-  NTuple::Item<double> fChi1; ///< \f$\chi^2\f$ of the Kalman kinematic fit
+  NTuple::Item<double> fChi_4C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
+  NTuple::Item<double> fMpi0_4C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
+  NTuple::Item<double> fMD0_4C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fMomega_4C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
+  NTuple::Item<double> fPpi0_4C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
+  NTuple::Item<double> fPD0_4C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fPomega_4C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
 
   NTuple::Tuple*       fTupleFit5C; ///< 5-constraint (5C) fit information
-  NTuple::Item<double> fChi2;       ///< \f$\chi^2\f$ of the Kalman kinematic fit
-  NTuple::Item<double> fMrho0; ///< Invariant mass for \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)
-  NTuple::Item<double> fMrhop; ///< Invariant mass for \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)
-  NTuple::Item<double> fMrhom; ///< Invariant mass for \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)
-
-  NTuple::Tuple*       fTuplePhoton; ///< Photons
+  NTuple::Item<double> fChi_5C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
+  NTuple::Item<double> fMpi0_5C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
+  NTuple::Item<double> fMD0_5C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fMomega_5C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
+  NTuple::Item<double> fPpi0_5C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
+  NTuple::Item<double> fPD0_5C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fPomega_5C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
   NTuple::Item<double> fFcos;        ///< \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
   NTuple::Item<double> fElow;        ///< Lowest energy of the two photons
 
@@ -171,7 +175,8 @@ private:
   NTuple::Item<double> fDedxPID;   ///< \f$\chi^2\f$ of the \f$dE/dx\f$ of the track
   NTuple::Item<double> fTof1PID;   ///< \f$\chi^2\f$ of the inner barrel ToF of the track
   NTuple::Item<double> fTof2PID;   ///< \f$\chi^2\f$ of the outer barrel ToF of the track
-  NTuple::Item<double> fProbPID;   ///< Probability that it is a pion
+  NTuple::Item<double> fProbPi;    ///< Probability that it is a pion
+  NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
 
   ///@}
 };

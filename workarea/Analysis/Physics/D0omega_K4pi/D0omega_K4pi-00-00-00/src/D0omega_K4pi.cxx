@@ -35,27 +35,42 @@ typedef HepGeom::Point3D<double> HepPoint3D;
 using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
+using namespace std;
 
 // * ==================================== * //
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
 
 // * Constants * //
-const double mpi0     = 0.13957; // mass of pi0
-const double mrho0    = 0.770;   // mass of rho0
+const double mD0    = 1.8648400;  // mass of D0
+const double mpi0   = 0.13497700; // mass of pi0
+const double mphi   = 1.0194550;  // mass of phi
+const double momega = 0.78265000; // mass of omega
+
+const double me  = 0.000511; // electron
+const double mmu = 0.105658; // muon
+const double mpi = 0.139570; // charged pion
+const double mK  = 0.493677; // charged kaon
+const double mp  = 0.938272; // proton
+
 const double xmass[5] = {
-  0.000511, // electron
-  0.105658, // muon
-  0.139570, // charged pion
-  0.493677, // charged kaon
-  0.938272  // proton
+  me,  // electron
+  mmu, // muon
+  mpi, // charged pion
+  mK,  // charged kaon
+  mp   // proton
 };
 const double velc_mm = 299.792458; // tof path unit in mm
 const double Ecms    = 3.097;      // center-of-mass energy
 
+const double DegToRad = 180. / (CLHEP::pi);
+const double fivepi   = CLHEP::twopi + CLHEP::twopi + pi;
+
+HepLorentzVector ecms(0.034, 0, 0, Ecms);
+
 // * Typedefs * //
-typedef std::vector<int>              Vint;
-typedef std::vector<HepLorentzVector> Vp4;
+typedef vector<int>              Vint;
+typedef vector<HepLorentzVector> Vp4;
 
 // * Counters for generating cut flow * //
 int Ncut0; // counter for all events (no cuts)
@@ -64,14 +79,40 @@ int Ncut2; // number of photons < 2
 int Ncut3; // pass PID
 int Ncut4; // pass fit4c
 int Ncut5; // pass fit5c
-int Ncut6; // "geff" branch
+
+struct Reconstructed
+{
+  HepLorentzVector D0;
+  HepLorentzVector omega;
+  HepLorentzVector Jpsi;
+};
+
+struct LorentzVectors
+{
+  HepLorentzVector pim;
+  HepLorentzVector pip1;
+  HepLorentzVector pip2;
+  HepLorentzVector Km;
+  HepLorentzVector g1;
+  HepLorentzVector g2;
+  HepLorentzVector pi0;
+  Reconstructed    comb1;
+  Reconstructed    comb2;
+};
+
+LorentzVectors results;
+
+double ThreeMom(const HepLorentzVector& v)
+{
+  return v.e() * v.e() - v.m() * v.m();
+}
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
 /// Constructor for the `D0omega_K4pi` algorithm.
 /// Here, you should declare properties: give them a name, assign a parameter (data member of `D0omega_K4pi`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0omega_K4pi/D0omega_K4pi.h) and that you should assign the values in `share/jopOptions_D0omega_K4pi.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
+D0omega_K4pi::D0omega_K4pi(const string& name, ISvcLocator* pSvcLocator) :
   Algorithm(name, pSvcLocator)
 {
   // * Define r0, z0 cut for charged tracks *
@@ -86,13 +127,11 @@ D0omega_K4pi::D0omega_K4pi(const std::string& name, ISvcLocator* pSvcLocator) :
   declareProperty("GammaThetaCut", fGammaThetaCut);
   declareProperty("GammaAngleCut", fGammaAngleCut);
 
-  // * Define invariant mass window cut *
-  declareProperty("dM_rho0", fDeltaMrho0 = .150);
-
   // * Whether to test the success of the 4- and 5-constraint fits *
   declareProperty("Test4C", fDo_fit4c);   // write fit4c
   declareProperty("Test5C", fDo_fit5c);   // write fit5c and geff
   declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
+  declareProperty("MinPID", fMinPID);     // PID probability should be at least this value
 
   // * Whether or not to check success of Particle Identification *
   declareProperty("CheckVertex", fCheckVertex);
@@ -177,28 +216,30 @@ StatusCode D0omega_K4pi::initialize()
   }
 
   /// <tr><td colspan="2">**`NTuple "etot"`: Energy branch**</td></tr>
-  NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
-  if(nt3)
-    fTupleMgg = nt3;
-  else
+  if(fCheckEtot)
   {
-    fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
-    if(fTupleMgg)
-    {
-      fTupleMgg->addItem("m2gg", fMtoGG);
-      /// <tr><td>`"m2gg"`</td><td>Invariant mass of the two gammas</td></tr>
-      fTupleMgg->addItem("etot", fEtot);
-      /// <tr><td>`"etot"`</td><td>Total energy of \f$\pi^+\f$,
-      ///< \f$\pi^-\f$ and the two gammas</td></tr>
-    }
+    NTuplePtr nt3(ntupleSvc(), "FILE1/etot");
+    if(nt3)
+      fTupleMgg = nt3;
     else
     {
-      log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleMgg) << endmsg;
-      return StatusCode::FAILURE;
+      fTupleMgg = ntupleSvc()->book("FILE1/etot", CLID_ColumnWiseTuple, "ks N-Tuple example");
+      if(fTupleMgg)
+      {
+        fTupleMgg->addItem("m2gg", fMtoGG);
+        /// <tr><td>`"m2gg"`</td><td>Invariant mass of the two gammas</td></tr>
+        fTupleMgg->addItem("etot", fEtot);
+        /// <tr><td>`"etot"`</td><td>Total energy of \f$\pi^+\f$, \f$\pi^-\f$ and the two gammas</td></tr>
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleMgg) << endmsg;
+        return StatusCode::FAILURE;
+      }
     }
   }
 
-  /// <tr><td colspan="2">**`NTuple "fit4c"`:  Neutral pion (pi0) fit branch**</td></tr>
+  /// <tr><td colspan="2">**`NTuple "fit4c"`:  4-constraint fit branch**</td></tr>
   if(fDo_fit4c)
   {
     NTuplePtr nt4(ntupleSvc(), "FILE1/fit4c");
@@ -209,10 +250,14 @@ StatusCode D0omega_K4pi::initialize()
       fTupleFit4C = ntupleSvc()->book("FILE1/fit4c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleFit4C)
       {
-        fTupleFit4C->addItem("mpi0", fMpi0);
-        /// <tr><td>`"mpi0"`</td><td>Invariant \f$\pi^0\f$ mass according to Kalman kinematic fit</td></tr>
-        fTupleFit4C->addItem("chi2", fChi1);
-        /// <tr><td>`"chi2"`</td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+        fTupleFit4C->addItem("chi2", fChi_4C);
+        /// <tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
+        fTupleFit4C->addItem("mpi0", fMpi0_4C);
+        /// <tr><td>`"mpi0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("mD0", fMD0_4C);
+        /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("momega", fMomega_4C);
+        /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
       }
       else
       {
@@ -222,7 +267,7 @@ StatusCode D0omega_K4pi::initialize()
     }
   }
 
-  /// <tr><td colspan="2">**`NTuple "fit5c"`:  Rho fit branch**</td></tr>
+  /// <tr><td colspan="2">**`NTuple "fit5c"`:  5-constraint fit branch**</td></tr>
   if(fDo_fit5c)
   {
     NTuplePtr nt5(ntupleSvc(), "FILE1/fit5c");
@@ -233,42 +278,22 @@ StatusCode D0omega_K4pi::initialize()
       fTupleFit5C = ntupleSvc()->book("FILE1/fit5c", CLID_ColumnWiseTuple, "ks N-Tuple example");
       if(fTupleFit5C)
       {
-        fTupleFit5C->addItem("chi2", fChi2);
+        fTupleFit5C->addItem("chi2", fChi_5C);
         /// <tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
-        fTupleFit5C->addItem("mrho0", fMrho0);
-        /// <tr><td>`"mrho0"`</td><td>Invariant mass for \f$\pi^+\pi^-\f$ combination (\f$\rho^0\f$)</td></tr>
-        fTupleFit5C->addItem("mrhop", fMrhop);
-        /// <tr><td>`"mrhop"`</td><td>Invariant mass for \f$\pi^0\pi^+\f$ combination (\f$\rho^+\f$)</td></tr>
-        fTupleFit5C->addItem("mrhom", fMrhom);
-        /// <tr><td>`"mrhom"`</td><td>Invariant mass for \f$\pi^0\pi^-\f$ combination (\f$\rho^-\f$)</td></tr>
-      }
-      else
-      {
-        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit5C) << endmsg;
-        return StatusCode::FAILURE;
-      }
-    }
-  }
-
-  /// <tr><td colspan="2">**`NTuple "geff"`:   Photon detection efficiences**</td></tr>
-  if(fDo_fit5c)
-  {
-    NTuplePtr nt6(ntupleSvc(), "FILE1/geff");
-    if(nt6)
-      fTuplePhoton = nt6;
-    else
-    {
-      fTuplePhoton = ntupleSvc()->book("FILE1/geff", CLID_ColumnWiseTuple, "ks N-Tuple example");
-      if(fTuplePhoton)
-      {
-        fTuplePhoton->addItem("fcos", fFcos);
+        fTupleFit5C->addItem("mpi0", fMpi0_5C);
+        /// <tr><td>`"mpi0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("mD0", fMD0_5C);
+        /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("momega", fMomega_5C);
+        /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("fcos", fFcos);
         /// <tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate</td></tr>
-        fTuplePhoton->addItem("elow", fElow);
+        fTupleFit5C->addItem("elow", fElow);
         /// <tr><td>`"elow"`</td><td>Lowest energy of the two photons</td></tr>
       }
       else
       {
-        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePhoton) << endmsg;
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleFit5C) << endmsg;
         return StatusCode::FAILURE;
       }
     }
@@ -447,31 +472,36 @@ StatusCode D0omega_K4pi::initialize()
   }
 
   /// <tr><td colspan="2">**`NTuple "pid"`:    Track PID information**</td></tr>
-  NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
-  if(nt11)
-    fTuplePID = nt11;
-  else
+  if(fCheckPID)
   {
-    fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
-    if(fTuplePID)
-    {
-      fTuplePID->addItem("ptrk", fPtrackPID);
-      /// <tr><td>`"ptrk"`</td><td>Momentum of the track</td></tr>
-      fTuplePID->addItem("cost", fCostPID);
-      /// <tr><td>`"cost"`</td><td>Theta angle of the track</td></tr>
-      fTuplePID->addItem("dedx", fDedxPID);
-      /// <tr><td>`"dedx"`</td><td>\f$\chi^2\f$ of the \f$dE/dx\f$ of the track</td></tr>
-      fTuplePID->addItem("tof1", fTof1PID);
-      /// <tr><td>`"tof1"`</td><td>\f$\chi^2\f$ of the inner barrel ToF of the track</td></tr>
-      fTuplePID->addItem("tof2", fTof2PID);
-      /// <tr><td>`"tof2"`</td><td>\f$\chi^2\f$ of the outer barrel ToF of the track</td></tr>
-      fTuplePID->addItem("prob", fProbPID);
-      /// <tr><td>`"prob"`</td><td>Probability that it is a pion</td></tr>
-    }
+    NTuplePtr nt11(ntupleSvc(), "FILE1/pid");
+    if(nt11)
+      fTuplePID = nt11;
     else
     {
-      log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePID) << endmsg;
-      return StatusCode::FAILURE;
+      fTuplePID = ntupleSvc()->book("FILE1/pid", CLID_ColumnWiseTuple, "ks N-Tuple example");
+      if(fTuplePID)
+      {
+        fTuplePID->addItem("ptrk", fPtrackPID);
+        /// <tr><td>`"ptrk"`</td><td>Momentum of the track</td></tr>
+        fTuplePID->addItem("cost", fCostPID);
+        /// <tr><td>`"cost"`</td><td>Theta angle of the track</td></tr>
+        fTuplePID->addItem("dedx", fDedxPID);
+        /// <tr><td>`"dedx"`</td><td>\f$\chi^2\f$ of the \f$dE/dx\f$ of the track</td></tr>
+        fTuplePID->addItem("tof1", fTof1PID);
+        /// <tr><td>`"tof1"`</td><td>\f$\chi^2\f$ of the inner barrel ToF of the track</td></tr>
+        fTuplePID->addItem("tof2", fTof2PID);
+        /// <tr><td>`"tof2"`</td><td>\f$\chi^2\f$ of the outer barrel ToF of the track</td></tr>
+        fTuplePID->addItem("prob", fProbPi);
+        /// <tr><td>`"prob"`</td><td>Probability that it is a pion</td></tr>
+        fTuplePID->addItem("prob", fProbK);
+        /// <tr><td>`"prob"`</td><td>Probability that it is a kaon</td></tr>
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTuplePID) << endmsg;
+        return StatusCode::FAILURE;
+      }
     }
   }
 
@@ -503,9 +533,9 @@ StatusCode D0omega_K4pi::execute()
 
   // * Load event information and track collection *
   /*
-  http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
-  http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
-  http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
+    http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
+    http://bes3.to.infn.it/Boss/7.0.2/html/classEvtRecEvent.html (class)
+    http://bes3.to.infn.it/Boss/7.0.2/html/EvtRecTrack_8h.html (typedef EvtRecTrackCol)
   */
   SmartDataPtr<EvtRecEvent>    evtRecEvent(eventSvc(), EventModel::EvtRec::EvtRecEvent);
   SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
@@ -530,14 +560,12 @@ StatusCode D0omega_K4pi::execute()
   }
 
   /// <li> LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)
-  /// ** Uses `Ncut1` counter**: nGood has to be 2, mdcTrk->charge() has to be more than 0.
   // The first part of the set of reconstructed tracks are the charged tracks
-  int nCharge = 0; // Number of charged tracks as identified by the MDC.
-  Vint
-    iGood; // Vector of integers that give the position of tracks in the `evtRecEvent` marked good.
+  int  nCharge = 0; // Number of charged tracks as identified by the MDC.
+  Vint iGood;
+  // Vector of integers that give the position of tracks in the `evtRecEvent` marked good.
   for(int i = 0; i < evtRecEvent->totalCharged(); ++i)
   {
-
     // * Get track: beginning of all tracks + event number
     EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i;
     if(!(*itTrk)->isMdcTrackValid()) continue;
@@ -594,8 +622,8 @@ StatusCode D0omega_K4pi::execute()
   // * Finish Good Charged Track Selection * //
   int nGood = iGood.size();
   log << MSG::DEBUG << "ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
-  if((nGood != 2) || (nCharge != 0)) { return StatusCode::SUCCESS; }
-  Ncut1++; // nGood!=2 or nCharge!=0
+  if((nGood != 4) || (nCharge != 0)) { return StatusCode::SUCCESS; }
+  Ncut1++;
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
   /// ** Uses `Ncut2` counter**: number of good photons has to be 2 at least.
@@ -625,8 +653,8 @@ StatusCode D0omega_K4pi::execute()
       double angd = extpos.angle(emcpos);
       double thed = extpos.theta() - emcpos.theta();
       double phid = extpos.deltaPhi(emcpos);
-      thed        = fmod(thed + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
-      phid        = fmod(phid + CLHEP::twopi + CLHEP::twopi + pi, CLHEP::twopi) - CLHEP::pi;
+      thed        = fmod(thed + fivepi, CLHEP::twopi) - CLHEP::pi;
+      phid        = fmod(phid + fivepi, CLHEP::twopi) - CLHEP::pi;
       if(angd < dang)
       {
         dang = angd;
@@ -638,9 +666,9 @@ StatusCode D0omega_K4pi::execute()
     // * Apply angle cut
     if(dang >= 200) continue;
     double eraw = emcTrk->energy();
-    dthe        = dthe * 180 / (CLHEP::pi);
-    dphi        = dphi * 180 / (CLHEP::pi);
-    dang        = dang * 180 / (CLHEP::pi);
+    dthe        = dthe * DegToRad;
+    dphi        = dphi * DegToRad;
+    dang        = dang * DegToRad;
 
     // * WRITE photon info ("photon" branch)
     if(fCheckPhoton)
@@ -848,24 +876,20 @@ StatusCode D0omega_K4pi::execute()
   // cout << "before pid" << endl;
 
   /// <li> Get 4-momentum for each charged track
-  Vint        ipip, ipim; // vector of number of good tracks
-  Vp4         ppip, ppim; // vector of momenta
+  Vint        ipip, ipim, iKm; // vector of indices of good tracks
+  Vp4         ppip, ppim, pKm; // vector of momenta
   ParticleID* pid = ParticleID::instance();
   for(int i = 0; i < nGood; ++i)
   {
     EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
-    // if(pid) delete pid;
     pid->init();
     pid->setMethod(pid->methodProbability());
     // pid->setMethod(pid->methodLikelihood()); // for Likelihood Method
 
     pid->setChiMinCut(4);
     pid->setRecTrack(*itTrk);
-    pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() |
-                   pid->useTofE());                   // use PID sub-system
-    pid->identify(pid->onlyPion() | pid->onlyKaon()); // seperater Pion/Kaon
-    // pid->identify(pid->onlyPion());
-    // pid->identify(pid->onlyKaon());
+    pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE());
+    pid->identify(pid->onlyPion() | pid->onlyKaon());
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
@@ -878,80 +902,72 @@ StatusCode D0omega_K4pi::execute()
       fDedxPID   = pid->chiDedx(2);      // Chi squared of the dedx of the track
       fTof1PID   = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
       fTof2PID   = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
-      fProbPID   = pid->probPion();      // probability that it is a pion
+      fProbPi    = pid->probPion();      // probability that it is a pion
+      fProbK     = pid->probKaon();      // probability that it is a kaon
       fTuplePID->write();                // "pid" branch
     }
 
-    if(pid->probPion() < 0.001 || (pid->probPion() < pid->probKaon())) continue;
-    if(pid->probPion() < 0.001) continue;
-    if(pid->pdf(2) < pid->pdf(3)) continue;
-    // for Likelihood Method (0=electron 1=muon 2=pion 3=kaon 4=proton)
-
-    RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
-    // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
-    RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
-    // PID can set to electron, muon, pion, kaon and proton;The default setting is pion
-
-    if(mdcKalTrk->charge() > 0)
+    if(pid->probPion() > pid->probKaon())
     {
-      ipip.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
-      ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-      // ptrk = ptrk.boost(-0.011,0,0); // boost to cms
-      ppip.push_back(ptrk);
+      if(pid->probPion() < fMinPID) continue;
+
+      RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
+      // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
+      RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
+
+      if(mdcKalTrk->charge() > 0)
+      {
+        ipip.push_back(iGood[i]);
+        HepLorentzVector ptrk;
+        ptrk.setPx(mdcKalTrk->px());
+        ptrk.setPy(mdcKalTrk->py());
+        ptrk.setPz(mdcKalTrk->pz());
+        double p3 = ptrk.mag();
+        ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
+        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        ppip.push_back(ptrk);
+      }
+      else
+      {
+        ipim.push_back(iGood[i]);
+        HepLorentzVector ptrk;
+        ptrk.setPx(mdcKalTrk->px());
+        ptrk.setPy(mdcKalTrk->py());
+        ptrk.setPz(mdcKalTrk->pz());
+        double p3 = ptrk.mag();
+        ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
+        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        ppim.push_back(ptrk);
+      }
     }
     else
     {
-      ipim.push_back(iGood[i]);
-      HepLorentzVector ptrk;
-      ptrk.setPx(mdcKalTrk->px());
-      ptrk.setPy(mdcKalTrk->py());
-      ptrk.setPz(mdcKalTrk->pz());
-      double p3 = ptrk.mag();
-      ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-      // ptrk = ptrk.boost(-0.011,0,0); // boost to cms
-      ppim.push_back(ptrk);
+      if(pid->probKaon() < fMinPID) continue;
+
+      RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
+      // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
+      RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+
+      if(mdcKalTrk->charge() < 0)
+      {
+        iKm.push_back(iGood[i]);
+        HepLorentzVector ptrk;
+        ptrk.setPx(mdcKalTrk->px());
+        ptrk.setPy(mdcKalTrk->py());
+        ptrk.setPz(mdcKalTrk->pz());
+        double p3 = ptrk.mag();
+        ptrk.setE(sqrt(p3 * p3 + mK * mK));
+        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        pKm.push_back(ptrk);
+      }
     }
   }
 
-  /// <li> D0omega_K4pi without PID (*optional: needs to be uncommented*)
-  // for(int i = 0; i < nGood; ++i)
-  // {
-  // EvtRecTrackIterator itTrk  = evtRecTrkCol->begin() + iGood[i];
-  // RecMdcTrack*        mdcTrk = (*itTrk)->mdcTrack();
-  // if(mdcTrk->charge() > 0)
-  // {
-  // ipip.push_back(iGood[i]);
-  // HepLorentzVector ptrk;
-  // ptrk.setPx(mdcTrk->px());
-  // ptrk.setPy(mdcTrk->py());
-  // ptrk.setPz(mdcTrk->pz());
-  // double p3 = ptrk.mag();
-  // ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-  // ppip.push_back(ptrk);
-  // }
-  // else
-  // {
-  // ipim.push_back(iGood[i]);
-  // HepLorentzVector ptrk;
-  // ptrk.setPx(mdcTrk->px());
-  // ptrk.setPy(mdcTrk->py());
-  // ptrk.setPz(mdcTrk->pz());
-  // double p3 = ptrk.mag();
-  // ptrk.setE(sqrt(p3 * p3 + mpi0 * mpi0));
-  // ppim.push_back(ptrk);
-  // }
-  // } // without PID
-
-  /// ** Uses `Ncut3` counter**: `ipip.size()` * `ipim.size()` cannot be `1`.
-  int npip = ipip.size();
-  int npim = ipim.size();
-  if(npip * npim != 1) return SUCCESS;
-  Ncut3++; // ipip.size() * ipim.size() cannot be 1
+  /// ** Uses `Ncut3` counter**: \f$N_{K^-} = 1, N_{\pi^+} = 2, N_{\pi^-}\f$
+  if(iKm.size() != 1) return SUCCESS;
+  if(ipim.size() != 1) return SUCCESS;
+  if(ipip.size() != 2) return SUCCESS;
+  Ncut3++;
 
   /// <li> Loop over each gamma pair and store total energy
   if(fCheckEtot)
@@ -973,20 +989,17 @@ StatusCode D0omega_K4pi::execute()
     }
   }
 
-  RecMdcKalTrack* pipTrk = (*(evtRecTrkCol->begin() + ipip[0]))->mdcKalTrack();
-  RecMdcKalTrack* pimTrk = (*(evtRecTrkCol->begin() + ipim[0]))->mdcKalTrack();
+  RecMdcKalTrack* KmTrk   = (*(evtRecTrkCol->begin() + iKm[0]))->mdcKalTrack();
+  RecMdcKalTrack* pimTrk  = (*(evtRecTrkCol->begin() + ipim[0]))->mdcKalTrack();
+  RecMdcKalTrack* pip1Trk = (*(evtRecTrkCol->begin() + ipip[0]))->mdcKalTrack();
+  RecMdcKalTrack* pip2Trk = (*(evtRecTrkCol->begin() + ipip[1]))->mdcKalTrack();
 
-  WTrackParameter wvpipTrk, wvpimTrk;
-  wvpipTrk = WTrackParameter(mpi0, pipTrk->getZHelix(), pipTrk->getZError());
-  wvpimTrk = WTrackParameter(mpi0, pimTrk->getZHelix(), pimTrk->getZError());
+  WTrackParameter wvKmTrk(mK, KmTrk->getZHelix(), KmTrk->getZError());
+  WTrackParameter wvpimTrk(mpi, pimTrk->getZHelix(), pimTrk->getZError());
+  WTrackParameter wvpip1Trk(mpi, pip1Trk->getZHelix(), pip1Trk->getZError());
+  WTrackParameter wvpip2Trk(mpi, pip2Trk->getZHelix(), pip2Trk->getZError());
 
-  /// <li> Default is pion, for other particles (*optional: needs to be uncommented*)
-  // wvppTrk  = WTrackParameter(mp, pipTrk->getZHelixP(), pipTrk->getZErrorP());    // proton
-  // wvmupTrk = WTrackParameter(mmu, pipTrk->getZHelixMu(), pipTrk->getZErrorMu()); // muon
-  // wvepTrk  = WTrackParameter(me, pipTrk->getZHelixE(), pipTrk->getZErrorE());    // electron
-  // wvkpTrk  = WTrackParameter(mk, pipTrk->getZHelixK(), pipTrk->getZErrorK());    // kaon
-
-  /// <li> Test vertex fit
+  /// <li> Get vertex fit
   HepPoint3D   vx(0., 0., 0.);
   HepSymMatrix Evx(3, 0);
   double       bx = 1E+6;
@@ -1002,26 +1015,26 @@ StatusCode D0omega_K4pi::execute()
 
   VertexFit* vtxfit = VertexFit::instance();
   vtxfit->init();
-  vtxfit->AddTrack(0, wvpipTrk);
+  vtxfit->AddTrack(0, wvKmTrk);
   vtxfit->AddTrack(1, wvpimTrk);
+  vtxfit->AddTrack(2, wvpip1Trk);
+  vtxfit->AddTrack(3, wvpip2Trk);
   vtxfit->AddVertex(0, vxpar, 0, 1);
   if(!vtxfit->Fit(0)) return SUCCESS;
   vtxfit->Swim(0);
 
-  WTrackParameter wpip = vtxfit->wtrk(0);
-  WTrackParameter wpim = vtxfit->wtrk(1);
+  WTrackParameter wKm   = vtxfit->wtrk(0);
+  WTrackParameter wpim  = vtxfit->wtrk(1);
+  WTrackParameter wpip1 = vtxfit->wtrk(2);
+  WTrackParameter wpip2 = vtxfit->wtrk(3);
 
-  // KinematicFit * kmfit = KinematicFit::instance();
   KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
 
   /// <li> Apply Kalman 4-constrain kinematic fit
   if(fDo_fit4c)
   {
-    HepLorentzVector ecms(0.034, 0, 0, Ecms);
-    double           chisq = 9999.;
-    int              ig1   = -1;
-    int              ig2   = -1;
     // * Run over all gamma pairs and find the pair with the best chi2
+    double bestChi2 = 9999.;
     for(int i = 0; i < nGam - 1; ++i)
     {
       RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + iGam[i]))->emcShower();
@@ -1029,81 +1042,26 @@ StatusCode D0omega_K4pi::execute()
       {
         RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + iGam[j]))->emcShower();
         kkmfit->init();
-        kkmfit->AddTrack(0, wpip);        // pos. pion
+        kkmfit->AddTrack(0, wKm);         // neg. kaon
         kkmfit->AddTrack(1, wpim);        // neg. pion
-        kkmfit->AddTrack(2, 0.0, g1Trk);  // first gamma track
-        kkmfit->AddTrack(3, 0.0, g2Trk);  // seconnd gamma track
+        kkmfit->AddTrack(2, wpip1);       // pos. pion 1
+        kkmfit->AddTrack(3, wpip2);       // pos. pion 2
+        kkmfit->AddTrack(4, 0.0, g1Trk);  // gamma track 1
+        kkmfit->AddTrack(5, 0.0, g2Trk);  // gamma track 2
         kkmfit->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
         if(kkmfit->Fit())
         {
           double chi2 = kkmfit->chisq();
-          if(chi2 < chisq)
+          if(chi2 < bestChi2)
           {
-            chisq = chi2;
-            ig1   = iGam[i];
-            ig2   = iGam[j];
-          }
-        }
-      }
-    }
-
-    /// ** Uses `Ncut4` counter**: fit4c passed and ChiSq less than fMaxChiSq.
-    if(chisq < fMaxChiSq)
-    {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + ig1))->emcShower();
-      RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + ig2))->emcShower();
-      kkmfit->init();
-      kkmfit->AddTrack(0, wpip);        // pos. pion
-      kkmfit->AddTrack(1, wpim);        // neg. pion
-      kkmfit->AddTrack(2, 0., g1Trk);   // first gamma track
-      kkmfit->AddTrack(3, 0., g2Trk);   // second gamma track
-      kkmfit->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
-      if(kkmfit->Fit())
-      {
-        HepLorentzVector ppi0 = kkmfit->pfit(2) + kkmfit->pfit(3);
-
-        // * WRITE pi^0 information from EMCal ("fit4c" branch) *
-        fMpi0 = ppi0.m();        // invariant pi0 mass according to Kalman kinematic fit
-        fChi1 = kkmfit->chisq(); // chi square of the Kalman kinematic fit
-        fTupleFit4C->write();    // "fit4c" branch
-        Ncut4++;                 // ChiSq has to be less than 200 and fit4c has to be passed
-      }
-    }
-  }
-
-  /// <li> Apply Kalman kinematic fit
-  /// ** Uses `Ncut5` counter**: Kalman kinematic fit 5c is successful.
-  /// ** Uses `Ncut6` counter**: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass window).
-  if(fDo_fit5c)
-  {
-    HepLorentzVector ecms(0.034, 0, 0, Ecms);
-    double           chisq = 9999.;
-    int              ig1   = -1;
-    int              ig2   = -1;
-    // * Find the best combination over all possible pi+ pi- gamma gamma pair
-    for(int i = 0; i < nGam - 1; ++i)
-    {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + iGam[i]))->emcShower();
-      for(int j = i + 1; j < nGam; j++)
-      {
-        RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + iGam[j]))->emcShower();
-        kkmfit->init();
-        kkmfit->AddTrack(0, wpip);            // pos. pion
-        kkmfit->AddTrack(1, wpim);            // neg. pion
-        kkmfit->AddTrack(2, 0., g1Trk);       // first gamma track
-        kkmfit->AddTrack(3, 0., g2Trk);       // second gamma track
-        kkmfit->AddResonance(0, 0.135, 2, 3); // 5th constraint: pi0 resonance
-        kkmfit->AddFourMomentum(1, ecms);     // 4 constraints: CMS energy and momentum
-        if(!kkmfit->Fit(0)) continue;
-        if(!kkmfit->Fit(1)) continue;
-        if(kkmfit->Fit())
-        {
-          double chi2 = kkmfit->chisq();
-          if(chi2 < chisq)
-          {
-            chisq = chi2;
-            ig1   = iGam[i];
-            ig2   = iGam[j];
+            bestChi2     = chi2;
+            results.pip1 = kkmfit->pfit(0);
+            results.pip2 = kkmfit->pfit(1);
+            results.pim  = kkmfit->pfit(2);
+            results.Km   = kkmfit->pfit(3);
+            results.g1   = kkmfit->pfit(4);
+            results.g2   = kkmfit->pfit(5);
+            results.pi0  = results.g1 + results.g2;
           }
         }
       }
@@ -1111,50 +1069,122 @@ StatusCode D0omega_K4pi::execute()
 
     log << MSG::INFO << " chisq = " << chisq << endmsg;
 
-    if(chisq < fMaxChiSq)
+    /// ** Uses `Ncut4` counter**: fit4c passed and ChiSq less than fMaxChiSq.
+    if(bestChi2 < fMaxChiSq)
     {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + ig1))->emcShower();
-      RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + ig2))->emcShower();
-      kkmfit->init();
-      kkmfit->AddTrack(0, wpip);            // pi^+ track
-      kkmfit->AddTrack(1, wpim);            // pi^- track
-      kkmfit->AddTrack(2, 0., g1Trk);       // first gamma track
-      kkmfit->AddTrack(3, 0., g2Trk);       // second gamma track
-      kkmfit->AddResonance(0, 0.135, 2, 3); // 5th constraint: pi0 resonance
-      kkmfit->AddFourMomentum(1, ecms);     // 4 constraints: CMS energy and momentum
+      results.comb1.D0    = results.pip1 + results.Km;
+      results.comb1.omega = results.pip2 + results.pim + results.pi0;
+      results.comb2.D0    = results.pip2 + results.Km;
+      results.comb2.omega = results.pip1 + results.pim + results.pi0;
 
-      // * Kalman kinematic fit5c * //
-      if(kkmfit->Fit())
+      fChi_4C  = bestChi2;
+      fMpi0_4C = results.pi0.m();
+      fPpi0_4C = ThreeMom(results.pi0);
+
+      double m1 = abs(results.comb1.omega.m() - momega);
+      double m2 = abs(results.comb2.omega.m() - momega);
+      if(m1 > m2)
       {
-        HepLorentzVector ppi0  = kkmfit->pfit(2) + kkmfit->pfit(3); // inv. mass Gamma Gamma (pi^0)
-        HepLorentzVector prho0 = kkmfit->pfit(0) + kkmfit->pfit(1); // inv. mass pi^+ pi^- (rho^0)
-        HepLorentzVector prhop = ppi0 + kkmfit->pfit(0);            // inv. mass pi^0 pi^+ (rho^+)
-        HepLorentzVector prhom = ppi0 + kkmfit->pfit(1);            // inv. mass pi^0 pi^- (rho^-)
-        double           eg1   = (kkmfit->pfit(2)).e();
-        double           eg2   = (kkmfit->pfit(3)).e();
-        double           fcos  = abs(eg1 - eg2) / ppi0.rho();
-
-        // * WRITE inv. mass from EMCal info ("fit5c" branch) *
-        fChi2  = kkmfit->chisq(); // chi squared of the Kalman kinematic fit
-        fMrho0 = prho0.m();       // inv. mass pi^+ pi^- (rho^0)
-        fMrhop = prhop.m();       // inv. mass pi^0 pi^+ (rho^+)
-        fMrhom = prhom.m();       // inv. mass pi^0 pi^- (rho^-)
-        fTupleFit5C->write();     // "fit5c" branch
-        Ncut5++;                  // Kalman kinematic fit 5c is successful
-
-        // * Measure the photon detection efficiences via J/psi -> rho0 pi0 * //
-        if(fabs(prho0.m() - mrho0) < fDeltaMrho0)
-        {
-          if(fabs(fcos) < 0.99)
-          {
-            // * WRITE photon detection efficiency info ("geff" branch) *
-            fFcos = (eg1 - eg2) / ppi0.rho(); // E/p ratio for pi^0 candidate
-            fElow = (eg1 < eg2) ? eg1 : eg2;  // lowest energy of the two gammas
-            fTuplePhoton->write();            // "geff" branch
-            Ncut6++;                          // 0.620 < mass of rho0 < 0.920
-          }
-        } // rho0 cut
+        fMD0_4C    = results.comb1.D0.m();
+        fMomega_4C = results.comb1.omega.m();
+        fPD0_4C    = ThreeMom(results.comb1.D0);
+        fPomega_4C = ThreeMom(results.comb1.omega);
       }
+      else
+      {
+        fMD0_4C    = results.comb2.D0.m();
+        fMomega_4C = results.comb2.omega.m();
+        fPD0_4C    = ThreeMom(results.comb2.D0);
+        fPomega_4C = ThreeMom(results.comb2.omega);
+      }
+
+      // * WRITE pi^0 information from EMCal ("fit4c" branch) *
+      fTupleFit4C->write(); // "fit4c" branch
+      Ncut4++;              // ChiSq has to be less than 200 and fit4c has to be passed
+    }
+  }
+
+  /// <li> Apply Kalman kinematic fit
+  /// ** Uses `Ncut5` counter**: Kalman kinematic fit 5c is successful.
+  if(fDo_fit5c)
+  {
+    // * Find the best combination over all possible pi+ pi- gamma gamma pair
+    double bestChi2 = 9999.;
+    for(int i = 0; i < nGam - 1; ++i)
+    {
+      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + iGam[i]))->emcShower();
+      for(int j = i + 1; j < nGam; j++)
+      {
+        RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + iGam[j]))->emcShower();
+        kkmfit->init();
+        kkmfit->AddTrack(0, wKm);            // neg. kaon
+        kkmfit->AddTrack(1, wpim);           // neg. pion
+        kkmfit->AddTrack(2, wpip1);          // pos. pion 1
+        kkmfit->AddTrack(3, wpip2);          // pos. pion 2
+        kkmfit->AddTrack(4, 0.0, g1Trk);     // gamma track 1
+        kkmfit->AddTrack(5, 0.0, g2Trk);     // gamma track 2
+        kkmfit->AddFourMomentum(0, ecms);    // 4 constraints: CMS energy and momentum
+        kkmfit->AddResonance(1, mpi0, 4, 5); // 5th constraint: pi0 resonance
+        if(!kkmfit->Fit(0)) continue;
+        if(!kkmfit->Fit(1)) continue;
+        if(kkmfit->Fit())
+        {
+          double chi2 = kkmfit->chisq();
+          if(chi2 < bestChi2)
+          {
+            bestChi2     = chi2;
+            results.pip1 = kkmfit->pfit(0);
+            results.pip2 = kkmfit->pfit(1);
+            results.pim  = kkmfit->pfit(2);
+            results.Km   = kkmfit->pfit(3);
+            results.g1   = kkmfit->pfit(4);
+            results.g2   = kkmfit->pfit(5);
+            results.pi0  = results.g1 + results.g2;
+          }
+        }
+      }
+    }
+
+    log << MSG::INFO << " chisq = " << chisq << endmsg;
+
+    /// ** Uses `Ncut5` counter**: fit5c passed and ChiSq less than fMaxChiSq.
+    if(bestChi2 < fMaxChiSq)
+    {
+      results.comb1.D0    = results.pip1 + results.Km;
+      results.comb1.omega = results.pip2 + results.pim + results.pi0;
+      results.comb2.D0    = results.pip2 + results.Km;
+      results.comb2.omega = results.pip1 + results.pim + results.pi0;
+
+      fChi_5C  = bestChi2;
+      fMpi0_5C = results.pi0.m();
+      fPpi0_5C = ThreeMom(results.pi0);
+
+      double m1 = abs(results.comb1.omega.m() - momega);
+      double m2 = abs(results.comb2.omega.m() - momega);
+      if(m1 > m2)
+      {
+        fMD0_5C    = results.comb1.D0.m();
+        fMomega_5C = results.comb1.omega.m();
+        fPD0_5C    = ThreeMom(results.comb1.D0);
+        fPomega_5C = ThreeMom(results.comb1.omega);
+      }
+      else
+      {
+        fMD0_5C    = results.comb2.D0.m();
+        fMomega_5C = results.comb2.omega.m();
+        fPD0_5C    = ThreeMom(results.comb2.D0);
+        fPomega_5C = ThreeMom(results.comb2.omega);
+      }
+
+      // * Photon kinematics * //
+      double eg1 = results.g1.e();
+      double eg2 = results.g2.e();
+      fFcos      = (eg1 - eg2) / results.pi0.rho(); // E/p ratio for pi^0 candidate
+      fElow      = (eg1 < eg2) ? eg1 : eg2;         // lowest energy of the two gammas
+
+      // * WRITE pi^0 information from EMCal ("fit5c" branch) *
+      fTupleFit5C->write(); // "fit5c" branch
+      Ncut5++;              // ChiSq has to be less than 200 and fit5c has to be passed
     }
   }
 
@@ -1173,12 +1203,11 @@ StatusCode D0omega_K4pi::finalize()
 
   cout << "Resulting FLOW CHART:" << endl;
   cout << "  (0) Total number of events: " << Ncut0 << endl;
-  cout << "  (1) nGood==2, nCharge==0:   " << Ncut1 << endl;
-  cout << "  (2) nGam>=2:                " << Ncut2 << endl;
+  cout << "  (1) Pass N charged tracks:  " << Ncut1 << endl;
+  cout << "  (2) Pass N gammas:          " << Ncut2 << endl;
   cout << "  (3) Pass PID:               " << Ncut3 << endl;
   cout << "  (4) Pass 4C Kalman fit:     " << Ncut4 << endl;
   cout << "  (5) Pass 5C Kalman fit:     " << Ncut5 << endl;
-  cout << "  (6) J/psi -> rho0 pi0:      " << Ncut6 << endl;
   cout << endl;
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
