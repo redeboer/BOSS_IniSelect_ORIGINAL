@@ -1067,10 +1067,10 @@ StatusCode D0omega_K4pi::execute()
           if(chi2 < bestChi2)
           {
             bestChi2     = chi2;
-            results.pip1 = kkmfit->pfit(0);
-            results.pip2 = kkmfit->pfit(1);
-            results.pim  = kkmfit->pfit(2);
-            results.Km   = kkmfit->pfit(3);
+            results.Km   = kkmfit->pfit(0);
+            results.pim  = kkmfit->pfit(1);
+            results.pip1 = kkmfit->pfit(2);
+            results.pip2 = kkmfit->pfit(3);
             results.g1   = kkmfit->pfit(4);
             results.g2   = kkmfit->pfit(5);
             results.pi0  = results.g1 + results.g2;
@@ -1095,7 +1095,7 @@ StatusCode D0omega_K4pi::execute()
 
       double m1 = abs(results.comb1.omega.m() - momega);
       double m2 = abs(results.comb2.omega.m() - momega);
-      if(m1 > m2)
+      if(m1 < m2)
       {
         fMD0_4C    = results.comb1.D0.m();
         fMomega_4C = results.comb1.omega.m();
@@ -1144,10 +1144,10 @@ StatusCode D0omega_K4pi::execute()
           if(chi2 < bestChi2)
           {
             bestChi2     = chi2;
-            results.pip1 = kkmfit->pfit(0);
-            results.pip2 = kkmfit->pfit(1);
-            results.pim  = kkmfit->pfit(2);
-            results.Km   = kkmfit->pfit(3);
+            results.Km   = kkmfit->pfit(0);
+            results.pim  = kkmfit->pfit(1);
+            results.pip1 = kkmfit->pfit(2);
+            results.pip2 = kkmfit->pfit(3);
             results.g1   = kkmfit->pfit(4);
             results.g2   = kkmfit->pfit(5);
             results.pi0  = results.g1 + results.g2;
@@ -1172,7 +1172,7 @@ StatusCode D0omega_K4pi::execute()
 
       double m1 = abs(results.comb1.omega.m() - momega);
       double m2 = abs(results.comb2.omega.m() - momega);
-      if(m1 > m2)
+      if(m1 < m2)
       {
         fMD0_5C    = results.comb1.D0.m();
         fMomega_5C = results.comb1.omega.m();
