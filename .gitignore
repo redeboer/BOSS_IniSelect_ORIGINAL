@@ -84,9 +84,9 @@ topoana/**/**.txt
 topoana/**/*.pdf
 topoana/*.txt
 topoana/*/*.txt
-workarea/Analysis/TopoAna/v*/test/*
-workarea/Analysis/TopoAna/v*/test/**
+workarea/Analysis/TopoAna/v1.6.9.1/test/*
+workarea/Analysis/TopoAna/v1.6.9.1/test/**
 workarea/Analysis/TopoAna/v1.6.9.1/share/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/test/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/tutorials/**/*.pdf
-workarea/Analysis/TopoAna/v1.6.9/**/*.pdf
+workarea/Analysis/TopoAna/v1.6.9.1/**/*.pdf

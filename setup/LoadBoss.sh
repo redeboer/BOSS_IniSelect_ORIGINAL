@@ -17,4 +17,4 @@ CMTHOME="/afs/ihep.ac.cn/bes3/offline/Boss/cmthome/cmthome-${BOSSVERSION}"
 source "${BOSSWORKAREA}/${CMTHOMENAME}/setupCMT.sh"
 source "${BOSSWORKAREA}/${CMTHOMENAME}/setup.sh"
 export PATH=$PATH:/afs/ihep.ac.cn/soft/common/sysgroup/hep_job/bin/
-export PATH=$PATH:${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/v1.6.9/bin
+export PATH=$PATH:${BOSSWORKAREA}/${WORKAREANAME}/Analysis/TopoAna/v1.6.9.1/bin

@@ -71,7 +71,6 @@
 	alias ihep="ihep7"
 
 	alias cdroot="cd ${IHEPROOT}"
-	alias cdrun="cd ${IHEPBATCH}/workarea-7.0.3/TestRelease/TestRelease-00-00-86/run"
 
 	alias myjobs="hep_q -u ${USER}"
 	alias alljobs="hep_q | less"
@@ -84,7 +83,7 @@
 	alias cdalgorithms="cdworkarea Analysis/IniSelect/IniSelect-00-00-00"
 	alias cddata="cdscratchfs data"
 
-	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9"
+	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9.1"
 	alias cdmctruth1="cdmctruth 1"
 	alias cdmctruth2="cdmctruth 2"
 	alias cdmctruth3="cdmctruth 3"

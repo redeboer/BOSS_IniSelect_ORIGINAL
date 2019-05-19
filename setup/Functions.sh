@@ -576,3 +576,25 @@
 		cd - > /dev/null
 	}
 	export -f GenerateDoxygen
+
+
+	function RunTopoana()
+	{
+		# * Input parameters * #
+			local inputCard="${1}"
+			local inputPath="$(dirname ${inputCard})"
+			local inputCard="$(basename ${inputCard})"
+
+		# * Move to path * #
+			local currentPath="$(pwd)"
+			local fullPath="${BOSS_IniSelect}/topoana/${inputPath}"
+			if [[ ! -f "${fullPath}/${inputCard}" ]]; then
+				PrintErrorMessage "Topana card \"${inputPath}/${inputCard}\" does not exist"
+				return 1
+			fi
+			cd "${fullPath}"
+
+		topoana.exe "${inputCard}"
+		cd "${currentPath}"
+	}
+	export -f RunTopoana
