@@ -41,7 +41,7 @@
 		echo -e "\n\n--== EXECUTING \"${commandToExecute}\" ==--"
 		${commandToExecute}
 		if [ $? != 0 ]; then
-			echo "ERROR: failed to execute \"${commandToExecute}\""
+			PrintErrorMessage "Failed to execute \"${commandToExecute}\""
 			return 1
 		fi
 	}
@@ -55,7 +55,7 @@
 		if [ "$(basename "${currentPath}")" != "cmt" ]; then
 			local cmtFolder="$(find -name cmt | head -1)"
 			if [ "${cmtFolder}" == "" ]; then
-				echo "ERROR: no cmt folder available!"
+				PrintErrorMessage "No cmt folder available!"
 				return 1
 			fi
 			cd "${cmtFolder}"
@@ -145,7 +145,7 @@
 	{
 		local path="${1}"
 		if [ ! -d "${path}" ]; then
-			echo "ERROR: Folder \"${path}\" does not exist"
+			PrintErrorMessage "Folder \"${path}\" does not exist [${FUNCNAME[0]}]"
 		fi
 	}
 	export CheckDirectory
@@ -225,7 +225,7 @@
 	{
 		local folderToCheck="${1}"
 		if [ ! -d "${folderToCheck}" ]; then
-			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist"
+			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist [${FUNCNAME[0]}]"
 			exit
 		fi
 	}
@@ -480,39 +480,39 @@
 		local mainDir="${BOSS_IniSelect}"
 		cd ${mainDir}
 		if [ $? != 0 ]; then
-			echo -e "\e[91mERROR: Folder \"${mainDir}\" does not exist\"\e[0m" # light red color code
+			PrintErrorMessage "Folder \"${mainDir}\" does not exist\" [${FUNCNAME[0]}]"
 			cd - > /dev/null
-			return
+			return 1
 		fi
 		# * Add all (!) files (can only be done from main folder)
 		git add --all .
 		if [ $? != 0 ]; then
-			echo -e "\e[91mERROR: Failed to \"add -all .\"\e[0m" # light red color code
+			PrintErrorMessage "Failed to \"add -all .\""
 			cd - > /dev/null
-			return
+			return 1
 		fi
 		# * Commit with a default description (randomiser to make unique)
 		git commit -m "updated ($RANDOM)"
 		if [ $? != 0 ]; then
-			echo -e "\e[91mERROR: Failed to \"git commit -m ()\"\e[0m" # light red color code
+			PrintErrorMessage "Failed to \"git commit -m ()\""
 			cd - > /dev/null
-			return
+			return 1
 		else
-			echo -e "\e[92mSuccessfully added and commited changes\e[0m" # light green color code
+			PrintSuccessMessage "Successfully added and commited changes"
 		fi
 		# * Pull possible new changes and rebase
 		git pull --rebase
 		if [ $? != 0 ]; then
-			echo -e "\e[91mERROR: Failed to \"git pull --rebase\"\e[0m" # light red color code
+			PrintErrorMessage "Failed to \"git pull --rebase\""
 			cd - > /dev/null
-			return
+			return 1
 		else
-			echo -e "\e[92mSuccessfully pulled from GitHub\e[0m" # light green color code
+			PrintSuccessMessage "Successfully pulled from GitHub"
 		fi
 		# * Push to Git #
 		git push
 		if [ $? == 0 ]; then
-			echo -e "\e[92mSuccessfully pushed changes to to GitHub!\e[0m" # light green color code
+			PrintSuccessMessage "Successfully pushed changes to to GitHub!"
 		fi
 		cd - > /dev/null
 	}
@@ -526,7 +526,7 @@
 		if [[ ${#} == 1 ]]; then
 			pathToFormat="${1}"
 			if [[ ! -d "${pathToFormat}" ]]; then
-				echo "ERROR: Path \"${pathToFormat}\" does not exist"
+				PrintErrorMessage "Path \"${pathToFormat}\" does not exist"
 				return 1
 			fi
 		fi

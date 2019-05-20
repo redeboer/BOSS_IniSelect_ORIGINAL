@@ -6,7 +6,7 @@
 # *       CREATED: 8 November 2018
 # *         USAGE: bash CreateJobFiles_data.sh <package name> <search term> <number of events> <output level>
 # *     ARGUMENTS:
-# *       1) package name (default is "d0phi_KpiKK")
+# *       1) package name (default is "D0phi_KpiKK")
 # *       2) input file that will be used to create the list of dst files,
 # *          use wild cards to add a selection of files (check default value below)
 # *       3) number of events per job (default is -1, i.e. all events)
@@ -15,7 +15,6 @@
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
-
 source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
 source "${BOSS_IniSelect}/setup/Functions.sh"
 
@@ -52,7 +51,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * ------- Check arguments and parameters -------  * #
 # * =============================================== * #
 	CheckIfFolderExists "${scriptFolder}"
-	CheckIfFolderExists "${gDataOutputDir}"
+	CheckIfFolderExists "${BOSS_IniSelect_OutputDir}"
 	CheckIfFileExists "${templateFile_ana}"
 	ls ${searchTerm} > /dev/null
 	if [ $? != 0 ]; then
@@ -69,8 +68,8 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 		outputDir_ana="${scriptFolder}/ana/${outputSubdir}"
 		outputDir_rec="${scriptFolder}/rec/${outputSubdir}"
 		outputDir_sub="${scriptFolder}/sub/${outputSubdir}_ana"
-		outputDir_root="${gDataOutputDir}/root/${outputSubdir}"
-		outputDir_log="${gDataOutputDir}/log/${outputSubdir}"
+		outputDir_root="${BOSS_IniSelect_OutputDir}/root/${outputSubdir}"
+		outputDir_log="${BOSS_IniSelect_OutputDir}/log/${outputSubdir}"
 
 	# * User input * #
 		nJobs=$(ls ${searchTerm} | wc -l)

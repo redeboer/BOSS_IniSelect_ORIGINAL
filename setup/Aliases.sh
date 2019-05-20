@@ -81,7 +81,7 @@
 	alias cdPsiPrime="cdworkarea Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00"
 	alias cdRhopiAlg="cdworkarea Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00"
 	alias cdalgorithms="cdworkarea Analysis/IniSelect/IniSelect-00-00-00"
-	alias cddata="cdscratchfs data"
+	alias cddata="cd ${BOSS_IniSelect}"
 
 	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9.1"
 	alias cdmctruth1="cdmctruth 1"

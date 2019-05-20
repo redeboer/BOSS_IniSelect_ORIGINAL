@@ -15,10 +15,10 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * Input parameters * #
 	# * (1) Package name
-	packageName="RhopiAlg" # default argument
+	packageName="D0omega_K4pi" # default argument
 	if [ $# -ge 1 ]; then packageName="${1}"; fi
 	# * (2) Input files that will be used to create the list of dst files
-	data_or_MC="excl" # default argument
+	data_or_MC="incl" # default argument
 	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
 
 # * Default parameters * #
@@ -27,14 +27,14 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 	outputLevel=4
 
 # * In case of analysing EXclusive Monte Carlo output * #
-	if [ "${data_or_MC}" == "excl" ]; then 
+	if [ "${data_or_MC}" == "excl" ]; then
 		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}/100,000_events"
 		nFilesPerJob=-1
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ "${data_or_MC}" == "incl" ]; then
 		fileToRead="directories/incl/incl_Jpsi2009"
-		nFilesPerJob=100
+		nFilesPerJob=50
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ "${data_or_MC}" == "data" ]; then
@@ -58,7 +58,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * Create job from template and submit * #
 if [ "${fileToRead}" != "" ]; then
 	# * This will create your job files based on a file listing dst files and directories
-	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile_???.txt" ${nFilesPerJob} "dst"
+	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 else
 	# * This will create your job files based on a directory containing dst files

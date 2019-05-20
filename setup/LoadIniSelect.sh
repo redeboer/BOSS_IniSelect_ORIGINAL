@@ -1,6 +1,8 @@
 #!/bin/bash -
 # echo "Loading \"${BASH_SOURCE[0]/$(dirname ${BOSS_IniSelect})\/}\""
 
+export BOSS_IniSelect_OutputDir="${SCRATCHFS}/data"
+
 source "${BOSS_IniSelect}/workarea/Analysis/IniSelect/IniSelect-00-00-00/cmt/setup.sh"
 source "${BOSS_IniSelect}/workarea/Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-03/cmt/setup.sh"
 source "${BOSS_IniSelect}/workarea/TestRelease/TestRelease-00-00-00/cmt/setup.sh"

@@ -14,7 +14,6 @@
 # * ===============================================================================
 
 set -e # exit if a command or function exits with a non-zero status
-
 source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
 source "${BOSS_IniSelect}/setup/Functions.sh"
 

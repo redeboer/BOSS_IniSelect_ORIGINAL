@@ -8,7 +8,9 @@
 # *     ARGUMENTS: $1 analysis name (e.g. "RhopiAlg")
 # * ===============================================================================
 
-
+set -e # exit if a command or function exits with a non-zero status
+source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
+source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # ! ================================= ! #
 # ! ------- Script parameters ------- ! #
@@ -61,18 +63,17 @@
 		# hep_sub -g physics "${job}"
 		# if [ $? != 0 ]; then
 		# 	PrintErrorMessage "Aborted submitting jobs"
-		# 	exit
+		# 	exit 1
 		# fi
 	done
-echo "Now run:"
-echo "  bash ${tempFilename}"
-echo "and use:"
-echo "  hep_q -u $USER"
-echo "to see which jobs you have running."
-echo "Yes, it's a temporary solution..."
-exit
-	bash "${tempFilename}"
-	rm temp.sh
+	bash temp.sh
+	# echo "Now run:"
+	# echo "  bash ${tempFilename}"
+	# echo "and use:"
+	# echo "  hep_q -u $USER"
+	# echo "to see which jobs you have running."
+	# echo "Yes, it's a temporary solution..."
+	# exit
 
 
 # * ===================================== * #
