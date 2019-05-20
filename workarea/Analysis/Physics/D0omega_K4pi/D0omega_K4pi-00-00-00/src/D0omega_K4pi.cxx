@@ -1288,7 +1288,8 @@ StatusCode D0omega_K4pi::execute()
   }
 
   /// <li> Get MC truth
-  if(fCheckMC && eventHeader->runNumber() < 0)
+  bool writeMC = (fMC_4C_momega < 100.) || (fMC_5C_momega < 100.);
+  if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();
     fEvtid = eventHeader->eventNumber();

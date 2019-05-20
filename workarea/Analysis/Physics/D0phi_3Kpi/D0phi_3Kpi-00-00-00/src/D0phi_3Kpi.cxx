@@ -935,7 +935,8 @@ StatusCode D0phi_3Kpi::execute()
   }
 
   /// <li> Get MC truth
-  if(fCheckMC && eventHeader->runNumber() < 0)
+  bool writeMC = fMC_4C_mphi < 100.;
+  if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();
     fEvtid = eventHeader->eventNumber();
