@@ -22,14 +22,14 @@ function PrintErrorMessage()
 {
 	echo -e "${gColorCodeError}ERROR: ${1}${gColorCodeEnd}"
 }
-export -f PrintErrorMessage
+export PrintErrorMessage
 
 
 function PrintSuccessMessage()
 {
 	echo -e "${gColorCodeSuccess}${1}${gColorCodeEnd}"
 }
-export -f PrintSuccessMessage
+export PrintSuccessMessage
 
 
 function AskForInput()
@@ -38,4 +38,4 @@ function AskForInput()
 	echo -e "${gColorCodeInput}Press ENTER to continue or break with Ctrl+C or Ctrl+Z${gColorCodeEnd}"
 	read -p ""
 }
-export -f AskForInput
+export AskForInput

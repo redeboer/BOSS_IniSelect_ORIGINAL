@@ -148,7 +148,7 @@
 			echo "ERROR: Folder \"${path}\" does not exist"
 		fi
 	}
-	export -f CheckDirectory
+	export CheckDirectory
 
 
 	function CreateBaseDir()
@@ -156,7 +156,7 @@
 	{
 		mkdir -p "$(dirname "${1}")"
 	}
-	export -f CreateBaseDir
+	export CreateBaseDir
 
 
 	function CdToBaseDir()
@@ -165,7 +165,7 @@
 		gStoredDirectory="$(pwd)"
 		cd "$(dirname "${1}")"
 	}
-	export -f CdToBaseDir
+	export CdToBaseDir
 
 
 	function CreateOrEmptyDirectory()
@@ -184,7 +184,7 @@
 			mkdir -p "${directory}"
 		fi
 	}
-	export -f CreateOrEmptyDirectory
+	export CreateOrEmptyDirectory
 
 
 
@@ -199,7 +199,7 @@
 		gFunctionsScriptIsSourced=false
 		source "${PathToFunctionsScript}"
 	}
-	export -f ResourceCommonFunctions
+	export ResourceCommonFunctions
 
 
 
@@ -217,7 +217,7 @@
 			mkdir -p "${folderToMake}"
 		fi
 	}
-	export -f AffirmMkdir
+	export AffirmMkdir
 
 
 	function CheckIfFolderExists()
@@ -229,7 +229,7 @@
 			exit
 		fi
 	}
-	export -f CheckIfFolderExists
+	export CheckIfFolderExists
 
 
 	function CheckIfBaseDirExists()
@@ -237,7 +237,7 @@
 	{
 		CheckIfFolderExists "$(dirname "${1}")"
 	}
-	export -f CheckIfBaseDirExists
+	export CheckIfBaseDirExists
 
 
 	function CheckIfFileExists()
@@ -249,7 +249,7 @@
 			exit
 		fi
 	}
-	export -f CheckIfFileExists
+	export CheckIfFileExists
 
 
 
@@ -265,7 +265,7 @@
 		# * Main function: delete all empty lines of the file
 		sed -i '/^\s*$/d' ${fileName} # delete all empty lines of the file
 	}
-	export -f DeleteAllEmptyLines
+	export DeleteAllEmptyLines
 
 
 	function FormatTextFileToCppVectorArguments()
@@ -282,7 +282,7 @@
 			sed -i "$ s/.$//"          ${fileName} # remove last comma
 		fi
 	}
-	export -f FormatTextFileToCppVectorArguments
+	export FormatTextFileToCppVectorArguments
 
 
 	function ChangeLineEndingsFromWindowsToUnix()
@@ -293,7 +293,7 @@
 		# * Main function: remove Windows style newline characters
 		sed -i 's/\r$//' "${fileName}"
 	}
-	export -f ChangeLineEndingsFromWindowsToUnix
+	export ChangeLineEndingsFromWindowsToUnix
 
 
 	function SplitTextFile()
@@ -327,7 +327,7 @@
 		# ! REMOVE ORIGINAL FILE ! #
 			rm "${fileToSplit}"
 	}
-	export -f SplitTextFile
+	export SplitTextFile
 
 
 
@@ -366,7 +366,7 @@
 				SplitTextFile "${outputFile}" ${maxNLines}
 			fi
 	}
-	export -f CreateFilenameInventoryFromDirectory
+	export CreateFilenameInventoryFromDirectory
 
 
 	function CreateFilenameInventoryFromFile()
@@ -426,7 +426,7 @@
 		# * Go back to starting directory * #
 			cd "${startPath}"
 	}
-	export -f CreateFilenameInventoryFromFile
+	export CreateFilenameInventoryFromFile
 
 
 
@@ -458,14 +458,14 @@
 		cd "${IniSelectObjects}" && \
 		boss.exe "UnitTests/jobs/job_${TestName}.txt"
 	}
-	export -f IniTest
+	export IniTest
 
 	function IniUnitTester()
 	{
 		clear
 		IniTest UnitTester > /dev/null
 	}
-	export -f IniUnitTester
+	export IniUnitTester
 
 
 
@@ -516,7 +516,7 @@
 		fi
 		cd - > /dev/null
 	}
-	export -f gitsync
+	export gitsync
 
 
 	function RunClang()
@@ -536,7 +536,7 @@
 		done
 		cd - > /dev/null
 	}
-	export -f RunClang
+	export RunClang
 
 
 	function GenerateDoxygen()
@@ -575,7 +575,7 @@
 
 		cd - > /dev/null
 	}
-	export -f GenerateDoxygen
+	export GenerateDoxygen
 
 
 	function RunTopoana()
@@ -597,4 +597,4 @@
 		topoana.exe "${inputCard}"
 		cd "${currentPath}"
 	}
-	export -f RunTopoana
+	export RunTopoana

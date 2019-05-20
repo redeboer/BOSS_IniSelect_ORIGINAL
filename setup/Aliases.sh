@@ -13,7 +13,7 @@
 		fi
 		cd "${BOSS_IniSelect}/${subfolder}"
 	}
-	export -f cdiniselect
+	export cdiniselect
 	function cdbesfs()
 	{
 		local subfolder="${1}"
@@ -22,7 +22,7 @@
 		fi
 		cd "${BESFS}/${subfolder}"
 	}
-	export -f cdbesfs
+	export cdbesfs
 	function cdihepbatch()
 	{
 		local subfolder="${1}"
@@ -31,7 +31,7 @@
 		fi
 		cd "${IHEPBATCH}/${subfolder}"
 	}
-	export -f cdihepbatch
+	export cdihepbatch
 	function cdscratchfs()
 	{
 		local subfolder="${1}"
@@ -40,7 +40,7 @@
 		fi
 		cd "${SCRATCHFS}/${subfolder}"
 	}
-	export -f cdscratchfs
+	export cdscratchfs
 	function cdworkarea()
 	{
 		local subfolder="${1}"
@@ -49,7 +49,7 @@
 		fi
 		cd "${BOSSWORKAREA}/workarea/${subfolder}"
 	}
-	export -f cdworkarea
+	export cdworkarea
 	function cdmctruth()
 	{
 		local number="${1}"
@@ -58,7 +58,7 @@
 		fi
 		cdworkarea Analysis/TopoAna/MctruthForTopoAnaAlg/MctruthForTopoAnaAlg-00-00-0${number}
 	}
-	export -f cdmctruth
+	export cdmctruth
 
 
 
