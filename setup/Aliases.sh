@@ -77,10 +77,11 @@
 
 	alias cdjobs="cdiniselect jobs"
 
-	alias cdomega="cdworkarea Analysis/Physics/D0omega_K4pi/D0omega_K4pi-00-00-00"
 	alias cdPsiPrime="cdworkarea Analysis/Physics/PsiPrime/PipiJpsiAlg/PipiJpsiAlg-01-00-00"
 	alias cdRhopiAlg="cdworkarea Analysis/Physics/RhopiAlg/RhopiAlg-01-00-00"
 	alias cdalgorithms="cdworkarea Analysis/IniSelect/IniSelect-00-00-00"
+	alias cdomega="cdworkarea Analysis/Physics/D0omega_K4pi/D0omega_K4pi-00-00-00"
+	alias cdphi="cdworkarea Analysis/Physics/D0phi_3Kpi/D0phi_3Kpi-00-00-00"
 	alias cddata="cd ${BOSS_IniSelect}"
 
 	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9.1"
