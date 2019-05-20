@@ -14,8 +14,7 @@
 /// @addtogroup BOSS_packages
 /// @{
 
-/// Commented version of the `D0phi_3Kpi` example BOSS package (version `00-00-23`). The `D0phi_3Kpi`
-/// example package particularly teaches the use of the Kalman kinematic fit procedure.
+/// Commented version of the `D0phi_3Kpi` example BOSS package (version `00-00-23`). The `D0phi_3Kpi` example package particularly teaches the use of the Kalman kinematic fit procedure.
 /// @remark   In addition to the more extensive comments, some additional parameters, such as ToF
 /// without particle hypothesis, have been added.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
@@ -47,26 +46,17 @@ private:
   double fRvz0cut;
   double fRvxy0cut;
 
-  // * Declare energy, dphi, dthe cuts for fake gamma's
-  double fEnergyThreshold;
-  double fGammaPhiCut;
-  double fGammaThetaCut;
-  double fGammaAngleCut;
-
   // * Declare whether to test the success of the 4- and 5-constraint fits
   bool   fDo_fit4c;
-  bool   fDo_fit5c;
   double fMaxChiSq;
   double fMinPID;
 
   // * Declare whether or not to check success of Particle Identification
   bool fCheckMC;
   bool fCheckVertex;
-  bool fCheckPhoton;
   bool fCheckDedx;
   bool fCheckTof;
   bool fCheckPID;
-  bool fCheckEtot;
 
   ///@}
 
@@ -84,14 +74,6 @@ private:
   NTuple::Item<double> fRvz0;      ///< Nearest distance to IP in \f$z\f$ direction
   NTuple::Item<double> fRvphi0;    ///< Angle in the \f$xy\f$-plane (?)
 
-  NTuple::Tuple*       fTupleAngles; ///< Photon kinematics
-  NTuple::Item<double> fDeltaTheta;
-  ///< \f$\theta\f$ angle difference with nearest charged track (degrees)
-  NTuple::Item<double> fDeltaPhi;
-  ///< \f$\phi\f$ angle difference with nearest charged track (degrees)
-  NTuple::Item<double> fDeltaAngle; ///< Angle difference with nearest charged track
-  NTuple::Item<double> fEraw;       ///< Energy of the photon
-
   NTuple::Tuple*       fTupleMgg; ///< Raw invariant mass of the two gammas and their total energy
   NTuple::Item<double> fMtoGG;    ///< Inv. mass of the two gammas
   NTuple::Item<double> fEtot;     ///< Total energy of \f$\pi^+\f$, \f$\pi^-\f$ and the two gammas
@@ -100,21 +82,10 @@ private:
   NTuple::Item<double> fChi_4C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
   NTuple::Item<double> fMpi0_4C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fMD0_4C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
-  NTuple::Item<double> fMomega_4C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
+  NTuple::Item<double> fMphi_4C;    ///< Inv. mass for \f$\phi \rightarrow K^-\pi^+\f$
   NTuple::Item<double> fPpi0_4C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_4C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
-  NTuple::Item<double> fPomega_4C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
-
-  NTuple::Tuple*       fTupleFit5C; ///< 5-constraint (5C) fit information
-  NTuple::Item<double> fChi_5C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
-  NTuple::Item<double> fMpi0_5C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
-  NTuple::Item<double> fMD0_5C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
-  NTuple::Item<double> fMomega_5C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
-  NTuple::Item<double> fPpi0_5C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
-  NTuple::Item<double> fPD0_5C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
-  NTuple::Item<double> fPomega_5C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
-  NTuple::Item<double> fFcos;       ///< \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
-  NTuple::Item<double> fElow;       ///< Lowest energy of the two photons
+  NTuple::Item<double> fPphi_4C;    ///< 3-mom. for \f$\phi \rightarrow K^-\pi^+\f$
 
   NTuple::Tuple*       fTupleDedx; ///< Energy loss dE/dx
   NTuple::Item<double> fPtrack;    ///< Momentum of the track
@@ -179,11 +150,9 @@ private:
   NTuple::Item<double> fProbPi;    ///< Probability that it is a pion
   NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
 
-  NTuple::Tuple*     fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
+  NTuple::Tuple*       fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
   NTuple::Item<double> fMC_4C_mD0;
-  NTuple::Item<double> fMC_4C_momega;
-  NTuple::Item<double> fMC_5C_mD0;
-  NTuple::Item<double> fMC_5C_momega;
+  NTuple::Item<double> fMC_4C_mphi;
   NTuple::Item<int>    fRunid; ///< Run number ID.
   NTuple::Item<int>    fEvtid; ///< Rvent number ID.
   NTuple::Item<int>    fNparticles;
@@ -191,14 +160,12 @@ private:
   NTuple::Array<int> fPDG;    ///< PDG code for the particle in this array.
   NTuple::Array<int> fMother; ///< Track index of the mother particle.
 
-  NTuple::Tuple*     fTupleCutFlow;
-  NTuple::Item<int>  fNCut0;
-  NTuple::Item<int>  fNCut1;
-  NTuple::Item<int>  fNCut2;
-  NTuple::Item<int>  fNCut3;
-  NTuple::Item<int>  fNCut4;
-  NTuple::Item<int>  fNCut5;
-  NTuple::Item<int>  fNCut6;
+  NTuple::Tuple*    fTupleCutFlow;
+  NTuple::Item<int> fNCut0;
+  NTuple::Item<int> fNCut1;
+  NTuple::Item<int> fNCut2;
+  NTuple::Item<int> fNCut3;
+  NTuple::Item<int> fNCut4;
 
   ///@}
 };
