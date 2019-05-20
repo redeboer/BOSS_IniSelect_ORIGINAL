@@ -915,6 +915,11 @@ StatusCode D0phi_3Kpi::execute()
       fMphi_4C = results.comb1.phi.m();
       fPD0_4C  = ThreeMom(results.comb1.D0);
       fPphi_4C = ThreeMom(results.comb1.phi);
+      if(fCheckMC)
+      {
+        fMC_4C_mD0  = results.comb1.D0.m();
+        fMC_4C_mphi = results.comb1.phi.m();
+      }
     }
     else
     {
@@ -922,20 +927,20 @@ StatusCode D0phi_3Kpi::execute()
       fMphi_4C = results.comb2.phi.m();
       fPD0_4C  = ThreeMom(results.comb2.D0);
       fPphi_4C = ThreeMom(results.comb2.phi);
+      if(fCheckMC)
+      {
+        fMC_4C_mD0  = results.comb2.D0.m();
+        fMC_4C_mphi = results.comb2.phi.m();
+      }
     }
 
     // * WRITE pi^0 information from EMCal ("fit4c" branch) *
     fTupleFit4C->write(); // "fit4c" branch
     fNCut4++;             // ChiSq has to be less than 200 and fit4c has to be passed
-    if(fCheckMC)
-    {
-      fMC_4C_mD0  = *fMD0_4C;
-      fMC_4C_mphi = *fMphi_4C;
-    }
   }
 
   /// <li> Get MC truth
-  bool writeMC = (*fMC_4C_mphi < 100.);
+  bool writeMC = (fMC_4C_mphi < 100.);
   if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();

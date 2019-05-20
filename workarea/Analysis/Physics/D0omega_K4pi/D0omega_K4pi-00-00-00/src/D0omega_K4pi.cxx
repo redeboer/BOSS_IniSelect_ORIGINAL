@@ -1179,6 +1179,11 @@ StatusCode D0omega_K4pi::execute()
         fMomega_4C = results.comb1.omega.m();
         fPD0_4C    = ThreeMom(results.comb1.D0);
         fPomega_4C = ThreeMom(results.comb1.omega);
+        if(fCheckMC)
+        {
+          fMC_4C_mD0    = results.comb1.D0.m();
+          fMC_4C_momega = results.comb1.omega.m();
+        }
       }
       else
       {
@@ -1186,16 +1191,16 @@ StatusCode D0omega_K4pi::execute()
         fMomega_4C = results.comb2.omega.m();
         fPD0_4C    = ThreeMom(results.comb2.D0);
         fPomega_4C = ThreeMom(results.comb2.omega);
+        if(fCheckMC)
+        {
+          fMC_4C_mD0    = results.comb2.D0.m();
+          fMC_4C_momega = results.comb2.omega.m();
+        }
       }
 
       // * WRITE pi^0 information from EMCal ("fit4c" branch) *
       fTupleFit4C->write(); // "fit4c" branch
       fNCut5++;              // ChiSq has to be less than 200 and fit4c has to be passed
-      if(fCheckMC)
-      {
-        fMC_4C_mD0    = *fMD0_4C;
-        fMC_4C_momega = *fMomega_4C;
-      }
     }
   }
 
@@ -1261,6 +1266,11 @@ StatusCode D0omega_K4pi::execute()
         fMomega_5C = results.comb1.omega.m();
         fPD0_5C    = ThreeMom(results.comb1.D0);
         fPomega_5C = ThreeMom(results.comb1.omega);
+        if(fCheckMC)
+        {
+          fMC_5C_mD0    = results.comb1.D0.m();
+          fMC_5C_momega = results.comb1.omega.m();
+        }
       }
       else
       {
@@ -1268,6 +1278,11 @@ StatusCode D0omega_K4pi::execute()
         fMomega_5C = results.comb2.omega.m();
         fPD0_5C    = ThreeMom(results.comb2.D0);
         fPomega_5C = ThreeMom(results.comb2.omega);
+        if(fCheckMC)
+        {
+          fMC_5C_mD0    = results.comb2.D0.m();
+          fMC_5C_momega = results.comb2.omega.m();
+        }
       }
 
       // * Photon kinematics * //
@@ -1279,16 +1294,11 @@ StatusCode D0omega_K4pi::execute()
       // * WRITE pi^0 information from EMCal ("fit5c" branch) *
       fTupleFit5C->write(); // "fit5c" branch
       fNCut6++;              // ChiSq has to be less than 200 and fit5c has to be passed
-      if(fCheckMC)
-      {
-        fMC_5C_mD0    = *fMD0_5C;
-        fMC_5C_momega = *fMomega_5C;
-      }
     }
   }
 
   /// <li> Get MC truth
-  bool writeMC = (*fMC_4C_momega < 100.) || (*fMC_5C_momega < 100.);
+  bool writeMC = (fMC_4C_momega < 100.) || (fMC_5C_momega < 100.);
   if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();
