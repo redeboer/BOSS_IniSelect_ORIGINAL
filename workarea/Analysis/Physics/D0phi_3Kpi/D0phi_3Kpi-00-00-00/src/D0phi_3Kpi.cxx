@@ -504,8 +504,8 @@ StatusCode D0phi_3Kpi::execute()
   // Reset chi square values
   if(fCheckMC)
   {
-    fMC_4C_mD0  = -9999.;
-    fMC_4C_mphi = -9999.;
+    fMC_4C_mD0  = 9999.;
+    fMC_4C_mphi = 9999.;
   }
 
   // * Load event information and track collection *
@@ -935,7 +935,7 @@ StatusCode D0phi_3Kpi::execute()
   }
 
   /// <li> Get MC truth
-  bool writeMC = fMC_4C_mphi < 100.;
+  bool writeMC = (*fMC_4C_mphi < 100.);
   if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();

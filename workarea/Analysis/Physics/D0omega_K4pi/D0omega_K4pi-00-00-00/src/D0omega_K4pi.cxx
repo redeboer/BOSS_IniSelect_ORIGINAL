@@ -613,10 +613,10 @@ StatusCode D0omega_K4pi::execute()
   // Reset chi square values
   if(fCheckMC)
   {
-    fMC_4C_mD0    = -9999.;
-    fMC_4C_momega = -9999.;
-    fMC_5C_mD0    = -9999.;
-    fMC_5C_momega = -9999.;
+    fMC_4C_mD0    = 9999.;
+    fMC_4C_momega = 9999.;
+    fMC_5C_mD0    = 9999.;
+    fMC_5C_momega = 9999.;
   }
 
   // * Load event information and track collection *
@@ -1288,7 +1288,7 @@ StatusCode D0omega_K4pi::execute()
   }
 
   /// <li> Get MC truth
-  bool writeMC = (fMC_4C_momega < 100.) || (fMC_5C_momega < 100.);
+  bool writeMC = (*fMC_4C_momega < 100.) || (*fMC_5C_momega < 100.);
   if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
   {
     fRunid = eventHeader->runNumber();
