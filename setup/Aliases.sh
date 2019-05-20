@@ -82,7 +82,7 @@
 	alias cdalgorithms="cdworkarea Analysis/IniSelect/IniSelect-00-00-00"
 	alias cdomega="cdworkarea Analysis/Physics/D0omega_K4pi/D0omega_K4pi-00-00-00"
 	alias cdphi="cdworkarea Analysis/Physics/D0phi_3Kpi/D0phi_3Kpi-00-00-00"
-	alias cddata="cd ${BOSS_IniSelect}"
+	alias cddata="cd ${BOSS_IniSelect_OutputDir}"
 
 	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9.1"
 	alias cdmctruth1="cdmctruth 1"
