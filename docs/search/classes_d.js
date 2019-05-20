@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unittester',['UnitTester',['../classUnitTester.html',1,'']]]
+  ['secondaryvertexgeometry',['SecondaryVertexGeometry',['../classSecondaryVertexGeometry.html',1,'']]]
 ];

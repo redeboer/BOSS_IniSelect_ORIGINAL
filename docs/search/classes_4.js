@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jobswitch',['JobSwitch',['../classJobSwitch.html',1,'']]]
+  ['finalstate',['FinalState',['../classFinalState.html',1,'']]],
+  ['finalstatehandler',['FinalStateHandler',['../classFinalStateHandler.html',1,'']]]
 ];

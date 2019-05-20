@@ -1,14 +1,15 @@
 var searchData=
 [
   ['radtodeg',['RadToDeg',['../namespaceIniSelect_1_1Math.html#a6b0fb599011df8cccd87cfde23cbc0dc',1,'IniSelect::Math']]],
-  ['reachedend',['ReachedEnd',['../classParticleSelectionTempl.html#add2cb444859356911f87cb7d7796b1b0',1,'ParticleSelectionTempl']]],
+  ['reconstructed',['Reconstructed',['../structReconstructed.html',1,'']]],
   ['reconstruction_2etxt',['reconstruction.txt',['../reconstruction_8txt.html',1,'']]],
   ['rectrackpointers',['RecTrackPointers',['../classRecTrackPointers.html',1,'']]],
   ['rectrackpointers_2eh',['RecTrackPointers.h',['../RecTrackPointers_8h.html',1,'']]],
   ['red',['Red',['../namespaceIniSelect_1_1TerminalIO.html#a66cca066bf384dcbff4ab19e8a2ccb84a7724f65618d73d08182a4519e9977c29',1,'IniSelect::TerminalIO']]],
-  ['require',['Require',['../classUnitTester.html#a9c0c7db859de5837f120f8b7fc410a3e',1,'UnitTester::Require()'],['../UnitTester_8h.html#a9fb15c67cbb85b4a66bb7691a50c7b3e',1,'REQUIRE():&#160;UnitTester.h']]],
+  ['require',['Require',['../classUnitTester.html#a1c851c88e97282141195769d1ec7b26b',1,'UnitTester::Require()'],['../UnitTester_8h.html#a9fb15c67cbb85b4a66bb7691a50c7b3e',1,'REQUIRE():&#160;UnitTester.h']]],
   ['resetbestcomparevalue',['ResetBestCompareValue',['../classKKFitResult.html#adaf75f65ebf70a31ef3f2e438d2b23fb',1,'KKFitResult']]],
   ['resetbestkalmanfit',['ResetBestKalmanFit',['../classD0omega__K4pi.html#a61d18479a52d58f15d5f3e7648eaded0',1,'D0omega_K4pi']]],
+  ['results',['results',['../Physics_2D0omega__K4pi_2D0omega__K4pi-00-00-00_2src_2D0omega__K4pi_8cxx.html#a3ff0680271a7bff4dccb5d5ed211acf0',1,'D0omega_K4pi.cxx']]],
   ['rho',['rho',['../namespaceIniSelect_1_1Mass.html#a0a46ea12ead36045f0be19547e3fe9c7',1,'IniSelect::Mass']]],
   ['rhopi_5fpipigg',['rhopi_pipigg',['../classrhopi__pipigg.html',1,'rhopi_pipigg'],['../classrhopi__pipigg.html#a6a2dce6146cebb243245965e9d9d3a85',1,'rhopi_pipigg::rhopi_pipigg()']]],
   ['rhopi_5fpipigg_2eh',['rhopi_pipigg.h',['../rhopi__pipigg_8h.html',1,'']]],

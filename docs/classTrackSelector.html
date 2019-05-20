@@ -125,12 +125,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:abf66c40a572bf69d485310545c813613"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#abf66c40a572bf69d485310545c813613">AssertPostConstructed</a> () const</td></tr>
 <tr class="memdesc:abf66c40a572bf69d485310545c813613"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that has to be called before anything can be done in the <code>initialize</code> step.  <a href="#abf66c40a572bf69d485310545c813613">More...</a><br /></td></tr>
 <tr class="separator:abf66c40a572bf69d485310545c813613"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1960294cbc18ddc33805037390ce8e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae1960294cbc18ddc33805037390ce8e7">BookNTuple</a> (<a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
-<tr class="memdesc:ae1960294cbc18ddc33805037390ce8e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that allows you to relate the <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> argument <code>tuple</code> to the output file (i.e. to 'book' it).  <a href="#ae1960294cbc18ddc33805037390ce8e7">More...</a><br /></td></tr>
-<tr class="separator:ae1960294cbc18ddc33805037390ce8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb7c5a3cb217d8a806e4ebf3aeb2a92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cb7c5a3cb217d8a806e4ebf3aeb2a92">BookNTuples</a> ()</td></tr>
-<tr class="memdesc:a8cb7c5a3cb217d8a806e4ebf3aeb2a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Go over all instances of <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> and book them using <code>BookNTuple</code>.  <a href="#a8cb7c5a3cb217d8a806e4ebf3aeb2a92">More...</a><br /></td></tr>
-<tr class="separator:a8cb7c5a3cb217d8a806e4ebf3aeb2a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f1ecbf72391f836d4891b39478f86f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1f1ecbf72391f836d4891b39478f86f4">OverwriteCreateBits</a> ()</td></tr>
 <tr class="separator:a1f1ecbf72391f836d4891b39478f86f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7497d80b7650850991be723f5dc8c31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae7497d80b7650850991be723f5dc8c31">AddNTupleItems</a> ()</td></tr>
@@ -155,8 +149,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ae143ea3bdbc678932b0c0e7223e437c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad573010345c123f253bcff8de8ce519d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad573010345c123f253bcff8de8ce519d">AddNTupleItems_photon</a> ()</td></tr>
 <tr class="separator:ad573010345c123f253bcff8de8ce519d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cecef0ea9dc07c9f372a8a346dfc191"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a8cecef0ea9dc07c9f372a8a346dfc191">ConfigureParticleSelection</a> ()=0</td></tr>
-<tr class="separator:a8cecef0ea9dc07c9f372a8a346dfc191"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb40d9af9c108c9fadabc63e51f82b38"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#acb40d9af9c108c9fadabc63e51f82b38">ConfigureCandidateSelection</a> ()=0</td></tr>
+<tr class="separator:acb40d9af9c108c9fadabc63e51f82b38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5662acceac854015754a55f481a3a00e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5662acceac854015754a55f481a3a00e">AddAdditionalNTupleItems</a> ()=0</td></tr>
 <tr class="separator:a5662acceac854015754a55f481a3a00e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Helper methods for execute step</div></td></tr>
@@ -165,7 +159,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a780a37af55014da54537e3ae14df4302"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a780a37af55014da54537e3ae14df4302">SetVertexOrigin</a> ()</td></tr>
 <tr class="separator:a780a37af55014da54537e3ae14df4302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad9a4a9a0e79824ac11ab4f77e8f18a96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad9a4a9a0e79824ac11ab4f77e8f18a96">CreateChargedCollection</a> ()</td></tr>
-<tr class="memdesc:ad9a4a9a0e79824ac11ab4f77e8f18a96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a preselection of charged tracks (without cuts).  <a href="#ad9a4a9a0e79824ac11ab4f77e8f18a96">More...</a><br /></td></tr>
 <tr class="separator:ad9a4a9a0e79824ac11ab4f77e8f18a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad01c3b86ccbfef96fd88b0d3fae0ad19"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ad01c3b86ccbfef96fd88b0d3fae0ad19">CutSecondaryVertex</a> ()</td></tr>
 <tr class="separator:ad01c3b86ccbfef96fd88b0d3fae0ad19"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -224,8 +217,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a427dfe46514712f2f0a6b2152f683d7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a427dfe46514712f2f0a6b2152f683d7d">WriteDedxInfoForVector</a> (const std::vector&lt; EvtRecTrack *&gt; &amp;vector, <a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;tuple)</td></tr>
 <tr class="memdesc:a427dfe46514712f2f0a6b2152f683d7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> energy loss information.  <a href="#a427dfe46514712f2f0a6b2152f683d7d">More...</a><br /></td></tr>
 <tr class="separator:a427dfe46514712f2f0a6b2152f683d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf69ae81774478073a09ce0696153746"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aaf69ae81774478073a09ce0696153746">WriteDedxOfSelectedParticles</a> ()=0</td></tr>
-<tr class="separator:aaf69ae81774478073a09ce0696153746"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aadc608b9dc1e4f734f13e2627d473e23"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#aadc608b9dc1e4f734f13e2627d473e23">FindBestKinematicFit</a> ()=0</td></tr>
 <tr class="separator:aadc608b9dc1e4f734f13e2627d473e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f7752796a910376b189c0834c316a10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a5f7752796a910376b189c0834c316a10">IsDecay</a> (Event::McParticle *particle, const int mother) const</td></tr>
@@ -265,6 +256,8 @@ Protected Attributes</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Access to the DST file</div></td></tr>
 <tr class="memitem:af28119e4a2b480a5fa92b5c2dc6a9631"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDstFile.html">DstFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af28119e4a2b480a5fa92b5c2dc6a9631">fInputFile</a></td></tr>
 <tr class="separator:af28119e4a2b480a5fa92b5c2dc6a9631"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06de174471e5a0d44d0f1bc1a1d52071"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classNTupleBooker.html">NTupleBooker</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a06de174471e5a0d44d0f1bc1a1d52071">fNTupleBooker</a></td></tr>
+<tr class="separator:a06de174471e5a0d44d0f1bc1a1d52071"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Track collections and iterators</div></td></tr>
 <tr class="memitem:a60eeedf6b57d012332e51d0a7099f017"><td class="memItemLeft" align="right" valign="top">std::vector&lt; Event::McParticle * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a60eeedf6b57d012332e51d0a7099f017">fMcParticles</a></td></tr>
 <tr class="memdesc:a60eeedf6b57d012332e51d0a7099f017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for a better explanation.  <a href="#a60eeedf6b57d012332e51d0a7099f017">More...</a><br /></td></tr>
@@ -370,10 +363,8 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:abd44b48de379bb59650ed4da0301213f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cut on <img class="formulaInl" alt="$\theta$" src="form_23.png"/> angle between the photon and the nearest charged track <em>in radians</em>.  <a href="#abd44b48de379bb59650ed4da0301213f">More...</a><br /></td></tr>
 <tr class="separator:abd44b48de379bb59650ed4da0301213f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Other stored values</div></td></tr>
-<tr class="memitem:a1cfbb6c304fe4005f0f0fa87a6221286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__BOSS__objects.html#ga18ab972739387c1d94cd339c5899c035">ParticleSelection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a1cfbb6c304fe4005f0f0fa87a6221286">fParticleSel</a></td></tr>
-<tr class="separator:a1cfbb6c304fe4005f0f0fa87a6221286"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7cf303893ff8ddc0f476f7838987a6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__BOSS__objects.html#ga0ecf88d11136bab58e122d04cc42eef4">ParticleSelectionMC</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#ae7cf303893ff8ddc0f476f7838987a6f">fParticleSelMC</a></td></tr>
-<tr class="separator:ae7cf303893ff8ddc0f476f7838987a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb1047dc680aa88cb14b7afb4b74a46a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classFinalStateHandler.html">FinalStateHandler</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#adb1047dc680aa88cb14b7afb4b74a46a">fFinalState</a></td></tr>
+<tr class="separator:adb1047dc680aa88cb14b7afb4b74a46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a736c6519e8ca9b1cc87115db93b0be38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSecondaryVertexGeometry.html">SecondaryVertexGeometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#a736c6519e8ca9b1cc87115db93b0be38">fSecondaryVtx</a></td></tr>
 <tr class="separator:a736c6519e8ca9b1cc87115db93b0be38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1f67fa2bbfcf98e28d15508f85f02e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc">HepPoint3D</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTrackSelector.html#af1f67fa2bbfcf98e28d15508f85f02e6">fVertexPoint</a></td></tr>
@@ -431,7 +422,7 @@ Constructors</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Remco de Boer 雷穆克 (<a href="#" onclick="location.href='mai'+'lto:'+'r.e'+'.d'+'ebo'+'er'+'@st'+'ud'+'ent'+'s.'+'uu.'+'nl'; return false;">r.e.d<span style="display: none;">.nosp@m.</span>eboe<span style="display: none;">.nosp@m.</span>r@stu<span style="display: none;">.nosp@m.</span>dent<span style="display: none;">.nosp@m.</span>s.uu.<span style="display: none;">.nosp@m.</span>nl</a> or <a href="#" onclick="location.href='mai'+'lto:'+'rem'+'co'+'.de'+'.b'+'oer'+'@i'+'hep'+'.a'+'c.c'+'n'; return false;">remco<span style="display: none;">.nosp@m.</span>.de.<span style="display: none;">.nosp@m.</span>boer@<span style="display: none;">.nosp@m.</span>ihep<span style="display: none;">.nosp@m.</span>.ac.c<span style="display: none;">.nosp@m.</span>n</a>) </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>December 14th, 2018 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00046">46</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00047">47</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a49dc31c983813eee609c9a0da0bca9b1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49dc31c983813eee609c9a0da0bca9b1">&#9670;&nbsp;</a></span>TrackSelector()</h2>
@@ -462,7 +453,7 @@ Constructors</h2></td></tr>
 <p>Constructor for the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> base algorithm. </p>
 <p>Here, you should declare properties: give them a name, assign a parameter (data member of <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>), and if required a documentation string. Note that you should define the paramters themselves in the header (TrackSelector/TrackSelector.h) and that you should assign the values in <code>share/jopOptions_TrackSelector.txt</code>. Algorithms should inherit from Gaudi's <code>Algorithm</code> class. See class <code>GaudiKernel</code>s [<code>Algorithm</code>][<a href="https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html">https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html</a>] for more details. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__const_8cxx_source.html#l00023">23</a> of file <a class="el" href="TrackSelector__const_8cxx_source.html">TrackSelector_const.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00031">31</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -520,7 +511,7 @@ Constructors</h2></td></tr>
 <p>Write all cuts to a branch called "_cutvalues". </p>
 <p>There will only be one entry per output file: a <code>C</code>-style array of size 3. Entry 0 of that array is the <code>min</code> value, entry 1 is the <code>max</code> value, and entry 2 is the recorded. As opposed to earlier versions of the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code> (where the <code>"_cutvalues"</code> <code>TTree</code> contained 3 entries), we now use a <code>C</code>-style array (written through <code>NTuple::addIndexedItem</code>), because it allows to add up the number of counts when you have split up your jobs, which makes your output contain more than ROOT file. If you load these files as a <code>TChain</code>, you can get the total count of the <code><a class="el" href="classCutObject.html" title="This object contains all information and tools for a cut you want to apply. ">CutObject</a></code> by adding up all '2nd entries' (the counts) of each branch. </p><dl class="section see"><dt>See also</dt><dd>BOSSOutputLoader::PrintCuts </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00018">18</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00803">803</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -547,7 +538,7 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00086">86</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00159">159</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -574,16 +565,16 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p><code>"charged"</code>: Charged track info: secondary vertact and distance to IP.</p><ul>
-<li><code>"vx"</code>: <img class="formulaInl" alt="$x$" src="form_48.png"/> coordinate of the secondary vertex as determined by MDC.</li>
-<li><code>"vy"</code>: <img class="formulaInl" alt="$y$" src="form_49.png"/> coordinate of the secondary vertex as determined by MDC.</li>
+<li><code>"vx"</code>: <img class="formulaInl" alt="$x$" src="form_42.png"/> coordinate of the secondary vertex as determined by MDC.</li>
+<li><code>"vy"</code>: <img class="formulaInl" alt="$y$" src="form_43.png"/> coordinate of the secondary vertex as determined by MDC.</li>
 <li><code>"vz"</code>: <img class="formulaInl" alt="$z$" src="form_26.png"/> coordinate of the secondary vertex as determined by MDC.</li>
 <li><code>"vr"</code>: Distance from origin in <img class="formulaInl" alt="$xy$" src="form_27.png"/> plane.</li>
 <li><code>"rvxy"</code>: Nearest distance to interaction point in <img class="formulaInl" alt="$xy$" src="form_27.png"/> plane.</li>
-<li><code>"rvz"</code>: Nearest distance to interaction point in <img class="formulaInl" alt="$z$" src="form_26.png"/> direction.<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Get explanation of geometry (angle) definitions in an event.</dd></dl>
+<li><code>"rvz"</code>: Nearest distance to interaction point in <img class="formulaInl" alt="$z$" src="form_26.png"/> direction.<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Get explanation of geometry (angle) definitions in an event.</dd></dl>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00131">131</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00201">201</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -613,17 +604,17 @@ Constructors</h2></td></tr>
 <p>This function encapsulates the <code>addItem</code> procedure for the <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> energy loss branch (<code>"dedx"</code>). This method allows you to perform the same booking method for different types of charged particles (for instance 'all charged particles', kaons, and pions).</p><ul>
 <li><code>"Ngoodhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> hits (excluding overflow).</li>
 <li><code>"Ntotalhits"</code>: Number of good <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> hits (including overflow).</li>
-<li><code>"chie"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").</li>
-<li><code>"chik"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").</li>
-<li><code>"chimu"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").</li>
-<li><code>"chip"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> in case of proton ("number of \f$\sigma\f$ from \f$p^\pm\f$").</li>
-<li><code>"chipi"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> in case of pion ("number of \f$\sigma\f$ from \f$\pi^\pm\f$").</li>
+<li><code>"chie"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> in case of electron ("number of \f$\sigma\f$ from \f$e^\pm\f$").</li>
+<li><code>"chik"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> in case of kaon ("number of \f$\sigma\f$ from \f$K^\pm\f$").</li>
+<li><code>"chimu"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> in case of muon ("number of \f$\sigma\f$ from \f$\mu^\pm\f$").</li>
+<li><code>"chip"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> in case of proton ("number of \f$\sigma\f$ from \f$p^\pm\f$").</li>
+<li><code>"chipi"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> in case of pion ("number of \f$\sigma\f$ from \f$\pi^\pm\f$").</li>
 <li><code>"normPH"</code>: Normalized pulse height.</li>
 <li><code>"p"</code>: Momentum of the track as reconstructed by MDC.</li>
 <li><code>"probPH"</code>: Most probable pulse height from truncated mean. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00209">209</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00279">279</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -658,7 +649,7 @@ Constructors</h2></td></tr>
 <li><code>"mother"</code>: Track index of the mother particle. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00235">235</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00305">305</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -693,7 +684,7 @@ Constructors</h2></td></tr>
 <li><code>"N_&lt;particle&gt;"</code>: Multiplicity for the particles you selected. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00098">98</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00171">171</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -721,16 +712,16 @@ Constructors</h2></td></tr>
 </div><div class="memdoc">
 <p><code>"neutral"</code>: Neutral track info.</p><ul>
 <li><code>"E"</code>: Energy of the neutral track as determined by the EM calorimeter.</li>
-<li><code>"x"</code>: <img class="formulaInl" alt="$x$" src="form_48.png"/>-coordinate of the neutral track according to the EMC.</li>
-<li><code>"y"</code>: <img class="formulaInl" alt="$y$" src="form_49.png"/>-coordinate of the neutral track according to the EMC.</li>
+<li><code>"x"</code>: <img class="formulaInl" alt="$x$" src="form_42.png"/>-coordinate of the neutral track according to the EMC.</li>
+<li><code>"y"</code>: <img class="formulaInl" alt="$y$" src="form_43.png"/>-coordinate of the neutral track according to the EMC.</li>
 <li><code>"z"</code>: <img class="formulaInl" alt="$z$" src="form_26.png"/>-coordinate of the neutral track according to the EMC.</li>
 <li><code>"phi"</code>: <img class="formulaInl" alt="$\phi$" src="form_22.png"/>-angle of the neutral track according to the EMC.</li>
 <li><code>"theta"</code>: <img class="formulaInl" alt="$\theta$" src="form_23.png"/>-angle of the neutral track according to the EMC.</li>
-<li><code>"time"</code>: Time of the neutral track according to the EMC.<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000017">Todo:</a></b></dt><dd>Investigate what this parameter precisely means. </dd></dl>
+<li><code>"time"</code>: Time of the neutral track according to the EMC.<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000016">Todo:</a></b></dt><dd>Investigate what this parameter precisely means. </dd></dl>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00154">154</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00224">224</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -758,15 +749,15 @@ Constructors</h2></td></tr>
 </div><div class="memdoc">
 <p><code>"photon"</code>: Information of the selected photons</p><ul>
 <li><code>"E"</code>: Energy of the photon.</li>
-<li><code>"py"</code>: <img class="formulaInl" alt="$x$" src="form_48.png"/> component of the 4-momentum of the photon (computed from the detected angles).</li>
-<li><code>"py"</code>: <img class="formulaInl" alt="$y$" src="form_49.png"/> component of the 4-momentum of the photon (computed from the detected angles).</li>
+<li><code>"py"</code>: <img class="formulaInl" alt="$x$" src="form_42.png"/> component of the 4-momentum of the photon (computed from the detected angles).</li>
+<li><code>"py"</code>: <img class="formulaInl" alt="$y$" src="form_43.png"/> component of the 4-momentum of the photon (computed from the detected angles).</li>
 <li><code>"pz"</code>: <img class="formulaInl" alt="$z$" src="form_26.png"/> component of the 4-momentum of the photon (computed from the detected angles).</li>
 <li><code>"phi"</code>: Smallest <img class="formulaInl" alt="$\phi$" src="form_22.png"/> angle between the photon and the nearest charged pion.</li>
 <li><code>"theta"</code>: Smallest <img class="formulaInl" alt="$\theta$" src="form_23.png"/> angle between the photon and the nearest charged pion.</li>
 <li><code>"angle"</code>: Smallest angle between the photon and the nearest charged pion. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00278">278</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00348">348</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -795,10 +786,10 @@ Constructors</h2></td></tr>
 <p><code>"PID"</code>: Track PID information.</p><ul>
 <li><code>"p"</code>: Momentum of the track as reconstructed by MDC.</li>
 <li><code>"cost"</code>: Theta angle of the track.</li>
-<li><code>"chiToFIB"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> of the inner barrel ToF of the track.</li>
-<li><code>"chiToFEC"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> of the end cap ToF of the track.</li>
-<li><code>"chiToFOB"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> of the outer barrel ToF of the track.</li>
-<li><code>"chidEdx"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_44.png"/> of the energy loss <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> of the identified track.</li>
+<li><code>"chiToFIB"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> of the inner barrel ToF of the track.</li>
+<li><code>"chiToFEC"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> of the end cap ToF of the track.</li>
+<li><code>"chiToFOB"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> of the outer barrel ToF of the track.</li>
+<li><code>"chidEdx"</code>: <img class="formulaInl" alt="$\chi^2$" src="form_38.png"/> of the energy loss <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> of the identified track.</li>
 <li><code>"prob_K"</code>: Probability that the track is from a kaon according to the probability method.</li>
 <li><code>"prob_e"</code>: Probability that the track is from a electron according to the probability method.</li>
 <li><code>"prob_mu"</code>: Probability that the track is from a muon according to the probability method.</li>
@@ -806,7 +797,7 @@ Constructors</h2></td></tr>
 <li><code>"prob_pi"</code>: Probability that the track is from a pion according to the probability method. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00251">251</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00321">321</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -833,7 +824,7 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00173">173</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00243">243</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -866,7 +857,7 @@ Constructors</h2></td></tr>
 <li><code>"path"</code>: Path length.</li>
 <li><code>"cntr"</code>: ToF counter ID.</li>
 <li><code>"ph"</code>: ToF pulse height.</li>
-<li><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_51.png"/> or <img class="formulaInl" alt="$R$" src="form_52.png"/> Hit position.</li>
+<li><code>"zrhit"</code>: Track extrapolate <img class="formulaInl" alt="$Z$" src="form_45.png"/> or <img class="formulaInl" alt="$R$" src="form_46.png"/> Hit position.</li>
 <li><code>"qual"</code>: Data quality of reconstruction.</li>
 <li><code>"tof_e"</code>: Difference with ToF in electron hypothesis.</li>
 <li><code>"tof_mu"</code>: Difference with ToF in muon hypothesis.</li>
@@ -875,7 +866,7 @@ Constructors</h2></td></tr>
 <li><code>"tof_p"</code>: Difference with ToF in proton hypothesis. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00180">180</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00250">250</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -902,12 +893,12 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p><code>"vertex"</code>: Primary vertex info (interaction point)</p><ul>
-<li><code>"vx0"</code>: <img class="formulaInl" alt="$x$" src="form_48.png"/> coordinate of the interaction point.</li>
-<li><code>"vy0"</code>: <img class="formulaInl" alt="$y$" src="form_49.png"/> coordinate of the interaction point.</li>
+<li><code>"vx0"</code>: <img class="formulaInl" alt="$x$" src="form_42.png"/> coordinate of the interaction point.</li>
+<li><code>"vy0"</code>: <img class="formulaInl" alt="$y$" src="form_43.png"/> coordinate of the interaction point.</li>
 <li><code>"vz0"</code>: <img class="formulaInl" alt="$z$" src="form_26.png"/> coordinate of the interaction point. </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00120">120</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00190">190</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -936,73 +927,7 @@ Constructors</h2></td></tr>
 
 <p>Method that has to be called before anything can be done in the <code>initialize</code> step. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00036">36</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
-
-</div>
-</div>
-<a id="ae1960294cbc18ddc33805037390ce8e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1960294cbc18ddc33805037390ce8e7">&#9670;&nbsp;</a></span>BookNTuple()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TrackSelector::BookNTuple </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classNTupleContainer.html">NTupleContainer</a> &amp;&#160;</td>
-          <td class="paramname"><em>tuple</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Helper function that allows you to relate the <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> argument <code>tuple</code> to the output file (i.e. to 'book' it). </p>
-<ol type="1">
-<li><b>Abort</b> if the <code>"write_"</code> <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> option has been set to <code>false</code>.</li>
-<li>Form a string for booking in the file. Typically: <code>"FILE1/&lt;tree name&gt;"</code>.</li>
-<li>Attempt to get this <code>NTuple::Tuple</code> from file the file.</li>
-<li>If not available in file, book a new one.</li>
-<li>Import this NTuplePtr to the <code>tuple</code> object. </li>
-</ol>
-
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00054">54</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
-
-</div>
-</div>
-<a id="a8cb7c5a3cb217d8a806e4ebf3aeb2a92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cb7c5a3cb217d8a806e4ebf3aeb2a92">&#9670;&nbsp;</a></span>BookNTuples()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TrackSelector::BookNTuples </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Go over all instances of <code><a class="el" href="classNTupleContainer.html" title="Container object that is to facilitate the booking procedure for NTuple::Tuples and their NTuple::Ite...">NTupleContainer</a></code> and book them using <code>BookNTuple</code>. </p>
-
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00046">46</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00144">144</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1033,12 +958,12 @@ Constructors</h2></td></tr>
 <p>Compute a 'momentum' for a neutral track. </p>
 <p>The momentum is computed from the neutral track (photon) energy and from the location (angles) where it was detected in the EMC. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00151">151</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00966">966</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a8cecef0ea9dc07c9f372a8a346dfc191"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8cecef0ea9dc07c9f372a8a346dfc191">&#9670;&nbsp;</a></span>ConfigureParticleSelection()</h2>
+<a id="acb40d9af9c108c9fadabc63e51f82b38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb40d9af9c108c9fadabc63e51f82b38">&#9670;&nbsp;</a></span>ConfigureCandidateSelection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1047,7 +972,7 @@ Constructors</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void TrackSelector::ConfigureParticleSelection </td>
+          <td class="memname">virtual void TrackSelector::ConfigureCandidateSelection </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1060,7 +985,7 @@ Constructors</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classD0omega__K4pi.html#af2078d3e7bfaad7959426653947d926c">D0omega_K4pi</a>.</p>
+<p>Implemented in <a class="el" href="classD0omega__K4pi.html#acc6679f3d371ed3ecf30eb8d74789e04">D0omega_K4pi</a>.</p>
 
 </div>
 </div>
@@ -1113,15 +1038,11 @@ Constructors</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Create a preselection of charged tracks (without cuts). </p>
-<p>This method is used in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> only. See <code>fChargedTracks</code> for more information. </p>
 <ol type="1">
-<li><b>Write</b> dE/dx PID information ("dedx" branch)</li>
 <li><b>Write</b> Time-of-Flight PID information ("tof*" branch) </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00071">71</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00419">419</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1196,7 +1117,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00037">37</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00852">852</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1253,7 +1174,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Create a preselection of <b>neutral</b> tracks (without cuts). </p>
 <p>This method is used in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> only. See <code>fNeutralTracks</code> for more information. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00221">221</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00566">566</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1280,7 +1201,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00376">376</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00709">709</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1307,7 +1228,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00307">307</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00642">642</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1337,7 +1258,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Apply angle cut on the photons: you do not want to photons to be too close to any charged track to avoid noise from EMC showers that came from a charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00440">440</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00773">773</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1366,7 +1287,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>PID cut</b>: apply a strict cut on the number of the selected particles. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00282">282</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00620">620</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1393,7 +1314,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00125">125</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00470">470</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1422,7 +1343,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Net charge cut</b>: Apply a strict cut on the total charge detected in the detectors. If this charge is not <img class="formulaInl" alt="$0$" src="form_17.png"/>, this means some charged tracks have not been detected. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00025">25</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00840">840</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +1370,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li>Also set <code>JobSwitches</code> of <code>"_cutvalues"</code> to <code>true</code>, because they have to be written no matter what the job option files says. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__const_8cxx_source.html#l00094">94</a> of file <a class="el" href="TrackSelector__const_8cxx_source.html">TrackSelector_const.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00102">102</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1471,7 +1392,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Declare properties for each <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code>. </p>
 <p>This method has been added to the <code><a class="el" href="classTrackSelector.html" title="Base algorithm that creates a selection of charged and/or neutral tracks. ">TrackSelector</a></code>, and not to the <code><a class="el" href="classJobSwitch.html" title="This simple object encapsulates a boolean job option. ">JobSwitch</a></code> class, because it requires the <code>Algorithm::decalareProperty</code> method. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__const_8cxx_source.html#l00080">80</a> of file <a class="el" href="TrackSelector__const_8cxx_source.html">TrackSelector_const.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00088">88</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1492,7 +1413,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>This method is called <b>for each event</b>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00023">23</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00368">368</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1514,7 +1435,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Is called at the end <em>of the entire process</em>. </p>
 <p>Writes total cut flow to terminal and to the output file. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00006">6</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00783">783</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1570,7 +1491,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Find angle differences with nearest charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00391">391</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00724">724</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1597,7 +1518,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00404">404</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00737">737</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1625,7 +1546,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00410">410</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00743">743</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1646,9 +1567,8 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>(Inherited) <code>initialize</code> step of <code>Algorithm</code>. </p>
 <p>This function is called once in the beginning <em>of each run</em>. Define and load NTuples here. The <code>NTuples</code> will become the <code>TTree</code>s in the eventual ROOT file, the added <code>NTuple::Item</code>s will be the branches of those trees. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000015">Todo:</a></b></dt><dd>Try to catch the <code>StatusCode</code>. Note that this is problematic, because you actually want to catch the <code>enum</code> within the class <code>StatusCode</code>... </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00017">17</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00120">120</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1688,7 +1608,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Check whether a decayed MC truth particle comes from a particle with PDG code <code>mother</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00167">167</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00982">982</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1734,7 +1654,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Check whether a decayed MC truth particle has PDG code <code>pdg</code> and comes from a particle with PDG code <code>mother</code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00176">176</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00991">991</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1761,7 +1681,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__init_8cxx_source.html#l00080">80</a> of file <a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00153">153</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1782,7 +1702,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Rather dubious construction, but this method is required and <b>has to be called at the end of each derived constructor</b>. The reason for that this method is necessary is that a Gaudi <code>Algorithm</code> requires properties to have been declared by the time the <code>Algorithm</code> has been constructed. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__const_8cxx_source.html#l00071">71</a> of file <a class="el" href="TrackSelector__const_8cxx_source.html">TrackSelector_const.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00079">79</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1809,7 +1729,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00049">49</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00399">399</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1850,7 +1770,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Print function for debugging purposes. </p>
 <p>This function has been implemented in the base class to standardise terminal output. </p><dl class="section remark"><dt>Remarks</dt><dd>In the derived classes, place this function at the beginning of each algorithm step for debugging purposes, using the format <code>PrintFunctionName("&lt;class name&gt;", __func__)</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00187">187</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l01002">1002</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1877,7 +1797,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00267">267</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00609">609</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1905,7 +1825,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__final_8cxx_source.html#l00037">37</a> of file <a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00822">822</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1932,7 +1852,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00316">316</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00651">651</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -1997,7 +1917,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00058">58</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00408">408</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2024,7 +1944,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00135">135</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00480">480</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2070,7 +1990,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> info. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00151">151</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00496">496</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2111,34 +2031,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Encapsulates a <code>for</code> loop of the writing procedure for <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> energy loss information. </p>
 <p>This method allows you to write <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/> information for any selection of charged tracks. Just feed it a vector that contains such a collection of <code>EvtRecTrack</code> pointers. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00089">89</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
-
-</div>
-</div>
-<a id="aaf69ae81774478073a09ce0696153746"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf69ae81774478073a09ce0696153746">&#9670;&nbsp;</a></span>WriteDedxOfSelectedParticles()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void TrackSelector::WriteDedxOfSelectedParticles </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classD0omega__K4pi.html#afd5eee6e15a279ca5906bfd62078c135">D0omega_K4pi</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00904">904</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2179,7 +2072,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>This <code>virtual</code> method has been declared in the base algorithm to standardise the writing of a fit tuple. </p>
 <dl class="section remark"><dt>Remarks</dt><dd>You should redefine the virtual <code>SetFitNTuple</code> method in your derived algorithm to specify what should be stored to this fit <code>NTuple</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00100">100</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00915">915</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2216,7 +2109,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> <code>NTuple</code> if <code>write</code> has been set to <code>true</code>. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__rest_8cxx_source.html#l00113">113</a> of file <a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00928">928</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2243,7 +2136,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00249">249</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00594">594</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2273,7 +2166,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><em>Write</em> photon info (<code>"photon"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00420">420</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00753">753</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2309,7 +2202,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> PID info. </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00349">349</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00682">682</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2362,7 +2255,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <li><b>Write</b> ToF info </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00186">186</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00531">531</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2391,7 +2284,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Write</b> information about the interaction point (<code>"vertex"</code> branch). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector__exe_8cxx_source.html#l00297">297</a> of file <a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8cxx_source.html#l00632">632</a> of file <a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a>.</p>
 
 </div>
 </div>
@@ -2418,7 +2311,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Vector that, in each event, will be filled by a selection of pointers to 'good' charged tracks. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00155">155</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00154">154</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2444,7 +2337,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>A switch that allows the derived algorithms to decide whether to create a collection of <b>charged</b> tracks in the <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00161">161</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00160">160</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2470,7 +2363,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>A switch that allows the derived algorithms to decide whether to create a collection of <b>neutral</b> tracks in the <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code> step. This switch is hard-coded, and inaccessible to the job options, because it depends on the nature of the derived analysis whether or not to create this collection. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00163">163</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00162">162</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2496,7 +2389,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on <img class="formulaInl" alt="$\cos(\theta)$" src="form_28.png"/>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00215">215</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00214">214</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2522,7 +2415,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on angle between the photon and the nearest charged track <em>in degrees</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00221">221</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00220">220</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2548,7 +2441,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on <img class="formulaInl" alt="$\phi$" src="form_22.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00223">223</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00222">222</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2574,7 +2467,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on <img class="formulaInl" alt="$\theta$" src="form_23.png"/> angle between the photon and the nearest charged track <em>in radians</em>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00225">225</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00224">224</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2600,7 +2493,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the photon energy. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00216">216</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00215">215</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2626,7 +2519,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the <img class="formulaInl" alt="$\chi_\mathrm{red}^2$" src="form_29.png"/> of the kinematic Kalman fits. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00217">217</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00216">216</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2652,7 +2545,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the probability that a particle is either a kaon, pion, electron, muon, or proton according to the probability method. See for instance <a href="http://bes3.to.infn.it/Boss/7.0.2/html/classParticleID.html#147bb7be5fa47f275ca3b32e6ae8fbc6"><code>ParticleID::probPion</code></a>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00219">219</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00218">218</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2678,7 +2571,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$z$" src="form_26.png"/> direction between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00211">211</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00210">210</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2704,7 +2597,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the distance in the <img class="formulaInl" alt="$xy$" src="form_27.png"/> plane between the primary vertex and the vertex of the charged track. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00213">213</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00212">212</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2730,7 +2623,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the radius <img class="formulaInl" alt="$r$" src="form_25.png"/> of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00207">207</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00206">206</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2756,7 +2649,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Cut on the <img class="formulaInl" alt="$z$" src="form_26.png"/> coordinate of the primary vertex. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00209">209</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00208">208</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2782,7 +2675,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Cut flow counter</b>: total number of events that have exactly the number of charged tracks we want. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00201">201</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00200">200</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2808,7 +2701,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Cut flow counter</b>: total number of events where the measured netto charge was <img class="formulaInl" alt="$0$" src="form_17.png"/>. This cut is used to exclude events where some charged tracks were not detected (an <img class="formulaInl" alt="$e^+e^-$" src="form_18.png"/> collision has <img class="formulaInl" alt="$0$" src="form_17.png"/> net charge). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00199">199</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00198">198</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2834,7 +2727,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Cut flow counter</b>: total number of events where there is at least one combination where the kinematic fit worked. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00203">203</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00202">202</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2860,7 +2753,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><b>Cut flow counter</b>: total number of events that that has exactly the identified tracks that we want. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00205">205</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00204">204</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2884,7 +2777,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00197">197</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00196">196</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2908,7 +2801,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00242">242</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00240">240</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2932,7 +2825,31 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00243">243</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00241">241</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+
+</div>
+</div>
+<a id="adb1047dc680aa88cb14b7afb4b74a46a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb1047dc680aa88cb14b7afb4b74a46a">&#9670;&nbsp;</a></span>fFinalState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classFinalStateHandler.html">FinalStateHandler</a> TrackSelector::fFinalState</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00230">230</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2956,7 +2873,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00148">148</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00146">146</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -2982,7 +2899,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Stream object for logging. It needs to be declared as a data member so that it is accessible to all methods of this class. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00122">122</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00121">121</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3009,7 +2926,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 <p>Vector that, in each event, will be filled by a selection of pointers to MC particles that are of interest. Only generated particles that are detectable are included. The cluster and everything that comes before it is also not included. See <a href="https://besiii.gitbook.io/boss/besiii-software-system/packages/analysis/topoana#structure-of-the-event-mcparticlecol-collection">here</a> for a better explanation. </p>
 <dl class="section remark"><dt>Remarks</dt><dd>Note that this vector has to be used in the derived algorithm, e.g. by filling the data members of the <code>fNTuple_mctruth</code> member and calling its <code>Write</code> method, otherwise it is useless. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00153">153</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00152">152</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3035,7 +2952,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Net charge detected in the MDC. Should be zero, so use can use this value as a cut. This for instance happens in the <code><a class="el" href="classRhopiAlg.html" title="Commented version of the RhopiAlg example BOSS package (version 00-00-23). ">RhopiAlg</a></code> example. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00236">236</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00234">234</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3061,7 +2978,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Vector that, in each event, will be filled by a selection of pointers to 'good' neutral tracks (photons). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00157">157</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00156">156</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3087,7 +3004,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the charged track vertex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00179">179</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00178">178</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3113,7 +3030,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the cut parameters. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00169">169</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00168">168</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3139,7 +3056,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the energy loss ( <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/>) branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00181">181</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00180">180</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3165,7 +3082,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the multiplicities branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00183">183</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00182">182</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3191,7 +3108,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the neutral track info neutral track info branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00185">185</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00184">184</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3217,7 +3134,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the photon branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00187">187</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00186">186</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3243,7 +3160,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the general PID information (TOF, <img class="formulaInl" alt="$dE/dx$" src="form_7.png"/>, etc) branch. <b>Needs to be filled in the derived class!</b> </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00171">171</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00170">170</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3269,7 +3186,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the data from the Time-of-Flight end cap detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00173">173</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00172">172</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3295,7 +3212,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the data from the Time-of-Flight inner barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00175">175</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00174">174</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3321,7 +3238,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the data from the Time-of-Flight outer barrel detector branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00177">177</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00176">176</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3347,7 +3264,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the decay topology according to Monte Carlo truth. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00191">191</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00190">190</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3373,12 +3290,12 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p><code>NTuple::Tuple</code> container for the primary vertex info vertex branch. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00189">189</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00188">188</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
-<a id="a1cfbb6c304fe4005f0f0fa87a6221286"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1cfbb6c304fe4005f0f0fa87a6221286">&#9670;&nbsp;</a></span>fParticleSel</h2>
+<a id="a06de174471e5a0d44d0f1bc1a1d52071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06de174471e5a0d44d0f1bc1a1d52071">&#9670;&nbsp;</a></span>fNTupleBooker</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -3387,7 +3304,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__BOSS__objects.html#ga18ab972739387c1d94cd339c5899c035">ParticleSelection</a> TrackSelector::fParticleSel</td>
+          <td class="memname"><a class="el" href="classNTupleBooker.html">NTupleBooker</a> TrackSelector::fNTupleBooker</td>
         </tr>
       </table>
   </td>
@@ -3397,31 +3314,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00231">231</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
-
-</div>
-</div>
-<a id="ae7cf303893ff8ddc0f476f7838987a6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae7cf303893ff8ddc0f476f7838987a6f">&#9670;&nbsp;</a></span>fParticleSelMC</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="group__BOSS__objects.html#ga0ecf88d11136bab58e122d04cc42eef4">ParticleSelectionMC</a> TrackSelector::fParticleSelMC</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00232">232</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00147">147</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3447,7 +3340,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Boolean that keeps track of whether the <code>PostConstructor has actually been called. Yes, it's a crappy solution... see</code>PostConstructor`. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00249">249</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00247">247</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3471,7 +3364,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00233">233</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00231">231</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3497,7 +3390,7 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Iterator for looping over the collection of charged and neutral tracks (<code>EvtRecTrackCol</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00159">159</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00158">158</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
@@ -3523,17 +3416,13 @@ Only start recording <em>after</em> we have passed the initial simulation <code>
 
 <p>Coordinates of the interaction point (primary vertex). Set in each event in <code><a class="el" href="classTrackSelector.html#a6866699cb5218a5c8dc313f5ff5910cb" title="This method is called for each event. ">TrackSelector::execute</a></code>. </p>
 
-<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00234">234</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TrackSelector_8h_source.html#l00232">232</a> of file <a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="TrackSelector_8h_source.html">TrackSelector.h</a></li>
-<li><a class="el" href="TrackSelector__const_8cxx_source.html">TrackSelector_const.cxx</a></li>
-<li><a class="el" href="TrackSelector__exe_8cxx_source.html">TrackSelector_exe.cxx</a></li>
-<li><a class="el" href="TrackSelector__final_8cxx_source.html">TrackSelector_final.cxx</a></li>
-<li><a class="el" href="TrackSelector__init_8cxx_source.html">TrackSelector_init.cxx</a></li>
-<li><a class="el" href="TrackSelector__rest_8cxx_source.html">TrackSelector_rest.cxx</a></li>
+<li><a class="el" href="TrackSelector_8cxx_source.html">TrackSelector.cxx</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

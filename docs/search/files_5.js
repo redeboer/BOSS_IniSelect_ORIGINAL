@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jobswitch_2ecxx',['JobSwitch.cxx',['../JobSwitch_8cxx.html',1,'']]],
-  ['jobswitch_2eh',['JobSwitch.h',['../JobSwitch_8h.html',1,'']]]
+  ['globals_2ecxx',['Globals.cxx',['../Globals_8cxx.html',1,'']]],
+  ['globals_2eh',['Globals.h',['../Globals_8h.html',1,'']]]
 ];

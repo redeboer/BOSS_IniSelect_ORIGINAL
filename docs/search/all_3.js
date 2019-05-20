@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['d0',['D0',['../namespaceIniSelect_1_1Mass.html#a480f74a7150233c3b5f54efeabf3ceb1',1,'IniSelect::Mass']]],
-  ['d0omega_5fk4pi',['D0omega_K4pi',['../classD0omega__K4pi.html',1,'D0omega_K4pi'],['../classD0omega__K4pi.html#adc315c8c5f26c0c155339bc4ea09186e',1,'D0omega_K4pi::D0omega_K4pi()']]],
-  ['d0omega_5fk4pi_2ecxx',['D0omega_K4pi.cxx',['../D0omega__K4pi_8cxx.html',1,'']]],
-  ['d0omega_5fk4pi_2eh',['D0omega_K4pi.h',['../D0omega__K4pi_8h.html',1,'']]],
+  ['d0',['D0',['../structReconstructed.html#a1d62856be235c6831c6352cf14a41b6a',1,'Reconstructed::D0()'],['../namespaceIniSelect_1_1Mass.html#a480f74a7150233c3b5f54efeabf3ceb1',1,'IniSelect::Mass::D0()']]],
+  ['d0omega_5fk4pi',['D0omega_K4pi',['../classD0omega__K4pi.html',1,'D0omega_K4pi'],['../classD0omega__K4pi.html#adc315c8c5f26c0c155339bc4ea09186e',1,'D0omega_K4pi::D0omega_K4pi(const std::string &amp;name, ISvcLocator *pSvcLocator)'],['../classD0omega__K4pi.html#adc315c8c5f26c0c155339bc4ea09186e',1,'D0omega_K4pi::D0omega_K4pi(const std::string &amp;name, ISvcLocator *pSvcLocator)']]],
   ['d0phi_5f3k3pi',['D0phi_3K3pi',['../classD0phi__3K3pi.html',1,'D0phi_3K3pi'],['../classD0phi__3K3pi.html#a13307ada4a5e7701e7a5fb15705b3cc3',1,'D0phi_3K3pi::D0phi_3K3pi()']]],
   ['d0phi_5f3k3pi_2eh',['D0phi_3K3pi.h',['../D0phi__3K3pi_8h.html',1,'']]],
   ['d0phi_5fkpikk',['D0phi_KpiKK',['../classD0phi__KpiKK.html',1,'D0phi_KpiKK'],['../classD0phi__KpiKK.html#a8bd58f92dd541a395caadb7a879fe55a',1,'D0phi_KpiKK::D0phi_KpiKK()']]],
@@ -12,6 +10,7 @@ var searchData=
   ['d0phi_5fkpipikk_2eh',['D0phi_KpipiKK.h',['../D0phi__KpipiKK_8h.html',1,'']]],
   ['declarecuts',['DeclareCuts',['../classTrackSelector.html#a07b15e1875115d75d60c6a98f77e62b4',1,'TrackSelector']]],
   ['declareswitches',['DeclareSwitches',['../classTrackSelector.html#a9e910b15aef461531eabc99faa56057e',1,'TrackSelector']]],
+  ['degtorad',['DegToRad',['../Physics_2D0omega__K4pi_2D0omega__K4pi-00-00-00_2src_2D0omega__K4pi_8cxx.html#a3fbef6a01a299d4605b82b5b508329b3',1,'D0omega_K4pi.cxx']]],
   ['description',['Description',['../classContainer__base.html#a7cc3f6a11cfbc3e37d40f98cfb78941a',1,'Container_base']]],
   ['digirootinputfile',['digiRootInputFile',['../analysis_8txt.html#a446768866ea6630267275fe573572b01',1,'digiRootInputFile():&#160;analysis.txt'],['../reconstruction_8txt.html#a446768866ea6630267275fe573572b01',1,'digiRootInputFile():&#160;reconstruction.txt']]],
   ['digirootoutputfile',['digiRootOutputFile',['../reconstruction_8txt.html#a3c034903d619cba92b50a5c7ae6d4973',1,'digiRootOutputFile():&#160;reconstruction.txt'],['../simulation_8txt.html#a87d281e476082930b5dcf7e7fed33b8a',1,'digiRootOutputFile():&#160;simulation.txt']]],

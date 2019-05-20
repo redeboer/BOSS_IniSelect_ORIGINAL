@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['heppoint3d',['HepPoint3D',['../TrackSelector_8h.html#a188faf2fae63125a32fe38f0567026bc',1,'HepPoint3D():&#160;TrackSelector.h'],['../SecondaryVertexGeometry_8h.html#a188faf2fae63125a32fe38f0567026bc',1,'HepPoint3D():&#160;SecondaryVertexGeometry.h'],['../PipiJpsi_8cxx.html#a188faf2fae63125a32fe38f0567026bc',1,'HepPoint3D():&#160;PipiJpsi.cxx'],['../RhopiAlg_8cxx.html#a188faf2fae63125a32fe38f0567026bc',1,'HepPoint3D():&#160;RhopiAlg.cxx']]]
+  ['candidateselection',['CandidateSelection',['../group__BOSS__objects.html#gada9d34fae9cc63858367148858d91560',1,'CandidateSelection.h']]],
+  ['candidateselectionmc',['CandidateSelectionMC',['../group__BOSS__objects.html#ga42574aedc49f713c07f6c85fcbf7e656',1,'CandidateSelection.h']]]
 ];

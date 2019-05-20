@@ -5,9 +5,10 @@ var Globals_8h =
       [ "Green", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84a54fc95425c067091cceeee2716586acc", null ],
       [ "Yellow", "Globals_8h.html#a66cca066bf384dcbff4ab19e8a2ccb84a7aad40629aea7f1c78a75cb167751cae", null ]
     ] ],
+    [ "BESIIIparticles", "Globals_8h.html#a5dc8d73a859ecd210d0410e54f1f6df2", null ],
     [ "ColourPrint", "Globals_8h.html#a6e8a41888f3a918804c6806b64343c59", null ],
     [ "ColourPrintBold", "Globals_8h.html#af18ea7a342ddfbc0afdcb943169f20f0", null ],
-    [ "gEcmsVec", "Globals_8h.html#a54aa83907fcc30c611e8e3b91de4ccfb", null ],
+    [ "EcmsVec", "Globals_8h.html#a94b9ef5e9f9509abbfc73f3d45af4f84", null ],
     [ "IsFromJPsi", "Globals_8h.html#a74b36be1825cbff42d580f1acd99791d", null ],
     [ "IsInitialCluster", "Globals_8h.html#a8ed10c4b2ed763ce7d258d1ebfb20abb", null ],
     [ "IsJPsi", "Globals_8h.html#a7c866177d9d915fa4376369fa1f68c62", null ],
@@ -20,10 +21,10 @@ var Globals_8h =
     [ "PrintYellow", "Globals_8h.html#a9f979b8f95bb4e0bd4cb603dba89127f", null ],
     [ "TOF", "Globals_8h.html#a7ae46b20b413abde542b8a09c02ddfbf", null ],
     [ "arr", "Globals_8h.html#a19bdcfb3ee975bd0b446043c124aa76f", null ],
+    [ "arr", "Globals_8h.html#a841187e4ff26a34fd7bfc887ea4a5e00", null ],
     [ "D0", "Globals_8h.html#a480f74a7150233c3b5f54efeabf3ceb1", null ],
     [ "e", "Globals_8h.html#a101f98b4502ec9628f4840f4dba0e4b8", null ],
-    [ "gEcms", "Globals_8h.html#ae6d62407f8fd7aa0a1c5c53467f60a8f", null ],
-    [ "gSpeedOfLight", "Globals_8h.html#aec64f5ee0eea2510407e53121eed4b14", null ],
+    [ "Ecms", "Globals_8h.html#aa28aba6145f8fbcd103d3d505c711dcf", null ],
     [ "Jpsi", "Globals_8h.html#a32f9ad8cf7361e184028e05dc506859a", null ],
     [ "K", "Globals_8h.html#ac12e8701b07035b4c7b64bffaae515d3", null ],
     [ "mu", "Globals_8h.html#a28adf96221f27b2d1d09b89247b2f80b", null ],
@@ -36,5 +37,6 @@ var Globals_8h =
     [ "pi0", "Globals_8h.html#a2be442992adbc5eb60b5121f8b94a3fa", null ],
     [ "RadToDeg", "Globals_8h.html#a6b0fb599011df8cccd87cfde23cbc0dc", null ],
     [ "rho", "Globals_8h.html#a0a46ea12ead36045f0be19547e3fe9c7", null ],
+    [ "SpeedOfLight", "Globals_8h.html#a47b90b6ff78fe7740617434823cf14ad", null ],
     [ "twopi", "Globals_8h.html#a5eae0588c88bfd54dabe06be49ea13a4", null ]
 ];

@@ -82,6 +82,7 @@ $(document).ready(function(){initNavTree('classUnitTester.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classUnitTester-members.html">List of all members</a>  </div>
@@ -97,9 +98,12 @@ Inheritance diagram for UnitTester:</div>
  <div class="center">
   <img src="classUnitTester.png" usemap="#UnitTester_map" alt=""/>
   <map id="UnitTester_map" name="UnitTester_map">
-<area href="classTest__CandidateTracks.html" alt="Test_CandidateTracks" shape="rect" coords="0,112,138,136"/>
-<area href="classTest__DstFile.html" alt="Test_DstFile" shape="rect" coords="148,112,286,136"/>
-<area href="classTest__ParticleDatabase.html" alt="Test_ParticleDatabase" shape="rect" coords="296,112,434,136"/>
+<area href="classTest__AlgSvc.html" title="This is to test whether the services in the Gaudi Algorithm are static. " alt="Test_AlgSvc" shape="rect" coords="0,112,156,136"/>
+<area href="classTest__CandidateSelection.html" alt="Test_CandidateSelection" shape="rect" coords="166,112,322,136"/>
+<area href="classTest__CandidateTracks.html" alt="Test_CandidateTracks" shape="rect" coords="332,112,488,136"/>
+<area href="classTest__CombinationShuffler.html" alt="Test_CombinationShuffler" shape="rect" coords="498,112,654,136"/>
+<area href="classTest__DstFile.html" alt="Test_DstFile" shape="rect" coords="664,112,820,136"/>
+<area href="classTest__ParticleDatabase.html" alt="Test_ParticleDatabase" shape="rect" coords="830,112,986,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -120,14 +124,21 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a750dc09f05bc05e2daee91925b4e6b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0dfdf9935b73395508c9b6a45bdc735"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ad0dfdf9935b73395508c9b6a45bdc735">TestExecute</a> ()=0</td></tr>
 <tr class="separator:ad0dfdf9935b73395508c9b6a45bdc735"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4435357b248ff35b3b273ee7719517d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#aa4435357b248ff35b3b273ee7719517d">TestEvent</a> ()=0</td></tr>
+<tr class="separator:aa4435357b248ff35b3b273ee7719517d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b4795ecb0af78626cd48f50ac17182a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#a0b4795ecb0af78626cd48f50ac17182a">TestFinalize</a> ()=0</td></tr>
 <tr class="separator:a0b4795ecb0af78626cd48f50ac17182a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c0c7db859de5837f120f8b7fc410a3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#a9c0c7db859de5837f120f8b7fc410a3e">Require</a> (bool passed, int lineNr, const char *file, const char *input)</td></tr>
-<tr class="separator:a9c0c7db859de5837f120f8b7fc410a3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab75eaa8f85060b0dfa8a5698efeee3e3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ab75eaa8f85060b0dfa8a5698efeee3e3">CompareFloat</a> (float val1, float val2, float procentualDifference=0.0001f) const</td></tr>
-<tr class="separator:ab75eaa8f85060b0dfa8a5698efeee3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1670e3c49183ebab9c353b60e592ccb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ad1670e3c49183ebab9c353b60e592ccb">CompareDouble</a> (double val1, double val2, double procentualDifference=0.0000001f) const</td></tr>
-<tr class="separator:ad1670e3c49183ebab9c353b60e592ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c851c88e97282141195769d1ec7b26b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#a1c851c88e97282141195769d1ec7b26b">Require</a> (Bool_t passed, Int_t lineNr, const char *file, const char *input)</td></tr>
+<tr class="separator:a1c851c88e97282141195769d1ec7b26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae415e2e6d375f447d9d6c19922a47e64"><td class="memItemLeft" align="right" valign="top">Bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ae415e2e6d375f447d9d6c19922a47e64">CompareFloat</a> (Float_t val1, Float_t val2, Float_t procentualDifference=0.0001f) const</td></tr>
+<tr class="separator:ae415e2e6d375f447d9d6c19922a47e64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09b4e88c971e482781e924dca1aadbba"><td class="memItemLeft" align="right" valign="top">Bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#a09b4e88c971e482781e924dca1aadbba">CompareDouble</a> (Double_t val1, Double_t val2, Double_t procentualDifference=0.0000001f) const</td></tr>
+<tr class="separator:a09b4e88c971e482781e924dca1aadbba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ab2b465ebed0e237916a32b7c95a2a60b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDstFile.html">DstFile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ab2b465ebed0e237916a32b7c95a2a60b">fInputFile</a></td></tr>
+<tr class="separator:ab2b465ebed0e237916a32b7c95a2a60b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -140,23 +151,20 @@ Private Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:ae263b55990e65bced3883a25ab5fa3c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ae263b55990e65bced3883a25ab5fa3c6">fNTests</a></td></tr>
-<tr class="separator:ae263b55990e65bced3883a25ab5fa3c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af93d99b43e82dc737864c140eb30b45c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#af93d99b43e82dc737864c140eb30b45c">fNFailed</a></td></tr>
-<tr class="separator:af93d99b43e82dc737864c140eb30b45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b359afe541ca55e0447fb4c84167c95"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#a8b359afe541ca55e0447fb4c84167c95">fNTests</a></td></tr>
+<tr class="separator:a8b359afe541ca55e0447fb4c84167c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2fcd0846dfc74f54a08caf8fa3adeb6"><td class="memItemLeft" align="right" valign="top">Int_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUnitTester.html#ad2fcd0846dfc74f54a08caf8fa3adeb6">fNFailed</a></td></tr>
+<tr class="separator:ad2fcd0846dfc74f54a08caf8fa3adeb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00009">9</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00011">11</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a80e351267ca0d1e70bf1e75fae0a3a15"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80e351267ca0d1e70bf1e75fae0a3a15">&#9670;&nbsp;</a></span>UnitTester()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">UnitTester::UnitTester </td>
@@ -176,20 +184,15 @@ Private Attributes</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00012">12</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00010">10</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad1670e3c49183ebab9c353b60e592ccb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1670e3c49183ebab9c353b60e592ccb">&#9670;&nbsp;</a></span>CompareDouble()</h2>
+<a id="a09b4e88c971e482781e924dca1aadbba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09b4e88c971e482781e924dca1aadbba">&#9670;&nbsp;</a></span>CompareDouble()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,21 +201,21 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool UnitTester::CompareDouble </td>
+          <td class="memname">Bool_t UnitTester::CompareDouble </td>
           <td>(</td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">Double_t&#160;</td>
           <td class="paramname"><em>val1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">Double_t&#160;</td>
           <td class="paramname"><em>val2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">double&#160;</td>
+          <td class="paramtype">Double_t&#160;</td>
           <td class="paramname"><em>procentualDifference</em> = <code>0.0000001f</code>&#160;</td>
         </tr>
         <tr>
@@ -228,12 +231,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00068">68</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00084">84</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
-<a id="ab75eaa8f85060b0dfa8a5698efeee3e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab75eaa8f85060b0dfa8a5698efeee3e3">&#9670;&nbsp;</a></span>CompareFloat()</h2>
+<a id="ae415e2e6d375f447d9d6c19922a47e64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae415e2e6d375f447d9d6c19922a47e64">&#9670;&nbsp;</a></span>CompareFloat()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,21 +245,21 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool UnitTester::CompareFloat </td>
+          <td class="memname">Bool_t UnitTester::CompareFloat </td>
           <td>(</td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">Float_t&#160;</td>
           <td class="paramname"><em>val1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">Float_t&#160;</td>
           <td class="paramname"><em>val2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
+          <td class="paramtype">Float_t&#160;</td>
           <td class="paramname"><em>procentualDifference</em> = <code>0.0001f</code>&#160;</td>
         </tr>
         <tr>
@@ -272,7 +275,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00063">63</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00079">79</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -299,7 +302,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00014">14</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00023">23</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -326,7 +329,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00020">20</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00032">32</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -353,7 +356,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00008">8</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00017">17</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -380,7 +383,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00041">41</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00053">53</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -407,7 +410,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00046">46</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00058">58</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
@@ -434,12 +437,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00027">27</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00039">39</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
 
 </div>
 </div>
-<a id="a9c0c7db859de5837f120f8b7fc410a3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c0c7db859de5837f120f8b7fc410a3e">&#9670;&nbsp;</a></span>Require()</h2>
+<a id="a1c851c88e97282141195769d1ec7b26b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c851c88e97282141195769d1ec7b26b">&#9670;&nbsp;</a></span>Require()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -450,13 +453,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">void UnitTester::Require </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">Bool_t&#160;</td>
           <td class="paramname"><em>passed</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">Int_t&#160;</td>
           <td class="paramname"><em>lineNr</em>, </td>
         </tr>
         <tr>
@@ -484,7 +487,34 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00053">53</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8cxx_source.html#l00069">69</a> of file <a class="el" href="UnitTester_8cxx_source.html">UnitTester.cxx</a>.</p>
+
+</div>
+</div>
+<a id="aa4435357b248ff35b3b273ee7719517d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4435357b248ff35b3b273ee7719517d">&#9670;&nbsp;</a></span>TestEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void UnitTester::TestEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classTest__AlgSvc.html#ae35ed1ebbba45c8d15935554efa31441">Test_AlgSvc</a>, <a class="el" href="classTest__CombinationShuffler.html#a3a614f5cc65a244fa7e37c4b52328ecd">Test_CombinationShuffler</a>, <a class="el" href="classTest__CandidateSelection.html#a31b3ff51de368c10e3c60c633889c97f">Test_CandidateSelection</a>, <a class="el" href="classTest__CandidateTracks.html#ac1cc733c412da96c1b92fe8ff75bb668">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#a3df6e0500fde02dff357e0c6ce4daf87">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#ad661c01f1c99e9dbad4e517238abc1c1">Test_DstFile</a>.</p>
 
 </div>
 </div>
@@ -511,7 +541,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classTest__CandidateTracks.html#a6c60a73c5658653cff2ffacc8455e6e3">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#ade393f108d2471bc3d97aca3f60e2cb0">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#aa913fba73c0163600295d039e5db1800">Test_DstFile</a>.</p>
+<p>Implemented in <a class="el" href="classTest__AlgSvc.html#a0ac35ac7b9c86c07f69f22109fd5eb10">Test_AlgSvc</a>, <a class="el" href="classTest__CombinationShuffler.html#a1afede665f341216b112d62ecd6cc0c9">Test_CombinationShuffler</a>, <a class="el" href="classTest__CandidateSelection.html#aac589d29ee560b386d818abc5ce8c72e">Test_CandidateSelection</a>, <a class="el" href="classTest__CandidateTracks.html#a6c60a73c5658653cff2ffacc8455e6e3">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#ade393f108d2471bc3d97aca3f60e2cb0">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#aa913fba73c0163600295d039e5db1800">Test_DstFile</a>.</p>
 
 </div>
 </div>
@@ -538,7 +568,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classTest__CandidateTracks.html#acb9de4a255dc1053af4b94b56db71fc0">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#a33fc340718f236a2d5229af08ab34b80">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#a3fd56453a3a5b262f1b581ef43da210f">Test_DstFile</a>.</p>
+<p>Implemented in <a class="el" href="classTest__AlgSvc.html#adfec5864781cc89603632170f45e6082">Test_AlgSvc</a>, <a class="el" href="classTest__CombinationShuffler.html#ab84c22f4d95d5429f372d665945b3a27">Test_CombinationShuffler</a>, <a class="el" href="classTest__CandidateSelection.html#aaf05e5778c77d1deaca524496b56ef52">Test_CandidateSelection</a>, <a class="el" href="classTest__CandidateTracks.html#acb9de4a255dc1053af4b94b56db71fc0">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#a33fc340718f236a2d5229af08ab34b80">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#a3fd56453a3a5b262f1b581ef43da210f">Test_DstFile</a>.</p>
 
 </div>
 </div>
@@ -565,13 +595,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implemented in <a class="el" href="classTest__CandidateTracks.html#a980486c36f68dc687a525b48cebf7e4c">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#a1d97858c21a2670b6eba474246d0fa03">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#a3480f1776f1756ebc235fa195f07aa7b">Test_DstFile</a>.</p>
+<p>Implemented in <a class="el" href="classTest__AlgSvc.html#a6ddbc4087595f4aafecfa22977f2cc3f">Test_AlgSvc</a>, <a class="el" href="classTest__CombinationShuffler.html#a92195d7db20564578cf3735f6f75aa78">Test_CombinationShuffler</a>, <a class="el" href="classTest__CandidateSelection.html#adb46873f12ce0e9c3d9ec4d67c1aacf2">Test_CandidateSelection</a>, <a class="el" href="classTest__CandidateTracks.html#a980486c36f68dc687a525b48cebf7e4c">Test_CandidateTracks</a>, <a class="el" href="classTest__ParticleDatabase.html#a1d97858c21a2670b6eba474246d0fa03">Test_ParticleDatabase</a>, and <a class="el" href="classTest__DstFile.html#a3480f1776f1756ebc235fa195f07aa7b">Test_DstFile</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="af93d99b43e82dc737864c140eb30b45c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af93d99b43e82dc737864c140eb30b45c">&#9670;&nbsp;</a></span>fNFailed</h2>
+<a id="ab2b465ebed0e237916a32b7c95a2a60b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2b465ebed0e237916a32b7c95a2a60b">&#9670;&nbsp;</a></span>fInputFile</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -580,7 +610,31 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int UnitTester::fNFailed</td>
+          <td class="memname"><a class="el" href="classDstFile.html">DstFile</a> UnitTester::fInputFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00031">31</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
+
+</div>
+</div>
+<a id="ad2fcd0846dfc74f54a08caf8fa3adeb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fcd0846dfc74f54a08caf8fa3adeb6">&#9670;&nbsp;</a></span>fNFailed</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Int_t UnitTester::fNFailed</td>
         </tr>
       </table>
   </td>
@@ -590,12 +644,12 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00033">33</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00035">35</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
 
 </div>
 </div>
-<a id="ae263b55990e65bced3883a25ab5fa3c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae263b55990e65bced3883a25ab5fa3c6">&#9670;&nbsp;</a></span>fNTests</h2>
+<a id="a8b359afe541ca55e0447fb4c84167c95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b359afe541ca55e0447fb4c84167c95">&#9670;&nbsp;</a></span>fNTests</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -604,7 +658,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int UnitTester::fNTests</td>
+          <td class="memname">Int_t UnitTester::fNTests</td>
         </tr>
       </table>
   </td>
@@ -614,7 +668,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00032">32</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="UnitTester_8h_source.html#l00034">34</a> of file <a class="el" href="UnitTester_8h_source.html">UnitTester.h</a>.</p>
 
 </div>
 </div>

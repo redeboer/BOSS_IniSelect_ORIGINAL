@@ -130,7 +130,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a90ad93b58fb0e38eb3853ccf73d4ee70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rvent number ID.  <a href="#a90ad93b58fb0e38eb3853ccf73d4ee70">More...</a><br /></td></tr>
 <tr class="separator:a90ad93b58fb0e38eb3853ccf73d4ee70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63bacf05b4a20d4e22b6a03ac29f1e8a"><td class="memItemLeft" align="right" valign="top">NTuple::Item&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMctruthForTopoAna.html#a63bacf05b4a20d4e22b6a03ac29f1e8a">m_nmcps</a></td></tr>
-<tr class="memdesc:a63bacf05b4a20d4e22b6a03ac29f1e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event.  <a href="#a63bacf05b4a20d4e22b6a03ac29f1e8a">More...</a><br /></td></tr>
+<tr class="memdesc:a63bacf05b4a20d4e22b6a03ac29f1e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays.  <a href="#a63bacf05b4a20d4e22b6a03ac29f1e8a">More...</a><br /></td></tr>
 <tr class="separator:a63bacf05b4a20d4e22b6a03ac29f1e8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1b4c35b3847a5f3009736fd40951895"><td class="memItemLeft" align="right" valign="top">NTuple::Array&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMctruthForTopoAna.html#ab1b4c35b3847a5f3009736fd40951895">m_pid</a></td></tr>
 <tr class="memdesc:ab1b4c35b3847a5f3009736fd40951895"><td class="mdescLeft">&#160;</td><td class="mdescRight">PDG code for the particle in this array.  <a href="#ab1b4c35b3847a5f3009736fd40951895">More...</a><br /></td></tr>
@@ -231,7 +231,7 @@ Private Attributes</h2></td></tr>
 <p class="endli"></p>
 </li>
 <li>
-<p class="startli">The <code>rootIndex</code> variable is used to skip particles like the <img class="formulaInl" alt="$Z$" src="form_51.png"/> boson in the decay chain after the <img class="formulaInl" alt="$e^+e^-$" src="form_18.png"/> collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the <code>incPdcy</code> boolean is for).</p>
+<p class="startli">The <code>rootIndex</code> variable is used to skip particles like the <img class="formulaInl" alt="$Z$" src="form_45.png"/> boson in the decay chain after the <img class="formulaInl" alt="$e^+e^-$" src="form_18.png"/> collision. It has to be stored once and untill it is stored, all MC truth particles are rejected (which is what the <code>incPdcy</code> boolean is for).</p>
 <p class="endli"></p>
 </li>
 <li>
@@ -255,7 +255,7 @@ Private Attributes</h2></td></tr>
 </li>
 </ol>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8cxx_source.html#l00076">76</a> of file <a class="el" href="MctruthForTopoAna_8cxx_source.html">MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8cxx_source.html#l00073">73</a> of file <a class="el" href="MctruthForTopoAna_8cxx_source.html">MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ Private Attributes</h2></td></tr>
 
 <p>Print number of events. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8cxx_source.html#l00155">155</a> of file <a class="el" href="MctruthForTopoAna_8cxx_source.html">MctruthForTopoAna.cxx</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8cxx_source.html#l00152">152</a> of file <a class="el" href="MctruthForTopoAna_8cxx_source.html">MctruthForTopoAna.cxx</a>.</p>
 
 </div>
 </div>
@@ -419,7 +419,7 @@ Private Attributes</h2></td></tr>
 
 <p>Track index of the mother particle. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00038">38</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00037">37</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -443,10 +443,9 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Number of MC particles stored for this event. </p>
-<p>This one is necessary for loading following two items, because they are arrays. </p>
+<p>Number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00035">35</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00034">34</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>
@@ -472,7 +471,7 @@ Private Attributes</h2></td></tr>
 
 <p>PDG code for the particle in this array. </p>
 
-<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00037">37</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="MctruthForTopoAna_8h_source.html#l00036">36</a> of file <a class="el" href="MctruthForTopoAna_8h_source.html">MctruthForTopoAna.h</a>.</p>
 
 </div>
 </div>

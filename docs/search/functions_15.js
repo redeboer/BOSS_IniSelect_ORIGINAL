@@ -5,7 +5,6 @@ var searchData=
   ['writechargedtrackvertex',['WriteChargedTrackVertex',['../classTrackSelector.html#ae17b44920b0898d4323eeeed38d8bd0d',1,'TrackSelector']]],
   ['writededxinfo',['WriteDedxInfo',['../classTrackSelector.html#a153ed7c278b89accd5fc1f95ac06501b',1,'TrackSelector']]],
   ['writededxinfoforvector',['WriteDedxInfoForVector',['../classTrackSelector.html#a427dfe46514712f2f0a6b2152f683d7d',1,'TrackSelector']]],
-  ['writededxofselectedparticles',['WriteDedxOfSelectedParticles',['../classD0omega__K4pi.html#afd5eee6e15a279ca5906bfd62078c135',1,'D0omega_K4pi::WriteDedxOfSelectedParticles()'],['../classTrackSelector.html#aaf69ae81774478073a09ce0696153746',1,'TrackSelector::WriteDedxOfSelectedParticles()']]],
   ['writefitresults',['WriteFitResults',['../classTrackSelector.html#a88a6ebf60ff6fbb72724ac1f9e88853d',1,'TrackSelector']]],
   ['writemctruthfortopoana',['WriteMCTruthForTopoAna',['../classTrackSelector.html#a9d2c8cbb1a694ba409e3b2aa86c543c1',1,'TrackSelector']]],
   ['writemultiplicities',['WriteMultiplicities',['../classTrackSelector.html#ac9c3597b2eaf9399eb8cf13e8e3df3df',1,'TrackSelector']]],
