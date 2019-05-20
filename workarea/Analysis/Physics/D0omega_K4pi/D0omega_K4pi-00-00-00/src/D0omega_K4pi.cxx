@@ -527,13 +527,13 @@ StatusCode D0omega_K4pi::initialize()
                                    "Monte Carlo truth for TopoAna package");
       if(fTupleMC)
       {
-        fTupleMC->addItem("mD0 for fit4c", fMC_4C_mD0);
-        fTupleMC->addItem("momega for fit4c", fMC_4C_momega);
-        fTupleMC->addItem("mD0 for fit5c", fMC_5C_mD0);
-        fTupleMC->addItem("momega for fit5c", fMC_5C_momega);
-        fTupleMC->addItem("run number", fRunid);
+        fTupleMC->addItem("mD0_fit4c", fMC_4C_mD0);
+        fTupleMC->addItem("momega_fit4c", fMC_4C_momega);
+        fTupleMC->addItem("mD0_fit5c", fMC_5C_mD0);
+        fTupleMC->addItem("momega_fit5c", fMC_5C_momega);
+        fTupleMC->addItem("run_number", fRunid);
         /// <tr><td>`"Runid"`</td><td>run number ID</td></tr>
-        fTupleMC->addItem("event number", fEvtid);
+        fTupleMC->addItem("event_number", fEvtid);
         /// <tr><td>`"Evtid"`</td><td>event number ID</td></tr>
         fTupleMC->addItem("Nparticles", fNparticles, 0, 100);
         /// <tr><td>`"Nparticles"`</td><td>number of MC particles stored for this event. This one is necessary for loading following two items, because they are arrays</td></tr>
@@ -562,13 +562,20 @@ StatusCode D0omega_K4pi::initialize()
                                         "Monte Carlo truth for TopoAna package");
       if(fTupleCutFlow)
       {
-        fTupleCutFlow->addItem("Total number of events", fNCut0);
-        fTupleCutFlow->addItem("Pass N charged tracks", fNCut1);
-        fTupleCutFlow->addItem("Pass zero net charge", fNCut2);
-        fTupleCutFlow->addItem("Pass N gammas", fNCut3);
-        fTupleCutFlow->addItem("Pass PID", fNCut4);
-        fTupleCutFlow->addItem("Pass 4C Kalman fit", fNCut5);
-        fTupleCutFlow->addItem("Pass 5C Kalman fit", fNCut6);
+        fTupleCutFlow->addItem("Total_events", fNCut0);
+        fTupleCutFlow->addItem("Pass_N_charged_tracks", fNCut1);
+        fTupleCutFlow->addItem("Pass_zero_net_charge", fNCut2);
+        fTupleCutFlow->addItem("Pass_N_gammas", fNCut3);
+        fTupleCutFlow->addItem("Pass_PID", fNCut4);
+        fTupleCutFlow->addItem("Pass_4C_Kalman_fit", fNCut5);
+        fTupleCutFlow->addItem("Pass_5C_Kalman_fit", fNCut6);
+        fNCut0 = 0;
+        fNCut1 = 0;
+        fNCut2 = 0;
+        fNCut3 = 0;
+        fNCut4 = 0;
+        fNCut5 = 0;
+        fNCut6 = 0;
       }
       else
       {
