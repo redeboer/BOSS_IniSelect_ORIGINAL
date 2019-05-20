@@ -77,14 +77,6 @@ const int incPid  = 443;
 typedef vector<int>              Vint;
 typedef vector<HepLorentzVector> Vp4;
 
-// * Counters for generating cut flow * //
-int Ncut0; // counter for all events (no cuts)
-int Ncut1; // nGood!=2 or nCharge!=0
-int Ncut2; // number of photons < 2
-int Ncut3; // pass PID
-int Ncut4; // pass fit4c
-int Ncut5; // pass fit5c
-
 struct Reconstructed
 {
   HepLorentzVector D0;
@@ -558,6 +550,34 @@ StatusCode D0omega_K4pi::initialize()
     }
   }
 
+  /// **`NTuple "cutflow"`: Counters for cut flow**
+  if(true)
+  {
+    NTuplePtr nt(ntupleSvc(), "FILE1/_cutvalues");
+    if(nt)
+      fTupleCutFlow = nt;
+    else
+    {
+      fTupleCutFlow = ntupleSvc()->book("FILE1/_cutvalues", CLID_ColumnWiseTuple,
+                                        "Monte Carlo truth for TopoAna package");
+      if(fTupleCutFlow)
+      {
+        fTupleCutFlow->addItem("Total number of events", fNCut0);
+        fTupleCutFlow->addItem("Pass N charged tracks", fNCut1);
+        fTupleCutFlow->addItem("Pass zero net charge", fNCut2);
+        fTupleCutFlow->addItem("Pass N gammas", fNCut3);
+        fTupleCutFlow->addItem("Pass PID", fNCut4);
+        fTupleCutFlow->addItem("Pass 4C Kalman fit", fNCut5);
+        fTupleCutFlow->addItem("Pass 5C Kalman fit", fNCut6);
+      }
+      else
+      {
+        log << MSG::ERROR << "    Cannot book N-tuple:" << long(fTupleCutFlow) << endmsg;
+        return StatusCode::FAILURE;
+      }
+    }
+  }
+
   /// </table>
   log << MSG::INFO << "Successfully returned from initialize()" << endmsg;
   return StatusCode::SUCCESS;
@@ -575,15 +595,15 @@ StatusCode D0omega_K4pi::execute()
   log << MSG::INFO << "In execute():" << endmsg;
 
   /// <li> Load next event from DST file
-  /// ** Uses `Ncut0` counter**: no cut applied yet.
 
   // * Load DST file info *
   SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
   int                              runNo = eventHeader->runNumber();
   int                              evtNo = eventHeader->eventNumber();
   log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
-  Ncut0++; // counter for all events
+  fNCut0++; // counter for all events
 
+  // Reset chi square values
   if(fCheckMC)
   {
     fMC_4C_mD0    = -9999.;
@@ -680,14 +700,16 @@ StatusCode D0omega_K4pi::execute()
     nCharge += mdcTrk->charge();
   }
 
-  // * Finish Good Charged Track Selection * //
+  /// **Apply cut**: cut number of charged tracks and net charge
   int nGood = iGood.size();
   log << MSG::DEBUG << "ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
-  if((nGood != 4) || (nCharge != 0)) { return StatusCode::SUCCESS; }
-  Ncut1++;
+  if(nGood != 4) return StatusCode::SUCCESS;
+  fNCut1++;
+  if(nCharge != 0) return StatusCode::SUCCESS;
+  fNCut2++;
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
-  /// ** Uses `Ncut2` counter**: number of good photons has to be 2 at least.
+  /// ** Uses `fNCut3` counter**: number of good photons has to be 2 at least.
   /// The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
   Vint iGam;
   for(int i = evtRecEvent->totalCharged(); i < evtRecEvent->totalTracks(); ++i)
@@ -754,8 +776,8 @@ StatusCode D0omega_K4pi::execute()
   int nGam = iGam.size();
   log << MSG::DEBUG << "Number of good photons: " << nGam << "/" << evtRecEvent->totalNeutral()
       << endmsg;
-  if(nGam < 2) { return StatusCode::SUCCESS; }
-  Ncut2++; // number of photons < 2
+  if(nGam < 2) return StatusCode::SUCCESS;
+  fNCut3++;
 
   /// <li> Check charged track dEdx PID information
   if(fCheckDedx)
@@ -1024,11 +1046,11 @@ StatusCode D0omega_K4pi::execute()
     }
   }
 
-  /// ** Uses `Ncut3` counter**: \f$N_{K^-} = 1, N_{\pi^+} = 2, N_{\pi^-}\f$
+  /// **Apply cut**: PID
   if(iKm.size() != 1) return SUCCESS;
   if(ipim.size() != 1) return SUCCESS;
   if(ipip.size() != 2) return SUCCESS;
-  Ncut3++;
+  fNCut4++;
 
   /// <li> Loop over each gamma pair and store total energy
   if(fCheckEtot)
@@ -1130,7 +1152,7 @@ StatusCode D0omega_K4pi::execute()
 
     log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
 
-    /// ** Uses `Ncut4` counter**: fit4c passed and ChiSq less than fMaxChiSq.
+    /// **Apply cut**: fit4c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)
     {
       results.comb1.D0    = results.pip1 + results.Km;
@@ -1161,7 +1183,7 @@ StatusCode D0omega_K4pi::execute()
 
       // * WRITE pi^0 information from EMCal ("fit4c" branch) *
       fTupleFit4C->write(); // "fit4c" branch
-      Ncut4++;              // ChiSq has to be less than 200 and fit4c has to be passed
+      fNCut5++;              // ChiSq has to be less than 200 and fit4c has to be passed
       if(fCheckMC)
       {
         fMC_4C_mD0    = *fMD0_4C;
@@ -1212,7 +1234,7 @@ StatusCode D0omega_K4pi::execute()
 
     log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
 
-    /// ** Uses `Ncut5` counter**: fit5c passed and ChiSq less than fMaxChiSq.
+    /// **Apply cut**: fit5c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)
     {
       results.comb1.D0    = results.pip1 + results.Km;
@@ -1249,7 +1271,7 @@ StatusCode D0omega_K4pi::execute()
 
       // * WRITE pi^0 information from EMCal ("fit5c" branch) *
       fTupleFit5C->write(); // "fit5c" branch
-      Ncut5++;              // ChiSq has to be less than 200 and fit5c has to be passed
+      fNCut6++;              // ChiSq has to be less than 200 and fit5c has to be passed
       if(fCheckMC)
       {
         fMC_5C_mD0    = *fMD0_5C;
@@ -1311,12 +1333,13 @@ StatusCode D0omega_K4pi::finalize()
   log << MSG::INFO << "in finalize()" << endmsg;
 
   cout << "Resulting FLOW CHART:" << endl;
-  cout << "  (0) Total number of events: " << Ncut0 << endl;
-  cout << "  (1) Pass N charged tracks:  " << Ncut1 << endl;
-  cout << "  (2) Pass N gammas:          " << Ncut2 << endl;
-  cout << "  (3) Pass PID:               " << Ncut3 << endl;
-  cout << "  (4) Pass 4C Kalman fit:     " << Ncut4 << endl;
-  cout << "  (5) Pass 5C Kalman fit:     " << Ncut5 << endl;
+  cout << "  Total number of events: " << fNCut0 << endl;
+  cout << "  Pass N charged tracks:  " << fNCut1 << endl;
+  cout << "  Pass zero net charge    " << fNCut2 << endl;
+  cout << "  Pass N gammas:          " << fNCut3 << endl;
+  cout << "  Pass PID:               " << fNCut4 << endl;
+  cout << "  Pass 4C Kalman fit:     " << fNCut5 << endl;
+  cout << "  Pass 5C Kalman fit:     " << fNCut6 << endl;
   cout << endl;
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
