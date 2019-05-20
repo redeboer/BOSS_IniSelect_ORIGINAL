@@ -1,0 +1,93 @@
+# ============================= #
+# ------ REQUIRED FIELDS ------ #
+# ============================= #
+
+% Names of input root files
+{
+  /scratchfs/bes/deboer/data/root/D0omega_K4pi/incl_Jpsi2009/D0omega_K4pi_*.root
+}
+
+% Tree name
+{
+  topology
+}
+
+% Branch name of the number of particles
+{
+  Nparticles
+}
+
+% Branch name of the array of particle identifications
+{
+  PDG
+}
+
+% Branch name of the array of the mother indeces of particles
+{
+  mother
+}
+
+% Main name of output files
+{
+  D0omega_K4pi_excl
+}
+
+
+
+
+
+# ============================= #
+# ------ OPTIONAL FIELDS ------ #
+# ============================= #
+
+% Signal particles
+{
+  D0
+  phi
+  omega
+  K-
+  pi+
+  pi-
+  pi0
+}
+
+% Signal decay final states
+{
+  0	  K-
+  1	  pi+
+  2	  pi+
+  3	  pi-
+  4	  pi0
+}
+
+% Perform the topology analysis of the decay branches begun with the following particles
+{
+  D*0
+  D0
+  anti-D*0
+  anti-D0
+  omega 30
+  phi   30
+}
+
+% Perform the topology analysis of the exclusive decay branches matched with the following inclusive decay branches
+{
+  0	  J/psi
+  1	  D0
+  2   omega
+}
+
+# % Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
+# {
+#   Y
+# }
+
+# % Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
+# {
+#   Y
+# }
+
+# % Suppress the topology tags in the output tex/pdf files (Two options: Y and N. Default: N)
+# {
+#   Y
+# }
