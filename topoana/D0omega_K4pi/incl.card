@@ -91,3 +91,8 @@
 # {
 #   Y
 # }
+
+% Cut to select entries
+{
+  momega > 0.75 && momega < 0.9
+}
