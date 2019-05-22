@@ -41,7 +41,7 @@
 		echo -e "\n\n--== EXECUTING \"${commandToExecute}\" ==--"
 		${commandToExecute}
 		if [ $? != 0 ]; then
-			PrintErrorMessage "Failed to execute \"${commandToExecute}\""
+			PrintError "Failed to execute \"${commandToExecute}\""
 			return 1
 		fi
 	}
@@ -55,7 +55,7 @@
 		if [ "$(basename "${currentPath}")" != "cmt" ]; then
 			local cmtFolder="$(find -name cmt | head -1)"
 			if [ "${cmtFolder}" == "" ]; then
-				PrintErrorMessage "No cmt folder available!"
+				PrintError "No cmt folder available!"
 				return 1
 			fi
 			cd "${cmtFolder}"
@@ -145,7 +145,7 @@
 	{
 		local path="${1}"
 		if [ ! -d "${path}" ]; then
-			PrintErrorMessage "Folder \"${path}\" does not exist [${FUNCNAME[0]}]"
+			PrintError "Folder \"${path}\" does not exist [${FUNCNAME[0]}]"
 		fi
 	}
 	export CheckDirectory
@@ -225,7 +225,7 @@
 	{
 		local folderToCheck="${1}"
 		if [ ! -d "${folderToCheck}" ]; then
-			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist [${FUNCNAME[0]}]"
+			PrintError "Folder \"${folderToCheck}\" does not exist [${FUNCNAME[0]}]"
 			exit
 		fi
 	}
@@ -245,7 +245,7 @@
 	{
 		local fileToCheck="${1}"
 		if [ ! -s "${fileToCheck}" ]; then
-			PrintErrorMessage "File \"${fileToCheck}\" does not exist"
+			PrintError "File \"${fileToCheck}\" does not exist"
 			exit
 		fi
 	}
@@ -410,14 +410,14 @@
 						rm "temp.txt"
 					# * Error moessage if nothing
 					else
-						PrintErrorMessage "WARNING: \"${line}\" does not exist"
+						PrintError "WARNING: \"${line}\" does not exist"
 					fi
 				fi
 			done
 		# * Finalise output file * #
 			DeleteAllEmptyLines "${outputFile}"
-			PrintSuccessMessage "\nRead $(cat "${outputFile}" | wc -l) files and directories from file \"$(basename "${inputFile}")\""
-			PrintSuccessMessage "--> output written to \"$(basename "${outputFile}")\"\n"
+			PrintSuccess "\nRead $(cat "${outputFile}" | wc -l) files and directories from file \"$(basename "${inputFile}")\""
+			PrintSuccess "--> output written to \"$(basename "${outputFile}")\"\n"
 		# * Split the output file if required
 			if [ $maxNLines -gt 0 ]; then
 				echo "Splitting text file \"$(basename ${outputFile})\" to max $maxNLines lines each"
@@ -441,13 +441,13 @@
 		IniSelectObjects="${BOSS_IniSelect}/workarea/Analysis/IniSelect/IniSelect-00-00-00"
 
 		if [[ ${#} != 1 ]]; then
-			PrintErrorMessage "IniTest function needs 1 argument"
+			PrintError "IniTest function needs 1 argument"
 			return 1
 		fi
 
 		jobFile="UnitTests/jobs/job_${TestName}.txt"
 		if [[ ! -f "${IniSelectObjects}/${jobFile}" ]]; then
-			PrintErrorMessage "File \"${jobFile}\" does not exist"
+			PrintError "File \"${jobFile}\" does not exist"
 			return 1
 		fi
 
@@ -480,39 +480,39 @@
 		local mainDir="${BOSS_IniSelect}"
 		cd ${mainDir}
 		if [ $? != 0 ]; then
-			PrintErrorMessage "Folder \"${mainDir}\" does not exist\" [${FUNCNAME[0]}]"
+			PrintError "Folder \"${mainDir}\" does not exist\" [${FUNCNAME[0]}]"
 			cd - > /dev/null
 			return 1
 		fi
 		# * Add all (!) files (can only be done from main folder)
 		git add --all .
 		if [ $? != 0 ]; then
-			PrintErrorMessage "Failed to \"add -all .\""
+			PrintError "Failed to \"add -all .\""
 			cd - > /dev/null
 			return 1
 		fi
 		# * Commit with a default description (randomiser to make unique)
 		git commit -m "updated ($RANDOM)"
 		if [ $? != 0 ]; then
-			PrintErrorMessage "Failed to \"git commit -m ()\""
+			PrintError "Failed to \"git commit -m ()\""
 			cd - > /dev/null
 			return 1
 		else
-			PrintSuccessMessage "Successfully added and commited changes"
+			PrintSuccess "Successfully added and commited changes"
 		fi
 		# * Pull possible new changes and rebase
 		git pull --rebase
 		if [ $? != 0 ]; then
-			PrintErrorMessage "Failed to \"git pull --rebase\""
+			PrintError "Failed to \"git pull --rebase\""
 			cd - > /dev/null
 			return 1
 		else
-			PrintSuccessMessage "Successfully pulled from GitHub"
+			PrintSuccess "Successfully pulled from GitHub"
 		fi
 		# * Push to Git #
 		git push
 		if [ $? == 0 ]; then
-			PrintSuccessMessage "Successfully pushed changes to to GitHub!"
+			PrintSuccess "Successfully pushed changes to to GitHub!"
 		fi
 		cd - > /dev/null
 	}
@@ -526,7 +526,7 @@
 		if [[ ${#} == 1 ]]; then
 			pathToFormat="${1}"
 			if [[ ! -d "${pathToFormat}" ]]; then
-				PrintErrorMessage "Path \"${pathToFormat}\" does not exist"
+				PrintError "Path \"${pathToFormat}\" does not exist"
 				return 1
 			fi
 		fi
@@ -589,7 +589,7 @@
 			local currentPath="$(pwd)"
 			local fullPath="${BOSS_IniSelect}/topoana/${inputPath}"
 			if [[ ! -f "${fullPath}/${inputCard}" ]]; then
-				PrintErrorMessage "Topana card \"${inputPath}/${inputCard}\" does not exist"
+				PrintError "Topana card \"${inputPath}/${inputCard}\" does not exist"
 				return 1
 			fi
 			cd "${fullPath}"

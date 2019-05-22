@@ -46,4 +46,4 @@ CMTHOMENAME="cmthome"
 	source setup.sh     # sets path variables
 
 
-PrintSuccessMessage "Loaded \"${BASH_SOURCE[0]}\""
+PrintSuccess \"${BASH_SOURCE[0]}\""

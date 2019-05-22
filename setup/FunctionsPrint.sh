@@ -12,24 +12,25 @@
 # * ============================================================================= * #
 
 
+export gColorCodeBold="\e[1m"
 export gColorCodeError="\e[91m"
 export gColorCodeSuccess="\e[92m"
 export gColorCodeInput="\e[93m"
 export gColorCodeEnd="\e[0m"
 
 
-function PrintErrorMessage()
+function PrintError()
 {
 	echo -e "${gColorCodeError}ERROR: ${1}${gColorCodeEnd}"
 }
-export PrintErrorMessage
+export PrintError
 
 
-function PrintSuccessMessage()
+function PrintSuccess()
 {
 	echo -e "${gColorCodeSuccess}${1}${gColorCodeEnd}"
 }
-export PrintSuccessMessage
+export PrintSuccess
 
 
 function AskForInput()
@@ -39,3 +40,21 @@ function AskForInput()
 	read -p ""
 }
 export AskForInput
+
+
+function PrintBold()
+{
+	echo -e "${gColorCodeBold}${1}${gColorCodeEnd}"
+}
+export PrintBold
+
+
+function PrintLine()
+{
+	num=${1:-30}
+	char=${2:--}
+	line=$(printf "%-${num}s" "")
+	line="${line// /${char}}"
+	echo "${line}"
+}
+export PrintLine

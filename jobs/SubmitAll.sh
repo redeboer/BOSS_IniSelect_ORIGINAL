@@ -31,7 +31,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 	{
 		folderToCheck="${1}"
 		if [ ! -d ${folderToCheck} ]; then
-			PrintErrorMessage "Folder \"${folderToCheck}\" does not exist. Check this script..."
+			PrintError "Folder \"${folderToCheck}\" does not exist. Check this script..."
 			exit
 		fi
 	}
@@ -45,7 +45,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 	CheckFolder ${scriptFolder}
 	nJobs=$(ls ${scriptFolder}/${outputDir}/* | grep -E sub_${jobIdentifier}_[0-9]+.sh$ | wc -l)
 	if [ ${nJobs} == 0 ]; then
-		PrintErrorMessage "No jobs of type \"${jobIdentifier}\" available in \"${scriptFolder}/${outputDir}\""
+		PrintError "No jobs of type \"${jobIdentifier}\" available in \"${scriptFolder}/${outputDir}\""
 		exit
 	fi
 
@@ -62,7 +62,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 		echo "hep_sub -g physics \"${job}\"" >> "${tempFilename}"
 		# hep_sub -g physics "${job}"
 		# if [ $? != 0 ]; then
-		# 	PrintErrorMessage "Aborted submitting jobs"
+		# 	PrintError "Aborted submitting jobs"
 		# 	exit 1
 		# fi
 	done
@@ -80,7 +80,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
 
-	PrintSuccessMessage "Succesfully submitted ${nJobs} \"${jobIdentifier}\" jobs"
+	PrintSuccess "Succesfully submitted ${nJobs} \"${jobIdentifier}\" jobs"
 	echo
 	echo "These are your jobs:"
 	hep_q -u $USER

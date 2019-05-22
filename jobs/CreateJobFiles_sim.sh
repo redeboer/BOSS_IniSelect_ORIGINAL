@@ -136,6 +136,6 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * ===================================== * #
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
-	PrintSuccessMessage "Succesfully created ${nJobs} \"${packageName}\" job files with ${nEventsPerJob} events each\n  in folder \"${outputDir_sub}\""
+	PrintSuccess "Succesfully created ${nJobs} \"${packageName}\" job files with ${nEventsPerJob} events each\n  in folder \"${outputDir_sub}\""
 
 set +e # exit if a command or function exits with a non-zero status

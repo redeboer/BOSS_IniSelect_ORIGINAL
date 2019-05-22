@@ -55,7 +55,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 	CheckIfFileExists "${templateFile_ana}"
 	ls ${searchTerm} > /dev/null
 	if [ $? != 0 ]; then
-		PrintErrorMessage "Search string\n  \"${searchTerm}\"\nhas no matches"
+		PrintError "Search string\n  \"${searchTerm}\"\nhas no matches"
 		exit
 	fi
 
@@ -139,7 +139,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * ===================================== * #
 # * ------- Final terminal output ------- * #
 # * ===================================== * #
-	PrintSuccessMessage \
+	PrintSuccess \
 		"Succesfully created ${jobNo} \"${packageName}\" job files with ${nEventsPerJob} events each\n"
 
 set +e # exit if a command or function exits with a non-zero status
