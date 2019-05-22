@@ -359,7 +359,7 @@
 			inputDirectory="$(pwd)"
 			cd - > /dev/null
 		# * Make an inventory and write to file
-			find "${inputDirectory}" | grep ".*.${extension}$" > "${outputFile}"
+			find "${inputDirectory}" -iname "*.${extension}" > "${outputFile}"
 			DeleteAllEmptyLines "${outputFile}"
 		# * Split the output file if required
 			if [ $maxNLines -gt 0 ]; then

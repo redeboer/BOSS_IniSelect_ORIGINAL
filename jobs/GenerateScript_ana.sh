@@ -15,11 +15,9 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * Input parameters * #
 	# * (1) Package name
-	packageName="D0omega_K4pi" # default argument
-	if [ $# -ge 1 ]; then packageName="${1}"; fi
+	packageName="${1:-RhopiAlg}"
 	# * (2) Input files that will be used to create the list of dst files
-	data_or_MC="incl" # default argument
-	if [ $# -ge 2 ]; then data_or_MC="${2}"; fi
+	data_or_MC="${2:-excl}"
 
 # * Default parameters * #
 	nFilesPerJob=100
@@ -28,17 +26,17 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ "${data_or_MC}" == "excl" ]; then
-		directoryToRead="/scratchfs/bes/deboer/data/dst/${packageName}/100,000_events"
+		directoryToRead="${SCRATCHFS}/data/dst/${packageName}/100,000_events"
 		nFilesPerJob=-1
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
 	elif [ "${data_or_MC}" == "incl" ]; then
-		fileToRead="directories/incl/incl_Jpsi2009"
-		nFilesPerJob=50
+		fileToRead="directories/incl/incl_Jpsi2012"
+		nFilesPerJob=100
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ "${data_or_MC}" == "data" ]; then
-		fileToRead="directories/data/data_Jpsi2009"
+		fileToRead="directories/data/data_Jpsi2012"
 		nFilesPerJob=100
 		identifier="${packageName}_data"
 # * If not defined properly * #
