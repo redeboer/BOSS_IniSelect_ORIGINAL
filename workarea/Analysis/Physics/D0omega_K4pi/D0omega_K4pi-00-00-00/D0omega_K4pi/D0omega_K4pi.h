@@ -179,7 +179,7 @@ private:
   NTuple::Item<double> fProbPi;    ///< Probability that it is a pion
   NTuple::Item<double> fProbK;     ///< Probability that it is a kaon
 
-  NTuple::Tuple*     fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
+  NTuple::Tuple*       fTupleMC; /// `NTuple` that will be the eventual `"MctruthForTopoAna"` tree.
   NTuple::Item<double> fMC_4C_mD0;
   NTuple::Item<double> fMC_4C_momega;
   NTuple::Item<double> fMC_5C_mD0;
@@ -191,14 +191,14 @@ private:
   NTuple::Array<int> fPDG;    ///< PDG code for the particle in this array.
   NTuple::Array<int> fMother; ///< Track index of the mother particle.
 
-  NTuple::Tuple*     fTupleCutFlow;
-  NTuple::Item<int>  fNCut0;
-  NTuple::Item<int>  fNCut1;
-  NTuple::Item<int>  fNCut2;
-  NTuple::Item<int>  fNCut3;
-  NTuple::Item<int>  fNCut4;
-  NTuple::Item<int>  fNCut5;
-  NTuple::Item<int>  fNCut6;
+  NTuple::Tuple*         fTupleCutFlow;
+  NTuple::Item<Long64_t> fNCut0;
+  NTuple::Item<Long64_t> fNCut1;
+  NTuple::Item<Long64_t> fNCut2;
+  NTuple::Item<Long64_t> fNCut3;
+  NTuple::Item<Long64_t> fNCut4;
+  NTuple::Item<Long64_t> fNCut5;
+  NTuple::Item<Long64_t> fNCut6;
 
   ///@}
 };
