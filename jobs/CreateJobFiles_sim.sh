@@ -22,20 +22,15 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # ! ------- Script arguments ------- ! #
 # ! ================================ ! #
 	# * (1) Package name
-	packageName="D0phi_KpiKK" # default argument
-	if [ $# -ge 1 ]; then packageName="${1}"; fi
-	# * (2) number of jobOption files and submit scripts that need to be generated
-	nJobs=25 # default argument
-	if [ $# -ge 2 ]; then nJobs=${2}; fi
-	# * (3) number of events per job
-	nEventsPerJob=10000 # default argument
-	if [ $# -ge 3 ]; then nEventsPerJob=${3}; fi
+	packageName="${1:-RhopiAlg}"
+	# * (2) Number of jobOption files and submit scripts that need to be generated
+	nJobs=${2:-25}
+	# * (3) Number of events per job
+	nEventsPerJob=${3:-10000}
 	# * (4) Terminal message output level
-	outputLevel=4 # default argument: 4 (MSG::WARNING)
-	if [ $# -ge 4 ]; then outputLevel=${4}; fi
+	outputLevel=${4:-4} # default argument: 4 (MSG::WARNING)
 	# * (5) Output subdirectory
-	outputSubdir="${packageName}" # default argument
-	if [ $# -ge 5 ]; then outputSubdir="${5}"; fi
+	outputSubdir="${5:-packageName}"
 
 
 # * ================================= * #
@@ -52,7 +47,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 # * ------- Check arguments and parameters -------  * #
 # * =============================================== * #
 	CheckIfFolderExists "${scriptFolder}"
-	CheckIfFolderExists "${gDataOutputDir}"
+	CheckIfFolderExists "${BOSS_IniSelect_OutputDir}"
 	CheckIfFolderExists "${decayCardDir}"
 	CheckIfFileExists "${templateFile_sim}"
 	CheckIfFileExists "${templateFile_rec}"
@@ -66,9 +61,9 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 		outputDir_sim="${scriptFolder}/sim/${outputSubdir}"
 		outputDir_rec="${scriptFolder}/rec/${outputSubdir}"
 		outputDir_sub="${scriptFolder}/sub/${outputSubdir}_mc"
-		outputDir_raw="${gDataOutputDir}/raw/${outputSubdir}"
-		outputDir_dst="${gDataOutputDir}/dst/${outputSubdir}"
-		outputDir_log="${gDataOutputDir}/log/${outputSubdir}"
+		outputDir_raw="${BOSS_IniSelect_OutputDir}/raw/${outputSubdir}"
+		outputDir_dst="${BOSS_IniSelect_OutputDir}/dst/${outputSubdir}"
+		outputDir_log="${BOSS_IniSelect_OutputDir}/log/${outputSubdir}"
 
 	# * User input
 		echo "This will create ${nJobs} \"${packageName}\" simulation and reconstruction job option files with ${nEventsPerJob} events each in job."

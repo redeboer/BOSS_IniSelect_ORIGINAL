@@ -14,12 +14,12 @@ source "${BOSS_IniSelect}/setup/FunctionsPrint.sh"
 source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * Scripts parameters * #
-packageName="D0phi_KpiKK"
-nJobs=100
-nEventsPerJob=10000
+packageName="${1:-RhopiAlg}"
+nJobs=${2:-100}
+nEventsPerJob=${3:-10000}
 outputLevel=4
 outputSubdir="${packageName}/$(printf "%'d" $((${nJobs} * ${nEventsPerJob})))_events"
 
 # * Create job from template and submit * #
-bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
+bash CreateJobFiles_sim.sh "${packageName}" ${nJobs} ${nEventsPerJob} ${outputLevel} "${outputSubdir}" && \
 bash SubmitAll.sh "${outputSubdir}_mc" "${packageName}_mc"
