@@ -161,11 +161,11 @@ private:
   NTuple::Array<int> fMother; ///< Track index of the mother particle.
 
   NTuple::Tuple*         fTupleCutFlow;
-  NTuple::Item<Long64_t> fNCut0;
-  NTuple::Item<Long64_t> fNCut1;
-  NTuple::Item<Long64_t> fNCut2;
-  NTuple::Item<Long64_t> fNCut3;
-  NTuple::Item<Long64_t> fNCut4;
+  NTuple::Item<unsigned long long> fNCut0;
+  NTuple::Item<unsigned long long> fNCut1;
+  NTuple::Item<unsigned long long> fNCut2;
+  NTuple::Item<unsigned long long> fNCut3;
+  NTuple::Item<unsigned long long> fNCut4;
 
   ///@}
 };
