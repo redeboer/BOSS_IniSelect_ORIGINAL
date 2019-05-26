@@ -1,10 +1,12 @@
+# Model aliases for D -> Klnu, pilenu, etalnu, eta'lnu
+ModelAlias SLBKPOLE_DtoKlnu SLBKPOLE 1.0 0.25 1.0 2.112;
 
 Decay J/psi
-  1.0 D0 omega VSS;
+  1.0 D0 omega PHSP;
 Enddecay
 
 Decay D0
-  1.0 K- e+ nu_e PHOTOS   SLBKPOLE_DtoKlnu; 
+  1.0	 K- e+ nu_e PHOTOS SLBKPOLE_DtoKlnu;
 Enddecay
 
 Decay omega
