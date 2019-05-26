@@ -99,11 +99,6 @@ struct LorentzVectors
 
 LorentzVectors results;
 
-double ThreeMom(const HepLorentzVector& v)
-{
-  return v.e() * v.e() - v.m() * v.m();
-}
-
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
@@ -1169,7 +1164,7 @@ StatusCode D0omega_K4pi::execute()
 
       fChi_4C  = bestChi2;
       fMpi0_4C = results.pi0.m();
-      fPpi0_4C = ThreeMom(results.pi0);
+      fPpi0_4C = results.pi0.rho());
 
       double m1 = abs(results.comb1.omega.m() - momega);
       double m2 = abs(results.comb2.omega.m() - momega);
@@ -1177,8 +1172,8 @@ StatusCode D0omega_K4pi::execute()
       {
         fMD0_4C    = results.comb1.D0.m();
         fMomega_4C = results.comb1.omega.m();
-        fPD0_4C    = ThreeMom(results.comb1.D0);
-        fPomega_4C = ThreeMom(results.comb1.omega);
+        fPD0_4C    = results.comb1.D0.rho());
+        fPomega_4C = results.comb1.omega.rho());
         if(fCheckMC)
         {
           fMC_4C_mD0    = results.comb1.D0.m();
@@ -1189,8 +1184,8 @@ StatusCode D0omega_K4pi::execute()
       {
         fMD0_4C    = results.comb2.D0.m();
         fMomega_4C = results.comb2.omega.m();
-        fPD0_4C    = ThreeMom(results.comb2.D0);
-        fPomega_4C = ThreeMom(results.comb2.omega);
+        fPD0_4C    = results.comb2.D0.rho());
+        fPomega_4C = results.comb2.omega.rho());
         if(fCheckMC)
         {
           fMC_4C_mD0    = results.comb2.D0.m();
@@ -1256,7 +1251,7 @@ StatusCode D0omega_K4pi::execute()
 
       fChi_5C  = bestChi2;
       fMpi0_5C = results.pi0.m();
-      fPpi0_5C = ThreeMom(results.pi0);
+      fPpi0_5C = results.pi0.rho());
 
       double m1 = abs(results.comb1.omega.m() - momega);
       double m2 = abs(results.comb2.omega.m() - momega);
@@ -1264,8 +1259,8 @@ StatusCode D0omega_K4pi::execute()
       {
         fMD0_5C    = results.comb1.D0.m();
         fMomega_5C = results.comb1.omega.m();
-        fPD0_5C    = ThreeMom(results.comb1.D0);
-        fPomega_5C = ThreeMom(results.comb1.omega);
+        fPD0_5C    = results.comb1.D0.rho());
+        fPomega_5C = results.comb1.omega.rho());
         if(fCheckMC)
         {
           fMC_5C_mD0    = results.comb1.D0.m();
@@ -1276,8 +1271,8 @@ StatusCode D0omega_K4pi::execute()
       {
         fMD0_5C    = results.comb2.D0.m();
         fMomega_5C = results.comb2.omega.m();
-        fPD0_5C    = ThreeMom(results.comb2.D0);
-        fPomega_5C = ThreeMom(results.comb2.omega);
+        fPD0_5C    = results.comb2.D0.rho());
+        fPomega_5C = results.comb2.omega.rho());
         if(fCheckMC)
         {
           fMC_5C_mD0    = results.comb2.D0.m();

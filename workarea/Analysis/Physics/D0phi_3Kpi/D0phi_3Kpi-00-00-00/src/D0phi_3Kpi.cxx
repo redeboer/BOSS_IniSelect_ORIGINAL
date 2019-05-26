@@ -96,11 +96,6 @@ struct LorentzVectors
 
 LorentzVectors results;
 
-double ThreeMom(const HepLorentzVector& v)
-{
-  return v.e() * v.e() - v.m() * v.m();
-}
-
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
@@ -913,8 +908,8 @@ StatusCode D0phi_3Kpi::execute()
     {
       fMD0_4C  = results.comb1.D0.m();
       fMphi_4C = results.comb1.phi.m();
-      fPD0_4C  = ThreeMom(results.comb1.D0);
-      fPphi_4C = ThreeMom(results.comb1.phi);
+      fPD0_4C  = results.comb1.D0.rho());
+      fPphi_4C = results.comb1.phi.rho());
       if(fCheckMC)
       {
         fMC_4C_mD0  = results.comb1.D0.m();
@@ -925,8 +920,8 @@ StatusCode D0phi_3Kpi::execute()
     {
       fMD0_4C  = results.comb2.D0.m();
       fMphi_4C = results.comb2.phi.m();
-      fPD0_4C  = ThreeMom(results.comb2.D0);
-      fPphi_4C = ThreeMom(results.comb2.phi);
+      fPD0_4C  = results.comb2.D0.rho();
+      fPphi_4C = results.comb2.phi.rho();
       if(fCheckMC)
       {
         fMC_4C_mD0  = results.comb2.D0.m();

@@ -77,8 +77,9 @@ const int incPid  = 443;
 typedef vector<int>              Vint;
 typedef vector<HepLorentzVector> Vp4;
 
-struct LorentzVectors
+struct Results
 {
+  double           Chi2_1C;
   HepLorentzVector ep;
   HepLorentzVector Km;
   HepLorentzVector pim;
@@ -89,14 +90,11 @@ struct LorentzVectors
   HepLorentzVector pi0;
   HepLorentzVector D0;
   HepLorentzVector omega;
+  HepLorentzVector Jpsi;
+  HepLorentzVector Pmiss;
 };
 
-LorentzVectors results;
-
-double ThreeMom(const HepLorentzVector& v)
-{
-  return v.e() * v.e() - v.m() * v.m();
-}
+Results results;
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
@@ -1175,14 +1173,20 @@ StatusCode D0omega_Kenu3pi::execute()
       results.pi0   = results.g1 + results.g2;
       results.D0    = results.Km + results.ep + results.nu;
       results.omega = results.pip + results.pim + results.pi0;
+      results.Jpsi  = results.D0 + results.omega;
+      results.Pmiss = ecms - results.Jpsi;
 
-      fChi_4C  = bestChi2;
-      fMpi0_4C = results.pi0.m();
-      fPpi0_4C = ThreeMom(results.pi0);
+      fChi_4C    = bestChi2;
+      fMpi0_4C   = results.pi0.m();
+      fPpi0_4C   = results.pi0.rho();
       fMD0_4C    = results.D0.m();
       fMomega_4C = results.omega.m();
-      fPD0_4C    = ThreeMom(results.D0);
-      fPomega_4C = ThreeMom(results.omega);
+      fPD0_4C    = results.D0.rho();
+      fPomega_4C = results.omega.rho();
+      fMJpsi_4C  = results.Jpsi.m();
+      fEmiss_4C  = results.Pmiss.e();
+      fPmiss_4C  = results.Pmiss.rho();
+      fUmiss_4C  = results.Pmiss.e() - results.Pmiss.rho();
       if(fCheckMC)
       {
         fMC_4C_mD0    = results.D0.m();
@@ -1199,6 +1203,7 @@ StatusCode D0omega_Kenu3pi::execute()
   if(fDo_fit5c)
   {
     // * Find the best combination over all possible pi+ pi- gamma gamma pair
+    double chisq1c;
     double bestChi2 = 9999.;
     for(int i = 0; i < nGam - 1; ++i)
     {
@@ -1223,14 +1228,15 @@ StatusCode D0omega_Kenu3pi::execute()
           double chi2 = kkmfit->chisq();
           if(chi2 < bestChi2)
           {
-            bestChi2    = chi2;
-            results.ep  = kkmfit->pfit(0);
-            results.Km  = kkmfit->pfit(1);
-            results.pim = kkmfit->pfit(2);
-            results.pip = kkmfit->pfit(3);
-            results.g1  = kkmfit->pfit(4);
-            results.g2  = kkmfit->pfit(5);
-            results.nu  = kkmfit->pfit(6);
+            bestChi2        = chi2;
+            results.Chi2_1C = kkmfit->chisq(0);
+            results.ep      = kkmfit->pfit(0);
+            results.Km      = kkmfit->pfit(1);
+            results.pim     = kkmfit->pfit(2);
+            results.pip     = kkmfit->pfit(3);
+            results.g1      = kkmfit->pfit(4);
+            results.g2      = kkmfit->pfit(5);
+            results.nu      = kkmfit->pfit(6);
           }
         }
       }
@@ -1244,18 +1250,25 @@ StatusCode D0omega_Kenu3pi::execute()
       results.pi0   = results.g1 + results.g2;
       results.D0    = results.Km + results.ep + results.nu;
       results.omega = results.pip + results.pim + results.pi0;
+      results.Jpsi  = results.D0 + results.omega;
+      results.Pmiss = ecms - results.Jpsi;
 
-      fChi_4C  = bestChi2;
-      fMpi0_4C = results.pi0.m();
-      fPpi0_4C = ThreeMom(results.pi0);
-      fMD0_4C    = results.D0.m();
-      fMomega_4C = results.omega.m();
-      fPD0_4C    = ThreeMom(results.D0);
-      fPomega_4C = ThreeMom(results.omega);
+      fChi_5C    = bestChi2;
+      fChi_1C    = results.Chi2_1C;
+      fMpi0_5C   = results.pi0.m();
+      fPpi0_5C   = results.pi0.rho();
+      fMD0_5C    = results.D0.m();
+      fMomega_5C = results.omega.m();
+      fPD0_5C    = results.D0.rho();
+      fPomega_5C = results.omega.rho();
+      fMJpsi_5C  = results.Jpsi.m();
+      fEmiss_5C  = results.Pmiss.e();
+      fPmiss_5C  = results.Pmiss.rho();
+      fUmiss_5C  = results.Pmiss.e() - results.Pmiss.rho();
       if(fCheckMC)
       {
-        fMC_4C_mD0    = results.D0.m();
-        fMC_4C_momega = results.omega.m();
+        fMC_5C_mD0    = results.D0.m();
+        fMC_5C_momega = results.omega.m();
       }
 
       // * Photon kinematics * //

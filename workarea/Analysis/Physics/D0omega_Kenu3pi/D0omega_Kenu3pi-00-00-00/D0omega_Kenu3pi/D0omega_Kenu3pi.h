@@ -100,15 +100,24 @@ private:
   NTuple::Item<double> fChi_4C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
   NTuple::Item<double> fMpi0_4C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fMD0_4C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fMJpsi_4C;
+  NTuple::Item<double> fEmiss_4C;
+  NTuple::Item<double> fPmiss_4C;
+  NTuple::Item<double> fUmiss_4C;
   NTuple::Item<double> fMomega_4C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
   NTuple::Item<double> fPpi0_4C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_4C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
   NTuple::Item<double> fPomega_4C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
 
   NTuple::Tuple*       fTupleFit5C; ///< 5-constraint (5C) fit information
-  NTuple::Item<double> fChi_5C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit
+  NTuple::Item<double> fChi_5C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit for 4+1C
+  NTuple::Item<double> fChi_1C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit for 1C
   NTuple::Item<double> fMpi0_5C;    ///< Inv. mass for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fMD0_5C;     ///< Inv. mass for \f$D^0 \rightarrow K^-\pi^+\f$
+  NTuple::Item<double> fMJpsi_5C;
+  NTuple::Item<double> fEmiss_5C;
+  NTuple::Item<double> fPmiss_5C;
+  NTuple::Item<double> fUmiss_5C;
   NTuple::Item<double> fMomega_5C;  ///< Inv. mass for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
   NTuple::Item<double> fPpi0_5C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_5C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
