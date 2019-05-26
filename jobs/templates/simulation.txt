@@ -32,7 +32,8 @@ BesRndmGenSvc.RndmSeed = __RANDSEED__;
 /// round02  |  9947   10878  |  jpsi  |  090612  090728
 /// round05  |  27255  28236  |  jpsi  |  120410  120522
 /// round11  |  52940  54976  |  jpsi  |  171208  180411
-RealizationSvc.RunIdList = {-27255,0,-28236}; /// For the `RealizationSvc.RunIdList`: `,0,` stands for "from ... to", and a minus (`-`) stands for MC.
+RealizationSvc.RunIdList = {-9947,0,-10878,-27255,0,-28236};
+/// For the `RealizationSvc.RunIdList`: `,0,` stands for "from ... to", and a minus (`-`) stands for MC.
 
 // * ------- ROOT output data file (rtraw) ------- * //
 #include "$ROOTIOROOT/share/jobOptions_Digi2Root.txt"
