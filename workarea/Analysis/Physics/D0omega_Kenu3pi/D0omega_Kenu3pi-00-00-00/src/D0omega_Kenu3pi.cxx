@@ -248,6 +248,10 @@ StatusCode D0omega_Kenu3pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit4C->addItem("momega", fMomega_4C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("Jpsi", fMJpsi_4C);
+        fTupleFit4C->addItem("Emiss", fEmiss_4C);
+        fTupleFit4C->addItem("Pmiss", fPmiss_4C);
+        fTupleFit4C->addItem("Umiss", fUmiss_4C);
         fTupleFit4C->addItem("ppi0", fPpi0_4C);
         /// <tr><td>`"mpi0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
         fTupleFit4C->addItem("pD0", fPD0_4C);
@@ -281,6 +285,10 @@ StatusCode D0omega_Kenu3pi::initialize()
         fTupleFit5C->addItem("mD0", fMD0_5C);
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("momega", fMomega_5C);
+        fTupleFit4C->addItem("Jpsi", fMJpsi_5C);
+        fTupleFit4C->addItem("Emiss", fEmiss_5C);
+        fTupleFit4C->addItem("Pmiss", fPmiss_5C);
+        fTupleFit4C->addItem("Umiss", fUmiss_5C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("ppi0", fPpi0_5C);
         /// <tr><td>`"mpi0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
