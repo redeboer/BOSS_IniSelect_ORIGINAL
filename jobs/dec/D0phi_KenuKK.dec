@@ -2,19 +2,15 @@
 ModelAlias SLBKPOLE_DtoKlnu SLBKPOLE 1.0 0.25 1.0 2.112;
 
 Decay J/psi
-  1.0 omega D0 VVS_PWAVE 1.0 0.0 0.0 0.0 0.0 0.0;
+  1.0 phi D0 VVS_PWAVE 1.0 0.0 0.0 0.0 0.0 0.0;
 Enddecay
 
 Decay D0
   1.0	K- e+ nu_e PHOTOS SLBKPOLE_DtoKlnu;
 Enddecay
 
-Decay omega
-  1.0 pi- pi+ pi0 OMEGA_DALITZ;
-Enddecay
-
-Decay pi0
-  1.0 gamma gamma PHSP;
+Decay phi
+  1.0 K+ K- VSS;
 Enddecay
 
 End

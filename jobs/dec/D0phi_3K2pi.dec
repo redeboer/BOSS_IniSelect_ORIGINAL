@@ -3,7 +3,7 @@ Decay J/psi
 Enddecay
 
 Decay D0
-  1.0 K- pi+ pi0 PHSP;
+  1.0 K- pi+ pi0 D_DALITZ;
 Enddecay
 
 Decay phi
