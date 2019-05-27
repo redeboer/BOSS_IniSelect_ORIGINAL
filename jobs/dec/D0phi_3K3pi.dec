@@ -1,6 +1,5 @@
-
 Decay J/psi
-  1.0 D0 phi VSS;
+  1.0 phi D0 VVS_PWAVE 1.0 0.0 0.0 0.0 0.0 0.0;
 Enddecay
 
 Decay D0

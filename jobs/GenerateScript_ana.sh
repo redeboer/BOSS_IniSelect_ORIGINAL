@@ -26,7 +26,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ "${data_or_MC}" == "excl" ]; then
-		directoryToRead="${SCRATCHFS}/data/dst/${packageName}/1,000,000_events"
+		directoryToRead="${SCRATCHFS}/data/dst/${packageName}/100,000_events"
 		nFilesPerJob=-1
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
