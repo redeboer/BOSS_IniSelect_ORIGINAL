@@ -996,7 +996,7 @@ StatusCode RhopiAlg::execute()
   /// <li> Apply Kalman 4-constrain kinematic fit
   if(fDo_fit4c)
   {
-    HepLorentzVector ecms(0.034, 0, 0, Ecms);
+    HepLorentzVector ecms(0.011 * Ecms, 0, 0, Ecms);
     double           chisq = 9999.;
     int              ig1   = -1;
     int              ig2   = -1;
@@ -1055,7 +1055,7 @@ StatusCode RhopiAlg::execute()
   /// ** Uses `Ncut6` counter**: \f$J/\psi \rightarrow \rho^0\pi^0\f$ (cut on invariant mass window).
   if(fDo_fit5c)
   {
-    HepLorentzVector ecms(0.034, 0, 0, Ecms);
+    HepLorentzVector ecms(0.011 * Ecms, 0, 0, Ecms);
     double           chisq = 9999.;
     int              ig1   = -1;
     int              ig2   = -1;

@@ -67,7 +67,7 @@ const double Ecms    = 3.097;      // center-of-mass energy
 const double DegToRad = 180. / (CLHEP::pi);
 const double fivepi   = CLHEP::twopi + CLHEP::twopi + pi;
 
-HepLorentzVector ecms(0.034, 0, 0, Ecms);
+HepLorentzVector ecms(0.011 * Ecms, 0, 0, Ecms);
 
 const int incPid1 = 91;
 const int incPid2 = 92;
@@ -955,7 +955,7 @@ StatusCode D0omega_K4pi::execute()
     ptrk.setPy(eraw * sin(the) * sin(phi));
     ptrk.setPz(eraw * cos(the));
     ptrk.setE(eraw);
-    // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+    ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
     pGam.push_back(ptrk);
   }
   // cout << "before pid" << endl;
@@ -1009,7 +1009,7 @@ StatusCode D0omega_K4pi::execute()
         ptrk.setPz(mdcKalTrk->pz());
         double p3 = ptrk.mag();
         ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
-        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
         ppip.push_back(ptrk);
       }
       else
@@ -1021,7 +1021,7 @@ StatusCode D0omega_K4pi::execute()
         ptrk.setPz(mdcKalTrk->pz());
         double p3 = ptrk.mag();
         ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
-        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
         ppim.push_back(ptrk);
       }
     }
@@ -1042,7 +1042,7 @@ StatusCode D0omega_K4pi::execute()
         ptrk.setPz(mdcKalTrk->pz());
         double p3 = ptrk.mag();
         ptrk.setE(sqrt(p3 * p3 + mK * mK));
-        // ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
+        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
         pKm.push_back(ptrk);
       }
     }

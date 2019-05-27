@@ -974,7 +974,7 @@ HepLorentzVector TrackSelector::ComputeMomentum(EvtRecTrack* track)
                         eraw * sin(the) * sin(phi), // py
                         eraw * cos(the),            // pz
                         eraw);
-  // ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
+  ptrk = ptrk.boost(-0.011, 0, 0); // boost to center-of-mass frame
   return ptrk;
 }
 
