@@ -23,4 +23,6 @@ ApplicationMgr.EvtMax = __NEVENTS__;
 
 // * ------- ROOT output data file (root) ------- * //
 ApplicationMgr.HistogramPersistency = "ROOT";
-NTupleSvc.Output = { "FILE1 DATAFILE='__OUTPUTFILE__' OPT='NEW' TYP='ROOT'"};
+NTupleSvc.Output = { "FILE1 DATAFILE='Alg__OUTPUTFILE__' OPT='NEW' TYP='ROOT'"};
+
+__PACKAGENAME__.OutFile = __OUTPUTFILE__;
