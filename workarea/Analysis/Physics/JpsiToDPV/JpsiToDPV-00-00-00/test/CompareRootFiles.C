@@ -1,10 +1,13 @@
 #include "TFile.h"
 #include "TString.h"
 #include "TTree.h"
+#include "TKey.h"
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
 using namespace std;
+
+Bool_t compareSize = false;
 
 int CompareRootFiles(const char* name1, const char* name2)
 {
@@ -14,7 +17,7 @@ int CompareRootFiles(const char* name1, const char* name2)
   if(file2.IsZombie()) throw runtime_error(Form("Failed to load file \"%s\"", name2));
 
 
-  if(file1.GetSize() == file2.GetSize())
+  if(compareSize && (file1.GetSize() != file2.GetSize()))
   {
     cout << "\033[31mUnequal file size for files:\033[0m" << endl;
     cout << "\033[31m  \"" << name1 << "\"\033[0m" << endl;
@@ -42,7 +45,7 @@ int CompareRootFiles(const char* name1, const char* name2)
     }
     if(obj1->Compare(obj2)) return 1;
   }
-  cout << "\033[32mFiles are identical!\033[0m" << endl;
+  cout << "\033[32mOutput files are identical!\033[0m" << endl;
   return 0;
 }
 
