@@ -157,7 +157,6 @@ StatusCode D0omega_K4pi::execute()
 {
   /// <ol>
   /// <li> Create log stream (`MsgStream` class)
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "In execute():" << endmsg;
 
   /// <li> Load next event from DST file
@@ -846,7 +845,6 @@ StatusCode D0omega_K4pi::execute()
 /// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events. Prints the flow chart to the terminal, so **make sure you save this output!**
 StatusCode D0omega_K4pi::finalize()
 {
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
 
   f.cuts.Fill();

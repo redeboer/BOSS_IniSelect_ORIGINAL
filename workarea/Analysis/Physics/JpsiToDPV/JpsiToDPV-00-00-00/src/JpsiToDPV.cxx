@@ -152,11 +152,9 @@ StatusCode JpsiToDPV::initialize()
 /// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
 StatusCode JpsiToDPV::execute()
 {
-  /// <ol>
-  /// <li> Create log stream (`MsgStream` class)
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "In execute():" << endmsg;
 
+  /// <ol>
   /// <li> Load next event from DST file
 
   // * Load DST file info *
@@ -867,10 +865,11 @@ StatusCode JpsiToDPV::execute()
 /// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events. Prints the flow chart to the terminal, so **make sure you save this output!**
 StatusCode JpsiToDPV::finalize()
 {
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
 
-  cout << "Resulting FLOW CHART:" << endl;
+  fTrees.cuts.Fill();
+  cout << endl;
+  cout << "Resulting flow chart:" << endl;
   cout << "  Total number of events: " << fTrees.cuts[0] << endl;
   cout << "  Pass N charged tracks:  " << fTrees.cuts[1] << endl;
   cout << "  Pass zero net charge    " << fTrees.cuts[2] << endl;
@@ -879,11 +878,29 @@ StatusCode JpsiToDPV::finalize()
   cout << "  Pass 4C Kalman fit:     " << fTrees.cuts[5] << endl;
   cout << "  Pass 5C Kalman fit:     " << fTrees.cuts[6] << endl;
   cout << endl;
+  cout << "Trees:" << endl;
+  if(fD0omega.K4pi.fit4c.write)  cout << "  fit4c:  " << fD0omega.K4pi.fit4c.GetEntries() << endl;
+  if(fD0omega.K4pi.fit5c.write)  cout << "  fit5c:  " << fD0omega.K4pi.fit5c.GetEntries() << endl;
+  if(fD0omega.K4pi.MC.write)     cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << endl;
+  if(fTrees.cuts.write)   cout << "  cuts:   " << fTrees.cuts.GetEntries() << endl;
+  if(fTrees.v.write)      cout << "  v:      " << fTrees.v.GetEntries() << endl;
+  if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << endl;
+  if(fTrees.dedx.write)   cout << "  dedx:   " << fTrees.dedx.GetEntries() << endl;
+  if(fTrees.TofEC.write)  cout << "  TofEC:  " << fTrees.TofEC.GetEntries() << endl;
+  if(fTrees.TofIB.write)  cout << "  TofIB:  " << fTrees.TofIB.GetEntries() << endl;
+  if(fTrees.TofOB.write)  cout << "  TofOB:  " << fTrees.TofOB.GetEntries() << endl;
+  if(fTrees.PID.write)    cout << "  PID:    " << fTrees.PID.GetEntries() << endl;
+  cout << endl;
 
   TFile file(fFileName.c_str(), "RECREATE");
   if(!file.IsOpen())
   {
     log << MSG::ERROR << "Failed to load output file \"" << fFileName << "\"" << endmsg;
+    return StatusCode::FAILURE;
+  }
+  if(file.IsZombie())
+  {
+    log << MSG::ERROR << "Output file \"" << fFileName << "\" is zombie" << endmsg;
     return StatusCode::FAILURE;
   }
   fD0omega.K4pi.fit4c.WriteSafe();
@@ -896,8 +913,6 @@ StatusCode JpsiToDPV::finalize()
   fTrees.TofIB.WriteSafe();
   fTrees.TofOB.WriteSafe();
   fTrees.PID.WriteSafe();
-
-  fTrees.cuts.Fill();
   fTrees.cuts.WriteSafe();
   file.Close();
 

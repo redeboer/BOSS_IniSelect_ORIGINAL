@@ -64,24 +64,6 @@ namespace D0omega
       Fit4C   fit4c; ///< 4-constraint (4C) fit information
       Fit5C   fit5c; ///< 5-constraint (5C) fit information
       TopoAna MC;
-
-      // * Declare r0, z0 cut for charged tracks
-      double fVr0cut;
-      double fVz0cut;
-      double fRvz0cut;
-      double fRvxy0cut;
-
-      // * Declare energy, dphi, dthe cuts for fake gamma's
-      double fEnergyThreshold;
-      double fGammaPhiCut;
-      double fGammaThetaCut;
-      double fGammaAngleCut;
-
-      // * Declare whether to test the success of the 4- and 5-constraint fits
-      bool   fDo_fit4c;
-      bool   fDo_fit5c;
-      double fMaxChiSq;
-      double fMinPID;
     };
   } // namespace K4pi
 } // namespace D0omega
