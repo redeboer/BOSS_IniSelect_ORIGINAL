@@ -57,7 +57,7 @@ namespace D0omega
       Double_t momega_5C;
     };
 
-    struct Package : public TreeCollection
+    struct Package
     {
       Package() : fit4c("fit4c"), fit5c("fit5c"), MC("topology") {}
 

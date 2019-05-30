@@ -26,6 +26,7 @@ private:
   MsgStream   log;
   std::string fFileName;
 
+  TreeCollection   fTrees;
   D0omega::Package fD0omega;
 
   // * Declare r0, z0 cut for charged tracks

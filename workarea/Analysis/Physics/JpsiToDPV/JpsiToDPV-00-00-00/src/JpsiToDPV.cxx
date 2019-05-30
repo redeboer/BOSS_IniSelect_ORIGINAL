@@ -130,14 +130,14 @@ JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   DECLAREWRITE(fD0omega.K4pi.fit4c);
   DECLAREWRITE(fD0omega.K4pi.fit5c);
   DECLAREWRITE(fD0omega.K4pi.MC);
-  DECLAREWRITE(fD0omega.K4pi.v);
-  DECLAREWRITE(fD0omega.K4pi.photon);
-  DECLAREWRITE(fD0omega.K4pi.dedx);
-  DECLAREWRITE(fD0omega.K4pi.TofEC);
-  DECLAREWRITE(fD0omega.K4pi.TofIB);
-  DECLAREWRITE(fD0omega.K4pi.TofOB);
-  DECLAREWRITE(fD0omega.K4pi.PID);
-  fD0omega.K4pi.cuts.write = true;
+  DECLAREWRITE(fTrees.v);
+  DECLAREWRITE(fTrees.photon);
+  DECLAREWRITE(fTrees.dedx);
+  DECLAREWRITE(fTrees.TofEC);
+  DECLAREWRITE(fTrees.TofIB);
+  DECLAREWRITE(fTrees.TofOB);
+  DECLAREWRITE(fTrees.PID);
+  fTrees.cuts.write = true;
 }
 
 // * ========================== * //
@@ -164,7 +164,7 @@ StatusCode JpsiToDPV::execute()
   int                              runNo = eventHeader->runNumber();
   int                              evtNo = eventHeader->eventNumber();
   log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
-  fD0omega.K4pi.cuts[0]++; // counter for all events
+  fTrees.cuts[0]++; // counter for all events
 
   // Reset chi square values
   if(fD0omega.K4pi.MC.write)
@@ -218,17 +218,16 @@ StatusCode JpsiToDPV::execute()
 
     // * Get track info from Main Drift Chamber
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
-    fD0omega.K4pi.v.p    = mdcTrk->p();
-    fD0omega.K4pi.v.x    = mdcTrk->x();
-    fD0omega.K4pi.v.y    = mdcTrk->y();
-    fD0omega.K4pi.v.z    = mdcTrk->z();
-    fD0omega.K4pi.v.phi  = mdcTrk->helix(1);
+    fTrees.v.p          = mdcTrk->p();
+    fTrees.v.x          = mdcTrk->x();
+    fTrees.v.y          = mdcTrk->y();
+    fTrees.v.z          = mdcTrk->z();
+    fTrees.v.phi        = mdcTrk->helix(1);
 
     // * Get vertex origin
-    double xv        = xorigin.x();
-    double yv        = xorigin.y();
-    fD0omega.K4pi.v.r = (fD0omega.K4pi.v.x - xv) * cos(fD0omega.K4pi.v.phi) +
-                       (fD0omega.K4pi.v.y - yv) * sin(fD0omega.K4pi.v.phi);
+    double xv  = xorigin.x();
+    double yv  = xorigin.y();
+    fTrees.v.r = (fTrees.v.x - xv) * cos(fTrees.v.phi) + (fTrees.v.y - yv) * sin(fTrees.v.phi);
 
     // * Get radii of vertex
     HepVector    a  = mdcTrk->helix();
@@ -237,19 +236,19 @@ StatusCode JpsiToDPV::execute()
     HepPoint3D   IP(xorigin[0], xorigin[1], xorigin[2]);
     VFHelix      helixip(point0, a, Ea);
     helixip.pivot(IP);
-    HepVector vecipa    = helixip.a();
-    fD0omega.K4pi.v.rxy  = fabs(vecipa[0]); // nearest distance to IP in xy plane
-    fD0omega.K4pi.v.rz   = vecipa[3];       // nearest distance to IP in z direction
-    fD0omega.K4pi.v.rphi = vecipa[1];
+    HepVector vecipa = helixip.a();
+    fTrees.v.rxy     = fabs(vecipa[0]); // nearest distance to IP in xy plane
+    fTrees.v.rz      = vecipa[3];       // nearest distance to IP in z direction
+    fTrees.v.rphi    = vecipa[1];
 
     // * WRITE primary vertex position info ("vxyz" branch) *
-    fD0omega.K4pi.v.FillSafe();
+    fTrees.v.FillSafe();
 
     // * Apply vertex cuts *
-    if(fabs(fD0omega.K4pi.v.z) >= fVz0cut) continue;
-    if(fabs(fD0omega.K4pi.v.rxy) >= fVr0cut) continue;
-    if(fabs(fD0omega.K4pi.v.rz) >= fRvz0cut) continue;
-    if(fabs(fD0omega.K4pi.v.rxy) >= fRvxy0cut) continue;
+    if(fabs(fTrees.v.z) >= fVz0cut) continue;
+    if(fabs(fTrees.v.rxy) >= fVr0cut) continue;
+    if(fabs(fTrees.v.rz) >= fRvz0cut) continue;
+    if(fabs(fTrees.v.rxy) >= fRvxy0cut) continue;
 
     // * Add charged track to vector *
     iGood.push_back(i);
@@ -260,12 +259,12 @@ StatusCode JpsiToDPV::execute()
   int nGood = iGood.size();
   log << MSG::DEBUG << "ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
   if(nGood != 4) return StatusCode::SUCCESS;
-  fD0omega.K4pi.cuts[1]++;
+  fTrees.cuts[1]++;
   if(nCharge != 0) return StatusCode::SUCCESS;
-  fD0omega.K4pi.cuts[2]++;
+  fTrees.cuts[2]++;
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
-  /// ** Uses `fD0omega.K4pi.cuts[3]` counter**: number of good photons has to be 2 at least.
+  /// ** Uses `fTrees.cuts[3]` counter**: number of good photons has to be 2 at least.
   /// The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
   Vint iGam;
   for(int i = evtRecEvent->totalCharged(); i < evtRecEvent->totalTracks(); ++i)
@@ -278,9 +277,9 @@ StatusCode JpsiToDPV::execute()
     Hep3Vector    emcpos(emcTrk->x(), emcTrk->y(), emcTrk->z());
 
     // * Find the theta, phi, and angle difference with nearest charged track
-    fD0omega.K4pi.photon.dthe = 200.; // start value for difference in theta
-    fD0omega.K4pi.photon.dphi = 200.; // start value for difference in phi
-    fD0omega.K4pi.photon.dang = 200.; // start value for difference in angle (?)
+    fTrees.photon.dthe = 200.; // start value for difference in theta
+    fTrees.photon.dphi = 200.; // start value for difference in phi
+    fTrees.photon.dang = 200.; // start value for difference in angle (?)
     for(int j = 0; j < evtRecEvent->totalCharged(); j++)
     {
       EvtRecTrackIterator jtTrk = evtRecTrkCol->begin() + j;
@@ -294,30 +293,30 @@ StatusCode JpsiToDPV::execute()
       double phid = extpos.deltaPhi(emcpos);
       thed        = fmod(thed + fivepi, CLHEP::twopi) - CLHEP::pi;
       phid        = fmod(phid + fivepi, CLHEP::twopi) - CLHEP::pi;
-      if(angd < fD0omega.K4pi.photon.dang)
+      if(angd < fTrees.photon.dang)
       {
-        fD0omega.K4pi.photon.dang = angd;
-        fD0omega.K4pi.photon.dthe = thed;
-        fD0omega.K4pi.photon.dphi = phid;
+        fTrees.photon.dang = angd;
+        fTrees.photon.dthe = thed;
+        fTrees.photon.dphi = phid;
       }
     }
 
     // * Apply angle cut
-    if(fD0omega.K4pi.photon.dang >= 200) continue;
-    fD0omega.K4pi.photon.eraw = emcTrk->energy();
-    fD0omega.K4pi.photon.dthe = fD0omega.K4pi.photon.dthe * DegToRad;
-    fD0omega.K4pi.photon.dphi = fD0omega.K4pi.photon.dphi * DegToRad;
-    fD0omega.K4pi.photon.dang = fD0omega.K4pi.photon.dang * DegToRad;
+    if(fTrees.photon.dang >= 200) continue;
+    fTrees.photon.eraw = emcTrk->energy();
+    fTrees.photon.dthe = fTrees.photon.dthe * DegToRad;
+    fTrees.photon.dphi = fTrees.photon.dphi * DegToRad;
+    fTrees.photon.dang = fTrees.photon.dang * DegToRad;
 
     // * WRITE photon info ("photon" branch)
-    fD0omega.K4pi.photon.FillSafe();
+    fTrees.photon.FillSafe();
 
     // * Apply photon cuts
-    if(fD0omega.K4pi.photon.eraw < fEnergyThreshold) continue;
-    if((fabs(fD0omega.K4pi.photon.dthe) < fGammaThetaCut) &&
-       (fabs(fD0omega.K4pi.photon.dphi) < fGammaPhiCut))
+    if(fTrees.photon.eraw < fEnergyThreshold) continue;
+    if((fabs(fTrees.photon.dthe) < fGammaThetaCut) &&
+       (fabs(fTrees.photon.dphi) < fGammaPhiCut))
       continue;
-    if(fabs(fD0omega.K4pi.photon.dang) < fGammaAngleCut) continue;
+    if(fabs(fTrees.photon.dang) < fGammaAngleCut) continue;
 
     // * Add photon track to vector
     iGam.push_back(i);
@@ -328,10 +327,10 @@ StatusCode JpsiToDPV::execute()
   log << MSG::DEBUG << "Number of good photons: " << nGam << "/" << evtRecEvent->totalNeutral()
       << endmsg;
   if(nGam < 2) return StatusCode::SUCCESS;
-  fD0omega.K4pi.cuts[3]++;
+  fTrees.cuts[3]++;
 
   /// <li> Check charged track dEdx PID information
-  if(fD0omega.K4pi.dedx.write)
+  if(fTrees.dedx.write)
   {
     for(int i = 0; i < nGood; ++i)
     {
@@ -344,23 +343,23 @@ StatusCode JpsiToDPV::execute()
       RecMdcDedx*  dedxTrk = (*itTrk)->mdcDedx();
 
       // * WRITE energy loss PID info ("dedx" branch) *
-      fD0omega.K4pi.dedx.p     = mdcTrk->p();      // momentum of the track
-      fD0omega.K4pi.dedx.chie  = dedxTrk->chiE();  // chi2 in case of electron
-      fD0omega.K4pi.dedx.chimu = dedxTrk->chiMu(); // chi2 in case of muon
-      fD0omega.K4pi.dedx.chipi = dedxTrk->chiPi(); // chi2 in case of pion
-      fD0omega.K4pi.dedx.chik  = dedxTrk->chiK();  // chi2 in case of kaon
-      fD0omega.K4pi.dedx.chip  = dedxTrk->chiP();  // chi2 in case of proton
-      fD0omega.K4pi.dedx.probPH =
+      fTrees.dedx.p     = mdcTrk->p();      // momentum of the track
+      fTrees.dedx.chie  = dedxTrk->chiE();  // chi2 in case of electron
+      fTrees.dedx.chimu = dedxTrk->chiMu(); // chi2 in case of muon
+      fTrees.dedx.chipi = dedxTrk->chiPi(); // chi2 in case of pion
+      fTrees.dedx.chik  = dedxTrk->chiK();  // chi2 in case of kaon
+      fTrees.dedx.chip  = dedxTrk->chiP();  // chi2 in case of proton
+      fTrees.dedx.probPH =
         dedxTrk->probPH(); // most probable pulse height from truncated mean
-      fD0omega.K4pi.dedx.normPH = dedxTrk->normPH();       // normalized pulse height
-      fD0omega.K4pi.dedx.ghit   = dedxTrk->numGoodHits();  // number of good hits
-      fD0omega.K4pi.dedx.thit   = dedxTrk->numTotalHits(); // total number of hits
-      fD0omega.K4pi.dedx.Fill();
+      fTrees.dedx.normPH = dedxTrk->normPH();       // normalized pulse height
+      fTrees.dedx.ghit   = dedxTrk->numGoodHits();  // number of good hits
+      fTrees.dedx.thit   = dedxTrk->numTotalHits(); // total number of hits
+      fTrees.dedx.Fill();
     }
   }
 
   /// <li> Check charged track ToF PID information
-  if(fD0omega.K4pi.TofEC.write || fD0omega.K4pi.TofIB.write || fD0omega.K4pi.TofOB.write)
+  if(fTrees.TofEC.write || fTrees.TofIB.write || fTrees.TofOB.write)
   {
     for(int i = 0; i < nGood; ++i)
     {
@@ -387,13 +386,13 @@ StatusCode JpsiToDPV::execute()
           if(hitStatus.layer() != 0) continue;    // abort if not end cap
 
           // * Get ToF info *
-          fD0omega.K4pi.TofEC.p     = ptrk;
-          fD0omega.K4pi.TofEC.path  = (*iter_tof)->path();  // distance of flight
-          fD0omega.K4pi.TofEC.tof   = (*iter_tof)->tof();   // time of flight
-          fD0omega.K4pi.TofEC.ph    = (*iter_tof)->ph();    // ToF pulse height
-          fD0omega.K4pi.TofEC.zrhit = (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
-          fD0omega.K4pi.TofEC.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-          fD0omega.K4pi.TofEC.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
+          fTrees.TofEC.p     = ptrk;
+          fTrees.TofEC.path  = (*iter_tof)->path();  // distance of flight
+          fTrees.TofEC.tof   = (*iter_tof)->tof();   // time of flight
+          fTrees.TofEC.ph    = (*iter_tof)->ph();    // ToF pulse height
+          fTrees.TofEC.zrhit = (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
+          fTrees.TofEC.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
+          fTrees.TofEC.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
 
           // * Get ToF for each particle hypothesis *
           double texp[5];
@@ -401,19 +400,19 @@ StatusCode JpsiToDPV::execute()
           {
             double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
             double beta = gb / sqrt(1 + gb * gb);
-            texp[j]     = 10 * fD0omega.K4pi.TofEC.path / beta / velc_mm; // hypothesis ToF
+            texp[j]     = 10 * fTrees.TofEC.path / beta / velc_mm; // hypothesis ToF
           }
-          fD0omega.K4pi.TofEC.te =
-            fD0omega.K4pi.TofEC.tof - texp[0]; // difference with ToF in electron hypothesis
-          fD0omega.K4pi.TofEC.tmu =
-            fD0omega.K4pi.TofEC.tof - texp[1]; // difference with ToF in muon hypothesis
-          fD0omega.K4pi.TofEC.tpi =
-            fD0omega.K4pi.TofEC.tof - texp[2]; // difference with ToF in charged pion hypothesis
-          fD0omega.K4pi.TofEC.tk =
-            fD0omega.K4pi.TofEC.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-          fD0omega.K4pi.TofEC.tp =
-            fD0omega.K4pi.TofEC.tof - texp[4]; // difference with ToF in proton hypothesis
-          fD0omega.K4pi.TofEC.Fill();
+          fTrees.TofEC.te =
+            fTrees.TofEC.tof - texp[0]; // difference with ToF in electron hypothesis
+          fTrees.TofEC.tmu =
+            fTrees.TofEC.tof - texp[1]; // difference with ToF in muon hypothesis
+          fTrees.TofEC.tpi =
+            fTrees.TofEC.tof - texp[2]; // difference with ToF in charged pion hypothesis
+          fTrees.TofEC.tk =
+            fTrees.TofEC.tof - texp[3]; // difference with ToF in charged kaon hypothesis
+          fTrees.TofEC.tp =
+            fTrees.TofEC.tof - texp[4]; // difference with ToF in proton hypothesis
+          fTrees.TofEC.Fill();
         }
 
         // * If ebarrel ToF ToF detector: *
@@ -422,64 +421,66 @@ StatusCode JpsiToDPV::execute()
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
           { // * inner barrel ToF detector
-            fD0omega.K4pi.TofIB.p    = ptrk;
-            fD0omega.K4pi.TofIB.path = (*iter_tof)->path(); // distance of flight
-            fD0omega.K4pi.TofIB.tof  = (*iter_tof)->tof();  // time of flight
-            fD0omega.K4pi.TofIB.ph   = (*iter_tof)->ph();   // ToF pulse height
-            fD0omega.K4pi.TofIB.zrhit =
+            fTrees.TofIB.p    = ptrk;
+            fTrees.TofIB.path = (*iter_tof)->path(); // distance of flight
+            fTrees.TofIB.tof  = (*iter_tof)->tof();  // time of flight
+            fTrees.TofIB.ph   = (*iter_tof)->ph();   // ToF pulse height
+            fTrees.TofIB.zrhit =
               (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
-            fD0omega.K4pi.TofIB.qual = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-            fD0omega.K4pi.TofIB.cntr = 0. + (*iter_tof)->tofID();   // ToF counter ID
+            fTrees.TofIB.qual =
+              0. + (*iter_tof)->quality();                        // data quality of reconstruction
+            fTrees.TofIB.cntr = 0. + (*iter_tof)->tofID(); // ToF counter ID
             double texp[5];
             for(int j = 0; j < 5; j++)
             {
               double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
               double beta = gb / sqrt(1 + gb * gb);
-              texp[j]     = 10 * fD0omega.K4pi.TofIB.path / beta / velc_mm; // hypothesis ToF
+              texp[j]     = 10 * fTrees.TofIB.path / beta / velc_mm; // hypothesis ToF
             }
-            fD0omega.K4pi.TofIB.te =
-              fD0omega.K4pi.TofIB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fD0omega.K4pi.TofIB.tmu =
-              fD0omega.K4pi.TofIB.tof - texp[1]; // difference with ToF in muon hypothesis
-            fD0omega.K4pi.TofIB.tpi =
-              fD0omega.K4pi.TofIB.tof - texp[2]; // difference with ToF in charged pion hypothesis
-            fD0omega.K4pi.TofIB.tk =
-              fD0omega.K4pi.TofIB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-            fD0omega.K4pi.TofIB.tp =
-              fD0omega.K4pi.TofIB.tof - texp[4]; // difference with ToF in proton hypothesis
-            fD0omega.K4pi.TofIB.Fill();
+            fTrees.TofIB.te =
+              fTrees.TofIB.tof - texp[0]; // difference with ToF in electron hypothesis
+            fTrees.TofIB.tmu =
+              fTrees.TofIB.tof - texp[1]; // difference with ToF in muon hypothesis
+            fTrees.TofIB.tpi =
+              fTrees.TofIB.tof - texp[2]; // difference with ToF in charged pion hypothesis
+            fTrees.TofIB.tk =
+              fTrees.TofIB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
+            fTrees.TofIB.tp =
+              fTrees.TofIB.tof - texp[4]; // difference with ToF in proton hypothesis
+            fTrees.TofIB.Fill();
           }
 
           if(hitStatus.layer() == 2)
           { // * outer barrel ToF detector
-            fD0omega.K4pi.TofOB.p    = ptrk;
-            fD0omega.K4pi.TofOB.path = (*iter_tof)->path(); // distance of flight
-            fD0omega.K4pi.TofOB.tof  = (*iter_tof)->tof();  // ToF pulse height
-            fD0omega.K4pi.TofOB.ph   = (*iter_tof)->ph();   // ToF pulse height
-            fD0omega.K4pi.TofOB.zrhit =
+            fTrees.TofOB.p    = ptrk;
+            fTrees.TofOB.path = (*iter_tof)->path(); // distance of flight
+            fTrees.TofOB.tof  = (*iter_tof)->tof();  // ToF pulse height
+            fTrees.TofOB.ph   = (*iter_tof)->ph();   // ToF pulse height
+            fTrees.TofOB.zrhit =
               (*iter_tof)->zrhit(); // track extrapolate Z or R Hit position
-            fD0omega.K4pi.TofOB.qual = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-            fD0omega.K4pi.TofOB.cntr = 0. + (*iter_tof)->tofID();   // ToF counter ID
+            fTrees.TofOB.qual =
+              0. + (*iter_tof)->quality();                        // data quality of reconstruction
+            fTrees.TofOB.cntr = 0. + (*iter_tof)->tofID(); // ToF counter ID
             double texp[5];
             for(int j = 0; j < 5; j++)
             {
               double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
               double beta = gb / sqrt(1 + gb * gb);
-              texp[j]     = 10 * fD0omega.K4pi.TofOB.path / beta / velc_mm; // hypothesis ToF
+              texp[j]     = 10 * fTrees.TofOB.path / beta / velc_mm; // hypothesis ToF
             }
-            fD0omega.K4pi.TofOB.te =
-              fD0omega.K4pi.TofOB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fD0omega.K4pi.TofOB.tmu =
-              fD0omega.K4pi.TofOB.tof - texp[1]; // difference with ToF in muon hypothesis
-            fD0omega.K4pi.TofOB.tpi =
-              fD0omega.K4pi.TofOB.tof - texp[2]; // difference with ToF in charged pion hypothesis
-            fD0omega.K4pi.TofOB.tk =
-              fD0omega.K4pi.TofOB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-            fD0omega.K4pi.TofOB.tp =
-              fD0omega.K4pi.TofOB.tof - texp[4]; // difference with ToF in proton hypothesis
+            fTrees.TofOB.te =
+              fTrees.TofOB.tof - texp[0]; // difference with ToF in electron hypothesis
+            fTrees.TofOB.tmu =
+              fTrees.TofOB.tof - texp[1]; // difference with ToF in muon hypothesis
+            fTrees.TofOB.tpi =
+              fTrees.TofOB.tof - texp[2]; // difference with ToF in charged pion hypothesis
+            fTrees.TofOB.tk =
+              fTrees.TofOB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
+            fTrees.TofOB.tp =
+              fTrees.TofOB.tof - texp[4]; // difference with ToF in proton hypothesis
 
             // * WRITE ToF outer barrel info ("tof2" branch) *
-            fD0omega.K4pi.TofOB.Fill();
+            fTrees.TofOB.Fill();
           }
         }
       }
@@ -525,16 +526,16 @@ StatusCode JpsiToDPV::execute()
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
 
     // * WRITE particle identification info ("pid" branch) *
-    if(fD0omega.K4pi.PID.write)
+    if(fTrees.PID.write)
     {
-      fD0omega.K4pi.PID.p     = mdcTrk->p();          // momentum of the track
-      fD0omega.K4pi.PID.cost  = cos(mdcTrk->theta()); // theta angle of the track
-      fD0omega.K4pi.PID.dedx  = pid->chiDedx(2);      // Chi squared of the dedx of the track
-      fD0omega.K4pi.PID.tofIB = pid->chiTof1(2); // Chi squared of the inner barrel ToF of the track
-      fD0omega.K4pi.PID.tofOB = pid->chiTof2(2); // Chi squared of the outer barrel ToF of the track
-      fD0omega.K4pi.PID.probp = pid->probPion(); // probability that it is a pion
-      fD0omega.K4pi.PID.probK = pid->probKaon(); // probability that it is a kaon
-      fD0omega.K4pi.PID.Fill();
+      fTrees.PID.p     = mdcTrk->p();          // momentum of the track
+      fTrees.PID.cost  = cos(mdcTrk->theta()); // theta angle of the track
+      fTrees.PID.dedx  = pid->chiDedx(2);      // Chi squared of the dedx of the track
+      fTrees.PID.tofIB = pid->chiTof1(2); // Chi squared of the inner barrel ToF of the track
+      fTrees.PID.tofOB = pid->chiTof2(2); // Chi squared of the outer barrel ToF of the track
+      fTrees.PID.probp = pid->probPion(); // probability that it is a pion
+      fTrees.PID.probK = pid->probKaon(); // probability that it is a kaon
+      fTrees.PID.Fill();
     }
 
     if(pid->probPion() > pid->probKaon())
@@ -597,7 +598,7 @@ StatusCode JpsiToDPV::execute()
   if(iKm.size() != 1) return SUCCESS;
   if(ipim.size() != 1) return SUCCESS;
   if(ipip.size() != 2) return SUCCESS;
-  fD0omega.K4pi.cuts[4]++;
+  fTrees.cuts[4]++;
 
   RecMdcKalTrack* KmTrk   = (*(evtRecTrkCol->begin() + iKm[0]))->mdcKalTrack();
   RecMdcKalTrack* pimTrk  = (*(evtRecTrkCol->begin() + ipim[0]))->mdcKalTrack();
@@ -666,13 +667,13 @@ StatusCode JpsiToDPV::execute()
           if(chi2 < fD0omega.K4pi.fit4c.chi2)
           {
             fD0omega.K4pi.fit4c.chi2 = chi2;
-            results.Km              = kkmfit->pfit(0);
-            results.pim             = kkmfit->pfit(1);
-            results.pip1            = kkmfit->pfit(2);
-            results.pip2            = kkmfit->pfit(3);
-            results.g1              = kkmfit->pfit(4);
-            results.g2              = kkmfit->pfit(5);
-            results.pi0             = results.g1 + results.g2;
+            results.Km               = kkmfit->pfit(0);
+            results.pim              = kkmfit->pfit(1);
+            results.pip1             = kkmfit->pfit(2);
+            results.pip2             = kkmfit->pfit(3);
+            results.g1               = kkmfit->pfit(4);
+            results.g2               = kkmfit->pfit(5);
+            results.pi0              = results.g1 + results.g2;
           }
         }
       }
@@ -718,7 +719,7 @@ StatusCode JpsiToDPV::execute()
         }
       }
       fD0omega.K4pi.fit4c.Fill();
-      fD0omega.K4pi.cuts[5]++;
+      fTrees.cuts[5]++;
     }
   }
 
@@ -750,13 +751,13 @@ StatusCode JpsiToDPV::execute()
           if(chi2 < fD0omega.K4pi.fit5c.chi2)
           {
             fD0omega.K4pi.fit5c.chi2 = chi2;
-            results.Km              = kkmfit->pfit(0);
-            results.pim             = kkmfit->pfit(1);
-            results.pip1            = kkmfit->pfit(2);
-            results.pip2            = kkmfit->pfit(3);
-            results.g1              = kkmfit->pfit(4);
-            results.g2              = kkmfit->pfit(5);
-            results.pi0             = results.g1 + results.g2;
+            results.Km               = kkmfit->pfit(0);
+            results.pim              = kkmfit->pfit(1);
+            results.pip1             = kkmfit->pfit(2);
+            results.pip2             = kkmfit->pfit(3);
+            results.g1               = kkmfit->pfit(4);
+            results.g2               = kkmfit->pfit(5);
+            results.pi0              = results.g1 + results.g2;
           }
         }
       }
@@ -803,14 +804,14 @@ StatusCode JpsiToDPV::execute()
       }
 
       // * Photon kinematics * //
-      double eg1              = results.g1.e();
-      double eg2              = results.g2.e();
+      double eg1               = results.g1.e();
+      double eg2               = results.g2.e();
       fD0omega.K4pi.fit5c.fcos = (eg1 - eg2) / results.pi0.rho(); // E/p ratio for pi^0 candidate
       fD0omega.K4pi.fit5c.Elow = (eg1 < eg2) ? eg1 : eg2;         // lowest energy of the two gammas
 
       // * WRITE pi^0 information from EMCal ("fit5c" branch) *
       fD0omega.K4pi.fit5c.Fill(); // "fit5c" branch
-      fD0omega.K4pi.cuts[6]++;    // ChiSq has to be less than 200 and fit5c has to be passed
+      fTrees.cuts[6]++;           // ChiSq has to be less than 200 and fit5c has to be passed
     }
   }
 
@@ -870,13 +871,13 @@ StatusCode JpsiToDPV::finalize()
   log << MSG::INFO << "in finalize()" << endmsg;
 
   cout << "Resulting FLOW CHART:" << endl;
-  cout << "  Total number of events: " << fD0omega.K4pi.cuts[0] << endl;
-  cout << "  Pass N charged tracks:  " << fD0omega.K4pi.cuts[1] << endl;
-  cout << "  Pass zero net charge    " << fD0omega.K4pi.cuts[2] << endl;
-  cout << "  Pass N gammas:          " << fD0omega.K4pi.cuts[3] << endl;
-  cout << "  Pass PID:               " << fD0omega.K4pi.cuts[4] << endl;
-  cout << "  Pass 4C Kalman fit:     " << fD0omega.K4pi.cuts[5] << endl;
-  cout << "  Pass 5C Kalman fit:     " << fD0omega.K4pi.cuts[6] << endl;
+  cout << "  Total number of events: " << fTrees.cuts[0] << endl;
+  cout << "  Pass N charged tracks:  " << fTrees.cuts[1] << endl;
+  cout << "  Pass zero net charge    " << fTrees.cuts[2] << endl;
+  cout << "  Pass N gammas:          " << fTrees.cuts[3] << endl;
+  cout << "  Pass PID:               " << fTrees.cuts[4] << endl;
+  cout << "  Pass 4C Kalman fit:     " << fTrees.cuts[5] << endl;
+  cout << "  Pass 5C Kalman fit:     " << fTrees.cuts[6] << endl;
   cout << endl;
 
   TFile file(fFileName.c_str(), "RECREATE");
@@ -888,16 +889,16 @@ StatusCode JpsiToDPV::finalize()
   fD0omega.K4pi.fit4c.WriteSafe();
   fD0omega.K4pi.fit5c.WriteSafe();
   fD0omega.K4pi.MC.WriteSafe();
-  fD0omega.K4pi.v.WriteSafe();
-  fD0omega.K4pi.photon.WriteSafe();
-  fD0omega.K4pi.dedx.WriteSafe();
-  fD0omega.K4pi.TofEC.WriteSafe();
-  fD0omega.K4pi.TofIB.WriteSafe();
-  fD0omega.K4pi.TofOB.WriteSafe();
-  fD0omega.K4pi.PID.WriteSafe();
+  fTrees.v.WriteSafe();
+  fTrees.photon.WriteSafe();
+  fTrees.dedx.WriteSafe();
+  fTrees.TofEC.WriteSafe();
+  fTrees.TofIB.WriteSafe();
+  fTrees.TofOB.WriteSafe();
+  fTrees.PID.WriteSafe();
 
-  fD0omega.K4pi.cuts.Fill();
-  fD0omega.K4pi.cuts.WriteSafe();
+  fTrees.cuts.Fill();
+  fTrees.cuts.WriteSafe();
   file.Close();
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
