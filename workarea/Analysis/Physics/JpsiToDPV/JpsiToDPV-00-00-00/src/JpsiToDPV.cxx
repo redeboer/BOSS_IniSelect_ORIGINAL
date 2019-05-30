@@ -19,6 +19,7 @@
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
 #include "McTruth/McParticle.h"
+#include "TError.h"
 #include "TFile.h"
 #include "TMath.h"
 #include "VertexFit/Helix.h"
@@ -72,28 +73,6 @@ const int incPid  = 443;
 // * Typedefs * //
 typedef vector<HepLorentzVector> Vp4;
 
-struct Reconstructed
-{
-  HepLorentzVector D0;
-  HepLorentzVector omega;
-  HepLorentzVector Jpsi;
-};
-
-struct LorentzVectors
-{
-  HepLorentzVector pim;
-  HepLorentzVector pip1;
-  HepLorentzVector pip2;
-  HepLorentzVector Km;
-  HepLorentzVector g1;
-  HepLorentzVector g2;
-  HepLorentzVector pi0;
-  Reconstructed    comb1;
-  Reconstructed    comb2;
-};
-
-LorentzVectors results;
-
 ParticleID*         JpsiToDPV::pid    = ParticleID::instance();
 VertexFit*          JpsiToDPV::vtxfit = VertexFit::instance();
 KalmanKinematicFit* JpsiToDPV::kkmfit = KalmanKinematicFit::instance();
@@ -107,6 +86,7 @@ JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   Algorithm(name, pSvcLocator),
   log(msgSvc(), this->name())
 {
+  gErrorIgnoreLevel = 6000; // to suppres ROOT error messages /// @todo Check whether the "memory-resident" `TTree` is reliable.
   declareProperty("OutFile", fFileName);
 
   // * Define r0, z0 cut for charged tracks *
@@ -493,18 +473,20 @@ StatusCode JpsiToDPV::execute()
     {
       if(pid->probPion() < fMinPID) continue;
       RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
-      if(mdcKalTrk->charge() > 0)
-        tracks.pip.push_back(*it);
-      else
+      if(mdcKalTrk->charge() < 0)
         tracks.pim.push_back(*it);
+      else
+        tracks.pip.push_back(*it);
     }
-    else if(pid->probKaon() < fMinPID)
-      continue;
-    RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-    if(mdcKalTrk->charge() < 0)
-      tracks.Km.push_back(*it);
     else
-      tracks.Kp.push_back(*it);
+    {
+      if(pid->probKaon() < fMinPID) continue;
+      RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+      if(mdcKalTrk->charge() < 0)
+        tracks.Km.push_back(*it);
+      else
+        tracks.Kp.push_back(*it);
+    }
   }
 
   /// **Apply cut**: PID
@@ -579,13 +561,13 @@ StatusCode JpsiToDPV::execute()
           if(chi2 < fD0omega.K4pi.fit4c.chi2)
           {
             fD0omega.K4pi.fit4c.chi2 = chi2;
-            results.Km               = kkmfit->pfit(0);
-            results.pim              = kkmfit->pfit(1);
-            results.pip1             = kkmfit->pfit(2);
-            results.pip2             = kkmfit->pfit(3);
-            results.g1               = kkmfit->pfit(4);
-            results.g2               = kkmfit->pfit(5);
-            results.pi0              = results.g1 + results.g2;
+            fD0omega.K4pi.results.Km   = kkmfit->pfit(0);
+            fD0omega.K4pi.results.pim  = kkmfit->pfit(1);
+            fD0omega.K4pi.results.pip1 = kkmfit->pfit(2);
+            fD0omega.K4pi.results.pip2 = kkmfit->pfit(3);
+            fD0omega.K4pi.results.g1   = kkmfit->pfit(4);
+            fD0omega.K4pi.results.g2   = kkmfit->pfit(5);
+            fD0omega.K4pi.results.pi0  = fD0omega.K4pi.results.g1 + fD0omega.K4pi.results.g2;
           }
         }
       }
@@ -596,38 +578,38 @@ StatusCode JpsiToDPV::execute()
     /// **Apply cut**: fit4c passed and ChiSq less than fMaxChiSq.
     if(fD0omega.K4pi.fit4c.chi2 < fMaxChiSq)
     {
-      results.comb1.D0    = results.pip1 + results.Km;
-      results.comb1.omega = results.pip2 + results.pim + results.pi0;
-      results.comb2.D0    = results.pip2 + results.Km;
-      results.comb2.omega = results.pip1 + results.pim + results.pi0;
+      fD0omega.K4pi.results.comb1.D0    = fD0omega.K4pi.results.pip1 + fD0omega.K4pi.results.Km;
+      fD0omega.K4pi.results.comb1.omega = fD0omega.K4pi.results.pip2 + fD0omega.K4pi.results.pim + fD0omega.K4pi.results.pi0;
+      fD0omega.K4pi.results.comb2.D0    = fD0omega.K4pi.results.pip2 + fD0omega.K4pi.results.Km;
+      fD0omega.K4pi.results.comb2.omega = fD0omega.K4pi.results.pip1 + fD0omega.K4pi.results.pim + fD0omega.K4pi.results.pi0;
 
-      fD0omega.K4pi.fit4c.pi0.m = results.pi0.m();
-      fD0omega.K4pi.fit4c.pi0.p = results.pi0.rho();
+      fD0omega.K4pi.fit4c.pi0.m = fD0omega.K4pi.results.pi0.m();
+      fD0omega.K4pi.fit4c.pi0.p = fD0omega.K4pi.results.pi0.rho();
 
-      double m1 = abs(results.comb1.omega.m() - momega);
-      double m2 = abs(results.comb2.omega.m() - momega);
+      double m1 = abs(fD0omega.K4pi.results.comb1.omega.m() - momega);
+      double m2 = abs(fD0omega.K4pi.results.comb2.omega.m() - momega);
       if(m1 < m2)
       {
-        fD0omega.K4pi.fit4c.D0.m    = results.comb1.D0.m();
-        fD0omega.K4pi.fit4c.omega.m = results.comb1.omega.m();
-        fD0omega.K4pi.fit4c.D0.p    = results.comb1.D0.rho();
-        fD0omega.K4pi.fit4c.omega.p = results.comb1.omega.rho();
+        fD0omega.K4pi.fit4c.D0.m    = fD0omega.K4pi.results.comb1.D0.m();
+        fD0omega.K4pi.fit4c.omega.m = fD0omega.K4pi.results.comb1.omega.m();
+        fD0omega.K4pi.fit4c.D0.p    = fD0omega.K4pi.results.comb1.D0.rho();
+        fD0omega.K4pi.fit4c.omega.p = fD0omega.K4pi.results.comb1.omega.rho();
         if(fD0omega.K4pi.MC.write)
         {
-          fD0omega.K4pi.MC.mD0_4C    = results.comb1.D0.m();
-          fD0omega.K4pi.MC.momega_4C = results.comb1.omega.m();
+          fD0omega.K4pi.MC.mD0_4C    = fD0omega.K4pi.results.comb1.D0.m();
+          fD0omega.K4pi.MC.momega_4C = fD0omega.K4pi.results.comb1.omega.m();
         }
       }
       else
       {
-        fD0omega.K4pi.fit4c.D0.m    = results.comb2.D0.m();
-        fD0omega.K4pi.fit4c.omega.m = results.comb2.omega.m();
-        fD0omega.K4pi.fit4c.D0.p    = results.comb2.D0.rho();
-        fD0omega.K4pi.fit4c.omega.p = results.comb2.omega.rho();
+        fD0omega.K4pi.fit4c.D0.m    = fD0omega.K4pi.results.comb2.D0.m();
+        fD0omega.K4pi.fit4c.omega.m = fD0omega.K4pi.results.comb2.omega.m();
+        fD0omega.K4pi.fit4c.D0.p    = fD0omega.K4pi.results.comb2.D0.rho();
+        fD0omega.K4pi.fit4c.omega.p = fD0omega.K4pi.results.comb2.omega.rho();
         if(fD0omega.K4pi.MC.write)
         {
-          fD0omega.K4pi.MC.mD0_4C    = results.comb2.D0.m();
-          fD0omega.K4pi.MC.momega_4C = results.comb2.omega.m();
+          fD0omega.K4pi.MC.mD0_4C    = fD0omega.K4pi.results.comb2.D0.m();
+          fD0omega.K4pi.MC.momega_4C = fD0omega.K4pi.results.comb2.omega.m();
         }
       }
       fD0omega.K4pi.fit4c.Fill();
@@ -666,13 +648,13 @@ StatusCode JpsiToDPV::execute()
           if(chi2 < fD0omega.K4pi.fit5c.chi2)
           {
             fD0omega.K4pi.fit5c.chi2 = chi2;
-            results.Km               = kkmfit->pfit(0);
-            results.pim              = kkmfit->pfit(1);
-            results.pip1             = kkmfit->pfit(2);
-            results.pip2             = kkmfit->pfit(3);
-            results.g1               = kkmfit->pfit(4);
-            results.g2               = kkmfit->pfit(5);
-            results.pi0              = results.g1 + results.g2;
+            fD0omega.K4pi.results.Km               = kkmfit->pfit(0);
+            fD0omega.K4pi.results.pim              = kkmfit->pfit(1);
+            fD0omega.K4pi.results.pip1             = kkmfit->pfit(2);
+            fD0omega.K4pi.results.pip2             = kkmfit->pfit(3);
+            fD0omega.K4pi.results.g1               = kkmfit->pfit(4);
+            fD0omega.K4pi.results.g2               = kkmfit->pfit(5);
+            fD0omega.K4pi.results.pi0              = fD0omega.K4pi.results.g1 + fD0omega.K4pi.results.g2;
           }
         }
       }
@@ -683,45 +665,45 @@ StatusCode JpsiToDPV::execute()
     /// **Apply cut**: fit5c passed and ChiSq less than fMaxChiSq.
     if(fD0omega.K4pi.fit5c.chi2 < fMaxChiSq)
     {
-      results.comb1.D0    = results.pip1 + results.Km;
-      results.comb1.omega = results.pip2 + results.pim + results.pi0;
-      results.comb2.D0    = results.pip2 + results.Km;
-      results.comb2.omega = results.pip1 + results.pim + results.pi0;
+      fD0omega.K4pi.results.comb1.D0    = fD0omega.K4pi.results.pip1 + fD0omega.K4pi.results.Km;
+      fD0omega.K4pi.results.comb1.omega = fD0omega.K4pi.results.pip2 + fD0omega.K4pi.results.pim + fD0omega.K4pi.results.pi0;
+      fD0omega.K4pi.results.comb2.D0    = fD0omega.K4pi.results.pip2 + fD0omega.K4pi.results.Km;
+      fD0omega.K4pi.results.comb2.omega = fD0omega.K4pi.results.pip1 + fD0omega.K4pi.results.pim + fD0omega.K4pi.results.pi0;
 
-      fD0omega.K4pi.fit5c.pi0.m = results.pi0.m();
-      fD0omega.K4pi.fit5c.pi0.p = results.pi0.rho();
+      fD0omega.K4pi.fit5c.pi0.m = fD0omega.K4pi.results.pi0.m();
+      fD0omega.K4pi.fit5c.pi0.p = fD0omega.K4pi.results.pi0.rho();
 
-      double m1 = abs(results.comb1.omega.m() - momega);
-      double m2 = abs(results.comb2.omega.m() - momega);
+      double m1 = abs(fD0omega.K4pi.results.comb1.omega.m() - momega);
+      double m2 = abs(fD0omega.K4pi.results.comb2.omega.m() - momega);
       if(m1 < m2)
       {
-        fD0omega.K4pi.fit5c.D0.m    = results.comb1.D0.m();
-        fD0omega.K4pi.fit5c.omega.m = results.comb1.omega.m();
-        fD0omega.K4pi.fit5c.D0.p    = results.comb1.D0.rho();
-        fD0omega.K4pi.fit5c.omega.p = results.comb1.omega.rho();
+        fD0omega.K4pi.fit5c.D0.m    = fD0omega.K4pi.results.comb1.D0.m();
+        fD0omega.K4pi.fit5c.omega.m = fD0omega.K4pi.results.comb1.omega.m();
+        fD0omega.K4pi.fit5c.D0.p    = fD0omega.K4pi.results.comb1.D0.rho();
+        fD0omega.K4pi.fit5c.omega.p = fD0omega.K4pi.results.comb1.omega.rho();
         if(fD0omega.K4pi.MC.write)
         {
-          fD0omega.K4pi.MC.mD0_5C    = results.comb1.D0.m();
-          fD0omega.K4pi.MC.momega_5C = results.comb1.omega.m();
+          fD0omega.K4pi.MC.mD0_5C    = fD0omega.K4pi.results.comb1.D0.m();
+          fD0omega.K4pi.MC.momega_5C = fD0omega.K4pi.results.comb1.omega.m();
         }
       }
       else
       {
-        fD0omega.K4pi.fit5c.D0.m    = results.comb2.D0.m();
-        fD0omega.K4pi.fit5c.omega.m = results.comb2.omega.m();
-        fD0omega.K4pi.fit5c.D0.p    = results.comb2.D0.rho();
-        fD0omega.K4pi.fit5c.omega.p = results.comb2.omega.rho();
+        fD0omega.K4pi.fit5c.D0.m    = fD0omega.K4pi.results.comb2.D0.m();
+        fD0omega.K4pi.fit5c.omega.m = fD0omega.K4pi.results.comb2.omega.m();
+        fD0omega.K4pi.fit5c.D0.p    = fD0omega.K4pi.results.comb2.D0.rho();
+        fD0omega.K4pi.fit5c.omega.p = fD0omega.K4pi.results.comb2.omega.rho();
         if(fD0omega.K4pi.MC.write)
         {
-          fD0omega.K4pi.MC.mD0_5C    = results.comb2.D0.m();
-          fD0omega.K4pi.MC.momega_5C = results.comb2.omega.m();
+          fD0omega.K4pi.MC.mD0_5C    = fD0omega.K4pi.results.comb2.D0.m();
+          fD0omega.K4pi.MC.momega_5C = fD0omega.K4pi.results.comb2.omega.m();
         }
       }
 
       // * Photon kinematics * //
-      double eg1               = results.g1.e();
-      double eg2               = results.g2.e();
-      fD0omega.K4pi.fit5c.fcos = (eg1 - eg2) / results.pi0.rho(); // E/p ratio for pi^0 candidate
+      double eg1               = fD0omega.K4pi.results.g1.e();
+      double eg2               = fD0omega.K4pi.results.g2.e();
+      fD0omega.K4pi.fit5c.fcos = (eg1 - eg2) / fD0omega.K4pi.results.pi0.rho(); // E/p ratio for pi^0 candidate
       fD0omega.K4pi.fit5c.Elow = (eg1 < eg2) ? eg1 : eg2;         // lowest energy of the two gammas
 
       // * WRITE pi^0 information from EMCal ("fit5c" branch) *

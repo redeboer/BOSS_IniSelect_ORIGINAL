@@ -12,6 +12,24 @@ namespace D0omega
 {
   namespace K4pi
   {
+    struct Reconstructed
+    {
+      HepLorentzVector D0;
+      HepLorentzVector omega;
+      HepLorentzVector Jpsi;
+    };
+    struct LorentzVectors
+    {
+      HepLorentzVector pim;
+      HepLorentzVector pip1;
+      HepLorentzVector pip2;
+      HepLorentzVector Km;
+      HepLorentzVector g1;
+      HepLorentzVector g2;
+      HepLorentzVector pi0;
+      Reconstructed    comb1;
+      Reconstructed    comb2;
+    };
     struct Fit4C : public TreeFit
     {
       Fit4C(const char* name, const char* title = "") : TreeFit(name, title)
@@ -75,6 +93,7 @@ namespace D0omega
       Fit4C   fit4c; ///< 4-constraint (4C) fit information
       Fit5C   fit5c; ///< 5-constraint (5C) fit information
       TopoAna MC;
+      LorentzVectors results;
     };
   } // namespace K4pi
 } // namespace D0omega

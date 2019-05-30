@@ -2,7 +2,9 @@
 #define JpsiToDPV_TreeFit_H
 
 #include "JpsiToDPV/Trees/TreeContainer.h"
-#define BRANCHMOM(VAR) BranchMomObj(TO_STRING(VAR), VAR)
+#define BRANCHMOM(OBJ) \
+  fTree->Branch(Form("m%s", TO_STRING(OBJ)), &OBJ.m); \
+  fTree->Branch(Form("p%s", TO_STRING(OBJ)), &OBJ.p);
 
 struct MomObj
 {
@@ -22,13 +24,6 @@ public:
     BRANCH(chi2);
   }
   Double_t chi2;
-
-protected:
-  void BranchMomObj(const char* name, MomObj& obj)
-  {
-    fTree->Branch(Form("m%s", name), &obj.m);
-    fTree->Branch(Form("p%s", name), &obj.p);
-  }
 };
 /// @}
 #endif
