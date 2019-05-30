@@ -1,7 +1,7 @@
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
 // * ========================= * //
-#include "D0V/D0V.h"
+#include "JpsiToDPV/JpsiToDPV.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
@@ -99,9 +99,9 @@ Results results;
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
 // * =========================== * //
-/// Constructor for the `D0V` algorithm.
-/// Here, you should declare properties: give them a name, assign a parameter (data member of `D0V`), and if required a documentation string. Note that you should define the paramters themselves in the header (D0V/D0V.h) and that you should assign the values in `share/jopOptions_D0V.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
-D0V::D0V(const string& name, ISvcLocator* pSvcLocator) :
+/// Constructor for the `JpsiToDPV` algorithm.
+/// Here, you should declare properties: give them a name, assign a parameter (data member of `JpsiToDPV`), and if required a documentation string. Note that you should define the paramters themselves in the header (JpsiToDPV/JpsiToDPV.h) and that you should assign the values in `share/jopOptions_JpsiToDPV.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
+JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   Algorithm(name, pSvcLocator)
 {
   // * Define r0, z0 cut for charged tracks *
@@ -136,7 +136,7 @@ D0V::D0V(const string& name, ISvcLocator* pSvcLocator) :
 // * ------- INITIALIZE ------- * //
 // * ========================== * //
 /// (Inherited) `initialize` step of `Algorithm`. This function is called only once in the beginning. **Define and load `NTuple`s here.**
-StatusCode D0V::initialize()
+StatusCode JpsiToDPV::initialize()
 {
   // * Log stream and status code * //
   MsgStream log(msgSvc(), name());
@@ -594,7 +594,7 @@ StatusCode D0V::initialize()
 // * -------- EXECUTE -------- * //
 // * ========================= * //
 /// Inherited `execute` method of the `Algorithm`. This function is called *for each event*.
-StatusCode D0V::execute()
+StatusCode JpsiToDPV::execute()
 {
   /// <ol>
   /// <li> Create log stream (`MsgStream` class)
@@ -1339,7 +1339,7 @@ StatusCode D0V::execute()
 // * -------- FINALIZE -------- * //
 // * ========================== * //
 /// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events. Prints the flow chart to the terminal, so **make sure you save this output!**
-StatusCode D0V::finalize()
+StatusCode JpsiToDPV::finalize()
 {
   MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;

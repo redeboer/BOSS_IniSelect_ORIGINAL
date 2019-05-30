@@ -1,0 +1,30 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs += {"JpsiToDPV"};
+ApplicationMgr.TopAlg += {"JpsiToDPV"};
+
+// * Define r0, z0 cut for charged tracks *
+JpsiToDPV.Vr0cut    = 9999.; // 1.0
+JpsiToDPV.Vz0cut    = 9999.; // 5.0
+JpsiToDPV.Vrvz0cut  = 10.;
+JpsiToDPV.Vrvxy0cut = 1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+JpsiToDPV.EnergyThreshold = 0.04;
+JpsiToDPV.GammaPhiCut     = 20.0;
+JpsiToDPV.GammaThetaCut   = 20.0;
+JpsiToDPV.GammaAngleCut   = 20.0;
+
+// * Whether to test the success of the 4- and 5-constraint fits *
+JpsiToDPV.Test4C   = true;  // write fit4c
+JpsiToDPV.Test5C   = true;  // write fit5c and geff
+JpsiToDPV.MaxChiSq = 200.;  // chisq for both fits should be less
+JpsiToDPV.MinPID   = 0.001; // PID probability should be at least this value
+
+// * Whether or not to check success of Particle Identification *
+JpsiToDPV.CheckMCtruth = true;
+JpsiToDPV.CheckVertex  = false;
+JpsiToDPV.CheckPhoton  = false;
+JpsiToDPV.CheckDedx    = false;
+JpsiToDPV.CheckTof     = false;
+JpsiToDPV.CheckPID     = false;
+JpsiToDPV.CheckEtot    = false;

@@ -1,5 +1,5 @@
-#ifndef Physics_Analysis_D0V_H
-#define Physics_Analysis_D0V_H
+#ifndef Physics_Analysis_JpsiToDPV_H
+#define Physics_Analysis_JpsiToDPV_H
 
 // * ========================= * //
 // * ------- LIBRARIES ------- * //
@@ -17,12 +17,12 @@
 /// Combination of all \f$J/\psi \to D^0\omega,\phi\f$ analyses.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 27th, 2018
-class D0V : public Algorithm
+class JpsiToDPV : public Algorithm
 {
 public:
   /// @name Constructors
   ///@{
-  D0V(const std::string& name, ISvcLocator* pSvcLocator);
+  JpsiToDPV(const std::string& name, ISvcLocator* pSvcLocator);
   ///@}
 
   /// @name Gaudi Algorithm steps
@@ -36,7 +36,7 @@ private:
   // ! ================================= ! //
   // ! ------- DECLARE CUTS HERE ------- ! //
   // ! ================================= ! //
-  /// @name Cut parameters. Here, you can define data members that you use to define cuts. The values for these cuts should be set in the D0V::D0V constructor (see cxx file).
+  /// @name Cut parameters. Here, you can define data members that you use to define cuts. The values for these cuts should be set in the JpsiToDPV::JpsiToDPV constructor (see cxx file).
   ///@{
   // * Declare r0, z0 cut for charged tracks
   double fVr0cut;
@@ -70,7 +70,7 @@ private:
   // ! ==================================== ! //
   // ! ------- DECLARE NTUPLES HERE ------- ! //
   // ! ==================================== ! //
-  /// @name NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the D0V::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
+  /// @name NTuples (eventual TTrees and their branches). NTuples are like vectors, but its members do not necessarily have to be of the same type. In this package, the NTuples are used to store event-by-event information. Its values are then written to the output ROOT file, creating a ROOT TTree. In that sense, each NTuple here represents one TTree within that output ROOT file, and each NTuple::Item represents its leaves. The name of the leaves is determined when calling NTuple::addItem. Note that the NTuple::Items are added to the NTuple during the JpsiToDPV::initialize() step. This is also the place where you name these variables, so make sure that the structure here is reflected there!
   ///@{
   NTuple::Tuple*       fTupleVxyz; ///< Vertex information of the charged tracks
   NTuple::Item<double> fVx0;       ///< Primary \f$x\f$-vertex as determined by MDC
