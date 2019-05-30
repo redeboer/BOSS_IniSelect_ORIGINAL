@@ -14,7 +14,7 @@ void TestLoadTopology()
 
   const char* runidName    = "runid";
   const char* evtidName    = "evtid";
-  const char* particleName = "PDG1";
+  const char* particleName = "PDG";
   const char* motherName   = "mother";
 
   Bool_t printStructure = false;

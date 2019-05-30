@@ -807,7 +807,6 @@ StatusCode D0omega_K4pi::execute()
       std::cout << "Could not retrieve McParticelCol" << std::endl;
     else
     {
-      f.MC.n = 0;
       bool doNotInclude(true);
       int  indexOffset = -1;
       bool incPdcy(false);
@@ -831,8 +830,7 @@ StatusCode D0omega_K4pi::execute()
           f.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex);
         else
           f.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex - 1);
-        if((*it)->particleProperty() == incPid) f.MC.mother[f.MC.n] = 0;
-        ++f.MC.n;
+        if((*it)->particleProperty() == incPid) f.MC.mother.back() = 0;
       }
       f.MC.Fill();
     }
@@ -851,7 +849,9 @@ StatusCode D0omega_K4pi::finalize()
   MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
 
-  cout << "Resulting FLOW CHART:" << endl;
+  f.cuts.Fill();
+  cout << endl;
+  cout << "Resulting flow chart:" << endl;
   cout << "  Total number of events: " << f.cuts[0] << endl;
   cout << "  Pass N charged tracks:  " << f.cuts[1] << endl;
   cout << "  Pass zero net charge    " << f.cuts[2] << endl;
@@ -859,6 +859,19 @@ StatusCode D0omega_K4pi::finalize()
   cout << "  Pass PID:               " << f.cuts[4] << endl;
   cout << "  Pass 4C Kalman fit:     " << f.cuts[5] << endl;
   cout << "  Pass 5C Kalman fit:     " << f.cuts[6] << endl;
+  cout << endl;
+  cout << "Trees:" << endl;
+  if(f.fit4c.write)  cout << "  fit4c:  " << f.fit4c.GetEntries() << endl;
+  if(f.fit5c.write)  cout << "  fit5c:  " << f.fit5c.GetEntries() << endl;
+  if(f.MC.write)     cout << "  MC:     " << f.MC.GetEntries() << endl;
+  if(f.cuts.write)   cout << "  cuts:   " << f.cuts.GetEntries() << endl;
+  if(f.v.write)      cout << "  v:      " << f.v.GetEntries() << endl;
+  if(f.photon.write) cout << "  photon: " << f.photon.GetEntries() << endl;
+  if(f.dedx.write)   cout << "  dedx:   " << f.dedx.GetEntries() << endl;
+  if(f.TofEC.write)  cout << "  TofEC:  " << f.TofEC.GetEntries() << endl;
+  if(f.TofIB.write)  cout << "  TofIB:  " << f.TofIB.GetEntries() << endl;
+  if(f.TofOB.write)  cout << "  TofOB:  " << f.TofOB.GetEntries() << endl;
+  if(f.PID.write)    cout << "  PID:    " << f.PID.GetEntries() << endl;
   cout << endl;
 
   TFile file(fFileName.c_str(), "RECREATE");
@@ -882,22 +895,8 @@ StatusCode D0omega_K4pi::finalize()
   f.TofIB.WriteSafe();
   f.TofOB.WriteSafe();
   f.PID.WriteSafe();
-
-  f.cuts.Fill();
   f.cuts.WriteSafe();
   file.Close();
-
-cout << "fit4c:  " << f.fit4c.GetEntries() << endl;
-cout << "fit5c:  " << f.fit5c.GetEntries() << endl;
-cout << "MC:     " << f.MC.GetEntries() << endl;
-cout << "cuts:   " << f.cuts.GetEntries() << endl;
-cout << "v:      " << f.v.GetEntries() << endl;
-cout << "photon: " << f.photon.GetEntries() << endl;
-cout << "dedx:   " << f.dedx.GetEntries() << endl;
-cout << "TofEC:  " << f.TofEC.GetEntries() << endl;
-cout << "TofIB:  " << f.TofIB.GetEntries() << endl;
-cout << "TofOB:  " << f.TofOB.GetEntries() << endl;
-cout << "PID:    " << f.PID.GetEntries() << endl;
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
   return StatusCode::SUCCESS;
