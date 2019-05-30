@@ -1,12 +1,12 @@
-#ifndef IniSelect_TreeCollection_H
-#define IniSelect_TreeCollection_H
+#ifndef JpsiToDPV_TreeCollection_H
+#define JpsiToDPV_TreeCollection_H
 
-#include "D0omega_K4pi/Trees/TreeCuts.h"
-#include "D0omega_K4pi/Trees/TreeDedx.h"
-#include "D0omega_K4pi/Trees/TreePID.h"
-#include "D0omega_K4pi/Trees/TreePhoton.h"
-#include "D0omega_K4pi/Trees/TreeToF.h"
-#include "D0omega_K4pi/Trees/TreeVertex.h"
+#include "JpsiToDPV.h"
+#include "JpsiToDPV/Trees/TreeDedx.h"
+#include "JpsiToDPV/Trees/TreePID.h"
+#include "JpsiToDPV/Trees/TreePhoton.h"
+#include "JpsiToDPV/Trees/TreeToF.h"
+#include "JpsiToDPV/Trees/TreeVertex.h"
 
 /// @addtogroup BOSS_objects
 /// @{

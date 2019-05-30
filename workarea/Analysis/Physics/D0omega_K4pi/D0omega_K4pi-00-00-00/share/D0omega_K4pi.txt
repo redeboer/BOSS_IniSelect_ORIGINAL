@@ -21,13 +21,10 @@ D0omega_K4pi.MaxChiSq = 200.;  // chisq for both fits should be less
 D0omega_K4pi.MinPID   = 0.001; // PID probability should be at least this value
 
 // * Whether or not to check success of Particle Identification *
-D0omega_K4pi.write_fit4c = true;
-D0omega_K4pi.write_fit5c = true;
-D0omega_K4pi.write_topology = true;
-D0omega_K4pi.write_vxyz = true;
-D0omega_K4pi.write_photon = true;
-D0omega_K4pi.write_dedx = true;
-D0omega_K4pi.write_TofEC = true;
-D0omega_K4pi.write_TofIB = true;
-D0omega_K4pi.write_TofOB = true;
-D0omega_K4pi.write_PID = true;
+D0omega_K4pi.CheckMCtruth = true;
+D0omega_K4pi.CheckVertex  = false;
+D0omega_K4pi.CheckPhoton  = false;
+D0omega_K4pi.CheckDedx    = false;
+D0omega_K4pi.CheckTof     = false;
+D0omega_K4pi.CheckPID     = false;
+D0omega_K4pi.CheckEtot    = false;

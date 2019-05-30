@@ -1,7 +1,7 @@
-#ifndef IniSelect_TreePhoton_H
-#define IniSelect_TreePhoton_H
+#ifndef JpsiToDPV_TreePhoton_H
+#define JpsiToDPV_TreePhoton_H
 
-#include "D0omega_K4pi/Trees/Tree.h"
+#include "JpsiToDPV/Trees/Tree.h"
 
 /// @addtogroup BOSS_objects
 /// @{

@@ -1,7 +1,7 @@
-#ifndef IniSelect_TreeFit_H
-#define IniSelect_TreeFit_H
+#ifndef JpsiToDPV_TreeFit_H
+#define JpsiToDPV_TreeFit_H
 
-#include "D0omega_K4pi/Trees/Tree.h"
+#include "JpsiToDPV/Trees/Tree.h"
 #define BRANCHMOM(VAR) BranchMomObj(TO_STRING(VAR), VAR)
 
 struct MomObj

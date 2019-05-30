@@ -1,5 +1,5 @@
-#ifndef IniSelect_Tree_H
-#define IniSelect_Tree_H
+#ifndef JpsiToDPV_Tree_H
+#define JpsiToDPV_Tree_H
 
 #include "TTree.h"
 #define TO_STRING(x) #x

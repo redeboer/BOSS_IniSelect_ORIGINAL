@@ -1,7 +1,7 @@
-#ifndef IniSelect_TreeCuts_H
-#define IniSelect_TreeCuts_H
+#ifndef JpsiToDPV_TreeCuts_H
+#define JpsiToDPV_TreeCuts_H
 
-#include "D0omega_K4pi/Trees/Tree.h"
+#include "JpsiToDPV/Trees/Tree.h"
 #include <vector>
 
 /// @addtogroup BOSS_objects
