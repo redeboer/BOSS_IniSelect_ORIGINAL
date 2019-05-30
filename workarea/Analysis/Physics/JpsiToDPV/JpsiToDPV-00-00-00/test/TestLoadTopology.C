@@ -9,7 +9,7 @@ using namespace std;
 
 void TestLoadTopology()
 {
-  const char* filename = "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/Physics/JpsiToDPV/JpsiToDPV-00-00-00/test/TopoAna_vector.root";
+  const char* filename = "TopoAna_vector.root";
   const char* treename = "topology";
 
   const char* runidName    = "runid";
