@@ -3,6 +3,7 @@
 
 #include "GaudiKernel/AlgFactory.h"
 #include "GaudiKernel/Algorithm.h"
+#include "JpsiToDPV/TrackCollection.h"
 #include "JpsiToDPV/TreeCollection.h"
 #include "JpsiToDPV/Types/D0omega.h"
 #include <string>
@@ -26,6 +27,11 @@ private:
   MsgStream   log;
   std::string fFileName;
 
+  static ParticleID*         pid;
+  static VertexFit*          vtxfit;
+  static KalmanKinematicFit* kkmfit;
+
+  TrackCollection  tracks;
   TreeCollection   fTrees;
   D0omega::Package fD0omega;
 

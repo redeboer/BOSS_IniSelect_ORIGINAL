@@ -8,7 +8,6 @@
 #include "EventModel/EventHeader.h"
 #include "EventModel/EventModel.h"
 #include "EvtRecEvent/EvtRecEvent.h"
-#include "EvtRecEvent/EvtRecTrack.h"
 #include "GaudiKernel/AlgFactory.h"
 #include "GaudiKernel/Bootstrap.h"
 #include "GaudiKernel/IDataProviderSvc.h"
@@ -72,7 +71,6 @@ const int incPid2 = 92;
 const int incPid  = 443;
 
 // * Typedefs * //
-typedef vector<int>              Vint;
 typedef vector<HepLorentzVector> Vp4;
 
 struct Reconstructed
@@ -96,6 +94,10 @@ struct LorentzVectors
 };
 
 LorentzVectors results;
+
+ParticleID*         JpsiToDPV::pid    = ParticleID::instance();
+VertexFit*          JpsiToDPV::vtxfit = VertexFit::instance();
+KalmanKinematicFit* JpsiToDPV::kkmfit = KalmanKinematicFit::instance();
 
 // * =========================== * //
 // * ------- CONSTRUCTOR ------- * //
@@ -154,7 +156,6 @@ StatusCode JpsiToDPV::execute()
 {
   /// <ol>
   /// <li> Create log stream (`MsgStream` class)
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "In execute():" << endmsg;
 
   /// <li> Load next event from DST file
@@ -166,17 +167,6 @@ StatusCode JpsiToDPV::execute()
   log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
   fTrees.cuts[0]++; // counter for all events
 
-  // Reset chi square values
-  if(fD0omega.K4pi.MC.write)
-  {
-    fD0omega.K4pi.MC.chi2_4C   = 99999.;
-    fD0omega.K4pi.MC.chi2_5C   = 99999.;
-    fD0omega.K4pi.MC.mD0_4C    = 99999.;
-    fD0omega.K4pi.MC.mD0_5C    = 99999.;
-    fD0omega.K4pi.MC.momega_4C = 99999.;
-    fD0omega.K4pi.MC.momega_5C = 99999.;
-  }
-
   // * Load event information and track collection *
   /*
     http://bes3.to.infn.it/Boss/7.0.2/html/namespaceEventModel_1_1EvtRec.html (namespace)
@@ -185,6 +175,10 @@ StatusCode JpsiToDPV::execute()
   */
   SmartDataPtr<EvtRecEvent>    evtRecEvent(eventSvc(), EventModel::EvtRec::EvtRecEvent);
   SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+
+  // * Reset values * //
+  fD0omega.K4pi.MC.Reset();
+  tracks.Reset();
 
   // * Log number of events *
   log << MSG::DEBUG << "Ncharged, Nneutral, Ntotal = " << evtRecEvent->totalCharged() << ", "
@@ -206,18 +200,15 @@ StatusCode JpsiToDPV::execute()
   }
 
   /// <li> LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)
-  // The first part of the set of reconstructed tracks are the charged tracks
-  int  nCharge = 0; // Number of charged tracks as identified by the MDC.
-  Vint iGood;
-  // Vector of integers that give the position of tracks in the `evtRecEvent` marked good.
+  int netCharge = 0;
   for(int i = 0; i < evtRecEvent->totalCharged(); ++i)
   {
     // * Get track: beginning of all tracks + event number
-    EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i;
-    if(!(*itTrk)->isMdcTrackValid()) continue;
+    EvtRecTrack* trk = *(evtRecTrkCol->begin() + i);
+    if(!trk->isMdcTrackValid()) continue;
 
     // * Get track info from Main Drift Chamber
-    RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
+    RecMdcTrack* mdcTrk = trk->mdcTrack();
     fTrees.v.p          = mdcTrk->p();
     fTrees.v.x          = mdcTrk->x();
     fTrees.v.y          = mdcTrk->y();
@@ -251,29 +242,25 @@ StatusCode JpsiToDPV::execute()
     if(fabs(fTrees.v.rxy) >= fRvxy0cut) continue;
 
     // * Add charged track to vector *
-    iGood.push_back(i);
-    nCharge += mdcTrk->charge();
+    tracks.charged.push_back(trk);
+    netCharge += mdcTrk->charge();
   }
 
   /// **Apply cut**: cut number of charged tracks and net charge
-  int nGood = iGood.size();
-  log << MSG::DEBUG << "ngood, totcharge = " << nGood << " , " << nCharge << endmsg;
-  if(nGood != 4) return StatusCode::SUCCESS;
+  log << MSG::DEBUG << "ngood, totcharge = " << tracks.charged.size() << " , " << netCharge
+      << endmsg;
+  if(tracks.charged.size() != 4) return StatusCode::SUCCESS;
   fTrees.cuts[1]++;
-  if(nCharge != 0) return StatusCode::SUCCESS;
+  if(netCharge != 0) return StatusCode::SUCCESS;
   fTrees.cuts[2]++;
 
   /// <li> LOOP OVER NEUTRAL TRACKS: select photons
-  /// ** Uses `fTrees.cuts[3]` counter**: number of good photons has to be 2 at least.
-  /// The second part of the set of reconstructed events consists of the neutral tracks, that is, the photons detected by the EMC (by clustering EMC crystal energies). Each neutral track is paired with each charged track and if their angle is smaller than a certain value (here, 200), the photon track is stored as 'good photon' (added to `iGam`).
-  Vint iGam;
   for(int i = evtRecEvent->totalCharged(); i < evtRecEvent->totalTracks(); ++i)
   {
-
     // * Get track
-    EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + i;
-    if(!(*itTrk)->isEmcShowerValid()) continue;
-    RecEmcShower* emcTrk = (*itTrk)->emcShower();
+    EvtRecTrack* trk = *(evtRecTrkCol->begin() + i);
+    if(!trk->isEmcShowerValid()) continue;
+    RecEmcShower* emcTrk = trk->emcShower();
     Hep3Vector    emcpos(emcTrk->x(), emcTrk->y(), emcTrk->z());
 
     // * Find the theta, phi, and angle difference with nearest charged track
@@ -282,9 +269,9 @@ StatusCode JpsiToDPV::execute()
     fTrees.photon.dang = 200.; // start value for difference in angle (?)
     for(int j = 0; j < evtRecEvent->totalCharged(); j++)
     {
-      EvtRecTrackIterator jtTrk = evtRecTrkCol->begin() + j;
-      if(!(*jtTrk)->isExtTrackValid()) continue;
-      RecExtTrack* extTrk = (*jtTrk)->extTrack();
+      EvtRecTrack* trk2 = *(evtRecTrkCol->begin() + j);
+      if(!trk2->isExtTrackValid()) continue;
+      RecExtTrack* extTrk = trk2->extTrack();
       if(extTrk->emcVolumeNumber() == -1) continue;
       Hep3Vector extpos = extTrk->emcPosition();
       // double ctht = extpos.cosTheta(emcpos);
@@ -313,46 +300,40 @@ StatusCode JpsiToDPV::execute()
 
     // * Apply photon cuts
     if(fTrees.photon.eraw < fEnergyThreshold) continue;
-    if((fabs(fTrees.photon.dthe) < fGammaThetaCut) &&
-       (fabs(fTrees.photon.dphi) < fGammaPhiCut))
+    if((fabs(fTrees.photon.dthe) < fGammaThetaCut) && (fabs(fTrees.photon.dphi) < fGammaPhiCut))
       continue;
     if(fabs(fTrees.photon.dang) < fGammaAngleCut) continue;
 
     // * Add photon track to vector
-    iGam.push_back(i);
+    tracks.photon.push_back(trk);
   }
 
   // * Finish Good Photon Selection *
-  int nGam = iGam.size();
-  log << MSG::DEBUG << "Number of good photons: " << nGam << "/" << evtRecEvent->totalNeutral()
-      << endmsg;
-  if(nGam < 2) return StatusCode::SUCCESS;
+  log << MSG::DEBUG << "Number of good photons: " << tracks.photon.size() << "/"
+      << evtRecEvent->totalNeutral() << endmsg;
+  if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
   fTrees.cuts[3]++;
 
   /// <li> Check charged track dEdx PID information
   if(fTrees.dedx.write)
   {
-    for(int i = 0; i < nGood; ++i)
+    vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+    for(; it != tracks.charged.end(); ++it)
     {
+      if(!(*it)->isMdcTrackValid()) continue;
+      if(!(*it)->isMdcDedxValid()) continue;
+      RecMdcTrack* mdcTrk  = (*it)->mdcTrack();
+      RecMdcDedx*  dedxTrk = (*it)->mdcDedx();
 
-      // * Get track *
-      EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
-      if(!(*itTrk)->isMdcTrackValid()) continue;
-      if(!(*itTrk)->isMdcDedxValid()) continue;
-      RecMdcTrack* mdcTrk  = (*itTrk)->mdcTrack();
-      RecMdcDedx*  dedxTrk = (*itTrk)->mdcDedx();
-
-      // * WRITE energy loss PID info ("dedx" branch) *
-      fTrees.dedx.p     = mdcTrk->p();      // momentum of the track
-      fTrees.dedx.chie  = dedxTrk->chiE();  // chi2 in case of electron
-      fTrees.dedx.chimu = dedxTrk->chiMu(); // chi2 in case of muon
-      fTrees.dedx.chipi = dedxTrk->chiPi(); // chi2 in case of pion
-      fTrees.dedx.chik  = dedxTrk->chiK();  // chi2 in case of kaon
-      fTrees.dedx.chip  = dedxTrk->chiP();  // chi2 in case of proton
-      fTrees.dedx.probPH =
-        dedxTrk->probPH(); // most probable pulse height from truncated mean
-      fTrees.dedx.normPH = dedxTrk->normPH();       // normalized pulse height
-      fTrees.dedx.ghit   = dedxTrk->numGoodHits();  // number of good hits
+      fTrees.dedx.p      = mdcTrk->p();            // momentum of the track
+      fTrees.dedx.chie   = dedxTrk->chiE();        // chi2 in case of electron
+      fTrees.dedx.chimu  = dedxTrk->chiMu();       // chi2 in case of muon
+      fTrees.dedx.chipi  = dedxTrk->chiPi();       // chi2 in case of pion
+      fTrees.dedx.chik   = dedxTrk->chiK();        // chi2 in case of kaon
+      fTrees.dedx.chip   = dedxTrk->chiP();        // chi2 in case of proton
+      fTrees.dedx.probPH = dedxTrk->probPH();      // most probable pulse height from truncated mean
+      fTrees.dedx.normPH = dedxTrk->normPH();      // normalized pulse height
+      fTrees.dedx.ghit   = dedxTrk->numGoodHits(); // number of good hits
       fTrees.dedx.thit   = dedxTrk->numTotalHits(); // total number of hits
       fTrees.dedx.Fill();
     }
@@ -361,14 +342,14 @@ StatusCode JpsiToDPV::execute()
   /// <li> Check charged track ToF PID information
   if(fTrees.TofEC.write || fTrees.TofIB.write || fTrees.TofOB.write)
   {
-    for(int i = 0; i < nGood; ++i)
+    vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+    for(; it != tracks.charged.end(); ++it)
     {
-      EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
-      if(!(*itTrk)->isMdcTrackValid()) continue;
-      if(!(*itTrk)->isTofTrackValid()) continue;
+      if(!(*it)->isMdcTrackValid()) continue;
+      if(!(*it)->isTofTrackValid()) continue;
 
-      RecMdcTrack*                mdcTrk    = (*itTrk)->mdcTrack();
-      SmartRefVector<RecTofTrack> tofTrkCol = (*itTrk)->tofTrack();
+      RecMdcTrack*                mdcTrk    = (*it)->mdcTrack();
+      SmartRefVector<RecTofTrack> tofTrkCol = (*it)->tofTrack();
 
       double ptrk = mdcTrk->p();
 
@@ -387,10 +368,10 @@ StatusCode JpsiToDPV::execute()
 
           // * Get ToF info *
           fTrees.TofEC.p     = ptrk;
-          fTrees.TofEC.path  = (*iter_tof)->path();  // distance of flight
-          fTrees.TofEC.tof   = (*iter_tof)->tof();   // time of flight
-          fTrees.TofEC.ph    = (*iter_tof)->ph();    // ToF pulse height
-          fTrees.TofEC.zrhit = (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
+          fTrees.TofEC.path  = (*iter_tof)->path();         // distance of flight
+          fTrees.TofEC.tof   = (*iter_tof)->tof();          // time of flight
+          fTrees.TofEC.ph    = (*iter_tof)->ph();           // ToF pulse height
+          fTrees.TofEC.zrhit = (*iter_tof)->zrhit();        // Track extrapolate Z or R Hit position
           fTrees.TofEC.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
           fTrees.TofEC.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
 
@@ -404,14 +385,12 @@ StatusCode JpsiToDPV::execute()
           }
           fTrees.TofEC.te =
             fTrees.TofEC.tof - texp[0]; // difference with ToF in electron hypothesis
-          fTrees.TofEC.tmu =
-            fTrees.TofEC.tof - texp[1]; // difference with ToF in muon hypothesis
+          fTrees.TofEC.tmu = fTrees.TofEC.tof - texp[1]; // difference with ToF in muon hypothesis
           fTrees.TofEC.tpi =
             fTrees.TofEC.tof - texp[2]; // difference with ToF in charged pion hypothesis
           fTrees.TofEC.tk =
             fTrees.TofEC.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-          fTrees.TofEC.tp =
-            fTrees.TofEC.tof - texp[4]; // difference with ToF in proton hypothesis
+          fTrees.TofEC.tp = fTrees.TofEC.tof - texp[4]; // difference with ToF in proton hypothesis
           fTrees.TofEC.Fill();
         }
 
@@ -421,15 +400,13 @@ StatusCode JpsiToDPV::execute()
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
           { // * inner barrel ToF detector
-            fTrees.TofIB.p    = ptrk;
-            fTrees.TofIB.path = (*iter_tof)->path(); // distance of flight
-            fTrees.TofIB.tof  = (*iter_tof)->tof();  // time of flight
-            fTrees.TofIB.ph   = (*iter_tof)->ph();   // ToF pulse height
-            fTrees.TofIB.zrhit =
-              (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
-            fTrees.TofIB.qual =
-              0. + (*iter_tof)->quality();                        // data quality of reconstruction
-            fTrees.TofIB.cntr = 0. + (*iter_tof)->tofID(); // ToF counter ID
+            fTrees.TofIB.p     = ptrk;
+            fTrees.TofIB.path  = (*iter_tof)->path();  // distance of flight
+            fTrees.TofIB.tof   = (*iter_tof)->tof();   // time of flight
+            fTrees.TofIB.ph    = (*iter_tof)->ph();    // ToF pulse height
+            fTrees.TofIB.zrhit = (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
+            fTrees.TofIB.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
+            fTrees.TofIB.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
             double texp[5];
             for(int j = 0; j < 5; j++)
             {
@@ -439,8 +416,7 @@ StatusCode JpsiToDPV::execute()
             }
             fTrees.TofIB.te =
               fTrees.TofIB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fTrees.TofIB.tmu =
-              fTrees.TofIB.tof - texp[1]; // difference with ToF in muon hypothesis
+            fTrees.TofIB.tmu = fTrees.TofIB.tof - texp[1]; // difference with ToF in muon hypothesis
             fTrees.TofIB.tpi =
               fTrees.TofIB.tof - texp[2]; // difference with ToF in charged pion hypothesis
             fTrees.TofIB.tk =
@@ -452,15 +428,13 @@ StatusCode JpsiToDPV::execute()
 
           if(hitStatus.layer() == 2)
           { // * outer barrel ToF detector
-            fTrees.TofOB.p    = ptrk;
-            fTrees.TofOB.path = (*iter_tof)->path(); // distance of flight
-            fTrees.TofOB.tof  = (*iter_tof)->tof();  // ToF pulse height
-            fTrees.TofOB.ph   = (*iter_tof)->ph();   // ToF pulse height
-            fTrees.TofOB.zrhit =
-              (*iter_tof)->zrhit(); // track extrapolate Z or R Hit position
-            fTrees.TofOB.qual =
-              0. + (*iter_tof)->quality();                        // data quality of reconstruction
-            fTrees.TofOB.cntr = 0. + (*iter_tof)->tofID(); // ToF counter ID
+            fTrees.TofOB.p     = ptrk;
+            fTrees.TofOB.path  = (*iter_tof)->path();  // distance of flight
+            fTrees.TofOB.tof   = (*iter_tof)->tof();   // ToF pulse height
+            fTrees.TofOB.ph    = (*iter_tof)->ph();    // ToF pulse height
+            fTrees.TofOB.zrhit = (*iter_tof)->zrhit(); // track extrapolate Z or R Hit position
+            fTrees.TofOB.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
+            fTrees.TofOB.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
             double texp[5];
             for(int j = 0; j < 5; j++)
             {
@@ -470,8 +444,7 @@ StatusCode JpsiToDPV::execute()
             }
             fTrees.TofOB.te =
               fTrees.TofOB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fTrees.TofOB.tmu =
-              fTrees.TofOB.tof - texp[1]; // difference with ToF in muon hypothesis
+            fTrees.TofOB.tmu = fTrees.TofOB.tof - texp[1]; // difference with ToF in muon hypothesis
             fTrees.TofOB.tpi =
               fTrees.TofOB.tof - texp[2]; // difference with ToF in charged pion hypothesis
             fTrees.TofOB.tk =
@@ -487,43 +460,22 @@ StatusCode JpsiToDPV::execute()
     } // loop all charged track
   }
 
-  /// <li> Get 4-momentum for each photon
-  Vp4 pGam;
-  for(int i = 0; i < nGam; ++i)
-  {
-    EvtRecTrackIterator itTrk  = evtRecTrkCol->begin() + iGam[i];
-    RecEmcShower*       emcTrk = (*itTrk)->emcShower();
-    double              eraw   = emcTrk->energy();
-    double              phi    = emcTrk->phi();
-    double              the    = emcTrk->theta();
-    HepLorentzVector    ptrk;
-    ptrk.setPx(eraw * sin(the) * cos(phi));
-    ptrk.setPy(eraw * sin(the) * sin(phi));
-    ptrk.setPz(eraw * cos(the));
-    ptrk.setE(eraw);
-    ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
-    pGam.push_back(ptrk);
-  }
-  // cout << "before pid" << endl;
-
   /// <li> Get 4-momentum for each charged track
-  Vint        ipip, ipim, iKm; // vector of indices of good tracks
-  Vp4         ppip, ppim, pKm; // vector of momenta
-  ParticleID* pid = ParticleID::instance();
-  for(int i = 0; i < nGood; ++i)
+
+  vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+  for(; it != tracks.charged.end(); ++it)
   {
-    EvtRecTrackIterator itTrk = evtRecTrkCol->begin() + iGood[i];
     pid->init();
     pid->setMethod(pid->methodProbability());
     // pid->setMethod(pid->methodLikelihood()); // for Likelihood Method
 
     pid->setChiMinCut(4);
-    pid->setRecTrack(*itTrk);
+    pid->setRecTrack(*it);
     pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE());
     pid->identify(pid->onlyPion() | pid->onlyKaon());
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
-    RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
+    RecMdcTrack* mdcTrk = (*it)->mdcTrack();
 
     // * WRITE particle identification info ("pid" branch) *
     if(fTrees.PID.write)
@@ -531,77 +483,40 @@ StatusCode JpsiToDPV::execute()
       fTrees.PID.p     = mdcTrk->p();          // momentum of the track
       fTrees.PID.cost  = cos(mdcTrk->theta()); // theta angle of the track
       fTrees.PID.dedx  = pid->chiDedx(2);      // Chi squared of the dedx of the track
-      fTrees.PID.tofIB = pid->chiTof1(2); // Chi squared of the inner barrel ToF of the track
-      fTrees.PID.tofOB = pid->chiTof2(2); // Chi squared of the outer barrel ToF of the track
-      fTrees.PID.probp = pid->probPion(); // probability that it is a pion
-      fTrees.PID.probK = pid->probKaon(); // probability that it is a kaon
+      fTrees.PID.tofIB = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
+      fTrees.PID.tofOB = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
+      fTrees.PID.probp = pid->probPion();      // probability that it is a pion
+      fTrees.PID.probK = pid->probKaon();      // probability that it is a kaon
       fTrees.PID.Fill();
     }
 
+      RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
     if(pid->probPion() > pid->probKaon())
     {
       if(pid->probPion() < fMinPID) continue;
-
-      RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
-      // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
       RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
-
       if(mdcKalTrk->charge() > 0)
-      {
-        ipip.push_back(iGood[i]);
-        HepLorentzVector ptrk;
-        ptrk.setPx(mdcKalTrk->px());
-        ptrk.setPy(mdcKalTrk->py());
-        ptrk.setPz(mdcKalTrk->pz());
-        double p3 = ptrk.mag();
-        ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
-        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
-        ppip.push_back(ptrk);
-      }
+        tracks.pip.push_back(*it);
       else
-      {
-        ipim.push_back(iGood[i]);
-        HepLorentzVector ptrk;
-        ptrk.setPx(mdcKalTrk->px());
-        ptrk.setPy(mdcKalTrk->py());
-        ptrk.setPz(mdcKalTrk->pz());
-        double p3 = ptrk.mag();
-        ptrk.setE(sqrt(p3 * p3 + mpi * mpi));
-        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
-        ppim.push_back(ptrk);
-      }
+        tracks.pim.push_back(*it);
     }
     else
-    {
       if(pid->probKaon() < fMinPID) continue;
-
-      RecMdcKalTrack* mdcKalTrk = (*itTrk)->mdcKalTrack();
-      // After ParticleID, use RecMdcKalTrack substitute RecMdcTrack
       RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-
       if(mdcKalTrk->charge() < 0)
-      {
-        iKm.push_back(iGood[i]);
-        HepLorentzVector ptrk;
-        ptrk.setPx(mdcKalTrk->px());
-        ptrk.setPy(mdcKalTrk->py());
-        ptrk.setPz(mdcKalTrk->pz());
-        double p3 = ptrk.mag();
-        ptrk.setE(sqrt(p3 * p3 + mK * mK));
-        ptrk = ptrk.boost(-0.011, 0, 0); // boost to cms
-        pKm.push_back(ptrk);
-      }
-    }
+        tracks.Km.push_back(*it);
+      else
+        tracks.Kp.push_back(*it);
   }
 
   /// **Apply cut**: PID
-  if(iKm.size() != 1) return SUCCESS;
-  if(ipim.size() != 1) return SUCCESS;
-  if(ipip.size() != 2) return SUCCESS;
+  if(tracks.Km.size() != 1) return SUCCESS;
+  if(tracks.pim.size() != 1) return SUCCESS;
+  if(tracks.pip.size() != 2) return SUCCESS;
   fTrees.cuts[4]++;
 
-  RecMdcKalTrack* KmTrk   = (*(evtRecTrkCol->begin() + iKm[0]))->mdcKalTrack();
-  RecMdcKalTrack* pimTrk  = (*(evtRecTrkCol->begin() + ipim[0]))->mdcKalTrack();
+  RecMdcKalTrack* KmTrk   = (*(evtRecTrkCol->begin() + tracks.Km[0]))->mdcKalTrack();
+  RecMdcKalTrack* pimTrk  = (*(evtRecTrkCol->begin() + tracks.pim[0]))->mdcKalTrack();
   RecMdcKalTrack* pip1Trk = (*(evtRecTrkCol->begin() + ipip[0]))->mdcKalTrack();
   RecMdcKalTrack* pip2Trk = (*(evtRecTrkCol->begin() + ipip[1]))->mdcKalTrack();
 
@@ -624,7 +539,6 @@ StatusCode JpsiToDPV::execute()
   vxpar.setVx(vx);
   vxpar.setEvx(Evx);
 
-  VertexFit* vtxfit = VertexFit::instance();
   vtxfit->init();
   vtxfit->AddTrack(0, wvKmTrk);
   vtxfit->AddTrack(1, wvpimTrk);
@@ -638,8 +552,6 @@ StatusCode JpsiToDPV::execute()
   WTrackParameter wpim  = vtxfit->wtrk(1);
   WTrackParameter wpip1 = vtxfit->wtrk(2);
   WTrackParameter wpip2 = vtxfit->wtrk(3);
-
-  KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
 
   /// <li> Apply Kalman 4-constrain kinematic fit
   if(fDo_fit4c)
@@ -823,7 +735,7 @@ StatusCode JpsiToDPV::execute()
     fD0omega.K4pi.MC.evtid = eventHeader->eventNumber();
     SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
     if(!mcParticleCol)
-      std::cout << "Could not retrieve McParticelCol" << std::endl;
+      cout << "Could not retrieve McParticelCol" << endl;
     else
     {
       fD0omega.K4pi.MC.n = 0;
@@ -867,7 +779,6 @@ StatusCode JpsiToDPV::execute()
 /// Inherited `finalize` method of `Algorithm`. This function is only called once, after running over all events. Prints the flow chart to the terminal, so **make sure you save this output!**
 StatusCode JpsiToDPV::finalize()
 {
-  MsgStream log(msgSvc(), name());
   log << MSG::INFO << "in finalize()" << endmsg;
 
   cout << "Resulting FLOW CHART:" << endl;

@@ -55,6 +55,17 @@ namespace D0omega
       Double_t mD0_5C;
       Double_t momega_4C;
       Double_t momega_5C;
+
+      void Reset()
+      {
+        if(!write) return;
+        chi2_4C   = 99999.;
+        chi2_5C   = 99999.;
+        mD0_4C    = 99999.;
+        mD0_5C    = 99999.;
+        momega_4C = 99999.;
+        momega_5C = 99999.;
+      }
     };
 
     struct Package
