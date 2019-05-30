@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreeToF_H
 #define JpsiToDPV_TreeToF_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeToF : public Tree
+class TreeToF : public TreeContainer
 {
 public:
-  TreeToF(const char* name, const char* title) : Tree(name, title)
+  TreeToF(const char* name, const char* title) : TreeContainer(name, title)
   {
     BRANCH(p);
     BRANCH(path);

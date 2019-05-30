@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreeMC_H
 #define JpsiToDPV_TreeMC_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeMC : public Tree
+class TreeMC : public TreeContainer
 {
 public:
-  TreeMC(const char* name, const char* title) : Tree(name, title)
+  TreeMC(const char* name, const char* title) : TreeContainer(name, title)
   {
     BRANCH(runid);
     BRANCH(evtid);

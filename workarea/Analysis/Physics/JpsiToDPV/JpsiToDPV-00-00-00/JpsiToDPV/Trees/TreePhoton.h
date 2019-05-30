@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreePhoton_H
 #define JpsiToDPV_TreePhoton_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreePhoton : public Tree
+class TreePhoton : public TreeContainer
 {
 public:
-  TreePhoton() : Tree("photon", "Photon kinematics")
+  TreePhoton() : TreeContainer("photon", "Photon kinematics")
   {
     BRANCH(dthe);
     BRANCH(dphi);

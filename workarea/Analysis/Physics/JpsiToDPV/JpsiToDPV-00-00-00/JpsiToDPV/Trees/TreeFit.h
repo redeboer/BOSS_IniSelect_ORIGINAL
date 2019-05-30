@@ -1,7 +1,7 @@
 #ifndef JpsiToDPV_TreeFit_H
 #define JpsiToDPV_TreeFit_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 #define BRANCHMOM(VAR) BranchMomObj(TO_STRING(VAR), VAR)
 
 struct MomObj
@@ -14,10 +14,10 @@ struct MomObj
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeFit : public Tree
+class TreeFit : public TreeContainer
 {
 public:
-  TreeFit(const char* name, const char* title = "") : Tree(name, title)
+  TreeFit(const char* name, const char* title = "") : TreeContainer(name, title)
   {
     BRANCH(chi2);
   }

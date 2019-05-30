@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreePID_H
 #define JpsiToDPV_TreePID_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreePID : public Tree
+class TreePID : public TreeContainer
 {
 public:
-  TreePID(const char* name, const char* title = "") : Tree(name, title)
+  TreePID(const char* name, const char* title = "") : TreeContainer(name, title)
   {
     BRANCH(p);
     BRANCH(cost);

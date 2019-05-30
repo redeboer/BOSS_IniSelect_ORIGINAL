@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreeDedx_H
 #define JpsiToDPV_TreeDedx_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeDedx : public Tree
+class TreeDedx : public TreeContainer
 {
 public:
-  TreeDedx() : Tree("dedx", "Energy loss dE/dx")
+  TreeDedx() : TreeContainer("dedx", "Energy loss dE/dx")
   {
     BRANCH(p);
     BRANCH(chie);

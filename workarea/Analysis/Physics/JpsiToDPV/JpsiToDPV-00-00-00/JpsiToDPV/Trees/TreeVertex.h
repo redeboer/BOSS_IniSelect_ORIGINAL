@@ -1,16 +1,16 @@
 #ifndef JpsiToDPV_TreeVertex_H
 #define JpsiToDPV_TreeVertex_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeVertex : public Tree
+class TreeVertex : public TreeContainer
 {
 public:
-  TreeVertex() : Tree("vxyz", "Vertex information of the charged tracks")
+  TreeVertex() : TreeContainer("vxyz", "Vertex information of the charged tracks")
   {
     BRANCH(p);
     BRANCH(x);

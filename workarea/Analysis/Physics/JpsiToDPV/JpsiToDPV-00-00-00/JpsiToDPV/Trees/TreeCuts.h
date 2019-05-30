@@ -1,17 +1,17 @@
 #ifndef JpsiToDPV_TreeCuts_H
 #define JpsiToDPV_TreeCuts_H
 
-#include "JpsiToDPV/Trees/Tree.h"
+#include "JpsiToDPV/Trees/TreeContainer.h"
 #include <vector>
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeCuts : public Tree
+class TreeCuts : public TreeContainer
 {
 public:
-  TreeCuts() : Tree("vxyz", "dCuts information of the charged tracks")
+  TreeCuts() : TreeContainer("vxyz", "dCuts information of the charged tracks")
   {
     BRANCH(cuts);
   }

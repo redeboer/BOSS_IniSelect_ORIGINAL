@@ -35,6 +35,8 @@ using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
 using namespace std;
 
+typedef vector<EvtRecTrack*>::iterator TrackIter;
+
 // * ==================================== * //
 // * ------- GLOBALS AND TYPEDEFS ------- * //
 // * ==================================== * //
@@ -232,7 +234,7 @@ StatusCode JpsiToDPV::execute()
     fTrees.v.rphi    = vecipa[1];
 
     // * WRITE primary vertex position info ("vxyz" branch) *
-    fTrees.v.FillSafe();
+    fTrees.v.Fill();
 
     // * Apply vertex cuts *
     if(fabs(fTrees.v.z) >= fVz0cut) continue;
@@ -295,7 +297,7 @@ StatusCode JpsiToDPV::execute()
     fTrees.photon.dang = fTrees.photon.dang * DegToRad;
 
     // * WRITE photon info ("photon" branch)
-    fTrees.photon.FillSafe();
+    fTrees.photon.Fill();
 
     // * Apply photon cuts
     if(fTrees.photon.eraw < fEnergyThreshold) continue;
@@ -316,7 +318,7 @@ StatusCode JpsiToDPV::execute()
   /// <li> Check charged track dEdx PID information
   if(fTrees.dedx.write)
   {
-    vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+    TrackIter it = tracks.charged.begin();
     for(; it != tracks.charged.end(); ++it)
     {
       if(!(*it)->isMdcTrackValid()) continue;
@@ -341,7 +343,7 @@ StatusCode JpsiToDPV::execute()
   /// <li> Check charged track ToF PID information
   if(fTrees.TofEC.write || fTrees.TofIB.write || fTrees.TofOB.write)
   {
-    vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+    TrackIter it = tracks.charged.begin();
     for(; it != tracks.charged.end(); ++it)
     {
       if(!(*it)->isMdcTrackValid()) continue;
@@ -461,7 +463,7 @@ StatusCode JpsiToDPV::execute()
 
   /// <li> Get 4-momentum for each charged track
 
-  vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
+  TrackIter it = tracks.charged.begin();
   for(; it != tracks.charged.end(); ++it)
   {
     pid->init();
@@ -489,7 +491,7 @@ StatusCode JpsiToDPV::execute()
       fTrees.PID.Fill();
     }
 
-      RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
+    RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
     if(pid->probPion() > pid->probKaon())
     {
       if(pid->probPion() < fMinPID) continue;
@@ -499,13 +501,13 @@ StatusCode JpsiToDPV::execute()
       else
         tracks.pim.push_back(*it);
     }
+    else if(pid->probKaon() < fMinPID)
+      continue;
+    RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+    if(mdcKalTrk->charge() < 0)
+      tracks.Km.push_back(*it);
     else
-      if(pid->probKaon() < fMinPID) continue;
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-      if(mdcKalTrk->charge() < 0)
-        tracks.Km.push_back(*it);
-      else
-        tracks.Kp.push_back(*it);
+      tracks.Kp.push_back(*it);
   }
 
   /// **Apply cut**: PID
@@ -514,10 +516,10 @@ StatusCode JpsiToDPV::execute()
   if(tracks.pip.size() != 2) return SUCCESS;
   fTrees.cuts[4]++;
 
-  RecMdcKalTrack* KmTrk   = (*(evtRecTrkCol->begin() + tracks.Km[0]))->mdcKalTrack();
-  RecMdcKalTrack* pimTrk  = (*(evtRecTrkCol->begin() + tracks.pim[0]))->mdcKalTrack();
-  RecMdcKalTrack* pip1Trk = (*(evtRecTrkCol->begin() + ipip[0]))->mdcKalTrack();
-  RecMdcKalTrack* pip2Trk = (*(evtRecTrkCol->begin() + ipip[1]))->mdcKalTrack();
+  RecMdcKalTrack* KmTrk   = tracks.Km[0]->mdcKalTrack();
+  RecMdcKalTrack* pimTrk  = tracks.pim[0]->mdcKalTrack();
+  RecMdcKalTrack* pip1Trk = tracks.pip[0]->mdcKalTrack();
+  RecMdcKalTrack* pip2Trk = tracks.pip[1]->mdcKalTrack();
 
   WTrackParameter wvKmTrk(mK, KmTrk->getZHelix(), KmTrk->getZError());
   WTrackParameter wvpimTrk(mpi, pimTrk->getZHelix(), pimTrk->getZError());
@@ -558,20 +560,22 @@ StatusCode JpsiToDPV::execute()
     // * Run over all gamma pairs and find the pair with the best chi2
     fD0omega.K4pi.fit4c.chi2 = 9999.;
     HepLorentzVector pTot;
-    for(int i = 0; i < nGam - 1; ++i)
+    TrackIter        it1 = tracks.photon.begin();
+    for(; it1 != tracks.photon.end(); ++it1)
     {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + iGam[i]))->emcShower();
-      for(int j = i + 1; j < nGam; j++)
+      RecEmcShower* g1Trk = (*it1)->emcShower();
+      TrackIter     it2   = tracks.photon.begin();
+      for(; it2 != tracks.photon.end(); ++it2)
       {
-        RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + iGam[j]))->emcShower();
+        RecEmcShower* g2Trk = (*it2)->emcShower();
         kkmfit->init();
-        kkmfit->AddTrack(0, wKm);         // neg. kaon
-        kkmfit->AddTrack(1, wpim);        // neg. pion
-        kkmfit->AddTrack(2, wpip1);       // pos. pion 1
-        kkmfit->AddTrack(3, wpip2);       // pos. pion 2
-        kkmfit->AddTrack(4, 0.0, g1Trk);  // gamma track 1
-        kkmfit->AddTrack(5, 0.0, g2Trk);  // gamma track 2
-        kkmfit->AddFourMomentum(0, ecms); // 4 constraints: CMS energy and momentum
+        kkmfit->AddTrack(0, wKm);
+        kkmfit->AddTrack(1, wpim);
+        kkmfit->AddTrack(2, wpip1);
+        kkmfit->AddTrack(3, wpip2);
+        kkmfit->AddTrack(4, 0.0, g1Trk);
+        kkmfit->AddTrack(5, 0.0, g2Trk);
+        kkmfit->AddFourMomentum(0, ecms);
         if(kkmfit->Fit())
         {
           double chi2 = kkmfit->chisq();
@@ -639,21 +643,24 @@ StatusCode JpsiToDPV::execute()
   {
     // * Find the best combination over all possible pi+ pi- gamma gamma pair
     fD0omega.K4pi.fit5c.chi2 = 9999.;
-    for(int i = 0; i < nGam - 1; ++i)
+
+    TrackIter it1 = tracks.photon.begin();
+    for(; it1 != tracks.photon.end(); ++it1)
     {
-      RecEmcShower* g1Trk = (*(evtRecTrkCol->begin() + iGam[i]))->emcShower();
-      for(int j = i + 1; j < nGam; j++)
+      RecEmcShower* g1Trk = (*it1)->emcShower();
+      TrackIter     it2   = tracks.photon.begin();
+      for(; it2 != tracks.photon.end(); ++it2)
       {
-        RecEmcShower* g2Trk = (*(evtRecTrkCol->begin() + iGam[j]))->emcShower();
+        RecEmcShower* g2Trk = (*it2)->emcShower();
         kkmfit->init();
-        kkmfit->AddTrack(0, wKm);            // neg. kaon
-        kkmfit->AddTrack(1, wpim);           // neg. pion
-        kkmfit->AddTrack(2, wpip1);          // pos. pion 1
-        kkmfit->AddTrack(3, wpip2);          // pos. pion 2
-        kkmfit->AddTrack(4, 0.0, g1Trk);     // gamma track 1
-        kkmfit->AddTrack(5, 0.0, g2Trk);     // gamma track 2
-        kkmfit->AddFourMomentum(0, ecms);    // 4 constraints: CMS energy and momentum
-        kkmfit->AddResonance(1, mpi0, 4, 5); // 5th constraint: pi0 resonance
+        kkmfit->AddTrack(0, wKm);
+        kkmfit->AddTrack(1, wpim);
+        kkmfit->AddTrack(2, wpip1);
+        kkmfit->AddTrack(3, wpip2);
+        kkmfit->AddTrack(4, 0.0, g1Trk);
+        kkmfit->AddTrack(5, 0.0, g2Trk);
+        kkmfit->AddFourMomentum(0, ecms);
+        kkmfit->AddResonance(1, mpi0, 4, 5);
         if(!kkmfit->Fit(0)) continue;
         if(!kkmfit->Fit(1)) continue;
         if(kkmfit->Fit())
@@ -792,17 +799,17 @@ StatusCode JpsiToDPV::finalize()
   cout << "  Pass 5C Kalman fit:     " << fTrees.cuts[6] << endl;
   cout << endl;
   cout << "Trees:" << endl;
-  if(fD0omega.K4pi.fit4c.write)  cout << "  fit4c:  " << fD0omega.K4pi.fit4c.GetEntries() << endl;
-  if(fD0omega.K4pi.fit5c.write)  cout << "  fit5c:  " << fD0omega.K4pi.fit5c.GetEntries() << endl;
-  if(fD0omega.K4pi.MC.write)     cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << endl;
-  if(fTrees.cuts.write)   cout << "  cuts:   " << fTrees.cuts.GetEntries() << endl;
-  if(fTrees.v.write)      cout << "  v:      " << fTrees.v.GetEntries() << endl;
+  if(fD0omega.K4pi.fit4c.write) cout << "  fit4c:  " << fD0omega.K4pi.fit4c.GetEntries() << endl;
+  if(fD0omega.K4pi.fit5c.write) cout << "  fit5c:  " << fD0omega.K4pi.fit5c.GetEntries() << endl;
+  if(fD0omega.K4pi.MC.write) cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << endl;
+  if(fTrees.cuts.write) cout << "  cuts:   " << fTrees.cuts.GetEntries() << endl;
+  if(fTrees.v.write) cout << "  v:      " << fTrees.v.GetEntries() << endl;
   if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << endl;
-  if(fTrees.dedx.write)   cout << "  dedx:   " << fTrees.dedx.GetEntries() << endl;
-  if(fTrees.TofEC.write)  cout << "  TofEC:  " << fTrees.TofEC.GetEntries() << endl;
-  if(fTrees.TofIB.write)  cout << "  TofIB:  " << fTrees.TofIB.GetEntries() << endl;
-  if(fTrees.TofOB.write)  cout << "  TofOB:  " << fTrees.TofOB.GetEntries() << endl;
-  if(fTrees.PID.write)    cout << "  PID:    " << fTrees.PID.GetEntries() << endl;
+  if(fTrees.dedx.write) cout << "  dedx:   " << fTrees.dedx.GetEntries() << endl;
+  if(fTrees.TofEC.write) cout << "  TofEC:  " << fTrees.TofEC.GetEntries() << endl;
+  if(fTrees.TofIB.write) cout << "  TofIB:  " << fTrees.TofIB.GetEntries() << endl;
+  if(fTrees.TofOB.write) cout << "  TofOB:  " << fTrees.TofOB.GetEntries() << endl;
+  if(fTrees.PID.write) cout << "  PID:    " << fTrees.PID.GetEntries() << endl;
   cout << endl;
 
   TFile file(fFileName.c_str(), "RECREATE");
@@ -816,17 +823,17 @@ StatusCode JpsiToDPV::finalize()
     log << MSG::ERROR << "Output file \"" << fFileName << "\" is zombie" << endmsg;
     return StatusCode::FAILURE;
   }
-  fD0omega.K4pi.fit4c.WriteSafe();
-  fD0omega.K4pi.fit5c.WriteSafe();
-  fD0omega.K4pi.MC.WriteSafe();
-  fTrees.v.WriteSafe();
-  fTrees.photon.WriteSafe();
-  fTrees.dedx.WriteSafe();
-  fTrees.TofEC.WriteSafe();
-  fTrees.TofIB.WriteSafe();
-  fTrees.TofOB.WriteSafe();
-  fTrees.PID.WriteSafe();
-  fTrees.cuts.WriteSafe();
+  fD0omega.K4pi.fit4c.Write();
+  fD0omega.K4pi.fit5c.Write();
+  fD0omega.K4pi.MC.Write();
+  fTrees.v.Write();
+  fTrees.photon.Write();
+  fTrees.dedx.Write();
+  fTrees.TofEC.Write();
+  fTrees.TofIB.Write();
+  fTrees.TofOB.Write();
+  fTrees.PID.Write();
+  fTrees.cuts.Write();
   file.Close();
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
