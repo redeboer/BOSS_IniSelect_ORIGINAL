@@ -1,0 +1,30 @@
+#include "$VERTEXFITROOT/share/jobOptions_VertexDbSvc.txt"
+ApplicationMgr.DLLs += {"D0omega_K4pi"};
+ApplicationMgr.TopAlg += {"D0omega_K4pi"};
+
+// * Define r0, z0 cut for charged tracks *
+D0omega_K4pi.Vr0cut    = 9999.; // 1.0
+D0omega_K4pi.Vz0cut    = 9999.; // 5.0
+D0omega_K4pi.Vrvz0cut  = 10.;
+D0omega_K4pi.Vrvxy0cut = 1.;
+
+// * Define energy, dphi, dthe cuts for fake gamma's *
+D0omega_K4pi.EnergyThreshold = 0.04;
+D0omega_K4pi.GammaPhiCut     = 20.0;
+D0omega_K4pi.GammaThetaCut   = 20.0;
+D0omega_K4pi.GammaAngleCut   = 20.0;
+
+// * Whether to test the success of the 4- and 5-constraint fits *
+D0omega_K4pi.Test4C   = true;  // write fit4c
+D0omega_K4pi.Test5C   = true;  // write fit5c and geff
+D0omega_K4pi.MaxChiSq = 200.;  // chisq for both fits should be less
+D0omega_K4pi.MinPID   = 0.001; // PID probability should be at least this value
+
+// * Whether or not to check success of Particle Identification *
+D0omega_K4pi.CheckMCtruth = true;
+D0omega_K4pi.CheckVertex  = false;
+D0omega_K4pi.CheckPhoton  = false;
+D0omega_K4pi.CheckDedx    = false;
+D0omega_K4pi.CheckTof     = false;
+D0omega_K4pi.CheckPID     = false;
+D0omega_K4pi.CheckEtot    = false;
