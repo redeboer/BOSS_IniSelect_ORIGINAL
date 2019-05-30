@@ -21,10 +21,13 @@ JpsiToDPV.MaxChiSq = 200.;  // chisq for both fits should be less
 JpsiToDPV.MinPID   = 0.001; // PID probability should be at least this value
 
 // * Whether or not to check success of Particle Identification *
-JpsiToDPV.CheckMCtruth = true;
-JpsiToDPV.CheckVertex  = false;
-JpsiToDPV.CheckPhoton  = false;
-JpsiToDPV.CheckDedx    = false;
-JpsiToDPV.CheckTof     = false;
-JpsiToDPV.CheckPID     = false;
-JpsiToDPV.CheckEtot    = false;
+JpsiToDPV.write_fit4c    = true;
+JpsiToDPV.write_fit5c    = true;
+JpsiToDPV.write_topology = true;
+JpsiToDPV.write_vxyz     = true;
+JpsiToDPV.write_photon   = true;
+JpsiToDPV.write_dedx     = true;
+JpsiToDPV.write_TofEC    = true;
+JpsiToDPV.write_TofIB    = true;
+JpsiToDPV.write_TofOB    = true;
+JpsiToDPV.write_PID      = true;
