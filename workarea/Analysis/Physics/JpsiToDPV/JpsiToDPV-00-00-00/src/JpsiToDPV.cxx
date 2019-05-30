@@ -19,13 +19,10 @@
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
 #include "McTruth/McParticle.h"
-#include "ParticleID/ParticleID.h"
 #include "TFile.h"
 #include "TMath.h"
 #include "VertexFit/Helix.h"
 #include "VertexFit/IVertexDbSvc.h"
-#include "VertexFit/KalmanKinematicFit.h"
-#include "VertexFit/VertexFit.h"
 #include <vector>
 #ifndef ENABLE_BACKWARDS_COMPATIBILITY
 typedef HepGeom::Point3D<double> HepPoint3D;

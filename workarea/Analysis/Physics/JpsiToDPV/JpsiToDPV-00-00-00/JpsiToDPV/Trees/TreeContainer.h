@@ -3,7 +3,7 @@
 
 #include "TTree.h"
 #define TO_STRING(x) #x
-#define BRANCH(VAR) Branch(TO_STRING(VAR), &VAR)
+#define BRANCH(VAR) fTree->Branch(TO_STRING(VAR), &VAR)
 
 /// @addtogroup BOSS_objects
 /// @{
@@ -31,7 +31,7 @@ public:
   }
   const char* PropertyName() const { return Form("write_%s", fTree->GetName()); }
 
-private:
+protected:
   TTree* fTree;
 };
 /// @}

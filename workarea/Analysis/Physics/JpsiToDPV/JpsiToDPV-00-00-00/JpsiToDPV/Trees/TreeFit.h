@@ -26,8 +26,8 @@ public:
 protected:
   void BranchMomObj(const char* name, MomObj& obj)
   {
-    Branch(Form("m%s", name), &obj.m);
-    Branch(Form("p%s", name), &obj.p);
+    fTree->Branch(Form("m%s", name), &obj.m);
+    fTree->Branch(Form("p%s", name), &obj.p);
   }
 };
 /// @}

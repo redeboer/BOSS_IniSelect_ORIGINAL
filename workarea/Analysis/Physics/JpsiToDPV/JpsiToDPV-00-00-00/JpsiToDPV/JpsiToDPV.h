@@ -6,6 +6,9 @@
 #include "JpsiToDPV/TrackCollection.h"
 #include "JpsiToDPV/TreeCollection.h"
 #include "JpsiToDPV/Types/D0omega.h"
+#include "ParticleID/ParticleID.h"
+#include "VertexFit/KalmanKinematicFit.h"
+#include "VertexFit/VertexFit.h"
 #include <string>
 
 #define DECLAREWRITE(TREE) declareProperty(TREE.PropertyName(), TREE.write)
