@@ -4,7 +4,7 @@
 #include "GaudiKernel/AlgFactory.h"
 #include "GaudiKernel/Algorithm.h"
 #include "JpsiToDPV/TreeCollection.h"
-#include "JpsiToDPV/Types/D0omega/K4pi.h"
+#include "JpsiToDPV/Types/D0omega.h"
 #include <string>
 
 #define DECLAREWRITE(TREE) declareProperty(TREE.PropertyName(), TREE.write)
@@ -26,7 +26,7 @@ private:
   MsgStream   log;
   std::string fFileName;
 
-  D0omega::Package D0omega;
+  D0omega::Package fD0omega;
 
   // * Declare r0, z0 cut for charged tracks
   double fVr0cut;

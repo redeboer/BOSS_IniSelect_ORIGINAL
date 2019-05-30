@@ -38,7 +38,7 @@
 	function AttemptToExecute()
 	{
 		local commandToExecute="${1}"
-		PrintBold "--== EXECUTING \"${commandToExecute}\" ==--\n"
+		PrintBold "\n--== EXECUTING \"${commandToExecute}\" ==--\n"
 		${commandToExecute}
 		if [ $? != 0 ]; then
 			PrintError "Failed to execute \"${commandToExecute}\""

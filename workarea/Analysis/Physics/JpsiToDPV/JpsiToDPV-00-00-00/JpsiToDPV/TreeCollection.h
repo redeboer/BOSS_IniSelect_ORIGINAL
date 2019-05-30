@@ -1,7 +1,7 @@
 #ifndef JpsiToDPV_TreeCollection_H
 #define JpsiToDPV_TreeCollection_H
 
-#include "JpsiToDPV.h"
+#include "JpsiToDPV/Trees/TreeCuts.h"
 #include "JpsiToDPV/Trees/TreeDedx.h"
 #include "JpsiToDPV/Trees/TreePID.h"
 #include "JpsiToDPV/Trees/TreePhoton.h"
