@@ -12,12 +12,12 @@ class TreeToF : public Tree
 public:
   TreeToF(const char* name, const char* title) : Tree(name, title)
   {
-    BRANCH(ptrk);
+    BRANCH(p);
     BRANCH(path);
     BRANCH(tof);
     BRANCH(cntr);
     BRANCH(ph);
-    BRANCH(zhit);
+    BRANCH(zrhit);
     BRANCH(qual);
     BRANCH(te);
     BRANCH(tmu);

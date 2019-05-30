@@ -38,7 +38,7 @@
 	function AttemptToExecute()
 	{
 		local commandToExecute="${1}"
-		echo -e "\n\n--== EXECUTING \"${commandToExecute}\" ==--"
+		PrintBold "--== EXECUTING \"${commandToExecute}\" ==--\n"
 		${commandToExecute}
 		if [ $? != 0 ]; then
 			PrintError "Failed to execute \"${commandToExecute}\""
@@ -69,10 +69,7 @@
 		local currentPath="$(pwd)"
 		cdcmt
 		# * Print package and version name
-		echo
-		echo "=================================="
-		echo "BROADCASTING PACKAGE \"$(basename $(dirname $(pwd)))\""
-		echo "=================================="
+		PrintHeader "BROADCASTING PACKAGE \"$(basename $(dirname $(pwd)))\""
 		# * Connect your workarea to BOSS
 		AttemptToExecute "cmt broadcast"
 		if [ $? != 0 ]; then return 1; fi
@@ -96,10 +93,7 @@
 		local currentPath="$(pwd)"
 		cdcmt
 		# * Print package and version name
-		echo; echo
-		echo "====================================="
-		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
-		echo "====================================="
+		PrintHeader "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
 		# * Create CMT scripts
 		AttemptToExecute "cmt config"
 		if [ $? != 0 ]; then return 1; fi
@@ -121,10 +115,7 @@
 		local currentPath="$(pwd)"
 		cdcmt
 		# * Print package and version name
-		echo; echo
-		echo "====================================="
-		echo "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
-		echo "====================================="
+		PrintHeader "BUILDING PACKAGE \"$(basename $(dirname $(pwd)))\""
 		# * Build executables
 		AttemptToExecute "make"
 		if [ $? != 0 ]; then return 1; fi

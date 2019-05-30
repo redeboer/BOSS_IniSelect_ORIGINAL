@@ -15,7 +15,7 @@ public:
   {
     BRANCH(cuts);
   }
-  ULong64_t& operator[](size_t i) { return cuts[i]; }
+  ULong64_t& operator[](size_t i) { if(i >= cuts.size()) cuts.resize(i + 1); return cuts[i]; }
   std::vector<ULong64_t> cuts;
 };
 /// @}

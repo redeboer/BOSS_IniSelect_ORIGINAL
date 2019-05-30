@@ -58,3 +58,26 @@ function PrintLine()
 	echo "${line}"
 }
 export PrintLine
+
+
+function PrintLineBold()
+{
+	num=${1:-30}
+	char=${2:--}
+	line=$(printf "%-${num}s" "")
+	line="${line// /${char}}"
+	PrintBold "${line}"
+}
+export PrintLineBold
+
+
+function PrintHeader()
+{
+	echo
+	echo
+	PrintLineBold "${#1}"
+	PrintBold     "${1}"
+	PrintLineBold "${#1}"
+	echo
+}
+export PrintHeader

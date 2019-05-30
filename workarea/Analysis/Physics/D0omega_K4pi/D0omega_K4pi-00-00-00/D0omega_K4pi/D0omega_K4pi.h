@@ -2,20 +2,21 @@
 #define Physics_Analysis_D0omega_K4pi_H
 
 #include "D0omega_K4pi/FitResults/D0omega_K4pi.h"
-#include "D0omega_K4pi/IniFile.h"
+#include "D0omega_K4pi/TreeCollection.h"
 #include "GaudiKernel/AlgFactory.h"
 #include "GaudiKernel/Algorithm.h"
 #include <string>
+
+#define DECLAREWRITE(TREE) declareProperty(TREE.PropertyName(), TREE.write)
 
 /// @addtogroup BOSS_objects
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class File_D0omega_KpiKK : public IniFile
+class Results_D0omega_KpiKK : public TreeCollection
 {
 public:
-  File_D0omega_KpiKK(const char* name = "", const char* title = "") :
-    IniFile(name, title),
+  Results_D0omega_KpiKK() :
     fit4c("fit4c"),
     fit5c("fit5c"),
     MC("topology")
@@ -42,7 +43,7 @@ public:
 
 private:
   MsgStream          log;
-  File_D0omega_KpiKK f;
+  Results_D0omega_KpiKK f;
 
   std::string fFileName;
 
@@ -63,15 +64,6 @@ private:
   bool   fDo_fit5c;
   double fMaxChiSq;
   double fMinPID;
-
-  // * Declare whether or not to check success of Particle Identification
-  bool fCheckMC;
-  bool fCheckVertex;
-  bool fCheckPhoton;
-  bool fCheckDedx;
-  bool fCheckTof;
-  bool fCheckPID;
-  bool fCheckEtot;
 };
 /// @}
 #endif

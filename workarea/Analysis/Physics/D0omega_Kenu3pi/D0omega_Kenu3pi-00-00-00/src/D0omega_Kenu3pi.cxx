@@ -248,7 +248,7 @@ StatusCode D0omega_Kenu3pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit4C->addItem("momega", fMomega_4C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
-        fTupleFit4C->addItem("Jpsi", fMJpsi_4C);
+        fTupleFit4C->addItem("mJpsi", fMJpsi_4C);
         fTupleFit4C->addItem("Emiss", fEmiss_4C);
         fTupleFit4C->addItem("Pmiss", fPmiss_4C);
         fTupleFit4C->addItem("Umiss", fUmiss_4C);
@@ -258,6 +258,7 @@ StatusCode D0omega_Kenu3pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
         fTupleFit4C->addItem("pomega", fPomega_4C);
         /// <tr><td>`"momega"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit4C->addItem("pJpsi", fPJpsi_4C);
       }
       else
       {
@@ -279,16 +280,17 @@ StatusCode D0omega_Kenu3pi::initialize()
       if(fTupleFit5C)
       {
         fTupleFit5C->addItem("chi2", fChi_5C);
+        fTupleFit5C->addItem("chi2_1c", fChi_1C);
         /// <tr><td>`"chi2"` </td><td>\f$\chi^2\f$ of the Kalman kinematic fit</td></tr>
         fTupleFit5C->addItem("mpi0", fMpi0_5C);
         /// <tr><td>`"mpi0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("mD0", fMD0_5C);
         /// <tr><td>`"mD0"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("momega", fMomega_5C);
-        fTupleFit4C->addItem("Jpsi", fMJpsi_5C);
-        fTupleFit4C->addItem("Emiss", fEmiss_5C);
-        fTupleFit4C->addItem("Pmiss", fPmiss_5C);
-        fTupleFit4C->addItem("Umiss", fUmiss_5C);
+        fTupleFit5C->addItem("mJpsi", fMJpsi_5C);
+        fTupleFit5C->addItem("Emiss", fEmiss_5C);
+        fTupleFit5C->addItem("Pmiss", fPmiss_5C);
+        fTupleFit5C->addItem("Umiss", fUmiss_5C);
         /// <tr><td>`"momega"`</td><td>Reconstructed invariant \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("ppi0", fPpi0_5C);
         /// <tr><td>`"mpi0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
@@ -296,6 +298,7 @@ StatusCode D0omega_Kenu3pi::initialize()
         /// <tr><td>`"mD0"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
         fTupleFit5C->addItem("pomega", fPomega_5C);
         /// <tr><td>`"momega"`</td><td>Reconstructed 3-momentum \f$\pi^0\f$ mass</td></tr>
+        fTupleFit5C->addItem("pJpsi", fPJpsi_5C);
         fTupleFit5C->addItem("fcos", fFcos);
         /// <tr><td>`"fcos"`</td><td>\f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate</td></tr>
         fTupleFit5C->addItem("elow", fElow);
@@ -1173,7 +1176,7 @@ StatusCode D0omega_Kenu3pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
+    log << MSG::INFO << "Fit4c chisq = " << bestChi2 << endmsg;
 
     /// **Apply cut**: fit4c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)
@@ -1250,7 +1253,7 @@ StatusCode D0omega_Kenu3pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << bestChi2 << endmsg;
+    log << MSG::INFO << "Fit5c chisq = " << bestChi2 << endmsg;
 
     /// **Apply cut**: fit5c passed and ChiSq less than fMaxChiSq.
     if(bestChi2 < fMaxChiSq)

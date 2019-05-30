@@ -23,6 +23,7 @@
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
 #include "McTruth/McParticle.h"
+#include "TFile.h"
 #include "ParticleID/ParticleID.h"
 #include "TMath.h"
 #include "VertexFit/Helix.h"
@@ -129,13 +130,17 @@ D0omega_K4pi::D0omega_K4pi(const string& name, ISvcLocator* pSvcLocator) :
   declareProperty("MinPID", fMinPID);     // PID probability should be at least this value
 
   // * Whether or not to check success of Particle Identification *
-  declareProperty("CheckMCtruth", fCheckMC);
-  declareProperty("CheckVertex", fCheckVertex);
-  declareProperty("CheckPhoton", fCheckPhoton);
-  declareProperty("CheckDedx", fCheckDedx);
-  declareProperty("CheckTof", fCheckTof);
-  declareProperty("CheckPID", fCheckPID);
-  declareProperty("CheckEtot", fCheckEtot);
+  DECLAREWRITE(f.fit4c);
+  DECLAREWRITE(f.fit5c);
+  DECLAREWRITE(f.MC);
+  DECLAREWRITE(f.v);
+  DECLAREWRITE(f.photon);
+  DECLAREWRITE(f.dedx);
+  DECLAREWRITE(f.TofEC);
+  DECLAREWRITE(f.TofIB);
+  DECLAREWRITE(f.TofOB);
+  DECLAREWRITE(f.PID);
+  f.cuts.write = true;
 }
 
 // * ========================== * //
@@ -165,7 +170,7 @@ StatusCode D0omega_K4pi::execute()
   f.cuts[0]++; // counter for all events
 
   // Reset chi square values
-  if(fCheckMC)
+  if(f.MC.write)
   {
     f.MC.chi2_4C   = 99999.;
     f.MC.chi2_5C   = 99999.;
@@ -240,7 +245,7 @@ StatusCode D0omega_K4pi::execute()
     f.v.rphi         = vecipa[1];
 
     // * WRITE primary vertex position info ("vxyz" branch) *
-    if(fCheckVertex) f.v.Fill();
+    f.v.FillSafe();
 
     // * Apply vertex cuts *
     if(fabs(f.v.z) >= fVz0cut) continue;
@@ -307,7 +312,7 @@ StatusCode D0omega_K4pi::execute()
     f.photon.dang = f.photon.dang * DegToRad;
 
     // * WRITE photon info ("photon" branch)
-    if(fCheckPhoton) f.photon.Fill();
+    f.photon.FillSafe();
 
     // * Apply photon cuts
     if(f.photon.eraw < fEnergyThreshold) continue;
@@ -326,7 +331,7 @@ StatusCode D0omega_K4pi::execute()
   f.cuts[3]++;
 
   /// <li> Check charged track dEdx PID information
-  if(fCheckDedx)
+  if(f.dedx.write)
   {
     for(int i = 0; i < nGood; ++i)
     {
@@ -354,7 +359,7 @@ StatusCode D0omega_K4pi::execute()
   }
 
   /// <li> Check charged track ToF PID information
-  if(fCheckTof)
+  if(f.TofEC.write || f.TofIB.write || f.TofOB.write)
   {
     for(int i = 0; i < nGood; ++i)
     {
@@ -502,7 +507,7 @@ StatusCode D0omega_K4pi::execute()
     RecMdcTrack* mdcTrk = (*itTrk)->mdcTrack();
 
     // * WRITE particle identification info ("pid" branch) *
-    if(fCheckPID)
+    if(f.PID.write)
     {
       f.PID.p     = mdcTrk->p();          // momentum of the track
       f.PID.cost  = cos(mdcTrk->theta()); // theta angle of the track
@@ -655,7 +660,7 @@ StatusCode D0omega_K4pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << f.fit4c.chi2 << endmsg;
+    log << MSG::INFO << " chisq 4C = " << f.fit4c.chi2 << endmsg;
 
     /// **Apply cut**: fit4c passed and ChiSq less than fMaxChiSq.
     if(f.fit4c.chi2 < fMaxChiSq)
@@ -676,7 +681,7 @@ StatusCode D0omega_K4pi::execute()
         f.fit4c.omega.m = results.comb1.omega.m();
         f.fit4c.D0.p    = results.comb1.D0.rho();
         f.fit4c.omega.p = results.comb1.omega.rho();
-        if(fCheckMC)
+        if(f.MC.write)
         {
           f.MC.mD0_4C    = results.comb1.D0.m();
           f.MC.momega_4C = results.comb1.omega.m();
@@ -688,13 +693,12 @@ StatusCode D0omega_K4pi::execute()
         f.fit4c.omega.m = results.comb2.omega.m();
         f.fit4c.D0.p    = results.comb2.D0.rho();
         f.fit4c.omega.p = results.comb2.omega.rho();
-        if(fCheckMC)
+        if(f.MC.write)
         {
           f.MC.mD0_4C    = results.comb2.D0.m();
           f.MC.momega_4C = results.comb2.omega.m();
         }
       }
-
       f.fit4c.Fill();
       f.cuts[5]++;
     }
@@ -740,7 +744,7 @@ StatusCode D0omega_K4pi::execute()
       }
     }
 
-    log << MSG::INFO << " chisq = " << f.fit5c.chi2 << endmsg;
+    log << MSG::INFO << " chisq 5C = " << f.fit5c.chi2 << endmsg;
 
     /// **Apply cut**: fit5c passed and ChiSq less than fMaxChiSq.
     if(f.fit5c.chi2 < fMaxChiSq)
@@ -761,7 +765,7 @@ StatusCode D0omega_K4pi::execute()
         f.fit5c.omega.m = results.comb1.omega.m();
         f.fit5c.D0.p    = results.comb1.D0.rho();
         f.fit5c.omega.p = results.comb1.omega.rho();
-        if(fCheckMC)
+        if(f.MC.write)
         {
           f.MC.mD0_5C    = results.comb1.D0.m();
           f.MC.momega_5C = results.comb1.omega.m();
@@ -773,7 +777,7 @@ StatusCode D0omega_K4pi::execute()
         f.fit5c.omega.m = results.comb2.omega.m();
         f.fit5c.D0.p    = results.comb2.D0.rho();
         f.fit5c.omega.p = results.comb2.omega.rho();
-        if(fCheckMC)
+        if(f.MC.write)
         {
           f.MC.mD0_5C    = results.comb2.D0.m();
           f.MC.momega_5C = results.comb2.omega.m();
@@ -794,7 +798,7 @@ StatusCode D0omega_K4pi::execute()
 
   /// <li> Get MC truth
   bool writeMC = (f.MC.momega_4C < 100.) || (f.MC.momega_5C < 100.);
-  if(fCheckMC && eventHeader->runNumber() < 0 && writeMC)
+  if(f.MC.write && eventHeader->runNumber() < 0 && writeMC)
   {
     f.MC.runid = eventHeader->runNumber();
     f.MC.evtid = eventHeader->eventNumber();
@@ -810,6 +814,8 @@ StatusCode D0omega_K4pi::execute()
       int  rootIndex(-1);
 
       Event::McParticleCol::iterator it = mcParticleCol->begin();
+      f.MC.PDG.clear();
+      f.MC.mother.clear();
       for(; it != mcParticleCol->end(); it++)
       {
         if((*it)->primaryParticle()) continue;
@@ -820,11 +826,11 @@ StatusCode D0omega_K4pi::execute()
           rootIndex = (*it)->trackIndex();
         }
         if(!incPdcy) continue;
-        f.MC.PDG[f.MC.n] = (*it)->particleProperty();
+        f.MC.PDG.push_back((*it)->particleProperty());
         if((*it)->mother().particleProperty() == incPid)
-          f.MC.mother[f.MC.n] = (*it)->mother().trackIndex() - rootIndex;
+          f.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex);
         else
-          f.MC.mother[f.MC.n] = (*it)->mother().trackIndex() - rootIndex - 1;
+          f.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex - 1);
         if((*it)->particleProperty() == incPid) f.MC.mother[f.MC.n] = 0;
         ++f.MC.n;
       }
@@ -854,6 +860,44 @@ StatusCode D0omega_K4pi::finalize()
   cout << "  Pass 4C Kalman fit:     " << f.cuts[5] << endl;
   cout << "  Pass 5C Kalman fit:     " << f.cuts[6] << endl;
   cout << endl;
+
+  TFile file(fFileName.c_str(), "RECREATE");
+  if(!file.IsOpen())
+  {
+    log << MSG::ERROR << "Failed to load output file \"" << fFileName << "\"" << endmsg;
+    return StatusCode::FAILURE;
+  }
+  if(file.IsZombie())
+  {
+    log << MSG::ERROR << "Output file \"" << fFileName << "\" is zombie" << endmsg;
+    return StatusCode::FAILURE;
+  }
+  f.fit4c.WriteSafe();
+  f.fit5c.WriteSafe();
+  f.MC.WriteSafe();
+  f.v.WriteSafe();
+  f.photon.WriteSafe();
+  f.dedx.WriteSafe();
+  f.TofEC.WriteSafe();
+  f.TofIB.WriteSafe();
+  f.TofOB.WriteSafe();
+  f.PID.WriteSafe();
+
+  f.cuts.Fill();
+  f.cuts.WriteSafe();
+  file.Close();
+
+cout << "fit4c:  " << f.fit4c.GetEntries() << endl;
+cout << "fit5c:  " << f.fit5c.GetEntries() << endl;
+cout << "MC:     " << f.MC.GetEntries() << endl;
+cout << "cuts:   " << f.cuts.GetEntries() << endl;
+cout << "v:      " << f.v.GetEntries() << endl;
+cout << "photon: " << f.photon.GetEntries() << endl;
+cout << "dedx:   " << f.dedx.GetEntries() << endl;
+cout << "TofEC:  " << f.TofEC.GetEntries() << endl;
+cout << "TofIB:  " << f.TofIB.GetEntries() << endl;
+cout << "TofOB:  " << f.TofOB.GetEntries() << endl;
+cout << "PID:    " << f.PID.GetEntries() << endl;
 
   log << MSG::INFO << "Successfully returned from finalize()" << endmsg;
   return StatusCode::SUCCESS;

@@ -1,5 +1,5 @@
-#ifndef IniSelect_IniFile_H
-#define IniSelect_IniFile_H
+#ifndef IniSelect_TreeCollection_H
+#define IniSelect_TreeCollection_H
 
 #include "D0omega_K4pi/Trees/TreeCuts.h"
 #include "D0omega_K4pi/Trees/TreeDedx.h"
@@ -7,18 +7,16 @@
 #include "D0omega_K4pi/Trees/TreePhoton.h"
 #include "D0omega_K4pi/Trees/TreeToF.h"
 #include "D0omega_K4pi/Trees/TreeVertex.h"
-#include "TFile.h"
 
 /// @addtogroup BOSS_objects
 /// @{
 
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class IniFile : public TFile
+class TreeCollection
 {
 public:
-  IniFile(const char* name = "", const char* title = "") :
-    TFile(name, "RECREATE", title),
+  TreeCollection() :
     TofEC("TofEC", "End cap ToF decector"),
     TofIB("TofIB", "Inner barrel ToF decector"),
     TofOB("TofOB", "Outer barrel ToF decector"),

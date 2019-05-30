@@ -14,10 +14,8 @@
 /// @addtogroup BOSS_packages
 /// @{
 
-/// Commented version of the `D0omega_Kenu3pi` example BOSS package (version `00-00-23`). The `D0omega_Kenu3pi`
-/// example package particularly teaches the use of the Kalman kinematic fit procedure.
-/// @remark   In addition to the more extensive comments, some additional parameters, such as ToF
-/// without particle hypothesis, have been added.
+/// Commented version of the `D0omega_Kenu3pi` example BOSS package (version `00-00-23`). The `D0omega_Kenu3pi` example package particularly teaches the use of the Kalman kinematic fit procedure.
+/// @remark   In addition to the more extensive comments, some additional parameters, such as ToF without particle hypothesis, have been added.
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 18th, 2018
 class D0omega_Kenu3pi : public Algorithm
@@ -108,6 +106,7 @@ private:
   NTuple::Item<double> fPpi0_4C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_4C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
   NTuple::Item<double> fPomega_4C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
+  NTuple::Item<double> fPJpsi_4C;
 
   NTuple::Tuple*       fTupleFit5C; ///< 5-constraint (5C) fit information
   NTuple::Item<double> fChi_5C;     ///< \f$\chi^2\f$ of the Kalman kinematic fit for 4+1C
@@ -122,6 +121,7 @@ private:
   NTuple::Item<double> fPpi0_5C;    ///< 3-mom. for \f$\pi^0 \rightarrow \gamma\gamma\f$
   NTuple::Item<double> fPD0_5C;     ///< 3-mom. for \f$D^0 \rightarrow K^-\pi^+\f$
   NTuple::Item<double> fPomega_5C;  ///< 3-mom. for \f$\omega \rightarrow \pi^0\pi^-\pi^+\f$
+  NTuple::Item<double> fPJpsi_5C;
   NTuple::Item<double> fFcos;       ///< \f$E/|\vec{p}|\f$ ratio for \f$\pi^0\f$ candidate
   NTuple::Item<double> fElow;       ///< Lowest energy of the two photons
 

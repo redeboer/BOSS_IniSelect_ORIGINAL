@@ -13,6 +13,19 @@ class Tree : public TTree
 {
 public:
   Tree(const char *name, const char *title = "") : TTree(name, title) {}
+  Bool_t write;
+  void FillSafe()
+  {
+    if(write) Fill();
+  }
+  void WriteSafe()
+  {
+    if(write) Write();
+  }
+  const char* PropertyName() const
+  {
+    return Form("write_%s", GetName());
+  }
 };
 /// @}
 #endif

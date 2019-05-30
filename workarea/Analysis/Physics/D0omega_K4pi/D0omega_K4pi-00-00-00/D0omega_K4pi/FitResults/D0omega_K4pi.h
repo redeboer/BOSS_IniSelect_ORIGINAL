@@ -13,7 +13,7 @@ namespace D0omega_K4pi_space
   class Fit4C : public TreeFit
   {
   public:
-    Fit4C(const char* name, const char* title = "") : TreeFit(name, title){}
+    Fit4C(const char* name, const char* title = "") : TreeFit(name, title)
     {
       BRANCHMOM(pi0);
       BRANCHMOM(D0);
@@ -33,7 +33,7 @@ namespace D0omega_K4pi_space
   {
   public:
     Fit5C(const char* name, const char* title = "") :
-      Fit4C(name, title){}
+      Fit4C(name, title)
     {
       BRANCH(chi2_1C);
       BRANCH(fcos);
