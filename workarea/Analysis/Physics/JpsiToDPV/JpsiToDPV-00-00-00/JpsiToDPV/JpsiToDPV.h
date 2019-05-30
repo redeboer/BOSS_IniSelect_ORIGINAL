@@ -50,6 +50,11 @@ private:
   double fGammaThetaCut;
   double fGammaAngleCut;
 
+  // * Which particles to identify
+  bool fPID_e;
+  bool fPID_K;
+  bool fPID_pi;
+
   // * Declare whether to test the success of the 4- and 5-constraint fits
   bool   fDo_fit4c;
   bool   fDo_fit5c;

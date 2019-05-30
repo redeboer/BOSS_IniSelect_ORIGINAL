@@ -112,4 +112,4 @@ MessageSvc.useColors   = true;
 
 ApplicationMgr.EvtMax = 50;
 
-JpsiToDPV.OutFile = "/scratchfs/bes/deboer/data/root/TopoAna_vector.root";
+JpsiToDPV.OutFile = "$JPSITODPVROOT/test/TestJob.root";

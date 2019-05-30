@@ -20,14 +20,18 @@ JpsiToDPV.Test5C   = true;  // write fit5c and geff
 JpsiToDPV.MaxChiSq = 200.;  // chisq for both fits should be less
 JpsiToDPV.MinPID   = 0.001; // PID probability should be at least this value
 
+JpsiToDPV.IdentifyElectron = false;
+JpsiToDPV.IdentifyKaon     = true;
+JpsiToDPV.IdentifyPion     = true;
+
 // * Whether or not to check success of Particle Identification *
 JpsiToDPV.write_fit4c    = true;
 JpsiToDPV.write_fit5c    = true;
 JpsiToDPV.write_topology = true;
-JpsiToDPV.write_vxyz     = false;
-JpsiToDPV.write_photon   = false;
-JpsiToDPV.write_dedx     = false;
-JpsiToDPV.write_TofEC    = false;
-JpsiToDPV.write_TofIB    = false;
-JpsiToDPV.write_TofOB    = false;
-JpsiToDPV.write_PID      = false;
+JpsiToDPV.write_vxyz     = true;
+JpsiToDPV.write_photon   = true;
+JpsiToDPV.write_dedx     = true;
+JpsiToDPV.write_TofEC    = true;
+JpsiToDPV.write_TofIB    = true;
+JpsiToDPV.write_TofOB    = true;
+JpsiToDPV.write_PID      = true;

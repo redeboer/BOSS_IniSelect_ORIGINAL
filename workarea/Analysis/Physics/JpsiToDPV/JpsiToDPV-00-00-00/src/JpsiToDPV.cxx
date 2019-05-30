@@ -1,9 +1,8 @@
+#include "JpsiToDPV/Globals.h"
 #include "JpsiToDPV/JpsiToDPV.h"
 #include "CLHEP/Geometry/Point3D.h"
-#include "CLHEP/Vector/LorentzVector.h"
 #include "CLHEP/Vector/ThreeVector.h"
 #include "CLHEP/Vector/TwoVector.h"
-#include "DstEvent/TofHitStatus.h"
 #include "EventModel/Event.h"
 #include "EventModel/EventHeader.h"
 #include "EventModel/EventModel.h"
@@ -32,43 +31,7 @@ using CLHEP::Hep2Vector;
 using CLHEP::Hep3Vector;
 using CLHEP::HepLorentzVector;
 using namespace std;
-
-typedef vector<EvtRecTrack*>::iterator TrackIter;
-
-// * ==================================== * //
-// * ------- GLOBALS AND TYPEDEFS ------- * //
-// * ==================================== * //
-
-// * Constants * //
-const double mD0    = 1.8648400;  // mass of D0
-const double mpi0   = 0.13497700; // mass of pi0
-const double mphi   = 1.0194550;  // mass of phi
-const double momega = 0.78265000; // mass of omega
-
-const double me  = 0.000511; // electron
-const double mmu = 0.105658; // muon
-const double mpi = 0.139570; // charged pion
-const double mK  = 0.493677; // charged kaon
-const double mp  = 0.938272; // proton
-
-const double xmass[5] = {
-  me,  // electron
-  mmu, // muon
-  mpi, // charged pion
-  mK,  // charged kaon
-  mp   // proton
-};
-const double velc_mm = 299.792458; // tof path unit in mm
-const double Ecms    = 3.097;      // center-of-mass energy
-
-const double DegToRad = 180. / (CLHEP::pi);
-const double fivepi   = CLHEP::twopi + CLHEP::twopi + pi;
-
-HepLorentzVector ecms(0.011 * Ecms, 0, 0, Ecms);
-
-const int incPid1 = 91;
-const int incPid2 = 92;
-const int incPid  = 443;
+using namespace IniSelect;
 
 // * Typedefs * //
 typedef vector<HepLorentzVector> Vp4;
@@ -77,37 +40,39 @@ ParticleID*         JpsiToDPV::pid    = ParticleID::instance();
 VertexFit*          JpsiToDPV::vtxfit = VertexFit::instance();
 KalmanKinematicFit* JpsiToDPV::kkmfit = KalmanKinematicFit::instance();
 
-// * =========================== * //
-// * ------- CONSTRUCTOR ------- * //
-// * =========================== * //
-/// Constructor for the `JpsiToDPV` algorithm.
-/// Here, you should declare properties: give them a name, assign a parameter (data member of `JpsiToDPV`), and if required a documentation string. Note that you should define the paramters themselves in the header (JpsiToDPV/JpsiToDPV.h) and that you should assign the values in `share/jopOptions_JpsiToDPV.txt`. Algorithms should inherit from Gaudi's `Algorithm` class. See https://dayabay.bnl.gov/dox/GaudiKernel/html/classAlgorithm.html.
 JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   Algorithm(name, pSvcLocator),
   log(msgSvc(), this->name())
 {
-  gErrorIgnoreLevel = 6000; // to suppres ROOT error messages /// @todo Check whether the "memory-resident" `TTree` is reliable.
+  /// -# Suppres ROOT error messages.
+  /// @todo Check whether the "memory-resident" `TTree` is reliable.
+  gErrorIgnoreLevel = 6000;
   declareProperty("OutFile", fFileName);
 
-  // * Define r0, z0 cut for charged tracks *
+  /// -# Define r0, z0 cut for charged tracks.
   declareProperty("Vr0cut", fVr0cut);
   declareProperty("Vz0cut", fVz0cut);
   declareProperty("Vrvz0cut", fRvz0cut);
   declareProperty("Vrvxy0cut", fRvxy0cut);
 
-  // * Define energy, dphi, dthe cuts for fake gamma's *
+  /// -# Define energy, dphi, dthe cuts for fake gamma's.
   declareProperty("EnergyThreshold", fEnergyThreshold);
   declareProperty("GammaPhiCut", fGammaPhiCut);
   declareProperty("GammaThetaCut", fGammaThetaCut);
   declareProperty("GammaAngleCut", fGammaAngleCut);
 
-  // * Whether to test the success of the 4- and 5-constraint fits *
+  /// -# Whether to test the success of the 4- and 5-constraint fits.
   declareProperty("Test4C", fDo_fit4c);   // write fit4c
   declareProperty("Test5C", fDo_fit5c);   // write fit5c and geff
   declareProperty("MaxChiSq", fMaxChiSq); // chisq for both fits should be less
   declareProperty("MinPID", fMinPID);     // PID probability should be at least this value
 
-  // * Whether or not to check success of Particle Identification *
+  /// -# Which particles to identify
+  declareProperty("IdentifyElectron", fPID_e);
+  declareProperty("IdentifyKaon", fPID_K);
+  declareProperty("IdentifyPion", fPID_pi);
+
+  /// -# Whether or not to check success of Particle Identification.
   DECLAREWRITE(fD0omega.K4pi.fit4c);
   DECLAREWRITE(fD0omega.K4pi.fit5c);
   DECLAREWRITE(fD0omega.K4pi.MC);
@@ -292,35 +257,13 @@ StatusCode JpsiToDPV::execute()
   if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
   fTrees.cuts[3]++;
 
-  /// <li> Check charged track dEdx PID information
-  if(fTrees.dedx.write)
-  {
-    TrackIter it = tracks.charged.begin();
-    for(; it != tracks.charged.end(); ++it)
-    {
-      if(!(*it)->isMdcTrackValid()) continue;
-      if(!(*it)->isMdcDedxValid()) continue;
-      RecMdcTrack* mdcTrk  = (*it)->mdcTrack();
-      RecMdcDedx*  dedxTrk = (*it)->mdcDedx();
-
-      fTrees.dedx.p      = mdcTrk->p();            // momentum of the track
-      fTrees.dedx.chie   = dedxTrk->chiE();        // chi2 in case of electron
-      fTrees.dedx.chimu  = dedxTrk->chiMu();       // chi2 in case of muon
-      fTrees.dedx.chipi  = dedxTrk->chiPi();       // chi2 in case of pion
-      fTrees.dedx.chik   = dedxTrk->chiK();        // chi2 in case of kaon
-      fTrees.dedx.chip   = dedxTrk->chiP();        // chi2 in case of proton
-      fTrees.dedx.probPH = dedxTrk->probPH();      // most probable pulse height from truncated mean
-      fTrees.dedx.normPH = dedxTrk->normPH();      // normalized pulse height
-      fTrees.dedx.ghit   = dedxTrk->numGoodHits(); // number of good hits
-      fTrees.dedx.thit   = dedxTrk->numTotalHits(); // total number of hits
-      fTrees.dedx.Fill();
-    }
-  }
+  fTrees.dedx.Check(tracks.charged);
 
   /// <li> Check charged track ToF PID information
+  TreeToF::WriteToF(tracks.charged, fTrees.TofEC, fTrees.TofIB, fTrees.TofOB);
   if(fTrees.TofEC.write || fTrees.TofIB.write || fTrees.TofOB.write)
   {
-    TrackIter it = tracks.charged.begin();
+    vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
     for(; it != tracks.charged.end(); ++it)
     {
       if(!(*it)->isMdcTrackValid()) continue;
@@ -331,116 +274,30 @@ StatusCode JpsiToDPV::execute()
 
       double ptrk = mdcTrk->p();
 
-      SmartRefVector<RecTofTrack>::iterator iter_tof = tofTrkCol.begin();
-      for(; iter_tof != tofTrkCol.end(); ++iter_tof)
+      SmartRefVector<RecTofTrack>::iterator it_tof = tofTrkCol.begin();
+      for(; it_tof != tofTrkCol.end(); ++it_tof)
       {
         TofHitStatus hitStatus;
-        hitStatus.setStatus((*iter_tof)->status());
-
-        // * If end cap ToF detector: *
-        if(!(hitStatus.is_barrel()))
+        hitStatus.setStatus((*it_tof)->status());
+        if(!hitStatus.is_barrel())
         {
-          // *  *
           if(!(hitStatus.is_counter())) continue; // ?
-          if(hitStatus.layer() != 0) continue;    // abort if not end cap
-
-          // * Get ToF info *
-          fTrees.TofEC.p     = ptrk;
-          fTrees.TofEC.path  = (*iter_tof)->path();         // distance of flight
-          fTrees.TofEC.tof   = (*iter_tof)->tof();          // time of flight
-          fTrees.TofEC.ph    = (*iter_tof)->ph();           // ToF pulse height
-          fTrees.TofEC.zrhit = (*iter_tof)->zrhit();        // Track extrapolate Z or R Hit position
-          fTrees.TofEC.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-          fTrees.TofEC.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
-
-          // * Get ToF for each particle hypothesis *
-          double texp[5];
-          for(int j = 0; j < 5; j++)
-          {
-            double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
-            double beta = gb / sqrt(1 + gb * gb);
-            texp[j]     = 10 * fTrees.TofEC.path / beta / velc_mm; // hypothesis ToF
-          }
-          fTrees.TofEC.te =
-            fTrees.TofEC.tof - texp[0]; // difference with ToF in electron hypothesis
-          fTrees.TofEC.tmu = fTrees.TofEC.tof - texp[1]; // difference with ToF in muon hypothesis
-          fTrees.TofEC.tpi =
-            fTrees.TofEC.tof - texp[2]; // difference with ToF in charged pion hypothesis
-          fTrees.TofEC.tk =
-            fTrees.TofEC.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-          fTrees.TofEC.tp = fTrees.TofEC.tof - texp[4]; // difference with ToF in proton hypothesis
-          fTrees.TofEC.Fill();
+          if(hitStatus.layer() == 0) fTrees.TofEC.Check(*it_tof, ptrk);
         }
-
-        // * If ebarrel ToF ToF detector: *
         else
         {
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
-          { // * inner barrel ToF detector
-            fTrees.TofIB.p     = ptrk;
-            fTrees.TofIB.path  = (*iter_tof)->path();  // distance of flight
-            fTrees.TofIB.tof   = (*iter_tof)->tof();   // time of flight
-            fTrees.TofIB.ph    = (*iter_tof)->ph();    // ToF pulse height
-            fTrees.TofIB.zrhit = (*iter_tof)->zrhit(); // Track extrapolate Z or R Hit position
-            fTrees.TofIB.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-            fTrees.TofIB.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
-            double texp[5];
-            for(int j = 0; j < 5; j++)
-            {
-              double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
-              double beta = gb / sqrt(1 + gb * gb);
-              texp[j]     = 10 * fTrees.TofIB.path / beta / velc_mm; // hypothesis ToF
-            }
-            fTrees.TofIB.te =
-              fTrees.TofIB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fTrees.TofIB.tmu = fTrees.TofIB.tof - texp[1]; // difference with ToF in muon hypothesis
-            fTrees.TofIB.tpi =
-              fTrees.TofIB.tof - texp[2]; // difference with ToF in charged pion hypothesis
-            fTrees.TofIB.tk =
-              fTrees.TofIB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-            fTrees.TofIB.tp =
-              fTrees.TofIB.tof - texp[4]; // difference with ToF in proton hypothesis
-            fTrees.TofIB.Fill();
-          }
-
-          if(hitStatus.layer() == 2)
-          { // * outer barrel ToF detector
-            fTrees.TofOB.p     = ptrk;
-            fTrees.TofOB.path  = (*iter_tof)->path();  // distance of flight
-            fTrees.TofOB.tof   = (*iter_tof)->tof();   // ToF pulse height
-            fTrees.TofOB.ph    = (*iter_tof)->ph();    // ToF pulse height
-            fTrees.TofOB.zrhit = (*iter_tof)->zrhit(); // track extrapolate Z or R Hit position
-            fTrees.TofOB.qual  = 0. + (*iter_tof)->quality(); // data quality of reconstruction
-            fTrees.TofOB.cntr  = 0. + (*iter_tof)->tofID();   // ToF counter ID
-            double texp[5];
-            for(int j = 0; j < 5; j++)
-            {
-              double gb   = ptrk / xmass[j]; // v = p/m (non-relativistic velocity)
-              double beta = gb / sqrt(1 + gb * gb);
-              texp[j]     = 10 * fTrees.TofOB.path / beta / velc_mm; // hypothesis ToF
-            }
-            fTrees.TofOB.te =
-              fTrees.TofOB.tof - texp[0]; // difference with ToF in electron hypothesis
-            fTrees.TofOB.tmu = fTrees.TofOB.tof - texp[1]; // difference with ToF in muon hypothesis
-            fTrees.TofOB.tpi =
-              fTrees.TofOB.tof - texp[2]; // difference with ToF in charged pion hypothesis
-            fTrees.TofOB.tk =
-              fTrees.TofOB.tof - texp[3]; // difference with ToF in charged kaon hypothesis
-            fTrees.TofOB.tp =
-              fTrees.TofOB.tof - texp[4]; // difference with ToF in proton hypothesis
-
-            // * WRITE ToF outer barrel info ("tof2" branch) *
-            fTrees.TofOB.Fill();
-          }
+            fTrees.TofIB.Check(*it_tof, ptrk);
+          else
+            if(hitStatus.layer() == 2) fTrees.TofOB.Check(*it_tof, ptrk);
         }
       }
     } // loop all charged track
   }
 
   /// <li> Get 4-momentum for each charged track
-
-  TrackIter it = tracks.charged.begin();
+  vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
   for(; it != tracks.charged.end(); ++it)
   {
     pid->init();
@@ -450,7 +307,9 @@ StatusCode JpsiToDPV::execute()
     pid->setChiMinCut(4);
     pid->setRecTrack(*it);
     pid->usePidSys(pid->useDedx() | pid->useTof1() | pid->useTof2() | pid->useTofE());
-    pid->identify(pid->onlyPion() | pid->onlyKaon());
+    if(fPID_pi) pid->identify(pid->onlyPion());
+    if(fPID_K) pid->identify(pid->onlyKaon());
+    if(fPID_e) pid->identify(pid->onlyElectron());
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
     RecMdcTrack* mdcTrk = (*it)->mdcTrack();
@@ -469,7 +328,7 @@ StatusCode JpsiToDPV::execute()
     }
 
     RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
-    if(pid->probPion() > pid->probKaon())
+    if(fPID_pi && pid->probPion() > pid->probKaon() && pid->probPion() > pid->probElectron())
     {
       if(pid->probPion() < fMinPID) continue;
       RecMdcKalTrack::setPidType(RecMdcKalTrack::pion);
@@ -480,12 +339,24 @@ StatusCode JpsiToDPV::execute()
     }
     else
     {
-      if(pid->probKaon() < fMinPID) continue;
-      RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
-      if(mdcKalTrk->charge() < 0)
-        tracks.Km.push_back(*it);
-      else
-        tracks.Kp.push_back(*it);
+      if(fPID_K && pid->probKaon() > pid->probElectron())
+      {
+        if(pid->probKaon() < fMinPID) continue;
+        RecMdcKalTrack::setPidType(RecMdcKalTrack::kaon);
+        if(mdcKalTrk->charge() < 0)
+          tracks.Km.push_back(*it);
+        else
+          tracks.Kp.push_back(*it);
+      }
+      else if(fPID_e)
+      {
+        if(pid->probElectron() < fMinPID) continue;
+        RecMdcKalTrack::setPidType(RecMdcKalTrack::electron);
+        if(mdcKalTrk->charge() < 0)
+          tracks.em.push_back(*it);
+        else
+          tracks.ep.push_back(*it);
+      }
     }
   }
 
@@ -539,11 +410,11 @@ StatusCode JpsiToDPV::execute()
     // * Run over all gamma pairs and find the pair with the best chi2
     fD0omega.K4pi.fit4c.chi2 = 9999.;
     HepLorentzVector pTot;
-    TrackIter        it1 = tracks.photon.begin();
+    vector<EvtRecTrack*>::iterator        it1 = tracks.photon.begin();
     for(; it1 != tracks.photon.end(); ++it1)
     {
       RecEmcShower* g1Trk = (*it1)->emcShower();
-      TrackIter     it2   = tracks.photon.begin();
+      vector<EvtRecTrack*>::iterator     it2   = tracks.photon.begin();
       for(; it2 != tracks.photon.end(); ++it2)
       {
         RecEmcShower* g2Trk = (*it2)->emcShower();
@@ -623,11 +494,11 @@ StatusCode JpsiToDPV::execute()
     // * Find the best combination over all possible pi+ pi- gamma gamma pair
     fD0omega.K4pi.fit5c.chi2 = 9999.;
 
-    TrackIter it1 = tracks.photon.begin();
+    vector<EvtRecTrack*>::iterator it1 = tracks.photon.begin();
     for(; it1 != tracks.photon.end(); ++it1)
     {
       RecEmcShower* g1Trk = (*it1)->emcShower();
-      TrackIter     it2   = tracks.photon.begin();
+      vector<EvtRecTrack*>::iterator     it2   = tracks.photon.begin();
       for(; it2 != tracks.photon.end(); ++it2)
       {
         RecEmcShower* g2Trk = (*it2)->emcShower();
