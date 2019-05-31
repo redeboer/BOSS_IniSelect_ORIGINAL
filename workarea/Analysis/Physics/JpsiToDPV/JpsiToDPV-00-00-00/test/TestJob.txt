@@ -110,6 +110,6 @@ EventCnvSvc.digiRootInputFile = {
 MessageSvc.OutputLevel = 4;
 MessageSvc.useColors   = true;
 
-ApplicationMgr.EvtMax = 50;
+ApplicationMgr.EvtMax = 25;
 
 JpsiToDPV.OutFile = "$JPSITODPVROOT/test/TestJob.root";
