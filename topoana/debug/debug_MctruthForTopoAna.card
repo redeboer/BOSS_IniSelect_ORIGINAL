@@ -12,22 +12,22 @@
   MctruthForTopoAna
 }
 
-% Branch name of the number of particles
+% Branch name of the number of particles (Default: nMCGen)
 {
   Nmcps
 }
 
-% Branch name of the array of particle identifications
+% Branch name of the PDG codes of particles (Default: MCGenPDG)
 {
   Pid
 }
 
-% Branch name of the array of the mother indeces of particles
+% Branch name of the mother indeces of particles (Default: MCGenMothIndex)
 {
   Midx
 }
 
-% Main name of output files 
+% Main name of output files (Default: Main name of the card file) 
 {  
   debug_MctruthForTopoAna
 }
@@ -45,7 +45,7 @@
 #   1000
 # }
 
-% Signal particles
+% Signal identification --- particles
 {
   D0
   D*0
@@ -55,7 +55,7 @@
   omega
 }
 
-% Signal decay final states
+% Signal identification --- decay initial-final states
 {
   0	  K-
   1	  pi+
@@ -74,7 +74,7 @@
   3	  pi+
 }
 
-% Perform the topology analysis of the decay branches begun with the following particles
+% Component analysis --- particles
 {
   D*0
   D0
@@ -84,7 +84,7 @@
   phi   30
 }
 
-% Perform the topology analysis of the exclusive decay branches matched with the following inclusive decay branches
+% Component analysis --- decay trees
 {
   0	  J/psi
   1	  D0
