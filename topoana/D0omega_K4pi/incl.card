@@ -1,10 +1,6 @@
-# ============================= #
-# ------ REQUIRED FIELDS ------ #
-# ============================= #
-
 % Names of input root files
 {
-  /scratchfs/bes/deboer/data/root/D0omega_K4pi/incl_Jpsi2009/D0omega_K4pi_*.root
+  /mnt/d/IHEP/root/D0omega_K4pi/incl/Jpsi2009/D0omega_K4pi_*.root
 }
 
 % Tree name
@@ -12,88 +8,39 @@
   topology
 }
 
-% Branch name of the number of particles
+# Here, AI, VI, MIV, and MDV are short for array of integers, vector of integers, multiple integer variables, and multiple double variables.
+% Storage type of the raw input topology data (Four options: AI, VI, MIV, and MDV. Default: AI)
+{
+  AI
+}
+
+% Branch name of the number of particles (Default: nMCGen)
 {
   Nparticles
 }
 
-% Branch name of the array of particle identifications
+% Branch name of the PDG codes of particles (Default: MCGenPDG)
 {
   PDG
 }
 
-% Branch name of the array of the mother indeces of particles
+% Branch name of the mother indeces of particles (Default: MCGenMothIndex)
 {
   mother
 }
 
-% Main name of output files
+% Component analysis --- decay trees
+{
+  Y
+}
+
+# Four files with the same name but in different (root/txt/tex/pdf) formats will be outputed. The filename extensions are appended automatically by the program as suffixes. Thus, to avoid repetition, any filename extension is not recommended to be used in the name as a suffix.
+% Main name of output files (Default: Main name of the card file)
 {
   D0omega_K4pi_incl
 }
 
-
-
-
-
-# ============================= #
-# ------ OPTIONAL FIELDS ------ #
-# ============================= #
-
-% Signal particles
-{
-  D0
-  phi
-  omega
-  K-
-  pi+
-  pi-
-  pi0
-}
-
-% Signal decay final states
-{
-  0	  K-
-  1	  pi+
-  2	  pi+
-  3	  pi-
-  4	  pi0
-}
-
-% Perform the topology analysis of the decay branches begun with the following particles
-{
-  D*0
-  D0
-  anti-D*0
-  anti-D0
-  omega 30
-  phi   30
-}
-
-% Perform the topology analysis of the exclusive decay branches matched with the following inclusive decay branches
-{
-  0	  J/psi
-  1	  D0
-  2   omega
-}
-
-# % Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
-# % Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
-# % Suppress the topology tags in the output tex/pdf files (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
 % Cut to select entries
 {
-  momega_fit5c > 0.71 && momega_fit5c < 0.85
-  # momega_fit5c > 0.71 && momega_fit5c < 0.85 && mD0_fit5c > 1.84 && mD0_fit5c < 1.89
+  momega_fit5c > 0.74 && momega_fit5c < 0.82 && mD0_fit5c > 1.85 && mD0_fit5c < 1.89
 }
