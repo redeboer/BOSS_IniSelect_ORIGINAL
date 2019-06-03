@@ -1,4 +1,4 @@
-#include "../JpsiToDPV/ObjComparer.h"
+#include "ObjComparer.h"
 #include "TFile.h"
 #include "TSystem.h"
 #include <iostream>
@@ -7,6 +7,7 @@
 #include "TROOT.h"
 #include "TSystem.h"
 #include <string>
+#include <cstdlib>
 
 // Wrap command line stuff in this namespace
 // Command line argument explanation:
@@ -309,11 +310,12 @@ int main(int argc, char* argv[])
   }
 
   // Load libraries.
-  for(const auto& l : libraryNames)
+  std::vector<std::string>::iterator it = libraryNames.begin();
+  for(; it != libraryNames.end(); ++it)
   {
-    if(gSystem->Load(l.c_str()) < 0)
+    if(gSystem->Load(it->c_str()) < 0)
     {
-      std::cerr << "Cannot load library " << l << "\n";
+      std::cerr << "Cannot load library " << *it << "\n";
       return 1;
     }
   }

@@ -90,4 +90,6 @@ workarea/Analysis/TopoAna/v1.6.9.1/share/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/test/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/tutorials/**/*.pdf
 workarea/Analysis/TopoAna/v1.6.9.1/**/*.pdf
-workarea/Analysis/YangYH/**
+workarea/Analysis/YangYH/**ROOTCompare
+workarea/**/ROOTCompare
+workarea/Analysis/Physics/JpsiToDPV/JpsiToDPV-00-00-00/test/ROOTCompare
