@@ -1,7 +1,3 @@
-# ============================= #
-# ------ REQUIRED FIELDS ------ #
-# ============================= #
-
 % Names of input root files
 {
   /mnt/d/IHEP/root/D0omega_K4pi/incl/Jpsi2009/D0omega_K4pi_*.root
@@ -10,6 +6,12 @@
 % Tree name
 {
   topology
+}
+
+# Here, AI, VI, MIV, and MDV are short for array of integers, vector of integers, multiple integer variables, and multiple double variables.
+% Storage type of the raw input topology data (Four options: AI, VI, MIV, and MDV. Default: AI)
+{
+  AI
 }
 
 % Branch name of the number of particles (Default: nMCGen)
@@ -27,73 +29,18 @@
   mother
 }
 
+% Component analysis --- decay trees
+{
+  Y
+}
+
+# Four files with the same name but in different (root/txt/tex/pdf) formats will be outputed. The filename extensions are appended automatically by the program as suffixes. Thus, to avoid repetition, any filename extension is not recommended to be used in the name as a suffix.
 % Main name of output files (Default: Main name of the card file)
 {
   D0omega_K4pi_incl
 }
 
-
-
-
-
-# ============================= #
-# ------ OPTIONAL FIELDS ------ #
-# ============================= #
-
-# % Signal identification --- particles
-# {
-#   D0
-#   phi
-#   omega
-#   K-
-#   pi+
-#   pi-
-#   pi0
-# }
-
-% Signal identification --- decay initial-final states
-{
-  0	  K-
-  1	  pi+
-  2	  pi+
-  3	  pi-
-  4	  pi0
-}
-
-% Component analysis --- particles
-{
-  D*0
-  D0
-  anti-D*0
-  anti-D0
-  omega 30
-  phi   30
-}
-
-# % Component analysis --- decay trees
-# {
-#   0	  J/psi
-#   1	  D0
-#   2   omega
-# }
-
-# % Skip the topology analysis of decay trees and decay final states (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
-# % Suppress the first branches of decay trees in the output txt/tex/pdf files (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
-# % Suppress the topology tags in the output tex/pdf files (Two options: Y and N. Default: N)
-# {
-#   Y
-# }
-
 % Cut to select entries
 {
-  momega_fit5c > 0.71 && momega_fit5c < 0.85
-  # momega_fit5c > 0.71 && momega_fit5c < 0.85 && mD0_fit5c > 1.84 && mD0_fit5c < 1.89
+  momega_fit5c > 0.74 && momega_fit5c < 0.82 && mD0_fit5c > 1.85 && mD0_fit5c < 1.89
 }
