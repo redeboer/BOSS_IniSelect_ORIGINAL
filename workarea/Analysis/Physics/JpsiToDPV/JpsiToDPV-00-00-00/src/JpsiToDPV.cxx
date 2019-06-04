@@ -17,7 +17,6 @@
 #include "GaudiKernel/NTuple.h"
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
-#include "McTruth/McParticle.h"
 #include "TError.h"
 #include "TFile.h"
 #include "TMath.h"
@@ -555,39 +554,7 @@ StatusCode JpsiToDPV::execute()
     fD0omega.K4pi.MC.runid = eventHeader->runNumber();
     fD0omega.K4pi.MC.evtid = eventHeader->eventNumber();
     SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
-    if(!mcParticleCol)
-      cout << "Could not retrieve McParticelCol" << endl;
-    else
-    {
-      fD0omega.K4pi.MC.n = 0;
-      bool doNotInclude(true);
-      int  indexOffset = -1;
-      bool incPdcy(false);
-      int  rootIndex(-1);
-
-      Event::McParticleCol::iterator it = mcParticleCol->begin();
-      fD0omega.K4pi.MC.PDG.clear();
-      fD0omega.K4pi.MC.mother.clear();
-      for(; it != mcParticleCol->end(); it++)
-      {
-        if((*it)->primaryParticle()) continue;
-        if(!(*it)->decayFromGenerator()) continue;
-        if((*it)->particleProperty() == incPid)
-        {
-          incPdcy   = true;
-          rootIndex = (*it)->trackIndex();
-        }
-        if(!incPdcy) continue;
-        fD0omega.K4pi.MC.PDG.push_back((*it)->particleProperty());
-        if((*it)->mother().particleProperty() == incPid)
-          fD0omega.K4pi.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex);
-        else
-          fD0omega.K4pi.MC.mother.push_back((*it)->mother().trackIndex() - rootIndex - 1);
-        if((*it)->particleProperty() == incPid) fD0omega.K4pi.MC.mother[fD0omega.K4pi.MC.n] = 0;
-        ++fD0omega.K4pi.MC.n;
-      }
-      fD0omega.K4pi.MC.Fill();
-    }
+    fD0omega.K4pi.MC.Fill(mcParticleCol);
   }
 
   /// </ol>
