@@ -4,6 +4,7 @@
 #include "JpsiToDPV/Trees/TreeContainer.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/ThreeVector.h"
+#include "VertexFit/Helix.h"
 #ifndef ENABLE_BACKWARDS_COMPATIBILITY
 typedef HepGeom::Point3D<double> HepPoint3D;
 #endif

@@ -56,7 +56,7 @@ public:
       normPH = dedxTrk->normPH();      // normalized pulse height
       ghit   = dedxTrk->numGoodHits(); // number of good hits
       thit   = dedxTrk->numTotalHits(); // total number of hits
-      Fill();
+      fTree->Fill();
     }
   }
 };

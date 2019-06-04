@@ -64,7 +64,7 @@ public:
     tpi = tof - texp[2]; // difference with ToF in charged pion hypothesis
     tk  = tof - texp[3]; // difference with ToF in charged kaon hypothesis
     tp  = tof - texp[4]; // difference with ToF in proton hypothesis
-    Fill();
+    fTree->Fill();
   }
   static void WriteToF(vector<EvtRecTrack*>& vec, TreeToF& TofIB, TreeToF& TofOB, TreeToF& TofEC)
   {
