@@ -312,20 +312,9 @@ StatusCode JpsiToDPV::execute()
     if(fPID_e) pid->identify(pid->onlyElectron());
     pid->calculate();
     if(!(pid->IsPidInfoValid())) continue;
-    RecMdcTrack* mdcTrk = (*it)->mdcTrack();
 
     // * WRITE particle identification info ("pid" branch) *
-    if(fTrees.PID.write)
-    {
-      fTrees.PID.p     = mdcTrk->p();          // momentum of the track
-      fTrees.PID.cost  = cos(mdcTrk->theta()); // theta angle of the track
-      fTrees.PID.dedx  = pid->chiDedx(2);      // Chi squared of the dedx of the track
-      fTrees.PID.tofIB = pid->chiTof1(2);      // Chi squared of the inner barrel ToF of the track
-      fTrees.PID.tofOB = pid->chiTof2(2);      // Chi squared of the outer barrel ToF of the track
-      fTrees.PID.probp = pid->probPion();      // probability that it is a pion
-      fTrees.PID.probK = pid->probKaon();      // probability that it is a kaon
-      fTrees.PID.Fill();
-    }
+    fTrees.PID.Check(pid, *it);
 
     RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
     if(fPID_pi && pid->probPion() > pid->probKaon() && pid->probPion() > pid->probElectron())
