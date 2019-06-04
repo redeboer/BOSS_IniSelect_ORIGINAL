@@ -36,7 +36,7 @@ public:
   Double_t ghit;   ///< Number of good hits
   Double_t thit;   ///< Total number of hits
 
-  void Check(const vector<EvtRecTrack*>& vec)
+  void Fill(const vector<EvtRecTrack*>& vec)
   {
     if(!write) return;
     for(vector<EvtRecTrack*>::const_iterator it = vec.begin(); it != vec.end(); ++it)

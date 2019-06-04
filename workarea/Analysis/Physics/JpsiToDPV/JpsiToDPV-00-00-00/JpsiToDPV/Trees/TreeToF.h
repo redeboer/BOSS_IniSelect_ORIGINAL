@@ -42,7 +42,7 @@ public:
   Double_t tk;    ///< Difference with ToF in charged kaon hypothesis
   Double_t tp;    ///< Difference with ToF in proton hypothesis
 
-  void Check(RecTofTrack* trk, Double_t ptrk)
+  void Fill(RecTofTrack* trk, Double_t ptrk)
   {
     if(!write) return;
     p     = ptrk;
@@ -88,15 +88,15 @@ public:
         if(!hitStatus.is_barrel())
         {
           if(!(hitStatus.is_counter())) continue; // ?
-          if(hitStatus.layer() == 0) TofEC.Check(*it_tof, ptrk);
+          if(hitStatus.layer() == 0) TofEC.Fill(*it_tof, ptrk);
         }
         else
         {
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
-            TofIB.Check(*it_tof, ptrk);
+            TofIB.Fill(*it_tof, ptrk);
           else
-            if(hitStatus.layer() == 2) TofOB.Check(*it_tof, ptrk);
+            if(hitStatus.layer() == 2) TofOB.Fill(*it_tof, ptrk);
         }
       }
     } // loop all charged track

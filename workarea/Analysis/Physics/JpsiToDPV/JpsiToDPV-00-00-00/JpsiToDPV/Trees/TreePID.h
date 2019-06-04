@@ -29,7 +29,7 @@ public:
   Double_t tofOB; ///< \f$\chi^2\f$ of the outer barrel ToF of the track
   Double_t probp; ///< Probability that it is a pion
   Double_t probK; ///< Probability that it is a kaon
-  void     Check(ParticleID* pid, EvtRecTrack* trk)
+  void     Fill(ParticleID* pid, EvtRecTrack* trk)
   {
     if(!write) return;
     RecMdcTrack* mdcTrk = trk->mdcTrack();

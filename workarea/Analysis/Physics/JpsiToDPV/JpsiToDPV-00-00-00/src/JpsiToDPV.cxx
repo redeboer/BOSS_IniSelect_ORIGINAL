@@ -150,33 +150,9 @@ StatusCode JpsiToDPV::execute()
     EvtRecTrack* trk = *(evtRecTrkCol->begin() + i);
     if(!trk->isMdcTrackValid()) continue;
 
-    // * Get track info from Main Drift Chamber
-    RecMdcTrack* mdcTrk = trk->mdcTrack();
-    fTrees.v.p          = mdcTrk->p();
-    fTrees.v.x          = mdcTrk->x();
-    fTrees.v.y          = mdcTrk->y();
-    fTrees.v.z          = mdcTrk->z();
-    fTrees.v.phi        = mdcTrk->helix(1);
-
-    // * Get vertex origin
-    double xv  = xorigin.x();
-    double yv  = xorigin.y();
-    fTrees.v.r = (fTrees.v.x - xv) * cos(fTrees.v.phi) + (fTrees.v.y - yv) * sin(fTrees.v.phi);
-
-    // * Get radii of vertex
-    HepVector    a  = mdcTrk->helix();
-    HepSymMatrix Ea = mdcTrk->err();
-    HepPoint3D   point0(0., 0., 0.); // the initial point for MDC recosntruction
-    HepPoint3D   IP(xorigin[0], xorigin[1], xorigin[2]);
-    VFHelix      helixip(point0, a, Ea);
-    helixip.pivot(IP);
-    HepVector vecipa = helixip.a();
-    fTrees.v.rxy     = fabs(vecipa[0]); // nearest distance to IP in xy plane
-    fTrees.v.rz      = vecipa[3];       // nearest distance to IP in z direction
-    fTrees.v.rphi    = vecipa[1];
-
     // * WRITE primary vertex position info ("vxyz" branch) *
-    fTrees.v.Fill();
+    RecMdcTrack* mdcTrk = trk->mdcTrack();
+    fTrees.v.Fill(xorigin, mdcTrk);
 
     // * Apply vertex cuts *
     if(fabs(fTrees.v.z) >= fVz0cut) continue;
@@ -257,7 +233,7 @@ StatusCode JpsiToDPV::execute()
   if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
   fTrees.cuts[3]++;
 
-  fTrees.dedx.Check(tracks.charged);
+  fTrees.dedx.Fill(tracks.charged);
 
   /// <li> Check charged track ToF PID information
   TreeToF::WriteToF(tracks.charged, fTrees.TofEC, fTrees.TofIB, fTrees.TofOB);
@@ -282,15 +258,15 @@ StatusCode JpsiToDPV::execute()
         if(!hitStatus.is_barrel())
         {
           if(!(hitStatus.is_counter())) continue; // ?
-          if(hitStatus.layer() == 0) fTrees.TofEC.Check(*it_tof, ptrk);
+          if(hitStatus.layer() == 0) fTrees.TofEC.Fill(*it_tof, ptrk);
         }
         else
         {
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
-            fTrees.TofIB.Check(*it_tof, ptrk);
+            fTrees.TofIB.Fill(*it_tof, ptrk);
           else
-            if(hitStatus.layer() == 2) fTrees.TofOB.Check(*it_tof, ptrk);
+            if(hitStatus.layer() == 2) fTrees.TofOB.Fill(*it_tof, ptrk);
         }
       }
     } // loop all charged track
@@ -314,7 +290,7 @@ StatusCode JpsiToDPV::execute()
     if(!(pid->IsPidInfoValid())) continue;
 
     // * WRITE particle identification info ("pid" branch) *
-    fTrees.PID.Check(pid, *it);
+    fTrees.PID.Fill(pid, *it);
 
     RecMdcKalTrack* mdcKalTrk = (*it)->mdcKalTrack();
     if(fPID_pi && pid->probPion() > pid->probKaon() && pid->probPion() > pid->probElectron())
