@@ -2,7 +2,9 @@
 #define JpsiToDPV_TreeMC_H
 
 #include "JpsiToDPV/Trees/TreeContainer.h"
+#include "JpsiToDPV/Globals.h"
 #include "McTruth/McParticle.h"
+#include "GaudiKernel/SmartDataPtr.h"
 #include <iostream>
 
 /// @addtogroup BOSS_objects
@@ -44,18 +46,18 @@ public:
     {
       if((*it)->primaryParticle()) continue;
       if(!(*it)->decayFromGenerator()) continue;
-      if((*it)->particleProperty() == incPid)
+      if((*it)->particleProperty() == IniSelect::incPid)
       {
         incPdcy   = true;
         rootIndex = (*it)->trackIndex();
       }
       if(!incPdcy) continue;
       PDG.push_back((*it)->particleProperty());
-      if((*it)->mother().particleProperty() == incPid)
+      if((*it)->mother().particleProperty() == IniSelect::incPid)
         mother.push_back((*it)->mother().trackIndex() - rootIndex);
       else
         mother.push_back((*it)->mother().trackIndex() - rootIndex - 1);
-      if((*it)->particleProperty() == incPid) mother[n] = 0;
+      if((*it)->particleProperty() == IniSelect::incPid) mother[n] = 0;
       ++n;
     }
     fTree->Fill();
