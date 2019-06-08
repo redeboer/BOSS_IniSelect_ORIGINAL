@@ -94,19 +94,37 @@ namespace D0omega
     {
       Package() : fit("fit"), MC("topology") {}
 
-      Bool_t DoFit(Double_t chi2max, TrackCollection& tracks)
+      Bool_t DoFit(VertexParameter& vxpar, Double_t chi2max, TrackCollection& tracks)
       {
-        fit.chi2 = 9999.;
 
-        KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
-        VertexFit*          vtxfit = VertexFit::instance();
+        RecMdcKalTrack* KmTrk   = tracks.Km[0]->mdcKalTrack();
+        RecMdcKalTrack* pimTrk  = tracks.pim[0]->mdcKalTrack();
+        RecMdcKalTrack* pip1Trk = tracks.pip[0]->mdcKalTrack();
+        RecMdcKalTrack* pip2Trk = tracks.pip[1]->mdcKalTrack();
+
+        WTrackParameter wvKmTrk(IniSelect::mK, KmTrk->getZHelix(), KmTrk->getZError());
+        WTrackParameter wvpimTrk(IniSelect::mpi, pimTrk->getZHelix(), pimTrk->getZError());
+        WTrackParameter wvpip1Trk(IniSelect::mpi, pip1Trk->getZHelix(), pip1Trk->getZError());
+        WTrackParameter wvpip2Trk(IniSelect::mpi, pip2Trk->getZHelix(), pip2Trk->getZError());
+
+        VertexFit* vtxfit = VertexFit::instance();
+        vtxfit->init();
+        vtxfit->AddTrack(0, wvKmTrk);
+        vtxfit->AddTrack(1, wvpimTrk);
+        vtxfit->AddTrack(2, wvpip1Trk);
+        vtxfit->AddTrack(3, wvpip2Trk);
+        vtxfit->AddVertex(0, vxpar, 0, 1);
+        if(!vtxfit->Fit(0)) return false;
+        vtxfit->Swim(0);
 
         WTrackParameter wKm   = vtxfit->wtrk(0);
         WTrackParameter wpim  = vtxfit->wtrk(1);
         WTrackParameter wpip1 = vtxfit->wtrk(2);
         WTrackParameter wpip2 = vtxfit->wtrk(3);
 
+        KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
         vector<EvtRecTrack*>::iterator it1 = tracks.photon.begin();
+        fit.chi2 = 9999.;
         for(; it1 != tracks.photon.end(); ++it1)
         {
           RecEmcShower*                  g1Trk = (*it1)->emcShower();

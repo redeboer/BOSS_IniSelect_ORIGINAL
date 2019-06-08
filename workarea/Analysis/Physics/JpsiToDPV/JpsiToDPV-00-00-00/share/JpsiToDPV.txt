@@ -25,10 +25,10 @@ JpsiToDPV.IdentifyPion     = true;
 // * Whether or not to check success of Particle Identification *
 JpsiToDPV.write_fit      = true;
 JpsiToDPV.write_topology = true;
-JpsiToDPV.write_vxyz     = true;
-JpsiToDPV.write_photon   = true;
-JpsiToDPV.write_dedx     = true;
-JpsiToDPV.write_TofEC    = true;
-JpsiToDPV.write_TofIB    = true;
-JpsiToDPV.write_TofOB    = true;
-JpsiToDPV.write_PID      = true;
+JpsiToDPV.write_vxyz     = false;
+JpsiToDPV.write_photon   = false;
+JpsiToDPV.write_dedx     = false;
+JpsiToDPV.write_TofEC    = false;
+JpsiToDPV.write_TofIB    = false;
+JpsiToDPV.write_TofOB    = false;
+JpsiToDPV.write_PID      = false;

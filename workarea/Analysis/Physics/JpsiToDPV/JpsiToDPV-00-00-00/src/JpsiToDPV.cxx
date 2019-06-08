@@ -132,7 +132,7 @@ StatusCode JpsiToDPV::execute()
     xorigin.setZ(dbv[2]);
   }
 
-  /// <li> LOOP OVER CHARGED TRACKS: select charged tracks (eventual pions)
+  /// <li> Select good charged tracks.
   int netCharge = 0;
   for(int i = 0; i < evtRecEvent->totalCharged(); ++i)
   {
@@ -216,16 +216,13 @@ StatusCode JpsiToDPV::execute()
     // * Add photon track to vector
     tracks.photon.push_back(trk);
   }
-
-  // * Finish Good Photon Selection *
   log << MSG::DEBUG << "Number of good photons: " << tracks.photon.size() << "/"
       << evtRecEvent->totalNeutral() << endmsg;
-  if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
-  fTrees.cuts[3]++;
 
+  /// <li> Check charged track \f$dE/dx\f$ information.
   fTrees.dedx.Fill(tracks.charged);
 
-  /// <li> Check charged track ToF PID information
+  /// <li> Check charged track ToF PID information.
   TreeToF::WriteToF(tracks.charged, fTrees.TofEC, fTrees.TofIB, fTrees.TofOB);
   if(fTrees.TofEC.write || fTrees.TofIB.write || fTrees.TofOB.write)
   {
@@ -262,7 +259,7 @@ StatusCode JpsiToDPV::execute()
     } // loop all charged track
   }
 
-  /// <li> Get 4-momentum for each charged track
+  /// <li> Perform PID on charged tracks.
   vector<EvtRecTrack*>::iterator it = tracks.charged.begin();
   for(; it != tracks.charged.end(); ++it)
   {
@@ -315,23 +312,7 @@ StatusCode JpsiToDPV::execute()
     }
   }
 
-  /// **Apply cut**: PID
-  if(tracks.Km.size() != 1) return SUCCESS;
-  if(tracks.pim.size() != 1) return SUCCESS;
-  if(tracks.pip.size() != 2) return SUCCESS;
-  fTrees.cuts[4]++;
-
-  RecMdcKalTrack* KmTrk   = tracks.Km[0]->mdcKalTrack();
-  RecMdcKalTrack* pimTrk  = tracks.pim[0]->mdcKalTrack();
-  RecMdcKalTrack* pip1Trk = tracks.pip[0]->mdcKalTrack();
-  RecMdcKalTrack* pip2Trk = tracks.pip[1]->mdcKalTrack();
-
-  WTrackParameter wvKmTrk(mK, KmTrk->getZHelix(), KmTrk->getZError());
-  WTrackParameter wvpimTrk(mpi, pimTrk->getZHelix(), pimTrk->getZError());
-  WTrackParameter wvpip1Trk(mpi, pip1Trk->getZHelix(), pip1Trk->getZError());
-  WTrackParameter wvpip2Trk(mpi, pip2Trk->getZHelix(), pip2Trk->getZError());
-
-  /// <li> Get vertex fit
+  /// <li> Initialise vertex fit.
   HepPoint3D   vx(0., 0., 0.);
   HepSymMatrix Evx(3, 0);
   double       bx = 1E+6;
@@ -345,22 +326,21 @@ StatusCode JpsiToDPV::execute()
   vxpar.setVx(vx);
   vxpar.setEvx(Evx);
 
-  vtxfit->init();
-  vtxfit->AddTrack(0, wvKmTrk);
-  vtxfit->AddTrack(1, wvpimTrk);
-  vtxfit->AddTrack(2, wvpip1Trk);
-  vtxfit->AddTrack(3, wvpip2Trk);
-  vtxfit->AddVertex(0, vxpar, 0, 1);
-  if(!vtxfit->Fit(0)) return SUCCESS;
-  vtxfit->Swim(0);
+  /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+\pi^-\pi^+\gamma\gamma\f$ (`D0omega_K4pi`).
+  if((tracks.Km.size() == 1) && (tracks.pim.size() == 1) && (tracks.pip.size() == 2))
+  {
+    fTrees.cuts[3]++;
+    if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
+    fTrees.cuts[4]++;
+    if(fD0omega.K4pi.DoFit(vxpar, fMaxChiSq, tracks)) fTrees.cuts[5]++;
+  }
 
-  WTrackParameter wKm   = vtxfit->wtrk(0);
-  WTrackParameter wpim  = vtxfit->wtrk(1);
-  WTrackParameter wpip1 = vtxfit->wtrk(2);
-  WTrackParameter wpip2 = vtxfit->wtrk(3);
-
-  /// <li> Perform Kalman kinematic fit.
-  if(fD0omega.K4pi.DoFit(fMaxChiSq, tracks)) fTrees.cuts[5]++;
+  /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+K^-K^+\f$ (`D0phi_KpiKK`).
+  if((tracks.Km.size() == 2) && (tracks.Kp.size() == 1) && (tracks.pip.size() == 1))
+  {
+    fTrees.cuts[6]++;
+    // if(fD0phi.KpiKK.DoFit(vxpar, fMaxChiSq, tracks)) fTrees.cuts[7]++;
+  }
 
   /// <li> Get MC truth.
   bool writeMC = (fD0omega.K4pi.MC.momega < 100.);
@@ -386,10 +366,14 @@ StatusCode JpsiToDPV::finalize()
   cout << "Resulting flow chart:" << endl;
   cout << "  Total number of events: " << fTrees.cuts[0] << endl;
   cout << "  Pass N charged tracks:  " << fTrees.cuts[1] << endl;
-  cout << "  Pass zero net charge    " << fTrees.cuts[2] << endl;
-  cout << "  Pass N gammas:          " << fTrees.cuts[3] << endl;
-  cout << "  Pass PID:               " << fTrees.cuts[4] << endl;
-  cout << "  Pass Kalman fit:        " << fTrees.cuts[5] << endl;
+  cout << "  Pass zero net charge:   " << fTrees.cuts[2] << endl;
+  cout << "  D0omega study:" << endl;
+  cout << "    Pass K- pi+ pi- pi+: " << fTrees.cuts[3] << endl;
+  cout << "    Pass >2 gammas:      " << fTrees.cuts[4] << endl;
+  cout << "    Pass Kalman fit:     " << fTrees.cuts[5] << endl;
+  cout << "  D0phi study:" << endl;
+  cout << "    Pass K- pi+ K- K+: " << fTrees.cuts[6] << endl;
+  cout << "    Pass Kalman fit:   " << fTrees.cuts[7] << endl;
   cout << endl;
   cout << "Trees:" << endl;
   if(fD0omega.K4pi.fit.write) cout << "  fit:    " << fD0omega.K4pi.fit.GetEntries() << " events" << endl;

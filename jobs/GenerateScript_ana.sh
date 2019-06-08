@@ -36,7 +36,7 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 		identifier="${packageName}_incl"
 # * In case of analysing real BESIII data * #
 	elif [ "${data_or_MC}" == "data" ]; then
-		fileToRead="directories/data/data_Jpsi2018_round11"
+		fileToRead="directories/data/data_Jpsi2009"
 		nFilesPerJob=100
 		identifier="${packageName}_data"
 # * If not defined properly * #
