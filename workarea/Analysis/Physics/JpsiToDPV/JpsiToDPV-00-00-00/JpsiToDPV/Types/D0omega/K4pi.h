@@ -1,6 +1,7 @@
 #ifndef Physics_JpsiToDPV_Types_D0omega_K4pi_H
 #define Physics_JpsiToDPV_Types_D0omega_K4pi_H
 
+#include "JpsiToDPV/Globals.h"
 #include "JpsiToDPV/TrackCollection.h"
 #include "JpsiToDPV/TreeCollection.h"
 #include "JpsiToDPV/Trees/TreeFit.h"
@@ -120,8 +121,8 @@ namespace D0omega
             kkmfit->AddTrack(3, wpip2);
             kkmfit->AddTrack(4, 0.0, g1Trk);
             kkmfit->AddTrack(5, 0.0, g2Trk);
-            kkmfit->AddFourMomentum(0, ecms);
-            kkmfit->AddResonance(1, mpi0, 4, 5);
+            kkmfit->AddFourMomentum(0, IniSelect::ecms);
+            kkmfit->AddResonance(1, IniSelect::mpi0, 4, 5);
             if(!kkmfit->Fit(0)) continue;
             results.g1     = kkmfit->pfit(4);
             results.g2     = kkmfit->pfit(5);
@@ -162,8 +163,8 @@ namespace D0omega
           MC.mpi0_5C = fit.pi0_5C.m;
         }
 
-        double m1 = abs(results.comb1.omega.m() - momega);
-        double m2 = abs(results.comb2.omega.m() - momega);
+        double m1 = abs(results.comb1.omega.m() - IniSelect::momega);
+        double m2 = abs(results.comb2.omega.m() - IniSelect::momega);
         if(m1 < m2)
         {
           fit.D0.m    = results.comb1.D0.m();

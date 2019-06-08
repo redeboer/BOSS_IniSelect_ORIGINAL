@@ -364,7 +364,7 @@ StatusCode JpsiToDPV::execute()
   if(fDo_fit) if(fD0omega.K4pi.DoFit(fMaxChiSq, tracks)) fTrees.cuts[6]++;
 
   /// <li> Get MC truth.
-  bool writeMC = (fD0omega.K4pi.MC.momega_4C < 100.) || (fD0omega.K4pi.MC.momega_5C < 100.);
+  bool writeMC = (fD0omega.K4pi.MC.momega < 100.);
   if(fD0omega.K4pi.MC.write && eventHeader->runNumber() < 0 && writeMC)
   {
     fD0omega.K4pi.MC.runid = eventHeader->runNumber();
