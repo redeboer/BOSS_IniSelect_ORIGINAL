@@ -10,8 +10,6 @@
 #include "VertexFit/VertexFit.h"
 #include <string>
 
-#define DECLAREWRITE(TREE) declareProperty(TREE.PropertyName(), TREE.write)
-
 namespace D0omega
 {
   namespace K4pi
@@ -43,10 +41,12 @@ namespace D0omega
         BRANCHMOM(pi0_4C);
         BRANCHMOM(D0);
         BRANCHMOM(omega);
+        BRANCHMOM(Jpsi);
       }
       MomObj pi0_4C;
       MomObj D0;
       MomObj omega;
+      MomObj Jpsi;
     };
 
     struct Fit5C : public Fit4C
@@ -92,11 +92,10 @@ namespace D0omega
 
     struct Package
     {
-      Package() : fit("fit"), MC("topology") {}
+      Package() : fit("D0omega_K4pi"), MC("topology") {}
 
       Bool_t DoFit(VertexParameter& vxpar, Double_t chi2max, TrackCollection& tracks)
       {
-
         RecMdcKalTrack* KmTrk   = tracks.Km[0]->mdcKalTrack();
         RecMdcKalTrack* pimTrk  = tracks.pim[0]->mdcKalTrack();
         RecMdcKalTrack* pip1Trk = tracks.pip[0]->mdcKalTrack();
@@ -122,14 +121,14 @@ namespace D0omega
         WTrackParameter wpip1 = vtxfit->wtrk(2);
         WTrackParameter wpip2 = vtxfit->wtrk(3);
 
-        KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
-        vector<EvtRecTrack*>::iterator it1 = tracks.photon.begin();
-        fit.chi2 = 9999.;
-        for(; it1 != tracks.photon.end(); ++it1)
+        fit.chi2                              = 9999.;
+        KalmanKinematicFit*            kkmfit = KalmanKinematicFit::instance();
+        vector<EvtRecTrack*>::iterator it1;
+        for(it1 = tracks.photon.begin(); it1 != tracks.photon.end(); ++it1)
         {
           RecEmcShower*                  g1Trk = (*it1)->emcShower();
-          vector<EvtRecTrack*>::iterator it2   = tracks.photon.begin();
-          for(; it2 != tracks.photon.end(); ++it2)
+          vector<EvtRecTrack*>::iterator it2;
+          for(it2 = tracks.photon.begin(); it2 != tracks.photon.end(); ++it2)
           {
             RecEmcShower* g2Trk = (*it2)->emcShower();
             kkmfit->init();
@@ -215,7 +214,7 @@ namespace D0omega
         fit.Elow   = (eg1 < eg2) ? eg1 : eg2;            // lowest energy of the two gammas
 
         // * WRITE pi^0 information from EMCal ("fit" branch) *
-        fit.Fill(); // "fit" branch
+        fit.Fill();
         return true;
       }
 

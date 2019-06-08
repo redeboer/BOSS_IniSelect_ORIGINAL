@@ -10,5 +10,5 @@ namespace D0omega
     K4pi::Package K4pi;
   };
 } // namespace D0omega
-/// @}
+
 #endif

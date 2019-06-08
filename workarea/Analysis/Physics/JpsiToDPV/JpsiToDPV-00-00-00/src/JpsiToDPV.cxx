@@ -1,4 +1,3 @@
-#include "JpsiToDPV/Globals.h"
 #include "JpsiToDPV/JpsiToDPV.h"
 #include "CLHEP/Geometry/Point3D.h"
 #include "CLHEP/Vector/ThreeVector.h"
@@ -17,6 +16,7 @@
 #include "GaudiKernel/NTuple.h"
 #include "GaudiKernel/PropertyMgr.h"
 #include "GaudiKernel/SmartDataPtr.h"
+#include "JpsiToDPV/Globals.h"
 #include "TError.h"
 #include "TFile.h"
 #include "TMath.h"
@@ -108,6 +108,7 @@ StatusCode JpsiToDPV::execute()
   */
   SmartDataPtr<EvtRecEvent>    evtRecEvent(eventSvc(), EventModel::EvtRec::EvtRecEvent);
   SmartDataPtr<EvtRecTrackCol> evtRecTrkCol(eventSvc(), EventModel::EvtRec::EvtRecTrackCol);
+  SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
 
   // * Reset values * //
   fD0omega.K4pi.MC.Reset();
@@ -252,8 +253,8 @@ StatusCode JpsiToDPV::execute()
           if(!hitStatus.is_counter()) continue;
           if(hitStatus.layer() == 1)
             fTrees.TofIB.Fill(*it_tof, ptrk);
-          else
-            if(hitStatus.layer() == 2) fTrees.TofOB.Fill(*it_tof, ptrk);
+          else if(hitStatus.layer() == 2)
+            fTrees.TofOB.Fill(*it_tof, ptrk);
         }
       }
     } // loop all charged track
@@ -332,24 +333,28 @@ StatusCode JpsiToDPV::execute()
     fTrees.cuts[3]++;
     if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
     fTrees.cuts[4]++;
-    if(fD0omega.K4pi.DoFit(vxpar, fMaxChiSq, tracks)) fTrees.cuts[5]++;
+    if(!fD0omega.K4pi.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
+    fTrees.cuts[5]++;
+    if(fD0omega.K4pi.MC.write && eventHeader->runNumber() < 0)
+    {
+      fD0omega.K4pi.MC.runid = eventHeader->runNumber();
+      fD0omega.K4pi.MC.evtid = eventHeader->eventNumber();
+      fD0omega.K4pi.MC.Fill(mcParticleCol);
+    }
   }
 
   /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+K^-K^+\f$ (`D0phi_KpiKK`).
   if((tracks.Km.size() == 2) && (tracks.Kp.size() == 1) && (tracks.pip.size() == 1))
   {
     fTrees.cuts[6]++;
-    // if(fD0phi.KpiKK.DoFit(vxpar, fMaxChiSq, tracks)) fTrees.cuts[7]++;
-  }
-
-  /// <li> Get MC truth.
-  bool writeMC = (fD0omega.K4pi.MC.momega < 100.);
-  if(fD0omega.K4pi.MC.write && eventHeader->runNumber() < 0 && writeMC)
-  {
-    fD0omega.K4pi.MC.runid = eventHeader->runNumber();
-    fD0omega.K4pi.MC.evtid = eventHeader->eventNumber();
-    SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
-    fD0omega.K4pi.MC.Fill(mcParticleCol);
+    if(!fD0phi.KpiKK.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
+    fTrees.cuts[7]++;
+    if(fD0phi.KpiKK.MC.write && eventHeader->runNumber() < 0)
+    {
+      fD0phi.KpiKK.MC.runid = eventHeader->runNumber();
+      fD0phi.KpiKK.MC.evtid = eventHeader->eventNumber();
+      fD0phi.KpiKK.MC.Fill(mcParticleCol);
+    }
   }
 
   /// </ol>
@@ -376,8 +381,10 @@ StatusCode JpsiToDPV::finalize()
   cout << "    Pass Kalman fit:   " << fTrees.cuts[7] << endl;
   cout << endl;
   cout << "Trees:" << endl;
-  if(fD0omega.K4pi.fit.write) cout << "  fit:    " << fD0omega.K4pi.fit.GetEntries() << " events" << endl;
-  if(fD0omega.K4pi.MC.write) cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << " events" << endl;
+  if(fD0omega.K4pi.fit.write)
+    cout << "  fit:    " << fD0omega.K4pi.fit.GetEntries() << " events" << endl;
+  if(fD0omega.K4pi.MC.write)
+    cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << " events" << endl;
   cout << "  ------------------" << endl;
   if(fTrees.v.write) cout << "  v:      " << fTrees.v.GetEntries() << " tracks" << endl;
   if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << " tracks" << endl;

@@ -6,6 +6,7 @@
 #include "JpsiToDPV/TrackCollection.h"
 #include "JpsiToDPV/TreeCollection.h"
 #include "JpsiToDPV/Types/D0omega.h"
+#include "JpsiToDPV/Types/D0phi.h"
 #include "ParticleID/ParticleID.h"
 #include "VertexFit/KalmanKinematicFit.h"
 #include "VertexFit/VertexFit.h"
@@ -37,6 +38,7 @@ private:
   TrackCollection  tracks;
   TreeCollection   fTrees;
   D0omega::Package fD0omega;
+  D0phi::Package   fD0phi;
 
   // * Declare r0, z0 cut for charged tracks
   double fVr0cut;
