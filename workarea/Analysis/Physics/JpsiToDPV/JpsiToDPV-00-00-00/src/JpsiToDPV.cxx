@@ -95,9 +95,7 @@ StatusCode JpsiToDPV::execute()
 
   // * Load DST file info *
   SmartDataPtr<Event::EventHeader> eventHeader(eventSvc(), "/Event/EventHeader");
-  int                              runNo = eventHeader->runNumber();
-  int                              evtNo = eventHeader->eventNumber();
-  log << MSG::DEBUG << "run, evtnum = " << runNo << " , " << evtNo << endmsg;
+  log << MSG::DEBUG << "run, evtnum = " << eventHeader->runNumber() << " , " << eventHeader->eventNumber() << endmsg;
   fTrees.cuts[0]++; // counter for all events
 
   // * Load event information and track collection *
@@ -125,8 +123,8 @@ StatusCode JpsiToDPV::execute()
   {
     double* dbv = vtxsvc->PrimaryVertex();
     double* vv  = vtxsvc->SigmaPrimaryVertex();
-    // HepVector dbv = fReader.PrimaryVertex(runNo);
-    // HepVector vv  = fReader.SigmaPrimaryVertex(runNo);
+    // HepVector dbv = fReader.PrimaryVertex(eventHeader->runNumber());
+    // HepVector vv  = fReader.SigmaPrimaryVertex(eventHeader->runNumber());
     xorigin.setX(dbv[0]);
     xorigin.setY(dbv[1]);
     xorigin.setZ(dbv[2]);
@@ -329,32 +327,31 @@ StatusCode JpsiToDPV::execute()
   /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+\pi^-\pi^+\gamma\gamma\f$ (`D0omega_K4pi`).
   if((tracks.Km.size() == 1) && (tracks.pim.size() == 1) && (tracks.pip.size() == 2))
   {
+    log << MSG::DEBUG << "PID: K- pi+ pi- pi+" << endmsg;
     fTrees.cuts[3]++;
     if(tracks.photon.size() < 2) return StatusCode::SUCCESS;
+    log << MSG::DEBUG << "     >2 gammas" << endmsg;
     fTrees.cuts[4]++;
     if(!fD0omega.K4pi.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
+    log << MSG::DEBUG << "     D0omega_K4pi fit successful" << endmsg;
     fTrees.cuts[5]++;
-    if(eventHeader->runNumber() < 0)
-    {
-      fD0omega.K4pi.tree.runid = eventHeader->runNumber();
-      fD0omega.K4pi.tree.evtid = eventHeader->eventNumber();
-      fD0omega.K4pi.tree.SetMC(mcParticleCol);
-    }
+    fD0omega.K4pi.tree.runid = eventHeader->runNumber();
+    fD0omega.K4pi.tree.evtid = eventHeader->eventNumber();
+    if(eventHeader->runNumber() < 0) fD0omega.K4pi.tree.SetMC(mcParticleCol);
     fD0omega.K4pi.tree.Fill();
   }
 
   /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+K^-K^+\f$ (`D0phi_KpiKK`).
   if((tracks.Km.size() == 2) && (tracks.Kp.size() == 1) && (tracks.pip.size() == 1))
   {
+    log << MSG::DEBUG << "PID: K- pi+ K- K+" << endmsg;
     fTrees.cuts[6]++;
     if(!fD0phi.KpiKK.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
+    log << MSG::DEBUG << "     D0phi_KpiKK fit successful" << endmsg;
     fTrees.cuts[7]++;
-    if(eventHeader->runNumber() < 0)
-    {
-      fD0phi.KpiKK.tree.runid = eventHeader->runNumber();
-      fD0phi.KpiKK.tree.evtid = eventHeader->eventNumber();
-      fD0phi.KpiKK.tree.SetMC(mcParticleCol);
-    }
+    fD0phi.KpiKK.tree.runid = eventHeader->runNumber();
+    fD0phi.KpiKK.tree.evtid = eventHeader->eventNumber();
+    if(eventHeader->runNumber() < 0) fD0phi.KpiKK.tree.SetMC(mcParticleCol);
     fD0phi.KpiKK.tree.Fill();
   }
 

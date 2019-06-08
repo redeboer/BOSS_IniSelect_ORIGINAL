@@ -26,7 +26,8 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 
 # * In case of analysing EXclusive Monte Carlo output * #
 	if [ "${data_or_MC}" == "excl" ]; then
-		directoryToRead="${SCRATCHFS}/data/dst/${packageName}/100,000_events"
+		# directoryToRead="${SCRATCHFS}/data/dst/${packageName}/100,000_events"
+		directoryToRead="${SCRATCHFS}/data/dst/D0omega_K4pi/100,000_events"
 		nFilesPerJob=-1
 		identifier="${packageName}_excl"
 # * In case of analysing INclusive Monte Carlo output * #
@@ -54,13 +55,15 @@ source "${BOSS_IniSelect}/setup/Functions.sh"
 	fi
 
 # * Create job from template and submit * #
+echo "Input DST files loaded from:"
 if [ "${fileToRead}" != "" ]; then
 	# * This will create your job files based on a file listing dst files and directories
+	echo "  ${fileToRead}"
 	CreateFilenameInventoryFromFile "${fileToRead}" "filenames/${identifier}_fromfile.txt" ${nFilesPerJob} "dst"
 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}_fromfile_???.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 else
 	# * This will create your job files based on a directory containing dst files
-echo $directoryToRead
+	echo "  ${directoryToRead}"
 	CreateFilenameInventoryFromDirectory "${directoryToRead}" "filenames/${identifier}.txt" ${nFilesPerJob} "dst"
 	bash CreateJobFiles_ana.sh "${packageName}" "filenames/${identifier}.txt" ${nEventsPerJob} ${outputLevel} "${outputSubdir}"
 fi
