@@ -40,11 +40,11 @@ public:
   void Fill(const Hep3Vector& origin, RecMdcTrack* mdcTrk)
   {
     // * Get track info from Main Drift Chamber
-    p          = mdcTrk->p();
-    x          = mdcTrk->x();
-    y          = mdcTrk->y();
-    z          = mdcTrk->z();
-    phi        = mdcTrk->helix(1);
+    p   = mdcTrk->p();
+    x   = mdcTrk->x();
+    y   = mdcTrk->y();
+    z   = mdcTrk->z();
+    phi = mdcTrk->helix(1);
 
     // * Get vertex origin
     double xv  = origin.x();

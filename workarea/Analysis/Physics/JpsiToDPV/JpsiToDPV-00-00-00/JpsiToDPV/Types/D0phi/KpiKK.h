@@ -30,43 +30,23 @@ namespace D0phi
       Reconstructed    comb1;
       Reconstructed    comb2;
     };
-    struct Fit4C : public TreeFit
+    struct Fit4C : public TreeFit, public TreeMC
     {
       Fit4C(const char* name, const char* title = "") : TreeFit(name, title)
       {
         BRANCHMOM(D0);
         BRANCHMOM(phi);
         BRANCHMOM(Jpsi);
+        BookMC(fTree);
       }
       MomObj D0;
       MomObj phi;
       MomObj Jpsi;
     };
 
-    struct TopoAna : public TreeMC
-    {
-      TopoAna(const char* name, const char* title = "") : TreeMC(name, title)
-      {
-        BRANCH(chi2);
-        BRANCH(mD0);
-        BRANCH(mphi);
-      }
-      Double_t chi2;
-      Double_t mD0;
-      Double_t mphi;
-
-      void Reset()
-      {
-        if(!write) return;
-        chi2 = 99999.;
-        mD0  = 99999.;
-        mphi = 99999.;
-      }
-    };
-
     struct Package
     {
-      Package() : fit("D0phi_KpiKK"), MC("topology") {}
+      Package() : tree("D0phi_KpiKK") {}
 
       Bool_t DoFit(VertexParameter& vxpar, Double_t chi2max, TrackCollection& tracks)
       {
@@ -95,8 +75,6 @@ namespace D0phi
         WTrackParameter wKp  = vtxfit->wtrk(2);
         WTrackParameter wpip = vtxfit->wtrk(3);
 
-        fit.chi2 = 9999.;
-
         KalmanKinematicFit* kkmfit = KalmanKinematicFit::instance();
         kkmfit->init();
         kkmfit->AddTrack(0, wKm1);
@@ -104,13 +82,12 @@ namespace D0phi
         kkmfit->AddTrack(2, wKp);
         kkmfit->AddTrack(3, wpip);
         kkmfit->AddFourMomentum(0, IniSelect::ecms);
+
         if(!kkmfit->Fit(0)) return false;
         if(!kkmfit->Fit()) return false;
+        tree.chi2 = kkmfit->chisq();
+        if(tree.chi2 > chi2max) return false;
 
-        Double_t chi2 = kkmfit->chisq();
-        if(fit.chi2 > chi2max) return false;
-
-        fit.chi2    = chi2;
         results.Km1 = kkmfit->pfit(0);
         results.Km2 = kkmfit->pfit(1);
         results.Kp  = kkmfit->pfit(2);
@@ -127,39 +104,29 @@ namespace D0phi
         double m2 = abs(results.comb2.phi.m() - IniSelect::mphi);
         if(m1 < m2)
         {
-          fit.D0.m   = results.comb1.D0.m();
-          fit.phi.m  = results.comb1.phi.m();
-          fit.Jpsi.m = results.comb1.Jpsi.m();
-          fit.D0.p   = results.comb1.D0.rho();
-          fit.phi.p  = results.comb1.phi.rho();
-          fit.Jpsi.p = results.comb1.Jpsi.rho();
-          if(MC.write)
-          {
-            MC.mD0  = results.comb1.D0.m();
-            MC.mphi = results.comb1.phi.m();
-          }
+          tree.D0.m   = results.comb1.D0.m();
+          tree.phi.m  = results.comb1.phi.m();
+          tree.Jpsi.m = results.comb1.Jpsi.m();
+          tree.D0.p   = results.comb1.D0.rho();
+          tree.phi.p  = results.comb1.phi.rho();
+          tree.Jpsi.p = results.comb1.Jpsi.rho();
         }
         else
         {
-          fit.D0.m   = results.comb2.D0.m();
-          fit.phi.m  = results.comb2.phi.m();
-          fit.Jpsi.m = results.comb2.Jpsi.m();
-          fit.D0.p   = results.comb2.D0.rho();
-          fit.phi.p  = results.comb2.phi.rho();
-          fit.Jpsi.p = results.comb2.Jpsi.rho();
-          if(MC.write)
-          {
-            MC.mD0  = results.comb2.D0.m();
-            MC.mphi = results.comb2.phi.m();
-          }
+          tree.D0.m   = results.comb2.D0.m();
+          tree.phi.m  = results.comb2.phi.m();
+          tree.Jpsi.m = results.comb2.Jpsi.m();
+          tree.D0.p   = results.comb2.D0.rho();
+          tree.phi.p  = results.comb2.phi.rho();
+          tree.Jpsi.p = results.comb2.Jpsi.rho();
         }
 
-        fit.Fill();
         return true;
       }
 
-      Fit4C          fit;
-      TopoAna        MC;
+      void Fill() { tree.Fill(); }
+
+      Fit4C          tree;
       LorentzVectors results;
     };
   } // namespace KpiKK

@@ -34,7 +34,7 @@ namespace D0omega
       Reconstructed    comb1;
       Reconstructed    comb2;
     };
-    struct Fit4C : public TreeFit
+    struct Fit4C : public TreeFit, public TreeMC
     {
       Fit4C(const char* name, const char* title = "") : TreeFit(name, title)
       {
@@ -42,6 +42,7 @@ namespace D0omega
         BRANCHMOM(D0);
         BRANCHMOM(omega);
         BRANCHMOM(Jpsi);
+        BookMC(fTree);
       }
       MomObj pi0_4C;
       MomObj D0;
@@ -63,36 +64,9 @@ namespace D0omega
       Double_t Elow;    ///< Lowest energy of the two photons
     };
 
-    struct TopoAna : public TreeMC
-    {
-      TopoAna(const char* name, const char* title = "") : TreeMC(name, title)
-      {
-        BRANCH(chi2);
-        BRANCH(mpi0_4C);
-        BRANCH(mpi0_5C);
-        BRANCH(mD0);
-        BRANCH(momega);
-      }
-      Double_t chi2;
-      Double_t mpi0_4C;
-      Double_t mpi0_5C;
-      Double_t mD0;
-      Double_t momega;
-
-      void Reset()
-      {
-        if(!write) return;
-        chi2    = 99999.;
-        mpi0_4C = 99999.;
-        mpi0_5C = 99999.;
-        mD0     = 99999.;
-        momega  = 99999.;
-      }
-    };
-
     struct Package
     {
-      Package() : fit("D0omega_K4pi"), MC("topology") {}
+      Package() : tree("D0omega_K4pi") {}
 
       Bool_t DoFit(VertexParameter& vxpar, Double_t chi2max, TrackCollection& tracks)
       {
@@ -121,7 +95,7 @@ namespace D0omega
         WTrackParameter wpip1 = vtxfit->wtrk(2);
         WTrackParameter wpip2 = vtxfit->wtrk(3);
 
-        fit.chi2                              = 9999.;
+        tree.chi2                              = 9999.;
         KalmanKinematicFit*            kkmfit = KalmanKinematicFit::instance();
         vector<EvtRecTrack*>::iterator it1;
         for(it1 = tracks.photon.begin(); it1 != tracks.photon.end(); ++it1)
@@ -148,9 +122,9 @@ namespace D0omega
             if(kkmfit->Fit())
             {
               double chi2 = kkmfit->chisq();
-              if(chi2 < fit.chi2)
+              if(chi2 < tree.chi2)
               {
-                fit.chi2       = chi2;
+                tree.chi2       = chi2;
                 results.Km     = kkmfit->pfit(0);
                 results.pim    = kkmfit->pfit(1);
                 results.pip1   = kkmfit->pfit(2);
@@ -163,63 +137,47 @@ namespace D0omega
           }
         }
 
-        if(fit.chi2 > chi2max) return false;
+        if(tree.chi2 > chi2max) return false;
 
         results.comb1.D0    = results.pip1 + results.Km;
         results.comb1.omega = results.pip2 + results.pim + results.pi0_5C;
         results.comb2.D0    = results.pip2 + results.Km;
         results.comb2.omega = results.pip1 + results.pim + results.pi0_5C;
 
-        fit.pi0_4C.m = results.pi0_4C.m();
-        fit.pi0_4C.p = results.pi0_4C.rho();
-        fit.pi0_5C.m = results.pi0_5C.m();
-        fit.pi0_5C.p = results.pi0_5C.rho();
-        if(MC.write)
-        {
-          MC.mpi0_4C = fit.pi0_4C.m;
-          MC.mpi0_5C = fit.pi0_5C.m;
-        }
+        tree.pi0_4C.m = results.pi0_4C.m();
+        tree.pi0_4C.p = results.pi0_4C.rho();
+        tree.pi0_5C.m = results.pi0_5C.m();
+        tree.pi0_5C.p = results.pi0_5C.rho();
 
         double m1 = abs(results.comb1.omega.m() - IniSelect::momega);
         double m2 = abs(results.comb2.omega.m() - IniSelect::momega);
         if(m1 < m2)
         {
-          fit.D0.m    = results.comb1.D0.m();
-          fit.omega.m = results.comb1.omega.m();
-          fit.D0.p    = results.comb1.D0.rho();
-          fit.omega.p = results.comb1.omega.rho();
-          if(MC.write)
-          {
-            MC.mD0    = results.comb1.D0.m();
-            MC.momega = results.comb1.omega.m();
-          }
+          tree.D0.m    = results.comb1.D0.m();
+          tree.omega.m = results.comb1.omega.m();
+          tree.D0.p    = results.comb1.D0.rho();
+          tree.omega.p = results.comb1.omega.rho();
         }
         else
         {
-          fit.D0.m    = results.comb2.D0.m();
-          fit.omega.m = results.comb2.omega.m();
-          fit.D0.p    = results.comb2.D0.rho();
-          fit.omega.p = results.comb2.omega.rho();
-          if(MC.write)
-          {
-            MC.mD0    = results.comb2.D0.m();
-            MC.momega = results.comb2.omega.m();
-          }
+          tree.D0.m    = results.comb2.D0.m();
+          tree.omega.m = results.comb2.omega.m();
+          tree.D0.p    = results.comb2.D0.rho();
+          tree.omega.p = results.comb2.omega.rho();
         }
 
         // * Photon kinematics * //
         double eg1 = results.g1.e();
         double eg2 = results.g2.e();
-        fit.fcos   = (eg1 - eg2) / results.pi0_5C.rho(); // E/p ratio for pi^0 candidate
-        fit.Elow   = (eg1 < eg2) ? eg1 : eg2;            // lowest energy of the two gammas
+        tree.fcos   = (eg1 - eg2) / results.pi0_5C.rho(); // E/p ratio for pi^0 candidate
+        tree.Elow   = (eg1 < eg2) ? eg1 : eg2;            // lowest energy of the two gammas
 
-        // * WRITE pi^0 information from EMCal ("fit" branch) *
-        fit.Fill();
         return true;
       }
 
-      Fit5C          fit;
-      TopoAna        MC;
+      void Fill() { tree.Fill(); }
+
+      Fit5C          tree;
       LorentzVectors results;
     };
   } // namespace K4pi

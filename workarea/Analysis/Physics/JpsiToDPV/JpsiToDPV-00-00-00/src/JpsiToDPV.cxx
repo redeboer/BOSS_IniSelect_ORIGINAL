@@ -70,8 +70,8 @@ JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   declareProperty("IdentifyPion", fPID_pi);
 
   /// -# Whether or not to check success of Particle Identification.
-  DECLAREWRITE(fD0omega.K4pi.fit);
-  DECLAREWRITE(fD0omega.K4pi.MC);
+  DECLAREWRITE(fD0omega.K4pi.tree);
+  DECLAREWRITE(fD0phi.KpiKK.tree);
   DECLAREWRITE(fTrees.v);
   DECLAREWRITE(fTrees.photon);
   DECLAREWRITE(fTrees.dedx);
@@ -111,7 +111,6 @@ StatusCode JpsiToDPV::execute()
   SmartDataPtr<Event::McParticleCol> mcParticleCol(eventSvc(), "/Event/MC/McParticleCol");
 
   // * Reset values * //
-  fD0omega.K4pi.MC.Reset();
   tracks.Reset();
 
   // * Log number of events *
@@ -335,12 +334,13 @@ StatusCode JpsiToDPV::execute()
     fTrees.cuts[4]++;
     if(!fD0omega.K4pi.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
     fTrees.cuts[5]++;
-    if(fD0omega.K4pi.MC.write && eventHeader->runNumber() < 0)
+    if(eventHeader->runNumber() < 0)
     {
-      fD0omega.K4pi.MC.runid = eventHeader->runNumber();
-      fD0omega.K4pi.MC.evtid = eventHeader->eventNumber();
-      fD0omega.K4pi.MC.Fill(mcParticleCol);
+      fD0omega.K4pi.tree.runid = eventHeader->runNumber();
+      fD0omega.K4pi.tree.evtid = eventHeader->eventNumber();
+      fD0omega.K4pi.tree.SetMC(mcParticleCol);
     }
+    fD0omega.K4pi.tree.Fill();
   }
 
   /// <li> Perform study in case of \f$J/\psi \rightarrow K^-\pi^+K^-K^+\f$ (`D0phi_KpiKK`).
@@ -349,12 +349,13 @@ StatusCode JpsiToDPV::execute()
     fTrees.cuts[6]++;
     if(!fD0phi.KpiKK.DoFit(vxpar, fMaxChiSq, tracks)) return StatusCode::SUCCESS;
     fTrees.cuts[7]++;
-    if(fD0phi.KpiKK.MC.write && eventHeader->runNumber() < 0)
+    if(eventHeader->runNumber() < 0)
     {
-      fD0phi.KpiKK.MC.runid = eventHeader->runNumber();
-      fD0phi.KpiKK.MC.evtid = eventHeader->eventNumber();
-      fD0phi.KpiKK.MC.Fill(mcParticleCol);
+      fD0phi.KpiKK.tree.runid = eventHeader->runNumber();
+      fD0phi.KpiKK.tree.evtid = eventHeader->eventNumber();
+      fD0phi.KpiKK.tree.SetMC(mcParticleCol);
     }
+    fD0phi.KpiKK.tree.Fill();
   }
 
   /// </ol>
@@ -372,19 +373,25 @@ StatusCode JpsiToDPV::finalize()
   cout << "  Total number of events: " << fTrees.cuts[0] << endl;
   cout << "  Pass N charged tracks:  " << fTrees.cuts[1] << endl;
   cout << "  Pass zero net charge:   " << fTrees.cuts[2] << endl;
-  cout << "  D0omega study:" << endl;
-  cout << "    Pass K- pi+ pi- pi+: " << fTrees.cuts[3] << endl;
-  cout << "    Pass >2 gammas:      " << fTrees.cuts[4] << endl;
-  cout << "    Pass Kalman fit:     " << fTrees.cuts[5] << endl;
-  cout << "  D0phi study:" << endl;
-  cout << "    Pass K- pi+ K- K+: " << fTrees.cuts[6] << endl;
-  cout << "    Pass Kalman fit:   " << fTrees.cuts[7] << endl;
+  if(fD0omega.K4pi.tree.write)
+  {
+    cout << "  D0omega study:" << endl;
+    cout << "    Pass K- pi+ pi- pi+: " << fTrees.cuts[3] << endl;
+    cout << "    Pass >2 gammas:      " << fTrees.cuts[4] << endl;
+    cout << "    Pass Kalman fit:     " << fTrees.cuts[5] << endl;
+  }
+  if(fD0phi.KpiKK.tree.write)
+  {
+    cout << "  D0phi study:" << endl;
+    cout << "    Pass K- pi+ K- K+: " << fTrees.cuts[6] << endl;
+    cout << "    Pass Kalman fit:   " << fTrees.cuts[7] << endl;
+  }
   cout << endl;
   cout << "Trees:" << endl;
-  if(fD0omega.K4pi.fit.write)
-    cout << "  fit:    " << fD0omega.K4pi.fit.GetEntries() << " events" << endl;
-  if(fD0omega.K4pi.MC.write)
-    cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << " events" << endl;
+  if(fD0omega.K4pi.tree.write)
+    cout << "  " << fD0omega.K4pi.tree.GetName() << ":    " << fD0omega.K4pi.tree.GetEntries() << " events" << endl;
+  if(fD0phi.KpiKK.tree.write)
+    cout << "  " << fD0phi.KpiKK.tree.GetName() << ":    " << fD0phi.KpiKK.tree.GetEntries() << " events" << endl;
   cout << "  ------------------" << endl;
   if(fTrees.v.write) cout << "  v:      " << fTrees.v.GetEntries() << " tracks" << endl;
   if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << " tracks" << endl;
@@ -407,8 +414,8 @@ StatusCode JpsiToDPV::finalize()
     log << MSG::ERROR << "Output file \"" << fFileName << "\" is zombie" << endmsg;
     return StatusCode::FAILURE;
   }
-  fD0omega.K4pi.fit.Write();
-  fD0omega.K4pi.MC.Write();
+  fD0omega.K4pi.tree.Write();
+  fD0phi.KpiKK.tree.Write();
   fTrees.v.Write();
   fTrees.photon.Write();
   fTrees.dedx.Write();

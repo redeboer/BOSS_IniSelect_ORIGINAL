@@ -4,7 +4,8 @@
 #include "$JPSITODPVROOT/share/JpsiToDPV.txt"
 
 EventCnvSvc.digiRootInputFile = {
-	"/scratchfs/bes/deboer/data/dst/D0omega_K4pi/100,000_events/D0omega_K4pi_0.dst"
+	// "/scratchfs/bes/deboer/data/dst/D0omega_K4pi/100,000_events/D0omega_K4pi_0.dst"
+	"/scratchfs/bes/deboer/data/dst/D0phi_KpiKK/100,000_events/D0phi_KpiKK_0.dst"
 	// "/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run10004_file1.dst",
 	// "/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run10013_file2.dst",
 	// "/besfs3/offline/data/besfs2/offline/data/664-1/jpsi/09mc/dst/jpsi2009_stream001_run10014_file15.dst",

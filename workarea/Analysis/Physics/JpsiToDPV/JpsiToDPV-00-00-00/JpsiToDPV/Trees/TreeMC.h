@@ -11,10 +11,12 @@
 /// @{
 /// @author   Remco de Boer 雷穆克 (r.e.deboer@students.uu.nl or remco.de.boer@ihep.ac.cn)
 /// @date     May 29th, 2018
-class TreeMC : public TreeContainer
+class TreeMC
 {
 public:
-  TreeMC(const char* name, const char* title) : TreeContainer(name, title)
+  TreeMC() {}
+
+  void BookMC(TTree* fTree)
   {
     BRANCH(runid);
     BRANCH(evtid);
@@ -26,7 +28,7 @@ public:
   std::vector<Int_t> PDG;    ///< PDG code for the particle in this array.
   std::vector<Int_t> mother; ///< Track index of the mother particle.
 
-  void Fill(SmartDataPtr<Event::McParticleCol> mcParticleCol)
+  void SetMC(SmartDataPtr<Event::McParticleCol> mcParticleCol)
   {
     if(!mcParticleCol)
     {
@@ -60,7 +62,6 @@ public:
       if((*it)->particleProperty() == IniSelect::incPid) mother[n] = 0;
       ++n;
     }
-    fTree->Fill();
   }
 };
 /// @}

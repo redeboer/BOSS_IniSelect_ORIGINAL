@@ -15,6 +15,8 @@ public:
   TreeContainer(const char* name, const char* title = "") { fTree = new TTree(name, title); }
   ~TreeContainer() { delete fTree; }
 
+  const char* GetName() const { return fTree->GetName(); }
+
   Bool_t write;
   void   Fill()
   {
@@ -32,7 +34,7 @@ public:
   const char* PropertyName() const { return Form("write_%s", fTree->GetName()); }
 
 protected:
-  TTree* fTree;
+  TTree* fTree; ///< Using dynamic memory in case of large `TTree` size.
 };
 /// @}
 #endif

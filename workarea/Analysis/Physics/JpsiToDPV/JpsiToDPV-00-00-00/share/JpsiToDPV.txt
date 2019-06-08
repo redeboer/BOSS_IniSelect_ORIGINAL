@@ -25,7 +25,6 @@ JpsiToDPV.IdentifyPion     = true;
 // * Whether or not to check success of Particle Identification *
 JpsiToDPV.write_D0omega_K4pi = true;
 JpsiToDPV.write_D0phi_KpiKK  = true;
-JpsiToDPV.write_topology     = true;
 JpsiToDPV.write_vxyz         = false;
 JpsiToDPV.write_photon       = false;
 JpsiToDPV.write_dedx         = false;
