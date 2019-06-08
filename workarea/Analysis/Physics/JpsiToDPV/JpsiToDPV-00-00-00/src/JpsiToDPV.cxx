@@ -61,7 +61,6 @@ JpsiToDPV::JpsiToDPV(const string& name, ISvcLocator* pSvcLocator) :
   declareProperty("GammaAngleCut", fGammaAngleCut);
 
   /// -# Whether to test the success of the 4- and 5-constraint fits.
-  declareProperty("DoKKFit", fDo_fit);
   declareProperty("MaxChiSq", fMaxChiSq);
   declareProperty("MinPID", fMinPID);
 
@@ -361,7 +360,7 @@ StatusCode JpsiToDPV::execute()
   WTrackParameter wpip2 = vtxfit->wtrk(3);
 
   /// <li> Perform Kalman kinematic fit.
-  if(fDo_fit) if(fD0omega.K4pi.DoFit(fMaxChiSq, tracks)) fTrees.cuts[6]++;
+  if(fD0omega.K4pi.DoFit(fMaxChiSq, tracks)) fTrees.cuts[5]++;
 
   /// <li> Get MC truth.
   bool writeMC = (fD0omega.K4pi.MC.momega < 100.);
@@ -390,20 +389,20 @@ StatusCode JpsiToDPV::finalize()
   cout << "  Pass zero net charge    " << fTrees.cuts[2] << endl;
   cout << "  Pass N gammas:          " << fTrees.cuts[3] << endl;
   cout << "  Pass PID:               " << fTrees.cuts[4] << endl;
-  cout << "  Pass 4C Kalman fit:     " << fTrees.cuts[5] << endl;
-  cout << "  Pass 5C Kalman fit:     " << fTrees.cuts[6] << endl;
+  cout << "  Pass Kalman fit:        " << fTrees.cuts[5] << endl;
   cout << endl;
   cout << "Trees:" << endl;
-  if(fD0omega.K4pi.fit.write) cout << "  fit:  " << fD0omega.K4pi.fit.GetEntries() << endl;
-  if(fD0omega.K4pi.MC.write) cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << endl;
-  if(fTrees.cuts.write) cout << "  cuts:   " << fTrees.cuts.GetEntries() << endl;
-  if(fTrees.v.write) cout << "  v:      " << fTrees.v.GetEntries() << endl;
-  if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << endl;
-  if(fTrees.dedx.write) cout << "  dedx:   " << fTrees.dedx.GetEntries() << endl;
-  if(fTrees.TofEC.write) cout << "  TofEC:  " << fTrees.TofEC.GetEntries() << endl;
-  if(fTrees.TofIB.write) cout << "  TofIB:  " << fTrees.TofIB.GetEntries() << endl;
-  if(fTrees.TofOB.write) cout << "  TofOB:  " << fTrees.TofOB.GetEntries() << endl;
-  if(fTrees.PID.write) cout << "  PID:    " << fTrees.PID.GetEntries() << endl;
+  if(fD0omega.K4pi.fit.write) cout << "  fit:    " << fD0omega.K4pi.fit.GetEntries() << " events" << endl;
+  if(fD0omega.K4pi.MC.write) cout << "  MC:     " << fD0omega.K4pi.MC.GetEntries() << " events" << endl;
+  cout << "  ------------------" << endl;
+  if(fTrees.v.write) cout << "  v:      " << fTrees.v.GetEntries() << " tracks" << endl;
+  if(fTrees.photon.write) cout << "  photon: " << fTrees.photon.GetEntries() << " tracks" << endl;
+  if(fTrees.dedx.write) cout << "  dedx:   " << fTrees.dedx.GetEntries() << " tracks" << endl;
+  if(fTrees.TofEC.write) cout << "  TofEC:  " << fTrees.TofEC.GetEntries() << " tracks" << endl;
+  if(fTrees.TofIB.write) cout << "  TofIB:  " << fTrees.TofIB.GetEntries() << " tracks" << endl;
+  if(fTrees.TofOB.write) cout << "  TofOB:  " << fTrees.TofOB.GetEntries() << " tracks" << endl;
+  if(fTrees.PID.write) cout << "  PID:    " << fTrees.PID.GetEntries() << " tracks" << endl;
+  if(fTrees.cuts.write) cout << "  (cuts:  " << fTrees.cuts.GetEntries() << " entry)" << endl;
   cout << endl;
 
   TFile file(fFileName.c_str(), "RECREATE");

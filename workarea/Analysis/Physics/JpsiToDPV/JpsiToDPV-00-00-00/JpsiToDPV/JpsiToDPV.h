@@ -56,7 +56,6 @@ private:
   bool fPID_pi;
 
   // * Declare whether to test the success of the 4- and 5-constraint fits
-  bool   fDo_fit;
   double fMaxChiSq;
   double fMinPID;
 };

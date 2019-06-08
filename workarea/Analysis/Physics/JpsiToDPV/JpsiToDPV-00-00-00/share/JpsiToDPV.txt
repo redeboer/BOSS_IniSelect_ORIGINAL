@@ -15,7 +15,6 @@ JpsiToDPV.GammaThetaCut   = 20.0;
 JpsiToDPV.GammaAngleCut   = 20.0;
 
 // * Whether to test the success of the 4- and 5-constraint fits *
-JpsiToDPV.DiKKFit  = true;  // write fit4c
 JpsiToDPV.MaxChiSq = 200.;  // chisq for both fits should be less
 JpsiToDPV.MinPID   = 0.001; // PID probability should be at least this value
 
@@ -24,8 +23,7 @@ JpsiToDPV.IdentifyKaon     = true;
 JpsiToDPV.IdentifyPion     = true;
 
 // * Whether or not to check success of Particle Identification *
-JpsiToDPV.write_fit4c    = true;
-JpsiToDPV.write_fit5c    = true;
+JpsiToDPV.write_fit      = true;
 JpsiToDPV.write_topology = true;
 JpsiToDPV.write_vxyz     = true;
 JpsiToDPV.write_photon   = true;
