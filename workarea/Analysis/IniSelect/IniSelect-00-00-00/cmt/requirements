@@ -1,7 +1,13 @@
 package IniSelect
 author Remco de Boer 雷穆克 <remco.de.boer@ihep.ac.cn>
 
+# * C++11 support * #
 macro IniSelect_cppflags "-std=c++0x"
+
+# * Search for source code in IniSelect directory instead of src * #
+# pattern -global include_path include_path ${<package>_root}/<package>/
+
+# include_path IniSelect
 
 use BesPolicy BesPolicy-*
 use GaudiInterface GaudiInterface-* External
@@ -19,6 +25,18 @@ use BesROOT      BesROOT-00-*   External
 use MdcRecoUtil  MdcRecoUtil-*  Reconstruction/MdcPatRec
 
 apply_pattern component_library
-library IniSelect  *.cxx  .factory/*.cxx  Algorithms/*.cxx  Containers/*.cxx  Exceptions/*.cxx  Fit/*.cxx  Functions/*.cxx  Handlers/*.cxx  Particle/*.cxx  TrackCollections/*.cxx  UnitTests/*.cxx  UnitTests/.factory/*.cxx
+library IniSelect -s=../IniSelect \
+  *.cxx \
+  .factory/*.cxx \
+  Algorithms/*.cxx \
+  Containers/*.cxx \
+  Exceptions/*.cxx \
+  Fit/*.cxx \
+  Functions/*.cxx \
+  Handlers/*.cxx \
+  Particle/*.cxx \
+  TrackCollections/*.cxx \
+  UnitTests/*.cxx \
+  UnitTests/.factory/*.cxx
 
 apply_pattern declare_runtime files=*.txt
