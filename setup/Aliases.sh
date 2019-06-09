@@ -86,7 +86,7 @@
 	alias cdphi="cdworkarea Analysis/Physics/D0phi_3Kpi/D0phi_3Kpi-00-00-00"
 	alias cddata="cd ${BOSS_IniSelect_OutputDir}"
 
-	alias cdtopoana="cdworkarea Analysis/TopoAna/v1.6.9.1"
+	alias cdtopoana="cd /besfs/users/$USER/topoana"
 	alias cdmctruth1="cdmctruth 1"
 	alias cdmctruth2="cdmctruth 2"
 	alias cdmctruth3="cdmctruth 3"
