@@ -39,4 +39,4 @@ library IniSelect -s=../IniSelect \
   UnitTests/*.cxx \
   UnitTests/.factory/*.cxx
 
-apply_pattern declare_runtime files=*.txt
+apply_pattern declare_runtime files=*.job
