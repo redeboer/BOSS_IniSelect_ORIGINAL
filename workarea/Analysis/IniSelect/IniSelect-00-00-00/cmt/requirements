@@ -1,6 +1,8 @@
 package IniSelect
 author Remco de Boer 雷穆克 <remco.de.boer@ihep.ac.cn>
 
+macro IniSelect_cppflags "-std=c++0x"
+
 use BesPolicy BesPolicy-*
 use GaudiInterface GaudiInterface-* External
 
