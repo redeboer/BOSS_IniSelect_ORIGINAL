@@ -1,0 +1,15 @@
+#include "$ROOTIOROOT/share/jobOptions_ReadRec.txt"
+
+ApplicationMgr.DLLs   += {"IniSelect"};
+ApplicationMgr.TopAlg += {"OutputFile_test"};
+
+EventCnvSvc.digiRootInputFile = {
+	"$INISELECTROOT/UnitTests/data/input/incl_2009.dst"
+};
+
+MessageSvc.OutputLevel = 2;
+MessageSvc.useColors   = true;
+
+ApplicationMgr.EvtMax = 10;
+
+OutputFile_test.OutputFile = "/besfs/users/deboer/BOSS_IniSelect/workarea/Analysis/IniSelect/IniSelect-00-00-00/UnitTests/data/output/OutputFile.root";
