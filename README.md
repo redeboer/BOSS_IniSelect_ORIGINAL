@@ -1,5 +1,9 @@
 # BOSS IniSelect
 
+**This repository has been migrated to the [BOSS Starter Kit](https://github.com/redeboer/BOSS_StarterKit) repository.** The Starter Kit contains the essentials for getting started with BOSS and some useful tools. The details are implemented as submodules, so that users can choose themselves which components they would like to use.
+
+# Original `README.md`
+
 This repository serves as an extra layer to the BESIII Offline Software System (BOSS). For more information on BOSS, see the [BOSS GitBook](https://besiii.gitbook.io/boss).
 
 The BOSS IniSelect repository contains BOSS packages for **initial event selection** (hence the name). These packages are to facilitate analysis procedures in BESIII by further modulating the procedure for selecting tracks from a DST file. The main feature is the [TrackSelector](https://redeboer.github.io/BOSS_IniSelect/classTrackSelector.html), which is a *base algorithm* that takes care of all procedures required by an initial event selection. The specifics of your own analysis are defined in an algorithm that you derive from the `TrackSelector`.
